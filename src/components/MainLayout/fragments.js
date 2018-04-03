@@ -22,8 +22,8 @@ export const Fragments = graphql`
           }
           headerBg {
             image: childImageSharp {
-              resolutions {
-                ...GatsbyImageSharpResolutions
+              sizes (maxWidth: 1280, quality: 75) {
+                ...GatsbyImageSharpSizes
               }
             }
           }

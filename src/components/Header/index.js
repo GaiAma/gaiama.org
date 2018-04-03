@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from 'glamor'
 import Link from 'gatsby-link'
-import Img from 'gatsby-image'
+// import Img from 'gatsby-image'
 import Headroom from 'react-headroom'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { visible } from '@/theme'
@@ -26,7 +26,7 @@ class Header extends Component {
   render () {
     const { title, subtitle, meta, menu, logo, bgImage } = this.props
     return (
-      <header css={style.header({ bg: bgImage.resolutions.src })}>
+      <header css={style.header({ bg: bgImage.sizes.src })}>
         <div css={style.headerTop}>
           <div css={style.topInner}>
             <div css={style.headerBrand}>
@@ -61,8 +61,8 @@ class Header extends Component {
         </div>
 
         <div css={style.headerBanner}>
-          <Img
-            resolutions={logo.resolutions}
+          <img
+            src={logo.resolutions.src}
             alt="GaiAma Logo"
             css={style.headerLogo}
           />
@@ -78,7 +78,7 @@ class Header extends Component {
           <nav
             id="site-navigation"
             aria-label="primary"
-            css={style.headerNav({ bg: bgImage.resolutions.src, isSticky: this.state.isSticky })}
+            css={style.headerNav({ bg: bgImage.sizes.src, isSticky: this.state.isSticky })}
           >
             <div css={style.headerNavScroller}>
               <div css={style.headerNavInner}>

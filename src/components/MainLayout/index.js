@@ -14,6 +14,8 @@ import {
   InstagramGradient,
 } from '@/theme'
 
+import './fragments'
+
 import 'typeface-amatic-sc'
 import 'typeface-quicksand'
 
@@ -128,7 +130,9 @@ class MainLayout extends Component {
       //   initialLanguage={lang}
       //   initialI18nStore={i18nStore}
       // >
-      <div>
+      <div
+        css={{ maxWidth: `1280px` }}
+      >
         <Helmet
           titleTemplate="%s - GaiAma.org"
           defaultTitle={page.frontmatter.title}
