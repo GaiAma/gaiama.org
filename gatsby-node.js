@@ -271,29 +271,56 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
       return true
     })
 
-  // setup translation mapping
+  // setup mappings
   const allNodes = getNodes()
   const PagesAndPosts = allNodes.filter(x => isPageOrPost({ node: x }))
 
   PagesAndPosts.forEach(node => {
-    if (!node.frontmatter.translations) return false
+    // translation mapping
+    if (node.frontmatter.translations) {
+      const translatedNodes =
+        node.frontmatter.translations.map(
+          id => {
+            const translation = PagesAndPosts.find(x => x.frontmatter.id === id)
+            return translation
+              ?  translation.id
+              : console.log(`NOT`, id, node.frontmatter.slug)
+          })
 
-    const translatedNodes = node.frontmatter.translations.map(
-      id => {
-        const translation = PagesAndPosts.find(x => x.frontmatter.id === id)
-        if (!translation) {
-          return console.log(`NOT`, id, node.frontmatter.slug)
-        }
-        return translation.id
-      })
+      translatedNodes.length &&
+        createNodeField({
+          node,
+          name: `translations`,
+          value: translatedNodes,
+        })
+    }
 
-    translatedNodes.length &&
-      createNodeField({
-        node,
-        name: `translations`,
-        value: translatedNodes,
-      })
-    
+    // suggested content mapping
+    if (node.frontmatter.suggested) {
+      const suggestedNodes =
+        node.frontmatter.suggested.map(
+          _id => {
+            const id = `${id}`
+            const propToMatch = id.length === 4
+              ? `oldId`
+              : `id`
+            const suggestion = PagesAndPosts.find(x =>
+              x.frontmatter[propToMatch] === id &&
+              x.frontmatter.lang === node.frontmatter.lang
+            )
+            return suggestion
+              ?  suggestion.id
+              : console.log(`NOT`, id, node.frontmatter.slug)
+          })
+
+      suggestedNodes.length &&
+        createNodeField({
+          node,
+          name: `suggested`,
+          value: suggestedNodes,
+        })
+    }
+
     return true
   })
 
