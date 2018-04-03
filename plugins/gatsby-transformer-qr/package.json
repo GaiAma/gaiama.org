@@ -1,0 +1,41 @@
+{
+  "name": "gatsby-transformer-qr",
+  "version": "",
+  "author": {
+    "name": "Can Rau",
+    "email": "cansrau@gmail.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir .",
+    "watch": "yarn build --watch"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "qr",
+    "qr code"
+  ],
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ],
+    "plugins": [
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
+  },
+  "files": [
+    "index.js"
+  ],
+  "dependencies": {
+    "cuid": "^2.1.0",
+    "lodash": "^4.17.5",
+    "make-dir": "^1.2.0",
+    "qr-image": "^3.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "7.0.0-beta.42",
+    "@babel/core": "7.0.0-beta.42",
+    "@babel/preset-env": "7.0.0-beta.42"
+  }
+}

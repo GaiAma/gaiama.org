@@ -1,0 +1,41 @@
+{
+  "name": "gatsby-transformer-all-yaml",
+  "version": "",
+  "author": {
+    "name": "Can Rau",
+    "email": "cansrau@gmail.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir .",
+    "watch": "yarn build --watch"
+  },
+  "keywords": [
+    "gatsby",
+    "gatsby-plugin",
+    "gatsby-transformer",
+    "yaml",
+    "yml"
+  ],
+  "babel": {
+		"presets": [
+			"@babel/preset-env"
+		],
+		"plugins": [
+			"@babel/plugin-proposal-object-rest-spread"
+		]
+	},
+	"files": [
+		"index.js"
+	],
+  "dependencies": {
+    "js-yaml": "*",
+    "crypto": "*",
+    "lodash": "*"
+  },
+  "devDependencies": {
+    "@babel/cli": "*",
+    "@babel/core": "*",
+    "@babel/preset-env": "*"
+  }
+}
