@@ -126,6 +126,7 @@ const SupportWidget = ({
   readMoreLabel,
   artwork,
   artworkStyles,
+  artworkWrapperStyles,
   transparent,
   ...props
 }) => (
@@ -147,6 +148,7 @@ const SupportWidget = ({
         display: `flex`,
         alignItems: `flex-end`,
         marginBottom: `.5rem`,
+        ...artworkWrapperStyles,
       }}>
         <Img
           resolutions={artwork.image.resolutions}
@@ -234,10 +236,12 @@ SupportWidget.propTypes = {
   readMoreLabel: PropTypes.string,
   artwork: PropTypes.object,
   artworkStyles: PropTypes.object,
+  artworkWrapperStyles: PropTypes.object,
   transparent: PropTypes.bool,
 }
 SupportWidget.defaultProps = {
   artworkStyles: {},
+  artworkWrapperStyles: {},
 }
 export { SupportWidget }
 export const SupportWidgetFragment = graphql`
@@ -408,6 +412,7 @@ const InstagramFeed = ({
       left: `50%`,
       transform: `translateX(-50vw)`,
       padding: `2rem 0`,
+      zIndex: -1,
 
       [breakPoints.minMd]: {
         justifyContent: `space-around`,
