@@ -12,7 +12,7 @@ const NewstickerItem = ({
   ...props
 }) => {
   const coverImage = item.frontmatter.cover &&
-    item.frontmatter.cover.childImageSharp.resolutions
+    item.frontmatter.cover.image.resolutions
 
   return (
     <div {...props}>
@@ -22,7 +22,7 @@ const NewstickerItem = ({
       }}>
         {coverImage &&
           <Link
-            to={item.fields.slug}
+            to={item.frontmatter.slug}
             css={styles.imageWrapper(layout)}
           >
             <Img resolutions={coverImage} css={styles.image} />
@@ -30,7 +30,7 @@ const NewstickerItem = ({
 
         <div>
           <h2 css={styles.title(layout)}>
-            <Link to={item.fields.slug}>
+            <Link to={item.frontmatter.slug}>
               {item.frontmatter.title}
             </Link>
           </h2>
@@ -42,7 +42,7 @@ const NewstickerItem = ({
             )}
 
             {readmoreLabel && <Link
-              to={item.fields.slug}
+              to={item.frontmatter.slug}
               css={styles.readmoreLink}
             >
               {readmoreLabel}

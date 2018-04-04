@@ -92,7 +92,7 @@ const HomePage = props => (
     <div
       css={{
         backgroundImage: `url(${
-          props.data.page.frontmatter.assets.supportus.image.resolutions.src
+          props.data.page.frontmatter.assets.keyBg.image.resolutions.src
         })`,
         backgroundPosition: `right 0`,
         backgroundColor: colors.lightBlue,
@@ -170,23 +170,19 @@ const HomePage = props => (
 
     <SupportWidget
       transparent
+      title={props.data.SupportWidget.frontmatter.title}
       contactLink={props.data.SupportWidget.frontmatter.contactLink}
-      // cryptos={props.data.Cryptos.edges}
       readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
       readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
-      // artwork={props.data.page.frontmatter.sidebar.artwork}
+      artwork={props.data.page.frontmatter.assets.supportus}
       css={{
         margin: `3rem 0`,
-        // '& > div + div': {
-        //   background: `initial`,
-        // },
       }}
-    />
-
-    <Img
-      resolutions={
-        props.data.page.frontmatter.assets.supportus.image.resolutions
-      }
+      artworkWrapperStyles={{
+        position: `absolute`,
+        bottom: `-2px`,
+        left: `-1px`,
+      }}
     />
 
     <InstagramFeed
@@ -284,14 +280,14 @@ export const query = graphql`
         assets {
           supportus {
             image: childImageSharp {
-              resolutions {
+              resolutions (quality: 75) {
                 ...GatsbyImageSharpResolutions
               }
             }
           }
           keyBg {
             image: childImageSharp {
-              resolutions {
+              resolutions (quality: 75) {
                 ...GatsbyImageSharpResolutions
               }
             }

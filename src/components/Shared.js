@@ -121,6 +121,8 @@ class CoinPicker extends Component {
 }
 
 const SupportWidget = ({
+  title,
+  description,
   contactLink,
   readMoreLink,
   readMoreLabel,
@@ -170,8 +172,20 @@ const SupportWidget = ({
         mt="1rem"
         fontSize="2rem"
       >
-        This is how you can support us
+        {title}
       </H2>
+
+      {description &&
+        <p
+          css={{
+            textAlign: `center`,
+            marginBottom: `1rem`,
+          }}
+          dangerouslySetInnerHTML={{
+            __html: description,
+          }}
+        />
+      }
 
       <div css={{
         margin: `2.5rem auto`,
@@ -184,7 +198,6 @@ const SupportWidget = ({
         },
       }}>
         <Box flex column aICenter>
-    
           <form css={{ marginBottom: `0` }} action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick" />
             <input type="hidden" name="hosted_button_id" value="AR3R6U8M5SDKS" />
@@ -231,6 +244,8 @@ const SupportWidget = ({
   </div>
 )
 SupportWidget.propTypes = {
+  title: PropTypes.string,
+  description: PropTypes.string,
   contactLink: PropTypes.string,
   readMoreLink: PropTypes.string,
   readMoreLabel: PropTypes.string,
@@ -250,6 +265,7 @@ export const SupportWidgetFragment = graphql`
       frontmatter: { lang: { eq: $lang } }
     ) {
       frontmatter {
+        title
         contactLink
         readMoreLink
         readMoreLabel

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import Link from '@/components/Link'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import hex2rgba from 'hex2rgba'
 import {

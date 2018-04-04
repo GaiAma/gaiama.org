@@ -6,12 +6,18 @@ import rehypeReact from 'rehype-react'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
 import ShareWidget from '@/components/ShareWidget'
-// import { SupportWidget } from '@/components/Shared'
+import { SupportWidget } from '@/components/Shared'
+import Newsticker from '@/components/Newsticker'
 import summarize from '@/utils/summarize'
-import { colors, fontFamilies, gradients } from '@/theme'
+import {
+  // breakPoints,
+  colors,
+  fontFamilies,
+  gradients,
+} from '@/theme'
 
 const BlogPost = props => {
-  const post = props.data.page
+  const { page: post, BlogPost, NewsTicker } = props.data
   return <MainLayout {...props}>
       <Head
         title={post.frontmatter.title}
@@ -29,35 +35,29 @@ const BlogPost = props => {
       <PostBody>{renderAst(post.htmlAst)}</PostBody>
 
       <ShareWidget
-        label={props.data.BlogPost.frontmatter.shareLabel}
+        label={BlogPost.frontmatter.shareLabel}
       />
 
-      {/* <SupportWidget
+      <SupportWidget
         // transparent
+        title={BlogPost.frontmatter.SupportWidget.title}
+        description={BlogPost.frontmatter.SupportWidget.description}
         contactLink={props.data.SupportWidget.frontmatter.contactLink}
         // cryptos={props.data.Cryptos.edges}
         readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
         readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
         // artwork={props.data.page.frontmatter.sidebar.artwork}
         css={{ margin: `3rem 0` }}
-      /> */}
-      <div
-        css={{
-          background: colors.lightBlue,
-          width: `100vw`,
-          position: `relative`,
-          left: `50%`,
-          transform: `translateX(-50vw)`,
-          height: `250px`,
-          margin: `3rem 0`,
-        }}
-      >
-      </div>
+      />
 
       {post.fields.suggested &&
-        <SuggestedArticles
-          label={props.data.BlogPost.frontmatter.relatedArticlesLabel}
-          articles={post.fields.suggested}
+        <Newsticker
+          items={post.fields.suggested.slice(0, 3)}
+          title={BlogPost.frontmatter.relatedArticlesLabel}
+          linkLabel={NewsTicker.frontmatter.linkLabel}
+          link={NewsTicker.frontmatter.link}
+          readmoreLabel={NewsTicker.frontmatter.readmoreLabel}
+          layout="row"
         />
       }
     </MainLayout>
@@ -80,6 +80,7 @@ export const query = graphql`
     ...homepage
     ...menu
     ...SupportWidget
+    ...NewsTicker
 
     BlogPost: blogPostAml (
       frontmatter: { lang: { eq: $lang } }
@@ -87,6 +88,10 @@ export const query = graphql`
       frontmatter {
         shareLabel
         relatedArticlesLabel
+        SupportWidget{
+          title
+          description
+        }
       }
     }
     
@@ -104,11 +109,20 @@ export const query = graphql`
           }
         }
         suggested {
+          html
           frontmatter {
             id
             title
             lang
             slug
+            summary
+            cover {
+              image: childImageSharp {
+                resolutions (width: 327, height: 192, quality: 75) {
+                  ...GatsbyImageSharpResolutions
+                }
+              }
+            }
           }
         }
       }
@@ -267,30 +281,3 @@ const PostBody = ({ children }) => (
     {children}
   </div>
 )
-
-const SuggestedArticles = ({ label, articles }) => (
-  <div>
-    {label &&
-      <h4>
-        {label}
-      </h4>
-    }
-
-    <div
-      css={{
-        display: `flex`,
-        justifyContent: `space-between`,
-      }}
-    >
-      {articles.map(s => (
-        <article key={s.frontmatter.id}>
-          <h3>{s.frontmatter.title}</h3>
-        </article>
-      ))}
-    </div>
-  </div>
-)
-SuggestedArticles.propTypes = {
-  label: PropTypes.string,
-  articles: PropTypes.array,
-}

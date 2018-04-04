@@ -123,8 +123,8 @@ const AboutPage = props => {
       </div>
 
       <SupportWidget
+        title={props.data.SupportWidget.frontmatter.title}
         contactLink={props.data.SupportWidget.frontmatter.contactLink}
-        // cryptos={props.data.Cryptos.edges}
         readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
         readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
         artwork={page.frontmatter.sidebar.artwork}
@@ -132,7 +132,7 @@ const AboutPage = props => {
       />
 
       <Newsticker
-        items={props.data.news.edges}
+        items={props.data.news.edges.map(x => x.node)}
         title={NewsTicker.frontmatter.title}
         linkLabel={NewsTicker.frontmatter.linkLabel}
         link={NewsTicker.frontmatter.link}

@@ -336,8 +336,8 @@ const SupportPage = props => {
       />
 
       <SupportWidget
+        title={props.data.SupportWidget.frontmatter.title}
         contactLink={props.data.SupportWidget.frontmatter.contactLink}
-        // cryptops={props.data.Cryptos.edges}
         readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
         readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
         artwork={props.data.page.frontmatter.assets.mushrooms}

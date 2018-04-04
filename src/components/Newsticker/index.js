@@ -47,9 +47,9 @@ const NewsTicker = ({
         display: layout === `row` && `flex`,
       }}>
         {items.map((item, index) =>
-          item.node && <NewstickerItem
-            key={item.node.frontmatter.id || index}
-            item={item.node}
+          item && <NewstickerItem
+            key={item.frontmatter.id || index}
+            item={item}
             readmoreLabel={readmoreLabel}
             layout={layout}
             css={{
@@ -106,7 +106,6 @@ export const fragment = graphql`
     timeToRead
     html
     fields {
-      slug
       lang
       layout
     }
@@ -128,11 +127,12 @@ export const fragment = graphql`
           ...newstickerCommonFields
           frontmatter {
             id
+            slug
             title
             date
             summary
             cover {
-              childImageSharp {
+              image: childImageSharp {
                 resolutions(width: 80, height: 80, quality: 75) {
                   ...GatsbyImageSharpResolutions
                 }
@@ -164,7 +164,7 @@ export const fragment = graphql`
             date
             summary
             cover {
-              childImageSharp {
+              image: childImageSharp {
                 resolutions(width: 324, height: 150, quality: 75) {
                   ...GatsbyImageSharpResolutions
                 }
