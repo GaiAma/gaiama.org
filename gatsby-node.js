@@ -300,7 +300,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
       const suggestedNodes =
         node.frontmatter.suggested.map(
           _id => {
-            const id = `${id}`
+            const id = `${_id}`
             const propToMatch = id.length === 4
               ? `oldId`
               : `id`
