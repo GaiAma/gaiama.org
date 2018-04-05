@@ -220,7 +220,6 @@ export const query = graphql`
     ...languages
     ...homepage
     ...menu
-    ...SideBar
     ...instagram
     ...SupportWidget
     #...Cryptos
@@ -428,71 +427,6 @@ KeyPrinciples.propTypes = {
   content: PropTypes.array,
 }
 export { KeyPrinciples }
-
-// export const MainContent = ({
-//   newsletterHeadline,
-//   newsletterPlaceholder,
-//   newsletterButtonLabel,
-//   artwork,
-//   artworkCss,
-//   cryptos,
-//   contactLink,
-//   readMoreLink,
-//   readMoreLabel,
-//   keyPrinciples,
-// }) => (
-//   <Box
-//     css={{
-//       display: 'flex',
-//       flexDirection: 'column-reverse',
-//       margin: '0 0 1rem',
-
-//       [breakPoints.minSm]: {
-//         marginTop: '6rem',
-//         flexDirection: 'row',
-//         justifyContent: 'space-between',
-//       },
-//     }}
-//   >
-//     <SideBar
-//       newsletterHeadline={newsletterHeadline}
-//       newsletterPlaceholder={newsletterPlaceholder}
-//       newsletterButtonLabel={newsletterButtonLabel}
-//       artwork={artwork}
-//       artworkCss={artworkCss}
-//       cryptos={cryptos}
-//       contactLink={contactLink}
-//       readMoreLink={readMoreLink}
-//       readMoreLabel={readMoreLabel}
-//       css={{
-//         [breakPoints.maxSm]: {
-//           marginTop: '2rem',
-//         },
-//         [breakPoints.minSm]: {
-//           width: '30%',
-//         },
-//         [breakPoints.minMd]: {
-//           width: '25%',
-//         },
-//       }}
-//     />
-
-//     <KeyPrinciples
-//       content={keyPrinciples}
-//       // css={{
-//       //   [breakPoints.minSm]: {
-//       //     width: '65%'
-//       //   },
-//       //   [breakPoints.minMd]: {
-//       //     width: '70%'
-//       //   },
-//       //   [breakPoints.minLgLandscape]: {
-//       //     width: '59%'
-//       //   }
-//       // }}
-//     />
-//   </Box>
-// )
 
 export const TitledCopyStyled = props => (
   <TitledCopy centered css={{ margin: `4rem auto` }} {...props} />

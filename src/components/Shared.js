@@ -2,12 +2,9 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
-// import slugify from 'slugify'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { css } from 'glamor'
-import { colors, breakPoints, Box, Button, fontFamilies, H2, H3 } from '@/theme'
+import { colors, breakPoints, Box, fontFamilies, H2 } from '@/theme'
 import Lazy from '@/components/Lazy'
-import NewsletterWidget from '@/components/NewsletterWidget'
 import PatreonButton from '@/assets/become_a_patron_button.png'
 
 export const cryptos = [
@@ -16,8 +13,6 @@ export const cryptos = [
   { name: `Ethereum`, symbol: `eth`, address: `0xFaE65E5CFdD4e2CF515C2a89a650Acd092EBDA37` },
   { name: `Litecoin`, symbol: `ltc`, address: `LhJ9MFS8ffjxVFwmAemJvz2bDGMwHhCXUe` },
   { name: `Dash`, symbol: `dash`, address: `XdkJiEL6UJStW1Hz5WWE4g41c5QsMwweio` },
-  // { name: 'Ripple', symbol: 'xrp', icon: XRP },
-  // { name: 'Monero', symbol: 'xmr', icon: XMR },
 ].map(x => ({
   ...x,
   icon: require(`cryptocurrency-icons/svg/color/${x.symbol}.svg`),
@@ -232,11 +227,6 @@ const SupportWidget = ({
           <CoinPicker
             coins={
               cryptos
-              // .map(x => ({
-              //   ...x,
-              //   icon: require(`cryptocurrency-icons/svg/color/${x.qrFilename}.svg`),
-              //   qr: require(`~/public/qr/${x.qrFilename}.svg`)
-              // }))
             }
           />
         </Box>
@@ -289,144 +279,6 @@ export const SupportWidgetFragment = graphql`
     ) {
       frontmatter {
         title
-        readMoreLink
-        readMoreLabel
-      }
-    }
-  }`
-
-const SideBar = ({
-  newsletterPlaceholder,
-  newsletterButtonLabel,
-  newsletterBgColor,
-  artwork,
-  artworkCss,
-  cryptos,
-  contactLink,
-  readMoreLink,
-  readMoreLabel,
-  displaySide,
-  below,
-  ...props
-}) => (
-  <div {...props}>
-    <NewsletterWidget
-      placeholder={newsletterPlaceholder}
-      buttonLabel={newsletterButtonLabel}
-      bgColor={newsletterBgColor}
-      css={{
-        position: `relative`,
-        zIndex: 1,
-        margin: `0 auto`,
-      }}
-    />
-    <img
-      src={artwork}
-      alt="Artwork"
-      className={css(
-        artworkCss || {},
-        {
-          display: `none`,
-          [breakPoints.minLgLandscape]: {
-            display: `block`,
-            position: `absolute`,
-            left: displaySide === `left` ? 0 : `initial`,
-            right: displaySide === `right` ? 0 : `initial`,
-            transform: `translateY(-2rem)`,
-          },
-          [breakPoints.minXxl]: { display: `none` },
-        }
-      )}
-    />
-    <Box oh glass css={{
-      marginTop: `3rem`,
-      [breakPoints.minLgLandscape]: {
-        marginTop: `6rem`,
-        paddingTop: `3.2rem`,
-      },
-    }}>
-      <H2 align="center" mb="2rem">
-        Donate to help
-      </H2>
-
-      <Box flex column aICenter mb="2rem">
-        <H3>Via PayPal</H3>
-
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-          <input type="hidden" name="cmd" value="_s-xclick" />
-          <input type="hidden" name="hosted_button_id" value="AR3R6U8M5SDKS" />
-          <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-          <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
-        </form>
-      </Box>
-
-      <Box flex column aICenter mb="2rem">
-        <h3>Donate monthly</h3>
-        <a href="https://patreon.com/HappyGaiAma" target="_blank" rel="noopener noreferrer">
-          <img src={PatreonButton} alt="Patreon"/>
-        </a>
-      </Box>
-
-      <Box flex column aICenter mb="2rem">
-        <H3>The nerdy donation</H3>
-        <CoinPicker
-          coins={
-            cryptos
-            // .map(x => ({
-            //   ...x,
-            //   icon: require(`cryptocurrency-icons/svg/color/${x.qrFilename}.svg`),
-            //   qr: require(`~/public/qr/${x.qrFilename}.svg`)
-            // }))
-          }
-        />
-      </Box>
-
-      <Box flex column aICenter mb="2rem">
-        <H3>Ask for other options</H3>
-        <Link to={contactLink}>
-          <Button>Contact us</Button>
-        </Link>
-      </Box>
-
-      <Box flex column aICenter>
-        <H3 fontSize="1.6rem">
-          <Link to={readMoreLink}>
-            {readMoreLabel}
-          </Link>
-        </H3>
-      </Box>
-    </Box>
-    { below && below }
-  </div>
-)
-SideBar.propTypes = {
-  newsletterPlaceholder: PropTypes.string,
-  newsletterButtonLabel: PropTypes.string,
-  newsletterBgColor: PropTypes.string,
-  artwork: PropTypes.string,
-  artworkCss: PropTypes.object,
-  artworkTransform: PropTypes.string,
-  cryptos: PropTypes.array,
-  contactLink: PropTypes.string,
-  readMoreLink: PropTypes.string,
-  readMoreLabel: PropTypes.string,
-  displaySide: PropTypes.string,
-  below: PropTypes.element,
-}
-SideBar.defaultProps = {
-  displaySide: `left`,
-}
-export { SideBar }
-export const SideBarFragment = graphql`
-  fragment SideBar on RootQueryType {
-    SideBar: javascriptFrontmatter(
-      fileAbsolutePath: { regex: "/components\/SideBar/" }
-      frontmatter: { lang: { eq: $lang } }
-    ) {
-      frontmatter {
-        newsletterPlaceholder
-        newsletterButtonLabel
-        contactLink
         readMoreLink
         readMoreLabel
       }
@@ -548,31 +400,3 @@ export const instaQuery = graphql`
     }
   }
 `
-
-// const CenteredCopyWithTitle = ({
-//   title,
-//   paragraphs,
-//   ...props,
-// }) => (
-//   <div
-//     css={{
-//       margin: `4rem auto`,
-//       textAlign: `center`,
-//       [breakPoints.minMd]: {
-//         width: `81%`,
-//       },
-//     }}
-//     {...props}
-//   >
-//     <h2
-//       id={slugify(title)}
-//       css={{ fontSize: `2.7rem` }}
-//     >
-//       {title}
-//     </h2>
-//     <div css={{ fontSize: `1.1rem` }}>
-//       {paragraphs.map((x, i) => <div key={i}>{x}</div>)}
-//     </div>
-//   </div>
-// )
-// CenteredCopyWithTitle
