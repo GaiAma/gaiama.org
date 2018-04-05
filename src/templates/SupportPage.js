@@ -158,7 +158,7 @@ const SupportPage = props => {
           </div>
           <div css={{
             '&:hover svg': {
-              color: colors.oldWhite,
+              color: `#73989a`,
             },
           }}>
             <a href={props.data.page.frontmatter.contactLink} target="_blank" rel="noopener noreferrer">
