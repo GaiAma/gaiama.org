@@ -15,6 +15,9 @@ module.exports = {
     'MarkdownRemark.fields.translations': `MarkdownRemark`,
     'JavascriptFrontmatter.fields.translations': `JavascriptFrontmatter`,
     'MarkdownRemark.fields.suggested': `MarkdownRemark`,
+    'MarkdownRemark.fields.newer': `MarkdownRemark`,
+    'MarkdownRemark.fields.older': `MarkdownRemark`,
+    'MarkdownRemark.fields.all': `JavascriptFrontmatter`,
   },
   plugins: [
     `gatsby-plugin-react-next`,

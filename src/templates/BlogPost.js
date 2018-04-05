@@ -6,6 +6,7 @@ import rehypeReact from 'rehype-react'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
 import ShareWidget from '@/components/ShareWidget'
+import TitledCopy from '@/components/TitledCopy'
 import { SupportWidget } from '@/components/Shared'
 import Newsticker from '@/components/Newsticker'
 import summarize from '@/utils/summarize'
@@ -18,7 +19,8 @@ import {
 
 const BlogPost = props => {
   const { page: post, BlogPost, NewsTicker } = props.data
-  return <MainLayout {...props}>
+  return (
+    <MainLayout {...props}>
       <Head
         title={post.frontmatter.title}
         meta={[
@@ -38,15 +40,16 @@ const BlogPost = props => {
         label={BlogPost.frontmatter.shareLabel}
       />
 
-      <SupportWidget
-        // transparent
+      <TitledCopy
+        centered
         title={BlogPost.frontmatter.SupportWidget.title}
-        description={BlogPost.frontmatter.SupportWidget.description}
-        contactLink={props.data.SupportWidget.frontmatter.contactLink}
-        // cryptos={props.data.Cryptos.edges}
+        paragraphs={BlogPost.frontmatter.SupportWidget.description}
+        css={{ margin: `4rem auto 0` }}
+      />
+
+      <SupportWidget
         readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
         readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
-        // artwork={props.data.page.frontmatter.sidebar.artwork}
         css={{ margin: `3rem 0` }}
       />
 
@@ -60,7 +63,48 @@ const BlogPost = props => {
           layout="row"
         />
       }
+
+      <div
+        css={{
+          display: `flex`,
+          justifyContent: `center`,
+          borderBottom: `1px solid #ccc`,
+          borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
+          borderImageSlice: `1`,
+          textAlign: `center`,
+          margin: `2rem auto`,
+          width: `80%`,
+        }}
+      >
+        <div
+          css={{
+            display: `flex`,
+            justifyContent: `space-between`,
+            background: `#fff`,
+            transform: `translateY(1.05rem)`,
+          }}
+        >
+          {[`newer`, `all`, `older`].map(x => (
+            post.fields[x] && <div
+              key={post.fields[x].frontmatter.slug}
+              css={{
+                color: `#c3c3c3`,
+                padding: `.5rem`,
+                margin: `0 2rem`,
+              }}
+            >
+              <Link
+                to={post.fields[x].frontmatter.slug}
+                title={post.fields[x].frontmatter.title}
+              >
+                {BlogPost.frontmatter.pager[x]}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
     </MainLayout>
+  )
 }
 
 BlogPost.propTypes = {
@@ -92,6 +136,11 @@ export const query = graphql`
           title
           description
         }
+        pager {
+          older
+          newer
+          all
+        }
       }
     }
     
@@ -105,6 +154,24 @@ export const query = graphql`
           frontmatter {
             title
             lang
+            slug
+          }
+        }
+        newer {
+          frontmatter {
+            title
+            slug
+          }
+        }
+        all {
+          frontmatter {
+            title
+            slug
+          }
+        }
+        older {
+          frontmatter {
+            title
             slug
           }
         }
@@ -171,7 +238,6 @@ const PostHeader = ({ title, date, dateStr }) => (
 
     <div
       css={{
-        content: `""`,
         display: `block`,
         borderBottom: `1px solid #ccc`,
         borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,

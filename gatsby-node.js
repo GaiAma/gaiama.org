@@ -9,6 +9,7 @@ const {
   uniq,
   update,
 } = require(`ramda`)
+const moment = require(`moment`)
 const { chunk, round } = require(`lodash/fp`)
 
 const IMAGES_PER_GALLERY = 54
@@ -20,9 +21,9 @@ const IMAGES_PER_GALLERY = 54
 //     x => x && console.log(x)
 //   )
 
-const isPageOrPost = ({ node }) =>
-  [`JavascriptFrontmatter`, `MarkdownRemark`]
-    .includes(node.internal.type)
+const isPage = ({ node }) => node.internal.type === `JavascriptFrontmatter`
+const isBlog = ({ node }) => node.internal.type === `MarkdownRemark`
+const isPageOrPost = x => isPage(x) || isBlog(x)
 
 // const identityPlus1 = compose(inc, identity)
 
@@ -75,10 +76,7 @@ const paginator = ({ current, total }) => {
 
 exports.onCreateNode = ({ node, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators
-  if (
-    node.internal.type === `MarkdownRemark` ||
-    node.internal.type === `JavascriptFrontmatter`
-  ) {
+  if (isPageOrPost({ node })) {
     createNodeField({
       node,
       name: `slug`,
@@ -156,6 +154,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
 
     articles: allMarkdownRemark (
       filter: { fields: { isDraft: { eq: false } } }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
@@ -198,7 +197,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
     return Promise.reject(graphNodes.errors)
   }
 
-  // create blog posts
+  // create pages & blog posts
   graphNodes.data.pages.edges
     .concat(graphNodes.data.articles.edges)
     .filter(isPageOrPost)
@@ -284,7 +283,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
             const translation = PagesAndPosts.find(x => x.frontmatter.id === id)
             return translation
               ?  translation.id
-              : console.log(`NOT`, id, node.frontmatter.slug)
+              : console.log(`NO translation: `, id, node.frontmatter.slug)
           })
 
       translatedNodes.length &&
@@ -310,7 +309,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
             )
             return suggestion
               ?  suggestion.id
-              : console.log(`NOT`, id, node.frontmatter.slug)
+              : console.log(`NO suggestion: `, id, node.frontmatter.slug)
           })
 
       suggestedNodes.length &&
@@ -323,6 +322,45 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
 
     return true
   })
+
+  const getBlogPage = lang => allNodes.find(node =>
+    isPage({ node }) &&
+    node.fields.layout === `BlogPage` &&
+    node.fields.lang === lang
+  )
+
+  graphNodes.data.languages.edges.forEach(lang =>
+    allNodes
+      .filter(
+        node => isBlog({ node }) &&
+        node.frontmatter.status === 1 &&
+        node.fields.lang === lang.node.frontmatter.id
+      )
+      .sort((_a, _b) => {
+      const a = moment(parseInt(_a.frontmatter.date))
+      const b = moment(parseInt(_b.frontmatter.date))
+      return a.isBefore(b)
+        ? 1
+        : a.isAfter(b)
+          ? -1
+          : 0
+      })
+      .forEach((node, index, array) => {
+        const older = array[index + 1]
+        const newer = array[index - 1]
+        const all = getBlogPage(node.fields.lang)
+
+        createNodeField({
+          node, name: `older`, value: older && older.id ? older.id : null,
+        })
+        createNodeField({
+          node, name: `all`, value: all && all.id ? all.id : null,
+        })
+        createNodeField({
+          node, name: `newer`, value: newer && newer.id ? newer.id : null,
+        })
+      })
+  )
 
   return true
 }
