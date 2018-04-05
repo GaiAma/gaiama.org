@@ -62,7 +62,9 @@ const BlogPage = props => {
     <MainLayout {...props}>
       <TitledCopy
         centered
-        title={props.data.page.frontmatter.title}
+        title={filter ?
+          `${props.data.labels.frontmatter.labeled} ${filterLabel.value}`
+          : props.data.page.frontmatter.title}
         paragraphs={props.data.page.frontmatter.intro.paragraphs}
         css={{
           marginBottom: `1.5rem`,
@@ -128,19 +130,6 @@ const BlogPage = props => {
           </Link>
         </div>
       </div>
-
-      {filterLabel &&
-        <h2
-          css={{ textAlign: `center` }}
-        >
-          <span css={{ marginRight: `.5rem` }}>
-            {props.data.labels.frontmatter.labeled}
-          </span>
-          <span>
-            {filterLabel.value}
-          </span>
-        </h2>
-      }
 
       <RenderRows
         rows={chunkedArticles(articles)}
