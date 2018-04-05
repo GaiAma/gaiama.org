@@ -108,7 +108,6 @@ const HomePage = props => (
     >
       <div
         css={{
-          boxShadow: `inset 0 1px 11px #0629319e`,
           position: `relative`,
           width: `200vw`,
           left: `50%`,
