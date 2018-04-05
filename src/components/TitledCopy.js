@@ -14,7 +14,7 @@ const TitledCopy = ({
   ...props
 }) => {
   const content = children || paragraphs
-  const slugifiedId = slugify(
+  const slugifiedId = title && slugify(
     Array.isArray(title) ? title.join(` `) : title,
     { remove: /[$*_+~.()'"!\-:@?&]/g }
   )
