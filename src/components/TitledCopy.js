@@ -58,7 +58,7 @@ const TitledCopy = ({
         >
           {Array.isArray(content)
             ? content.map((x, i) => <div key={i}>{x}</div>)
-            : content
+            : <div dangerouslySetInnerHTML={{ __html: content }} />
           }
         </div>
       )}
