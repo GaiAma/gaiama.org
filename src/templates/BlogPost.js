@@ -72,7 +72,7 @@ const BlogPost = props => {
           borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
           borderImageSlice: `1`,
           textAlign: `center`,
-          margin: `2rem auto`,
+          margin: `2rem auto 3rem`,
           width: `80%`,
         }}
       >
@@ -279,7 +279,7 @@ const PostBody = ({ children }) => (
         marginRight: `auto`,
         marginLeft: `auto`,
       },
-      '& ul': {
+      '& ul, & ol': {
         listStylePosition: `inside`,
         margin: `4rem 0`,
       },
