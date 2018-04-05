@@ -337,8 +337,6 @@ const SupportPage = props => {
 
       <SupportWidget
         title={props.data.SupportWidget.frontmatter.title}
-        readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
-        readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
         artwork={props.data.page.frontmatter.assets.mushrooms}
         css={{ margin: `0 0 5rem` }}
         artworkStyles={{
