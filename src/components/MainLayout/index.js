@@ -66,7 +66,13 @@ const getTranslations = page => [
         title: page.frontmatter.title,
       },
     },
-  ]
+  ].sort((a, b) =>
+    a.frontmatter.lang < b.frontmatter.lang
+      ? -1
+      : a.frontmatter.lang > b.frontmatter.lang
+        ? 1
+        : 0
+  )
 
 // i18n.init({
 //   initImmediate: false,
