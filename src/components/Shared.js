@@ -47,7 +47,7 @@ class CoinPicker extends Component {
 
   handleKeyDown = ({ key }) => {
     if (key == `Enter`) {
-      console.log(`enter press here! `)
+      console.log(`enter press here!`)
     }
   }
 
@@ -73,6 +73,11 @@ class CoinPicker extends Component {
               aICenter
               onClick={() => this.handleSelect(x)}
               onKeyPress={this.handleKeyDown}
+              css={{
+                '&:hover > img': {
+                  transform: `scale(1.05)`,
+                },
+              }}
             >
               <img
                 src={x.icon}
@@ -196,7 +201,13 @@ const SupportWidget = ({
           width: `85%`,
         },
       }}>
-        <Box flex column aICenter>
+        <Box flex column aICenter
+          css={{
+            '&:hover > form': {
+              transform: `scale(1.02)`,
+            },
+          }}
+        >
           <form css={{ marginBottom: `0` }} action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
             <input type="hidden" name="cmd" value="_s-xclick" />
             <input type="hidden" name="hosted_button_id" value="AR3R6U8M5SDKS" />
@@ -205,7 +216,13 @@ const SupportWidget = ({
           </form>
         </Box>
     
-        <Box flex column aICenter>
+        <Box flex column aICenter
+          css={{
+            '&:hover > a': {
+              transform: `scale(1.02)`,
+            },
+          }}
+        >
           <a href="https://patreon.com/HappyGaiAma" target="_blank" rel="noopener noreferrer">
             <img width="150px" src={PatreonButton} alt="Patreon"/>
           </a>
@@ -224,26 +241,28 @@ const SupportWidget = ({
           />
         </Box>
     
-        <Box flex column aICenter>
-          <Link
-            to={readMoreLink}
-            css={{
-              fontFamily: fontFamilies.accent,
-              fontSize: `1.5rem`,
-              width: `8rem`,
-              background: `#fff`,
-              boxShadow: `0px 1px 1px #99999973`,
-              transition: `background-color .2s linear`,
-              textAlign: `center`,
-              '&:hover': {
-                background: colors.primaryLite,
-                color: colors.darkWhite,
-              },
-            }}
-          >
-            {readMoreLabel}
-          </Link>
-        </Box>
+        {readMoreLink && (
+          <Box flex column aICenter>
+            <Link
+              to={readMoreLink}
+              css={{
+                fontFamily: fontFamilies.accent,
+                fontSize: `1.5rem`,
+                width: `8rem`,
+                background: `#fff`,
+                boxShadow: `0px 1px 1px #99999973`,
+                transition: `background-color .2s linear`,
+                textAlign: `center`,
+                '&:hover': {
+                  background: colors.primaryLite,
+                  color: colors.darkWhite,
+                },
+              }}
+            >
+              {readMoreLabel}
+            </Link>
+          </Box>
+        )}
       </div>
     </Box>
   </div>
