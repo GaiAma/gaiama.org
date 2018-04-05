@@ -4,7 +4,7 @@ exports.onRouteUpdate = ({ action, location }) => {
     const el = document.querySelector(`#site-navigation`)
     if (!el) return
     const { top } = el.getBoundingClientRect()
-    window.scrollTo(0, top)
+    window.scrollTo(0, top - 20)
   }
 
   if (action === `PUSH` && !location.search) {
