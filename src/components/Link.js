@@ -9,15 +9,18 @@ const Link = ({
   sort,
   filter,
   ext,
+  persistQuery,
   ...props
 }) => {
-  const qs = QS.parse()
+  if (persistQuery) {
+    const qs = QS.parse()
 
-  if (sort !== undefined) {
-    qs.sort = sort
+    if (sort !== undefined) {
+      qs.sort = sort
+    }
+
+    to = QS.stringify(qs, to)
   }
-
-  to = QS.stringify(qs, to)
 
   if (ext !== undefined) {
     return (
@@ -47,6 +50,7 @@ Link.propTypes = {
   sort: PropTypes.string,
   filter: PropTypes.string,
   ext: PropTypes.string,
+  persistQuery: PropTypes.bool,
 }
 
 export default Link
