@@ -52,7 +52,7 @@ const SupportPage = props => {
           borderImageSlice: `1`,
           paddingRight: `3rem`,
         }}>
-          <p>{frontmatter.intro.neighbor}</p>
+          <p dangerouslySetInnerHTML={{ __html: frontmatter.intro.neighbor }} />
         </div>
 
         <div css={{ paddingLeft: `3rem` }}>
@@ -161,7 +161,7 @@ const SupportPage = props => {
               color: colors.oldWhite,
             },
           }}>
-            <a href="https://" target="_blank" rel="noopener noreferrer">
+            <a href={props.data.page.frontmatter.contactLink} target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={[`fas`, `newspaper`]} size="3x" />
             </a>
           </div>
@@ -384,6 +384,7 @@ export const query = graphql`
         title
         lang
         slug
+        contactLink
         assets {
           arrow_left {
             image: childImageSharp {
