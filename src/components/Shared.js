@@ -123,7 +123,6 @@ class CoinPicker extends Component {
 const SupportWidget = ({
   title,
   description,
-  contactLink,
   readMoreLink,
   readMoreLabel,
   artwork,
@@ -167,13 +166,13 @@ const SupportWidget = ({
     <Box oh css={{
       background: !transparent && colors.lightBlue,
     }}>
-      <H2
+      {title && <H2
         align="center"
         mt="1rem"
         fontSize="2rem"
       >
         {title}
-      </H2>
+      </H2>}
 
       {description &&
         <p
@@ -226,27 +225,32 @@ const SupportWidget = ({
         </Box>
     
         <Box flex column aICenter>
-          <Link to={contactLink}>
-            <Button>Other options</Button>
+          <Link
+            to={readMoreLink}
+            css={{
+              fontFamily: fontFamilies.accent,
+              fontSize: `1.5rem`,
+              width: `8rem`,
+              background: `#fff`,
+              boxShadow: `0px 1px 1px #99999973`,
+              transition: `background-color .2s linear`,
+              textAlign: `center`,
+              '&:hover': {
+                background: colors.primaryLite,
+                color: colors.darkWhite,
+              },
+            }}
+          >
+            {readMoreLabel}
           </Link>
         </Box>
       </div>
-    
-      {readMoreLink && <H3
-        fontSize="1.3rem"
-        align="center"
-      >
-        <Link to={readMoreLink}>
-          {readMoreLabel}
-        </Link>
-      </H3>}
     </Box>
   </div>
 )
 SupportWidget.propTypes = {
   title: PropTypes.string,
   description: PropTypes.string,
-  contactLink: PropTypes.string,
   readMoreLink: PropTypes.string,
   readMoreLabel: PropTypes.string,
   artwork: PropTypes.object,
@@ -266,7 +270,6 @@ export const SupportWidgetFragment = graphql`
     ) {
       frontmatter {
         title
-        contactLink
         readMoreLink
         readMoreLabel
       }

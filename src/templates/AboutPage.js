@@ -124,7 +124,6 @@ const AboutPage = props => {
 
       <SupportWidget
         title={props.data.SupportWidget.frontmatter.title}
-        contactLink={props.data.SupportWidget.frontmatter.contactLink}
         readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
         readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
         artwork={page.frontmatter.sidebar.artwork}
