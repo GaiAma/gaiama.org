@@ -10,7 +10,6 @@ import TitledCopy from '@/components/TitledCopy'
 import {
   breakPoints,
   colors,
-  fontFamilies,
 } from '@/theme'
 
 const SupportPage = props => {
@@ -58,25 +57,6 @@ const SupportPage = props => {
         <div css={{ paddingLeft: `3rem` }}>
           <div>
             <p>{frontmatter.intro.support}</p>
-            <div css={{
-              display: `flex`,
-              justifyContent: `space-between`,
-              fontFamily: fontFamilies.accent,
-              margin: `2rem 0`,
-              flexWrap: `wrap`,
-              '& > div': {
-                width: `33%`,
-                display: `flex`,
-                justifyContent: `center`,
-                alignItems: `center`,
-                fontSize: `2rem`,
-                marginBottom: `2rem`,
-              },
-            }}>
-              <div>Paypal</div>
-              <div>Patreon</div>
-              <div>Crypto</div>
-            </div>
           </div>
         </div>
       </div>

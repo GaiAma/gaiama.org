@@ -6,6 +6,7 @@ import QS from '@/utils/query-string'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
 import TitledCopy from '@/components/TitledCopy'
+import Randomizer from '@/components/Randomizer'
 import RenderArticles from '@/components/RenderArticles'
 
 const chunkedArticles = chunk(3)
@@ -72,6 +73,11 @@ const BlogPage = props => {
             fontSize: `1rem`,
           },
         }}
+      />
+
+      <Randomizer
+        quotes={props.data.quotes.frontmatter.quotes}
+        nextQuoteLabel={props.data.quotes.frontmatter.nextQuoteLabel}
       />
 
       <div
@@ -250,6 +256,18 @@ export const query = graphql`
         labels {
           type
           value
+        }
+      }
+    }
+
+    quotes: quotesAml (
+      frontmatter: { lang: { eq: $lang } }
+    ) {
+      frontmatter {
+        nextQuoteLabel
+        quotes {
+          author
+          quote
         }
       }
     }
