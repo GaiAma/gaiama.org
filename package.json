@@ -130,6 +130,7 @@
     "slugify": "^1.2.9",
     "striptags": "2.2.1",
     "styled-system": "^2.2.1",
+    "system-components": "^2.0.2",
     "typeface-amatic-sc": "^0.0.54",
     "typeface-quicksand": "^0.0.54",
     "validator": "^9.4.1"

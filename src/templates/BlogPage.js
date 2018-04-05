@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import moment from 'moment'
 import chunk from 'lodash/fp/chunk'
 import QS from '@/utils/query-string'
-import { fontFamilies } from '@/theme'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
 import TitledCopy from '@/components/TitledCopy'
@@ -30,6 +29,7 @@ const BlogPage = props => {
   const isSortAsc = sort === `asc`
   const isSortDesc = !sort || sort === `desc`
   const tags = filter || []
+  const filterLabel = props.data.labels.frontmatter.labels.find(x => x.type === filter)
 
   const articles = props.data.articles.edges
     .filter(a =>
@@ -72,49 +72,75 @@ const BlogPage = props => {
         }}
       />
 
-      <div css={{
-        margin: `0 0 3rem`,
-        display: `flex`,
-        justifyContent: `center`,
-      }}>
-        <div css={{
-          '& a:first-child': {
-            fontFamily: fontFamilies.accent,
-            fontSize: `1.2rem`,
-            color: isSortDesc ? `#000` : `#999`,
-            '&:hover': { color: `#000` },
-            '&:after': {
-              content: isSortDesc && `<`,
+      <div
+        css={{
+          display: `flex`,
+          justifyContent: `center`,
+          borderBottom: `1px solid #ccc`,
+          borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
+          borderImageSlice: `1`,
+          textAlign: `center`,
+          margin: `2rem auto 3rem`,
+          width: `60%`,
+        }}
+      >
+        <div
+          css={{
+            display: `flex`,
+            justifyContent: `space-between`,
+            background: `#fff`,
+            fontSize: `.9rem`,
+            transform: `translateY(.8rem)`,
+            '& > a': {
               margin: `0 .5rem`,
+              padding: `.2rem .5rem`,
             },
-          },
-          '& a:last-child': {
-            fontFamily: fontFamilies.accent,
-            fontSize: `1.2rem`,
-            color: isSortAsc ? `#000` : `#999`,
-            '&:hover': { color: `#000` },
-            '&:before': {
-              content: isSortAsc && `>`,
-              margin: `0 .5rem`,
-            },
-          },
-        }}>
+          }}
+        >
           <Link
             to={props.location.pathname}
             sort="desc"
+            persistQuery
+            css={{
+              pointerEvents: isSortDesc && `none`,
+            }}
           >
             {props.data.page.frontmatter.sortLabels.desc}
           </Link>
 
+          {filter && <Link
+            to={props.data.page.frontmatter.slug}
+            exact
+          >
+            {props.data.page.frontmatter.sortLabels.all}
+          </Link>}
+
           <Link
             to={props.location.pathname}
             sort="asc"
+            persistQuery
             exact
+            css={{
+              pointerEvents: isSortAsc && `none`,
+            }}
           >
             {props.data.page.frontmatter.sortLabels.asc}
           </Link>
         </div>
       </div>
+
+      {filterLabel &&
+        <h2
+          css={{ textAlign: `center` }}
+        >
+          <span css={{ marginRight: `.5rem` }}>
+            {props.data.labels.frontmatter.labeled}
+          </span>
+          <span>
+            {filterLabel.value}
+          </span>
+        </h2>
+      }
 
       <RenderRows
         rows={chunkedArticles(articles)}
@@ -163,6 +189,7 @@ export const query = graphql`
           paragraphs
         }
         sortLabels {
+          all
           asc
           desc
         }
@@ -222,6 +249,18 @@ export const query = graphql`
             lang
             layout
           }
+        }
+      }
+    }
+
+    labels: siteMetaAml (
+      frontmatter: { lang: { eq: $lang } }
+    ) {
+      frontmatter {
+        labeled
+        labels {
+          type
+          value
         }
       }
     }
