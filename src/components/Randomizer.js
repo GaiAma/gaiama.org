@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Button from '@/components/layout/Button'
 
 class Randomizer extends Component {
   constructor(props) {
@@ -19,31 +20,57 @@ class Randomizer extends Component {
   getRandomInt = () =>
     Math.floor(Math.random() * Math.floor(this.props.quotes.length - 1))
 
+  getNextIndex = () =>
+    this.state.currentIndex + 1 < this.props.quotes.length
+      ? this.state.currentIndex + 1
+      : 0
+
   onNextClick = event => {
     event.preventDefault()
-    this.setState({ currentIndex: this.getRandomInt() })
+    this.setState({ currentIndex: this.getNextIndex() })
   }
 
   render() {
+    const { nextQuoteLabel, ...props } = this.props
+    const htmlProps = props
+    delete htmlProps.quotes
+
     return (
-      <div>
+      <div {...props}>
         <blockquote>
-          <p>{this.getCurrent().quote}</p>
-          <cite
+          <p
             css={{
+              '&:before, &:after': {
+                fontSize: `1.4rem`,
+                letterSpacing: `-0.2rem`,
+
+              },
               '&:before': {
-                content: `—`,
-                marginRight: `.5rem`,
+                content: `>>`,
+                marginRight: `.2rem`,
+              },
+              '&:after': {
+                content: `<<`,
+                marginLeft: `.2rem`,
               },
             }}
-          >{this.getCurrent().author}</cite>
-        </blockquote>
+            dangerouslySetInnerHTML={{
+              __html: this.getCurrent().quote,
+            }}
+          />
 
-        {this.props.nextQuoteLabel && (
-          <button onClick={this.onNextClick}>
-            {this.props.nextQuoteLabel}
-          </button>
-        )}
+          <footer>
+            <cite>
+              {this.getCurrent().author}
+            </cite>
+
+            {nextQuoteLabel && (
+              <Button onClick={this.onNextClick}>
+                {nextQuoteLabel}
+              </Button>
+            )}
+          </footer>
+        </blockquote>
       </div>
     )
   }

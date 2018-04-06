@@ -1,44 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import {
   colors,
   fontFamilies,
 } from '@/theme'
 
 const Input = ({
-  label,
+  children,
   onClick,
   ...props
 }) => (
-  <div
-    css={{
-      marginBottom: `1rem`,
-      // textAlign: `right`,
-    }}
-    {...props}
-  >
+  <div css={styles.wrapper} {...props}>
     <button
-      css={{
-        fontFamily: fontFamilies.accent,
-        fontSize: `1.5rem`,
-        width: `100%`,
-        border: `1px solid #ccc`,
-        background: `#fff`,
-        transition: `background-color .2s linear`,
-        '& svg': {
-          visibility: `hidden`,
-        },
-        '&:hover': {
-          background: colors.primaryLite,
-          color: colors.darkWhite,
-          '& svg': { visibility: `initial` },
-        },
-      }}
+      css={styles.button}
       onClick={onClick}
     >
-      {label}
-      {/* <FontAwesomeIcon icon={[`fas`, `check`]} /> */}
+      {children}
     </button>
   </div>
 )
@@ -49,7 +26,29 @@ Input.propTypes = {
 }
 Input.defaultProps = {
   label: ``,
-  onClick: () => {},
+  onClick() {},
 }
 
 export default Input
+
+const styles = {
+  wrapper: {
+    marginBottom: `1rem`,
+  },
+  button: {
+    fontFamily: fontFamilies.accent,
+    fontSize: `1.5rem`,
+    width: `100%`,
+    border: `1px solid #ccc`,
+    background: `#fff`,
+    transition: `background-color .2s linear`,
+    '& svg': {
+      visibility: `hidden`,
+    },
+    '&:hover': {
+      background: colors.primaryLite,
+      color: colors.darkWhite,
+      '& svg': { visibility: `initial` },
+    },
+  },
+}
