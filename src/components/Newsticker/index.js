@@ -163,6 +163,7 @@ export const fragment = graphql`
             title
             date
             summary
+            slug
             cover {
               image: childImageSharp {
                 resolutions(width: 324, height: 150, quality: 75) {
