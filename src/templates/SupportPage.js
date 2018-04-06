@@ -231,9 +231,8 @@ const SupportPage = props => {
                 justifyContent: `center`,
                 alignItems: `center`,
               }}
-            >
-              {x.descr}
-            </p>
+              dangerouslySetInnerHTML={{ __html: x.descr }}
+            />
           </div>
         ))}
       </div>
