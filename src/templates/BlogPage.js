@@ -61,11 +61,50 @@ const BlogPage = props => {
 
   return (
     <MainLayout {...props}>
+      {!filter && (
+        <Randomizer
+          quotes={props.data.quotes.frontmatter.quotes}
+          nextQuoteLabel={props.data.quotes.frontmatter.nextQuoteLabel}
+          css={{
+            textAlign: `center`,
+            '& blockquote': {
+              display: `inline-block`,
+            },
+            '& p': {
+              fontSize: `2.5rem`,
+              lineHeight: 1.3,
+              fontFamily: `Amatic SC`,
+              margin: 0,
+              maxWidth: `650px`,
+            },
+            '& footer': {
+              textAlign: `center`,
+              fontSize: `.85rem`,
+            },
+            '& cite': {
+              color: `#afafaf`,
+              fontStyle: `normal`,
+              margin: `0 1rem`,
+            },
+            '& button': {
+              background: `transparent`,
+              border: `transparent`,
+              color: `hsla(0,0%,0%,0.8)`,
+              padding: 0,
+              '&:hover': {
+                transform: `scale(1.05)`,
+              },
+            },
+          }}
+        />
+      )}
+
       <TitledCopy
         centered
         title={filter ?
           `${props.data.labels.frontmatter.labeled} ${filterLabel.value}`
-          : props.data.page.frontmatter.title}
+          : null}
+          // : props.data.page.frontmatter.title}
         paragraphs={props.data.page.frontmatter.intro.paragraphs}
         css={{
           marginBottom: `1.5rem`,
@@ -73,11 +112,6 @@ const BlogPage = props => {
             fontSize: `1rem`,
           },
         }}
-      />
-
-      <Randomizer
-        quotes={props.data.quotes.frontmatter.quotes}
-        nextQuoteLabel={props.data.quotes.frontmatter.nextQuoteLabel}
       />
 
       <div
