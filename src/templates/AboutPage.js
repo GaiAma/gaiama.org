@@ -5,7 +5,6 @@ import slugify from 'slugify'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
 import Newsticker from '@/components/Newsticker'
-import { SupportWidget } from '@/components/Shared'
 import { breakPoints } from '@/theme'
 
 const AboutPage = props => {
@@ -19,7 +18,7 @@ const AboutPage = props => {
         css={{ marginBottom: `6rem` }}
       />
 
-      <div css={{ display: `flex`, justifyContent: `space-between` }}>
+      <div css={{ display: `flex`, justifyContent: `space-between`, marginBottom: `3rem` }}>
         <div css={{ [breakPoints.minMd]: { width: `70%` } }}>
           <div css={{ '& > div': { marginBottom: `4rem` } }}>
             {page.frontmatter.bios.map(bio => (
@@ -122,14 +121,6 @@ const AboutPage = props => {
         </div>
       </div>
 
-      <SupportWidget
-        title={props.data.SupportWidget.frontmatter.title}
-        readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
-        readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
-        artwork={page.frontmatter.sidebar.artwork}
-        css={{ margin: `0 0 5rem` }}
-      />
-
       <Newsticker
         items={props.data.news.edges.map(x => x.node)}
         title={NewsTicker.frontmatter.title}
@@ -144,7 +135,6 @@ const AboutPage = props => {
 AboutPage.propTypes = {
   data: PropTypes.shape({
     page: PropTypes.object,
-    SupportWidget: PropTypes.object,
     Cryptos: PropTypes.object,
     news: PropTypes.object,
     NewsTicker: PropTypes.object,
@@ -164,7 +154,6 @@ export const query = graphql`
     ...menu
     ...NewsTicker
     ...newstickerLandscape
-    ...SupportWidget
     #...Cryptos
 
     page: javascriptFrontmatter (
