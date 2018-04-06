@@ -317,7 +317,7 @@ const SupportPage = props => {
 
       <SupportWidget
         title={props.data.SupportWidget.frontmatter.title}
-        artwork={props.data.page.frontmatter.assets.mushrooms}
+        artwork={props.data.page.frontmatter.assets.sidebarArtwork}
         lang={props.pathContext.lang}
         css={{ margin: `0 0 5rem` }}
         artworkStyles={{
@@ -346,7 +346,6 @@ export const query = graphql`
     ...homepage
     ...menu
     ...SupportWidget
-    #...Cryptos
     
     page: javascriptFrontmatter (
       frontmatter: {
@@ -389,7 +388,7 @@ export const query = graphql`
               }
             }
           }
-          mushrooms {
+          sidebarArtwork {
             image: childImageSharp {
               sizes(maxWidth: 450, quality: 75) {
                 ...GatsbyImageSharpSizes

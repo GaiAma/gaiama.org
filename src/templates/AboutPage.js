@@ -154,7 +154,6 @@ export const query = graphql`
     ...menu
     ...NewsTicker
     ...newstickerLandscape
-    #...Cryptos
 
     page: javascriptFrontmatter (
       frontmatter: {
@@ -210,15 +209,6 @@ export const query = graphql`
             }
           }
         }
-        sidebar {
-          artwork {
-            image: childImageSharp {
-              resolutions {
-                ...GatsbyImageSharpResolutions
-              }
-            }
-          }
-        }
         peopleGallery {
           image: childImageSharp {
             resolutions(width: 258, height: 258, quality: 75) {
@@ -228,19 +218,5 @@ export const query = graphql`
         }
       }
     }
-
-    #peopleGallery: allFile (
-    #  filter: { absolutePath: { regex: "/\/about-us\/assets\/people\//" } }
-    #) {
-    #  edges {
-    #    node {
-    #      image: childImageSharp {
-    #        resolutions(width: 258, height: 258, quality: 75) {
-    #          ...GatsbyImageSharpResolutions
-    #        }
-    #      }
-    #    }
-    #  }
-    #}
   }
 `
