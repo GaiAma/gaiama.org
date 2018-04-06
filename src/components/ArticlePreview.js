@@ -78,4 +78,7 @@ const articleStyles = {
     display: `flex`,
     justifyContent: `space-between`,
   },
+  time: {
+    fontSize: `0.8rem`,
+  },
 }
