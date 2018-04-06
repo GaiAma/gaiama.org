@@ -129,6 +129,7 @@ const SupportWidget = ({
   artworkStyles,
   artworkWrapperStyles,
   transparent,
+  lang,
   ...props
 }) => (
   <div
@@ -201,14 +202,29 @@ const SupportWidget = ({
             '&:hover > form': {
               transform: `scale(1.02)`,
             },
+            '& > form': {
+              marginBottom: 0,
+            },
           }}
         >
-          <form css={{ marginBottom: `0` }} action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-            <input type="hidden" name="cmd" value="_s-xclick" />
-            <input type="hidden" name="hosted_button_id" value="AR3R6U8M5SDKS" />
-            <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!" />
-            <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1" />
-          </form>
+          {
+            lang === `en`
+            ? (
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick"/>
+              <input type="hidden" name="hosted_button_id" value="AR3R6U8M5SDKS"/>
+              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"/>
+              <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1"/>
+              </form>
+            ) : (
+              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+              <input type="hidden" name="cmd" value="_s-xclick"/>
+              <input type="hidden" name="hosted_button_id" value="W8AKGPB4K9TB6"/>
+              <input type="image" src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."/>
+              <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1"/>
+              </form>
+            )
+          }
         </Box>
     
         <Box flex column aICenter
@@ -266,6 +282,7 @@ SupportWidget.propTypes = {
   artworkStyles: PropTypes.object,
   artworkWrapperStyles: PropTypes.object,
   transparent: PropTypes.bool,
+  lang: PropTypes.string,
 }
 SupportWidget.defaultProps = {
   artworkStyles: {},

@@ -173,6 +173,7 @@ const HomePage = props => (
       readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
       readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
       artwork={props.data.page.frontmatter.assets.supportus}
+      lang={props.pathContext.lang}
       css={{
         margin: `3rem 0`,
       }}
@@ -209,6 +210,9 @@ HomePage.propTypes = {
       }),
     }),
     instagramImages: PropTypes.object,
+  }),
+  pathContext: PropTypes.shape({
+    lang: PropTypes.string.isRequired,
   }),
 }
 export default HomePage

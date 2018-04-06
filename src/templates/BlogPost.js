@@ -50,6 +50,7 @@ const BlogPost = props => {
       <SupportWidget
         readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
         readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
+        lang={props.pathContext.lang}
         css={{ margin: `3rem 0` }}
       />
 
@@ -109,6 +110,9 @@ const BlogPost = props => {
 
 BlogPost.propTypes = {
   data: PropTypes.object,
+  pathContext: PropTypes.shape({
+    lang: PropTypes.string.isRequired,
+  }),
 }
 
 export default BlogPost

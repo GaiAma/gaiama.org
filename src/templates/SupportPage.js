@@ -318,6 +318,7 @@ const SupportPage = props => {
       <SupportWidget
         title={props.data.SupportWidget.frontmatter.title}
         artwork={props.data.page.frontmatter.assets.mushrooms}
+        lang={props.pathContext.lang}
         css={{ margin: `0 0 5rem` }}
         artworkStyles={{
           width: `350px`,
@@ -328,6 +329,9 @@ const SupportPage = props => {
 }
 SupportPage.propTypes = {
   data: PropTypes.object,
+  pathContext: PropTypes.shape({
+    lang: PropTypes.string.isRequired,
+  }),
 }
 export default SupportPage
 
