@@ -1,15 +1,7 @@
 const { resolve } = require(`path`)
-const {
-  compose,
-  identity,
-  inc,
-  indexOf,
-  map,
-  times,
-  uniq,
-  update,
-} = require(`ramda`)
 const moment = require(`moment`)
+const { compose, identity, inc, indexOf,
+        map, times, uniq, update } = require(`ramda`)
 const { chunk, round } = require(`lodash/fp`)
 
 const IMAGES_PER_GALLERY = 54
@@ -21,11 +13,9 @@ const IMAGES_PER_GALLERY = 54
 //     x => x && console.log(x)
 //   )
 
-const isPage = ({ node }) => node.internal.type === `JavascriptFrontmatter`
-const isBlog = ({ node }) => node.internal.type === `MarkdownRemark`
-const isPageOrPost = x => isPage(x) || isBlog(x)
-
-// const identityPlus1 = compose(inc, identity)
+const isPage = ({ node }) => node && node.internal && node.internal.type === `JavascriptFrontmatter`
+const isPost = ({ node }) => node && node.internal && node.internal.type === `MarkdownRemark`
+const isPageOrPost = x => isPage(x) || isPost(x)
 
 const chunkImages = chunk(IMAGES_PER_GALLERY)
 
@@ -271,68 +261,66 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
     })
 
   // setup mappings
-  const allNodes = getNodes()
-  const PagesAndPosts = allNodes.filter(x => isPageOrPost({ node: x }))
+  const PagesAndPosts = getNodes().filter(x => isPageOrPost({ node: x }))
+  const Pages = PagesAndPosts.filter(x => isPage({ node: x }))
+  const Posts = PagesAndPosts.filter(x => isPost({ node: x }))
+  const BlogPages = Pages.filter(node => node.fields.layout === `BlogPage`)
+
+  // suggested content mapping
+  const collectSuggestedNodes = node =>
+    node.frontmatter.suggested.map(
+      _id => {
+        const id = `${_id}`
+        const propToMatch = id.length === 4 ?
+          `oldId` :
+          `id`
+        const suggestion = Posts.find(x =>
+          x.frontmatter[propToMatch] === id &&
+          x.frontmatter.lang === node.frontmatter.lang
+        )
+        return suggestion ?
+          suggestion.id :
+          console.log(`NO suggestion: `, id, node.frontmatter.slug)
+      })
 
   PagesAndPosts.forEach(node => {
     // translation mapping
-    if (node.frontmatter.translations) {
-      const translatedNodes =
-        node.frontmatter.translations.map(
-          id => {
-            const translation = PagesAndPosts.find(x => x.frontmatter.id === id)
-            return translation
-              ?  translation.id
-              : console.log(`NO translation: `, id, node.frontmatter.slug)
-          })
-
-      translatedNodes.length &&
-        createNodeField({
-          node,
-          name: `translations`,
-          value: translatedNodes,
+    const translatedNodes =
+      node.frontmatter.translations
+      ? node.frontmatter.translations.map(id => {
+          const translation = PagesAndPosts.find(x => x.frontmatter.id === id)
+          return translation
+            ? translation.id
+            : console.log(`NO translation: `, id, node.frontmatter.slug)
         })
-    }
+      : []
 
-    // suggested content mapping
-    if (node.frontmatter.suggested) {
-      const suggestedNodes =
-        node.frontmatter.suggested.map(
-          _id => {
-            const id = `${_id}`
-            const propToMatch = id.length === 4
-              ? `oldId`
-              : `id`
-            const suggestion = PagesAndPosts.find(x =>
-              x.frontmatter[propToMatch] === id &&
-              x.frontmatter.lang === node.frontmatter.lang
-            )
-            return suggestion
-              ?  suggestion.id
-              : console.log(`NO suggestion: `, id, node.frontmatter.slug)
-          })
-
-      suggestedNodes.length &&
-        createNodeField({
-          node,
-          name: `suggested`,
-          value: suggestedNodes,
-        })
-    }
-
-    return true
+    return createNodeField({
+      node,
+      name: `translations`,
+      value: translatedNodes,
+    })
   })
 
-  const getBlogPage = lang => allNodes.find(node =>
-    isPage({ node }) &&
-    node.fields.layout === `BlogPage` &&
+  Posts.forEach(node =>
+    createNodeField({
+      node,
+      name: `suggested`,
+      value:
+        node.frontmatter.suggested.length
+          ? collectSuggestedNodes(node).slice(0, 3)
+          : [],
+    })
+  )
+
+  const getBlogPage = lang => BlogPages.find(node =>
     node.fields.lang === lang
   )
 
+  // introduce blog posts to their siblings
   graphNodes.data.languages.edges.forEach(lang =>
-    allNodes
-      .filter(
-        node => isBlog({ node }) &&
+    Posts
+      .filter(node =>
         node.frontmatter.status === 1 &&
         node.fields.lang === lang.node.frontmatter.id
       )

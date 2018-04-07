@@ -17,8 +17,8 @@
   },
   "scripts": {
     "dev": "gatsby develop",
-    "lint": "eslint --ext .js,.jsx --ignore-pattern public .",
-    "fix": "eslint --fix --ext .js,.jsx --ignore-pattern public .",
+    "lint": "eslint --ext .js,.jsx .",
+    "fix": "eslint --fix --ext .js,.jsx .",
     "test": "jest",
     "size": "size-limit",
     "//format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",

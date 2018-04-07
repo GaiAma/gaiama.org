@@ -56,7 +56,7 @@ const BlogPost = props => {
 
       {post.fields.suggested &&
         <Newsticker
-          items={post.fields.suggested.slice(0, 3)}
+          items={post.fields.suggested}
           title={BlogPost.frontmatter.relatedArticlesLabel}
           linkLabel={NewsTicker.frontmatter.linkLabel}
           link={NewsTicker.frontmatter.link}

@@ -88,7 +88,7 @@ module.exports = {
     {
       "files": [
         "packages/**/gatsby-browser.js",
-        "pacakges/gatsby/cache-dir/**/*"
+        "packages/gatsby/cache-dir/**/*"
       ],
       "env": {
         "browser": true
