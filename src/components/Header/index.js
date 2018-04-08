@@ -69,6 +69,7 @@ class Header extends Component {
         </div>
 
         <Headroom
+          id="site-navigation"
           pinStart={450}
           onPin={() => this.setSticky(true)}
           onUnpin={() => this.setSticky(false)}
@@ -76,7 +77,6 @@ class Header extends Component {
           style={{ zIndex: 5 }}
         >
           <nav
-            id="site-navigation"
             aria-label="primary"
             css={style.headerNav({ bg: bgImage.sizes.src, isSticky: this.state.isSticky })}
           >
