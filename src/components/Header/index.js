@@ -69,7 +69,7 @@ class Header extends Component {
         </div>
 
         <Headroom
-          id="site-navigation"
+          id="main-nav"
           pinStart={450}
           onPin={() => this.setSticky(true)}
           onUnpin={() => this.setSticky(false)}

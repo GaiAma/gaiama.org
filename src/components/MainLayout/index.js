@@ -161,10 +161,10 @@ class MainLayout extends Component {
           {/* <body className={slugify(page.frontmatter.slug)} /> */}
         </Helmet>
 
-        <a href="#site-content" css={screenReaderAndFocusable}>
+        <a href="#main" css={screenReaderAndFocusable}>
           {SiteMeta.frontmatter.skipLinks.toContent}
         </a>
-        <a href="#site-navigation" css={screenReaderAndFocusable}>
+        <a href="#main-nav" css={screenReaderAndFocusable}>
           {SiteMeta.frontmatter.skipLinks.toNav}
         </a>
 
@@ -180,7 +180,8 @@ class MainLayout extends Component {
         {urlParams.ref && <ReferrerMessages urlParams={urlParams} />}
 
         <main
-          id="site-content"
+          id="main"
+          tabIndex="-1"
           css={{
             margin: `0 auto`,
             padding: `3rem .8rem 1.45rem`,
