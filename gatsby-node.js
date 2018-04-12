@@ -100,9 +100,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
 
   // get pages and posts
   const graphNodes = await graphql(`{
-    languages: allJavascriptFrontmatter (
-      filter: { fileAbsolutePath: { regex: "/languages/" } }
-    ) {
+    languages: allLanguagesAml {
       edges {
         node {
           frontmatter {

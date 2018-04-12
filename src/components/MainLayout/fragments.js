@@ -44,14 +44,13 @@ export const Fragments = graphql`
   }
 
   fragment languages on RootQueryType {
-    languages: allJavascriptFrontmatter (
-      filter: { fileAbsolutePath: { regex: "/languages/" } }
-    ) {
+    languages: allLanguagesAml {
       edges {
         node {
           frontmatter {
             id
             title
+            short
           }
         }
       }
