@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import slugify from 'slugify'
-import { breakPoints, Box, colors } from '@/theme'
+import { breakPoints, Box, colors, fullPageWidth } from '@/theme'
 import MainLayout from '@/components/MainLayout'
 import { InstagramFeed, SupportWidget } from '@/components/Shared'
 import TitledCopy from '@/components/TitledCopy'
@@ -82,9 +82,14 @@ const HomePage = props => (
             },
           }}
         >
-          {props.data.page.frontmatter.intro.images.map(({ image }) => (
-            <Img sizes={image.sizes} key={image.sizes.src} />
-          ))}
+          {props.data.page.frontmatter.intro.images.map(
+            ({ image }) => (
+              <Img
+                sizes={image.sizes}
+                key={image.sizes.src}
+              />
+            )
+          )}
         </div>
       </div>
     </Box>
@@ -92,31 +97,25 @@ const HomePage = props => (
     <div
       css={{
         backgroundImage: `url(${
-          props.data.page.frontmatter.assets.keyBg.image.resolutions.src
+          props.data.page.frontmatter.assets.keyBg.image
+            .resolutions.src
         })`,
         backgroundPosition: `right 0`,
         backgroundColor: colors.lightBlue,
         backgroundRepeat: `no-repeat`,
-        // backgroundSize: `contain`,
         overflow: `hidden`,
-        width: `100vw`,
         margin: `0 auto`,
         position: `relative`,
-        left: `50%`,
-        transform: `translateX(-50vw)`,
+        ...fullPageWidth,
       }}
-    >
+    >{console.log(fullPageWidth)}
       <div
         css={{
           position: `relative`,
-          width: `200vw`,
-          left: `50%`,
-          transform: `translateX(-100vw)`,
         }}
       >
         <div
           css={{
-            width: `100vw`,
             margin: `0 auto`,
           }}
         >
@@ -145,12 +144,18 @@ const HomePage = props => (
                 },
               }}
             >
-              {props.data.page.frontmatter.keyPrinciples.title}
+              {
+                props.data.page.frontmatter.keyPrinciples
+                  .title
+              }
             </h2>
           </div>
 
           <KeyPrinciples
-            content={props.data.page.frontmatter.keyPrinciples.content}
+            content={
+              props.data.page.frontmatter.keyPrinciples
+                .content
+            }
             css={{
               [breakPoints.minSm]: {
                 width: `65%`,
@@ -170,8 +175,12 @@ const HomePage = props => (
     <SupportWidget
       transparent
       title={props.data.SupportWidget.frontmatter.title}
-      readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
-      readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
+      readMoreLink={
+        props.data.SupportWidget.frontmatter.readMoreLink
+      }
+      readMoreLabel={
+        props.data.SupportWidget.frontmatter.readMoreLabel
+      }
       artwork={props.data.page.frontmatter.assets.supportus}
       lang={props.pathContext.lang}
       css={{
@@ -186,14 +195,21 @@ const HomePage = props => (
 
     <InstagramFeed
       user={props.data.instagram.frontmatter.instagramUser}
-      followLink={props.data.instagram.frontmatter.followLink}
-      bg={props.data.instagram.frontmatter.bg.image.resolutions.src}
+      followLink={
+        props.data.instagram.frontmatter.followLink
+      }
+      bg={
+        props.data.instagram.frontmatter.bg.image
+          .resolutions.src
+      }
       imgs={props.data.instagramImages.edges}
     />
 
     <TitledCopyStyled
       title={props.data.page.frontmatter.closing.title}
-      paragraphs={props.data.page.frontmatter.closing.paragraphs}
+      paragraphs={
+        props.data.page.frontmatter.closing.paragraphs
+      }
     />
   </MainLayout>
 )

@@ -10,7 +10,8 @@ import TitledCopy from '@/components/TitledCopy'
 import {
   breakPoints,
   colors,
-} from '@/theme'
+  fullPageWidth,
+} from '../theme'
 
 const SupportPage = props => {
   const { frontmatter } = props.data.page
@@ -23,7 +24,7 @@ const SupportPage = props => {
       
       <div css={{
         display: `flex`,
-        justifyContent: `space-evenly`,
+        justifyContent: `space-around`,
       }}>
         {[`arrow_left`, `arrow_right`].map(x => 
           <Img
@@ -46,10 +47,26 @@ const SupportPage = props => {
         },
       }}>
         <div css={{
-          borderRight: `1px solid #ccc`,
-          borderImageSource: `linear-gradient(to bottom, #cccccc21, #ccc, #cccccc21)`,
-          borderImageSlice: `1`,
+          border: `none`,
+          // borderWidth: `1px`,
+          // borderStyle: `solid`,
+          // borderImage: `linear-gradient(to bottom, #cccccc21, #ccc, #cccccc21) 1 100%`,
+          // borderTop: `0`,
+          // borderBottom: `0`,
+          // borderLeft: `0`,
           paddingRight: `3rem`,
+          position: `relative`,
+          '&:after': {
+            content: `""`,
+            height: `100%`,
+            width: `1px`,
+            position: `absolute`,
+            display: `block`,
+            top: `0`,
+            right: `0`,
+            bottom: `0`,
+            background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+          },
         }}>
           <p dangerouslySetInnerHTML={{ __html: frontmatter.intro.neighbor }} />
         </div>
@@ -63,10 +80,8 @@ const SupportPage = props => {
 
       <div css={{
         position: `relative`,
-        left: `50%`,
-        transform: `translateX(-50vw)`,
-        width: `100vw`,
         marginBottom: `3rem`,
+        ...fullPageWidth,
       }}>
         <div css={{
           display: `flex`,
@@ -240,9 +255,7 @@ const SupportPage = props => {
       <div css={{
         background: colors.lightBlue,
         position: `relative`,
-        left: `50%`,
-        transform: `translateX(-50vw)`,
-        width: `100vw`,
+        ...fullPageWidth,
       }}>
         <div css={{
           [breakPoints.minLg]: {
@@ -254,10 +267,24 @@ const SupportPage = props => {
             [breakPoints.minLg]: {
               width: `47%`,
               '&:first-child': {
-                borderRight: `1px solid #ccc`,
-                borderImageSource: `linear-gradient(to bottom, #cccccc21, #ccc, #cccccc21)`,
-                borderImageSlice: `1`,
+                // borderWidth: `1px`,
+                // borderStyle: `solid`,
+                // borderImage: `linear-gradient(to bottom, #cccccc21, #ccc, #cccccc21) 1 100%`,
+                // borderTop: `0`,
+                // borderBottom: `0`,
+                // borderLeft: `0`,
                 paddingRight: `3rem`,
+                position: `relative`,
+                '&:after': {
+                  content: `""`,
+                  height: `100%`,
+                  width: `1px`,
+                  position: `absolute`,
+                  display: `block`,
+                  top: `0`,
+                  right: `0`,
+                  background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+                },
               },
               '&:last-child': {
                 paddingLeft: `3rem`,

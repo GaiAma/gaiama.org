@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { colors, breakPoints, Box, fontFamilies, H2 } from '@/theme'
+import { colors, breakPoints, Box, fontFamilies, H2, fullPageWidth } from '@/theme'
 import Lazy from '@/components/Lazy'
 import PatreonButton from '@/assets/become_a_patron_button.png'
 
@@ -135,10 +135,8 @@ const SupportWidget = ({
   <div
     css={{
       position: `relative`,
-      left: `50%`,
-      transform: `translateX(-50vw)`,
-      width: `100vw`,
-
+      zIndex: 1,
+      ...fullPageWidth,
       '& img': {
         margin: `0`,
       },
@@ -302,53 +300,55 @@ export const SupportWidgetFragment = graphql`
     }
   }`
 
-const InstagramFeed = ({
-  user,
-  followLink,
-  bg,
-  imgs,
-}) => (
+const InstagramFeed = ({ user, followLink, bg, imgs }) => (
   <div>
-    <Lazy image={bg} css={{
-      display: `flex`,
-      flexWrap: `wrap`,
-      justifyContent: `center`,
-      backgroundSize: `cover`,
-      position: `relative`,
-      width: `100vw`,
-      left: `50%`,
-      transform: `translateX(-50vw)`,
-      padding: `2rem 0`,
-      zIndex: -1,
+    <Lazy
+      image={bg}
+      css={{
+        display: `flex`,
+        flexWrap: `wrap`,
+        justifyContent: `center`,
+        backgroundSize: `cover`,
+        position: `relative`,
+        padding: `2rem 0`,
 
-      [breakPoints.minMd]: {
-        justifyContent: `space-around`,
-      },
-    }}>
+        [breakPoints.minMd]: {
+          justifyContent: `space-around`,
+        },
+        ...fullPageWidth,
+      }}
+    >
       {imgs.map(x => (
-        <a
+        <div
           key={x.node.id}
-          href={`https://www.instagram.com/p/${x.node.code}/?taken-by=${x.node.username}`}
-          target="_blank"
           css={{
             transition: `all .3s ease`,
             ':hover': { transform: `scale(1.02)` },
           }}
         >
-          <Img
-            alt="GaiAma on Instagram"
-            resolutions={x.node.image.image.resolutions}
-            css={{ border: `1px solid #000` }}
-          />
-        </a>
+          <a
+            href={`https://www.instagram.com/p/${
+              x.node.code
+            }/?taken-by=${x.node.username}`}
+            target="_blank"
+          >
+            <Img
+              alt="GaiAma on Instagram"
+              resolutions={x.node.image.image.resolutions}
+              css={{ border: `1px solid #000` }}
+            />
+          </a>
+        </div>
       ))}
     </Lazy>
-    <div css={{
-      marginTop: `.5rem`,
-      [breakPoints.minSm]: {
-        textAlign: `right`,
-      },
-    }}>
+    <div
+      css={{
+        marginTop: `.5rem`,
+        [breakPoints.minSm]: {
+          textAlign: `right`,
+        },
+      }}
+    >
       <a
         href={`https://instagram.com/${user}`}
         target="_blank"
@@ -363,10 +363,14 @@ const InstagramFeed = ({
           },
         }}
       >
-        <span css={{
-          letterSpacing: `-.1rem`,
-          marginRight: `1rem`,
-        }}>—————————&gt;&gt;</span>&nbsp;
+        <span
+          css={{
+            letterSpacing: `-.1rem`,
+            marginRight: `1rem`,
+          }}
+        >
+          —————————&gt;&gt;
+        </span>&nbsp;
         {followLink}
       </a>
     </div>

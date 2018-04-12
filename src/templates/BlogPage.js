@@ -118,12 +118,28 @@ const BlogPage = props => {
         css={{
           display: `flex`,
           justifyContent: `center`,
-          borderBottom: `1px solid #ccc`,
-          borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
-          borderImageSlice: `1`,
+          // borderWidth: `1px`,
+          // borderBottomWidth: `1px`,
+          // borderStyle: `solid`,
+          // borderImage: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21) 1 100%`,
+          // borderBottom: `0`,
+          // borderRight: `0`,
+          // borderLeft: `0`,
           textAlign: `center`,
           margin: `2rem auto 3rem`,
           width: `60%`,
+          position: `relative`,
+          '&:before': {
+            content: `""`,
+            height: `1px`,
+            width: `100%`,
+            position: `absolute`,
+            display: `block`,
+            top: `50%`,
+            left: `0`,
+            right: `0`,
+            background: `linear-gradient(to right, #cccccc21, #6d6d6d, #cccccc21) no-repeat`,
+          },
         }}
       >
         <div
@@ -132,7 +148,8 @@ const BlogPage = props => {
             justifyContent: `space-between`,
             background: `#fff`,
             fontSize: `.9rem`,
-            transform: `translateY(.8rem)`,
+            position: `relative`,
+            // transform: `translateY(.8rem)`,
             '& > a': {
               margin: `0 .5rem`,
               padding: `.2rem .5rem`,

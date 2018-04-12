@@ -110,7 +110,7 @@ const Footer = ({
       </ul>
     </div>
 
-    <div>
+    {/* <div>
       <div
         css={{
           marginBottom: `1rem`,
@@ -118,7 +118,7 @@ const Footer = ({
       >
         {supportTitle}
       </div>
-    </div>
+    </div> */}
 
     <div>
       <div

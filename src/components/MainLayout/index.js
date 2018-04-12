@@ -11,11 +11,11 @@ import '@/utils/fontawesome'
 import {
   breakPoints,
   screenReaderAndFocusable,
+  focusOutlineNone,
   InstagramGradient,
 } from '@/theme'
 
 import './fragments'
-
 import 'typeface-amatic-sc'
 import 'typeface-quicksand'
 
@@ -137,7 +137,11 @@ class MainLayout extends Component {
       //   initialI18nStore={i18nStore}
       // >
       <div
-        css={{ maxWidth: `1280px` }}
+        css={{
+          width: [`100%`, `100vw`],
+          maxWidth: `1440px`,
+          margin: `0 auto`,
+        }}
       >
         <Helmet
           titleTemplate="%s - GaiAma.org"
@@ -183,6 +187,7 @@ class MainLayout extends Component {
           id="main"
           tabIndex="-1"
           css={{
+            ...focusOutlineNone,
             margin: `0 auto`,
             padding: `3rem .8rem 1.45rem`,
             width: !wrapperStyles.width && `98%`,

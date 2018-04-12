@@ -74,7 +74,11 @@ class Header extends Component {
           onPin={() => this.setSticky(true)}
           onUnpin={() => this.setSticky(false)}
           onUnfix={() => this.setSticky(false)}
-          style={{ zIndex: 5 }}
+          style={{
+            zIndex: 5,
+            maxWidth: `1440px`,
+            margin: `0 auto`,
+          }}
         >
           <nav
             aria-label="primary"

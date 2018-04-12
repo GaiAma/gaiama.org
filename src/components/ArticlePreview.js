@@ -44,7 +44,7 @@ ArticlePreview.propTypes = {
 export default ArticlePreview
 
 const articleStyles = {
-  article: (isVisible) => ({
+  article: isVisible => ({
     // flex: `0 0 327`,
     position: `relative`,
     // width: `327`,
@@ -66,11 +66,23 @@ const articleStyles = {
   },
   footer: {
     marginTop: `auto`,
-    borderTop: `1px solid #ccc`,
-    borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
-    borderImageSlice: `1`,
+    // borderTop: `1px solid #ccc`,
+    // borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
+    // borderImageSlice: `1`,
     color: `#a7a7a7`,
     fontSize: `.9rem`,
+    position: `relative`,
+    '&:before': {
+      content: `""`,
+      width: `100%`,
+      height: `1px`,
+      position: `absolute`,
+      display: `block`,
+      top: `0`,
+      left: `0`,
+      right: `0`,
+      background: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21) no-repeat`,
+    },
   },
   footerInner: {
     margin: `0 1rem`,

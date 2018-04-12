@@ -104,12 +104,11 @@ class ContactPage extends Component {
               <Textarea
                 name="message"
                 label={this.props.data.page.frontmatter.form.messageLabel}
-                placeholder={this.props.data.page.frontmatter.cookieNote}
+                // placeholder={this.props.data.page.frontmatter.cookieNote}
                 value={this.state.message}
                 onInput={this.handleChange}
               />
               <Button
-                label={this.props.data.page.frontmatter.form.submitLabel}
                 onClick={e => console.log(`submit`)}
                 css={{
                   '& > button': {
@@ -117,7 +116,9 @@ class ContactPage extends Component {
                     color: colors.darkWhite,
                   },
                 }}
-              />
+              >
+                {this.props.data.page.frontmatter.form.submitLabel}
+              </Button>
             </form>
           </div>
 
@@ -148,7 +149,7 @@ class ContactPage extends Component {
             >
               <Email
                 name="email"
-                label="Your e-mail address"
+                label={this.props.data.page.frontmatter.form.emailLabel}
                 value={this.state.email}
                 onInput={this.handleChange}
               />
@@ -162,7 +163,9 @@ class ContactPage extends Component {
                     color: colors.darkWhite,
                   },
                 }}
-              />
+              >
+                {this.props.data.page.frontmatter.form.submitLabel}
+              </Button>
             </form>
 
             <div

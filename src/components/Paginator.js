@@ -19,54 +19,73 @@ const Paginator = ({
     css={{
       display: `flex`,
       justifyContent: `center`,
+      position: `relative`,
+      margin: `2rem 0 1rem`,
     }}
   >
-    <nav
-      aria-label={paginationNavAriaLabel}
+    <div
       css={{
-        display: `flex`,
-        justifyContent: `space-between`,
-        margin: `2rem 0 1rem`,
-        '& > *': {
-          padding: `.5rem`,
-          margin: `0 1rem`,
+        '&:before': {
+          content: `""`,
+          height: `1px`,
+          width: `100%`,
+          position: `absolute`,
+          display: `block`,
+          top: `50%`,
+          left: `0`,
+          right: `0`,
+          background: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21) no-repeat`,
         },
       }}
     >
-      {map(i => {
-        const isCurrent = i === pageNr
-        if ([`prev`, `next`].includes(i)) {
-          return <span key={i}>…</span>
-        }
+      <nav
+        aria-label={paginationNavAriaLabel}
+        css={{
+          display: `flex`,
+          justifyContent: `space-between`,
+          position: `relative`,
+          background: `#fff`,
+          '& > *': {
+            padding: `.5rem`,
+            margin: `0 1rem`,
+          },
+        }}
+      >
+        {map(i => {
+          const isCurrent = i === pageNr
+          if ([`prev`, `next`].includes(i)) {
+            return <span key={i}>…</span>
+          }
 
-        if (isCurrent) {
+          if (isCurrent) {
+            return (
+              <span
+                key={i}
+                aria-label={`${currentAriaLabel} ${i}`}
+                aria-current="true"
+              >
+                {i}
+              </span>
+            )
+          }
+
           return (
-            <span
+            <Link
               key={i}
-              aria-label={`${currentAriaLabel} ${i}`}
-              aria-current="true"
+              to={`${slug}/${i === 1 ? `` : i}`}
+              role="menuitem"
+              aria-label={`${pageNrAriaLabel} ${i}`}
+              aria-current={false}
+              css={{
+                fontWeight: isCurrent && `bold`,
+              }}
             >
               {i}
-            </span>
+            </Link>
           )
-        }
-
-        return (
-          <Link
-            key={i}
-            to={`${slug}/${i === 1 ? `` : i}`}
-            role="menuitem"
-            aria-label={`${pageNrAriaLabel} ${i}`}
-            aria-current={false}
-            css={{
-              fontWeight: isCurrent && `bold`,
-            }}
-          >
-            {i}
-          </Link>
-        )
-      }, pagination)}
-    </nav>
+        }, pagination)}
+      </nav>
+    </div>
   </div>
 )
 

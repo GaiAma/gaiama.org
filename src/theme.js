@@ -67,6 +67,12 @@ export const screenReaderAndFocusable = {
   ...screenReaderOnlyFocusable,
 }
 
+export const focusOutlineNone = {
+  '&:focus': {
+    outline: `none`,
+  },
+}
+
 // svg gradient from https://stackoverflow.com/a/47801536/3484824
 // hide svg definitions from https://stackoverflow.com/a/24820654/3484824
 export const InstagramGradient = props => (
@@ -99,6 +105,7 @@ export const breakPoints = {
   minLg: `@media (min-width: 992px)`,
   minLgLandscape: `@media (min-width: 1024px)`,
   minXl: `@media (min-width: 1200px)`,
+  maxXxl: `@media (max-width: 1280px)`,
   minXxl: `@media (min-width: 1281px)`,
 }
 
@@ -106,9 +113,10 @@ export const SIZES = {
   xsmall: { min: 0, max: 599 },
   small: { min: 600, max: 779 },
   medium: { min: 780, max: 979 },
-  large: { min: 980, max: 1279 },
-  xlarge: { min: 1280, max: 1339 },
-  xxlarge: { min: 1340, max: Infinity },
+  large: { min: 980, max: 1281 },
+  xlarge: { min: 1282, max: 1339 },
+  xxlarge: { min: 1340, max: 1440 },
+  xxxlarge: { min: 1441, max: Infinity },
 
   // Sidebar/nav related tweakpoints
   largerSidebar: { min: 1100, max: 1339 },
@@ -153,6 +161,18 @@ export const media = {
   },
 }
 
+export const fullPageWidth = {
+  [media.lessThan(`xxxlarge`)]: {
+    width: `100vw`,
+    left: `50%`,
+    transform: `translateX(-50vw)`,
+  },
+  [media.greaterThan(`xxxlarge`)]: {
+    left: `50%`,
+    transform: `translateX(-720px)`,
+    width: `1440px`,
+  },
+}
 
 const fallbackFont = [
   `-apple-system`,
@@ -306,11 +326,9 @@ export const visible = {
 }
 
 export default {
-  breakPoints,
   colors,
   fontFamilies,
   fonts,
-  media,
   H1,
   H2,
   H3,

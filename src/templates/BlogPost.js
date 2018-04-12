@@ -24,7 +24,10 @@ const BlogPost = props => {
       <Head
         title={post.frontmatter.title}
         meta={[
-          { name: `description`, content: summarize(post.frontmatter.summary || post.html) },
+          {
+            name: `description`,
+            content: summarize(post.frontmatter.summary || post.html),
+          },
         ]}
       />
 
@@ -69,20 +72,33 @@ const BlogPost = props => {
         css={{
           display: `flex`,
           justifyContent: `center`,
-          borderBottom: `1px solid #ccc`,
-          borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
-          borderImageSlice: `1`,
+          // borderBottom: `1px solid #ccc`,
+          // borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
+          // borderImageSlice: `1`,
           textAlign: `center`,
           margin: `2rem auto 3rem`,
           width: `80%`,
+          position: `relative`,
+          '&:before': {
+            content: `""`,
+            height: `1px`,
+            width: `100%`,
+            position: `absolute`,
+            display: `block`,
+            top: `50%`,
+            right: `0`,
+            left: `0`,
+            background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+          },
         }}
       >
         <div
           css={{
+            position: `relative`,
             display: `flex`,
             justifyContent: `space-between`,
             background: `#fff`,
-            transform: `translateY(1.05rem)`,
+            // transform: `translateY(1.05rem)`,
           }}
         >
           {[`newer`, `all`, `older`].map(x => (
@@ -243,19 +259,32 @@ const PostHeader = ({ title, date, dateStr }) => (
     <div
       css={{
         display: `block`,
-        borderBottom: `1px solid #ccc`,
-        borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
-        borderImageSlice: `1`,
+        // borderBottom: `1px solid #ccc`,
+        // borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
+        // borderImageSlice: `1`,
         textAlign: `center`,
         fontSize: `.8rem`,
         margin: `-.5rem auto 0`,
         width: `30%`,
+        position: `relative`,
+        '&:before': {
+          content: `""`,
+          height: `1px`,
+          width: `100%`,
+          position: `absolute`,
+          display: `block`,
+          top: `50%`,
+          left: `0`,
+          right: `0`,
+          background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+        },
       }}
     >
       <time
         dateTime={moment(parseInt(date)).format()}
         css={{
-          transform: `translateY(.55rem)`,
+          position: `relative`,
+          // transform: `translateY(.55rem)`,
           display: `inline-block`,
           background: `#fff`,
           color: `#c3c3c3`,
