@@ -33,6 +33,12 @@
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
     "precommit": "yarn format"
   },
+  "browserslist": [
+    "> 1%",
+    "last 6 versions",
+    "Firefox ESR",
+    "Opera 12.1"
+  ],
   "size-limit": [
     {
       "path": "index.js"

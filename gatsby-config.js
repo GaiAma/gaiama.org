@@ -109,8 +109,6 @@ module.exports = {
         showSpinner: true, // Disable the loading spinner.
       },
     },
-    // `gatsby-transformer-javascript-frontmatter`,
-    // `gatsby-transformer-all-yaml`,
     `gatsby-transformer-javascript-frontmatter`,
     `gatsby-transformer-yaml`,
     `gatsby-transformer-json`,
