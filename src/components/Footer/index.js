@@ -4,8 +4,8 @@ import Link from '@/components/Link'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import hex2rgba from 'hex2rgba'
 import {
-  breakPoints,
   colors,
+  media,
 } from '@/theme'
 
 const Footer = ({
@@ -17,32 +17,35 @@ const Footer = ({
   meta,
   bgImage,
 }) => (
-  <footer css={{
-    background: `linear-gradient(
+  <footer
+    css={{
+      background: `linear-gradient(
                   0deg,
                   ${hex2rgba(colors.primary, 0.85)},
                   ${hex2rgba(colors.primary, 0.85)}
                 ),
                 url(${bgImage.sizes.src}) no-repeat bottom`,
-    backgroundSize: `cover`,
-    display: `flex`,
-    flexDirection: `column`,
-    color: `#fff`,
-    fontSize: `.9rem`,
-    fontWeight: `100`,
-    padding: `4rem 0 2rem`,
-    [breakPoints.maxMd]: {
-      alignItems: `center`,
-      '& > *:not(:last-child)': { marginBottom: `3rem` },
-    },
-    [breakPoints.minMd]: {
-      flexDirection: `row`,
-      justifyContent: `space-around`,
-    },
-    '& a': {
+      backgroundSize: `cover`,
+      display: `flex`,
+      flexDirection: `column`,
       color: `#fff`,
-    },
-  }}>
+      fontSize: `.9rem`,
+      fontWeight: `100`,
+      padding: `4rem 0 2rem`,
+      [media.lessThan(`medium`)]: {
+        textAlign: `center`,
+        alignItems: `center`,
+        '& > *:not(:last-child)': { marginBottom: `3rem` },
+      },
+      [media.greaterThan(`medium`)]: {
+        flexDirection: `row`,
+        justifyContent: `space-around`,
+      },
+      '& a': {
+        color: `#fff`,
+      },
+    }}
+  >
     <nav>
       <div
         css={{
@@ -51,8 +54,16 @@ const Footer = ({
       >
         {menuTitle}
       </div>
-      {menu.map((link, i) =>
-        <div key={i}>
+      {menu.map((link, i) => (
+        <div
+          key={i}
+          css={{
+            margin: `.5rem 0`,
+            [media.greaterThan(`medium`)]: {
+              margin: `.2rem 0`,
+            },
+          }}
+        >
           <Link
             to={link.to}
             activeClassName="disabled"
@@ -61,52 +72,63 @@ const Footer = ({
             {link.title}
           </Link>
         </div>
-      )}
+      ))}
     </nav>
 
     <div>
-      <div
-        css={{
-          marginBottom: `1rem`,
-        }}
-      >
+      <div css={{ marginBottom: `1rem` }}>
         {socialTitle}
       </div>
-      <ul
-        className="fa-ul"
-        css={{ marginLeft: `1.5rem` }}
-      >
-        <li css={{
-          '&:hover svg': {
-            color: colors.brands.facebook,
-          },
-        }}>
-          <FontAwesomeIcon icon={[`fab`, `facebook-square`]} listItem />Facebook
+      <ul className="fa-ul" css={{ marginLeft: `1.5rem` }}>
+        <li
+          css={{
+            '&:hover svg': {
+              color: colors.brands.facebook,
+            },
+          }}
+        >
+          <FontAwesomeIcon
+            icon={[`fab`, `facebook-square`]}
+            listItem
+          />Facebook
         </li>
-        <li css={{
-          '&:hover svg *': {
-            fill: `url(#InstagramGradient)`,
-          },
-        }}>
-          <FontAwesomeIcon icon={[`fab`, `instagram`]} listItem />Instagram
+        <li
+          css={{
+            '&:hover svg *': {
+              fill: `url(#InstagramGradient)`,
+            },
+          }}
+        >
+          <FontAwesomeIcon
+            icon={[`fab`, `instagram`]}
+            listItem
+          />Instagram
         </li>
-        <li css={{
-          '&:hover svg': {
-            color: colors.brands.youtube,
-          },
-        }}>
-          <FontAwesomeIcon icon={[`fab`, `youtube`]} listItem />Youmeo
+        <li
+          css={{
+            '&:hover svg': {
+              color: colors.brands.youtube,
+            },
+          }}
+        >
+          <FontAwesomeIcon
+            icon={[`fab`, `youtube`]}
+            listItem
+          />Youmeo
         </li>
-        <li css={{
-          '&:hover svg': {
-            color: colors.brands.patreon,
-          },
-        }}>
-          <FontAwesomeIcon icon={[`fab`, `patreon`]} listItem />Patreon
+        <li
+          css={{
+            '&:hover svg': {
+              color: colors.brands.patreon,
+            },
+          }}
+        >
+          <FontAwesomeIcon
+            icon={[`fab`, `patreon`]}
+            listItem
+          />Patreon
         </li>
-        <li>
-          Flattr
-        </li>
+        {/* <li>Flattr</li> */}
       </ul>
     </div>
 
@@ -134,7 +156,7 @@ const Footer = ({
           dangerouslySetInnerHTML={{ __html: x }}
         />
       ))}
-    </div>      
+    </div>
   </footer>
 )
 
