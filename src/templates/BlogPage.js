@@ -1,29 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import moment from 'moment'
-import chunk from 'lodash/fp/chunk'
 import QS from '@/utils/query-string'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
 import TitledCopy from '@/components/TitledCopy'
 import Randomizer from '@/components/Randomizer'
 import RenderArticles from '@/components/RenderArticles'
-
-const chunkedArticles = chunk(3)
-
-const RenderRows = ({ rows }) => (
-  <div>
-    {rows.map((row, i) => (
-      <RenderArticles
-        key={i}
-        articles={row}
-      />
-    ))}
-  </div>
-)
-RenderRows.propTypes = {
-  rows: PropTypes.array,
-}
+import { media } from '@/theme'
 
 const BlogPage = props => {
   const { sort, filter } = QS.parse()
@@ -188,8 +172,27 @@ const BlogPage = props => {
         </div>
       </div>
 
-      <RenderRows
-        rows={chunkedArticles(articles)}
+      <RenderArticles
+        articles={articles}
+        css={{
+          display: `flex`,
+          flexWrap: `wrap`,
+          justifyContent: `center`,
+          [media.greaterThan(`medium`)]: {
+            justifyContent: `space-between`,
+          },
+          '& > article': {
+            flex: `0 0 97%`,
+            maxWidth: `370px`,
+            marginBottom: `4rem`,
+            [media.greaterThan(`medium`)]: {
+              flexBasis: `47%`,
+            },
+            [media.greaterThan(`large`)]: {
+              flexBasis: `29%`,
+            },
+          },
+        }}
       />
     </MainLayout>
   )
