@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import NewstickerItem from './NewstickerItem'
+import { media } from '@/theme'
 
 const NewsTicker = ({
   items,
@@ -45,6 +46,12 @@ const NewsTicker = ({
 
       <div css={{
         display: layout === `row` && `flex`,
+        flexDirection: `column`,
+        alignItems: `center`,
+        [media.greaterThan(`medium`)]: {
+          flexDirection: `row`,
+          justifyContent: `space-between`,
+        },
       }}>
         {items.map((item, index) =>
           item && <NewstickerItem
@@ -53,10 +60,16 @@ const NewsTicker = ({
             readmoreLabel={readmoreLabel}
             layout={layout}
             css={{
-              marginBottom: `1.6rem`,
-              '&:not(:last-child)': {
-                marginRight: layout === `row` && `4rem`,
+              marginBottom: `3rem`,
+              width: `60%`,
+              maxWidth: `370px`,
+              [media.greaterThan(`medium`)]: {
+                width: `30%`,
+                marginBottom: `1.6rem`,
               },
+              // '&:not(:last-child)': {
+              //   marginRight: layout === `row` && `4rem`,
+              // },
             }}
           />
         )}
@@ -166,7 +179,7 @@ export const fragment = graphql`
             slug
             cover {
               image: childImageSharp {
-                resolutions(width: 324, height: 150, quality: 75) {
+                resolutions(width: 370, height: 150, cropFocus: ENTROPY, quality: 75) {
                   ...GatsbyImageSharpResolutions
                 }
               }
