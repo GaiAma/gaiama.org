@@ -365,7 +365,9 @@ const PostBody = ({ children }) => (
         position: `relative`,
         overflow: `hidden`,
         paddingTop: `29.25%`,
-        width: `100%`,
+        width: `98%`,
+        maxWidth: `700px`,
+        margin: `3rem auto`,
         '& > iframe': {
           position: `absolute`,
           top: `0`,
