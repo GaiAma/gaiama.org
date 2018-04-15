@@ -1,8 +1,6 @@
 const path = require(`path`)
 const { homepage } = require(`./package.json`)
 
-/** @format */
-
 module.exports = {
   siteMetadata: {
     title: `GaiAma`,
