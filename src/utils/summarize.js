@@ -1,10 +1,10 @@
 import striptags from 'striptags'
-import {
-  decode,
-} from 'he'
+import { decode } from 'he'
 import {
   curry,
+  ifElse,
   invoker,
+  identity,
   compose,
   replace,
   trim,
@@ -12,6 +12,11 @@ import {
 
 export const summarize = (str, length = 140) =>
   compose(
+    ifElse(
+      x => str.length > x.length,
+      x => `${x}…`,
+      identity
+    ),
     invoker(2, `substr`)(0, length),
     decode,
     trim,
