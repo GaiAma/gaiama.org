@@ -1,5 +1,5 @@
 import hex2rgba from 'hex2rgba'
-import { breakPoints, colors, fontFamilies } from '@/theme'
+import { breakPoints, colors, fontFamilies, media } from '@/theme'
 
 export default {
   header: ({ bg }) => ({
@@ -35,18 +35,21 @@ export default {
     alignItems: `center`,
     justifyContent: `space-between`,
     margin: `0 auto`,
-    padding: `0 1rem`,
     height: `100%`,
+    padding: `0`,
+    [media.greaterThan(`medium`)]: {
+      padding: `0 1rem`,
+    },
   },
 
   headerBrand: {
     '& h2': {
-      fontSize: `1rem`,
+      fontSize: `1.1rem`,
+      letterSpacing: `0.1rem`,
       margin: 0,
-
-      [breakPoints.minLg]: {
-        letterSpacing: `0.12rem`,
+      [media.greaterThan(`medium`)]: {
         fontSize: `1.7rem`,
+        letterSpacing: `0.12rem`,
       },
     },
 
@@ -62,10 +65,13 @@ export default {
     display: `flex`,
     alignItems: `center`,
     justifyContent: `space-between`,
-    minWidth: `5.5rem`,
-    fontSize: `.9rem`,
+    // minWidth: `5.5rem`,
+    fontSize: `.8rem`,
 
-    [breakPoints.minMd]: { minWidth: `17rem` },
+    [media.greaterThan(`medium`)]: {
+      // minWidth: `17rem`,
+      fontSize: `.9rem`,
+    },
   },
 
   headerBanner: {
@@ -160,6 +166,14 @@ export default {
     ':hover, :active, :focus': {
       color: colors.darkWhite,
       textDecoration: `none`,
+    },
+  },
+
+  headerMetaItem: {
+    margin: `0 0.2rem`,
+    padding: `0 0.4rem`,
+    [media.greaterThan(`medium`)]: {
+    margin: `0 1.5rem`,
     },
   },
 

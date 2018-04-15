@@ -50,7 +50,7 @@ export const Fragments = graphql`
           frontmatter {
             id
             title
-            short
+            titleShort
           }
         }
       }
@@ -71,12 +71,11 @@ export const Fragments = graphql`
         node {
           frontmatter {
             title
+            titleShort
             menu
             slug
             lang
-            short {
-              icon
-            }
+            icon
           }
         }
       }

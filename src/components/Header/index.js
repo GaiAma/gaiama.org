@@ -48,11 +48,14 @@ class Header extends Component {
                     {...css(style.headerLink, style.headerMeta_headerLink)}
                   >
                     <span css={visible.minMd}>{link.title}</span>
-                    {link.short && <span css={visible.maxMd}>
-                      {link.short.icon
-                        ? <FontAwesomeIcon icon={[`far`, link.short.icon]} />
-                        : link.short}
-                    </span>}
+                    {(link.titleShort || link.icon) &&
+                      <span css={visible.maxMd}>
+                        {link.icon
+                          ? <FontAwesomeIcon icon={[`far`, link.icon]} />
+                          : link.titleShort
+                        }
+                      </span>
+                    }
                   </Link>
                 </div>
               )}
@@ -97,7 +100,14 @@ class Header extends Component {
                         ...style.headerNav_headerLink,
                       })}
                     >
-                      {link.title}
+                      <span css={link.titleShort && visible.minMd}>
+                        {link.title}
+                      </span>
+                      {link.titleShort &&
+                        <span css={visible.maxMd}>
+                          {link.titleShort}
+                        </span>
+                      }
                     </Link>
                   </div>
                 )}

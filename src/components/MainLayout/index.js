@@ -30,6 +30,7 @@ const generateMainMenu = items =>
     .filter(({ node }) => node.frontmatter.menu === `main`)
     .map(({ node }) => ({
       title: node.frontmatter.title,
+      titleShort: node.frontmatter.titleShort,
       to: node.frontmatter.slug,
     }))
 
@@ -48,7 +49,8 @@ const generateMetaMenu = ({ translations, getLang, menuItems }) =>
       .map(
         ({ node }) => ({
           title: node.frontmatter.title,
-          short: node.frontmatter.short,
+          titleShort: node.frontmatter.titleShort,
+          icon: node.frontmatter.icon,
           to: node.frontmatter.slug,
         }))
   )
