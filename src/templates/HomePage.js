@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import slugify from 'slugify'
-import { breakPoints, Box, colors, fullPageWidth } from '@/theme'
+import { breakPoints, Box, colors, fullPageWidth, media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
 import { InstagramFeed, SupportWidget } from '@/components/Shared'
 import TitledCopy from '@/components/TitledCopy'
@@ -17,7 +17,10 @@ const HomePage = props => (
       <h1
         css={{
           marginTop: 0,
-          fontSize: `2.7rem`,
+          fontSize: `2rem`,
+          [media.greaterThan(`medium`)]: {
+            fontSize: `2.7rem`,
+          },
         }}
       >
         {props.data.page.frontmatter.intro.title}
@@ -52,7 +55,9 @@ const HomePage = props => (
         css={{
           display: `flex`,
           justifyContent: `center`,
-          margin: `2rem 0 4rem`,
+          [media.greaterThan(`medium`)]: {
+            margin: `2rem 0 4rem`,
+          },
         }}
       >
         <div
@@ -68,17 +73,22 @@ const HomePage = props => (
               margin: `0 1rem`,
             },
             '& .gatsby-image-wrapper': {
-              width: `280px`,
-              transition: `width .3s ease-in-out`,
+              width: [`200px`, `30vw`],
             },
-            '& > div:not(:nth-child(2)) .gatsby-image-wrapper': {
-              width: `200px`,
-            },
-            '&:hover .gatsby-image-wrapper': {
-              width: `200px`,
-            },
-            '& > div:hover .gatsby-image-wrapper': {
-              width: `280px`,
+            [media.greaterThan(`medium`)]: {
+              '& .gatsby-image-wrapper': {
+                width: `280px`,
+                transition: `width .3s ease-in-out`,
+              },
+              '& > div:not(:nth-child(2)) .gatsby-image-wrapper': {
+                width: `200px`,
+              },
+              '&:hover .gatsby-image-wrapper': {
+                width: `200px`,
+              },
+              '& > div:hover .gatsby-image-wrapper': {
+                width: `280px`,
+              },
             },
           }}
         >
@@ -96,10 +106,10 @@ const HomePage = props => (
 
     <div
       css={{
-        backgroundImage: `url(${
-          props.data.page.frontmatter.assets.keyBg.image
-            .resolutions.src
-        })`,
+        // backgroundImage: `url(${
+        //   props.data.page.frontmatter.assets.keyBg.image
+        //     .resolutions.src
+        // })`,
         backgroundPosition: `right 0`,
         backgroundColor: colors.lightBlue,
         backgroundRepeat: `no-repeat`,
@@ -108,7 +118,7 @@ const HomePage = props => (
         position: `relative`,
         ...fullPageWidth,
       }}
-    >{console.log(fullPageWidth)}
+    >
       <div
         css={{
           position: `relative`,
@@ -126,7 +136,6 @@ const HomePage = props => (
           >
             <h2
               css={{
-                fontSize: `2.5rem`,
                 letterSpacing: `.3rem`,
                 display: `inline-block`,
                 marginTop: `2rem`,
@@ -134,6 +143,10 @@ const HomePage = props => (
                 padding: `0 1.5rem .6rem 0`,
                 lineHeight: `0.8`,
                 position: `relative`,
+                fontSize: `2.2rem`,
+                [media.greaterThan(`medium`)]:{
+                  fontSize: `2.5rem`,
+                },
                 '&:after': {
                   content: `>>`,
                   position: `absolute`,
@@ -181,7 +194,7 @@ const HomePage = props => (
       readMoreLabel={
         props.data.SupportWidget.frontmatter.readMoreLabel
       }
-      artwork={props.data.page.frontmatter.assets.supportus}
+      // artwork={props.data.page.frontmatter.assets.supportus}
       lang={props.pathContext.lang}
       css={{
         margin: `3rem 0`,
@@ -202,7 +215,7 @@ const HomePage = props => (
         props.data.instagram.frontmatter.bg.image
           .resolutions.src
       }
-      imgs={props.data.instagramImages.edges}
+      images={props.data.instagramImages.edges}
     />
 
     <TitledCopyStyled
@@ -397,16 +410,18 @@ const KeyPrinciples = ({
 }) => (
   <div
     css={{
-      display: `flex`,
-      justifyContent: `space-between`,
-      flexWrap: `wrap`,
       width: `90%`,
       margin: `2rem auto 0`,
-      '& > div': {
-        width: `56%`,
-      },
-      '& > div:nth-child(2n+2)': {
-        width: `38%`,
+      [media.greaterThan(`medium`)]: {
+        display: `flex`,
+        justifyContent: `space-between`,
+        flexWrap: `wrap`,
+        '& > div': {
+          width: `56%`,
+        },
+        '& > div:nth-child(2n+2)': {
+          width: `38%`,
+        },
       },
     }}
     {...props}

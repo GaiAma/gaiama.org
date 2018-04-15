@@ -1,5 +1,5 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
+import PropTypes from 'prop-types'
 import g from 'glamorous'
 import {
   fontSize,
@@ -12,10 +12,12 @@ import {
  * hiding outline for pointing devices based on
  * http://kizu.ru/en/blog/keyboard-only-focus/#proper-solution
  */
-const PureButton = ({ children, ...props }) => (
+const PureButton = ({ children, onClick, styles, ...props }) => (
   <button
     tabIndex={0}
+    onClick={onClick}
     css={{
+      ...styles,
       '&:focus, & > span:focus': {
         outline: `none`,
       },
@@ -39,6 +41,14 @@ const PureButton = ({ children, ...props }) => (
     </span>
   </button>
 )
+PureButton.propTypes = {
+  onClick: PropTypes.func,
+  styles: PropTypes.object,
+}
+PureButton.defaultProps = {
+  onClick() {},
+  styles: {},
+}
 
 const Button = g(PureButton)(
   fontSize,
@@ -48,4 +58,4 @@ const Button = g(PureButton)(
 )
 
 export default Button
-export { PureButton }
+export { Button, PureButton }

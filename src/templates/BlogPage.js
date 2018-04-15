@@ -55,11 +55,14 @@ const BlogPage = props => {
               display: `inline-block`,
             },
             '& p': {
-              fontSize: `2.5rem`,
+              fontSize: `2rem`,
               lineHeight: 1.3,
               fontFamily: `Amatic SC`,
               margin: 0,
               maxWidth: `650px`,
+              [media.greaterThan(`medium`)]: {
+                '&': { fontSize: `2.5rem` },
+              },
             },
             '& footer': {
               textAlign: `center`,
@@ -93,7 +96,10 @@ const BlogPage = props => {
         css={{
           marginBottom: `1.5rem`,
           '& div': {
-            fontSize: `1rem`,
+            fontSize: `0.85rem`,
+            [media.greaterThan(`medium`)]: {
+              fontSize: `1rem`,
+            },
           },
         }}
       />
@@ -102,17 +108,12 @@ const BlogPage = props => {
         css={{
           display: `flex`,
           justifyContent: `center`,
-          // borderWidth: `1px`,
-          // borderBottomWidth: `1px`,
-          // borderStyle: `solid`,
-          // borderImage: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21) 1 100%`,
-          // borderBottom: `0`,
-          // borderRight: `0`,
-          // borderLeft: `0`,
           textAlign: `center`,
-          margin: `2rem auto 3rem`,
-          width: `60%`,
           position: `relative`,
+          margin: `2rem auto 3rem`,
+          [media.greaterThan(`small`)]: {
+            width: `60%`,
+          },
           '&:before': {
             content: `""`,
             height: `1px`,
@@ -178,14 +179,14 @@ const BlogPage = props => {
           display: `flex`,
           flexWrap: `wrap`,
           justifyContent: `center`,
-          [media.greaterThan(`medium`)]: {
+          [media.greaterThan(`small`)]: {
             justifyContent: `space-between`,
           },
           '& > article': {
             flex: `0 0 97%`,
             maxWidth: `370px`,
             marginBottom: `4rem`,
-            [media.greaterThan(`medium`)]: {
+            [media.greaterThan(`small`)]: {
               flexBasis: `47%`,
             },
             [media.greaterThan(`large`)]: {

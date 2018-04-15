@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { colors, breakPoints, Box, fontFamilies, H2, fullPageWidth } from '@/theme'
+import { colors, breakPoints, Box, fontFamilies, H2, fullPageWidth, media } from '@/theme'
 import Lazy from '@/components/Lazy'
+import { mediaQuery } from '@/components/MediaQuery'
 import PatreonButton from '@/assets/become_a_patron_button.png'
 
 export const cryptos = [
@@ -164,6 +165,9 @@ const SupportWidget = ({
 
     <Box oh css={{
       background: !transparent && colors.lightBlue,
+      [media.lessThan(`large`)]: {
+        paddingTop: `3rem`,
+      },
     }}>
       {title && <H2
         align="center"
@@ -189,6 +193,7 @@ const SupportWidget = ({
         margin: `2.5rem auto`,
         display: `flex`,
         justifyContent: `space-around`,
+        flexWrap: `wrap`,
         width: `98%`,
         maxWidth: `1280px`,
         [breakPoints.minMdLandscape]: {
@@ -197,6 +202,9 @@ const SupportWidget = ({
       }}>
         <Box flex column aICenter
           css={{
+            [media.lessThan(`large`)]: {
+              margin: `1rem 0 3rem`,
+            },
             '&:hover > form': {
               transform: `scale(1.02)`,
             },
@@ -227,6 +235,9 @@ const SupportWidget = ({
     
         <Box flex column aICenter
           css={{
+            [media.lessThan(`large`)]: {
+              margin: `1rem 0 3rem`,
+            },
             '&:hover > a': {
               transform: `scale(1.02)`,
             },
@@ -237,7 +248,13 @@ const SupportWidget = ({
           </a>
         </Box>
     
-        <Box flex column aICenter>
+        <Box flex column aICenter
+          css={{
+            [media.lessThan(`large`)]: {
+              margin: `1rem 0 0`,
+            },
+          }}
+        >
           <CoinPicker
             coins={
               cryptos
@@ -300,87 +317,89 @@ export const SupportWidgetFragment = graphql`
     }
   }`
 
-const InstagramFeed = ({ user, followLink, bg, imgs }) => (
-  <div>
-    <Lazy
-      image={bg}
-      css={{
-        display: `flex`,
-        flexWrap: `wrap`,
-        justifyContent: `center`,
-        backgroundSize: `cover`,
-        position: `relative`,
-        padding: `2rem 0`,
+const InstagramFeed = ({ user, followLink, bg, images }) => {
+  const imgs = mediaQuery(`(max-width: 779px)`)
+    ? images.slice(0, 3)
+    : images
 
-        [breakPoints.minMd]: {
-          justifyContent: `space-around`,
-        },
-        ...fullPageWidth,
-      }}
-    >
-      {imgs.map(x => (
-        <div
-          key={x.node.id}
-          css={{
-            transition: `all .3s ease`,
-            ':hover': { transform: `scale(1.02)` },
-          }}
-        >
-          <a
-            href={`https://www.instagram.com/p/${
-              x.node.code
-            }/?taken-by=${x.node.username}`}
-            target="_blank"
-          >
-            <Img
-              alt="GaiAma on Instagram"
-              resolutions={x.node.image.image.resolutions}
-              css={{ border: `1px solid #000` }}
-            />
-          </a>
-        </div>
-      ))}
-    </Lazy>
-    <div
-      css={{
-        marginTop: `.5rem`,
-        [breakPoints.minSm]: {
-          textAlign: `right`,
-        },
-      }}
-    >
-      <a
-        href={`https://instagram.com/${user}`}
-        target="_blank"
+  return (
+    <div>
+      <Lazy
+        image={bg}
         css={{
-          display: `inline-block`,
-          fontFamily: fontFamilies.accent,
-          lineHeight: `.8`,
-          letterSpacing: `.3rem`,
-          fontSize: `1rem`,
+          display: `flex`,
+          justifyContent: `space-around`,
+          backgroundSize: `cover`,
+          position: `relative`,
+          padding: `2rem 0`,
+          ...fullPageWidth,
+        }}
+      >
+        {imgs.map(x => (
+          <div
+            key={x.node.id}
+            css={{
+              width: `240px`,
+              transition: `all .3s ease`,
+              ':hover': { transform: `scale(1.02)` },
+            }}
+          >
+            <a
+              href={`https://www.instagram.com/p/${
+                x.node.code
+              }/?taken-by=${x.node.username}`}
+              target="_blank"
+            >
+              <Img
+                alt="GaiAma on Instagram"
+                sizes={x.node.image.image.sizes}
+                css={{ border: `1px solid #000` }}
+              />
+            </a>
+          </div>
+        ))}
+      </Lazy>
+      <div
+        css={{
+          marginTop: `.5rem`,
           [breakPoints.minSm]: {
-            fontSize: `1rem`,
+            textAlign: `right`,
           },
         }}
       >
-        <span
+        <a
+          href={`https://instagram.com/${user}`}
+          target="_blank"
           css={{
-            letterSpacing: `-.1rem`,
-            marginRight: `1rem`,
+            display: `inline-block`,
+            fontFamily: fontFamilies.accent,
+            lineHeight: `.8`,
+            letterSpacing: `.2rem`,
+            fontSize: `1rem`,
+            [media.greaterThan(`medium`)]: {
+              letterSpacing: `.3rem`,
+            },
           }}
         >
-          —————————&gt;&gt;
-        </span>&nbsp;
-        {followLink}
-      </a>
+          <span
+            css={{
+              letterSpacing: `-.1rem`,
+              marginRight: `1rem`,
+            }}
+          >
+            —————————&gt;&gt;
+          </span>&nbsp;
+          {followLink}
+        </a>
+      </div>
     </div>
-  </div>
-)
+  )
+}
 InstagramFeed.propTypes = {
   user: PropTypes.string,
   followLink: PropTypes.string,
   bg: PropTypes.string,
-  imgs: PropTypes.array,
+  images: PropTypes.array,
 }
 export { InstagramFeed }
 
@@ -411,8 +430,8 @@ export const instaQuery = graphql`
           username
           image {
             image: childImageSharp {
-              resolutions(width: 240, height: 240, quality: 60) {
-                ...GatsbyImageSharpResolutions
+              sizes(maxWidth: 240, maxHeight: 240, quality: 75) {
+                ...GatsbyImageSharpSizes
               }
             }
           }

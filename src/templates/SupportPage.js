@@ -8,25 +8,47 @@ import { SupportWidget } from '@/components/Shared'
 import CheckMark from '@/assets/check.png'
 import TitledCopy from '@/components/TitledCopy'
 import {
-  breakPoints,
   colors,
   fullPageWidth,
+  media,
+  fontFamilies,
+  visible,
 } from '../theme'
 
 const SupportPage = props => {
   const { frontmatter } = props.data.page
+  const initialStyle = css(visible.maxMd, {
+    fontFamily: fontFamilies.accent,
+    fontSize: `2.9rem`,
+    lineHeight: 1,
+    float: `left`,
+    marginRight: `1rem`,
+  })
+  const [neighbor, support] =
+    [frontmatter.intro.neighbor, frontmatter.intro.support].map((x, i) =>
+      `<span class="${initialStyle}">${i + 1}.</span>${x}`
+    )
   return (
     <MainLayout {...props}>
       <TitledCopy
         centered
         title={frontmatter.intro.title_}
+        css={{
+          [media.lessThan(`medium`)]: {
+            '& > h2': { fontSize: `2rem` },
+            '& > div, & > button': { fontSize: `.85rem` },
+          },
+        }}
       />
       
       <div css={{
         display: `flex`,
         justifyContent: `space-around`,
+        [media.lessThan(`medium`)]: {
+          display: `none`,
+        },
       }}>
-        {[`arrow_left`, `arrow_right`].map(x => 
+        {[`arrow_left`, `arrow_right`].map(x =>
           <Img
             sizes={props.data.page.frontmatter.assets[x].image.sizes}
             key={x}
@@ -41,39 +63,55 @@ const SupportPage = props => {
 
       <div css={{
         display: `flex`,
-        justifyContent: `space-between`,
-        '& > div': {
-          width: `50%`,
+        [media.lessThan(`medium`)]: {
+          flexDirection: `column`,
+        },
+        [media.greaterThan(`medium`)]: {
+          justifyContent: `space-between`,
+          '& > div': {
+            width: `50%`,
+          },
         },
       }}>
         <div css={{
           border: `none`,
-          // borderWidth: `1px`,
-          // borderStyle: `solid`,
-          // borderImage: `linear-gradient(to bottom, #cccccc21, #ccc, #cccccc21) 1 100%`,
-          // borderTop: `0`,
-          // borderBottom: `0`,
-          // borderLeft: `0`,
-          paddingRight: `3rem`,
           position: `relative`,
+          [media.lessThan(`medium`)]: {
+            marginBottom: `2rem`,
+          },
+          [media.greaterThan(`medium`)]: {
+            paddingRight: `3rem`,
+          },
           '&:after': {
             content: `""`,
-            height: `100%`,
-            width: `1px`,
+            height: `1px`,
+            width: `100%`,
             position: `absolute`,
             display: `block`,
-            top: `0`,
             right: `0`,
             bottom: `0`,
-            background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+            background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+            [media.lessThan(`medium`)]: {
+              left: `0`,
+            },
+            [media.greaterThan(`medium`)]: {
+              height: `100%`,
+              width: `1px`,
+              top: `0`,
+              background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+            },
           },
         }}>
-          <p dangerouslySetInnerHTML={{ __html: frontmatter.intro.neighbor }} />
+          <p dangerouslySetInnerHTML={{ __html: neighbor }} />
         </div>
 
-        <div css={{ paddingLeft: `3rem` }}>
+        <div css={{
+          [media.greaterThan(`medium`)]: {
+            paddingLeft: `3rem`,
+          },
+        }}>
           <div>
-            <p>{frontmatter.intro.support}</p>
+            <p dangerouslySetInnerHTML={{ __html: support }} />
           </div>
         </div>
       </div>
@@ -91,9 +129,13 @@ const SupportPage = props => {
           {<Img
             sizes={props.data.page.frontmatter.assets.parrots.image.sizes}
             css={{
-              transform: `translateY(5rem)`,
-              marginTop: `-8rem`,
-              width: `450px`,
+              transform: `translateY(3rem)`,
+              marginTop: `-3rem`,
+              width: `300px`,
+              [media.greaterThan(`medium`)]: {
+                marginTop: `-8rem`,
+                width: `450px`,
+              },
               '& img': {
                 margin: `0`,
               },
@@ -112,6 +154,9 @@ const SupportPage = props => {
             margin: `2.5rem 0`,
             '& > a': {
               color: colors.black,
+              [media.lessThan(`medium`)]: {
+                fontSize: `.7rem`,
+              },
             },
           },
         }}>
@@ -185,8 +230,15 @@ const SupportPage = props => {
 
       <div css={{
         margin: `3rem 0 6rem`,
-        [breakPoints.minLg]: {
-          display: `flex`,
+        display: `flex`,
+        [media.lessThan(`small`)]: {
+          flexDirection: `column`,
+          alignItems: `center`,
+          '& div + div': {
+            marginTop: `1rem`,
+          },
+        },
+        [media.greaterThan(`small`)]: {
           justifyContent: `space-between`,
         },
         '& > div': {
@@ -196,12 +248,12 @@ const SupportPage = props => {
           fontSize: `.98rem`,
           display: `flex`,
           alignItems: `center`,
+          [media.greaterThan(`small`)]: {
+            width: `19%`,
+          },
           '& > div': {
             transition: `transform .5s`,
-            [breakPoints.minLg]: {
-              width: `202px`,
-              height: `202px`,
-            },
+            width: `100%`,
           },
           '&:hover > div': {
             transform: `scale(1.06)`,
@@ -213,24 +265,22 @@ const SupportPage = props => {
             <div
               css={{
                 position: `relative`,
-                '&:after': {
-                  content: `""`,
-                  background: `linear-gradient(to right, rgba(4,47,55,0.58), rgba(4,47,55,0.72))`,
-                  position: `absolute`,
-                  display: `block`,
-                  top: 0,
-                  right: 0,
-                  bottom: 0,
-                  left: 0,
-                },
               }}
             >
               <Img
                 resolutions={x.img.image.resolutions}
                 css={{
-                  width: `202px !important`,
-                  height: `202px !important`,
-                  verticalAlign: `bottom`,
+                  maxWidth: `100%`,
+                  '&:after': {
+                    content: `""`,
+                    background: `linear-gradient(to right, rgba(4,47,55,0.58), rgba(4,47,55,0.72))`,
+                    position: `absolute`,
+                    display: `block`,
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                  },
                 }}
               />
             </div>
@@ -255,24 +305,18 @@ const SupportPage = props => {
       <div css={{
         background: colors.lightBlue,
         position: `relative`,
+        padding: `2rem 1rem`,
         ...fullPageWidth,
       }}>
         <div css={{
-          [breakPoints.minLg]: {
+          [media.greaterThan(`small`)]: {
             display: `flex`,
             justifyContent: `center`,
           },
           '& > div': {
-            margin: `3rem 0`,
-            [breakPoints.minLg]: {
+            [media.greaterThan(`small`)]: {
               width: `47%`,
               '&:first-child': {
-                // borderWidth: `1px`,
-                // borderStyle: `solid`,
-                // borderImage: `linear-gradient(to bottom, #cccccc21, #ccc, #cccccc21) 1 100%`,
-                // borderTop: `0`,
-                // borderBottom: `0`,
-                // borderLeft: `0`,
                 paddingRight: `3rem`,
                 position: `relative`,
                 '&:after': {
@@ -434,7 +478,7 @@ export const query = graphql`
             descr
             img {
               image: childImageSharp {
-                resolutions(width: 300, height: 300, quality: 75) {
+                resolutions(width: 202, height: 202, quality: 75) {
                   ...GatsbyImageSharpResolutions
                 }
               }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import map from 'ramda/src/map'
-import { colors } from '@/theme'
+import { colors, media } from '@/theme'
 
 const Paginator = ({
   pagination,
@@ -42,12 +42,16 @@ const Paginator = ({
         aria-label={paginationNavAriaLabel}
         css={{
           display: `flex`,
+          flexWrap: `wrap`,
           justifyContent: `space-between`,
           position: `relative`,
           background: `#fff`,
           '& > *': {
             padding: `.5rem`,
-            margin: `0 1rem`,
+            margin: `0 0.4rem`,
+            [media.greaterThan(`medium`)]: {
+              margin: `0 1rem`,
+            },
           },
         }}
       >

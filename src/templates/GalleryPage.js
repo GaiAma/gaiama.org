@@ -9,8 +9,9 @@ import map from 'ramda/src/map'
 import prop from 'ramda/src/prop'
 import merge from 'ramda/src/merge'
 import MainLayout from '@/components/MainLayout'
+import { ReactMedia } from '@/components/MediaQuery'
 import { Pager, Paginator } from '@/components/Paginator'
-import { colors, gradients } from '@/theme'
+import { colors, gradients, media } from '@/theme'
 
 const Image = ({
   key,
@@ -23,10 +24,13 @@ const Image = ({
   <div key={key} css={{ flex: aspect_ratio }}>
     <figure
       css={{
-        position: `relative`,
         margin: 0,
-        '& > figcaption': {
-          display: `flex`,
+        '& a': {
+          display: `block`,
+          position: `relative`,
+        },
+        '& figcaption': {
+          display: `none`,
           background: gradients.primary,
           position: `absolute`,
           top: 0,
@@ -41,40 +45,43 @@ const Image = ({
           overflow: `hidden`,
           transition: `all .35s`,
           opacity: 0,
+          [media.greaterThan(`medium`)]: {
+            display: `flex`,
+          },
         },
-        '&:hover > figcaption': {
+        '&:hover figcaption': {
           opacity: 1,
         },
       }}
     >
-      <Img sizes={filename.image.sizes} />
-      <figcaption>
-        <div>
-          <h2
-            css={{
-              letterSpacing: `.07rem`,
-            }}
-          >
-            {description}
-          </h2>
-
-          <Link
-            role="link"
-            to={article.slug}
-            css={{
-              color: colors.darkWhite,
-              display: `block`,
-              '&:hover': {
-                color: colors.darkWhite,
-                transform: `scale(1.03)`,
-              },
-            }}
-          >
+      <Link
+        role="link"
+        to={article.slug}
+        css={{
+          color: colors.darkWhite,
+          display: `block`,
+          '&:hover': {
+            color: colors.darkWhite,
+            transform: `scale(1.03)`,
+          },
+        }}
+      >
+        <Img sizes={filename.image.sizes} />
+        <figcaption>
+          <div>
+            <h2
+              css={{
+                letterSpacing: `.07rem`,
+              }}
+            >
+              {description}
+            </h2>
+            
             {linkLabel}<br/>
             {article.title}
-          </Link>
-        </div>
-      </figcaption>
+          </div>
+        </figcaption>
+      </Link>
     </figure>
   </div>
 )
@@ -139,8 +146,12 @@ const GalleryPage = props => {
       {...props}
       wrapperStyles={{
         width: [`100%`, `100vw`],
-        paddingLeft: `2rem`,
-        paddingRight: `2rem`,
+        paddingLeft: `0`,
+        paddingRight: `0`,
+        [media.greaterThan(`medium`)]: {
+          paddingLeft: `2rem`,
+          paddingRight: `2rem`,
+        },
       }}
     >
       <Helmet>
@@ -149,6 +160,19 @@ const GalleryPage = props => {
         )}
         {next > 0 && <link rel="next" href={`${slug}/${next}`} />}
       </Helmet>
+
+      <ReactMedia
+        mq="(max-width: 1024px)"
+        onMatch={() => (
+          <p
+            css={{
+              textAlign: `center`,
+            }}
+          >
+            {props.data.page.frontmatter.touchInfo}
+          </p>
+        )}
+      />
 
       <Images
         images={props.data.images.edges}
@@ -211,6 +235,7 @@ export const query = graphql`
         title
         lang
         slug
+        touchInfo
         imageLinkLabel
       }
     }

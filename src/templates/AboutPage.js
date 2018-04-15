@@ -5,21 +5,58 @@ import slugify from 'slugify'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
 import Newsticker from '@/components/Newsticker'
-import { breakPoints } from '@/theme'
+import { mediaQuery, ReactMedia } from '@/components/MediaQuery'
+import { colors, media } from '@/theme'
 
 const AboutPage = props => {
   const { page, NewsTicker } = props.data
+
+  const PeopleGallery = () => (
+    <div
+      css={{
+        width: `23%`,
+        margin: `2rem 0`,
+        '& .gatsby-image-outer-wrapper': {
+          display: `flex`,
+        },
+        [media.lessThan(`medium`)]: {
+          display: `none`,
+        },
+      }}
+    >
+      {page.frontmatter.peopleGallery.map((x, i) => (
+        <Img
+          key={i}
+          resolutions={x.image.resolutions}
+          css={{ maxWidth: `100%` }}
+        />
+      ))}
+    </div>
+  )
+
   return (
     <MainLayout {...props}>
       <TitledCopy
         centered
         title={page.frontmatter.intro.title}
         paragraphs={page.frontmatter.intro.text}
-        css={{ marginBottom: `6rem` }}
+        spoiler={mediaQuery(`(max-width: 779px)`)}
+        css={{
+          marginBottom: `6rem`,
+          '& > button': {
+            background: `none`,
+            border: `none`,
+            color: colors.link,
+          },
+          [media.lessThan(`medium`)]: {
+            '& > h2': { fontSize: `2rem` },
+            '& > div, & > button': { fontSize: `.85rem` },
+          },
+        }}
       />
 
       <div css={{ display: `flex`, justifyContent: `space-between`, marginBottom: `3rem` }}>
-        <div css={{ [breakPoints.minMd]: { width: `70%` } }}>
+        <div css={{ [media.greaterThan(`medium`)]: { width: `70%` } }}>
           <div css={{ '& > div': { marginBottom: `4rem` } }}>
             {page.frontmatter.bios.map(bio => (
               <div
@@ -27,18 +64,36 @@ const AboutPage = props => {
                 id={slugify(bio.name)}
                 css={{
                   display: `flex`,
-                  justifyContent: `space-between`,
+                  [media.lessThan(`medium`)]: {
+                    flexDirection: `column`,
+                    alignItems: `center`,
+                    textAlign: `center`,
+                  },
+                  [media.greaterThan(`medium`)]: {
+                    justifyContent: `space-between`,
+                  },
                 }}
               >
                 <Img
                   resolutions={bio.img.image.resolutions}
                   css={{
                     borderRadius: `50%`,
-                    marginRight: `2rem`,
+                    [media.lessThan(`medium`)]: {
+                      width: `100px !important`,
+                      height: `100px !important`,
+                    },
+                    [media.greaterThan(`medium`)]: {
+                      marginRight: `2rem`,
+                    },
                   }}
                 />
                 <div>
-                  <h4 id={slugify(bio.name)} css={{ fontSize: `2rem` }}>
+                  <h4 id={slugify(bio.name)} css={{
+                    fontSize: `1.7rem`,
+                    [media.greaterThan(`medium`)]: {
+                      fontSize: `2rem`,
+                    },
+                  }}>
                     {bio.name}
                   </h4>
                   <div css={{ marginBottom: `.5rem` }}>
@@ -46,9 +101,16 @@ const AboutPage = props => {
                     <br/>
                     {bio.field}
                   </div>
-                  {console.log(bio)}
                   <p
-                    css={{ textAlign: `justify` }}
+                    css={{
+                      textAlign: `center`,
+                      [media.lessThan(`medium`)]: {
+                        fontSize: `.85rem`,
+                      },
+                      [media.greaterThan(`medium`)]: {
+                        textAlign: `justify`,
+                      },
+                    }}
                     dangerouslySetInnerHTML={{ __html: bio.bio }}
                   />
                 </div>
@@ -102,23 +164,10 @@ const AboutPage = props => {
           </div>
         </div>
 
-        <div
-          css={{
-            width: `23%`,
-            margin: `2rem 0`,
-            '& .gatsby-image-outer-wrapper': {
-              display: `flex`,
-            },
-          }}
-        >
-          {page.frontmatter.peopleGallery.map((x, i) => (
-            <Img
-              key={i}
-              resolutions={x.image.resolutions}
-              css={{ maxWidth: `100%` }}
-            />
-          ))}
-        </div>
+        <ReactMedia
+          mq="(min-width: 779px)"
+          onMatch={PeopleGallery}
+        />
       </div>
 
       <Newsticker

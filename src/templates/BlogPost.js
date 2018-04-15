@@ -11,14 +11,16 @@ import { SupportWidget } from '@/components/Shared'
 import Newsticker from '@/components/Newsticker'
 import summarize from '@/utils/summarize'
 import {
-  // breakPoints,
   colors,
   fontFamilies,
   gradients,
+  media,
 } from '@/theme'
 
 const BlogPost = props => {
   const { page: post, BlogPost, NewsTicker } = props.data
+  const theMoment = moment(parseInt(post.frontmatter.date))
+
   return (
     <MainLayout {...props}>
       <Head
@@ -33,7 +35,7 @@ const BlogPost = props => {
 
       <PostHeader
         title={post.frontmatter.title}
-        date={post.frontmatter.date}
+        dateTime={theMoment.format()}
         dateStr={post.frontmatter.dateStr}
       />
 
@@ -41,20 +43,21 @@ const BlogPost = props => {
 
       <ShareWidget
         label={BlogPost.frontmatter.shareLabel}
+        css={{ marginBottom: `4rem` }}
       />
 
       <TitledCopy
         centered
         title={BlogPost.frontmatter.SupportWidget.title}
         paragraphs={BlogPost.frontmatter.SupportWidget.description}
-        css={{ margin: `4rem auto 0` }}
+        css={{ margin: `0 auto 3rem` }}
       />
 
       <SupportWidget
         readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
         readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
         lang={props.pathContext.lang}
-        css={{ margin: `3rem 0` }}
+        css={{ margin: `0 0 3rem` }}
       />
 
       {post.fields.suggested &&
@@ -134,103 +137,94 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const query = graphql`
-  query BlogPostQuery(
-    $lang: String!
-    $slug: String!
-  ) {
-    ...siteData
-    ...SiteMeta
-    ...languages
-    ...homepage
-    ...menu
-    ...SupportWidget
-    ...NewsTicker
+         query BlogPostQuery($lang: String!, $slug: String!) {
+           ...siteData
+           ...SiteMeta
+           ...languages
+           ...homepage
+           ...menu
+           ...SupportWidget
+           ...NewsTicker
 
-    BlogPost: blogPostAml (
-      frontmatter: { lang: { eq: $lang } }
-    ) {
-      frontmatter {
-        shareLabel
-        relatedArticlesLabel
-        SupportWidget{
-          title
-          description
-        }
-        pager {
-          older
-          newer
-          all
-        }
-      }
-    }
-    
-    page: markdownRemark (
-      frontmatter: {
-        slug: { eq: $slug }
-      }
-    ) {
-      fields {
-        translations {
-          frontmatter {
-            title
-            lang
-            slug
-          }
-        }
-        newer {
-          frontmatter {
-            title
-            slug
-          }
-        }
-        all {
-          frontmatter {
-            title
-            slug
-          }
-        }
-        older {
-          frontmatter {
-            title
-            slug
-          }
-        }
-        suggested {
-          html
-          frontmatter {
-            id
-            title
-            lang
-            slug
-            summary
-            cover {
-              image: childImageSharp {
-                resolutions (width: 327, height: 192, quality: 75) {
-                  ...GatsbyImageSharpResolutions
-                }
-              }
-            }
-          }
-        }
-      }
-      htmlAst
-      html
-      frontmatter {
-        title
-        id
-        oldId
-        slug
-        lang
-        status
-        created
-        published
-        dateStr
-        date
-        summary
-      }
-    }
-  }
-`
+           BlogPost: blogPostAml(frontmatter: { lang: { eq: $lang } }) {
+             frontmatter {
+               shareLabel
+               relatedArticlesLabel
+               SupportWidget {
+                 title
+                 description
+               }
+               pager {
+                 older
+                 newer
+                 all
+               }
+             }
+           }
+
+           page: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+             fields {
+               translations {
+                 frontmatter {
+                   title
+                   lang
+                   slug
+                 }
+               }
+               newer {
+                 frontmatter {
+                   title
+                   slug
+                 }
+               }
+               all {
+                 frontmatter {
+                   title
+                   slug
+                 }
+               }
+               older {
+                 frontmatter {
+                   title
+                   slug
+                 }
+               }
+               suggested {
+                 html
+                 frontmatter {
+                   id
+                   title
+                   lang
+                   slug
+                   summary
+                   cover {
+                     image: childImageSharp {
+                       resolutions(width: 370, height: 150, cropFocus: ENTROPY, quality: 75) {
+                         ...GatsbyImageSharpResolutions_withWebp
+                       }
+                     }
+                   }
+                 }
+               }
+             }
+             htmlAst
+             html
+             frontmatter {
+               title
+               id
+               oldId
+               slug
+               lang
+               status
+               created
+               published
+               dateStr
+               date
+               summary
+             }
+           }
+         }
+       `
 
 const GaimaImage = ({ aspectRatio, children }) => (
   <div css={{ flex: aspectRatio }}>{children}</div>
@@ -247,7 +241,7 @@ const renderAst = new rehypeReact({
   },
 }).Compiler
 
-const PostHeader = ({ title, date, dateStr }) => (
+const PostHeader = ({ title, dateTime, dateStr }) => (
   <div
     css={{
       textAlign: `center`,
@@ -281,7 +275,7 @@ const PostHeader = ({ title, date, dateStr }) => (
       }}
     >
       <time
-        dateTime={moment(parseInt(date)).format()}
+        dateTime={dateTime}
         css={{
           position: `relative`,
           // transform: `translateY(.55rem)`,
@@ -298,7 +292,7 @@ const PostHeader = ({ title, date, dateStr }) => (
 )
 PostHeader.propTypes = {
   title: PropTypes.string.isRequired,
-  date: PropTypes.string,
+  dateTime: PropTypes.string,
   dateStr: PropTypes.string,
 }
 
@@ -314,7 +308,7 @@ const PostBody = ({ children }) => (
       },
       '& ul, & ol': {
         listStylePosition: `inside`,
-        margin: `4rem 0`,
+        marginBottom: `4rem`,
       },
       // '& .text-centered': {
       //   textAlign: `center`,
@@ -325,13 +319,22 @@ const PostBody = ({ children }) => (
       '& .inline-gallery': {
         display: `flex`,
         justifyContent: `center`,
-        margin: `4rem 0`,
+        marginBottom: `4rem`,
+        [media.lessThan(`small`)]: {
+          flexDirection: `column`,
+          alignItems: `center`,
+          '& > *:not(:last-child)': {
+            marginBottom: `1rem`,
+          },
+        },
         '& > *': {
           width: 600,
-          margin: `0 .5rem !important`,
+          maxWidth: `80%`,
+          margin: `0 .5rem`,
         },
         '& > *:first-child, & > *:last-child': {
-          margin: `auto`,
+          marginRight: `auto`,
+          marginLeft: `auto`,
         },
       },
       '& figure': {
@@ -367,7 +370,7 @@ const PostBody = ({ children }) => (
         paddingTop: `29.25%`,
         width: `98%`,
         maxWidth: `700px`,
-        margin: `3rem auto`,
+        margin: `0 auto 3rem`,
         '& > iframe': {
           position: `absolute`,
           top: `0`,

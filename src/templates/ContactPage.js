@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import MainLayout from '@/components/MainLayout'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 // import { isEmail } from 'validator'
-import { breakPoints, colors } from '@/theme'
+import { breakPoints, colors, fontFamilies, media } from '@/theme'
 import TitledCopy from '@/components/TitledCopy'
-import { Button, Email, Textarea } from '@/components/Form'
+import { Email, Textarea } from '@/components/Form'
+import { Button } from '@/components/layout/Button'
 
 class ContactPage extends Component {
   static propTypes = {
@@ -40,13 +41,16 @@ class ContactPage extends Component {
   }
 
   render() {
+    const { page } = this.props.data
     return (
       <MainLayout
         {...this.props}
         wrapperStyles={{
-          background: `url(${
-            this.props.data.page.frontmatter.assets.bg.image.sizes.src
-          }) no-repeat right 1rem`,
+          [media.greaterThan(`large`)]: {
+            background: `url(${
+              page.frontmatter.assets.bg.image.sizes.src
+            }) no-repeat right 1rem`,
+          },
           maxWidth: `initial`,
           minHeight: `680px`,
           paddingTop: `2rem`,
@@ -62,18 +66,25 @@ class ContactPage extends Component {
             overflow: `hidden`,
             display: `flex`,
             justifyContent: `space-between`,
-            width: `57%`,
-            margin: `3rem 2rem 0 6rem`,
-            '& > div': {
-              width: `40%`,
+            [media.lessThan(`small`)]: {
+              flexDirection: `column`,
+            },
+            [media.greaterThan(`small`)]: {
+              '& > div': {
+                width: `40%`,
+              },
+            },
+            [media.greaterThan(`large`)]: {
+              width: `57%`,
+              margin: `3rem 2rem 0 6rem`,
             },
           }}
         >
           <div>
             <TitledCopy
               full
-              title={this.props.data.page.frontmatter.title}
-              paragraphs={this.props.data.page.frontmatter.form.descr}
+              title={page.frontmatter.title}
+              paragraphs={page.frontmatter.form.descr}
               css={{
                 marginBottom: `1.5rem`,
                 '& h2': {
@@ -82,42 +93,49 @@ class ContactPage extends Component {
                 '& div': {
                   fontSize: `.9rem`,
                 },
+                [media.lessThan(`small`)]: {
+                  textAlign: `center`,
+                },
               }}
             />
 
             <form
-              action=""
+              action={process.env.GAIAMA_ENDPOINT_CONTACT}
               method="post"
-              onSubmit={this.handleSubmit}
+              // onSubmit={this.handleSubmit}
               css={{
-                width: `300px`,
                 maxWidth: `99%`,
+                [media.lessThan(`small`)]: {
+                  marginBottom: `3rem`,
+                },
+                [media.greaterThan(`medium`)]: {
+                  width: `300px`,
+                },
               }}
             >
               <Email
                 name="email"
-                label={this.props.data.page.frontmatter.form.emailLabel}
+                label={page.frontmatter.form.emailLabel}
                 value={this.state.email}
                 onInput={this.handleChange}
               />
               {this.state.emailError && <span>Wrong email!</span>}
               <Textarea
                 name="message"
-                label={this.props.data.page.frontmatter.form.messageLabel}
-                // placeholder={this.props.data.page.frontmatter.cookieNote}
+                label={page.frontmatter.form.messageLabel}
+                // placeholder={page.frontmatter.cookieNote}
                 value={this.state.message}
                 onInput={this.handleChange}
               />
               <Button
                 onClick={e => console.log(`submit`)}
                 css={{
-                  '& > button': {
-                    background: `#2d2a34`,
-                    color: colors.darkWhite,
-                  },
+                  ...styles.button,
+                  background: `#2d2a34`,
+                  color: colors.darkWhite,
                 }}
               >
-                {this.props.data.page.frontmatter.form.submitLabel}
+                {page.frontmatter.form.submitLabel}
               </Button>
             </form>
           </div>
@@ -125,31 +143,36 @@ class ContactPage extends Component {
           <div>
             <TitledCopy
               full
-              title={this.props.data.page.frontmatter.newsletter.title}
-              paragraphs={this.props.data.page.frontmatter.newsletter.descr}
+              title={page.frontmatter.newsletter.title}
+              paragraphs={page.frontmatter.newsletter.descr}
               css={{
-                marginBottom: `1.5rem`,
+                marginBottom: `2.7rem`,
                 '& h2': {
                   marginBottom: `1rem`,
                 },
                 '& div': {
                   fontSize: `.9rem`,
                 },
+                [media.lessThan(`small`)]: {
+                  textAlign: `center`,
+                },
               }}
             />
             <form
-              action=""
+              action={process.env.GAIAMA_ENDPOINT_NEWSLETTER}
               method="post"
               onSubmit={this.handleSubmit}
               css={{
-                marginTop: `2.8rem`,
-                width: `300px`,
+                // marginTop: `2.8rem`,
                 maxWidth: `99%`,
+                [media.greaterThan(`medium`)]: {
+                  width: `300px`,
+                },
               }}
             >
               <Email
                 name="email"
-                label={this.props.data.page.frontmatter.form.emailLabel}
+                label={page.frontmatter.form.emailLabel}
                 value={this.state.email}
                 onInput={this.handleChange}
               />
@@ -158,13 +181,12 @@ class ContactPage extends Component {
                 label="Submit"
                 onClick={e => console.log(`submit`)}
                 css={{
-                  '& > button': {
-                    background: `#2d2a34`,
-                    color: colors.darkWhite,
-                  },
+                  ...styles.button,
+                  background: `#2d2a34`,
+                  color: colors.darkWhite,
                 }}
               >
-                {this.props.data.page.frontmatter.form.submitLabel}
+                {page.frontmatter.form.submitLabel}
               </Button>
             </form>
 
@@ -247,7 +269,23 @@ class ContactPage extends Component {
     )
   }
 }
+
 export default ContactPage
+
+const styles = {
+  button: {
+    fontFamily: fontFamilies.accent,
+    fontSize: `1.5rem`,
+    width: `100%`,
+    border: `1px solid #ccc`,
+    background: `#fff`,
+    transition: `background-color .2s linear`,
+    '&:hover': {
+      background: colors.primaryLite,
+      color: colors.darkWhite,
+    },
+  },
+}
 
 export const query = graphql`
   query ContactPageQuery($lang: String!, $slug: String!) {
@@ -257,9 +295,7 @@ export const query = graphql`
     ...homepage
     ...menu
 
-    page: javascriptFrontmatter(
-      frontmatter: { slug: { eq: $slug } }
-    ) {
+    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
         translations {
           frontmatter {
@@ -288,7 +324,7 @@ export const query = graphql`
           bg {
             image: childImageSharp {
               sizes(maxWidth: 800, quality: 75) {
-                ...GatsbyImageSharpSizes
+                ...GatsbyImageSharpSizes_noBase64
               }
             }
           }

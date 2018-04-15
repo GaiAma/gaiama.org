@@ -47,7 +47,9 @@ const NewsTicker = ({
       <div css={{
         display: layout === `row` && `flex`,
         flexDirection: `column`,
-        alignItems: `center`,
+        [media.lessThan(`medium`)]: {
+          alignItems: `center`,
+        },
         [media.greaterThan(`medium`)]: {
           flexDirection: `row`,
           justifyContent: `space-between`,

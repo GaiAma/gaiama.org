@@ -6,15 +6,15 @@ export default class Lazy extends Component {
   static propTypes = {
     image: PropTypes.string.isRequired,
   }
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.el = null
   }
-  componentDidMount () {
+  componentDidMount() {
     this.lozad = require(`lozad`)(this.el)
     this.lozad.observe()
   }
-  render () {
+  render() {
     const { image, ...props } = this.props
 
     return (
