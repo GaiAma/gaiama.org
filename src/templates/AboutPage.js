@@ -9,7 +9,7 @@ import { mediaQuery, ReactMedia } from '@/components/MediaQuery'
 import { colors, media } from '@/theme'
 
 const AboutPage = props => {
-  const { page, NewsTicker } = props.data
+  const { page, NewsTicker, Labels } = props.data
 
   const PeopleGallery = () => (
     <div
@@ -41,8 +41,12 @@ const AboutPage = props => {
         title={page.frontmatter.intro.title}
         paragraphs={page.frontmatter.intro.text}
         spoiler={mediaQuery(`(max-width: 779px)`)}
+        spoilerLabel={Labels.frontmatter.readMore}
         css={{
-          marginBottom: `6rem`,
+          marginBottom: `3rem`,
+          [media.greaterThan(`small`)]: {
+            marginBottom: `6rem`,
+          },
           '& > button': {
             background: `none`,
             border: `none`,
@@ -103,7 +107,7 @@ const AboutPage = props => {
                   </div>
                   <p
                     css={{
-                      textAlign: `center`,
+                      textAlign: `left`,
                       [media.lessThan(`medium`)]: {
                         fontSize: `.85rem`,
                       },
@@ -265,6 +269,14 @@ export const query = graphql`
             }
           }
         }
+      }
+    }
+
+    Labels: siteMetaAml (
+      frontmatter: { lang: { eq: $lang } }
+    ) {
+      frontmatter {
+        readMore
       }
     }
   }
