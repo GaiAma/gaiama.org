@@ -9,6 +9,5 @@ exports.modifyWebpackConfig = ({ config, stage }, { aliases }) => {
         },
       },
     })
-    // config._config.resolve.alias[key] = path.resolve(aliases[key])
   })
 }
