@@ -9,7 +9,7 @@ import map from 'ramda/src/map'
 import prop from 'ramda/src/prop'
 import merge from 'ramda/src/merge'
 import MainLayout from '@/components/MainLayout'
-import { ReactMedia } from '@/components/MediaQuery'
+import { ReactMedia, mediaQuery } from '@/components/MediaQuery'
 import { Pager, Paginator } from '@/components/Paginator'
 import { colors, gradients, media } from '@/theme'
 
@@ -111,9 +111,9 @@ const RenderRow = images => (
   </div>
 )
 
-const getImageRows = linkLabel => compose(
+const getImageRows = ({ linkLabel, imagesPerRow }) => compose(
   map(RenderRow),
-  chunk(3),
+  chunk(imagesPerRow),
   map(
     compose(
       merge({ linkLabel }),
@@ -122,10 +122,12 @@ const getImageRows = linkLabel => compose(
   )
 )
 
-const Images = ({ images, linkLabel }) => <div>{getImageRows(linkLabel)(images)}</div>
+const Images = ({ images, linkLabel, imagesPerRow }) =>
+  <div>{getImageRows({ linkLabel, imagesPerRow })(images)}</div>
 Images.propTypes = {
   images: PropTypes.array,
   linkLabel: PropTypes.string,
+  imagesPerRow: PropTypes.number,
 }
 
 const GalleryPage = props => {
@@ -140,6 +142,10 @@ const GalleryPage = props => {
     slug,
     // total,
   } = props.pathContext
+
+  const imagesPerRow = mediaQuery(`(min-width: 425px)`)
+    ? 3
+    : 2
 
   return (
     <MainLayout
@@ -167,6 +173,7 @@ const GalleryPage = props => {
           <p
             css={{
               textAlign: `center`,
+              marginTop: `-1rem`,
             }}
           >
             {props.data.page.frontmatter.touchInfo}
@@ -177,6 +184,7 @@ const GalleryPage = props => {
       <Images
         images={props.data.images.edges}
         linkLabel={props.data.page.frontmatter.imageLinkLabel}
+        imagesPerRow={imagesPerRow}
       />
 
       <Pager
@@ -260,8 +268,8 @@ export const query = graphql`
           filename {
             base
             image: childImageSharp {
-              sizes {
-                ...GatsbyImageSharpSizes
+              sizes(maxWidth: 600, quality: 75) {
+                ...GatsbyImageSharpSizes_withWebp
               }
             }
           }
