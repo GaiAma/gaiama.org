@@ -246,7 +246,7 @@ export const query = graphql`
         sidebar {
           artwork {
             image: childImageSharp {
-              resolutions {
+              resolutions(quality: 75) {
                 ...GatsbyImageSharpResolutions
               }
             }
@@ -288,8 +288,8 @@ export const query = graphql`
             tags
             cover {
               childImageSharp {
-                resolutions(width: 327, height: 192, quality: 75) {
-                  ...GatsbyImageSharpResolutions
+                sizes(maxWidth: 400, maxHeight: 230, quality: 75, cropFocus: ENTROPY) {
+                  ...GatsbyImageSharpSizes
                 }
               }
             }
