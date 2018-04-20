@@ -1,6 +1,5 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import moment from 'moment'
 import QS from '@/utils/query-string'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
@@ -23,24 +22,12 @@ const BlogPage = props => {
           a.node.frontmatter.tags.some(t => tags.includes(t))
         : true
     )
-    .sort((_a, _b) => {
-      const a = moment(parseInt(_a.node.frontmatter.date))
-      const b = moment(parseInt(_b.node.frontmatter.date))
-      const isBefore = a.isBefore(b)
-      const isAfter = a.isAfter(b)
-      const sortAsc = isBefore
-        ? -1
-        : isAfter
-          ? 1
-          : 0
-      const sortDesc = isBefore
-        ? 1
-        : isAfter
-          ? -1
-          : 0
-      return isSortAsc
-        ? sortAsc
-        : sortDesc
+    .sort(({ node: a }, { node: b }) => {
+      const isBefore = parseInt(a.frontmatter.date) < parseInt(b.frontmatter.date)
+      const isAfter = parseInt(a.frontmatter.date) > parseInt(b.frontmatter.date)
+      const sortAsc = isBefore ? -1 : isAfter ? 1 : 0
+      const sortDesc = isBefore ? 1 : isAfter ? -1 : 0
+      return isSortAsc ? sortAsc : sortDesc
     })
 
   return (

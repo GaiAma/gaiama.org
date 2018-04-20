@@ -1,7 +1,6 @@
 import React, { createElement } from 'react'
 import PropTypes from 'prop-types'
 import Head from 'react-helmet'
-import moment from 'moment'
 import rehypeReact from 'rehype-react'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
@@ -19,7 +18,6 @@ import {
 
 const BlogPost = props => {
   const { page: post, BlogPost, NewsTicker } = props.data
-  const theMoment = moment(parseInt(post.frontmatter.date))
 
   return (
     <MainLayout {...props}>
@@ -33,13 +31,15 @@ const BlogPost = props => {
         ]}
       />
 
-      <PostHeader
-        title={post.frontmatter.title}
-        dateTime={theMoment.format()}
-        dateStr={post.frontmatter.dateStr}
-      />
+      <article>
+        <PostHeader
+          title={post.frontmatter.title}
+          dateTime={post.fields.dateTime}
+          dateStr={post.frontmatter.dateStr}
+        />
 
-      <PostBody>{renderAst(post.htmlAst)}</PostBody>
+        <PostBody>{renderAst(post.htmlAst)}</PostBody>
+      </article>
 
       <ShareWidget
         label={BlogPost.frontmatter.shareLabel}
@@ -75,9 +75,6 @@ const BlogPost = props => {
         css={{
           display: `flex`,
           justifyContent: `center`,
-          // borderBottom: `1px solid #ccc`,
-          // borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
-          // borderImageSlice: `1`,
           textAlign: `center`,
           margin: `2rem auto 3rem`,
           width: `80%`,
@@ -101,7 +98,6 @@ const BlogPost = props => {
             display: `flex`,
             justifyContent: `space-between`,
             background: `#fff`,
-            // transform: `translateY(1.05rem)`,
           }}
         >
           {[`newer`, `all`, `older`].map(x => (
@@ -164,6 +160,7 @@ export const query = graphql`
 
            page: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
              fields {
+               dateTime
                translations {
                  frontmatter {
                    title
@@ -233,11 +230,16 @@ GaimaImage.propTypes = {
   aspectRatio: PropTypes.string,
 }
 
+// const GaimaVideo = ({ children }) => (
+//   <iframe src={children} title={children}></iframe>
+// )
+
 const renderAst = new rehypeReact({
   createElement,
   components: {
     'gaiama-image': GaimaImage,
     'gaiama-link': Link,
+    // 'embed-video': GaimaVideo,
   },
 }).Compiler
 
@@ -253,9 +255,6 @@ const PostHeader = ({ title, dateTime, dateStr }) => (
     <div
       css={{
         display: `block`,
-        // borderBottom: `1px solid #ccc`,
-        // borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
-        // borderImageSlice: `1`,
         textAlign: `center`,
         fontSize: `.8rem`,
         margin: `-.5rem auto 0`,
@@ -278,7 +277,6 @@ const PostHeader = ({ title, dateTime, dateStr }) => (
         dateTime={dateTime}
         css={{
           position: `relative`,
-          // transform: `translateY(.55rem)`,
           display: `inline-block`,
           background: `#fff`,
           color: `#c3c3c3`,
@@ -299,10 +297,14 @@ PostHeader.propTypes = {
 const PostBody = ({ children }) => (
   <div
     css={{
-      textAlign: `center`,
+      wordBreak: `break-word`,
+      wordWrap: `break-word`,
+      '& h2, & h3, & h4, & h5, & h6': {
+        textAlign: `center`,
+      },
       '& h3': { fontSize: `1.7rem` },
-      '& p': {
-        maxWidth: [`753px`, `80ch`],
+      '& div > *:not(.inline-gallery)': {
+        maxWidth: [`760px`, `80ch`],
         marginRight: `auto`,
         marginLeft: `auto`,
       },
@@ -364,22 +366,23 @@ const PostBody = ({ children }) => (
           opacity: 1,
         },
       },
-      '& .video-wrapper': {
-        position: `relative`,
-        overflow: `hidden`,
-        paddingTop: `29.25%`,
-        width: `98%`,
-        maxWidth: `700px`,
-        margin: `0 auto 3rem`,
-        '& > iframe': {
-          position: `absolute`,
-          top: `0`,
-          left: `0`,
-          width: `100%`,
-          height: `100%`,
-          border: `0`,
-        },
-      },
+      // '& .video-wrapper': {
+      //   position: `relative`,
+      //   overflow: `hidden`,
+      //   paddingTop: `29.25%`,
+      //   width: `98%`,
+      //   maxWidth: `700px`,
+      //   margin: `0 auto 3rem`,
+      //   '& > iframe': {
+      //     position: `absolute`,
+      //     top: `0`,
+      //     left: `0`,
+      //     width: `100%`,
+      //     height: `100%`,
+      //     border: `0`,
+      //   },
+      // },
+      '& iframe': { border: 0 },
     }}
   >
     {children}
