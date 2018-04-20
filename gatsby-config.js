@@ -77,13 +77,16 @@ module.exports = {
           },
           `gatsby-remark-external-links`,
           {
-            resolve: `gatsby-remark-images`,
+            resolve: `gatsby-remark-images-with-ratio`,
             options: {
-              maxWidth: 1130,
+              maxWidth: 800,
+              backgroundColor: `#fff`,
               linkImagesToOriginal: false,
               showCaptions: true,
+              addAspectRatio: true,
             },
           },
+          `gatsby-remark-wrap-images`,
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
@@ -124,7 +127,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-lodash`,
-    `gatsby-plugin-feed`,
     `gatsby-plugin-offline`,
     // `gatsby-plugin-fastclick`,
     `gatsby-plugin-catch-links`,
@@ -155,8 +157,8 @@ module.exports = {
       resolve: `gatsby-plugin-webpack-bundle-analyzer`,
       options: {
         // analyzerPort: 3000,
-        // production: true,
-        // disable: false,
+        production: true,
+        disable: process.env.NODE_ENV === `development`,
       },
     },
     `gatsby-plugin-glamor`,
