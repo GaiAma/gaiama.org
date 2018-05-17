@@ -17,10 +17,11 @@ export const colors = {
   primary: `#042f37`,
   primaryLite: `#287482`,
   darkWhite: `#e2e2e2`,
-  // lightBlue: `#f9fbfe`,
   lightBlue: `#f3f8fd`,
+  // lightBlue: `#f1f4f8`,
   link: `#0e91a0`,
-  linkHover: `#0fc1d6`,
+  // linkHover: `#0fc1d6`,
+  linkHover: `#0a474e`,
   // link: `#13abaa`,
   // linkHover: `#1ed6d5`,
   black: `#222`,
@@ -77,13 +78,13 @@ export const focusOutlineNone = {
 // hide svg definitions from https://stackoverflow.com/a/24820654/3484824
 export const InstagramGradient = props => (
   <div
-      css={{
-        height: `0`,
-        width: `0`,
-        position: `absolute`,
-        visibility: `hidden`,
-      }}
-    >
+    css={{
+      height: `0`,
+      width: `0`,
+      position: `absolute`,
+      visibility: `hidden`,
+    }}
+  >
     <svg width="0" height="0">
       <radialGradient id="InstagramGradient" r="150%" cx="30%" cy="107%">
         <stop stopColor="#fdf497" offset="0" />
@@ -128,14 +129,14 @@ export const media = {
     if (excludeLarge) {
       return `@media (min-width: ${
         SIZES[smallKey].min
-        }px) and (max-width: ${SIZES[largeKey].min - 1}px)`
+      }px) and (max-width: ${SIZES[largeKey].min - 1}px)`
     } else {
       if (SIZES[largeKey].max === Infinity) {
         return `@media (min-width: ${SIZES[smallKey].min}px)`
       } else {
         return `@media (min-width: ${SIZES[smallKey].min}px) and (max-width: ${
           SIZES[largeKey].max
-          }px)`
+        }px)`
       }
     }
   },
@@ -161,7 +162,19 @@ export const media = {
   },
 }
 
+export const maxWidthLayout = {
+  maxWidth: `1440px`,
+}
+
+export const maxWidthContent = {
+  width: `90%`,
+  maxWidth: `1280px`,
+  marginRight: `auto`,
+  marginLeft: `auto`,
+}
+
 export const fullPageWidth = {
+  position: `relative`,
   [media.lessThan(`xxxlarge`)]: {
     width: `100vw`,
     left: `50%`,
@@ -225,10 +238,40 @@ export const headlineVariations = propStyles({
   simple: () => ({ fontFamily: `initial` }),
 })
 
-export const H1 = glamorous.h1(headlineStyles, hugeFont, headlineVariations, fontSize, space, textAlign, width)
-export const H2 = glamorous.h2(headlineStyles, hugeFont, headlineVariations, fontSize, space, textAlign, width)
-export const H3 = glamorous.h3(headlineStyles, headlineVariations, fontSize, space, textAlign, width)
-export const H4 = glamorous.h4(headlineStyles, headlineVariations, fontSize, space, textAlign, width)
+export const H1 = glamorous.h1(
+  headlineStyles,
+  hugeFont,
+  headlineVariations,
+  fontSize,
+  space,
+  textAlign,
+  width
+)
+export const H2 = glamorous.h2(
+  headlineStyles,
+  hugeFont,
+  headlineVariations,
+  fontSize,
+  space,
+  textAlign,
+  width
+)
+export const H3 = glamorous.h3(
+  headlineStyles,
+  headlineVariations,
+  fontSize,
+  space,
+  textAlign,
+  width
+)
+export const H4 = glamorous.h4(
+  headlineStyles,
+  headlineVariations,
+  fontSize,
+  space,
+  textAlign,
+  width
+)
 
 export const Container = glamorous.div(
   propStyles({
@@ -252,7 +295,9 @@ export const Box = glamorous.div(
       // }
     }),
     spaceAround: () => ({ justifyContent: `space-around` }),
-    spaceBetween: () => ({ justifyContent: `space-between` }),
+    spaceBetween: () => ({
+      justifyContent: `space-between`,
+    }),
     center: () => ({ justifyContent: `center` }),
     aICenter: () => ({ alignItems: `center` }),
     wrap: () => ({ flexWrap: `wrap` }),
@@ -277,10 +322,7 @@ export const Box = glamorous.div(
 export const Button = glamorous.button(
   {
     border: `1px solid #b0b0b0`,
-    background: [
-      `#e3e3e3`,
-      `linear-gradient(to bottom, #e3e3e3, #f8f8fb)`,
-    ],
+    background: [`#e3e3e3`, `linear-gradient(to bottom, #e3e3e3, #f8f8fb)`],
   },
   space,
   width
@@ -302,7 +344,7 @@ export const Button = glamorous.button(
 /* visibility helper */
 export const visible = {
   maxSm: {
-    [breakPoints.minSm]:  {
+    [breakPoints.minSm]: {
       display: `none`,
     },
   },
@@ -312,15 +354,13 @@ export const visible = {
     },
   },
   minSm: {
-    display: `none`,
-    [breakPoints.minSm]: {
-      display: `initial`,
+    [media.lessThan(`small`)]: {
+      display: `none`,
     },
   },
   minMd: {
-    display: `none`,
-    [breakPoints.minMd]: {
-      display: `initial`,
+    [media.lessThan(`medium`)]: {
+      display: `none`,
     },
   },
 }
