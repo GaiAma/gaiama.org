@@ -1,3 +1,5 @@
+import 'babel-polyfill'
+
 /* eslint-disable */
 exports.onRouteUpdate = ({ action, location }) => {
   const scrollToMenu = () => {
