@@ -19,6 +19,7 @@ module.exports = {
   },
   plugins: [
     `gatsby-plugin-react-next`,
+    // `gatsby-plugin-fastclick`,
     {
       resolve: `gatsby-plugin-webpack-aliases`,
       options: {
@@ -90,7 +91,7 @@ module.exports = {
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {
-              wrapperStyle: `margin-bottom: 1.0725rem`,
+              wrapperStyle: `margin: 0 auto 1.0725rem; max-width: 80%;`,
             },
           },
           `gatsby-remark-copy-linked-files`,
@@ -128,7 +129,6 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-plugin-lodash`,
     `gatsby-plugin-offline`,
-    // `gatsby-plugin-fastclick`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
     {
