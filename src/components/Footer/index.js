@@ -3,10 +3,7 @@ import PropTypes from 'prop-types'
 import Link from '@/components/Link'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import hex2rgba from 'hex2rgba'
-import {
-  colors,
-  media,
-} from '@/theme'
+import { colors, media } from '@/theme'
 
 const Footer = ({
   menu,
@@ -15,16 +12,17 @@ const Footer = ({
   supportTitle,
   metaTitle,
   meta,
+  legal,
   bgImage,
 }) => (
   <footer
     css={{
       background: `linear-gradient(
-                  0deg,
-                  ${hex2rgba(colors.primary, 0.85)},
-                  ${hex2rgba(colors.primary, 0.85)}
-                ),
-                url(${bgImage.sizes.src}) no-repeat bottom`,
+          0deg,
+          ${hex2rgba(colors.primary, 0.85)},
+          ${hex2rgba(colors.primary, 0.85)}
+        ),
+        url(${bgImage.sizes.src}) no-repeat bottom`,
       backgroundSize: `cover`,
       display: `flex`,
       flexDirection: `column`,
@@ -36,6 +34,9 @@ const Footer = ({
         textAlign: `center`,
         alignItems: `center`,
         '& > *:not(:last-child)': { marginBottom: `3rem` },
+        '& > div': {
+          width: `100%`,
+        },
       },
       [media.greaterThan(`medium`)]: {
         flexDirection: `row`,
@@ -64,11 +65,7 @@ const Footer = ({
             },
           }}
         >
-          <Link
-            to={link.to}
-            activeClassName="disabled"
-            exact
-          >
+          <Link to={link.to} activeClassName="disabled" exact>
             {link.title}
           </Link>
         </div>
@@ -76,10 +73,14 @@ const Footer = ({
     </nav>
 
     <div>
-      <div css={{ marginBottom: `1rem` }}>
-        {socialTitle}
-      </div>
-      <ul className="fa-ul" css={{ marginLeft: `1.5rem` }}>
+      <div css={{ marginBottom: `1rem` }}>{socialTitle}</div>
+      <ul
+        className="fa-ul"
+        css={{
+          marginLeft: `0`,
+          '& svg': { marginRight: `.4rem` },
+        }}
+      >
         <li
           css={{
             '&:hover svg': {
@@ -87,10 +88,7 @@ const Footer = ({
             },
           }}
         >
-          <FontAwesomeIcon
-            icon={[`fab`, `facebook-square`]}
-            listItem
-          />Facebook
+          <FontAwesomeIcon icon={[`fab`, `facebook-square`]} />Facebook
         </li>
         <li
           css={{
@@ -99,10 +97,7 @@ const Footer = ({
             },
           }}
         >
-          <FontAwesomeIcon
-            icon={[`fab`, `instagram`]}
-            listItem
-          />Instagram
+          <FontAwesomeIcon icon={[`fab`, `instagram`]} />Instagram
         </li>
         <li
           css={{
@@ -111,10 +106,7 @@ const Footer = ({
             },
           }}
         >
-          <FontAwesomeIcon
-            icon={[`fab`, `youtube`]}
-            listItem
-          />Youmeo
+          <FontAwesomeIcon icon={[`fab`, `youtube`]} />Youmeo
         </li>
         <li
           css={{
@@ -123,10 +115,7 @@ const Footer = ({
             },
           }}
         >
-          <FontAwesomeIcon
-            icon={[`fab`, `patreon`]}
-            listItem
-          />Patreon
+          <FontAwesomeIcon icon={[`fab`, `patreon`]} />Patreon
         </li>
         {/* <li>Flattr</li> */}
       </ul>
@@ -151,11 +140,11 @@ const Footer = ({
         {metaTitle}
       </div>
       {meta.map((x, i) => (
-        <p
-          key={i}
-          dangerouslySetInnerHTML={{ __html: x }}
-        />
+        <p key={i} dangerouslySetInnerHTML={{ __html: x }} />
       ))}
+      <div>
+        <Link to={legal.frontmatter.slug}>{legal.frontmatter.title}</Link>
+      </div>
     </div>
   </footer>
 )
@@ -167,6 +156,7 @@ Footer.propTypes = {
   supportTitle: PropTypes.string,
   metaTitle: PropTypes.string,
   meta: PropTypes.array,
+  legal: PropTypes.object,
   bgImage: PropTypes.object,
 }
 
