@@ -2,35 +2,25 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
-import hex2rgba from 'hex2rgba'
 import { colors } from '@/theme'
-import summarize from '@/utils/summarize'
 
 const ArticlePreview = ({ article, isVisible, ...props }) => (
   <article css={articleStyles.article(isVisible)} {...props}>
     <Link to={article.fields.slug}>
-      {article.frontmatter.cover && <Img
-        resolutions={article.frontmatter.cover.childImageSharp.resolutions}
-      />}
-      <h2
-        css={articleStyles.title}
-      >
-        {article.frontmatter.title}
-      </h2>
+      {article.frontmatter.cover && (
+        <Img sizes={article.frontmatter.cover.childImageSharp.sizes} />
+      )}
+      <h2 css={articleStyles.title}>{article.frontmatter.title}</h2>
     </Link>
 
     <p css={articleStyles.body}>
-      {summarize(article.frontmatter.summary || article.html)}
+      {article.excerpt || article.frontmatter.summary}
     </p>
 
     <footer css={articleStyles.footer}>
       <div css={articleStyles.footerInner}>
-        <time css={articleStyles.time}>
-          {article.frontmatter.dateStr}
-        </time>
-        <Link to={article.fields.slug}>
-          {`read more`}
-        </Link>
+        <time css={articleStyles.time}>{article.frontmatter.dateStr}</time>
+        <Link to={article.fields.slug}>{`read more`}</Link>
       </div>
     </footer>
   </article>
@@ -51,7 +41,7 @@ const articleStyles = {
     // width: `29%`,
     // marginBottom: `4rem`,
     boxShadow: `0 0 8px 0px #00000085`,
-    background: hex2rgba(colors.lightBlue, 0.5),
+    background: colors.lightBlue,
     display: `flex`,
     flexDirection: `column`,
     overflow: `hidden`,
