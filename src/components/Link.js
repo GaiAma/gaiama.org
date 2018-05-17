@@ -9,6 +9,7 @@ const Link = ({
   sort,
   filter,
   ext,
+  blank,
   persistQuery,
   ...props
 }) => {
@@ -22,35 +23,30 @@ const Link = ({
     to = QS.stringify(qs, to)
   }
 
-  if (ext !== undefined) {
-    return (
-      <a
-        href={to}
-        target="_blank"
-        rel="noopener noreferrer"
-        {...props}
-      >
-        {children}
-      </a>
-    )
-  }
+  const target = blank ? `_blank` : ``
 
-  return (
-    <GatsbyLink
-      exact
-      to={to}
-      {...props}
-    >
+  return ext !== undefined ? (
+    <a href={to} target={target} rel="noopener noreferrer" {...props}>
+      {children}
+    </a>
+  ) : (
+    <GatsbyLink exact to={to} {...props}>
       {children}
     </GatsbyLink>
   )
 }
+
 Link.propTypes = {
   to: PropTypes.string,
   sort: PropTypes.string,
   filter: PropTypes.string,
   ext: PropTypes.string,
+  blank: PropTypes.bool,
   persistQuery: PropTypes.bool,
+}
+
+Link.defaultProps = {
+  blank: true,
 }
 
 export default Link

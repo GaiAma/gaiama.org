@@ -16,21 +16,16 @@ NotFound.propTypes = {
 export default NotFound
 
 export const query = graphql`
-  query NotFoundPageQuery (
-    $lang: String!
-    $slug: String!
-  ) {
+  query NotFoundPageQuery($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages
     ...homepage
     ...menu
-    
-    page: javascriptFrontmatter (
-      frontmatter: {
-        slug: { eq: $slug }
-        lang: { eq: $lang }
-      }
+    ...legal
+
+    page: javascriptFrontmatter(
+      frontmatter: { slug: { eq: $slug }, lang: { eq: $lang } }
     ) {
       fields {
         translations {
@@ -41,7 +36,7 @@ export const query = graphql`
           }
         }
       }
-    	frontmatter {
+      frontmatter {
         title
         lang
         slug

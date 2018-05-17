@@ -3,7 +3,12 @@ import PropTypes from 'prop-types'
 
 /**
  * media query helper
- * maybe add json2mq for convenience
+ * TODO add json2mq for convenience
+ * TODO add resize listener
+ * inspiration
+ *  - 💚 https://github.com/bvaughn/react-virtualized/blob/master/source/vendor/detectElementResize.js
+ *  - https://stackoverflow.com/a/48123390/3484824
+ *  - https://stackoverflow.com/a/47275732/3484824
  */
 
 export const mediaQuery = mq =>
