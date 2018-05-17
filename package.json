@@ -4,14 +4,12 @@
   "version": "1.0.0",
   "author": "Can Rau <cansrau@gmail.com>",
   "license": "MIT",
-  "homepage": "https://gaiama.org",
+  "homepage": "https://www.gaiama.org",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gaiama/gaiama.org.git"
   },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "bugs": {
     "url": "https://github.com/gaiama/gaiama.org/issues"
   },
@@ -21,8 +19,10 @@
     "fix": "eslint --fix --ext .js,.jsx .",
     "test": "jest",
     "size": "size-limit",
-    "//format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
-    "format": "prettier --config .prettierrc --write 'src/**/*.js' 'plugins/**/src/**/*.js' 'src/**/*.md'",
+    "//format":
+      "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",
+    "format":
+      "prettier --config .prettierrc --write 'src/**/*.js' 'plugins/**/src/**/*.js' 'src/**/*.md'",
     "develop": "gatsby develop",
     "clean:cache": "rimraf .cache",
     "clean:public": "rimraf public",
@@ -31,15 +31,11 @@
     "serve": "serve public -p 3333",
     "prod-test": "NODE_ENV=production yarn build && yarn serve",
     "deploy": "gatsby build --prefix-paths && gh-pages -d public",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
+    "fix-semi":
+      "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
     "precommit": "yarn format"
   },
-  "browserslist": [
-    "> 1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "Opera 12.1"
-  ],
+  "browserslist": ["> 1%", "last 4 versions", "Firefox ESR", "Opera 12.1"],
   "size-limit": [
     {
       "path": "index.js"
@@ -54,6 +50,8 @@
     "@lingui/react": "^2.0.5",
     "axios": "^0.18.0",
     "babel-eslint": "^8.2.2",
+    "babel-plugin-transform-regenerator": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "cheerio": "^1.0.0-rc.2",
     "classnames": "^2.2.5",
     "color": "^3.0.0",
@@ -91,7 +89,8 @@
     "gatsby-remark-images": "^1.5.52",
     "gatsby-remark-responsive-iframe": "^1.4.17",
     "gatsby-remark-smartypants": "^1.4.11",
-    "gatsby-remark-textr": "/Users/Can/Sites/react/gaiama-gatsby-blog/plugins/gatsby-remark-textr",
+    "gatsby-remark-textr":
+      "file:../../react/gaiama-gatsby-blog/plugins/gatsby-remark-textr",
     "gatsby-source-filesystem": "^1.5.24",
     "gatsby-transformer-javascript-frontmatter": "^1.0.2",
     "gatsby-transformer-json": "^1.0.14",
