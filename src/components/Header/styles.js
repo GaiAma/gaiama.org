@@ -2,12 +2,15 @@ import hex2rgba from 'hex2rgba'
 import { breakPoints, colors, fontFamilies, media } from '@/theme'
 
 export default {
-  header: ({ bg }) => ({
-    background: `url(${bg}) no-repeat bottom`,
-    backgroundSize: `cover`,
-    backgroundColor: colors.primary,
+  header: ({ bg } = {}) => ({
+    ...(bg && {
+      background: `url(${bg}) no-repeat bottom`,
+      backgroundSize: `cover`,
+      backgroundColor: colors.primary,
+    }),
+    position: `relative`,
     color: colors.darkWhite,
-    whiteSpace: `no-wrap`,
+    whiteSpace: `nowrap`,
 
     '& a': {
       color: colors.darkWhite,
@@ -19,6 +22,7 @@ export default {
   }),
 
   headerTop: {
+    position: `relative`,
     backgroundColor: [colors.primary, hex2rgba(colors.primary, 0.85)],
     margin: 0,
     height: `2.5rem`,
@@ -37,6 +41,8 @@ export default {
     margin: `0 auto`,
     height: `100%`,
     padding: `0`,
+    position: `relative`,
+    // zIndex: 9,
     [media.greaterThan(`medium`)]: {
       padding: `0 1rem`,
     },
@@ -75,7 +81,7 @@ export default {
   },
 
   headerBanner: {
-    height: `6rem`,
+    height: `7rem`,
 
     [breakPoints.minMd]: { height: `13rem` },
     [breakPoints.minLg]: { height: `16rem` },
@@ -85,13 +91,16 @@ export default {
   headerLogo: {
     display: `block`,
     position: `relative`,
-    transform: `translateY(-1.5rem)`,
+    transform: `translateY(-1.7rem)`,
     margin: `0 auto`,
-    height: `9rem`,
+    maxWidth: `140px`,
     userSelect: `none`,
 
-    [breakPoints.minMd]: { height: `16rem` },
-    [breakPoints.minLgLandscape]: { height: `26rem` },
+    [breakPoints.minMd]: {
+      maxWidth: `250px`,
+      transform: `translateY(-1.5rem)`,
+    },
+    [breakPoints.minLgLandscape]: { maxWidth: `420px` },
   },
 
   headerNav: ({ bg, isSticky }) => ({
@@ -103,7 +112,7 @@ export default {
     top: isSticky && 0,
     right: isSticky && 0,
     left: isSticky && 0,
-    zIndex: isSticky && 3,
+    // zIndex: isSticky && 3,
     height: `2.5rem`,
     // height: isSticky ? `3rem` : `2.5rem`,
     // paddingTop: isSticky && `.5rem`,
@@ -111,6 +120,8 @@ export default {
     backgroundSize: isSticky && `cover`,
     [breakPoints.minMd]: {
       height: `3.5rem`,
+      // height: `${isSticky ? 4 : 3.5}rem`,
+      // paddingTop: isSticky && `.5rem`,
       // height: isSticky ? `4.3rem` : `3.5rem`,
       // paddingTop: isSticky && `.8rem`,
     },
@@ -161,7 +172,7 @@ export default {
     display: `block`,
     color: colors.darkWhite,
     position: `relative`,
-    zIndex: 1,
+    // zIndex: 1,
 
     ':hover, :active, :focus': {
       color: colors.darkWhite,
@@ -173,7 +184,7 @@ export default {
     margin: `0 0.2rem`,
     padding: `0 0.4rem`,
     [media.greaterThan(`medium`)]: {
-    margin: `0 1.5rem`,
+      margin: `0 1.5rem`,
     },
   },
 
