@@ -8,22 +8,20 @@ export const Fragments = graphql`
   }
 
   fragment SiteMeta on RootQueryType {
-    SiteMeta: siteMetaAml (
-      frontmatter: { lang: { eq: $lang } }
-    ) {
+    SiteMeta: siteMetaAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         assets {
           logo {
             image: childImageSharp {
-              resolutions {
-                ...GatsbyImageSharpResolutions
+              sizes(maxWidth: 420, quality: 75) {
+                ...GatsbyImageSharpSizes_withWebp_noBase64
               }
             }
           }
           headerBg {
             image: childImageSharp {
-              sizes (maxWidth: 1280, quality: 75) {
-                ...GatsbyImageSharpSizes
+              sizes(maxWidth: 1280, quality: 75) {
+                ...GatsbyImageSharpSizes_withWebp_noBase64
               }
             }
           }
@@ -51,6 +49,7 @@ export const Fragments = graphql`
             id
             title
             titleShort
+            lc
           }
         }
       }
@@ -58,12 +57,9 @@ export const Fragments = graphql`
   }
 
   fragment menu on RootQueryType {
-    menu: allJavascriptFrontmatter (
+    menu: allJavascriptFrontmatter(
       filter: {
-        frontmatter: {
-          menu: { regex: "/(main|meta)/" },
-          lang: { eq: $lang }
-        }
+        frontmatter: { menu: { regex: "/(main|meta)/" }, lang: { eq: $lang } }
       }
       sort: { fields: [frontmatter___menuorder], order: ASC }
     ) {
@@ -83,17 +79,30 @@ export const Fragments = graphql`
   }
 
   fragment homepage on RootQueryType {
-    homepage: javascriptFrontmatter (
-      frontmatter: {lang: { eq: $lang },
-      layout: { eq: "HomePage" }}
+    homepage: javascriptFrontmatter(
+      frontmatter: { lang: { eq: $lang }, layout: { eq: "HomePage" } }
     ) {
-    	frontmatter {
+      frontmatter {
         lang
         title
+        slug
         header {
           title
           subtitle
         }
+      }
+    }
+  }
+
+  fragment legal on RootQueryType {
+    legal: javascriptFrontmatter(
+      frontmatter: { lang: { eq: $lang }, layout: { eq: "PrivacyPage" } }
+    ) {
+      frontmatter {
+        lang
+        slug
+        title
+        privacyLabel
       }
     }
   }

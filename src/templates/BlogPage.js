@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Head from 'react-helmet'
 import QS from '@/utils/query-string'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
@@ -13,18 +14,23 @@ const BlogPage = props => {
   const isSortAsc = sort === `asc`
   const isSortDesc = !sort || sort === `desc`
   const tags = filter || []
-  const filterLabel = props.data.labels.frontmatter.labels.find(x => x.type === filter)
+  const filterLabel = props.data.labels.frontmatter.labels.find(
+    x => x.type === filter
+  )
 
   const articles = props.data.articles.edges
-    .filter(a =>
-      tags.length
-        ? a.node.frontmatter.tags &&
-          a.node.frontmatter.tags.some(t => tags.includes(t))
-        : true
+    .filter(
+      a =>
+        tags.length
+          ? a.node.frontmatter.tags &&
+            a.node.frontmatter.tags.some(t => tags.includes(t))
+          : true
     )
     .sort(({ node: a }, { node: b }) => {
-      const isBefore = parseInt(a.frontmatter.date) < parseInt(b.frontmatter.date)
-      const isAfter = parseInt(a.frontmatter.date) > parseInt(b.frontmatter.date)
+      const isBefore =
+        parseInt(a.frontmatter.date) < parseInt(b.frontmatter.date)
+      const isAfter =
+        parseInt(a.frontmatter.date) > parseInt(b.frontmatter.date)
       const sortAsc = isBefore ? -1 : isAfter ? 1 : 0
       const sortDesc = isBefore ? 1 : isAfter ? -1 : 0
       return isSortAsc ? sortAsc : sortDesc
@@ -32,6 +38,14 @@ const BlogPage = props => {
 
   return (
     <MainLayout {...props}>
+      <Head
+        meta={[
+          {
+            property: `og:type`,
+            content: `blog`,
+          },
+        ]}
+      />
       {!filter && (
         <Randomizer
           quotes={props.data.quotes.frontmatter.quotes}
@@ -75,10 +89,12 @@ const BlogPage = props => {
 
       <TitledCopy
         centered
-        title={filter ?
-          `${props.data.labels.frontmatter.labeled} ${filterLabel.value}`
-          : null}
-          // : props.data.page.frontmatter.title}
+        title={
+          filter
+            ? `${props.data.labels.frontmatter.labeled} ${filterLabel.value}`
+            : null
+        }
+        // : props.data.page.frontmatter.title}
         paragraphs={props.data.page.frontmatter.intro.paragraphs}
         css={{
           marginBottom: `1.5rem`,
@@ -139,12 +155,11 @@ const BlogPage = props => {
             {props.data.page.frontmatter.sortLabels.desc}
           </Link>
 
-          {filter && <Link
-            to={props.data.page.frontmatter.slug}
-            exact
-          >
-            {props.data.page.frontmatter.sortLabels.all}
-          </Link>}
+          {filter && (
+            <Link to={props.data.page.frontmatter.slug} exact>
+              {props.data.page.frontmatter.sortLabels.all}
+            </Link>
+          )}
 
           <Link
             to={props.location.pathname}
@@ -194,21 +209,15 @@ BlogPage.propTypes = {
 export default BlogPage
 
 export const query = graphql`
-  query BlogPageQuery(
-    $lang: String!
-    $slug: String!
-  ) {
+  query BlogPageQuery($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages
     ...homepage
     ...menu
-    
-    page: javascriptFrontmatter (
-      frontmatter: {
-        slug: { eq: $slug }
-      }
-    ) {
+    ...legal
+
+    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
         translations {
           frontmatter {
@@ -218,7 +227,7 @@ export const query = graphql`
           }
         }
       }
-    	frontmatter {
+      frontmatter {
         title
         lang
         slug
@@ -242,15 +251,9 @@ export const query = graphql`
       }
     }
 
-    articles: allMarkdownRemark (
-      filter: {
-        fields: {
-          lang: { eq: $lang },
-          isDraft: { eq: false }
-        }
-      }
-      sort: { fields: [frontmatter___date], order: DESC }
-      #limit: 15
+    articles: allMarkdownRemark(
+      filter: { fields: { lang: { eq: $lang }, isDraft: { eq: false } } }
+      sort: { fields: [frontmatter___date], order: DESC } #limit: 15
     ) {
       edges {
         previous {
@@ -264,8 +267,7 @@ export const query = graphql`
           }
         }
         node {
-          html
-          excerpt(pruneLength: 280)
+          excerpt(pruneLength: 135)
           frontmatter {
             id
             title
@@ -275,7 +277,12 @@ export const query = graphql`
             tags
             cover {
               childImageSharp {
-                sizes(maxWidth: 400, maxHeight: 230, quality: 75, cropFocus: ENTROPY) {
+                sizes(
+                  maxWidth: 400
+                  maxHeight: 230
+                  quality: 75
+                  cropFocus: ENTROPY
+                ) {
                   ...GatsbyImageSharpSizes
                 }
               }
@@ -290,9 +297,7 @@ export const query = graphql`
       }
     }
 
-    labels: siteMetaAml (
-      frontmatter: { lang: { eq: $lang } }
-    ) {
+    labels: siteMetaAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         labeled
         labels {
@@ -302,9 +307,7 @@ export const query = graphql`
       }
     }
 
-    quotes: quotesAml (
-      frontmatter: { lang: { eq: $lang } }
-    ) {
+    quotes: quotesAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         nextQuoteLabel
         quotes {

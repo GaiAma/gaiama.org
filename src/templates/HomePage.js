@@ -1,8 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
+import { css } from 'glamor'
 import slugify from 'slugify'
-import { breakPoints, Box, colors, fullPageWidth, media } from '@/theme'
+import {
+  breakPoints,
+  Box,
+  colors,
+  fullPageWidth,
+  maxWidthContent,
+  media,
+} from '@/theme'
 import MainLayout from '@/components/MainLayout'
 import { InstagramFeed, SupportWidget } from '@/components/Shared'
 import TitledCopy from '@/components/TitledCopy'
@@ -44,7 +52,15 @@ const HomePage = props => (
                 resolutions={x.img.image.resolutions}
               />
             ) : (
-              <p key={i} css={{ margin: 0 }}>
+              <p
+                key={i}
+                css={{
+                  margin: 0,
+                  [media.lessThan(`medium`)]: {
+                    fontSize: `0.9rem`,
+                  },
+                }}
+              >
                 {x}
               </p>
             )
@@ -55,6 +71,7 @@ const HomePage = props => (
         css={{
           display: `flex`,
           justifyContent: `center`,
+          margin: `2rem 0 3rem`,
           [media.greaterThan(`medium`)]: {
             margin: `2rem 0 4rem`,
           },
@@ -65,7 +82,6 @@ const HomePage = props => (
             display: `flex`,
             justifyContent: `center`,
             alignItems: `center`,
-            height: `210px`,
             '& > div': {
               boxShadow: `1px 1px 2px 1px #999`,
             },
@@ -92,108 +108,22 @@ const HomePage = props => (
             },
           }}
         >
-          {props.data.page.frontmatter.intro.images.map(
-            ({ image }) => (
-              <Img
-                sizes={image.sizes}
-                key={image.sizes.src}
-              />
-            )
-          )}
+          {props.data.page.frontmatter.intro.images.map(({ image }) => (
+            <Img sizes={image.sizes} key={image.sizes.src} />
+          ))}
         </div>
       </div>
     </Box>
 
-    <div
-      css={{
-        // backgroundImage: `url(${
-        //   props.data.page.frontmatter.assets.keyBg.image
-        //     .resolutions.src
-        // })`,
-        backgroundPosition: `right 0`,
-        backgroundColor: colors.lightBlue,
-        backgroundRepeat: `no-repeat`,
-        overflow: `hidden`,
-        margin: `0 auto`,
-        position: `relative`,
-        ...fullPageWidth,
-      }}
-    >
-      <div
-        css={{
-          position: `relative`,
-        }}
-      >
-        <div
-          css={{
-            margin: `0 auto`,
-          }}
-        >
-          <div
-            css={{
-              textAlign: `center`,
-            }}
-          >
-            <h2
-              css={{
-                letterSpacing: `.3rem`,
-                display: `inline-block`,
-                marginTop: `2rem`,
-                borderBottom: `1px solid #000`,
-                padding: `0 1.5rem .6rem 0`,
-                lineHeight: `0.8`,
-                position: `relative`,
-                fontSize: `2.2rem`,
-                [media.greaterThan(`medium`)]:{
-                  fontSize: `2.5rem`,
-                },
-                '&:after': {
-                  content: `>>`,
-                  position: `absolute`,
-                  right: `-0.2rem`,
-                  bottom: `-0.6rem`,
-                  fontSize: `1.6rem`,
-                  letterSpacing: `initial`,
-                },
-              }}
-            >
-              {
-                props.data.page.frontmatter.keyPrinciples
-                  .title
-              }
-            </h2>
-          </div>
-
-          <KeyPrinciples
-            content={
-              props.data.page.frontmatter.keyPrinciples
-                .content
-            }
-            css={{
-              [breakPoints.minSm]: {
-                width: `65%`,
-              },
-              [breakPoints.minMd]: {
-                width: `70%`,
-              },
-              [breakPoints.minLgLandscape]: {
-                width: `59%`,
-              },
-            }}
-          />
-        </div>
-      </div>
-    </div>
+    <KeyPrinciples
+      title={props.data.page.frontmatter.keyPrinciples.title}
+      content={props.data.page.frontmatter.keyPrinciples.content}
+    />
 
     <SupportWidget
-      transparent
       title={props.data.SupportWidget.frontmatter.title}
-      readMoreLink={
-        props.data.SupportWidget.frontmatter.readMoreLink
-      }
-      readMoreLabel={
-        props.data.SupportWidget.frontmatter.readMoreLabel
-      }
+      readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
+      readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
       // artwork={props.data.page.frontmatter.assets.supportus}
       lang={props.pathContext.lang}
       css={{
@@ -208,21 +138,21 @@ const HomePage = props => (
 
     <InstagramFeed
       user={props.data.instagram.frontmatter.instagramUser}
-      followLink={
-        props.data.instagram.frontmatter.followLink
-      }
-      bg={
-        props.data.instagram.frontmatter.bg.image
-          .resolutions.src
-      }
+      followLink={props.data.instagram.frontmatter.followLink}
+      bg={props.data.instagram.frontmatter.bg.image.sizes.src}
       images={props.data.instagramImages.edges}
     />
 
     <TitledCopyStyled
       title={props.data.page.frontmatter.closing.title}
-      paragraphs={
-        props.data.page.frontmatter.closing.paragraphs
-      }
+      paragraphs={props.data.page.frontmatter.closing.paragraphs}
+      css={{
+        '& div': {
+          [media.lessThan(`medium`)]: {
+            fontSize: `0.9rem`,
+          },
+        },
+      }}
     />
   </MainLayout>
 )
@@ -253,6 +183,7 @@ export const query = graphql`
     ...languages
     ...homepage
     ...menu
+    ...legal
     ...instagram
     ...SupportWidget
     #...Cryptos
@@ -276,7 +207,7 @@ export const query = graphql`
           content
           images {
             image: childImageSharp {
-              sizes {
+              sizes(quality: 75) {
                 ...GatsbyImageSharpSizes
               }
             }
@@ -284,23 +215,45 @@ export const query = graphql`
         }
         keyPrinciples {
           title
-          bg {
-            publicURL
-          }
           content {
+            title
+            text
             image {
               alt
               src {
                 publicURL
-                childImageSharp {
-                  resolutions {
-                    ...GatsbyImageSharpResolutions
+              }
+            }
+            images {
+              one {
+                image: childImageSharp {
+                  sizes(maxWidth: 320, quality: 75) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+              two {
+                image: childImageSharp {
+                  sizes(maxWidth: 320, quality: 75) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+              three {
+                image: childImageSharp {
+                  sizes(maxWidth: 320, quality: 75) {
+                    ...GatsbyImageSharpSizes
+                  }
+                }
+              }
+              four {
+                image: childImageSharp {
+                  sizes(maxWidth: 320, quality: 75) {
+                    ...GatsbyImageSharpSizes
                   }
                 }
               }
             }
-            title
-            text
           }
         }
         closing {
@@ -310,14 +263,14 @@ export const query = graphql`
         assets {
           supportus {
             image: childImageSharp {
-              resolutions (quality: 75) {
+              resolutions(width: 121, quality: 75) {
                 ...GatsbyImageSharpResolutions
               }
             }
           }
           keyBg {
             image: childImageSharp {
-              resolutions (quality: 75) {
+              resolutions(width: 238, quality: 75) {
                 ...GatsbyImageSharpResolutions
               }
             }
@@ -404,61 +357,192 @@ export const IntroContainer = ({ children }) => (
 // }
 // export { InterruptingHeadline }
 
-const KeyPrinciples = ({
-  content,
-  ...props
-}) => (
+const KeyPrinciples = ({ title, content, ...props }) => (
   <div
     css={{
       width: `90%`,
       margin: `2rem auto 0`,
-      [media.greaterThan(`medium`)]: {
-        display: `flex`,
-        justifyContent: `space-between`,
-        flexWrap: `wrap`,
-        '& > div': {
-          width: `56%`,
-        },
-        '& > div:nth-child(2n+2)': {
-          width: `38%`,
-        },
+      // [media.greaterThan(`medium`)]: {
+      //   display: `flex`,
+      //   justifyContent: `space-between`,
+      //   flexWrap: `wrap`,
+      //   '& > div': {
+      //     width: `56%`,
+      //   },
+      //   '& > div:nth-child(2n+2)': {
+      //     width: `38%`,
+      //   },
+      // },
+      '& > div + div': {
+        marginTop: `3rem`,
       },
     }}
     {...props}
   >
     {content.map((x, i) => (
-      <Box flex key={i} css={{ margin: `0 0 0` }}>
-        <div>
-          <div
-            css={{
-              display: `flex`,
-            }}
-          >
-            <h2
-              id={slugify(x.title)}
+      <div
+        key={i}
+        css={{
+          ...fullPageWidth,
+          backgroundColor: i % 2 === 0 && colors.lightBlue,
+          padding: i % 2 === 0 && `2rem 0`,
+        }}
+      >
+        <div
+          css={{
+            ...maxWidthContent,
+            maxWidth: `1050px`,
+          }}
+        >
+          {i === 0 && (
+            <div
               css={{
-                margin: `.5rem 0 .7rem`,
-                fontSize: `2rem`,
+                textAlign: `center`,
               }}
             >
-              {x.title}
-            </h2>
-            <img
-              src={x.image.src.publicURL}
-              alt={x.image.alt}
-              css={{ height: `48px`, margin: 0, marginLeft: `1rem` }}
-            />
-          </div>
-          <p
-            css={{ fontSize: `.85rem`, textAlign: `justify` }}
-            dangerouslySetInnerHTML={{ __html: x.text }}
-          />
+              <h2
+                css={{
+                  letterSpacing: `.3rem`,
+                  display: `inline-block`,
+                  marginBottom: `2.8rem`,
+                  borderBottom: `1px solid #000`,
+                  padding: `0 1.5rem .6rem 0`,
+                  lineHeight: `0.8`,
+                  position: `relative`,
+                  fontSize: `2.2rem`,
+                  [media.greaterThan(`medium`)]: {
+                    fontSize: `2.5rem`,
+                  },
+                  '&:after': {
+                    content: `>>`,
+                    position: `absolute`,
+                    right: `-0.2rem`,
+                    bottom: `-0.6rem`,
+                    fontSize: `1.6rem`,
+                    letterSpacing: `initial`,
+                  },
+                }}
+              >
+                {title}
+              </h2>
+            </div>
+          )}
+          <Box
+            flex
+            css={{
+              margin: `0`,
+              [media.lessThan(`small`)]: {
+                flexDirection: i % 2 === 0 ? `column-reverse` : `column`,
+              },
+            }}
+          >
+            {i % 2 === 0 && (
+              <div
+                css={{
+                  display: `flex`,
+                  flexWrap: `wrap`,
+                  flex: `0 0 245px`,
+                  justifyContent: `center`,
+                  height: `245px`,
+                  [media.greaterThan(`small`)]: {
+                    height: `320px`,
+                    flexBasis: `320px`,
+                    marginRight: `3rem`,
+                  },
+                  '& img': {
+                    margin: 0,
+                  },
+                }}
+              >
+                {Object.keys(x.images).map(key => (
+                  <Img
+                    key={key}
+                    sizes={x.images[key].image.sizes}
+                    outerWrapperClassName={css({
+                      width: `120px`,
+                      [media.greaterThan(`small`)]: {
+                        width: `153px`,
+                      },
+                      margin: `.2rem`,
+                    })}
+                  />
+                ))}
+              </div>
+            )}
+            <div>
+              <div css={{ display: `flex` }}>
+                <h2
+                  id={slugify(x.title)}
+                  css={{
+                    margin: `.5rem 0 .7rem`,
+                    fontSize: `2rem`,
+                  }}
+                >
+                  {x.title}
+                </h2>
+                <img
+                  src={x.image.src.publicURL}
+                  alt={x.image.alt}
+                  css={{
+                    height: `48px`,
+                    width: `48px`,
+                    margin: 0,
+                    marginLeft: `1rem`,
+                  }}
+                />
+              </div>
+              <p
+                css={{
+                  fontSize: `.85rem`,
+                  [media.greaterThan(`large`)]: {
+                    fontSize: `1rem`,
+                  },
+                  textAlign: `justify`,
+                }}
+                dangerouslySetInnerHTML={{ __html: x.text }}
+              />
+            </div>
+            {i % 2 === 1 && (
+              <div
+                css={{
+                  display: `flex`,
+                  flexWrap: `wrap`,
+                  flex: `0 0 245px`,
+                  justifyContent: `center`,
+                  height: `245px`,
+                  [media.greaterThan(`small`)]: {
+                    height: `320px`,
+                    flexBasis: `320px`,
+                    marginLeft: `3rem`,
+                  },
+                  '& img': {
+                    margin: 0,
+                  },
+                }}
+              >
+                {Object.keys(x.images).map(key => (
+                  <Img
+                    key={key}
+                    sizes={x.images[key].image.sizes}
+                    outerWrapperClassName={css({
+                      width: `120px`,
+                      [media.greaterThan(`small`)]: {
+                        width: `153px`,
+                      },
+                      margin: `.2rem`,
+                    })}
+                  />
+                ))}
+              </div>
+            )}
+          </Box>
         </div>
-      </Box>
+      </div>
     ))}
   </div>
 )
 KeyPrinciples.propTypes = {
+  title: PropTypes.string,
   content: PropTypes.array,
 }
 export { KeyPrinciples }

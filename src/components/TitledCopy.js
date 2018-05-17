@@ -13,17 +13,20 @@ const TitledCopy = ({
   centeredCopy,
   full,
   spoiler,
+  spoilerLabel,
   state,
   setState,
   children,
   ...props
 }) => {
   const content = children || paragraphs
-  const slugifiedId = title && slugify(
-    Array.isArray(title) ? title.join(` `) : title,
-    { remove: /[$*_+~.()'"!\-:@?&]/g }
-  )
-  const handleClick = () => setState({
+  const slugifiedId =
+    title &&
+    slugify(Array.isArray(title) ? title.join(` `) : title, {
+      remove: /[$*_+~.()'"!\-:@?&]/g,
+    })
+  const handleClick = () =>
+    setState({
       spoilerOpen: !state.spoilerOpen,
     })
 
@@ -53,8 +56,7 @@ const TitledCopy = ({
         >
           {Array.isArray(title)
             ? title.map((x, i) => <div key={i}>{x}</div>)
-            : title
-          }
+            : title}
         </h2>
       )}
 
@@ -68,17 +70,17 @@ const TitledCopy = ({
             maxHeight: spoiler && (state.spoilerOpen ? `100%` : `100px`),
           }}
         >
-          {Array.isArray(content)
-            ? content.map((x, i) => <div key={i}>{x}</div>)
-            : <div dangerouslySetInnerHTML={{ __html: content }} />
-          }
+          {Array.isArray(content) ? (
+            content.map((x, i) => <div key={i}>{x}</div>)
+          ) : (
+            <div dangerouslySetInnerHTML={{ __html: content }} />
+          )}
         </div>
       )}
       {spoiler &&
-        <Button onClick={handleClick}>
-          {`Read more`}
-        </Button>
-      }
+        !state.spoilerOpen && (
+          <Button onClick={handleClick}>{spoilerLabel}</Button>
+        )}
     </div>
   )
 }
@@ -91,6 +93,7 @@ TitledCopy.propTypes = {
   centeredCopy: PropTypes.bool,
   full: PropTypes.bool,
   spoiler: PropTypes.bool,
+  spoilerLabel: PropTypes.string,
   state: PropTypes.object,
   setState: PropTypes.func,
 }

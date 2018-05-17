@@ -5,7 +5,8 @@ import slugify from 'slugify'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
 import Newsticker from '@/components/Newsticker'
-import { mediaQuery, ReactMedia } from '@/components/MediaQuery'
+import { mediaQuery } from '@/components/MediaQuery'
+import Media from 'react-media'
 import { colors, media } from '@/theme'
 
 const AboutPage = props => {
@@ -59,7 +60,13 @@ const AboutPage = props => {
         }}
       />
 
-      <div css={{ display: `flex`, justifyContent: `space-between`, marginBottom: `3rem` }}>
+      <div
+        css={{
+          display: `flex`,
+          justifyContent: `space-between`,
+          marginBottom: `3rem`,
+        }}
+      >
         <div css={{ [media.greaterThan(`medium`)]: { width: `70%` } }}>
           <div css={{ '& > div': { marginBottom: `4rem` } }}>
             {page.frontmatter.bios.map(bio => (
@@ -71,7 +78,7 @@ const AboutPage = props => {
                   [media.lessThan(`medium`)]: {
                     flexDirection: `column`,
                     alignItems: `center`,
-                    textAlign: `center`,
+                    // textAlign: `center`,
                   },
                   [media.greaterThan(`medium`)]: {
                     justifyContent: `space-between`,
@@ -92,17 +99,20 @@ const AboutPage = props => {
                   }}
                 />
                 <div>
-                  <h4 id={slugify(bio.name)} css={{
-                    fontSize: `1.7rem`,
-                    [media.greaterThan(`medium`)]: {
-                      fontSize: `2rem`,
-                    },
-                  }}>
+                  <h4
+                    id={slugify(bio.name)}
+                    css={{
+                      fontSize: `1.7rem`,
+                      [media.greaterThan(`medium`)]: {
+                        fontSize: `2rem`,
+                      },
+                    }}
+                  >
                     {bio.name}
                   </h4>
-                  <div css={{ marginBottom: `.5rem` }}>
+                  <div css={{ marginBottom: `.5rem`, lineHeight: `.9` }}>
                     {bio.position}
-                    <br/>
+                    <br />
                     {bio.field}
                   </div>
                   <p
@@ -123,22 +133,26 @@ const AboutPage = props => {
           </div>
 
           <div>
-            <h2 css={{
-              fontSize: `2rem`,
-              marginBottom: `3.5rem`,
-              textAlign: `center`,
-            }}>
+            <h2
+              css={{
+                fontSize: `2.3rem`,
+                marginBottom: `3.5rem`,
+                textAlign: `center`,
+              }}
+            >
               {page.frontmatter.specialThanks.title}
             </h2>
 
-            <div css={{
-              display: `flex`,
-              justifyContent: `space-between`,
-              flexWrap: `wrap`,
-              '& > div:not(:last-child)': {
-                marginBottom: `3rem`,
-              },
-            }}>
+            <div
+              css={{
+                display: `flex`,
+                justifyContent: `space-between`,
+                flexWrap: `wrap`,
+                '& > div:not(:last-child)': {
+                  marginBottom: `3rem`,
+                },
+              }}
+            >
               {page.frontmatter.specialThanks.bios.map(bio => (
                 <div
                   key={bio.id}
@@ -168,10 +182,7 @@ const AboutPage = props => {
           </div>
         </div>
 
-        <ReactMedia
-          mq="(min-width: 779px)"
-          onMatch={PeopleGallery}
-        />
+        <Media query="(min-width: 779px)" render={PeopleGallery} />
       </div>
 
       <Newsticker
@@ -196,10 +207,7 @@ AboutPage.propTypes = {
 export default AboutPage
 
 export const query = graphql`
-  query AboutPageQuery (
-    $lang: String!
-    $slug: String!
-  ) {
+  query AboutPageQuery($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages
@@ -207,12 +215,9 @@ export const query = graphql`
     ...menu
     ...NewsTicker
     ...newstickerLandscape
+    ...legal
 
-    page: javascriptFrontmatter (
-      frontmatter: {
-        slug: { eq: $slug }
-      }
-    ) {
+    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
         translations {
           frontmatter {
@@ -272,9 +277,7 @@ export const query = graphql`
       }
     }
 
-    Labels: siteMetaAml (
-      frontmatter: { lang: { eq: $lang } }
-    ) {
+    Labels: siteMetaAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         readMore
       }

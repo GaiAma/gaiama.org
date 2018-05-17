@@ -1,152 +1,181 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import MainLayout from '@/components/MainLayout'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-// import { isEmail } from 'validator'
-import { breakPoints, colors, fontFamilies, media } from '@/theme'
+import { breakPoints, colors, media } from '@/theme'
 import TitledCopy from '@/components/TitledCopy'
-import { Email, Textarea } from '@/components/Form'
-import { Button } from '@/components/layout/Button'
+import { Newsletter } from '@/components/NewsletterWidget'
+import ContactForm from '@/components/ContactForm'
 
-class ContactPage extends Component {
-  static propTypes = {
-    data: PropTypes.object,
-  }
-
-  constructor(props) {
-    super(props)
-    this.state = {
-      email: ``,
-      emailError: false,
-      message: ``,
-    }
-  }
-
-  handleChange = e => {
-    e.persist()
-    this.setState(
-      {
-        [e.target.name]: e.target.value,
-      },
-      () => {
-        // if (e.target.name === `email`) {
-        //   this.setState({ emailError: isEmail(e.target.value) })
-        // }
-      }
-    )
-  }
-
-  handleSubmit = e => {
-    e.preventDefault()
-  }
-
-  render() {
-    const { page } = this.props.data
-    return (
-      <MainLayout
-        {...this.props}
-        wrapperStyles={{
-          [media.greaterThan(`large`)]: {
-            background: `url(${
-              page.frontmatter.assets.bg.image.sizes.src
-            }) no-repeat right 1rem`,
+const ContactPage = props => {
+  const { page } = props.data
+  return (
+    <MainLayout
+      {...props}
+      wrapperStyles={{
+        [media.greaterThan(`medium`)]: {
+          background: `url(${
+            page.frontmatter.assets.bg.image.sizes.src
+          }) no-repeat right 1rem`,
+        },
+        maxWidth: `initial`,
+        minHeight: `680px`,
+        paddingTop: `2rem`,
+        paddingRight: 0,
+        paddingBottom: 0,
+        [breakPoints.minMdLandscape]: {
+          width: `100%`,
+        },
+      }}
+    >
+      {/* <p>
+        Mit dem Absenden Ihrer Anfrage erklären Sie sich mit der Verarbeitung
+        Ihrer angegebenen Daten zum Zweck der Bearbeitung Ihrer Anfrage
+        einverstanden ([LINK]Datenschutzerklärung und Widerrufshinweise[/LINK])
+      </p> */}
+      <div
+        css={{
+          overflow: `hidden`,
+          display: `flex`,
+          justifyContent: `space-between`,
+          [media.lessThan(`small`)]: {
+            flexDirection: `column`,
           },
-          maxWidth: `initial`,
-          minHeight: `680px`,
-          paddingTop: `2rem`,
-          paddingRight: 0,
-          paddingBottom: 0,
-          [breakPoints.minMdLandscape]: {
-            width: `100%`,
+          [media.greaterThan(`small`)]: {
+            '& > div': {
+              width: `40%`,
+            },
+          },
+          [media.greaterThan(`large`)]: {
+            width: `57%`,
+            margin: `3rem 2rem 0 6rem`,
           },
         }}
       >
         <div
           css={{
-            overflow: `hidden`,
-            display: `flex`,
-            justifyContent: `space-between`,
-            [media.lessThan(`small`)]: {
-              flexDirection: `column`,
-            },
-            [media.greaterThan(`small`)]: {
-              '& > div': {
-                width: `40%`,
-              },
-            },
-            [media.greaterThan(`large`)]: {
-              width: `57%`,
-              margin: `3rem 2rem 0 6rem`,
-            },
+            marginBottom: `3rem`,
           }}
         >
-          <div>
-            <TitledCopy
-              full
-              title={page.frontmatter.title}
-              paragraphs={page.frontmatter.form.descr}
-              css={{
-                marginBottom: `1.5rem`,
-                '& h2': {
-                  marginBottom: `1rem`,
-                },
-                '& div': {
-                  fontSize: `.9rem`,
-                },
-                [media.lessThan(`small`)]: {
-                  textAlign: `center`,
-                },
-              }}
-            />
+          <TitledCopy
+            full
+            title={page.frontmatter.title}
+            // paragraphs={page.frontmatter.form.descr}
+            css={{
+              marginBottom: `1.5rem`,
+              '& h2': {
+                marginBottom: `1rem`,
+              },
+              '& div': {
+                fontSize: `.9rem`,
+              },
+              [media.lessThan(`small`)]: {
+                textAlign: `center`,
+              },
+            }}
+          />
 
-            <form
-              action={process.env.GAIAMA_ENDPOINT_CONTACT}
-              method="post"
-              // onSubmit={this.handleSubmit}
-              css={{
-                maxWidth: `99%`,
-                [media.lessThan(`small`)]: {
-                  marginBottom: `3rem`,
+          <div
+            css={{
+              display: `flex`,
+              justifyContent: `space-between`,
+              [media.lessThan(`medium`)]: {
+                marginBottom: `2rem`,
+              },
+              '& > div': {
+                // position: `relative`,
+                // zIndex: 3,
+                marginBottom: `1.5rem`,
+                '& > a': {
+                  color: `#2d2a34`,
                 },
-                [media.greaterThan(`medium`)]: {
-                  width: `300px`,
+              },
+            }}
+          >
+            <div
+              css={{
+                '& svg': {
+                  color: colors.brands.facebook,
                 },
               }}
             >
-              <Email
-                name="email"
-                label={page.frontmatter.form.emailLabel}
-                value={this.state.email}
-                onInput={this.handleChange}
-              />
-              {this.state.emailError && <span>Wrong email!</span>}
-              <Textarea
-                name="message"
-                label={page.frontmatter.form.messageLabel}
-                // placeholder={page.frontmatter.cookieNote}
-                value={this.state.message}
-                onInput={this.handleChange}
-              />
-              <Button
-                onClick={e => console.log(`submit`)}
-                css={{
-                  ...styles.button,
-                  background: `#2d2a34`,
-                  color: colors.darkWhite,
-                }}
-              >
-                {page.frontmatter.form.submitLabel}
-              </Button>
-            </form>
+              <a href="https://" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={[`fab`, `facebook-square`]} size="lg" />
+              </a>
+            </div>
+            <div
+              css={{
+                '& svg *': {
+                  fill: `url(#InstagramGradient)`,
+                },
+              }}
+            >
+              <a href="https://" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={[`fab`, `instagram`]} size="lg" />
+              </a>
+            </div>
+            <div
+              css={{
+                '& svg': {
+                  color: colors.brands.youtube,
+                },
+              }}
+            >
+              <a href="https://" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={[`fab`, `youtube`]} size="lg" />
+              </a>
+            </div>
+            <div
+              css={{
+                '& svg': {
+                  color: colors.brands.patreon,
+                },
+              }}
+            >
+              <a href="https://" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={[`fab`, `patreon`]} size="lg" />
+              </a>
+            </div>
+            <div
+              css={{
+                '& svg': {
+                  color: colors.rss,
+                },
+              }}
+            >
+              <a href="/rss" target="_blank" rel="noopener noreferrer">
+                <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="lg" />
+              </a>
+            </div>
           </div>
 
+          <ContactForm
+            emailLabel={page.frontmatter.form.emailLabel}
+            emailPlaceholder={page.frontmatter.form.emailPlaceholder}
+            messageLabel={page.frontmatter.form.messageLabel}
+            consentLabel={page.frontmatter.form.consentLabel}
+            submitLabel={page.frontmatter.form.submitLabel}
+            lang={props.pathContext.lang}
+            emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
+            requiredLabel={page.frontmatter.errors.requiredLabel}
+            generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
+            // endpoint="https://gaiama-contact.now.sh"
+            endpoint="http://localhost:3000"
+          />
+        </div>
+
+        <div
+          css={{
+            display: `flex`,
+          }}
+        >
           <div>
             <TitledCopy
               full
               title={page.frontmatter.newsletter.title}
               paragraphs={page.frontmatter.newsletter.descr}
               css={{
-                marginBottom: `2.7rem`,
+                marginBottom: `1.3rem`,
                 '& h2': {
                   marginBottom: `1rem`,
                 },
@@ -158,134 +187,29 @@ class ContactPage extends Component {
                 },
               }}
             />
-            <form
-              action={process.env.GAIAMA_ENDPOINT_NEWSLETTER}
-              method="post"
-              onSubmit={this.handleSubmit}
-              css={{
-                // marginTop: `2.8rem`,
-                maxWidth: `99%`,
-                [media.greaterThan(`medium`)]: {
-                  width: `300px`,
-                },
-              }}
-            >
-              <Email
-                name="email"
-                label={page.frontmatter.form.emailLabel}
-                value={this.state.email}
-                onInput={this.handleChange}
-              />
-              {this.state.emailError && <span>Wrong email!</span>}
-              <Button
-                label="Submit"
-                onClick={e => console.log(`submit`)}
-                css={{
-                  ...styles.button,
-                  background: `#2d2a34`,
-                  color: colors.darkWhite,
-                }}
-              >
-                {page.frontmatter.form.submitLabel}
-              </Button>
-            </form>
-
-            <div
-              css={{
-                display: `flex`,
-                justifyContent: `space-around`,
-                '& > div': {
-                  position: `relative`,
-                  zIndex: 3,
-                  margin: `1.5rem 0`,
-                  '& > a': {
-                    color: `#2d2a34`,
-                  },
-                },
-              }}
-            >
-              <div
-                css={{
-                  '& svg': {
-                    color: colors.brands.facebook,
-                  },
-                }}
-              >
-                <a href="https://" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon
-                    icon={[`fab`, `facebook-square`]}
-                    size="lg"
-                  />
-                </a>
-              </div>
-              <div
-                css={{
-                  '& svg *': {
-                    fill: `url(#InstagramGradient)`,
-                  },
-                }}
-              >
-                <a href="https://" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={[`fab`, `instagram`]} size="lg" />
-                </a>
-              </div>
-              <div
-                css={{
-                  '& svg': {
-                    color: colors.brands.youtube,
-                  },
-                }}
-              >
-                <a href="https://" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={[`fab`, `youtube`]} size="lg" />
-                </a>
-              </div>
-              <div
-                css={{
-                  '& svg': {
-                    color: colors.brands.patreon,
-                  },
-                }}
-              >
-                <a href="https://" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={[`fab`, `patreon`]} size="lg" />
-                </a>
-              </div>
-              <div
-                css={{
-                  '& svg': {
-                    color: colors.rss,
-                  },
-                }}
-              >
-                <a href="/rss" target="_blank" rel="noopener noreferrer">
-                  <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="lg" />
-                </a>
-              </div>
-            </div>
+            <Newsletter
+              emailLabel={page.frontmatter.form.emailLabel}
+              emailPlaceholder={page.frontmatter.form.emailPlaceholder}
+              consentLabel={page.frontmatter.newsletter.consentLabel}
+              submitLabel={page.frontmatter.form.submitLabel}
+              lang={props.pathContext.lang}
+              emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
+              generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
+              // languageLabel="E-Mail Language"
+              // languages={props.data.languages.edges.reverse()}
+            />
           </div>
         </div>
-      </MainLayout>
-    )
-  }
+      </div>
+    </MainLayout>
+  )
+}
+ContactPage.propTypes = {
+  data: PropTypes.object,
+  pathContext: PropTypes.object,
 }
 
 export default ContactPage
-
-const styles = {
-  button: {
-    fontFamily: fontFamilies.accent,
-    fontSize: `1.5rem`,
-    width: `100%`,
-    border: `1px solid #ccc`,
-    background: `#fff`,
-    transition: `background-color .2s linear`,
-    '&:hover': {
-      background: colors.primaryLite,
-      color: colors.darkWhite,
-    },
-  },
-}
 
 export const query = graphql`
   query ContactPageQuery($lang: String!, $slug: String!) {
@@ -294,6 +218,7 @@ export const query = graphql`
     ...languages
     ...homepage
     ...menu
+    ...legal
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
@@ -315,15 +240,25 @@ export const query = graphql`
           emailLabel
           messageLabel
           submitLabel
+          consentLabel
         }
         newsletter {
           title
           descr
+          consentLabel
+        }
+        errors {
+          emailErrorLabel
+          requiredLabel
+          generalErrorLabel
         }
         assets {
           bg {
             image: childImageSharp {
-              sizes(maxWidth: 800, quality: 75) {
+              sizes(
+                maxWidth: 800
+                quality: 75 #duotone: { #  highlight: "#ffffff", #  shadow: "#ff0016" #}
+              ) {
                 ...GatsbyImageSharpSizes_noBase64
               }
             }

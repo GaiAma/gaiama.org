@@ -37,23 +37,17 @@ PaypalSuccessPage.propTypes = {
 export default PaypalSuccessPage
 
 export const query = graphql`
-  query PaypalSuccessPageQuery (
-    $lang: String!
-    $slug: String!
-  ) {
+  query PaypalSuccessPageQuery($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages
     ...homepage
     ...menu
+    ...legal
     ...NewsTicker
     ...newstickerLandscape
 
-    page: javascriptFrontmatter (
-      frontmatter: {
-        slug: { eq: $slug }
-      }
-    ) {
+    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
         translations {
           frontmatter {

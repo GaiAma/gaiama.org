@@ -13,6 +13,8 @@ import {
   screenReaderAndFocusable,
   focusOutlineNone,
   InstagramGradient,
+  maxWidthLayout,
+  maxWidthContent,
 } from '@/theme'
 
 import './fragments'
@@ -21,10 +23,21 @@ import 'typeface-quicksand'
 
 const isDev = process.env.NODE_ENV === `development`
 
-const getLangFactory = languages => lang => {
+const globalPolyfills = [
+  // `IntersectionObserver`,
+  `default`,
+  `Symbol`,
+]
+
+const getLangFactory = languages => (lang, alternate = false) => {
+  if (alternate) {
+    const alternates = languages.filter(l => l.node.frontmatter.id !== lang)
+    return alternates ? alternates.map(x => x.node.frontmatter) : []
+  }
   const _lang = languages.find(l => l.node.frontmatter.id === lang)
   return _lang ? _lang.node.frontmatter : {}
 }
+
 const generateMainMenu = items =>
   items
     .filter(({ node }) => node.frontmatter.menu === `main`)
@@ -35,31 +48,28 @@ const generateMainMenu = items =>
     }))
 
 const generateMetaMenu = ({ translations, getLang, menuItems }) =>
-  translations.map(
-    x => (
-      {
-        ...getLang(x.frontmatter.lang),
-        to: x.frontmatter.slug,
-      }
-    )
-  )
-  .concat(
-    menuItems
-      .filter(x => x.node.frontmatter.menu === `meta`)
-      .map(
-        ({ node }) => ({
+  translations
+    .map(x => ({
+      ...getLang(x.frontmatter.lang),
+      to: x.frontmatter.slug,
+    }))
+    .concat(
+      menuItems
+        .filter(x => x.node.frontmatter.menu === `meta`)
+        .map(({ node }) => ({
           title: node.frontmatter.title,
           titleShort: node.frontmatter.titleShort,
           icon: node.frontmatter.icon,
           to: node.frontmatter.slug,
         }))
-  )
+    )
 
 // const getI18nStore = (lang, messages) => ({
 //   [lang]: { translations: messages }
 // })
 
-const getTranslations = page => [
+const getTranslations = page =>
+  [
     ...(page.fields.translations || []),
     {
       frontmatter: {
@@ -68,12 +78,13 @@ const getTranslations = page => [
         title: page.frontmatter.title,
       },
     },
-  ].sort((a, b) =>
-    a.frontmatter.lang < b.frontmatter.lang
-      ? -1
-      : a.frontmatter.lang > b.frontmatter.lang
-        ? 1
-        : 0
+  ].sort(
+    (a, b) =>
+      a.frontmatter.lang < b.frontmatter.lang
+        ? -1
+        : a.frontmatter.lang > b.frontmatter.lang
+          ? 1
+          : 0
   )
 
 // i18n.init({
@@ -97,6 +108,7 @@ class MainLayout extends Component {
     data: PropTypes.object,
     wrapperStyles: PropTypes.object,
     pathContext: PropTypes.object,
+    localPolyfills: PropTypes.array,
   }
 
   static defaultProps = {
@@ -106,8 +118,8 @@ class MainLayout extends Component {
     },
   }
 
-  componentDidMount () {
-    function handleInstall (event) {
+  componentDidMount() {
+    function handleInstall(event) {
       console.log(`Thank you for installing our app!`, event)
     }
 
@@ -121,6 +133,7 @@ class MainLayout extends Component {
       pathContext,
       wrapperStyles,
       data: { site, SiteMeta, languages, homepage, page, menu },
+      localPolyfills,
     } = this.props
 
     const lang = pathContext.lang
@@ -129,20 +142,23 @@ class MainLayout extends Component {
     const getLang = getLangFactory(languages.edges)
     const menuItems = menu.edges || []
     const mainMenu = generateMainMenu(menuItems)
-    const metaMenu = generateMetaMenu({ translations, getLang, menuItems })
+    const metaMenu = generateMetaMenu({
+      translations,
+      getLang,
+      menuItems,
+    })
     const urlParams = QS.parse()
 
+    const polyfills = [...globalPolyfills, ...localPolyfills]
+
     return (
-      // <I18nextProvider
-      //   i18n={i18n}
-      //   initialLanguage={lang}
-      //   initialI18nStore={i18nStore}
-      // >
+      // <I18nextProvider //   i18n={i18n} //   initialLanguage={lang} //   initialI18nStore={i18nStore} // >
       <div
         css={{
           width: [`100%`, `100vw`],
-          maxWidth: `1440px`,
+          ...maxWidthLayout,
           margin: `0 auto`,
+          wordBreak: `keep-all`,
         }}
       >
         <Helmet
@@ -150,18 +166,51 @@ class MainLayout extends Component {
           defaultTitle={page.frontmatter.title}
         >
           <title>{page.frontmatter.title}</title>
-          <meta name="description" content="Sample" />
-          <meta name="keywords" content="sample, something" />
-          {translations.map(({ frontmatter }) => (
+          <meta
+            name="description"
+            itemProp="description"
+            content={page.frontmatter.summary || page.frontmatter.excerpt}
+          />
+
+          {/* facebook */}
+          <meta property="og:site_name" content="GaiAma" />
+          <meta
+            property="og:url"
+            content={`${site.siteMetadata.siteUrl}${page.frontmatter.slug}`}
+          />
+          <meta
+            property="og:locale"
+            content={getLang(page.frontmatter.lang).lc}
+          />
+          {getLang(page.frontmatter.lang, true).map(x => (
+            <meta property="og:locale:alternate" content={x.lc} key={x.lc} />
+          ))}
+          <meta property="og:title" content={page.frontmatter.title} />
+          <meta
+            property="og:description"
+            content={page.frontmatter.summary || page.frontmatter.excerpt}
+          />
+          {/* <meta property="og:image" content={``} /> */}
+          {/* <meta property="og:image:alt" content={`A shiny red apple with a bite taken out`} /> */}
+
+          {/* twitter */}
+          <meta property="twitter:site" content="@gaiama" />
+          <meta name="twitter:card" content="summary_large_image" />
+
+          {translations.map(({ frontmatter: t }) => (
             <link
               rel="alternate"
-              href={`${site.siteMetadata.siteUrl}${frontmatter.slug}`}
-              hrefLang={frontmatter.lang}
-              key={frontmatter.lang}
+              href={`${site.siteMetadata.siteUrl}${t.slug}`}
+              hrefLang={t.lang}
+              key={t.lang}
             />
           ))}
           {!isDev && (
-            <script src="https://cdn.polyfill.io/v2/polyfill.min.js?features=IntersectionObserver" />
+            <script
+              src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(
+                `,`
+              )}`}
+            />
           )}
           <html lang={lang} />
           {/* <body className={slugify(page.frontmatter.slug)} /> */}
@@ -175,8 +224,7 @@ class MainLayout extends Component {
         </a>
 
         <Header
-          title={homepage.frontmatter.header.title}
-          subtitle={homepage.frontmatter.header.subtitle}
+          homepage={homepage.frontmatter}
           meta={metaMenu}
           menu={mainMenu}
           logo={SiteMeta.frontmatter.assets.logo.image}
@@ -193,7 +241,7 @@ class MainLayout extends Component {
             margin: `0 auto`,
             padding: `3rem .8rem 1.45rem`,
             width: !wrapperStyles.width && `98%`,
-            maxWidth: `1280px`,
+            ...maxWidthContent,
             [breakPoints.minMdLandscape]: {
               width: !wrapperStyles.width && `90%`,
             },
@@ -210,6 +258,7 @@ class MainLayout extends Component {
           supportTitle={SiteMeta.frontmatter.footer.supportTitle}
           metaTitle={SiteMeta.frontmatter.footer.metaTitle}
           meta={SiteMeta.frontmatter.footer.meta}
+          legal={this.props.data.legal}
           bgImage={SiteMeta.frontmatter.assets.headerBg.image}
         />
 
@@ -230,7 +279,7 @@ export default MainLayout
 //   '& a': {
 //     color: colors.link,
 //     textDecoration: `none`,
-    
+
 //     '&:hover': {
 //       color: colors.linkHover,
 //       textDecoration: `none`,

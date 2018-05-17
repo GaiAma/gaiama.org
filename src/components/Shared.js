@@ -3,17 +3,45 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { colors, breakPoints, Box, fontFamilies, H2, fullPageWidth, media } from '@/theme'
+import {
+  colors,
+  breakPoints,
+  Box,
+  fontFamilies,
+  H2,
+  fullPageWidth,
+  media,
+} from '@/theme'
 import Lazy from '@/components/Lazy'
 import { mediaQuery } from '@/components/MediaQuery'
 import PatreonButton from '@/assets/become_a_patron_button.png'
 
 export const cryptos = [
-  { name: `Bitcoin`, symbol: `btc`, address: `11hwodfSrpaSEApEfh1QSryS1Teg3ApTV` },
-  { name: `Bitcoin Cash`, symbol: `bch`, address: `1EcXLKgLzq8LkQkvxFLtprLh8SzjuupizB` },
-  { name: `Ethereum`, symbol: `eth`, address: `0xFaE65E5CFdD4e2CF515C2a89a650Acd092EBDA37` },
-  { name: `Litecoin`, symbol: `ltc`, address: `LhJ9MFS8ffjxVFwmAemJvz2bDGMwHhCXUe` },
-  { name: `Dash`, symbol: `dash`, address: `XdkJiEL6UJStW1Hz5WWE4g41c5QsMwweio` },
+  {
+    name: `Bitcoin`,
+    symbol: `btc`,
+    address: `11hwodfSrpaSEApEfh1QSryS1Teg3ApTV`,
+  },
+  {
+    name: `Bitcoin Cash`,
+    symbol: `bch`,
+    address: `1EcXLKgLzq8LkQkvxFLtprLh8SzjuupizB`,
+  },
+  {
+    name: `Ethereum`,
+    symbol: `eth`,
+    address: `0xFaE65E5CFdD4e2CF515C2a89a650Acd092EBDA37`,
+  },
+  {
+    name: `Litecoin`,
+    symbol: `ltc`,
+    address: `LhJ9MFS8ffjxVFwmAemJvz2bDGMwHhCXUe`,
+  },
+  {
+    name: `Dash`,
+    symbol: `dash`,
+    address: `XdkJiEL6UJStW1Hz5WWE4g41c5QsMwweio`,
+  },
 ].map(x => ({
   ...x,
   icon: require(`cryptocurrency-icons/svg/color/${x.symbol}.svg`),
@@ -75,10 +103,7 @@ class CoinPicker extends Component {
                 },
               }}
             >
-              <img
-                src={x.icon}
-                alt={x.name}
-              />
+              <img src={x.icon} alt={x.name} />
               {selected.symbol === x.symbol && (
                 <FontAwesomeIcon icon="caret-down" size="lg" />
               )}
@@ -144,40 +169,52 @@ const SupportWidget = ({
     }}
     {...props}
   >
-    {artwork &&
-      <div css={{
-        display: `flex`,
-        alignItems: `flex-end`,
-        marginBottom: `.5rem`,
-        ...artworkWrapperStyles,
-      }}>
+    {artwork && (
+      <div
+        css={{
+          display: `flex`,
+          alignItems: `flex-end`,
+          marginBottom: `.5rem`,
+          '& .gatsby-image-outer-wrapper': {
+            zIndex: 1,
+          },
+          ...artworkWrapperStyles,
+        }}
+      >
         <Img
           resolutions={artwork.image.resolutions}
           sizes={artwork.image.sizes}
           css={{
             transform: `translateY(5rem)`,
             marginTop: `-5rem`,
+            maxWidth: `100vw`,
             ...artworkStyles,
           }}
         />
       </div>
-    }
+    )}
 
-    <Box oh css={{
-      background: !transparent && colors.lightBlue,
-      [media.lessThan(`large`)]: {
-        paddingTop: `3rem`,
-      },
-    }}>
-      {title && <H2
-        align="center"
-        mt="1rem"
-        fontSize="2rem"
-      >
-        {title}
-      </H2>}
+    <Box
+      oh
+      css={{
+        background: !transparent && colors.lightBlue,
+        [media.lessThan(`large`)]: {
+          paddingTop: `3rem`,
+        },
+      }}
+    >
+      {title && (
+        <H2
+          align="center"
+          mt="1rem"
+          mb={readMoreLink && `.4rem`}
+          fontSize="2rem"
+        >
+          {title}
+        </H2>
+      )}
 
-      {description &&
+      {description && (
         <p
           css={{
             textAlign: `center`,
@@ -187,82 +224,147 @@ const SupportWidget = ({
             __html: description,
           }}
         />
-      }
+      )}
 
-      <div css={{
-        margin: `2.5rem auto`,
-        display: `flex`,
-        justifyContent: `space-around`,
-        flexWrap: `wrap`,
-        width: `98%`,
-        maxWidth: `1280px`,
-        [breakPoints.minMdLandscape]: {
-          width: `85%`,
-        },
-      }}>
-        <Box flex column aICenter
+      {readMoreLink && (
+        <p
           css={{
-            [media.lessThan(`large`)]: {
-              margin: `1rem 0 3rem`,
-            },
+            textAlign: `center`,
+            fontSize: `.9rem`,
+          }}
+        >
+          <Link to={readMoreLink}>{readMoreLabel}</Link>
+        </p>
+      )}
+
+      <div
+        css={{
+          margin: `2.5rem auto`,
+          display: `flex`,
+          justifyContent: `space-around`,
+          flexWrap: `wrap`,
+          width: `98%`,
+          maxWidth: `1280px`,
+          [breakPoints.minMdLandscape]: {
+            width: `85%`,
+          },
+        }}
+      >
+        <Box
+          flex
+          column
+          aICenter
+          css={{
+            // [media.between(`small`, `large`)]: {
+            //   margin: `0 0 3rem`,
+            // },
             '&:hover > form': {
               transform: `scale(1.02)`,
             },
             '& > form': {
               marginBottom: 0,
+              '& [type="image"]': {
+                width: `150px`,
+              },
+              // [media.lessThan(`small`)]: {
+              //   transform: `scale(0.7)`,
+              // },
             },
           }}
         >
-          {
-            lang === `en`
-            ? (
-              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-              <input type="hidden" name="cmd" value="_s-xclick"/>
-              <input type="hidden" name="hosted_button_id" value="AR3R6U8M5SDKS"/>
-              <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!"/>
-              <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1"/>
-              </form>
-            ) : (
-              <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
-              <input type="hidden" name="cmd" value="_s-xclick"/>
-              <input type="hidden" name="hosted_button_id" value="W8AKGPB4K9TB6"/>
-              <input type="image" src="https://www.paypalobjects.com/de_DE/DE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."/>
-              <img alt="" border="0" src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif" width="1" height="1"/>
-              </form>
-            )
-          }
+          {lang === `en` ? (
+            <form
+              action="https://www.paypal.com/cgi-bin/webscr"
+              method="post"
+              target="_top"
+            >
+              <input type="hidden" name="cmd" value="_s-xclick" />
+              <input
+                type="hidden"
+                name="hosted_button_id"
+                value="AR3R6U8M5SDKS"
+              />
+              <input
+                type="image"
+                src="https://assets.gaiama.org/PayPal_yellow_button.png"
+                border="0"
+                name="submit"
+                alt="PayPal - The safer, easier way to pay online!"
+              />
+              <img
+                alt=""
+                border="0"
+                src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif"
+                width="1"
+                height="1"
+              />
+            </form>
+          ) : (
+            <form
+              action="https://www.paypal.com/cgi-bin/webscr"
+              method="post"
+              target="_top"
+            >
+              <input type="hidden" name="cmd" value="_s-xclick" />
+              <input
+                type="hidden"
+                name="hosted_button_id"
+                value="W8AKGPB4K9TB6"
+              />
+              <input
+                type="image"
+                src="https://assets.gaiama.org/PayPal_yellow_button.png"
+                border="0"
+                name="submit"
+                alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."
+              />
+              <img
+                alt=""
+                border="0"
+                src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif"
+                width="1"
+                height="1"
+              />
+            </form>
+          )}
         </Box>
-    
-        <Box flex column aICenter
+
+        <Box
+          flex
+          column
+          aICenter
           css={{
-            [media.lessThan(`large`)]: {
-              margin: `1rem 0 3rem`,
-            },
+            // [media.lessThan(`large`)]: {
+            //   margin: `1rem 0 3rem`,
+            // },
             '&:hover > a': {
               transform: `scale(1.02)`,
             },
           }}
         >
-          <a href="https://patreon.com/HappyGaiAma" target="_blank" rel="noopener noreferrer">
-            <img width="150px" src={PatreonButton} alt="Patreon"/>
+          <a
+            href="https://patreon.com/HappyGaiAma"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <img width="150px" src={PatreonButton} alt="Patreon" />
           </a>
         </Box>
-    
-        <Box flex column aICenter
+
+        <Box
+          flex
+          column
+          aICenter
           css={{
             [media.lessThan(`large`)]: {
               margin: `1rem 0 0`,
             },
           }}
         >
-          <CoinPicker
-            coins={
-              cryptos
-            }
-          />
+          <CoinPicker coins={cryptos} />
         </Box>
-    
-        {readMoreLink && (
+
+        {/* {readMoreLink && (
           <Box flex column aICenter>
             <Link
               to={readMoreLink}
@@ -283,7 +385,7 @@ const SupportWidget = ({
               {readMoreLabel}
             </Link>
           </Box>
-        )}
+        )} */}
       </div>
     </Box>
   </div>
@@ -306,21 +408,18 @@ SupportWidget.defaultProps = {
 export { SupportWidget }
 export const SupportWidgetFragment = graphql`
   fragment SupportWidget on RootQueryType {
-    SupportWidget: supportWidgetAml (
-      frontmatter: { lang: { eq: $lang } }
-    ) {
+    SupportWidget: supportWidgetAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         title
         readMoreLink
         readMoreLabel
       }
     }
-  }`
+  }
+`
 
 const InstagramFeed = ({ user, followLink, bg, images }) => {
-  const imgs = mediaQuery(`(max-width: 779px)`)
-    ? images.slice(0, 3)
-    : images
+  const imgs = mediaQuery(`(max-width: 779px)`) ? images.slice(0, 3) : images
 
   return (
     <div>
@@ -345,9 +444,9 @@ const InstagramFeed = ({ user, followLink, bg, images }) => {
             }}
           >
             <a
-              href={`https://www.instagram.com/p/${
-                x.node.code
-              }/?taken-by=${x.node.username}`}
+              href={`https://www.instagram.com/p/${x.node.code}/?taken-by=${
+                x.node.username
+              }`}
               target="_blank"
             >
               <Img
@@ -405,24 +504,22 @@ export { InstagramFeed }
 
 export const instaQuery = graphql`
   fragment instagram on RootQueryType {
-    instagram: instagramFeedAml (
-      frontmatter: { lang: { eq: $lang } }
-    ) {
+    instagram: instagramFeedAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         lang
         instagramUser
         followLink
         bg {
           image: childImageSharp {
-            resolutions(width: 240) {
-              ...GatsbyImageSharpResolutions
+            sizes(maxWidth: 1440, quality: 75) {
+              ...GatsbyImageSharpSizes
             }
           }
         }
       }
     }
 
-    instagramImages: allInstagramJson (limit: 4) {
+    instagramImages: allInstagramJson(limit: 4) {
       edges {
         node {
           id

@@ -8,8 +8,9 @@ import compose from 'ramda/src/compose'
 import map from 'ramda/src/map'
 import prop from 'ramda/src/prop'
 import merge from 'ramda/src/merge'
+import Media from 'react-media'
 import MainLayout from '@/components/MainLayout'
-import { ReactMedia, mediaQuery } from '@/components/MediaQuery'
+import { mediaQuery } from '@/components/MediaQuery'
 import { Pager, Paginator } from '@/components/Paginator'
 import { colors, gradients, media } from '@/theme'
 
@@ -76,8 +77,9 @@ const Image = ({
             >
               {description}
             </h2>
-            
-            {linkLabel}<br/>
+
+            {linkLabel}
+            <br />
             {article.title}
           </div>
         </figcaption>
@@ -111,19 +113,16 @@ const RenderRow = images => (
   </div>
 )
 
-const getImageRows = ({ linkLabel, imagesPerRow }) => compose(
-  map(RenderRow),
-  chunk(imagesPerRow),
-  map(
-    compose(
-      merge({ linkLabel }),
-      prop(`node`)
-    )
+const getImageRows = ({ linkLabel, imagesPerRow }) =>
+  compose(
+    map(RenderRow),
+    chunk(imagesPerRow),
+    map(compose(merge({ linkLabel }), prop(`node`)))
   )
-)
 
-const Images = ({ images, linkLabel, imagesPerRow }) =>
+const Images = ({ images, linkLabel, imagesPerRow }) => (
   <div>{getImageRows({ linkLabel, imagesPerRow })(images)}</div>
+)
 Images.propTypes = {
   images: PropTypes.array,
   linkLabel: PropTypes.string,
@@ -143,9 +142,7 @@ const GalleryPage = props => {
     // total,
   } = props.pathContext
 
-  const imagesPerRow = mediaQuery(`(min-width: 425px)`)
-    ? 3
-    : 2
+  const imagesPerRow = mediaQuery(`(min-width: 425px)`) ? 3 : 2
 
   return (
     <MainLayout
@@ -167,9 +164,9 @@ const GalleryPage = props => {
         {next > 0 && <link rel="next" href={`${slug}/${next}`} />}
       </Helmet>
 
-      <ReactMedia
-        mq="(max-width: 1024px)"
-        onMatch={() => (
+      <Media
+        query="(max-width: 1024px)"
+        render={() => (
           <p
             css={{
               textAlign: `center`,
@@ -182,7 +179,9 @@ const GalleryPage = props => {
       />
 
       <Images
-        images={props.data.images.edges}
+        images={props.data.images.edges.filter(
+          ({ node }) => node && node.filename
+        )}
         linkLabel={props.data.page.frontmatter.imageLinkLabel}
         imagesPerRow={imagesPerRow}
       />
@@ -195,14 +194,18 @@ const GalleryPage = props => {
         nextPageLabel={props.data.Paginator.frontmatter.nextPageLabel}
         nextPageAriaLabel={props.data.Paginator.frontmatter.nextPageAriaLabel}
         previousPageLabel={props.data.Paginator.frontmatter.previousPageLabel}
-        previousPageAriaLabel={props.data.Paginator.frontmatter.previousPageAriaLabel}
+        previousPageAriaLabel={
+          props.data.Paginator.frontmatter.previousPageAriaLabel
+        }
       />
 
       <Paginator
         pagination={pagination}
         pageNr={pageNr}
         slug={slug}
-        paginationNavAriaLabel={props.data.Paginator.frontmatter.paginationNavAriaLabel}
+        paginationNavAriaLabel={
+          props.data.Paginator.frontmatter.paginationNavAriaLabel
+        }
         currentAriaLabel={props.data.Paginator.frontmatter.currentAriaLabel}
         pageNrAriaLabel={props.data.Paginator.frontmatter.pageNrAriaLabel}
       />
@@ -227,6 +230,7 @@ export const query = graphql`
     ...languages
     ...homepage
     ...menu
+    ...legal
     ...Paginator
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {

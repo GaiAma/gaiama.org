@@ -63,7 +63,7 @@ const NewsTicker = ({
             layout={layout}
             css={{
               marginBottom: `3rem`,
-              width: `60%`,
+              width: `90%`,
               maxWidth: `370px`,
               [media.greaterThan(`medium`)]: {
                 width: `30%`,

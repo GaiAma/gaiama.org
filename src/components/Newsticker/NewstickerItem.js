@@ -2,51 +2,39 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
-import summarize from '@/utils/summarize'
 import { fontFamilies } from '@/theme'
 
-const NewstickerItem = ({
-  item,
-  readmoreLabel,
-  layout,
-  ...props
-}) => {
-  const coverImage = item.frontmatter.cover &&
-    item.frontmatter.cover.image.resolutions
+const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
+  const coverImage =
+    item.frontmatter.cover && item.frontmatter.cover.image.resolutions
 
   return (
     <div {...props}>
-      <div css={{
-        display: `flex`,
-        flexDirection: layout === `row` && `column`,
-      }}>
-        {coverImage &&
-          <Link
-            to={item.frontmatter.slug}
-            css={styles.imageWrapper(layout)}
-          >
+      <div
+        css={{
+          display: `flex`,
+          flexDirection: layout === `row` && `column`,
+        }}
+      >
+        {coverImage && (
+          <Link to={item.frontmatter.slug} css={styles.imageWrapper(layout)}>
             <Img resolutions={coverImage} css={styles.image} />
-          </Link>}
+          </Link>
+        )}
 
         <div>
           <h2 css={styles.title(layout)}>
-            <Link to={item.frontmatter.slug}>
-              {item.frontmatter.title}
-            </Link>
+            <Link to={item.frontmatter.slug}>{item.frontmatter.title}</Link>
           </h2>
 
           <p css={styles.excerpt}>
-            {summarize(
-              item.frontmatter.summary || item.html,
-              140 - item.frontmatter.title.length
-            )}
+            {item.excerpt || item.frontmatter.summary}
 
-            {readmoreLabel && <Link
-              to={item.frontmatter.slug}
-              css={styles.readmoreLink}
-            >
-              {readmoreLabel}
-            </Link>}
+            {readmoreLabel && (
+              <Link to={item.frontmatter.slug} css={styles.readmoreLink}>
+                {readmoreLabel}
+              </Link>
+            )}
           </p>
         </div>
       </div>

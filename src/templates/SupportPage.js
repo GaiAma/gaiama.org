@@ -7,13 +7,7 @@ import MainLayout from '@/components/MainLayout'
 import { SupportWidget } from '@/components/Shared'
 import CheckMark from '@/assets/check.png'
 import TitledCopy from '@/components/TitledCopy'
-import {
-  colors,
-  fullPageWidth,
-  media,
-  fontFamilies,
-  visible,
-} from '../theme'
+import { colors, fullPageWidth, media, fontFamilies, visible } from '../theme'
 
 const SupportPage = props => {
   const { frontmatter } = props.data.page
@@ -24,10 +18,10 @@ const SupportPage = props => {
     float: `left`,
     marginRight: `1rem`,
   })
-  const [neighbor, support] =
-    [frontmatter.intro.neighbor, frontmatter.intro.support].map((x, i) =>
-      `<span class="${initialStyle}">${i + 1}.</span>${x}`
-    )
+  const [neighbor, support] = [
+    frontmatter.intro.neighbor,
+    frontmatter.intro.support,
+  ].map((x, i) => `<span class="${initialStyle}">${i + 1}.</span>${x}`)
   return (
     <MainLayout {...props}>
       <TitledCopy
@@ -40,15 +34,17 @@ const SupportPage = props => {
           },
         }}
       />
-      
-      <div css={{
-        display: `flex`,
-        justifyContent: `space-around`,
-        [media.lessThan(`medium`)]: {
-          display: `none`,
-        },
-      }}>
-        {[`arrow_left`, `arrow_right`].map(x =>
+
+      <div
+        css={{
+          display: `flex`,
+          justifyContent: `space-around`,
+          [media.lessThan(`medium`)]: {
+            display: `none`,
+          },
+        }}
+      >
+        {[`arrow_left`, `arrow_right`].map(x => (
           <Img
             sizes={props.data.page.frontmatter.assets[x].image.sizes}
             key={x}
@@ -58,158 +54,188 @@ const SupportPage = props => {
             })}
             css={{ width: `112px` }}
           />
-        )}
+        ))}
       </div>
 
-      <div css={{
-        display: `flex`,
-        [media.lessThan(`medium`)]: {
-          flexDirection: `column`,
-        },
-        [media.greaterThan(`medium`)]: {
-          justifyContent: `space-between`,
-          '& > div': {
-            width: `50%`,
-          },
-        },
-      }}>
-        <div css={{
-          border: `none`,
-          position: `relative`,
+      <div
+        css={{
+          display: `flex`,
           [media.lessThan(`medium`)]: {
-            marginBottom: `2rem`,
+            flexDirection: `column`,
           },
           [media.greaterThan(`medium`)]: {
-            paddingRight: `3rem`,
+            justifyContent: `space-between`,
+            '& > div': {
+              width: `50%`,
+            },
           },
-          '&:after': {
-            content: `""`,
-            height: `1px`,
-            width: `100%`,
-            position: `absolute`,
-            display: `block`,
-            right: `0`,
-            bottom: `0`,
-            background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+        }}
+      >
+        <div
+          css={{
+            border: `none`,
+            position: `relative`,
             [media.lessThan(`medium`)]: {
-              left: `0`,
+              marginBottom: `2rem`,
             },
             [media.greaterThan(`medium`)]: {
-              height: `100%`,
-              width: `1px`,
-              top: `0`,
-              background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+              paddingRight: `3rem`,
             },
-          },
-        }}>
+            '&:after': {
+              content: `""`,
+              height: `1px`,
+              width: `100%`,
+              position: `absolute`,
+              display: `block`,
+              right: `0`,
+              bottom: `0`,
+              background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+              [media.lessThan(`medium`)]: {
+                left: `0`,
+              },
+              [media.greaterThan(`medium`)]: {
+                height: `100%`,
+                width: `1px`,
+                top: `0`,
+                background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+              },
+            },
+          }}
+        >
           <p dangerouslySetInnerHTML={{ __html: neighbor }} />
         </div>
 
-        <div css={{
-          [media.greaterThan(`medium`)]: {
-            paddingLeft: `3rem`,
-          },
-        }}>
+        <div
+          css={{
+            [media.greaterThan(`medium`)]: {
+              paddingLeft: `3rem`,
+            },
+          }}
+        >
           <div>
             <p dangerouslySetInnerHTML={{ __html: support }} />
           </div>
         </div>
       </div>
 
-      <div css={{
-        position: `relative`,
-        marginBottom: `3rem`,
-        ...fullPageWidth,
-      }}>
-        <div css={{
-          display: `flex`,
-          justifyContent: `flex-end`,
-          marginBottom: `.5rem`,
-        }}>
-          {<Img
-            sizes={props.data.page.frontmatter.assets.parrots.image.sizes}
-            css={{
-              transform: `translateY(3rem)`,
-              marginTop: `-3rem`,
-              width: `300px`,
-              [media.greaterThan(`medium`)]: {
-                marginTop: `-8rem`,
-                width: `450px`,
-              },
-              '& img': {
-                margin: `0`,
-              },
-            }}
-          />}
+      <div
+        css={{
+          position: `relative`,
+          marginBottom: `3rem`,
+          ...fullPageWidth,
+        }}
+      >
+        <div
+          css={{
+            display: `flex`,
+            justifyContent: `flex-end`,
+            marginBottom: `.5rem`,
+          }}
+        >
+          {
+            <Img
+              sizes={props.data.page.frontmatter.assets.parrots.image.sizes}
+              css={{
+                transform: `translateY(3rem)`,
+                marginTop: `-3rem`,
+                width: `300px`,
+                [media.greaterThan(`medium`)]: {
+                  marginTop: `-8rem`,
+                  width: `450px`,
+                },
+                '& img': {
+                  margin: `0`,
+                },
+              }}
+            />
+          }
         </div>
 
-        <div css={{
-          background: colors.lightBlue,
-          display: `flex`,
-          justifyContent: `space-around`,
-          marginBottom: `5rem`,
-          '& > div': {
-            position: `relative`,
-            zIndex: 3,
-            margin: `2.5rem 0`,
-            '& > a': {
-              color: colors.black,
-              [media.lessThan(`medium`)]: {
-                fontSize: `.7rem`,
+        <div
+          css={{
+            background: colors.lightBlue,
+            display: `flex`,
+            justifyContent: `space-around`,
+            marginBottom: `5rem`,
+            '& > div': {
+              position: `relative`,
+              zIndex: 3,
+              margin: `2.5rem 0`,
+              '& > a': {
+                color: colors.black,
+                [media.lessThan(`medium`)]: {
+                  fontSize: `.7rem`,
+                },
               },
             },
-          },
-        }}>
-          <div css={{
-            '&:hover svg': {
-              color: colors.brands.facebook,
-            },
-          }}>
+          }}
+        >
+          <div
+            css={{
+              '&:hover svg': {
+                color: colors.brands.facebook,
+              },
+            }}
+          >
             <a href="https://" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={[`fab`, `facebook-square`]} size="3x" />
             </a>
           </div>
-          <div css={{
-            '&:hover svg *': {
-              fill: `url(#InstagramGradient)`,
-            },
-          }}>
+          <div
+            css={{
+              '&:hover svg *': {
+                fill: `url(#InstagramGradient)`,
+              },
+            }}
+          >
             <a href="https://" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={[`fab`, `instagram`]} size="3x" />
             </a>
           </div>
-          <div css={{
-            '&:hover svg': {
-              color: colors.brands.youtube,
-            },
-          }}>
+          <div
+            css={{
+              '&:hover svg': {
+                color: colors.brands.youtube,
+              },
+            }}
+          >
             <a href="https://" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={[`fab`, `youtube`]} size="3x" />
             </a>
           </div>
-          <div css={{
-            '&:hover svg': {
-              color: colors.brands.patreon,
-            },
-          }}>
+          <div
+            css={{
+              '&:hover svg': {
+                color: colors.brands.patreon,
+              },
+            }}
+          >
             <a href="https://" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={[`fab`, `patreon`]} size="3x" />
             </a>
           </div>
-          <div css={{
-            '&:hover svg': {
-              color: `#73989a`,
-            },
-          }}>
-            <a href={props.data.page.frontmatter.contactLink} target="_blank" rel="noopener noreferrer">
+          <div
+            css={{
+              '&:hover svg': {
+                color: `#73989a`,
+              },
+            }}
+          >
+            <a
+              href={props.data.page.frontmatter.contactLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={[`fas`, `newspaper`]} size="3x" />
             </a>
           </div>
-          <div css={{
-            '&:hover svg': {
-              color: colors.rss,
-            },
-          }}>
+          <div
+            css={{
+              '&:hover svg': {
+                color: colors.rss,
+              },
+            }}
+          >
             <a href="https://" target="_blank" rel="noopener noreferrer">
               <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="3x" />
             </a>
@@ -221,45 +247,57 @@ const SupportPage = props => {
         centered
         title={frontmatter.getIdea.title}
         css={{
-          '& > h2': { marginBottom: `.7rem` },
-          '& > div': { fontSize: `1rem` },
+          '& > h2': {
+            marginBottom: `.7rem`,
+            [media.lessThan(`medium`)]: {
+              fontSize: `2rem`,
+            },
+          },
+          '& > div': {
+            fontSize: `.9rem`,
+            [media.greaterThan(`medium`)]: {
+              fontSize: `1rem`,
+            },
+          },
         }}
       >
         {frontmatter.getIdea.subtitle}
       </TitledCopy>
 
-      <div css={{
-        margin: `3rem 0 6rem`,
-        display: `flex`,
-        [media.lessThan(`small`)]: {
-          flexDirection: `column`,
-          alignItems: `center`,
-          '& div + div': {
-            marginTop: `1rem`,
-          },
-        },
-        [media.greaterThan(`small`)]: {
-          justifyContent: `space-between`,
-        },
-        '& > div': {
-          position: `relative`,
-          textAlign: `center`,
-          color: colors.darkWhite,
-          fontSize: `.98rem`,
+      <div
+        css={{
+          margin: `3rem 0 6rem`,
           display: `flex`,
-          alignItems: `center`,
+          [media.lessThan(`small`)]: {
+            flexDirection: `column`,
+            alignItems: `center`,
+            '& div + div': {
+              marginTop: `1rem`,
+            },
+          },
           [media.greaterThan(`small`)]: {
-            width: `19%`,
+            justifyContent: `space-between`,
           },
           '& > div': {
-            transition: `transform .5s`,
-            width: `100%`,
+            position: `relative`,
+            textAlign: `center`,
+            color: colors.darkWhite,
+            fontSize: `.98rem`,
+            display: `flex`,
+            alignItems: `center`,
+            [media.greaterThan(`small`)]: {
+              width: `19%`,
+            },
+            '& > div': {
+              transition: `transform .5s`,
+              width: `100%`,
+            },
+            '&:hover > div': {
+              transform: `scale(1.06)`,
+            },
           },
-          '&:hover > div': {
-            transform: `scale(1.06)`,
-          },
-        },
-      }}>
+        }}
+      >
         {frontmatter.getIdea.insights.map((x, i) => (
           <div key={i}>
             <div
@@ -302,73 +340,77 @@ const SupportPage = props => {
         ))}
       </div>
 
-      <div css={{
-        background: colors.lightBlue,
-        position: `relative`,
-        padding: `2rem 1rem`,
-        ...fullPageWidth,
-      }}>
-        <div css={{
-          [media.greaterThan(`small`)]: {
-            display: `flex`,
-            justifyContent: `center`,
-          },
-          '& > div': {
+      <div
+        css={{
+          background: colors.lightBlue,
+          position: `relative`,
+          padding: `2rem 1rem`,
+          ...fullPageWidth,
+        }}
+      >
+        <div
+          css={{
             [media.greaterThan(`small`)]: {
-              width: `47%`,
-              '&:first-child': {
-                paddingRight: `3rem`,
-                position: `relative`,
-                '&:after': {
-                  content: `""`,
-                  height: `100%`,
-                  width: `1px`,
-                  position: `absolute`,
-                  display: `block`,
-                  top: `0`,
-                  right: `0`,
-                  background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+              display: `flex`,
+              justifyContent: `center`,
+            },
+            '& > div': {
+              [media.greaterThan(`small`)]: {
+                width: `47%`,
+                '&:first-child': {
+                  paddingRight: `3rem`,
+                  position: `relative`,
+                  '&:after': {
+                    content: `""`,
+                    height: `100%`,
+                    width: `1px`,
+                    position: `absolute`,
+                    display: `block`,
+                    top: `0`,
+                    right: `0`,
+                    background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+                  },
                 },
-              },
-              '&:last-child': {
-                paddingLeft: `3rem`,
+                '&:last-child': {
+                  paddingLeft: `3rem`,
+                },
               },
             },
-          },
-        }}>
+          }}
+        >
           {[`left`, `right`].map(x => (
-            <div
-              key={x}
-              css={{
-              }}
-            >
-              <h3 css={{
-                textAlign: `center`,
-                fontSize: `1.8rem`,
-              }}>
+            <div key={x} css={{}}>
+              <h3
+                css={{
+                  textAlign: `center`,
+                  fontSize: `1.8rem`,
+                }}
+              >
                 {frontmatter.checklists[x].title}
               </h3>
-        
-              <ul css={{
-                listStyle: `none`,
-                marginLeft: `3rem`,
-                '& > li': {
-                  position: `relative`,
-                  fontSize: `.9rem`,
-                },
-                '& > li:not(:last-child)': {
-                  marginBottom: `1.3rem`,
-                },
-                '& > li:last-child': {
-                  marginBottom: 0,
-                },
-                '& > li:before': {
-                  content: `url(${CheckMark})`,
-                  position: `absolute`,
-                  left: `-3rem`,
-                  top: `0.4rem`,
-                },
-              }}>
+
+              <ul
+                css={{
+                  listStyle: `none`,
+                  marginLeft: `3rem`,
+                  '& > li': {
+                    position: `relative`,
+                    fontSize: `.9rem`,
+                  },
+                  '& > li:not(:last-child)': {
+                    marginBottom: `1.3rem`,
+                  },
+                  '& > li:last-child': {
+                    marginBottom: 0,
+                  },
+                  '& > li:before': {
+                    content: `url(${CheckMark})`,
+                    position: `absolute`,
+                    left: `-3rem`,
+                    top: `0.4rem`,
+                  },
+                }}
+              >
                 {frontmatter.checklists[x].items.map((x, i) => (
                   <li key={i}>{x}</li>
                 ))}
@@ -380,16 +422,24 @@ const SupportPage = props => {
 
       <TitledCopy
         centered
-        css={{ margin: `5rem auto 0` }}
         title={frontmatter.outro.title}
         paragraphs={frontmatter.outro.text}
+        css={{
+          margin: `5rem auto 0`,
+          [media.lessThan(`medium`)]: {
+            '& div': {
+              fontSize: `.9rem`,
+              textAlign: `center`,
+            },
+          },
+        }}
       />
 
       <SupportWidget
         title={props.data.SupportWidget.frontmatter.title}
         artwork={props.data.page.frontmatter.assets.sidebarArtwork}
         lang={props.pathContext.lang}
-        css={{ margin: `0 0 5rem` }}
+        css={{ margin: `3rem 0 5rem` }}
         artworkStyles={{
           width: `350px`,
         }}
@@ -406,22 +456,16 @@ SupportPage.propTypes = {
 export default SupportPage
 
 export const query = graphql`
-  query SupportPageQuery(
-    $lang: String!
-    $slug: String!
-  ) {
+  query SupportPageQuery($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages
     ...homepage
     ...menu
+    ...legal
     ...SupportWidget
-    
-    page: javascriptFrontmatter (
-      frontmatter: {
-        slug: { eq: $slug }
-      }
-    ) {
+
+    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
         translations {
           frontmatter {
@@ -431,7 +475,7 @@ export const query = graphql`
           }
         }
       }
-    	frontmatter {
+      frontmatter {
         title
         lang
         slug

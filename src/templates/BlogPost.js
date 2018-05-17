@@ -5,19 +5,14 @@ import rehypeReact from 'rehype-react'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
 import ShareWidget from '@/components/ShareWidget'
-import TitledCopy from '@/components/TitledCopy'
+// import TitledCopy from '@/components/TitledCopy'
 import { SupportWidget } from '@/components/Shared'
 import Newsticker from '@/components/Newsticker'
-import summarize from '@/utils/summarize'
-import {
-  colors,
-  fontFamilies,
-  gradients,
-  media,
-} from '@/theme'
+import { colors, fontFamilies, gradients, media } from '@/theme'
 
 const BlogPost = props => {
   const { page: post, BlogPost, NewsTicker } = props.data
+  const publishedTime = new Date(parseInt(post.frontmatter.date))
 
   return (
     <MainLayout {...props}>
@@ -26,15 +21,35 @@ const BlogPost = props => {
         meta={[
           {
             name: `description`,
-            content: summarize(post.frontmatter.summary || post.html),
+            content: post.excerpt || post.frontmatter.summary,
           },
+          {
+            property: `og:type`,
+            content: `article`,
+          },
+          {
+            property: `og:image`,
+            content: `${props.data.site.siteMetadata.siteUrl}${
+              post.frontmatter.cover.publicURL
+            }`,
+          },
+          {
+            property: `article:published_time`,
+            itemprop: `datePublished`,
+            content: publishedTime.toISOString(),
+          },
+          // { property: `article:author`, content: `` },
+          // { property: `article:section`, content: `Category` },
+          // { property: `article:tag`, content: `Tags` },
+          // { property: `article:tag`, content: `Tags` },
         ]}
       />
 
-      <article>
+      <article itemScope itemType="https://schema.org/BlogPosting">
         <PostHeader
           title={post.frontmatter.title}
-          dateTime={post.fields.dateTime}
+          datetime={post.fields.dateTime}
+          publishedTime={publishedTime}
           dateStr={post.frontmatter.dateStr}
         />
 
@@ -43,24 +58,33 @@ const BlogPost = props => {
 
       <ShareWidget
         label={BlogPost.frontmatter.shareLabel}
-        css={{ marginBottom: `4rem` }}
+        css={{
+          margin: `0 auto 4rem`,
+          maxWidth: `760px`,
+        }}
       />
 
-      <TitledCopy
+      {/* <TitledCopy
         centered
         title={BlogPost.frontmatter.SupportWidget.title}
         paragraphs={BlogPost.frontmatter.SupportWidget.description}
-        css={{ margin: `0 auto 3rem` }}
-      />
+        css={{
+          margin: `0 auto 3rem`,
+          [media.lessThan(`medium`)]: {
+            '& h2': { fontSize: `2rem` },
+            '& div': { fontSize: `.9rem` },
+          },
+        }}
+      /> */}
 
       <SupportWidget
-        readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
-        readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
+        title={BlogPost.frontmatter.SupportWidget.title}
+        description={BlogPost.frontmatter.SupportWidget.description}
         lang={props.pathContext.lang}
         css={{ margin: `0 0 3rem` }}
       />
 
-      {post.fields.suggested &&
+      {post.fields.suggested && (
         <Newsticker
           items={post.fields.suggested}
           title={BlogPost.frontmatter.relatedArticlesLabel}
@@ -69,7 +93,7 @@ const BlogPost = props => {
           readmoreLabel={NewsTicker.frontmatter.readmoreLabel}
           layout="row"
         />
-      }
+      )}
 
       <div
         css={{
@@ -77,7 +101,11 @@ const BlogPost = props => {
           justifyContent: `center`,
           textAlign: `center`,
           margin: `2rem auto 3rem`,
-          width: `80%`,
+          overflow: `hidden`,
+          width: `99%`,
+          [media.greaterThan(`medium`)]: {
+            width: `80%`,
+          },
           position: `relative`,
           '&:before': {
             content: `""`,
@@ -100,23 +128,26 @@ const BlogPost = props => {
             background: `#fff`,
           }}
         >
-          {[`newer`, `all`, `older`].map(x => (
-            post.fields[x] && <div
-              key={post.fields[x].frontmatter.slug}
-              css={{
-                color: `#c3c3c3`,
-                padding: `.5rem`,
-                margin: `0 2rem`,
-              }}
-            >
-              <Link
-                to={post.fields[x].frontmatter.slug}
-                title={post.fields[x].frontmatter.title}
-              >
-                {BlogPost.frontmatter.pager[x]}
-              </Link>
-            </div>
-          ))}
+          {[`older`, `all`, `newer`].map(
+            x =>
+              post.fields[x] && (
+                <div
+                  key={post.fields[x].frontmatter.slug}
+                  css={{
+                    color: `#c3c3c3`,
+                    padding: `.5rem`,
+                    margin: `0 2rem`,
+                  }}
+                >
+                  <Link
+                    to={post.fields[x].frontmatter.slug}
+                    title={post.fields[x].frontmatter.title}
+                  >
+                    {BlogPost.frontmatter.pager[x]}
+                  </Link>
+                </div>
+              )
+          )}
         </div>
       </div>
     </MainLayout>
@@ -133,95 +164,102 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const query = graphql`
-         query BlogPostQuery($lang: String!, $slug: String!) {
-           ...siteData
-           ...SiteMeta
-           ...languages
-           ...homepage
-           ...menu
-           ...SupportWidget
-           ...NewsTicker
+  query BlogPostQuery($lang: String!, $slug: String!) {
+    ...siteData
+    ...SiteMeta
+    ...languages
+    ...homepage
+    ...menu
+    ...legal
+    ...SupportWidget
+    ...NewsTicker
 
-           BlogPost: blogPostAml(frontmatter: { lang: { eq: $lang } }) {
-             frontmatter {
-               shareLabel
-               relatedArticlesLabel
-               SupportWidget {
-                 title
-                 description
-               }
-               pager {
-                 older
-                 newer
-                 all
-               }
-             }
-           }
+    BlogPost: blogPostAml(frontmatter: { lang: { eq: $lang } }) {
+      frontmatter {
+        shareLabel
+        relatedArticlesLabel
+        SupportWidget {
+          title
+          description
+        }
+        pager {
+          older
+          newer
+          all
+        }
+      }
+    }
 
-           page: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-             fields {
-               dateTime
-               translations {
-                 frontmatter {
-                   title
-                   lang
-                   slug
-                 }
-               }
-               newer {
-                 frontmatter {
-                   title
-                   slug
-                 }
-               }
-               all {
-                 frontmatter {
-                   title
-                   slug
-                 }
-               }
-               older {
-                 frontmatter {
-                   title
-                   slug
-                 }
-               }
-               suggested {
-                 html
-                 frontmatter {
-                   id
-                   title
-                   lang
-                   slug
-                   summary
-                   cover {
-                     image: childImageSharp {
-                       resolutions(width: 370, height: 150, cropFocus: ENTROPY, quality: 75) {
-                         ...GatsbyImageSharpResolutions_withWebp
-                       }
-                     }
-                   }
-                 }
-               }
-             }
-             htmlAst
-             html
-             frontmatter {
-               title
-               id
-               oldId
-               slug
-               lang
-               status
-               created
-               published
-               dateStr
-               date
-               summary
-             }
-           }
-         }
-       `
+    page: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+      fields {
+        translations {
+          frontmatter {
+            title
+            lang
+            slug
+          }
+        }
+        newer {
+          frontmatter {
+            title
+            slug
+          }
+        }
+        all {
+          frontmatter {
+            title
+            slug
+          }
+        }
+        older {
+          frontmatter {
+            title
+            slug
+          }
+        }
+        suggested {
+          excerpt(pruneLength: 135)
+          frontmatter {
+            id
+            title
+            lang
+            slug
+            summary
+            cover {
+              image: childImageSharp {
+                resolutions(
+                  width: 370
+                  height: 150
+                  cropFocus: ENTROPY
+                  quality: 75
+                ) {
+                  ...GatsbyImageSharpResolutions_withWebp
+                }
+              }
+            }
+          }
+        }
+      }
+      htmlAst
+      frontmatter {
+        title
+        id
+        oldId
+        slug
+        lang
+        status
+        created
+        published
+        dateStr
+        date
+        summary
+        cover {
+          publicURL
+        }
+      }
+    }
+  }
+`
 
 const GaimaImage = ({ aspectRatio, children }) => (
   <div css={{ flex: aspectRatio }}>{children}</div>
@@ -230,34 +268,46 @@ GaimaImage.propTypes = {
   aspectRatio: PropTypes.string,
 }
 
-// const GaimaVideo = ({ children }) => (
-//   <iframe src={children} title={children}></iframe>
-// )
+const GaimaVideo = ({ preview, src, width, height }) => (
+  // <iframe src={children} title={children}></iframe>
+  <div>
+    <img src={preview} alt="video preview" width={width} height={height} />
+    <iframe src={src} width={width} height={height} title="youtube video" />
+  </div>
+)
+GaimaVideo.propTypes = {
+  preview: PropTypes.string,
+  src: PropTypes.string,
+  width: PropTypes.string,
+  height: PropTypes.string,
+}
 
 const renderAst = new rehypeReact({
   createElement,
   components: {
     'gaiama-image': GaimaImage,
     'gaiama-link': Link,
-    // 'embed-video': GaimaVideo,
+    'embed-video': GaimaVideo,
   },
 }).Compiler
 
-const PostHeader = ({ title, dateTime, dateStr }) => (
+const PostHeader = ({ title, dateTime, publishedTime, dateStr }) => (
   <div
     css={{
       textAlign: `center`,
-      marginBottom: `3rem`,
+      margin: 0,
     }}
   >
-    <h1 css={{ marginBottom: `.5rem` }}>{title}</h1>
+    <h1 itemProp="headline" css={{ margin: 0 }}>
+      {title}
+    </h1>
 
     <div
       css={{
         display: `block`,
         textAlign: `center`,
         fontSize: `.8rem`,
-        margin: `-.5rem auto 0`,
+        margin: `1rem auto 0`,
         width: `30%`,
         position: `relative`,
         '&:before': {
@@ -274,7 +324,9 @@ const PostHeader = ({ title, dateTime, dateStr }) => (
       }}
     >
       <time
-        dateTime={dateTime}
+        itemProp="datePublished"
+        content={publishedTime.toISOString()}
+        dateTime={publishedTime.toISOString()}
         css={{
           position: `relative`,
           display: `inline-block`,
@@ -291,6 +343,7 @@ const PostHeader = ({ title, dateTime, dateStr }) => (
 PostHeader.propTypes = {
   title: PropTypes.string.isRequired,
   dateTime: PropTypes.string,
+  publishedTime: PropTypes.object,
   dateStr: PropTypes.string,
 }
 
@@ -299,18 +352,27 @@ const PostBody = ({ children }) => (
     css={{
       wordBreak: `break-word`,
       wordWrap: `break-word`,
-      '& h2, & h3, & h4, & h5, & h6': {
-        textAlign: `center`,
-      },
-      '& h3': { fontSize: `1.7rem` },
-      '& div > *:not(.inline-gallery)': {
+      '& > div > *': {
         maxWidth: [`760px`, `80ch`],
+        marginTop: `2.5rem`,
+        marginBottom: 0,
+        // we reset inline-galleries later
         marginRight: `auto`,
         marginLeft: `auto`,
       },
+      '& h2, & h3, & h4, & h5, & h6': {
+        marginTop: `2rem`,
+        textAlign: `center`,
+      },
+      '& h3': { fontSize: `1.7rem` },
+      '& p:first-child': {
+        marginTop: `3rem`,
+      },
+      '& p + p': {
+        marginTop: `1.5rem`,
+      },
       '& ul, & ol': {
         listStylePosition: `inside`,
-        marginBottom: `4rem`,
       },
       // '& .text-centered': {
       //   textAlign: `center`,
@@ -319,14 +381,14 @@ const PostBody = ({ children }) => (
       //   marginTop: `3rem`,
       // },
       '& .inline-gallery': {
+        maxWidth: `initial`,
         display: `flex`,
         justifyContent: `center`,
-        marginBottom: `4rem`,
         [media.lessThan(`small`)]: {
           flexDirection: `column`,
           alignItems: `center`,
           '& > *:not(:last-child)': {
-            marginBottom: `1rem`,
+            marginTop: `1rem`,
           },
         },
         '& > *': {
@@ -334,14 +396,16 @@ const PostBody = ({ children }) => (
           maxWidth: `80%`,
           margin: `0 .5rem`,
         },
-        '& > *:first-child, & > *:last-child': {
-          marginRight: `auto`,
-          marginLeft: `auto`,
-        },
+        // '& > *:first-child, & > *:last-child': {
+        //   marginRight: `auto`,
+        //   marginLeft: `auto`,
+        // },
+      },
+      '& .inline-gallery + .inline-gallery': {
+        marginTop: `1rem`,
       },
       '& figure': {
         position: `relative`,
-        margin: 0,
         '& > figcaption': {
           display: `flex`,
           background: gradients.primary,
@@ -361,6 +425,7 @@ const PostBody = ({ children }) => (
           overflow: `hidden`,
           transition: `all .35s`,
           opacity: 0,
+          userSelect: `none`,
         },
         '&:hover > figcaption': {
           opacity: 1,
