@@ -267,7 +267,7 @@ export const query = graphql`
             slug
           }
           description
-          ext
+          #ext
           aspect_ratio
           filename {
             base
