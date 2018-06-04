@@ -4,7 +4,6 @@ import { css } from 'glamor'
 import Link from '@/components/Link'
 import Img from 'gatsby-image'
 import Headroom from 'react-headroom'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { visible } from '@/theme'
 import style from './styles'
 
@@ -34,8 +33,9 @@ class Header extends Component {
             right: 0,
             bottom: 0,
             left: 0,
+            overflow: `hidden`,
             '& > .gatsby-image-wrapper': {
-              position: `initial !important`,
+              position: `static !important`,
             },
           },
         }}
@@ -65,8 +65,10 @@ class Header extends Component {
                     exact
                     {...css(style.headerLink, style.headerMeta_headerLink)}
                   >
-                    <span css={visible.minMd}>{link.title}</span>
-                    {(link.titleShort || link.icon) && (
+                    <span css={link.titleShort && visible.minMd}>
+                      {link.title}
+                    </span>
+                    {link.titleShort && (
                       <span
                         css={{
                           ...visible.maxMd,
@@ -75,11 +77,7 @@ class Header extends Component {
                           },
                         }}
                       >
-                        {link.icon ? (
-                          <FontAwesomeIcon icon={[`far`, link.icon]} />
-                        ) : (
-                          link.titleShort
-                        )}
+                        {link.titleShort}
                       </span>
                     )}
                   </Link>
