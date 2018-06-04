@@ -161,7 +161,11 @@ module.exports = {
         disable: process.env.NODE_ENV === `development`,
       },
     },
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {},
+    },
     `gatsby-plugin-glamor`,
-    `gatsby-plugin-meta-redirect`,
+    // `gatsby-plugin-meta-redirect`,
   ],
 }
