@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MainLayout from '@/components/MainLayout'
 
-const PrivacyPage = props => {
+const SimplePage = props => {
   const { page } = props.data
   return (
     <MainLayout {...props}>
@@ -10,15 +10,15 @@ const PrivacyPage = props => {
     </MainLayout>
   )
 }
-PrivacyPage.propTypes = {
+SimplePage.propTypes = {
   data: PropTypes.object,
   pathContext: PropTypes.object,
 }
 
-export default PrivacyPage
+export default SimplePage
 
 export const query = graphql`
-  query PrivacyPageQuery($lang: String!, $slug: String!) {
+  query SimplePageQuery($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages
