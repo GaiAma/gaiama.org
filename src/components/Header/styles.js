@@ -1,5 +1,5 @@
 import hex2rgba from 'hex2rgba'
-import { breakPoints, colors, fontFamilies, media } from '@/theme'
+import { colors, fontFamilies, media } from '@/theme'
 
 export default {
   header: ({ bg } = {}) => ({
@@ -27,7 +27,7 @@ export default {
     margin: 0,
     height: `2.5rem`,
 
-    [breakPoints.minLgLandscape]: {
+    [media.greaterThan(`xlarge`)]: {
       height: `3.5rem`,
     },
   },
@@ -59,7 +59,7 @@ export default {
       },
     },
 
-    [breakPoints.minLgLandscape]: {
+    [media.greaterThan(`xlarge`)]: {
       '& h2': {
         fontSize: `1.7rem`,
         letterSpacing: `0.12rem`,
@@ -83,9 +83,9 @@ export default {
   headerBanner: {
     height: `7rem`,
 
-    [breakPoints.minMd]: { height: `13rem` },
-    [breakPoints.minLg]: { height: `16rem` },
-    [breakPoints.minLgLandscape]: { height: `25rem` },
+    [media.greaterThan(`medium`)]: { height: `13rem` },
+    [media.greaterThan(`large`)]: { height: `16rem` },
+    [media.greaterThan(`xlarge`)]: { height: `25rem` },
   },
 
   headerLogo: {
@@ -96,11 +96,11 @@ export default {
     maxWidth: `140px`,
     userSelect: `none`,
 
-    [breakPoints.minMd]: {
+    [media.greaterThan(`medium`)]: {
       maxWidth: `250px`,
       transform: `translateY(-1.5rem)`,
     },
-    [breakPoints.minLgLandscape]: { maxWidth: `420px` },
+    [media.greaterThan(`xlarge`)]: { maxWidth: `420px` },
   },
 
   headerNav: ({ bg, isSticky }) => ({
@@ -118,14 +118,14 @@ export default {
     // paddingTop: isSticky && `.5rem`,
     background: isSticky && `url(${bg}) no-repeat bottom`,
     backgroundSize: isSticky && `cover`,
-    [breakPoints.minMd]: {
+    [media.greaterThan(`medium`)]: {
       height: `3.5rem`,
       // height: `${isSticky ? 4 : 3.5}rem`,
       // paddingTop: isSticky && `.5rem`,
       // height: isSticky ? `4.3rem` : `3.5rem`,
       // paddingTop: isSticky && `.8rem`,
     },
-    [breakPoints.minLgLandscape]: {
+    [media.greaterThan(`xlarge`)]: {
       height: `4rem`,
       // height: isSticky ? `5rem` : `4rem`,
       // paddingTop: isSticky && `1rem`,
@@ -156,16 +156,16 @@ export default {
     textAlign: `right`,
     fontFamily: fontFamilies.accent,
 
-    [breakPoints.minSm]: { height: `2.5rem` },
-    [breakPoints.minMd]: { height: `3.5rem` },
-    [breakPoints.minLgLandscape]: { height: `4rem` },
+    [media.greaterThan(`small`)]: { height: `2.5rem` },
+    [media.greaterThan(`medium`)]: { height: `3.5rem` },
+    [media.greaterThan(`xlarge`)]: { height: `4rem` },
   },
 
   headerNavItem: {
     height: `100%`,
     fontSize: `1.1rem`,
 
-    [breakPoints.minMd]: { fontSize: `1.2rem` },
+    [media.greaterThan(`medium`)]: { fontSize: `1.2rem` },
   },
 
   headerLink: {
@@ -209,11 +209,11 @@ export default {
       background: colors.primary,
     },
 
-    [breakPoints.minMd]: {
+    [media.greaterThan(`medium`)]: {
       fontSize: `1.1rem`,
       letterSpacing: `.12rem`,
     },
-    [breakPoints.minLgLandscape]: {
+    [media.greaterThan(`xlarge`)]: {
       fontSize: `1.8rem`,
     },
   },
