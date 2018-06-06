@@ -3,18 +3,11 @@ import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import {
-  colors,
-  breakPoints,
-  Box,
-  fontFamilies,
-  H2,
-  fullPageWidth,
-  media,
-} from '@/theme'
+import { colors, Box, fontFamilies, H2, fullPageWidth, media } from '@/theme'
 import Lazy from '@/components/Lazy'
+// import DonationForm from '@/components/DonationForm'
 import { mediaQuery } from '@/components/MediaQuery'
-import PatreonButton from '@/assets/become_a_patron_button.png'
+// import PatreonButton from '@/assets/become_a_patron_button.png'
 
 export const cryptos = [
   {
@@ -198,7 +191,7 @@ const SupportWidget = ({
       oh
       css={{
         background: !transparent && colors.lightBlue,
-        [media.lessThan(`large`)]: {
+        [media.lessThan(`medium`)]: {
           paddingTop: `3rem`,
         },
       }}
@@ -245,7 +238,7 @@ const SupportWidget = ({
           flexWrap: `wrap`,
           width: `98%`,
           maxWidth: `1280px`,
-          [breakPoints.minMdLandscape]: {
+          [media.greaterThan(`medium`)]: {
             width: `85%`,
           },
         }}
@@ -255,7 +248,7 @@ const SupportWidget = ({
           column
           aICenter
           css={{
-            // [media.between(`small`, `large`)]: {
+            // [media.between(`xsmall`, `medium`)]: {
             //   margin: `0 0 3rem`,
             // },
             '&:hover > form': {
@@ -266,7 +259,7 @@ const SupportWidget = ({
               '& [type="image"]': {
                 width: `150px`,
               },
-              // [media.lessThan(`small`)]: {
+              // [media.lessThan(`xsmall`)]: {
               //   transform: `scale(0.7)`,
               // },
             },
@@ -329,12 +322,12 @@ const SupportWidget = ({
           )}
         </Box>
 
-        <Box
+        {/* <Box
           flex
           column
           aICenter
           css={{
-            // [media.lessThan(`large`)]: {
+            // [media.lessThan(`medium`)]: {
             //   margin: `1rem 0 3rem`,
             // },
             '&:hover > a': {
@@ -348,15 +341,16 @@ const SupportWidget = ({
             rel="noopener noreferrer"
           >
             <img width="150px" src={PatreonButton} alt="Patreon" />
+            Donate
           </a>
-        </Box>
+        </Box> */}
 
         <Box
           flex
           column
           aICenter
           css={{
-            [media.lessThan(`large`)]: {
+            [media.lessThan(`medium`)]: {
               margin: `1rem 0 0`,
             },
           }}
@@ -388,6 +382,7 @@ const SupportWidget = ({
         )} */}
       </div>
     </Box>
+    {/* <DonationForm /> */}
   </div>
 )
 SupportWidget.propTypes = {
@@ -461,7 +456,7 @@ const InstagramFeed = ({ user, followLink, bg, images }) => {
       <div
         css={{
           marginTop: `.5rem`,
-          [breakPoints.minSm]: {
+          [media.greaterThan(`xsmall`)]: {
             textAlign: `right`,
           },
         }}
@@ -475,7 +470,7 @@ const InstagramFeed = ({ user, followLink, bg, images }) => {
             lineHeight: `.8`,
             letterSpacing: `.2rem`,
             fontSize: `1rem`,
-            [media.greaterThan(`medium`)]: {
+            [media.greaterThan(`small`)]: {
               letterSpacing: `.3rem`,
             },
           }}

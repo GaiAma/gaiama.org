@@ -3,14 +3,7 @@ import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
 import { css } from 'glamor'
 import slugify from 'slugify'
-import {
-  breakPoints,
-  Box,
-  colors,
-  fullPageWidth,
-  maxWidthContent,
-  media,
-} from '@/theme'
+import { Box, colors, fullPageWidth, maxWidthContent, media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
 import { InstagramFeed, SupportWidget } from '@/components/Shared'
 import TitledCopy from '@/components/TitledCopy'
@@ -26,7 +19,7 @@ const HomePage = props => (
         css={{
           marginTop: 0,
           fontSize: `2rem`,
-          [media.greaterThan(`medium`)]: {
+          [media.greaterThan(`small`)]: {
             fontSize: `2.7rem`,
           },
         }}
@@ -56,7 +49,7 @@ const HomePage = props => (
                 key={i}
                 css={{
                   margin: 0,
-                  [media.lessThan(`medium`)]: {
+                  [media.lessThan(`small`)]: {
                     fontSize: `0.9rem`,
                   },
                 }}
@@ -72,7 +65,7 @@ const HomePage = props => (
           display: `flex`,
           justifyContent: `center`,
           margin: `2rem 0 3rem`,
-          [media.greaterThan(`medium`)]: {
+          [media.greaterThan(`small`)]: {
             margin: `2rem 0 4rem`,
           },
         }}
@@ -91,7 +84,7 @@ const HomePage = props => (
             '& .gatsby-image-wrapper': {
               width: [`200px`, `30vw`],
             },
-            [media.greaterThan(`medium`)]: {
+            [media.greaterThan(`small`)]: {
               '& .gatsby-image-wrapper': {
                 width: `280px`,
                 transition: `width .3s ease-in-out`,
@@ -148,7 +141,7 @@ const HomePage = props => (
       paragraphs={props.data.page.frontmatter.closing.paragraphs}
       css={{
         '& div': {
-          [media.lessThan(`medium`)]: {
+          [media.lessThan(`small`)]: {
             fontSize: `0.9rem`,
           },
         },
@@ -287,13 +280,13 @@ export const IntroContainer = ({ children }) => (
       display: `flex`,
       flexDirection: `column`,
 
-      [breakPoints.maxMd]: {
+      [media.lessThan(`small`)]: {
         '& > :last-child': {
           marginTop: `3rem`,
         },
       },
 
-      [breakPoints.minMd]: {
+      [media.greaterThan(`small`)]: {
         flexDirection: `row`,
         justifyContent: `space-between`,
 
@@ -362,7 +355,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
     css={{
       width: `90%`,
       margin: `2rem auto 0`,
-      // [media.greaterThan(`medium`)]: {
+      // [media.greaterThan(`small`)]: {
       //   display: `flex`,
       //   justifyContent: `space-between`,
       //   flexWrap: `wrap`,
@@ -410,7 +403,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                   lineHeight: `0.8`,
                   position: `relative`,
                   fontSize: `2.2rem`,
-                  [media.greaterThan(`medium`)]: {
+                  [media.greaterThan(`small`)]: {
                     fontSize: `2.5rem`,
                   },
                   '&:after': {
@@ -419,7 +412,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                     right: `-0.2rem`,
                     bottom: `-0.6rem`,
                     fontSize: `1.6rem`,
-                    letterSpacing: `initial`,
+                    letterSpacing: `normal`,
                   },
                 }}
               >
@@ -431,7 +424,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
             flex
             css={{
               margin: `0`,
-              [media.lessThan(`small`)]: {
+              [media.lessThan(`xsmall`)]: {
                 flexDirection: i % 2 === 0 ? `column-reverse` : `column`,
               },
             }}
@@ -444,7 +437,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                   flex: `0 0 245px`,
                   justifyContent: `center`,
                   height: `245px`,
-                  [media.greaterThan(`small`)]: {
+                  [media.greaterThan(`xsmall`)]: {
                     height: `320px`,
                     flexBasis: `320px`,
                     marginRight: `3rem`,
@@ -460,7 +453,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                     sizes={x.images[key].image.sizes}
                     outerWrapperClassName={css({
                       width: `120px`,
-                      [media.greaterThan(`small`)]: {
+                      [media.greaterThan(`xsmall`)]: {
                         width: `153px`,
                       },
                       margin: `.2rem`,
@@ -494,7 +487,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
               <p
                 css={{
                   fontSize: `.85rem`,
-                  [media.greaterThan(`large`)]: {
+                  [media.greaterThan(`medium`)]: {
                     fontSize: `1rem`,
                   },
                   textAlign: `justify`,
@@ -510,7 +503,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                   flex: `0 0 245px`,
                   justifyContent: `center`,
                   height: `245px`,
-                  [media.greaterThan(`small`)]: {
+                  [media.greaterThan(`xsmall`)]: {
                     height: `320px`,
                     flexBasis: `320px`,
                     marginLeft: `3rem`,
@@ -526,7 +519,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                     sizes={x.images[key].image.sizes}
                     outerWrapperClassName={css({
                       width: `120px`,
-                      [media.greaterThan(`small`)]: {
+                      [media.greaterThan(`xsmall`)]: {
                         width: `153px`,
                       },
                       margin: `.2rem`,

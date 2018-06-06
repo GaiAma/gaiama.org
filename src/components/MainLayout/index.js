@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 import QS from '@/utils/query-string'
 import '@/utils/fontawesome'
 import {
-  breakPoints,
+  media,
   screenReaderAndFocusable,
   focusOutlineNone,
   InstagramGradient,
@@ -205,6 +205,18 @@ class MainLayout extends Component {
               key={t.lang}
             />
           ))}
+          {[`atom.xml`, `rss.xml`, `feed.json`].map(feed => (
+            <link
+              rel="alternate"
+              href={`${site.siteMetadata.siteUrl}/${lang}/blog/${feed}`}
+              type={
+                feed.includes(`json`)
+                  ? `application/json`
+                  : `application/rss+xml`
+              }
+              key={feed}
+            />
+          ))}
           {!isDev && (
             <script
               src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(
@@ -242,7 +254,7 @@ class MainLayout extends Component {
             padding: `3rem .8rem 1.45rem`,
             width: !wrapperStyles.width && `98%`,
             ...maxWidthContent,
-            [breakPoints.minMdLandscape]: {
+            [media.greaterThan(`medium`)]: {
               width: !wrapperStyles.width && `90%`,
             },
             ...wrapperStyles,
@@ -258,7 +270,7 @@ class MainLayout extends Component {
           supportTitle={SiteMeta.frontmatter.footer.supportTitle}
           metaTitle={SiteMeta.frontmatter.footer.metaTitle}
           meta={SiteMeta.frontmatter.footer.meta}
-          legal={this.props.data.legal}
+          legal={this.props.data.legal.edges}
           bgImage={SiteMeta.frontmatter.assets.headerBg.image}
         />
 

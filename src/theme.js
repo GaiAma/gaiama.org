@@ -111,13 +111,20 @@ export const InstagramGradient = props => (
 // }
 
 export const SIZES = {
-  xsmall: { min: 0, max: 599 },
-  small: { min: 600, max: 779 },
-  medium: { min: 780, max: 979 },
-  large: { min: 980, max: 1281 },
-  xlarge: { min: 1282, max: 1339 },
-  xxlarge: { min: 1340, max: 1440 },
-  xxxlarge: { min: 1441, max: Infinity },
+  xsmall: { min: 425, max: 768 },
+  small: { min: 769, max: 850 },
+  medium: { min: 851, max: 992 },
+  large: { min: 993, max: 1024 },
+  xlarge: { min: 1025, max: 1200 },
+  xxlarge: { min: 1021, max: 1280 },
+  xxxlarge: { min: 1281, max: Infinity },
+  // xsmall: { min: 0, max: 599 },
+  // small: { min: 600, max: 779 },
+  // medium: { min: 780, max: 979 },
+  // large: { min: 980, max: 1281 },
+  // xlarge: { min: 1282, max: 1339 },
+  // xxlarge: { min: 1340, max: 1440 },
+  // xxxlarge: { min: 1441, max: Infinity },
 
   // Sidebar/nav related tweakpoints
   largerSidebar: { min: 1100, max: 1339 },

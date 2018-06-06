@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MainLayout from '@/components/MainLayout'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import { breakPoints, colors, media } from '@/theme'
+import { colors, media } from '@/theme'
 import TitledCopy from '@/components/TitledCopy'
 import { Newsletter } from '@/components/NewsletterWidget'
 import ContactForm from '@/components/ContactForm'
@@ -13,17 +13,17 @@ const ContactPage = props => {
     <MainLayout
       {...props}
       wrapperStyles={{
-        [media.greaterThan(`medium`)]: {
+        [media.greaterThan(`small`)]: {
           background: `url(${
             page.frontmatter.assets.bg.image.sizes.src
           }) no-repeat right 1rem`,
         },
-        maxWidth: `initial`,
+        maxWidth: `100%`,
         minHeight: `680px`,
         paddingTop: `2rem`,
         paddingRight: 0,
         paddingBottom: 0,
-        [breakPoints.minMdLandscape]: {
+        [media.greaterThan(`medium`)]: {
           width: `100%`,
         },
       }}
@@ -38,15 +38,15 @@ const ContactPage = props => {
           overflow: `hidden`,
           display: `flex`,
           justifyContent: `space-between`,
-          [media.lessThan(`small`)]: {
+          [media.lessThan(`xsmall`)]: {
             flexDirection: `column`,
           },
-          [media.greaterThan(`small`)]: {
+          [media.greaterThan(`xsmall`)]: {
             '& > div': {
               width: `40%`,
             },
           },
-          [media.greaterThan(`large`)]: {
+          [media.greaterThan(`medium`)]: {
             width: `57%`,
             margin: `3rem 2rem 0 6rem`,
           },
@@ -69,7 +69,7 @@ const ContactPage = props => {
               '& div': {
                 fontSize: `.9rem`,
               },
-              [media.lessThan(`small`)]: {
+              [media.lessThan(`xsmall`)]: {
                 textAlign: `center`,
               },
             }}
@@ -79,7 +79,7 @@ const ContactPage = props => {
             css={{
               display: `flex`,
               justifyContent: `space-between`,
-              [media.lessThan(`medium`)]: {
+              [media.lessThan(`small`)]: {
                 marginBottom: `2rem`,
               },
               '& > div': {
@@ -143,7 +143,10 @@ const ContactPage = props => {
                 },
               }}
             >
-              <a href="/rss" target="_blank" rel="noopener noreferrer">
+              <a
+                href={`/${props.pathContext.lang}/blog/rss.xml`}
+                target="_blank"
+              >
                 <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="lg" />
               </a>
             </div>
@@ -159,8 +162,7 @@ const ContactPage = props => {
             emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
             requiredLabel={page.frontmatter.errors.requiredLabel}
             generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
-            // endpoint="https://gaiama-contact.now.sh"
-            endpoint="http://localhost:3000"
+            endpoint="https://gaiama-contact.now.sh"
           />
         </div>
 
@@ -182,7 +184,7 @@ const ContactPage = props => {
                 '& div': {
                   fontSize: `.9rem`,
                 },
-                [media.lessThan(`small`)]: {
+                [media.lessThan(`xsmall`)]: {
                   textAlign: `center`,
                 },
               }}
@@ -195,8 +197,7 @@ const ContactPage = props => {
               lang={props.pathContext.lang}
               emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
               generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
-              // languageLabel="E-Mail Language"
-              // languages={props.data.languages.edges.reverse()}
+              endpoint="https://gaiama-newsletter.now.sh"
             />
           </div>
         </div>

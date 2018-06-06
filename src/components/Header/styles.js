@@ -1,6 +1,14 @@
 import hex2rgba from 'hex2rgba'
 import { colors, fontFamilies, media } from '@/theme'
 
+/**
+ *
+ * switching form breakPoints to media destroyed navbar spacings -.-#
+ *
+ * does it work now?
+ *
+ */
+
 export default {
   header: ({ bg } = {}) => ({
     ...(bg && {
@@ -27,7 +35,7 @@ export default {
     margin: 0,
     height: `2.5rem`,
 
-    [media.greaterThan(`xlarge`)]: {
+    [media.greaterThan(`large`)]: {
       height: `3.5rem`,
     },
   },
@@ -43,7 +51,7 @@ export default {
     padding: `0`,
     position: `relative`,
     // zIndex: 9,
-    [media.greaterThan(`medium`)]: {
+    [media.greaterThan(`small`)]: {
       padding: `0 1rem`,
     },
   },
@@ -53,13 +61,13 @@ export default {
       fontSize: `1.1rem`,
       letterSpacing: `0.1rem`,
       margin: 0,
-      [media.greaterThan(`medium`)]: {
+      [media.greaterThan(`small`)]: {
         fontSize: `1.7rem`,
         letterSpacing: `0.12rem`,
       },
     },
 
-    [media.greaterThan(`xlarge`)]: {
+    [media.greaterThan(`large`)]: {
       '& h2': {
         fontSize: `1.7rem`,
         letterSpacing: `0.12rem`,
@@ -74,7 +82,7 @@ export default {
     // minWidth: `5.5rem`,
     fontSize: `.8rem`,
 
-    [media.greaterThan(`medium`)]: {
+    [media.greaterThan(`small`)]: {
       // minWidth: `17rem`,
       fontSize: `.9rem`,
     },
@@ -83,9 +91,9 @@ export default {
   headerBanner: {
     height: `7rem`,
 
-    [media.greaterThan(`medium`)]: { height: `13rem` },
-    [media.greaterThan(`large`)]: { height: `16rem` },
-    [media.greaterThan(`xlarge`)]: { height: `25rem` },
+    [media.greaterThan(`small`)]: { height: `13rem` },
+    [media.greaterThan(`medium`)]: { height: `16rem` },
+    [media.greaterThan(`large`)]: { height: `25rem` },
   },
 
   headerLogo: {
@@ -96,11 +104,11 @@ export default {
     maxWidth: `140px`,
     userSelect: `none`,
 
-    [media.greaterThan(`medium`)]: {
+    [media.greaterThan(`small`)]: {
       maxWidth: `250px`,
       transform: `translateY(-1.5rem)`,
     },
-    [media.greaterThan(`xlarge`)]: { maxWidth: `420px` },
+    [media.greaterThan(`large`)]: { maxWidth: `420px` },
   },
 
   headerNav: ({ bg, isSticky }) => ({
@@ -118,14 +126,14 @@ export default {
     // paddingTop: isSticky && `.5rem`,
     background: isSticky && `url(${bg}) no-repeat bottom`,
     backgroundSize: isSticky && `cover`,
-    [media.greaterThan(`medium`)]: {
+    [media.greaterThan(`small`)]: {
       height: `3.5rem`,
       // height: `${isSticky ? 4 : 3.5}rem`,
       // paddingTop: isSticky && `.5rem`,
       // height: isSticky ? `4.3rem` : `3.5rem`,
       // paddingTop: isSticky && `.8rem`,
     },
-    [media.greaterThan(`xlarge`)]: {
+    [media.greaterThan(`large`)]: {
       height: `4rem`,
       // height: isSticky ? `5rem` : `4rem`,
       // paddingTop: isSticky && `1rem`,
@@ -156,16 +164,16 @@ export default {
     textAlign: `right`,
     fontFamily: fontFamilies.accent,
 
-    [media.greaterThan(`small`)]: { height: `2.5rem` },
-    [media.greaterThan(`medium`)]: { height: `3.5rem` },
-    [media.greaterThan(`xlarge`)]: { height: `4rem` },
+    [media.greaterThan(`xsmall`)]: { height: `2.5rem` },
+    [media.greaterThan(`small`)]: { height: `3.5rem` },
+    [media.greaterThan(`large`)]: { height: `4rem` },
   },
 
   headerNavItem: {
     height: `100%`,
     fontSize: `1.1rem`,
 
-    [media.greaterThan(`medium`)]: { fontSize: `1.2rem` },
+    [media.greaterThan(`small`)]: { fontSize: `1.2rem` },
   },
 
   headerLink: {
@@ -183,7 +191,7 @@ export default {
   headerMetaItem: {
     margin: `0 0.2rem`,
     padding: `0 0.4rem`,
-    [media.greaterThan(`medium`)]: {
+    [media.greaterThan(`small`)]: {
       margin: `0 1.5rem`,
     },
   },
@@ -209,11 +217,11 @@ export default {
       background: colors.primary,
     },
 
-    [media.greaterThan(`medium`)]: {
+    [media.greaterThan(`small`)]: {
       fontSize: `1.1rem`,
       letterSpacing: `.12rem`,
     },
-    [media.greaterThan(`xlarge`)]: {
+    [media.greaterThan(`large`)]: {
       fontSize: `1.8rem`,
     },
   },
