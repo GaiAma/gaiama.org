@@ -97,18 +97,18 @@ export const InstagramGradient = props => (
   </div>
 )
 
-export const breakPoints = {
-  maxSm: `@media (max-width: 425px)`,
-  maxMd: `@media (max-width: 768px)`,
-  minSm: `@media (min-width: 425px)`,
-  minMd: `@media (min-width: 768px)`,
-  minMdLandscape: `@media (min-width: 850px)`,
-  minLg: `@media (min-width: 992px)`,
-  minLgLandscape: `@media (min-width: 1024px)`,
-  minXl: `@media (min-width: 1200px)`,
-  maxXxl: `@media (max-width: 1280px)`,
-  minXxl: `@media (min-width: 1281px)`,
-}
+// export const breakPoints = {
+//   maxSm: `@media (max-width: 425px)`,
+//   maxMd: `@media (max-width: 768px)`,
+//   minSm: `@media (min-width: 425px)`,
+//   minMd: `@media (min-width: 768px)`,
+//   minMdLandscape: `@media (min-width: 850px)`,
+//   minLg: `@media (min-width: 992px)`,
+//   minLgLandscape: `@media (min-width: 1024px)`,
+//   minXl: `@media (min-width: 1200px)`,
+//   maxXxl: `@media (max-width: 1280px)`,
+//   minXxl: `@media (min-width: 1281px)`,
+// }
 
 export const SIZES = {
   xsmall: { min: 0, max: 599 },
@@ -229,13 +229,13 @@ export const headlineStyles = {
 export const hugeFont = {
   fontSize: `1.5rem`,
 
-  [breakPoints.minMd]: {
+  [media.greaterThan(`medium`)]: {
     fontSize: `2.5rem`,
   },
 }
 
 export const headlineVariations = propStyles({
-  simple: () => ({ fontFamily: `initial` }),
+  simple: () => ({ fontFamily: `sans-serif` }),
 })
 
 export const H1 = glamorous.h1(
@@ -344,12 +344,12 @@ export const Button = glamorous.button(
 /* visibility helper */
 export const visible = {
   maxSm: {
-    [breakPoints.minSm]: {
+    [media.greaterThan(`small`)]: {
       display: `none`,
     },
   },
   maxMd: {
-    [breakPoints.minMd]: {
+    [media.greaterThan(`medium`)]: {
       display: `none`,
     },
   },
