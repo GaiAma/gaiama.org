@@ -31,7 +31,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: process.env[`GAIAMA-CONTENT`]
+        path: process.env.GAIAMA_CONTENT_ID
           ? path.join(__dirname, `content`)
           : path.join(__dirname, `..`, `content`, `content`),
         name: `content`,
