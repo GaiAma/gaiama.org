@@ -5,4 +5,4 @@ ID = "gaiama"
   base    = "/"
   publish = "public/"
   command = "git clone $GAIAMA-CONTENT content && yarn build"
-  environment = { NODE_VERSION = "8.9.4", CI = true }
+  environment = { NODE_VERSION = "8.9.4" }
