@@ -1356,27 +1356,6 @@ axobject-query@^0.1.0:
   dependencies:
     ast-types-flow "0.0.7"
 
-babel-cli@^6.26.0:
-  version "6.26.0"
-  resolved "https://registry.yarnpkg.com/babel-cli/-/babel-cli-6.26.0.tgz#502ab54874d7db88ad00b887a06383ce03d002f1"
-  dependencies:
-    babel-core "^6.26.0"
-    babel-polyfill "^6.26.0"
-    babel-register "^6.26.0"
-    babel-runtime "^6.26.0"
-    commander "^2.11.0"
-    convert-source-map "^1.5.0"
-    fs-readdir-recursive "^1.0.0"
-    glob "^7.1.2"
-    lodash "^4.17.4"
-    output-file-sync "^1.1.2"
-    path-is-absolute "^1.0.1"
-    slash "^1.0.0"
-    source-map "^0.5.6"
-    v8flags "^2.1.1"
-  optionalDependencies:
-    chokidar "^1.6.1"
-
 babel-code-frame@6.26.0, babel-code-frame@^6.11.0, babel-code-frame@^6.22.0, babel-code-frame@^6.26.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-code-frame/-/babel-code-frame-6.26.0.tgz#63fd43f7dc1e3bb7ce35947db8fe369a3f58c74b"
@@ -2966,7 +2945,7 @@ cheerio@^1.0.0-rc.2:
     lodash "^4.15.0"
     parse5 "^3.0.1"
 
-chokidar@^1.0.0, chokidar@^1.6.1, chokidar@^1.7.0:
+chokidar@^1.0.0, chokidar@^1.7.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-1.7.0.tgz#798e689778151c8076b4b360e5edd28cda2bb468"
   dependencies:
@@ -3441,7 +3420,7 @@ convert-source-map@^0.3.3:
   version "0.3.5"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-0.3.5.tgz#f1d802950af7dd2631a1febe0596550c86ab3190"
 
-convert-source-map@^1.1.0, convert-source-map@^1.1.1, convert-source-map@^1.4.0, convert-source-map@^1.5.0, convert-source-map@^1.5.1:
+convert-source-map@^1.1.0, convert-source-map@^1.1.1, convert-source-map@^1.4.0, convert-source-map@^1.5.1:
   version "1.5.1"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.5.1.tgz#b8278097b9bc229365de5c62cf5fcaed8b5599e5"
 
@@ -5543,10 +5522,6 @@ fs-minipass@^1.2.5:
   dependencies:
     minipass "^2.2.1"
 
-fs-readdir-recursive@^1.0.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/fs-readdir-recursive/-/fs-readdir-recursive-1.1.0.tgz#e32fc030a2ccee44a6b5371308da54be0b397d27"
-
 fs-write-stream-atomic@^1.0.8:
   version "1.0.10"
   resolved "https://registry.yarnpkg.com/fs-write-stream-atomic/-/fs-write-stream-atomic-1.0.10.tgz#b47df53493ef911df75731e70a9ded0189db40c9"
@@ -5751,7 +5726,7 @@ gatsby-plugin-remove-trailing-slashes@^1.0.4:
   dependencies:
     babel-runtime "^6.26.0"
 
-gatsby-plugin-sharp@^1.6.42, gatsby-plugin-sharp@^1.6.47:
+gatsby-plugin-sharp@^1.6.42:
   version "1.6.47"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-sharp/-/gatsby-plugin-sharp-1.6.47.tgz#bcad9de7f5f269d2415266583c0c3cf48611e165"
   dependencies:
@@ -5770,8 +5745,8 @@ gatsby-plugin-sharp@^1.6.42, gatsby-plugin-sharp@^1.6.47:
     svgo "^0.7.2"
 
 "gatsby-plugin-sharp@https://gitlab.com/GaiAma/gatsby-plugin-sharp.git":
-  version "1.6.42"
-  resolved "https://gitlab.com/GaiAma/gatsby-plugin-sharp.git#0d5ab2e51ad0c8faa67a05f83e1c8a8ec63163f8"
+  version "1.6.43"
+  resolved "https://gitlab.com/GaiAma/gatsby-plugin-sharp.git#f22c7fa38fec870532c0af23b0b6309350d4af21"
   dependencies:
     async "^2.1.2"
     babel-runtime "^6.26.0"
@@ -5840,8 +5815,8 @@ gatsby-remark-autolink-headers@^1.4.13:
     unist-util-visit "^1.1.1"
 
 "gatsby-remark-copy-linked-files@https://gitlab.com/GaiAma/gatsby-remark-copy-linked-files.git":
-  version "1.5.31"
-  resolved "https://gitlab.com/GaiAma/gatsby-remark-copy-linked-files.git#6634e26d0bb8c4b9eb706a1ced302ce0864e891a"
+  version "1.5.32"
+  resolved "https://gitlab.com/GaiAma/gatsby-remark-copy-linked-files.git#bad098bf1dd9e75f74862018dd485a6b8e0aa23f"
   dependencies:
     babel-runtime "^6.26.0"
     cheerio "^1.0.0-rc.2"
@@ -5884,24 +5859,12 @@ gatsby-remark-external-links@^0.0.4:
     unist-util-visit "^1.1.3"
 
 "gatsby-remark-images-with-ratio@https://gitlab.com/GaiAma/gatsby-remark-images-with-ratio.git":
-  version "1.0.0"
-  resolved "https://gitlab.com/GaiAma/gatsby-remark-images-with-ratio.git#b0a1ccc0c99473b378078e22bb6c3c87f55000a0"
+  version "1.0.1"
+  resolved "https://gitlab.com/GaiAma/gatsby-remark-images-with-ratio.git#7826191b9460cbf103c7c5a6a738ab9fb9cdf192"
   dependencies:
     babel-runtime "^6.26.0"
     cheerio "^1.0.0-rc.2"
     gatsby-plugin-sharp "^1.6.42"
-    is-relative-url "^2.0.0"
-    lodash "^4.17.4"
-    slash "^1.0.0"
-    unist-util-select "^1.5.0"
-
-gatsby-remark-images@^1.5.52:
-  version "1.5.66"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-1.5.66.tgz#f852bca527676079cf679e0cd8b9299d9942acce"
-  dependencies:
-    babel-runtime "^6.26.0"
-    cheerio "^1.0.0-rc.2"
-    gatsby-plugin-sharp "^1.6.47"
     is-relative-url "^2.0.0"
     lodash "^4.17.4"
     slash "^1.0.0"
@@ -5953,12 +5916,10 @@ gatsby-remark-smartypants@^1.4.11:
     unist-util-visit "^1.3.0"
     unist-util-visit-children "^1.1.1"
 
-gatsby-source-filesystem@^1.5.24:
+"gatsby-source-filesystem@https://gitlab.com/GaiAma/gatsby-source-filesystem.git":
   version "1.5.38"
-  resolved "https://registry.yarnpkg.com/gatsby-source-filesystem/-/gatsby-source-filesystem-1.5.38.tgz#9bf74c7bab280f552b074c72aff99f7bca45f927"
+  resolved "https://gitlab.com/GaiAma/gatsby-source-filesystem.git#016884d6aa7340d48f44611f273b777bfacc17c2"
   dependencies:
-    babel-cli "^6.26.0"
-    babel-runtime "^6.26.0"
     better-queue "^3.8.7"
     bluebird "^3.5.0"
     chokidar "^1.7.0"
@@ -5967,20 +5928,21 @@ gatsby-source-filesystem@^1.5.24:
     md5-file "^3.1.1"
     mime "^1.3.6"
     pretty-bytes "^4.0.2"
+    probe-image-size "^4.0.0"
     slash "^1.0.0"
     valid-url "^1.0.9"
 
 "gatsby-transformer-all-yaml@https://gitlab.com/GaiAma/gatsby-transformer-all-yaml.git":
-  version "1.0.0"
-  resolved "https://gitlab.com/GaiAma/gatsby-transformer-all-yaml.git#951ce38e0f6cf9a5b95a6af111e6e8c2f0ae47de"
+  version "1.0.1"
+  resolved "https://gitlab.com/GaiAma/gatsby-transformer-all-yaml.git#dd424632be0d524dee8c7cbb9783239b0d389967"
   dependencies:
     crypto "*"
     js-yaml "*"
     lodash "*"
 
 "gatsby-transformer-archieml@https://gitlab.com/GaiAma/gatsby-transformer-archieml.git":
-  version "1.0.0"
-  resolved "https://gitlab.com/GaiAma/gatsby-transformer-archieml.git#2559433992382eff4e335263883cff21a72ff3da"
+  version "1.0.1"
+  resolved "https://gitlab.com/GaiAma/gatsby-transformer-archieml.git#7adbe6ad0b10f9edf6dee6820a73b295b8f51f12"
   dependencies:
     archieml "^0.4.2"
     graphql-type-json "^0.2.0"
@@ -6018,8 +5980,8 @@ gatsby-transformer-json@^1.0.14:
     bluebird "^3.5.0"
 
 "gatsby-transformer-qr@https://gitlab.com/GaiAma/gatsby-transformer-qr.git":
-  version "1.0.0"
-  resolved "https://gitlab.com/GaiAma/gatsby-transformer-qr.git#81b8337e718f50fe9de53a3152928996a6ab1b5f"
+  version "1.0.1"
+  resolved "https://gitlab.com/GaiAma/gatsby-transformer-qr.git#4f98c76be96a56227c043b2fc36dad796e15c137"
   dependencies:
     cuid "^2.1.0"
     lodash "^4.17.5"
@@ -6052,8 +6014,8 @@ gatsby-transformer-remark@^1.7.33:
     unist-util-visit "^1.1.1"
 
 "gatsby-transformer-sharp@https://gitlab.com/GaiAma/gatsby-transformer-sharp.git":
-  version "1.6.22"
-  resolved "https://gitlab.com/GaiAma/gatsby-transformer-sharp.git#fdbf1b208b67b4471e3ddfa432e2a5a5cb6d9c42"
+  version "1.6.23"
+  resolved "https://gitlab.com/GaiAma/gatsby-transformer-sharp.git#b35977303cf51bc2fe4dadc8df58a2dda04462e6"
   dependencies:
     babel-runtime "^6.26.0"
     bluebird "^3.5.0"
@@ -6537,7 +6499,7 @@ graceful-fs@^3.0.4:
   dependencies:
     natives "^1.1.0"
 
-graceful-fs@^4.0.0, graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.4, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
+graceful-fs@^4.0.0, graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.3, graceful-fs@^4.1.6, graceful-fs@^4.1.9:
   version "4.1.11"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.1.11.tgz#0e8bdfe4d1ddb8854d64e04ea7c00e2a026e5658"
 
@@ -10043,14 +10005,6 @@ osenv@^0.1.0, osenv@^0.1.4:
   dependencies:
     os-homedir "^1.0.0"
     os-tmpdir "^1.0.0"
-
-output-file-sync@^1.1.2:
-  version "1.1.2"
-  resolved "https://registry.yarnpkg.com/output-file-sync/-/output-file-sync-1.1.2.tgz#d0a33eefe61a205facb90092e826598d5245ce76"
-  dependencies:
-    graceful-fs "^4.1.4"
-    mkdirp "^0.5.1"
-    object-assign "^4.1.0"
 
 output-file-sync@^2.0.1:
   version "2.0.1"
@@ -14433,10 +14387,6 @@ use@^3.1.0:
   dependencies:
     kind-of "^6.0.2"
 
-user-home@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/user-home/-/user-home-1.1.1.tgz#2b5be23a32b63a7c9deb8d0f28d485724a3df190"
-
 util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/util-deprecate/-/util-deprecate-1.0.2.tgz#450d4dc9fa70de732762fbd2d4a28981419a0ccf"
@@ -14494,12 +14444,6 @@ uuid@^3.0.0, uuid@^3.0.1, uuid@^3.1.0:
 v8-compile-cache@^1.1.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/v8-compile-cache/-/v8-compile-cache-1.1.2.tgz#8d32e4f16974654657e676e0e467a348e89b0dc4"
-
-v8flags@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/v8flags/-/v8flags-2.1.1.tgz#aab1a1fa30d45f88dd321148875ac02c0b55e5b4"
-  dependencies:
-    user-home "^1.1.1"
 
 vali-date@^1.0.0:
   version "1.0.0"
