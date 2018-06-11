@@ -5890,8 +5890,8 @@ gatsby-remark-smartypants@^1.4.11:
     unist-util-visit "^1.1.1"
 
 "gatsby-remark-wrap-images@https://gitlab.com/GaiAma/gatsby-remark-wrap-images.git":
-  version "1.0.0"
-  resolved "https://gitlab.com/GaiAma/gatsby-remark-wrap-images.git#adc3b0904132d6f2f37fb3f988e93dea4dcf50d5"
+  version "1.0.1"
+  resolved "https://gitlab.com/GaiAma/gatsby-remark-wrap-images.git#6e421a425399721c80bd1e7b5938b96dd412ec0b"
   dependencies:
     hast-util-raw "^2.0.2"
     hast-util-to-html "^3.1.0"
