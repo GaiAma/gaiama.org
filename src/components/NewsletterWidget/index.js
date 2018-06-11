@@ -106,7 +106,7 @@ export class Newsletter extends Component {
     }
 
     return axios
-      .patch(`${this.props.endpoint}`, {
+      .patch(this.props.endpoint, {
         email: email.trim(),
         lang: this.props.lang,
       })
@@ -132,6 +132,7 @@ export class Newsletter extends Component {
       // languages,
       consentLabel,
       submitLabel,
+      endpoint,
     } = this.props
     const { values, errors, isSubmitting, successMsg } = this.state
 
@@ -150,8 +151,21 @@ export class Newsletter extends Component {
     }
 
     return (
-      <form method="post" onSubmit={this.handleSubmit} noValidate>
-        <div css={{ position: `relative`, paddingBottom: `1.4rem` }}>
+      <form
+        action={endpoint}
+        method="post"
+        onSubmit={this.handleSubmit}
+        noValidate
+      >
+        <div
+          css={{
+            position: `relative`,
+            paddingBottom: `1.4rem`,
+            '& input': {
+              border: errors.email && `1px solid red`,
+            },
+          }}
+        >
           <label>
             <div css={{ fontFamily: fontFamilies.accent, fontSize: `1.5rem` }}>
               {emailLabel}
@@ -163,10 +177,6 @@ export class Newsletter extends Component {
               value={values.email}
               placeholder={emailPlaceholder}
               required
-              css={{
-                width: `100%`,
-                border: errors.email && `1px solid red`,
-              }}
             />
             {errors.email && (
               <div

@@ -170,50 +170,30 @@ const SupportPage = props => {
             },
           }}
         >
-          <div
-            css={{
-              '&:hover svg': {
-                color: colors.brands.facebook,
-              },
-            }}
-          >
-            <a href="https://" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={[`fab`, `facebook-square`]} size="3x" />
-            </a>
-          </div>
-          <div
-            css={{
-              '&:hover svg *': {
-                fill: `url(#InstagramGradient)`,
-              },
-            }}
-          >
-            <a href="https://" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={[`fab`, `instagram`]} size="3x" />
-            </a>
-          </div>
-          <div
-            css={{
-              '&:hover svg': {
-                color: colors.brands.youtube,
-              },
-            }}
-          >
-            <a href="https://" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={[`fab`, `youtube`]} size="3x" />
-            </a>
-          </div>
-          <div
-            css={{
-              '&:hover svg': {
-                color: colors.brands.patreon,
-              },
-            }}
-          >
-            <a href="https://" target="_blank" rel="noopener noreferrer">
-              <FontAwesomeIcon icon={[`fab`, `patreon`]} size="3x" />
-            </a>
-          </div>
+          {props.data.Accounts.frontmatter.accounts
+            .filter(x => x.meta !== `true`)
+            .map(x => (
+              <div
+                key={x.service}
+                css={{
+                  '&:hover svg': x.service !== `instagram` && {
+                    color: colors.brands[x.service],
+                  },
+                  '&:hover svg *': x.service === `instagram` && {
+                    fill: `url(#InstagramGradient)`,
+                  },
+                }}
+              >
+                <a
+                  href={x.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={x.description}
+                >
+                  <FontAwesomeIcon icon={[`fab`, x.icon]} size="3x" />
+                </a>
+              </div>
+            ))}
           <div
             css={{
               '&:hover svg': {
@@ -222,9 +202,8 @@ const SupportPage = props => {
             }}
           >
             <a
-              href={props.data.page.frontmatter.contactLink}
+              href={`${props.data.page.frontmatter.contactLink}#Newsletter`}
               target="_blank"
-              rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon={[`fas`, `newspaper`]} size="3x" />
             </a>
@@ -236,7 +215,7 @@ const SupportPage = props => {
               },
             }}
           >
-            <a href="https://" target="_blank" rel="noopener noreferrer">
+            <a href={`/${props.pathContext.lang}/blog/rss.xml`} target="_blank">
               <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="3x" />
             </a>
           </div>
@@ -299,7 +278,7 @@ const SupportPage = props => {
         }}
       >
         {frontmatter.getIdea.insights.map((x, i) => (
-          <div key={i}>
+          <div key={i} css={{ userSelect: `none` }}>
             <div
               css={{
                 position: `relative`,
@@ -389,32 +368,36 @@ const SupportPage = props => {
                 {frontmatter.checklists[x].title}
               </h3>
 
-              <ul
+              <div
                 css={{
-                  listStyle: `none`,
                   marginLeft: `3rem`,
-                  '& > li': {
+                  display: `flex`,
+                  flexDirection: `column`,
+                  alignItems: `space-between`,
+                  '& > div': {
                     position: `relative`,
                     fontSize: `.9rem`,
                   },
-                  '& > li:not(:last-child)': {
+                  '& > div:not(:last-child)': {
                     marginBottom: `1.3rem`,
                   },
-                  '& > li:last-child': {
-                    marginBottom: 0,
-                  },
-                  '& > li:before': {
+                  '& > div:before': {
                     content: `url(${CheckMark})`,
                     position: `absolute`,
                     left: `-3rem`,
                     top: `0.4rem`,
                   },
+                  [media.lessThan(`small`)]: {
+                    '& > div:last-child': {
+                      marginBottom: `1.5rem`,
+                    },
+                  },
                 }}
               >
                 {frontmatter.checklists[x].items.map((x, i) => (
-                  <li key={i}>{x}</li>
+                  <div key={i}>{x}</div>
                 ))}
-              </ul>
+              </div>
             </div>
           ))}
         </div>
@@ -437,7 +420,11 @@ const SupportPage = props => {
 
       <SupportWidget
         title={props.data.SupportWidget.frontmatter.title}
+        description={props.data.SupportWidget.frontmatter.description}
         artwork={props.data.page.frontmatter.assets.sidebarArtwork}
+        bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
+        bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
+        bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
         lang={props.pathContext.lang}
         css={{ margin: `3rem 0 5rem` }}
         artworkStyles={{
@@ -463,6 +450,7 @@ export const query = graphql`
     ...homepage
     ...menu
     ...legal
+    ...Accounts
     ...SupportWidget
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
@@ -472,6 +460,9 @@ export const query = graphql`
             title
             lang
             slug
+            cover {
+              publicURL
+            }
           }
         }
       }

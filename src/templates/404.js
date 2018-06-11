@@ -23,6 +23,7 @@ export const query = graphql`
     ...homepage
     ...menu
     ...legal
+    ...Accounts
 
     page: javascriptFrontmatter(
       frontmatter: { slug: { eq: $slug }, lang: { eq: $lang } }

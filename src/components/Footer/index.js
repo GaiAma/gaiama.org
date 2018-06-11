@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { css } from 'glamor'
 import Link from '@/components/Link'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import hex2rgba from 'hex2rgba'
@@ -14,6 +15,7 @@ const Footer = ({
   meta,
   legal,
   bgImage,
+  accounts,
 }) => (
   <footer
     css={{
@@ -81,43 +83,29 @@ const Footer = ({
           '& svg': { marginRight: `.4rem` },
         }}
       >
-        <li
-          css={{
-            '&:hover svg': {
-              color: colors.brands.facebook,
-            },
-          }}
-        >
-          <FontAwesomeIcon icon={[`fab`, `facebook-square`]} />Facebook
-        </li>
-        <li
-          css={{
-            '&:hover svg *': {
-              fill: `url(#InstagramGradient)`,
-            },
-          }}
-        >
-          <FontAwesomeIcon icon={[`fab`, `instagram`]} />Instagram
-        </li>
-        <li
-          css={{
-            '&:hover svg': {
-              color: colors.brands.youtube,
-            },
-          }}
-        >
-          <FontAwesomeIcon icon={[`fab`, `youtube`]} />Youmeo
-        </li>
-        <li
-          css={{
-            '&:hover svg': {
-              color: colors.brands.patreon,
-            },
-          }}
-        >
-          <FontAwesomeIcon icon={[`fab`, `patreon`]} />Patreon
-        </li>
-        {/* <li>Flattr</li> */}
+        {accounts.frontmatter.accounts.map(x => (
+          <li
+            key={x.service}
+            css={{
+              '&:hover svg': x.service !== `instagram` && {
+                color: colors.brands[x.service],
+              },
+              '&:hover svg *': x.service === `instagram` && {
+                fill: `url(#InstagramGradient)`,
+              },
+            }}
+          >
+            <a
+              href={x.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              title={x.description}
+            >
+              <FontAwesomeIcon icon={[`fab`, x.icon]} />
+              {x.name}
+            </a>
+          </li>
+        ))}
       </ul>
     </div>
 
@@ -143,7 +131,16 @@ const Footer = ({
         <p key={i} dangerouslySetInnerHTML={{ __html: x }} />
       ))}
       <div>
-        <Link to={legal.frontmatter.slug}>{legal.frontmatter.title}</Link>
+        {legal.length &&
+          legal.map(({ node }) => (
+            <Link
+              to={node.frontmatter.slug}
+              key={node.frontmatter.slug}
+              {...css({ marginRight: `.5rem` })}
+            >
+              {node.frontmatter.title}
+            </Link>
+          ))}
       </div>
     </div>
   </footer>
@@ -156,8 +153,9 @@ Footer.propTypes = {
   supportTitle: PropTypes.string,
   metaTitle: PropTypes.string,
   meta: PropTypes.array,
-  legal: PropTypes.object,
+  legal: PropTypes.array,
   bgImage: PropTypes.object,
+  accounts: PropTypes.object,
 }
 
 export default Footer

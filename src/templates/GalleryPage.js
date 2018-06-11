@@ -1,28 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Helmet from 'react-helmet'
+// import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
 import Link from 'gatsby-link'
 import chunk from 'lodash/fp/chunk'
 import compose from 'ramda/src/compose'
+import flatten from 'ramda/src/flatten'
 import map from 'ramda/src/map'
-import prop from 'ramda/src/prop'
+import reduce from 'ramda/src/reduce'
+import path from 'ramda/src/path'
 import merge from 'ramda/src/merge'
 import Media from 'react-media'
 import MainLayout from '@/components/MainLayout'
 import { mediaQuery } from '@/components/MediaQuery'
-import { Pager, Paginator } from '@/components/Paginator'
+// import { Pager, Paginator } from '@/components/Paginator'
 import { colors, gradients, media } from '@/theme'
 
-const Image = ({
-  key,
-  aspect_ratio,
-  filename,
-  description,
-  article,
-  linkLabel,
-}) => (
-  <div key={key} css={{ flex: aspect_ratio }}>
+const Image = ({ filename, description, slug, title, linkLabel }) => (
+  <div key={filename.base} css={{ flex: filename.aspectRatio }}>
     <figure
       css={{
         margin: 0,
@@ -57,7 +52,7 @@ const Image = ({
     >
       <Link
         role="link"
-        to={article.slug}
+        to={slug}
         css={{
           color: colors.darkWhite,
           display: `block`,
@@ -80,7 +75,7 @@ const Image = ({
 
             {linkLabel}
             <br />
-            {article.title}
+            {title}
           </div>
         </figcaption>
       </Link>
@@ -89,10 +84,10 @@ const Image = ({
 )
 Image.propTypes = {
   key: PropTypes.string.isRequired,
-  aspect_ratio: PropTypes.string.isRequired,
   filename: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  article: PropTypes.string.isRequired,
+  slug: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
   linkLabel: PropTypes.string.isRequired,
 }
 
@@ -106,6 +101,9 @@ const RenderRow = images => (
       justifyContent: `space-between`,
       '& > div': {
         margin: `.3rem`,
+        [media.greaterThan(`xsmall`)]: {
+          maxWidth: [`53%`, `53vw`],
+        },
       },
     }}
   >
@@ -117,7 +115,17 @@ const getImageRows = ({ linkLabel, imagesPerRow }) =>
   compose(
     map(RenderRow),
     chunk(imagesPerRow),
-    map(compose(merge({ linkLabel }), prop(`node`)))
+    reduce((acc, { gallery, ...rest }) => {
+      gallery.forEach(x => {
+        acc.push({
+          ...x,
+          ...rest,
+        })
+      })
+      return acc
+    }, []),
+    map(compose(merge({ linkLabel }), path([`node`, `frontmatter`]))),
+    flatten
   )
 
 const Images = ({ images, linkLabel, imagesPerRow }) => (
@@ -130,17 +138,17 @@ Images.propTypes = {
 }
 
 const GalleryPage = props => {
-  const {
-    // first,
-    // index,
-    // last,
-    next,
-    pageNr,
-    pagination,
-    previous,
-    slug,
-    // total,
-  } = props.pathContext
+  // const {
+  // first,
+  // index,
+  // last,
+  // next,
+  // pageNr,
+  // pagination,
+  // previous,
+  // slug,
+  // total,
+  // } = props.pathContext
 
   const imagesPerRow = mediaQuery(`(min-width: 425px)`) ? 3 : 2
 
@@ -157,12 +165,12 @@ const GalleryPage = props => {
         },
       }}
     >
-      <Helmet>
+      {/* <Helmet>
         {previous > 0 && (
           <link rel="prev" href={`${slug}/${previous === 1 ? `` : previous}`} />
         )}
         {next > 0 && <link rel="next" href={`${slug}/${next}`} />}
-      </Helmet>
+      </Helmet> */}
 
       <Media
         query="(max-width: 1024px)"
@@ -179,14 +187,12 @@ const GalleryPage = props => {
       />
 
       <Images
-        images={props.data.images.edges.filter(
-          ({ node }) => node && node.filename
-        )}
+        images={props.data.images.edges}
         linkLabel={props.data.page.frontmatter.imageLinkLabel}
         imagesPerRow={imagesPerRow}
       />
 
-      <Pager
+      {/* <Pager
         next={next}
         previous={previous}
         slug={slug}
@@ -208,7 +214,7 @@ const GalleryPage = props => {
         }
         currentAriaLabel={props.data.Paginator.frontmatter.currentAriaLabel}
         pageNrAriaLabel={props.data.Paginator.frontmatter.pageNrAriaLabel}
-      />
+      /> */}
     </MainLayout>
   )
 }
@@ -219,18 +225,14 @@ GalleryPage.propTypes = {
 export default GalleryPage
 
 export const query = graphql`
-  query GalleryPageQuery(
-    $lang: String!
-    $slug: String!
-    $limit: Int!
-    $skip: Int!
-  ) {
+  query GalleryPageQuery($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages
     ...homepage
     ...menu
     ...legal
+    ...Accounts
     ...Paginator
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
@@ -249,31 +251,31 @@ export const query = graphql`
         slug
         touchInfo
         imageLinkLabel
+        cover {
+          publicURL
+        }
       }
     }
 
-    images: allGalleryJson(
-      filter: { lang: { eq: $lang } }
-      sort: { fields: [date], order: DESC }
-      skip: $skip
-      limit: $limit
+    images: allMarkdownRemark(
+      filter: { fields: { lang: { eq: $lang }, isPublished: { eq: true } } }
+      sort: { fields: [frontmatter___date], order: DESC }
     ) {
       edges {
         node {
-          lang
-          key
-          article {
+          frontmatter {
             title
             slug
-          }
-          description
-          #ext
-          aspect_ratio
-          filename {
-            base
-            image: childImageSharp {
-              sizes(maxWidth: 600, quality: 75) {
-                ...GatsbyImageSharpSizes_withWebp
+            gallery {
+              description
+              filename {
+                base
+                aspectRatio
+                image: childImageSharp {
+                  sizes(maxWidth: 600, quality: 75) {
+                    ...GatsbyImageSharpSizes_withWebp
+                  }
+                }
               }
             }
           }

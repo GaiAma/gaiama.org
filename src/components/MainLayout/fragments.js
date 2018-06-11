@@ -56,6 +56,22 @@ export const Fragments = graphql`
     }
   }
 
+  fragment Accounts on RootQueryType {
+    Accounts: accountsAml(frontmatter: { lang: { eq: $lang } }) {
+      frontmatter {
+        accounts {
+          service
+          name
+          description
+          handle
+          url
+          icon
+          meta
+        }
+      }
+    }
+  }
+
   fragment menu on RootQueryType {
     menu: allJavascriptFrontmatter(
       filter: {
@@ -71,7 +87,7 @@ export const Fragments = graphql`
             menu
             slug
             lang
-            icon
+            #icon
           }
         }
       }
@@ -95,14 +111,17 @@ export const Fragments = graphql`
   }
 
   fragment legal on RootQueryType {
-    legal: javascriptFrontmatter(
-      frontmatter: { lang: { eq: $lang }, layout: { eq: "PrivacyPage" } }
+    legal: allJavascriptFrontmatter(
+      filter: { frontmatter: { lang: { eq: $lang }, menu: { eq: "legal" } } }
     ) {
-      frontmatter {
-        lang
-        slug
-        title
-        privacyLabel
+      edges {
+        node {
+          frontmatter {
+            lang
+            slug
+            title
+          }
+        }
       }
     }
   }

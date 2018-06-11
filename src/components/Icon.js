@@ -1,11 +1,7 @@
-import { Fragment } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import {
-  breakPoints,
-  colors,
-  fontFamilies
-} from '@/theme'
+import { colors } from '@/theme'
 
 const Wrapper = ({
   label,
@@ -18,7 +14,7 @@ const Wrapper = ({
   ...props
 }) => {
   if (hover) {
-    props.css={
+    props.css = {
       '&:hover svg': {
         color: colors.brands.facebook,
       },
@@ -30,42 +26,35 @@ const Wrapper = ({
     ...props,
   }
 
-  const content = [
-    children,
-  ]
+  const content = [children]
   label && content.push(<span>{label}</span>)
 
   const NonLink = inline ? `span` : `div`
 
-  return link
-    ? <a href={link} {...linkProps}>{content}</a>
-    : <NonLink {...props}>{content}</NonLink>
+  return link ? (
+    <a href={link} {...linkProps}>
+      {content}
+    </a>
+  ) : (
+    <NonLink {...props}>{content}</NonLink>
+  )
 }
 Wrapper.defaultProps = {
   label: ``,
   labelPosition: `right`,
 }
 
-const Icon = ({
-  name,
-  pack,
-  label,
-  link,
-  ...props,
-}) => {
+const Icon = ({ name, pack, label, link, ...props }) => {
   // const _icon =
   //   <FontAwesomeIcon icon={[pack, icon]} size={size} />
-  
+
   // const icon = link
   //   ? <a href={link} target="_blank">{_icon}</a>
   //   : _icon
 
   return (
     <Wrapper label={label}>
-      <FontAwesomeIcon
-        icon={[pack, name]}
-        {...props}
-      />
+      <FontAwesomeIcon icon={[pack, name]} {...props} />
     </Wrapper>
   )
 }

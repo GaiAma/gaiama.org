@@ -8,7 +8,6 @@ module.exports = {
     description: `GaiAma.org website`,
     siteUrl: homepage,
   },
-  // pathPrefix: `/gatsby-starter-blog`,
   mapping: {
     'MarkdownRemark.fields.translations': `MarkdownRemark`,
     'JavascriptFrontmatter.fields.translations': `JavascriptFrontmatter`,
@@ -32,7 +31,9 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: path.join(__dirname, `..`, `content`, `content`),
+        path: process.env[`GAIAMA-CONTENT`]
+          ? path.join(__dirname, `content`)
+          : path.join(__dirname, `..`, `content`, `content`),
         name: `content`,
       },
     },
@@ -56,6 +57,57 @@ module.exports = {
       options: {
         // excerpt_separator: `<!-- end -->`,
         plugins: [
+          `gatsby-remark-embed-video`,
+          // {
+          //   resolve: `gatsby-remark-iframes`,
+          //   options: {
+          //     // custom markdown iframe syntax !(http://hostname/foo)
+          //     'youtube.com': {
+          //       tag: `iframe`,
+          //       width: 560,
+          //       height: 315,
+          //       disabled: false,
+          //       replace: [
+          //         [`watch?v=`, `embed/`],
+          //         [`http://`, `https://`],
+          //         [`youtube.com`, `youtube-nocookie.com`],
+          //       ],
+          //       thumbnail: {
+          //         format: `http://img.youtube.com/vi/{id}/0.jpg`,
+          //         id: `.+/(.+)$`,
+          //       },
+          //       removeAfter: `&`,
+          //     },
+          //     'youtu.be': {
+          //       tag: `iframe`,
+          //       width: 560,
+          //       height: 315,
+          //       disabled: false,
+          //       replace: [
+          //         [`watch?v=`, `embed/`],
+          //         [`youtu.be`, `www.youtube.com/embed`],
+          //         [`youtube.com`, `youtube-nocookie.com`],
+          //       ],
+          //       thumbnail: {
+          //         format: `http://img.youtube.com/vi/{id}/0.jpg`,
+          //         id: `.+/x(.+)$`,
+          //       },
+          //       removeAfter: `&`,
+          //     },
+          //     'vimeo.com': {
+          //       tag: `iframe`,
+          //       width: 500,
+          //       height: 281,
+          //       disabled: false,
+          //       replace: [
+          //         [`http://`, `https://`],
+          //         [`www.`, ``],
+          //         [`vimeo.com/`, `player.vimeo.com/video/`],
+          //       ],
+          //       append: `?color=3d95a8&title=0&byline=0&portrait=0`,
+          //     },
+          //   },
+          // },
           `gatsby-remark-emoji`,
           `gatsby-remark-autolink-headers`,
           // {

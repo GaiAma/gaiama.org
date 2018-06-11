@@ -103,6 +103,7 @@ const AboutPage = props => {
                     id={slugify(bio.name)}
                     css={{
                       fontSize: `1.7rem`,
+                      marginBottom: `1rem`,
                       [media.greaterThan(`medium`)]: {
                         fontSize: `2rem`,
                       },
@@ -110,7 +111,7 @@ const AboutPage = props => {
                   >
                     {bio.name}
                   </h4>
-                  <div css={{ marginBottom: `.5rem`, lineHeight: `.9` }}>
+                  <div css={{ marginBottom: `1rem` }}>
                     {bio.position}
                     <br />
                     {bio.field}
@@ -216,6 +217,7 @@ export const query = graphql`
     ...NewsTicker
     ...newstickerLandscape
     ...legal
+    ...Accounts
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
@@ -231,6 +233,9 @@ export const query = graphql`
         title
         lang
         slug
+        cover {
+          publicURL
+        }
         intro {
           title
           text

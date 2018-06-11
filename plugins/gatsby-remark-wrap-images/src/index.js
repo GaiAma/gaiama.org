@@ -16,11 +16,12 @@ import fs from 'fs'
 // some text paragraph after gallery
 // `
 // const log = x => console.log(`\n\n`, JSON.stringify(x, null, 2), `\n\n`)
-const log = x => fs.writeFileSync(
-  `/Users/Can/Sites/GaiAma.org/testblog/LOGFILE.txt`,
-  `__ENTRY__\n` + JSON.stringify(x, null, 2) + `\n__ENTRY-END__\n\n`,
-  { flag: `a` }
-)
+const log = x =>
+  fs.writeFileSync(
+    `${__dirname}/LOGFILE.txt`,
+    `__ENTRY__\n` + JSON.stringify(x, null, 2) + `\n__ENTRY-END__\n\n`,
+    { flag: `a` }
+  )
 // const visit = visitChildren(log)
 
 // const result = remark()
@@ -45,7 +46,7 @@ module.exports = ({ markdownAST }, pluginOptions) => {
   markdownAST.children
     .filter(x => x && x.children && x.children.length)
     .map(modifyChildren(modifier))
-    // .map(log)
+  // .map(log)
 
   return markdownAST
 }
@@ -53,12 +54,12 @@ module.exports = ({ markdownAST }, pluginOptions) => {
 function modifier(node, index, parent) {
   if (parent.type !== `paragraph`) return false
 
-  const whitespaceStripped = parent.children.filter(x =>
-    !/^(\\n)*\s+$/.test(x.value)
+  const whitespaceStripped = parent.children.filter(
+    x => !/^(\\n)*\s+$/.test(x.value)
   )
 
-  const onlyContainsImages = whitespaceStripped.every(x =>
-    x.type === `html` && x.value.includes(`gatsby-resp-image-figure`)
+  const onlyContainsImages = whitespaceStripped.every(
+    x => x.type === `html` && x.value.includes(`gatsby-resp-image-figure`)
   )
 
   if (onlyContainsImages) {
@@ -87,7 +88,7 @@ function modifier(node, index, parent) {
 }
 
 /**
- * works, but not compatible with 
+ * works, but not compatible with
  */
 // // import remark from 'remark'
 // // import rehype from 'remark-rehype'
@@ -107,7 +108,7 @@ function modifier(node, index, parent) {
 // // `
 // // const log = x => console.log(`\n\n`, JSON.stringify(x, null, 2), `\n\n`)
 // const log = x => fs.writeFileSync(
-//   `/Users/Can/Sites/GaiAma.org/testblog/LOGFILE.txt`,
+//   `${__dirname}/LOGFILE.txt`,
 //   `__ENTRY__\n` + JSON.stringify(x, null, 2) + `\n__ENTRY-END__\n\n`,
 //   { flag: `a` }
 // )

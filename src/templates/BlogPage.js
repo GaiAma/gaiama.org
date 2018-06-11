@@ -27,17 +27,15 @@ const BlogPage = props => {
           : true
     )
     .sort(({ node: a }, { node: b }) => {
-      const isBefore =
-        parseInt(a.frontmatter.date) < parseInt(b.frontmatter.date)
-      const isAfter =
-        parseInt(a.frontmatter.date) > parseInt(b.frontmatter.date)
+      const isBefore = a.fields.dateTime < b.fields.dateTime
+      const isAfter = a.fields.dateTime > b.fields.dateTime
       const sortAsc = isBefore ? -1 : isAfter ? 1 : 0
       const sortDesc = isBefore ? 1 : isAfter ? -1 : 0
       return isSortAsc ? sortAsc : sortDesc
     })
 
   return (
-    <MainLayout {...props}>
+    <MainLayout cover={articles[0].node.frontmatter.cover.publicURL} {...props}>
       <Head
         meta={[
           {
@@ -216,6 +214,7 @@ export const query = graphql`
     ...homepage
     ...menu
     ...legal
+    ...Accounts
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
@@ -252,8 +251,8 @@ export const query = graphql`
     }
 
     articles: allMarkdownRemark(
-      filter: { fields: { lang: { eq: $lang }, isDraft: { eq: false } } }
-      sort: { fields: [frontmatter___date], order: DESC } #limit: 15
+      filter: { fields: { lang: { eq: $lang }, isPublished: { eq: true } } }
+      sort: { fields: [fields___dateTime], order: DESC }
     ) {
       edges {
         previous {
@@ -271,11 +270,10 @@ export const query = graphql`
           frontmatter {
             id
             title
-            date
-            dateStr
             summary
             tags
             cover {
+              publicURL
               childImageSharp {
                 sizes(
                   maxWidth: 400
@@ -292,6 +290,8 @@ export const query = graphql`
             slug
             lang
             layout
+            dateTime
+            dateStr
           }
         }
       }

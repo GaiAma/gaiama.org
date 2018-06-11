@@ -1,9 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import Img from 'gatsby-image'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
 import Newsticker from '@/components/Newsticker'
-// import { breakPoints } from '@/theme'
 
 const PaypalSuccessPage = props => {
   const { page, NewsTicker } = props.data
@@ -13,8 +13,20 @@ const PaypalSuccessPage = props => {
         centered
         title={page.frontmatter.intro.title}
         paragraphs={page.frontmatter.intro.text}
-        css={{ marginBottom: `6rem` }}
+        css={{ marginBottom: `2rem` }}
       />
+
+      <div
+        css={{
+          display: `flex`,
+          justifyContent: `center`,
+          marginBottom: `2rem`,
+        }}
+      >
+        <Img
+          resolutions={page.frontmatter.assets.gratitude.image.resolutions}
+        />
+      </div>
 
       <Newsticker
         items={props.data.news.edges.map(x => x.node)}
@@ -44,6 +56,7 @@ export const query = graphql`
     ...homepage
     ...menu
     ...legal
+    ...Accounts
     ...NewsTicker
     ...newstickerLandscape
 
@@ -64,6 +77,15 @@ export const query = graphql`
         intro {
           title
           text
+        }
+        assets {
+          gratitude {
+            image: childImageSharp {
+              resolutions(quality: 75) {
+                ...GatsbyImageSharpResolutions
+              }
+            }
+          }
         }
       }
     }

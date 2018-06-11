@@ -109,6 +109,7 @@ class MainLayout extends Component {
     wrapperStyles: PropTypes.object,
     pathContext: PropTypes.object,
     localPolyfills: PropTypes.array,
+    cover: PropTypes.string,
   }
 
   static defaultProps = {
@@ -128,12 +129,13 @@ class MainLayout extends Component {
   }
 
   render() {
-    console.log(this.props)
+    process.env.NODE_ENV !== `production` && console.log(this.props)
     const {
       pathContext,
       wrapperStyles,
       data: { site, SiteMeta, languages, homepage, page, menu },
       localPolyfills,
+      cover,
     } = this.props
 
     const lang = pathContext.lang
@@ -172,6 +174,32 @@ class MainLayout extends Component {
             content={page.frontmatter.summary || page.frontmatter.excerpt}
           />
 
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png?v=1"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png?v=1"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png?v=1"
+          />
+          <link rel="manifest" href="/site.webmanifest?v=1" />
+          <link rel="shortcut icon" href="/favicon.ico?v=1" />
+          <meta name="apple-mobile-web-app-title" content="GaiAma" />
+          <meta name="application-name" content="GaiAma" />
+          <meta name="msapplication-TileColor" content="#a4fcfb" />
+          <meta name="theme-color" content="#ffffff" />
+
+          {/* <meta name="msapplication-config" content="browserconfig.xml" /> */}
+
           {/* facebook */}
           <meta property="og:site_name" content="GaiAma" />
           <meta
@@ -190,7 +218,17 @@ class MainLayout extends Component {
             property="og:description"
             content={page.frontmatter.summary || page.frontmatter.excerpt}
           />
-          {/* <meta property="og:image" content={``} /> */}
+          {(cover ||
+            (page.frontmatter.cover && page.frontmatter.cover.publicURL)) &&
+            [`og:image`, `image`].map(x => (
+              <meta
+                property={x}
+                key={cover || page.frontmatter.cover.publicURL}
+                content={cover || page.frontmatter.cover.publicURL}
+              />
+            ))}
+          {/* <meta property="og:image:width" content="1200"> */}
+          {/* <meta property="og:image:height" content="628"> */}
           {/* <meta property="og:image:alt" content={`A shiny red apple with a bite taken out`} /> */}
 
           {/* twitter */}
@@ -235,6 +273,10 @@ class MainLayout extends Component {
           {SiteMeta.frontmatter.skipLinks.toNav}
         </a>
 
+        {urlParams.ref && (
+          <ReferrerMessages urlParams={urlParams} lang={lang} />
+        )}
+
         <Header
           homepage={homepage.frontmatter}
           meta={metaMenu}
@@ -243,15 +285,14 @@ class MainLayout extends Component {
           bgImage={SiteMeta.frontmatter.assets.headerBg.image}
         />
 
-        {urlParams.ref && <ReferrerMessages urlParams={urlParams} />}
-
         <main
           id="main"
           tabIndex="-1"
           css={{
             ...focusOutlineNone,
             margin: `0 auto`,
-            padding: `3rem .8rem 1.45rem`,
+            // padding: `3rem .8rem 1.45rem`,
+            padding: `3rem 0 1.45rem`,
             width: !wrapperStyles.width && `98%`,
             ...maxWidthContent,
             [media.greaterThan(`medium`)]: {
@@ -272,6 +313,7 @@ class MainLayout extends Component {
           meta={SiteMeta.frontmatter.footer.meta}
           legal={this.props.data.legal.edges}
           bgImage={SiteMeta.frontmatter.assets.headerBg.image}
+          accounts={this.props.data.Accounts}
         />
 
         <InstagramGradient />

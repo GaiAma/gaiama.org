@@ -57,6 +57,8 @@ export default {
   },
 
   headerBrand: {
+    position: `relative`,
+    zIndex: 2,
     '& h2': {
       fontSize: `1.1rem`,
       letterSpacing: `0.1rem`,
@@ -106,7 +108,7 @@ export default {
 
     [media.greaterThan(`small`)]: {
       maxWidth: `250px`,
-      transform: `translateY(-1.5rem)`,
+      transform: `translateY(-2.2rem)`,
     },
     [media.greaterThan(`large`)]: { maxWidth: `420px` },
   },
@@ -189,6 +191,8 @@ export default {
   },
 
   headerMetaItem: {
+    position: `relative`,
+    zIndex: 2,
     margin: `0 0.2rem`,
     padding: `0 0.4rem`,
     [media.greaterThan(`small`)]: {

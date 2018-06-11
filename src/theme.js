@@ -27,13 +27,15 @@ export const colors = {
   black: `#222`,
   oldWhite: `#e0e2c5`,
   rss: `#faa949`,
+  success: `#74d27e`,
+  failure: `#d27474`,
   brands: {
     facebook: `#4466b3`,
     twitter: `#1ca1f3`,
     telegram: `#1d95d3`,
     gplus: `#dc4436`,
     youtube: `#fd1402`,
-    patreon: `#fa6653`,
+    github: `#000`,
   },
 }
 
@@ -295,11 +297,6 @@ export const Box = glamorous.div(
   propStyles({
     flex: () => ({
       display: `flex`,
-      // flexDirection: `column`,
-
-      // [breakPoints.minMd]: {
-      //   flexDirection: `row`
-      // }
     }),
     spaceAround: () => ({ justifyContent: `space-around` }),
     spaceBetween: () => ({

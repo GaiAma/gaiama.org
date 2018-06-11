@@ -10,13 +10,16 @@ import axios from 'axios'
 
 axios.defaults.headers.post[`Content-Type`] = `application/json`
 
-const StyledInput = g.input({
+const inputStyle = {
   width: `100%`,
   border: `1px solid #ccc`,
   background: `#fff`,
   lineHeight: 1.5,
   padding: `0 .5rem`,
-})
+}
+
+const StyledInput = g.input(inputStyle)
+const StyledTextarea = g(TextareaAutosize)(inputStyle)
 
 export default class ContactForm extends Component {
   static propTypes = {
@@ -107,7 +110,7 @@ export default class ContactForm extends Component {
     }
 
     return axios
-      .post(`${this.props.endpoint}?c=${Math.random()}`, {
+      .post(this.props.endpoint, {
         email: email.trim(),
         // preserve whitespace & line-breaks https://stackoverflow.com/a/9141737/3484824
         message: message.trim(), //.replace(/(\r\n|\n\r|\r|\n)/g, `&nbsp;`),
@@ -167,7 +170,15 @@ export default class ContactForm extends Component {
         onSubmit={this.handleSubmit}
         noValidate
       >
-        <div css={{ position: `relative`, paddingBottom: `1.4rem` }}>
+        <div
+          css={{
+            position: `relative`,
+            paddingBottom: `1.4rem`,
+            '& input': {
+              borderColor: errors.email && `red`,
+            },
+          }}
+        >
           <label>
             <div css={{ fontFamily: fontFamilies.accent, fontSize: `1.5rem` }}>
               {emailLabel}
@@ -179,10 +190,6 @@ export default class ContactForm extends Component {
               value={values.email}
               placeholder={emailPlaceholder}
               required
-              css={{
-                width: `100%`,
-                border: errors.email && `1px solid red`,
-              }}
             />
             {errors.email && (
               <div
@@ -198,13 +205,16 @@ export default class ContactForm extends Component {
           css={{
             position: `relative`,
             paddingBottom: `1.4rem`,
+            '& textarea': {
+              borderColor: errors.email && `red`,
+            },
           }}
         >
           <label>
             <div css={{ fontFamily: fontFamilies.accent, fontSize: `1.5rem` }}>
               {messageLabel}
             </div>
-            <TextareaAutosize
+            <StyledTextarea
               name="message"
               value={values.message}
               onInput={this.handleChange}

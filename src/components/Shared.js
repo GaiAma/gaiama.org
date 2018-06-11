@@ -6,6 +6,7 @@ import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { colors, Box, fontFamilies, H2, fullPageWidth, media } from '@/theme'
 import Lazy from '@/components/Lazy'
 // import DonationForm from '@/components/DonationForm'
+// import { PureButton } from '@/components/layout/Button'
 import { mediaQuery } from '@/components/MediaQuery'
 // import PatreonButton from '@/assets/become_a_patron_button.png'
 
@@ -53,7 +54,7 @@ class CoinPicker extends Component {
     }
   }
 
-  handleSelect = ({ symbol }) => {
+  handleSelect = ({ symbol }) => () => {
     this.state.selected.symbol !== symbol &&
       this.setState({
         selected: this.props.coins.find(x => x.symbol === symbol),
@@ -88,7 +89,7 @@ class CoinPicker extends Component {
               flex
               column
               aICenter
-              onClick={() => this.handleSelect(x)}
+              onClick={this.handleSelect(x)}
               onKeyPress={this.handleKeyDown}
               css={{
                 '&:hover > img': {
@@ -139,6 +140,62 @@ class CoinPicker extends Component {
   }
 }
 
+class BankDetails extends Component {
+  static propTypes = {
+    bankButton: PropTypes.object.isRequired,
+    bankInfo: PropTypes.string.isRequired,
+    bankDetails: PropTypes.string.isRequired,
+  }
+  state = {
+    isOpen: false,
+  }
+  toggleInfos = () => {
+    this.setState({ isOpen: !this.state.isOpen })
+  }
+  render() {
+    const { bankButton, bankInfo, bankDetails } = this.props
+    return (
+      <div>
+        <div css={{ textAlign: `center` }}>
+          <button
+            onClick={this.toggleInfos}
+            css={{
+              border: `none`,
+              background: `none`,
+              padding: 0,
+            }}
+          >
+            <Img resolutions={bankButton.resolutions} />
+          </button>
+        </div>
+
+        {this.state.isOpen && (
+          <div
+            css={{
+              background: `#f4f9ff`,
+              position: `absolute`,
+              marginTop: `.4rem`,
+              left: 0,
+              right: 0,
+              padding: `1rem`,
+            }}
+          >
+            <div
+              css={{
+                marginLeft: `50%`,
+                transform: `translateX(-50%)`,
+              }}
+            >
+              <p dangerouslySetInnerHTML={{ __html: bankInfo }} />
+              <p dangerouslySetInnerHTML={{ __html: bankDetails }} />
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  }
+}
+
 const SupportWidget = ({
   title,
   description,
@@ -149,6 +206,9 @@ const SupportWidget = ({
   artworkWrapperStyles,
   transparent,
   lang,
+  bankButton,
+  bankInfo,
+  bankDetails,
   ...props
 }) => (
   <div
@@ -197,12 +257,7 @@ const SupportWidget = ({
       }}
     >
       {title && (
-        <H2
-          align="center"
-          mt="1rem"
-          mb={readMoreLink && `.4rem`}
-          fontSize="2rem"
-        >
+        <H2 align="center" mt="1rem" mb=".8rem" fontSize="2rem">
           {title}
         </H2>
       )}
@@ -238,19 +293,17 @@ const SupportWidget = ({
           flexWrap: `wrap`,
           width: `98%`,
           maxWidth: `1280px`,
+          [media.lessThan(`xsmall`)]: {
+            flexDirection: `column`,
+          },
           [media.greaterThan(`medium`)]: {
-            width: `85%`,
+            width: `50%`,
           },
         }}
       >
-        <Box
-          flex
-          column
-          aICenter
+        <div
           css={{
-            // [media.between(`xsmall`, `medium`)]: {
-            //   margin: `0 0 3rem`,
-            // },
+            textAlign: `center`,
             '&:hover > form': {
               transform: `scale(1.02)`,
             },
@@ -259,9 +312,6 @@ const SupportWidget = ({
               '& [type="image"]': {
                 width: `150px`,
               },
-              // [media.lessThan(`xsmall`)]: {
-              //   transform: `scale(0.7)`,
-              // },
             },
           }}
         >
@@ -275,14 +325,14 @@ const SupportWidget = ({
               <input
                 type="hidden"
                 name="hosted_button_id"
-                value="AR3R6U8M5SDKS"
+                value="TU5GAQZHYT8NC"
               />
               <input
                 type="image"
                 src="https://assets.gaiama.org/PayPal_yellow_button.png"
                 border="0"
                 name="submit"
-                alt="PayPal - The safer, easier way to pay online!"
+                alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."
               />
               <img
                 alt=""
@@ -302,7 +352,7 @@ const SupportWidget = ({
               <input
                 type="hidden"
                 name="hosted_button_id"
-                value="W8AKGPB4K9TB6"
+                value="8VVPYXKG7E7CE"
               />
               <input
                 type="image"
@@ -320,43 +370,23 @@ const SupportWidget = ({
               />
             </form>
           )}
-        </Box>
+        </div>
 
-        {/* <Box
-          flex
-          column
-          aICenter
-          css={{
-            // [media.lessThan(`medium`)]: {
-            //   margin: `1rem 0 3rem`,
-            // },
-            '&:hover > a': {
-              transform: `scale(1.02)`,
-            },
-          }}
-        >
-          <a
-            href="https://patreon.com/HappyGaiAma"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img width="150px" src={PatreonButton} alt="Patreon" />
-            Donate
-          </a>
-        </Box> */}
+        <BankDetails
+          bankButton={bankButton}
+          bankInfo={bankInfo}
+          bankDetails={bankDetails}
+        />
 
-        <Box
-          flex
-          column
-          aICenter
+        <div
           css={{
-            [media.lessThan(`medium`)]: {
+            [media.lessThan(`xsmall`)]: {
               margin: `1rem 0 0`,
             },
           }}
         >
           <CoinPicker coins={cryptos} />
-        </Box>
+        </div>
 
         {/* {readMoreLink && (
           <Box flex column aICenter>
@@ -395,6 +425,9 @@ SupportWidget.propTypes = {
   artworkWrapperStyles: PropTypes.object,
   transparent: PropTypes.bool,
   lang: PropTypes.string,
+  bankButton: PropTypes.object,
+  bankInfo: PropTypes.string,
+  bankDetails: PropTypes.string,
 }
 SupportWidget.defaultProps = {
   artworkStyles: {},
@@ -406,8 +439,18 @@ export const SupportWidgetFragment = graphql`
     SupportWidget: supportWidgetAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         title
+        description
         readMoreLink
         readMoreLabel
+        bankButton {
+          image: childImageSharp {
+            resolutions(width: 121, quality: 75) {
+              ...GatsbyImageSharpResolutions
+            }
+          }
+        }
+        bankInfo
+        bankDetails
       }
     }
   }

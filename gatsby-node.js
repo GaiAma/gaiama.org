@@ -4,31 +4,26 @@ const moment = require(`moment`)
 const mkDir = require(`make-dir`)
 const webpack = require(`webpack`)
 const Feed = require(`feed`)
-const {
-  compose,
-  identity,
-  inc,
-  indexOf,
-  map,
-  times,
-  uniq,
-  update,
-} = require(`ramda`)
-const { chunk, round } = require(`lodash/fp`)
+// const {
+//   compose,
+//   identity,
+//   flatten,
+//   inc,
+//   indexOf,
+//   map,
+//   times,
+//   uniq,
+//   update,
+// } = require(`ramda`)
+// const { chunk, round } = require(`lodash/fp`)
+const { shuffle } = require(`lodash`)
 const dotenv = require(`dotenv`).config({
   path: resolve(`..`, `.env`),
 })
 
-const IMAGES_PER_GALLERY = 54
+// const IMAGES_PER_GALLERY = 54
 const publicDir = join(__dirname, `public`)
 const redirections = [`/ /en 301`]
-
-// const log = (dest, content) =>
-//   require(`fs`).writeFile(
-//     dest,
-//     JSON.stringify(content, null, 2),
-//     x => x && console.log(x)
-//   )
 
 const isPage = ({ node }) =>
   node && node.internal && node.internal.type === `JavascriptFrontmatter`
@@ -36,43 +31,44 @@ const isPost = ({ node }) =>
   node && node.internal && node.internal.type === `MarkdownRemark`
 const isPageOrPost = x => isPage(x) || isPost(x)
 
-const chunkImages = chunk(IMAGES_PER_GALLERY)
+// const chunkImages = chunk(IMAGES_PER_GALLERY)
 
-const paginator = ({ current, total }) => {
-  const listGenerator = compose(map(inc), times(identity))
+// const paginator = ({ current, total }) => {
+//   const listGenerator = compose(map(inc), times(identity))
 
-  const listCapper = map(i => {
-    // const range = current > 1 + 10 && false
-    //   ? 7
-    //   : 3
-    const range = 3
-    if (i > current - range && i < current + range) {
-      return `${i}`
-    }
+//   const listCapper = map(i => {
+//     // const range = current > 1 + 10 && false
+//     //   ? 7
+//     //   : 3
+//     const range = 3
+//     if (i > current - range && i < current + range) {
+//       return `${i}`
+//     }
 
-    if (i < total && i > current) {
-      return `next`
-    }
+//     if (i < total && i > current) {
+//       return `next`
+//     }
 
-    if (i > 1 && current > 3 && i < current) {
-      return `prev`
-    }
+//     if (i > 1 && current > 3 && i < current) {
+//       return `prev`
+//     }
 
-    return `${i}`
-  })
+//     return `${i}`
+//   })
 
-  return compose(
-    update(indexOf(`next`), `...`),
-    update(indexOf(`prev`), `...`),
-    uniq,
-    listCapper,
-    listGenerator
-  )(total)
-}
+//   return compose(
+//     update(indexOf(`next`), `...`),
+//     update(indexOf(`prev`), `...`),
+//     uniq,
+//     listCapper,
+//     listGenerator
+//   )(total)
+// }
 
 exports.onCreateNode = ({ node, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators
   if (isPageOrPost({ node })) {
+    const theMoment = moment(node.frontmatter.date, `Y-MM-DD`)
     createNodeField({
       node,
       name: `slug`,
@@ -85,8 +81,8 @@ exports.onCreateNode = ({ node, boundActionCreators }) => {
     })
     createNodeField({
       node,
-      name: `isDraft`,
-      value: node.frontmatter.draft || node.frontmatter.status !== 1 || false,
+      name: `isPublished`,
+      value: node.frontmatter.published,
     })
     createNodeField({
       node,
@@ -96,7 +92,19 @@ exports.onCreateNode = ({ node, boundActionCreators }) => {
     createNodeField({
       node,
       name: `dateTime`,
-      value: moment(parseInt(node.frontmatter.date)).format(),
+      value: theMoment.toISOString(),
+    })
+    createNodeField({
+      node,
+      name: `dateStr`,
+      value: theMoment.format(`Y-MM-DD`),
+    })
+    createNodeField({
+      node,
+      name: `dateStrLocalized`,
+      value: theMoment
+        .locale(node.frontmatter.lang)
+        .format(node.frontmatter.lang === `de` ? `DD.MM.Y` : `Y-MM-DD`),
     })
   }
 }
@@ -143,7 +151,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
       }
 
       articles: allMarkdownRemark(
-        filter: { fields: { isDraft: { eq: false } } }
+        filter: { fields: { isPublished: { eq: true } } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
@@ -157,27 +165,17 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
               shortlink
               oldId
               oldSlug
-              date
               translations
             }
             fields {
               slug
               lang
               layout
+              dateTime
             }
             internal {
               type
             }
-          }
-        }
-      }
-
-      gallery: allGalleryJson(sort: { fields: [date], order: DESC }) {
-        edges {
-          node {
-            lang
-            date
-            key
           }
         }
       }
@@ -215,38 +213,56 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
       const { shortId, shortlink, oldId, oldSlug } = node.frontmatter
 
       if (layout === `GalleryPage`) {
-        const graphImages = graphNodes.data.gallery.edges
-        const allImages = graphImages.filter(x => x.node.lang === lang)
-
-        const allImageCount = allImages.length
-        const chunkedImages = chunkImages(allImages)
-        const total = chunkedImages.length
-
-        return chunkedImages.map((gallery, index) => {
-          const pageNr = inc(index)
-          const gallerySlug = `${slug}/${pageNr}`
-          // redirect from /1 to /
-          if (pageNr === 1) {
-            redirections.push(`${gallerySlug} ${slug} 301`)
-          }
-          return createPage({
-            path: pageNr === 1 ? slug : gallerySlug,
-            component: resolve(`./src/templates/${layout}.js`),
-            context: {
-              slug,
-              lang,
-              pageNr,
-              limit: IMAGES_PER_GALLERY,
-              skip: pageNr === 1 ? 0 : round(allImageCount / total * index) + 2,
-              total,
-              first: 1,
-              last: total,
-              previous: pageNr > 1 ? pageNr - 1 : 0,
-              next: pageNr + 1 <= total ? pageNr + 1 : 0,
-              pagination: paginator({ current: pageNr, total }),
-            },
-          })
-        })
+        // const graphImages = graphNodes.data.gallery.edges
+        // const allImages = graphImages.filter(x => x.node.lang === lang)
+        // console.log(`\n\n\n\n------------------------\n`)
+        // console.log(graphNodes.data.articles.edges.map(x => x.node.frontmatter))
+        // console.log(`\n------------------------\n\n\n\n`)
+        // const allImages = flatten(
+        //   graphNodes.data.articles.edges.map(
+        //     x => x.node.frontmatter.gallery || []
+        //   )
+        // )
+        // const allImageCount = allImages.length
+        // const chunkedImages = chunkImages(allImages)
+        // const total = chunkedImages.length
+        // console.log(`allimages`, allImages)
+        // createNode({
+        //   id: `GaiAmaGallery`,
+        //   children: [],
+        //   parent: `__SOURCE__`,
+        //   internal: {
+        //     type: `GaiAmaGallery`,
+        //     contentDigest: allImages.map(x => x.filename).join(`;`),
+        //   },
+        //   images: allImages,
+        // })
+        // return
+        // return chunkedImages.map((gallery, index) => {
+        //   const pageNr = inc(index)
+        //   const gallerySlug = `${slug}/${pageNr}`
+        //   // redirect from /1 to /
+        //   if (pageNr === 1) {
+        //     redirections.push(`${gallerySlug} ${slug} 301`)
+        //   }
+        //   // return createPage({
+        //   //   path: pageNr === 1 ? slug : gallerySlug,
+        //   //   component: resolve(`./src/templates/${layout}.js`),
+        //   //   context: {
+        //   //     slug,
+        //   //     lang,
+        //   //     pageNr,
+        //   //     limit: IMAGES_PER_GALLERY,
+        //   //     skip: pageNr === 1 ? 0 : round(allImageCount / total * index) + 2,
+        //   //     total,
+        //   //     first: 1,
+        //   //     last: total,
+        //   //     previous: pageNr > 1 ? pageNr - 1 : 0,
+        //   //     next: pageNr + 1 <= total ? pageNr + 1 : 0,
+        //   //     pagination: paginator({ current: pageNr, total }),
+        //   //   },
+        //   // })
+        // })
       }
 
       // all non-gallery / non-paginated pages
@@ -316,7 +332,15 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
       name: `suggested`,
       value: node.frontmatter.suggested.length
         ? collectSuggestedNodes(node).slice(0, 3)
-        : [],
+        : shuffle(
+            Posts.filter(
+              node =>
+                node.fields.isPublished &&
+                moment(node.fields.dateTime).isAfter(1427472056000)
+            )
+          )
+            .slice(0, 3)
+            .map(node => node.frontmatter.id),
     })
   )
 
@@ -350,12 +374,12 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
 
     Posts.filter(
       node =>
-        node.frontmatter.status === 1 &&
+        node.frontmatter.published &&
         node.fields.lang === lang.node.frontmatter.id
     )
       .sort((_a, _b) => {
-        const a = moment(parseInt(_a.frontmatter.date))
-        const b = moment(parseInt(_b.frontmatter.date))
+        const a = moment(_a.fields.dateTime)
+        const b = moment(_b.fields.dateTime)
         return a.isBefore(b) ? 1 : a.isAfter(b) ? -1 : 0
       })
       .forEach((node, index, array) => {
@@ -383,7 +407,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
           title: node.frontmatter.title,
           id: `https://www.gaiama.org${node.frontmatter.slug}`,
           link: `https://www.gaiama.org${node.frontmatter.slug}`,
-          date: new Date(parseInt(node.frontmatter.published)),
+          date: new Date(node.fields.dateTime),
           content: node.excerpt,
           author: [
             {
@@ -404,10 +428,10 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
   return true
 }
 
-// /**
-//  * maybe split up assets into subfolders?
-//  * check out https://github.com/webpack-contrib/file-loader#placeholders
-//  */
+/**
+ * maybe split up assets into subfolders?
+ * check out https://github.com/webpack-contrib/file-loader#placeholders
+ */
 exports.modifyWebpackConfig = ({ config, stage }) => {
   config.loader(`url-loader`, {
     query: {
@@ -438,13 +462,8 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
   })
 }
 
-// exports.modifyBabelrc = ({ babelrc }) => ({
-//   plugins: babelrc.plugins.concat([`transform-regenerator`]),
-// })
-
 exports.onPostBuild = ({ store }) => {
   // const { redirects } = store.getState()
-
   // redirects.forEach(({ fromPath, toPath, isPermanent }) => {
   //   redirections.push([fromPath, toPath, isPermanent ? 301 : null].join(` `))
   // })

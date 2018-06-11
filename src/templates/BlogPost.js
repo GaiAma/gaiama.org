@@ -12,7 +12,6 @@ import { colors, fontFamilies, gradients, media } from '@/theme'
 
 const BlogPost = props => {
   const { page: post, BlogPost, NewsTicker } = props.data
-  const publishedTime = new Date(parseInt(post.frontmatter.date))
 
   return (
     <MainLayout {...props}>
@@ -29,14 +28,16 @@ const BlogPost = props => {
           },
           {
             property: `og:image`,
-            content: `${props.data.site.siteMetadata.siteUrl}${
-              post.frontmatter.cover.publicURL
-            }`,
+            content:
+              post.frontmatter.cover &&
+              `${props.data.site.siteMetadata.siteUrl}${
+                post.frontmatter.cover.publicURL
+              }`,
           },
           {
             property: `article:published_time`,
             itemprop: `datePublished`,
-            content: publishedTime.toISOString(),
+            content: post.fields.dateTime,
           },
           // { property: `article:author`, content: `` },
           // { property: `article:section`, content: `Category` },
@@ -49,8 +50,8 @@ const BlogPost = props => {
         <PostHeader
           title={post.frontmatter.title}
           datetime={post.fields.dateTime}
-          publishedTime={publishedTime}
-          dateStr={post.frontmatter.dateStr}
+          dateStr={post.fields.dateStr}
+          dateStrLocalized={post.fields.dateStrLocalized}
         />
 
         <PostBody>{renderAst(post.htmlAst)}</PostBody>
@@ -58,8 +59,10 @@ const BlogPost = props => {
 
       <ShareWidget
         label={BlogPost.frontmatter.shareLabel}
+        post={post}
+        siteUrl={props.data.site.siteMetadata.siteUrl}
         css={{
-          margin: `0 auto 4rem`,
+          margin: `2rem auto 4rem`,
           maxWidth: `760px`,
         }}
       />
@@ -80,6 +83,9 @@ const BlogPost = props => {
       <SupportWidget
         title={BlogPost.frontmatter.SupportWidget.title}
         description={BlogPost.frontmatter.SupportWidget.description}
+        bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
+        bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
+        bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
         lang={props.pathContext.lang}
         css={{ margin: `0 0 3rem` }}
       />
@@ -171,6 +177,7 @@ export const query = graphql`
     ...homepage
     ...menu
     ...legal
+    ...Accounts
     ...SupportWidget
     ...NewsTicker
 
@@ -192,6 +199,9 @@ export const query = graphql`
 
     page: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
       fields {
+        dateTime
+        dateStr
+        dateStrLocalized
         translations {
           frontmatter {
             title
@@ -247,12 +257,8 @@ export const query = graphql`
         oldId
         slug
         lang
-        status
-        created
-        published
-        dateStr
-        date
         summary
+        tweet_id
         cover {
           publicURL
         }
@@ -261,37 +267,37 @@ export const query = graphql`
   }
 `
 
-const GaimaImage = ({ aspectRatio, children }) => (
-  <div css={{ flex: aspectRatio }}>{children}</div>
-)
-GaimaImage.propTypes = {
-  aspectRatio: PropTypes.string,
-}
+// const GaimaImage = ({ aspectRatio, children }) => (
+//   <div css={{ flex: aspectRatio }}>{children}</div>
+// )
+// GaimaImage.propTypes = {
+//   aspectRatio: PropTypes.string,
+// }
 
-const GaimaVideo = ({ preview, src, width, height }) => (
-  // <iframe src={children} title={children}></iframe>
-  <div>
-    <img src={preview} alt="video preview" width={width} height={height} />
-    <iframe src={src} width={width} height={height} title="youtube video" />
-  </div>
-)
-GaimaVideo.propTypes = {
-  preview: PropTypes.string,
-  src: PropTypes.string,
-  width: PropTypes.string,
-  height: PropTypes.string,
-}
+// const GaimaVideo = ({ preview, src, width, height }) => (
+//   // <iframe src={children} title={children}></iframe>
+//   <div>
+//     <img src={preview} alt="video preview" width={width} height={height} />
+//     <iframe src={src} width={width} height={height} title="youtube video" />
+//   </div>
+// )
+// GaimaVideo.propTypes = {
+//   preview: PropTypes.string,
+//   src: PropTypes.string,
+//   width: PropTypes.string,
+//   height: PropTypes.string,
+// }
 
 const renderAst = new rehypeReact({
   createElement,
   components: {
-    'gaiama-image': GaimaImage,
-    'gaiama-link': Link,
-    'embed-video': GaimaVideo,
+    // 'gaiama-image': GaimaImage,
+    // 'gaiama-link': Link,
+    // 'embed-video': GaimaVideo,
   },
 }).Compiler
 
-const PostHeader = ({ title, dateTime, publishedTime, dateStr }) => (
+const PostHeader = ({ title, dateTime, dateStr, dateStrLocalized }) => (
   <div
     css={{
       textAlign: `center`,
@@ -325,8 +331,8 @@ const PostHeader = ({ title, dateTime, publishedTime, dateStr }) => (
     >
       <time
         itemProp="datePublished"
-        content={publishedTime.toISOString()}
-        dateTime={publishedTime.toISOString()}
+        content={dateTime}
+        dateTime={dateTime}
         css={{
           position: `relative`,
           display: `inline-block`,
@@ -335,7 +341,7 @@ const PostHeader = ({ title, dateTime, publishedTime, dateStr }) => (
           padding: `0 .5rem`,
         }}
       >
-        {dateStr}
+        {dateStrLocalized}
       </time>
     </div>
   </div>
@@ -345,6 +351,7 @@ PostHeader.propTypes = {
   dateTime: PropTypes.string,
   publishedTime: PropTypes.object,
   dateStr: PropTypes.string,
+  dateStrLocalized: PropTypes.string,
 }
 
 const PostBody = ({ children }) => (
@@ -381,13 +388,13 @@ const PostBody = ({ children }) => (
       //   marginTop: `3rem`,
       // },
       '& .inline-gallery': {
-        maxWidth: `initial`,
+        maxWidth: `100%`,
         display: `flex`,
         justifyContent: `center`,
         [media.lessThan(`small`)]: {
           flexDirection: `column`,
           alignItems: `center`,
-          '& > *:not(:last-child)': {
+          '& > *': {
             marginTop: `1rem`,
           },
         },

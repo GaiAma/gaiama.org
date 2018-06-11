@@ -128,12 +128,12 @@ const ContactPage = props => {
             <div
               css={{
                 '& svg': {
-                  color: colors.brands.patreon,
+                  color: colors.brands.twitter,
                 },
               }}
             >
               <a href="https://" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={[`fab`, `patreon`]} size="lg" />
+                <FontAwesomeIcon icon={[`fab`, `twitter`]} size="lg" />
               </a>
             </div>
             <div
@@ -220,6 +220,7 @@ export const query = graphql`
     ...homepage
     ...menu
     ...legal
+    ...Accounts
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {

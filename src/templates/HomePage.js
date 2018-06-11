@@ -115,8 +115,12 @@ const HomePage = props => (
 
     <SupportWidget
       title={props.data.SupportWidget.frontmatter.title}
+      description={props.data.SupportWidget.frontmatter.description}
       readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
       readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
+      bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
+      bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
+      bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
       // artwork={props.data.page.frontmatter.assets.supportus}
       lang={props.pathContext.lang}
       css={{
@@ -177,9 +181,9 @@ export const query = graphql`
     ...homepage
     ...menu
     ...legal
+    ...Accounts
     ...instagram
     ...SupportWidget
-    #...Cryptos
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
@@ -195,6 +199,9 @@ export const query = graphql`
         title
         lang
         slug
+        cover {
+          publicURL
+        }
         intro {
           title
           content
@@ -303,69 +310,11 @@ export const IntroContainer = ({ children }) => (
   </div>
 )
 
-// const InterruptingHeadline = ({
-//   bg,
-//   headline,
-// }) => (
-//   <Lazy
-//     image={bg}
-//     css={{
-//       backgroundSize: `cover`,
-//       position: `relative`,
-//       width: `100vw`,
-//       left: `50%`,
-//       transform: `translateX(-50vw)`,
-//       boxShadow: `inset 0 1px 8px #000`,
-//       textAlign: `center`,
-//       margin: `2rem 0`,
-//     }}
-//   >
-//     <h2
-//       css={{
-//         display: `inline-block`,
-//         padding: `0 1.5rem .6rem 0`,
-//         margin: `1.6rem 0`,
-//         fontSize: `2.5rem`,
-//         lineHeight: `0.8`,
-//         letterSpacing: `.3rem`,
-//         borderBottom: `1px solid #000`,
-//         position: `relative`,
-//         '&:after': {
-//           content: `>>`,
-//           position: `absolute`,
-//           right: `-0.2rem`,
-//           bottom: `-0.6rem`,
-//           fontSize: `1.6rem`,
-//           letterSpacing: `initial`,
-//         },
-//       }}
-//     >
-//       {headline}
-//     </h2>
-//   </Lazy>
-// )
-// InterruptingHeadline.propTypes = {
-//   bg: PropTypes.string,
-//   headline: PropTypes.string,
-// }
-// export { InterruptingHeadline }
-
 const KeyPrinciples = ({ title, content, ...props }) => (
   <div
     css={{
       width: `90%`,
       margin: `2rem auto 0`,
-      // [media.greaterThan(`small`)]: {
-      //   display: `flex`,
-      //   justifyContent: `space-between`,
-      //   flexWrap: `wrap`,
-      //   '& > div': {
-      //     width: `56%`,
-      //   },
-      //   '& > div:nth-child(2n+2)': {
-      //     width: `38%`,
-      //   },
-      // },
       '& > div + div': {
         marginTop: `3rem`,
       },

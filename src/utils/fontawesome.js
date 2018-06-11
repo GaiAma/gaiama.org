@@ -1,14 +1,13 @@
 import fontawesome from '@fortawesome/fontawesome'
 
-import {
-  faEnvelope,
-} from '@fortawesome/fontawesome-free-regular/shakable'
+import { faEnvelope } from '@fortawesome/fontawesome-free-regular/shakable'
 
 import {
   faFacebookSquare,
   faInstagram,
   faYoutube,
-  faPatreon,
+  faTwitter,
+  faGithub,
 } from '@fortawesome/fontawesome-free-brands/shakable'
 
 import {
@@ -29,7 +28,8 @@ fontawesome.library.add(
   faFacebookSquare,
   faInstagram,
   faYoutube,
-  faPatreon,
+  faTwitter,
+  faGithub,
   faEnvelope,
   faCaretDown,
   faNewspaper,
@@ -38,5 +38,5 @@ fontawesome.library.add(
   faSortNumericDown,
   faCheck,
   faCaretLeft,
-  faCaretRight,
+  faCaretRight
 )

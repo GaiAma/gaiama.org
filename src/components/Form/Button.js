@@ -1,20 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import {
-  colors,
-  fontFamilies,
-} from '@/theme'
+import { colors, fontFamilies } from '@/theme'
 
-const Input = ({
-  children,
-  onClick,
-  ...props
-}) => (
+const Input = ({ children, onClick, ...props }) => (
   <div css={styles.wrapper} {...props}>
-    <button
-      css={styles.button}
-      onClick={onClick}
-    >
+    <button css={styles.button} onClick={onClick}>
       {children}
     </button>
   </div>
@@ -48,7 +38,7 @@ const styles = {
     '&:hover': {
       background: colors.primaryLite,
       color: colors.darkWhite,
-      '& svg': { visibility: `initial` },
+      '& svg': { visibility: `visible` },
     },
   },
 }
