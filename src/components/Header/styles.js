@@ -215,7 +215,7 @@ export default {
     display: [`inline-block`, `flex`],
     alignItems: `center`,
     height: `100%`,
-    padding: `0 .6rem 0`,
+    padding: `0 .65rem 0`,
 
     ':hover, &.active': {
       background: colors.primary,

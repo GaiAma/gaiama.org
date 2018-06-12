@@ -213,25 +213,25 @@ export const fontFamilies = {
   accent: [`Amatic SC`].concat(fallbackFont).join(`,`),
 }
 
-export const fonts = {
-  header: {
-    fontSize: 60,
-    lineHeight: `65px`,
-    fontWeight: 700,
+// export const fonts = {
+//   header: {
+//     fontSize: 60,
+//     lineHeight: `65px`,
+//     fontWeight: 700,
 
-    [media.lessThan(`medium`)]: {
-      fontSize: 40,
-      lineHeight: `45px`,
-    },
-  },
-  small: {
-    fontSize: 14,
-  },
-}
+//     [media.lessThan(`medium`)]: {
+//       fontSize: 40,
+//       lineHeight: `45px`,
+//     },
+//   },
+//   small: {
+//     fontSize: 14,
+//   },
+// }
 
 export const headlineStyles = {
   fontFamily: fontFamilies.accent,
-  fontWeight: `400`,
+  fontWeight: `100`,
   letterSpacing: `.09rem`,
 }
 
@@ -372,7 +372,7 @@ export const visible = {
 export default {
   colors,
   fontFamilies,
-  fonts,
+  // fonts,
   H1,
   H2,
   H3,
