@@ -118,6 +118,9 @@ const HomePage = props => (
       description={props.data.SupportWidget.frontmatter.description}
       readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
       readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
+      paypalButton={
+        props.data.SiteMeta.frontmatter.assets.paypalButton.publicURL
+      }
       bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
       bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
       bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
@@ -157,7 +160,7 @@ HomePage.propTypes = {
   data: PropTypes.shape({
     page: PropTypes.object,
     SupportWidget: PropTypes.object,
-    Cryptos: PropTypes.object,
+    SiteMeta: PropTypes.object,
     instagram: PropTypes.shape({
       frontmatter: PropTypes.shape({
         instagramUser: PropTypes.string,

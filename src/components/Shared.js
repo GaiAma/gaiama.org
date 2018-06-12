@@ -172,7 +172,7 @@ class BankDetails extends Component {
         {this.state.isOpen && (
           <div
             css={{
-              background: `#f4f9ff`,
+              background: colors.lightBlue,
               position: `absolute`,
               marginTop: `.4rem`,
               left: 0,
@@ -206,6 +206,7 @@ const SupportWidget = ({
   artworkWrapperStyles,
   transparent,
   lang,
+  paypalButton,
   bankButton,
   bankInfo,
   bankDetails,
@@ -329,7 +330,7 @@ const SupportWidget = ({
               />
               <input
                 type="image"
-                src="https://assets.gaiama.org/PayPal_yellow_button.png"
+                src={paypalButton}
                 border="0"
                 name="submit"
                 alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."
@@ -356,7 +357,7 @@ const SupportWidget = ({
               />
               <input
                 type="image"
-                src="https://assets.gaiama.org/PayPal_yellow_button.png"
+                src={paypalButton}
                 border="0"
                 name="submit"
                 alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."
@@ -425,6 +426,7 @@ SupportWidget.propTypes = {
   artworkWrapperStyles: PropTypes.object,
   transparent: PropTypes.bool,
   lang: PropTypes.string,
+  paypalButton: PropTypes.string,
   bankButton: PropTypes.object,
   bankInfo: PropTypes.string,
   bankDetails: PropTypes.string,

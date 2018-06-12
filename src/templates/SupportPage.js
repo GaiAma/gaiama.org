@@ -422,6 +422,9 @@ const SupportPage = props => {
         title={props.data.SupportWidget.frontmatter.title}
         description={props.data.SupportWidget.frontmatter.description}
         artwork={props.data.page.frontmatter.assets.sidebarArtwork}
+        paypalButton={
+          props.data.SiteMeta.frontmatter.assets.paypalButton.publicURL
+        }
         bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}

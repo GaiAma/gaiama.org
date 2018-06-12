@@ -83,6 +83,9 @@ const BlogPost = props => {
       <SupportWidget
         title={BlogPost.frontmatter.SupportWidget.title}
         description={BlogPost.frontmatter.SupportWidget.description}
+        paypalButton={
+          props.data.SiteMeta.frontmatter.assets.paypalButton.publicURL
+        }
         bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}

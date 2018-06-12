@@ -14,16 +14,19 @@ export const Fragments = graphql`
           logo {
             image: childImageSharp {
               sizes(maxWidth: 420, quality: 75) {
-                ...GatsbyImageSharpSizes_noBase64
+                ...GatsbyImageSharpSizes
               }
             }
           }
           headerBg {
             image: childImageSharp {
               sizes(maxWidth: 1280, quality: 75) {
-                ...GatsbyImageSharpSizes_noBase64
+                ...GatsbyImageSharpSizes
               }
             }
+          }
+          paypalButton {
+            publicURL
           }
         }
         skipLinks {
