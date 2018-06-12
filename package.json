@@ -1,7 +1,7 @@
 {
   "name": "gaiama.org",
   "description": "GaiAma.org website",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "author": "Can Rau <cansrau@gmail.com>",
   "license": "MIT",
   "homepage": "https://www.gaiama.org",
@@ -9,9 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/gaiama/gaiama.org.git"
   },
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": ["gatsby"],
   "bugs": {
     "url": "https://github.com/gaiama/gaiama.org/issues"
   },
@@ -21,7 +19,8 @@
     "fix": "eslint --fix --ext .js,.jsx .",
     "size": "size-limit",
     "test": "jest",
-    "format": "prettier --config .prettierrc --write 'src/**/*.js' 'plugins/**/src/**/*.js' 'src/**/*.md'",
+    "format":
+      "prettier --config .prettierrc --write 'src/**/*.js' 'plugins/**/src/**/*.js' 'src/**/*.md'",
     "develop": "gatsby develop",
     "clean:cache": "rimraf .cache",
     "clean:public": "rimraf public",
@@ -29,16 +28,12 @@
     "build": "NODE_ENV=production gatsby build",
     "serve": "serve",
     "preview": "yarn build && yarn serve",
-    "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
+    "fix-semi":
+      "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
     "precommit": "yarn format",
     "deploy": "netlify deploy"
   },
-  "browserslist": [
-    "> 1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "Opera 12.1"
-  ],
+  "browserslist": ["> 1%", "last 4 versions", "Firefox ESR", "Opera 12.1"],
   "size-limit": [
     {
       "path": "public/*.js",
@@ -70,14 +65,22 @@
     "gatsby-plugin-sharp": "https://gitlab.com/GaiAma/gatsby-plugin-sharp.git",
     "gatsby-plugin-twitter": "^1.0.17",
     "gatsby-plugin-typography": "^1.7.15",
-    "gatsby-remark-copy-linked-files": "https://gitlab.com/GaiAma/gatsby-remark-copy-linked-files.git",
-    "gatsby-remark-images-with-ratio": "https://gitlab.com/GaiAma/gatsby-remark-images-with-ratio.git",
-    "gatsby-remark-wrap-images": "https://gitlab.com/GaiAma/gatsby-remark-wrap-images.git",
-    "gatsby-source-filesystem": "https://gitlab.com/GaiAma/gatsby-source-filesystem.git",
-    "gatsby-transformer-all-yaml": "https://gitlab.com/GaiAma/gatsby-transformer-all-yaml.git",
-    "gatsby-transformer-archieml": "https://gitlab.com/GaiAma/gatsby-transformer-archieml.git",
-    "gatsby-transformer-qr": "https://gitlab.com/GaiAma/gatsby-transformer-qr.git",
-    "gatsby-transformer-sharp": "https://gitlab.com/GaiAma/gatsby-transformer-sharp.git",
+    "gatsby-remark-copy-linked-files":
+      "https://gitlab.com/GaiAma/gatsby-remark-copy-linked-files.git",
+    "gatsby-remark-images-with-ratio":
+      "https://gitlab.com/GaiAma/gatsby-remark-images-with-ratio.git",
+    "gatsby-remark-wrap-images":
+      "https://gitlab.com/GaiAma/gatsby-remark-wrap-images.git",
+    "gatsby-source-filesystem":
+      "https://gitlab.com/GaiAma/gatsby-source-filesystem.git",
+    "gatsby-transformer-all-yaml":
+      "https://gitlab.com/GaiAma/gatsby-transformer-all-yaml.git",
+    "gatsby-transformer-archieml":
+      "https://gitlab.com/GaiAma/gatsby-transformer-archieml.git",
+    "gatsby-transformer-qr":
+      "https://gitlab.com/GaiAma/gatsby-transformer-qr.git",
+    "gatsby-transformer-sharp":
+      "https://gitlab.com/GaiAma/gatsby-transformer-sharp.git",
     "glamor": "^2.20.40",
     "glamorous": "^4.11.4",
     "hex2rgba": "^0.0.1",

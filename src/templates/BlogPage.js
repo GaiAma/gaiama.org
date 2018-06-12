@@ -273,7 +273,6 @@ export const query = graphql`
             title
             summary
             tags
-            dateStr
             cover {
               publicURL
               childImageSharp {
