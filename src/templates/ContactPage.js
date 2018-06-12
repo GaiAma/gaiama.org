@@ -92,53 +92,36 @@ const ContactPage = props => {
               },
             }}
           >
+            {props.data.Accounts.frontmatter.accounts
+              .filter(x => x.meta !== `true`)
+              .map(x => (
+                <div
+                  key={x.service}
+                  css={{
+                    '& svg': x.service !== `instagram` && {
+                      color: colors.brands[x.service],
+                    },
+                    '& svg *': x.service === `instagram` && {
+                      fill: `url(#InstagramGradient)`,
+                    },
+                    '&:hover svg': {
+                      color: colors.black,
+                    },
+                  }}
+                >
+                  <a
+                    href={x.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={x.description}
+                  >
+                    <FontAwesomeIcon icon={[`fab`, x.icon]} size="lg" />
+                  </a>
+                </div>
+              ))}
             <div
               css={{
-                '& svg': {
-                  color: colors.brands.facebook,
-                },
-              }}
-            >
-              <a href="https://" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={[`fab`, `facebook-square`]} size="lg" />
-              </a>
-            </div>
-            <div
-              css={{
-                '& svg *': {
-                  fill: `url(#InstagramGradient)`,
-                },
-              }}
-            >
-              <a href="https://" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={[`fab`, `instagram`]} size="lg" />
-              </a>
-            </div>
-            <div
-              css={{
-                '& svg': {
-                  color: colors.brands.youtube,
-                },
-              }}
-            >
-              <a href="https://" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={[`fab`, `youtube`]} size="lg" />
-              </a>
-            </div>
-            <div
-              css={{
-                '& svg': {
-                  color: colors.brands.twitter,
-                },
-              }}
-            >
-              <a href="https://" target="_blank" rel="noopener noreferrer">
-                <FontAwesomeIcon icon={[`fab`, `twitter`]} size="lg" />
-              </a>
-            </div>
-            <div
-              css={{
-                '& svg': {
+                '&:hover svg': {
                   color: colors.rss,
                 },
               }}
