@@ -89,7 +89,8 @@ const SupportPage = props => {
               display: `block`,
               right: `0`,
               bottom: `0`,
-              background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+              // background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+              background: `linear-gradient(to right, rgba(204,204,204,0.13), #abaaaa, #cccccc21) no-repeat`,
               [media.lessThan(`medium`)]: {
                 left: `0`,
               },
@@ -97,7 +98,8 @@ const SupportPage = props => {
                 height: `100%`,
                 width: `1px`,
                 top: `0`,
-                background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+                // background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+                background: `linear-gradient(to bottom, rgba(204,204,204,0.13), #abaaaa, rgba(204,204,204,0.13)) no-repeat`,
               },
             },
           }}
@@ -204,6 +206,7 @@ const SupportPage = props => {
             <a
               href={`${props.data.page.frontmatter.contactLink}#Newsletter`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon={[`fas`, `newspaper`]} size="3x" />
             </a>
@@ -215,7 +218,11 @@ const SupportPage = props => {
               },
             }}
           >
-            <a href={`/${props.pathContext.lang}/blog/rss.xml`} target="_blank">
+            <a
+              href={`/${props.pathContext.lang}/blog/rss.xml`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="3x" />
             </a>
           </div>
@@ -347,7 +354,8 @@ const SupportPage = props => {
                     display: `block`,
                     top: `0`,
                     right: `0`,
-                    background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+                    // background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+                    background: `linear-gradient(to bottom, rgba(204,204,204,0.13), #abaaaa, rgba(204,204,204,0.13)) no-repeat`,
                   },
                 },
                 '&:last-child': {
@@ -425,7 +433,8 @@ const SupportPage = props => {
         paypalButton={
           props.data.SiteMeta.frontmatter.assets.paypalButton.publicURL
         }
-        bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
+        bankButton={props.data.SupportWidget.frontmatter.bankButton}
+        bankButtonAlt={props.data.SupportWidget.frontmatter.bankButtonAlt}
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
         lang={props.pathContext.lang}

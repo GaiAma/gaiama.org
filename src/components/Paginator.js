@@ -34,7 +34,8 @@ const Paginator = ({
           top: `50%`,
           left: `0`,
           right: `0`,
-          background: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21) no-repeat`,
+          // background: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21) no-repeat`,
+          background: `linear-gradient(to right, rgba(204,204,204,0.13), #ccc, rgba(204,204,204,0.13)) no-repeat`,
         },
       }}
     >
@@ -139,7 +140,10 @@ const Pager = ({
       {previous > 0 && (
         <Link to={`${slug}/${previous === 1 ? `` : previous}`}>
           <FontAwesomeIcon icon="caret-left" size="lg" />
-          <span aria-label={previousPageAriaLabel} css={{ marginLeft: `.5rem` }}>
+          <span
+            aria-label={previousPageAriaLabel}
+            css={{ marginLeft: `.5rem` }}
+          >
             {previousPageLabel}
           </span>
         </Link>
@@ -168,10 +172,7 @@ Pager.propTypes = {
   previousPageAriaLabel: PropTypes.string,
 }
 
-export {
-  Paginator,
-  Pager,
-}
+export { Paginator, Pager }
 
 export const PaginatorFragment = graphql`
   fragment Paginator on RootQueryType {

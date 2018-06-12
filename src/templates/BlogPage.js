@@ -125,7 +125,8 @@ const BlogPage = props => {
             top: `50%`,
             left: `0`,
             right: `0`,
-            background: `linear-gradient(to right, #cccccc21, #6d6d6d, #cccccc21) no-repeat`,
+            // background: `linear-gradient(to right, #cccccc21, #6d6d6d, #cccccc21) no-repeat`,
+            background: `linear-gradient(to right, rgba(204,204,204,0.13), #6d6d6d, rgba(204,204,204,0.13)) no-repeat`,
           },
         }}
       >

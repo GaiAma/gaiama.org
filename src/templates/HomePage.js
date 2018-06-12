@@ -121,7 +121,8 @@ const HomePage = props => (
       paypalButton={
         props.data.SiteMeta.frontmatter.assets.paypalButton.publicURL
       }
-      bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
+      bankButton={props.data.SupportWidget.frontmatter.bankButton}
+      bankButtonAlt={props.data.SupportWidget.frontmatter.bankButtonAlt}
       bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
       bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
       // artwork={props.data.page.frontmatter.assets.supportus}

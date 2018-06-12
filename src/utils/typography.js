@@ -8,7 +8,7 @@ export default new Typography({
   bodyFontFamily: fontFamilies.main.split(`,`),
   bodyWeight: `100`,
   headerFontFamily: fontFamilies.accent.split(`,`),
-  headerWeight: `400`,
+  headerWeight: `100`,
   overrideStyles: () => ({
     '*, *::before, *::after': {
       boxSizing: `border-box`,

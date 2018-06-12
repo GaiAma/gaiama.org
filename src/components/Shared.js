@@ -143,6 +143,7 @@ class CoinPicker extends Component {
 class BankDetails extends Component {
   static propTypes = {
     bankButton: PropTypes.object.isRequired,
+    bankButtonAlt: PropTypes.string.isRequired,
     bankInfo: PropTypes.string.isRequired,
     bankDetails: PropTypes.string.isRequired,
   }
@@ -153,7 +154,7 @@ class BankDetails extends Component {
     this.setState({ isOpen: !this.state.isOpen })
   }
   render() {
-    const { bankButton, bankInfo, bankDetails } = this.props
+    const { bankButton, bankButtonAlt, bankInfo, bankDetails } = this.props
     return (
       <div>
         <div css={{ textAlign: `center` }}>
@@ -165,7 +166,7 @@ class BankDetails extends Component {
               padding: 0,
             }}
           >
-            <Img resolutions={bankButton.resolutions} />
+            <img src={bankButton.publicURL} alt={bankButtonAlt} />
           </button>
         </div>
 
@@ -208,6 +209,7 @@ const SupportWidget = ({
   lang,
   paypalButton,
   bankButton,
+  bankButtonAlt,
   bankInfo,
   bankDetails,
   ...props
@@ -305,6 +307,10 @@ const SupportWidget = ({
         <div
           css={{
             textAlign: `center`,
+            marginBottom: `1rem`,
+            [media.greaterThan(`xsmall`)]: {
+              marginBottom: 0,
+            },
             '&:hover > form': {
               transform: `scale(1.02)`,
             },
@@ -375,6 +381,7 @@ const SupportWidget = ({
 
         <BankDetails
           bankButton={bankButton}
+          bankButtonAlt={bankButtonAlt}
           bankInfo={bankInfo}
           bankDetails={bankDetails}
         />
@@ -428,6 +435,7 @@ SupportWidget.propTypes = {
   lang: PropTypes.string,
   paypalButton: PropTypes.string,
   bankButton: PropTypes.object,
+  bankButtonAlt: PropTypes.string,
   bankInfo: PropTypes.string,
   bankDetails: PropTypes.string,
 }
@@ -444,15 +452,12 @@ export const SupportWidgetFragment = graphql`
         description
         readMoreLink
         readMoreLabel
-        bankButton {
-          image: childImageSharp {
-            resolutions(width: 121, quality: 75) {
-              ...GatsbyImageSharpResolutions
-            }
-          }
-        }
+        bankButtonAlt
         bankInfo
         bankDetails
+        bankButton {
+          publicURL
+        }
       }
     }
   }
@@ -488,6 +493,7 @@ const InstagramFeed = ({ user, followLink, bg, images }) => {
                 x.node.username
               }`}
               target="_blank"
+              rel="noopener noreferrer"
             >
               <Img
                 alt="GaiAma on Instagram"
@@ -509,6 +515,7 @@ const InstagramFeed = ({ user, followLink, bg, images }) => {
         <a
           href={`https://instagram.com/${user}`}
           target="_blank"
+          rel="noopener noreferrer"
           css={{
             display: `inline-block`,
             fontFamily: fontFamilies.accent,

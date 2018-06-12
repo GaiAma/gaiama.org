@@ -86,7 +86,8 @@ const BlogPost = props => {
         paypalButton={
           props.data.SiteMeta.frontmatter.assets.paypalButton.publicURL
         }
-        bankButton={props.data.SupportWidget.frontmatter.bankButton.image}
+        bankButton={props.data.SupportWidget.frontmatter.bankButton}
+        bankButtonAlt={props.data.SupportWidget.frontmatter.bankButtonAlt}
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
         lang={props.pathContext.lang}
@@ -125,7 +126,8 @@ const BlogPost = props => {
             top: `50%`,
             right: `0`,
             left: `0`,
-            background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+            // background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+            background: `linear-gradient(to right, rgba(204,204,204,0.13), #abaaaa, rgba(204,204,204,0.13)) no-repeat`,
           },
         }}
       >
@@ -317,8 +319,14 @@ const PostHeader = ({ title, dateTime, dateStr, dateStrLocalized }) => (
         textAlign: `center`,
         fontSize: `.8rem`,
         margin: `1rem auto 0`,
-        width: `30%`,
+        width: `90%`,
         position: `relative`,
+        [media.greaterThan(`small`)]: {
+          width: `60%`,
+        },
+        [media.greaterThan(`medium`)]: {
+          width: `30%`,
+        },
         '&:before': {
           content: `""`,
           height: `1px`,
@@ -328,7 +336,8 @@ const PostHeader = ({ title, dateTime, dateStr, dateStrLocalized }) => (
           top: `50%`,
           left: `0`,
           right: `0`,
-          background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+          // background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
+          background: `linear-gradient(to right, rgba(204,204,204,0.13), #abaaaa, rgba(204,204,204,0.13)) no-repeat`,
         },
       }}
     >
