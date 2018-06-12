@@ -121,14 +121,18 @@ const ContactPage = props => {
               ))}
             <div
               css={{
-                '&:hover svg': {
+                '& svg': {
                   color: colors.rss,
+                },
+                '&:hover svg': {
+                  color: colors.black,
                 },
               }}
             >
               <a
                 href={`/${props.pathContext.lang}/blog/rss.xml`}
                 target="_blank"
+                rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="lg" />
               </a>
