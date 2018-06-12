@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
+import { css } from 'glamor'
 import NewstickerItem from './NewstickerItem'
 import { media } from '@/theme'
 
@@ -43,7 +44,7 @@ const NewsTicker = ({
 
           {link && (
             <div>
-              <Link to={link} css={{ fontSize: `1rem` }}>
+              <Link to={link} {...css({ fontSize: `1rem` })}>
                 {linkLabel}
               </Link>
             </div>
@@ -138,34 +139,6 @@ export const fragment = graphql`
     }
   }
 
-  fragment newstickerSquare on RootQueryType {
-    news: allMarkdownRemark(
-      filter: { fields: { lang: { eq: $lang }, isPublished: { eq: true } } }
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: 4
-    ) {
-      edges {
-        node {
-          ...newstickerCommonFields
-          frontmatter {
-            id
-            slug
-            title
-            date
-            summary
-            cover {
-              image: childImageSharp {
-                resolutions(width: 80, height: 80, quality: 75) {
-                  ...GatsbyImageSharpResolutions
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  }
-
   fragment newstickerLandscape on RootQueryType {
     news: allMarkdownRemark(
       filter: { fields: { lang: { eq: $lang }, isPublished: { eq: true } } }
@@ -183,13 +156,13 @@ export const fragment = graphql`
             slug
             cover {
               image: childImageSharp {
-                resolutions(
-                  width: 370
-                  height: 150
-                  cropFocus: ENTROPY
+                sizes(
+                  maxWidth: 400
+                  maxHeight: 230
                   quality: 75
+                  cropFocus: ENTROPY
                 ) {
-                  ...GatsbyImageSharpResolutions
+                  ...GatsbyImageSharpSizes
                 }
               }
             }

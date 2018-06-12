@@ -4,5 +4,5 @@ ID = "gaiama"
 [build]
   base    = "/"
   publish = "public/"
-  command = "vips -v && wget -O content.tgz https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?private_token=$GAIAMA_CONTENT_TOKEN && npm rebuild sharp && mkdir content && tar -xzf content.tgz -C content && yarn build"
+  command = "wget -O content.tgz https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?private_token=$GAIAMA_CONTENT_TOKEN && npm rebuild sharp && mkdir content && tar -xzf content.tgz -C content && yarn build"
   environment = { NODE_VERSION = "8.9.4" }

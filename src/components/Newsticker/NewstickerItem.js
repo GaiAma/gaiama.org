@@ -2,11 +2,12 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Link from 'gatsby-link'
 import Img from 'gatsby-image'
+import { css } from 'glamor'
 import { fontFamilies } from '@/theme'
 
 const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
   const coverImage =
-    item.frontmatter.cover && item.frontmatter.cover.image.resolutions
+    item.frontmatter.cover && item.frontmatter.cover.image.sizes
 
   return (
     <div {...props}>
@@ -17,8 +18,11 @@ const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
         }}
       >
         {coverImage && (
-          <Link to={item.frontmatter.slug} css={styles.imageWrapper(layout)}>
-            <Img resolutions={coverImage} css={styles.image} />
+          <Link
+            to={item.frontmatter.slug}
+            {...css(styles.imageWrapper(layout))}
+          >
+            <Img sizes={coverImage} css={styles.image} />
           </Link>
         )}
 
@@ -31,7 +35,7 @@ const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
             {item.excerpt || item.frontmatter.summary}
 
             {readmoreLabel && (
-              <Link to={item.frontmatter.slug} css={styles.readmoreLink}>
+              <Link to={item.frontmatter.slug} {...css(styles.readmoreLink)}>
                 {readmoreLabel}
               </Link>
             )}

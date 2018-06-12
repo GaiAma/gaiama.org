@@ -14,14 +14,14 @@ export const Fragments = graphql`
           logo {
             image: childImageSharp {
               sizes(maxWidth: 420, quality: 75) {
-                ...GatsbyImageSharpSizes_withWebp_noBase64
+                ...GatsbyImageSharpSizes_noBase64
               }
             }
           }
           headerBg {
             image: childImageSharp {
               sizes(maxWidth: 1280, quality: 75) {
-                ...GatsbyImageSharpSizes_withWebp_noBase64
+                ...GatsbyImageSharpSizes_noBase64
               }
             }
           }

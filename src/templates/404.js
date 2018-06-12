@@ -1,12 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-// import MainLayout from '@/components/MainLayout'
+import MainLayout from '@/components/MainLayout'
 
 const NotFound = props => (
-  <div>
-    {console.log(props)}
+  <MainLayout {...props}>
+    {/* {console.log(props)} */}
     <h1>{props.data.page.frontmatter.title}</h1>
-  </div>
+  </MainLayout>
 )
 
 NotFound.propTypes = {

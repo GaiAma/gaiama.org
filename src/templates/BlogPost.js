@@ -237,13 +237,13 @@ export const query = graphql`
             summary
             cover {
               image: childImageSharp {
-                resolutions(
-                  width: 370
-                  height: 150
-                  cropFocus: ENTROPY
+                sizes(
+                  maxWidth: 400
+                  maxHeight: 230
                   quality: 75
+                  cropFocus: ENTROPY
                 ) {
-                  ...GatsbyImageSharpResolutions_withWebp
+                  ...GatsbyImageSharpSizes
                 }
               }
             }
