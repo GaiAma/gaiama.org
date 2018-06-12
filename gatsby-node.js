@@ -2,7 +2,7 @@ const { resolve, join } = require(`path`)
 const { writeFileSync } = require(`fs`)
 const moment = require(`moment`)
 const mkDir = require(`make-dir`)
-const webpack = require(`webpack`)
+// const webpack = require(`webpack`)
 const Feed = require(`feed`)
 // const {
 //   compose,
@@ -17,9 +17,9 @@ const Feed = require(`feed`)
 // } = require(`ramda`)
 // const { chunk, round } = require(`lodash/fp`)
 const { shuffle } = require(`lodash`)
-const dotenv = require(`dotenv`).config({
-  path: resolve(`..`, `.env`),
-})
+// const dotenv = require(`dotenv`).config({
+//   path: resolve(`..`, `.env`),
+// })
 
 // const IMAGES_PER_GALLERY = 54
 const publicDir = join(__dirname, `public`)
@@ -450,16 +450,16 @@ exports.modifyWebpackConfig = ({ config, stage }) => {
    * TODO move to dedicated plugin
    * merge in dotenv vars
    */
-  config.merge({
-    plugins: [
-      new webpack.DefinePlugin({
-        'process.env': Object.keys(dotenv.parsed).reduce((acc, index) => {
-          acc[index] = JSON.stringify(dotenv.parsed[index])
-          return acc
-        }, {}),
-      }),
-    ],
-  })
+  // config.merge({
+  //   plugins: [
+  //     new webpack.DefinePlugin({
+  //       'process.env': Object.keys(dotenv.parsed || {}).reduce((acc, index) => {
+  //         acc[index] = JSON.stringify(dotenv.parsed[index])
+  //         return acc
+  //       }, {}),
+  //     }),
+  //   ],
+  // })
 }
 
 exports.onPostBuild = ({ store }) => {
