@@ -24,6 +24,8 @@ export const colors = {
   linkHover: `#0a474e`,
   // link: `#13abaa`,
   // linkHover: `#1ed6d5`,
+  gray: `#afafaf`,
+  grayTurqoise: `#7aaaaf`,
   black: `#222`,
   oldWhite: `#e0e2c5`,
   rss: `#faa949`,

@@ -8,12 +8,12 @@ import Link from '@/components/Link'
 import TitledCopy from '@/components/TitledCopy'
 import Randomizer from '@/components/Randomizer'
 import RenderArticles from '@/components/RenderArticles'
-import { media } from '@/theme'
+import { colors, media } from '@/theme'
 
 const BlogPage = props => {
   const { sort, filter } = QS.parse()
   const isSortAsc = sort === `asc`
-  const isSortDesc = !sort || sort === `desc`
+  // const isSortDesc = !sort || sort === `desc`
   const tags = filter || []
   const filterLabel = props.data.labels.frontmatter.labels.find(
     x => x.type === filter
@@ -69,7 +69,7 @@ const BlogPage = props => {
               fontSize: `.85rem`,
             },
             '& cite': {
-              color: `#afafaf`,
+              color: colors.gray,
               fontStyle: `normal`,
               margin: `0 1rem`,
             },
@@ -149,7 +149,8 @@ const BlogPage = props => {
             sort="desc"
             persistQuery
             {...css({
-              pointerEvents: isSortDesc && `none`,
+              pointerEvents: !isSortAsc && `none`,
+              color: !isSortAsc && colors.grayTurqoise,
             })}
           >
             {props.data.page.frontmatter.sortLabels.desc}
@@ -168,6 +169,7 @@ const BlogPage = props => {
             exact
             {...css({
               pointerEvents: isSortAsc && `none`,
+              color: isSortAsc && colors.grayTurqoise,
             })}
           >
             {props.data.page.frontmatter.sortLabels.asc}

@@ -65,9 +65,12 @@ const Footer = ({
             [media.greaterThan(`medium`)]: {
               margin: `.2rem 0`,
             },
+            '& .active': {
+              textDecoration: `underline`,
+            },
           }}
         >
-          <Link to={link.to} activeClassName="disabled" exact>
+          <Link to={link.to} activeClassName="active" exact>
             {link.title}
           </Link>
         </div>
