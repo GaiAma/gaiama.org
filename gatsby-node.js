@@ -110,9 +110,8 @@ exports.onCreateNode = ({ node, boundActionCreators }) => {
     createNodeField({
       node,
       name: `dateStrLocalized`,
-      value: theMoment
-        .locale(node.frontmatter.lang)
-        .format(node.frontmatter.lang === `de` ? `DD.MM.Y` : `Y-MM-DD`),
+      value: theMoment.locale(node.frontmatter.lang).format(`DD MMM Y`),
+      // .format(node.frontmatter.lang === `de` ? `DD.MM.Y` : `Y-MM-DD`),
     })
   }
 }

@@ -295,7 +295,7 @@ export const query = graphql`
             lang
             layout
             dateTime
-            dateStr
+            dateStrLocalized
           }
         }
       }

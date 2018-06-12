@@ -19,7 +19,7 @@ const ArticlePreview = ({ article, isVisible, ...props }) => (
 
     <footer css={articleStyles.footer}>
       <div css={articleStyles.footerInner}>
-        <time css={articleStyles.time}>{article.fields.dateStr}</time>
+        <time css={articleStyles.time}>{article.fields.dateStrLocalized}</time>
         <Link to={article.fields.slug}>{`read more`}</Link>
       </div>
     </footer>
