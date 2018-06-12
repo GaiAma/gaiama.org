@@ -23,7 +23,15 @@ const { shuffle } = require(`lodash`)
 
 // const IMAGES_PER_GALLERY = 54
 const publicDir = join(__dirname, `public`)
-const redirections = [`/ /en 301`]
+
+const redirections = [
+  // Redirect default Netlify subdomain to primary domain
+  `https://gaiama.netlify.com/* https://www.gaiama.org/en/:splat 301!`,
+  `https://gaiama.netlify.com/en/* https://www.gaiama.org/en/:splat 301!`,
+  `https://gaiama.netlify.com/de/* https://www.gaiama.org/de/:splat 301!`,
+  // redirect root to /en by default
+  `/ /en 301`,
+]
 
 const isPage = ({ node }) =>
   node && node.internal && node.internal.type === `JavascriptFrontmatter`
