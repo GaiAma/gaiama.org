@@ -87,6 +87,8 @@ const AboutPage = props => {
               >
                 <Img
                   resolutions={bio.img.image.resolutions}
+                  alt={bio.name}
+                  title={bio.name}
                   css={{
                     borderRadius: `50%`,
                     [media.lessThan(`medium`)]: {
@@ -162,6 +164,8 @@ const AboutPage = props => {
                 >
                   <Img
                     resolutions={bio.img.image.resolutions}
+                    alt={bio.name}
+                    title={bio.name}
                     css={{
                       borderRadius: `50%`,
                       width: `100px !important`,
