@@ -55,7 +55,6 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        // excerpt_separator: `<!-- end -->`,
         plugins: [
           `gatsby-remark-embed-video`,
           // {
@@ -110,15 +109,6 @@ module.exports = {
           // },
           `gatsby-remark-emoji`,
           `gatsby-remark-autolink-headers`,
-          // {
-          //   resolve: `gatsby-remark-textr`,
-          //   options: {
-          //     plugins: [
-          //       // input => input.replace(`<3`, `♡`),
-          //       input => input.replace(`´`, `'`),
-          //     ]
-          //   }
-          // },
           {
             resolve: `gatsby-remark-custom-blocks`,
             options: {
@@ -154,13 +144,6 @@ module.exports = {
             },
           },
         ],
-      },
-    },
-    {
-      resolve: `gatsby-plugin-nprogress`,
-      options: {
-        color: `tomato`, // Setting a color is optional.
-        showSpinner: true, // Disable the loading spinner.
       },
     },
     `gatsby-transformer-javascript-frontmatter`,
@@ -208,9 +191,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-webpack-bundle-analyzer`,
       options: {
-        // analyzerPort: 3000,
         production: true,
-        disable: process.env.NODE_ENV === `development`,
+        disable: process.env.GAIAMA_CONTENT_ID,
       },
     },
     {
@@ -218,6 +200,5 @@ module.exports = {
       options: {},
     },
     `gatsby-plugin-glamor`,
-    // `gatsby-plugin-meta-redirect`,
   ],
 }
