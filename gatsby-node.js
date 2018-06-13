@@ -26,11 +26,13 @@ const publicDir = join(__dirname, `public`)
 
 const redirections = [
   // Redirect default Netlify subdomain to primary domain
-  `https://gaiama.netlify.com/* https://www.gaiama.org/en/:splat 301!`,
   `https://gaiama.netlify.com/en/* https://www.gaiama.org/en/:splat 301!`,
   `https://gaiama.netlify.com/de/* https://www.gaiama.org/de/:splat 301!`,
+  `https://gaiama.netlify.com/* https://www.gaiama.org/en/:splat 301!`,
+  // redirect root to /de based on browser language
+  `/* /de/:splat 302 Language=de`,
   // redirect root to /en by default
-  `/ /en 301`,
+  `/* /en/:splat 301`,
 ]
 
 const isPage = ({ node }) =>
@@ -286,9 +288,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
       const idsToRedirect = [shortId, shortlink, oldId, oldSlug]
       idsToRedirect.map(id => {
         if (!id) return false
-
-        const oldUrl = `${lang === `en` ? `` : `/${lang}`}/${id}`
-        return redirections.push(`${oldUrl} ${slug} 301`)
+        return redirections.push(`${`/${lang}`}/${id} ${slug} 301`)
       })
 
       return true
@@ -475,8 +475,8 @@ exports.onPostBuild = ({ store }) => {
   //   redirections.push([fromPath, toPath, isPermanent ? 301 : null].join(` `))
   // })
 
-  redirections.push(`/en/* /en/404 400`)
-  redirections.push(`/de/* /de/404 400`)
+  redirections.push(`/en/* /en/404/?url=:splat 400`)
+  redirections.push(`/de/* /de/404/?url=:splat 400`)
 
   if (redirections.length) {
     writeFileSync(join(publicDir, `_redirects`), redirections.join(`\n`))
