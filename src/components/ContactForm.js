@@ -156,7 +156,7 @@ export default class ContactForm extends Component {
             // eslint-disable-next-line
             const el = document.getElementById(`success`)
             // eslint-disable-next-line
-            el && window.scrollTo(0, el.offsetTop - 20)
+            el && window.scrollTo(0, el.offsetTop - 90)
           })
         }
         throw new Error({ generalError: this.props.generalErrorLabel })
@@ -202,6 +202,7 @@ export default class ContactForm extends Component {
         <div
           id="success"
           css={{
+            background: `#fff`,
             border: `1px solid green`,
             color: `green`,
             padding: `.5rem .5rem .4rem`,
