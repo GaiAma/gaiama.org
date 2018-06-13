@@ -21,6 +21,23 @@ const inputStyle = {
 const StyledInput = g.input(inputStyle)
 const StyledTextarea = g(TextareaAutosize)(inputStyle)
 
+const initialState = {
+  values: {
+    email: ``,
+    message: ``,
+    consent: false,
+  },
+  errors: {
+    email: ``,
+    message: ``,
+    general: ``,
+  },
+  attempts: 0,
+  generalError: ``,
+  hasSucceeded: false,
+  isSubmitting: false,
+}
+
 export default class ContactForm extends Component {
   static propTypes = {
     emailLabel: PropTypes.string,
@@ -31,6 +48,7 @@ export default class ContactForm extends Component {
     messageLabel: PropTypes.string,
     consentLabel: PropTypes.string,
     submitLabel: PropTypes.string,
+    success: PropTypes.string,
     lang: PropTypes.string,
     endpoint: PropTypes.string,
   }
@@ -45,20 +63,7 @@ export default class ContactForm extends Component {
   }
   constructor(props) {
     super(props)
-    this.state = {
-      values: {
-        email: ``,
-        message: ``,
-      },
-      errors: {
-        email: ``,
-        message: ``,
-        general: ``,
-      },
-      generalError: ``,
-      successMsg: ``,
-      isSubmitting: false,
-    }
+    this.state = initialState
     if (!typeof window !== `undefined`) {
       this.state.values = {
         ...this.state.values,
@@ -71,7 +76,14 @@ export default class ContactForm extends Component {
 
   handleChange = event => {
     const { type, name, checked, value } = event.target
-    const val = type === `checkbox` ? checked : value
+
+    const val =
+      type === `checkbox`
+        ? checked
+        : name === `email`
+          ? value.replace(/\s/g, ``)
+          : value
+
     this.setState(
       {
         values: {
@@ -89,6 +101,18 @@ export default class ContactForm extends Component {
     }
 
     event.preventDefault()
+
+    return this.submit()
+  }
+
+  submit(autoRetry) {
+    if (this.state.attempts > 2 && autoRetry) {
+      return this.setState({
+        isSubmitting: false,
+        generalError: this.props.generalErrorLabel,
+      })
+    }
+
     this.setState({ isSubmitting: true, generalError: ``, errors: {} })
     const errors = {}
     const { email, message, consent } = this.state.values
@@ -109,28 +133,52 @@ export default class ContactForm extends Component {
       return this.setState({ errors, isSubmitting: false })
     }
 
+    this.increaseAttempts()
+
     return axios
       .post(this.props.endpoint, {
-        email: email.trim(),
-        // preserve whitespace & line-breaks https://stackoverflow.com/a/9141737/3484824
-        message: message.trim(), //.replace(/(\r\n|\n\r|\r|\n)/g, `&nbsp;`),
+        consent,
+        email: email,
         lang: this.props.lang,
+        message: message
+          // replace multiple line breaks (2 and more) by <br><br>
+          .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
+          // replace single line breaks by <br>
+          .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
+          .trim(),
       })
       .then(({ data }) => {
         if (data && data.msg === `OK`) {
+          this.reset()
           localStore.removeItem(`ContactForm`)
-          this.setState({ generalError: `` })
-          return this.setState({ successMsg: `success` })
+          return this.setState({ hasSucceeded: true }, () => {
+            // scroll to success message
+            // eslint-disable-next-line
+            const el = document.getElementById(`success`)
+            // eslint-disable-next-line
+            el && window.scrollTo(0, el.offsetTop - 20)
+          })
         }
         throw new Error({ generalError: this.props.generalErrorLabel })
       })
       .catch(err => {
-        this.setState({ generalError: this.props.generalErrorLabel })
+        this.increaseAttempts()
+        this.submit(true)
       })
       .then(() => this.setState({ isSubmitting: false }))
   }
 
-  componentDidMount() {}
+  increaseAttempts() {
+    this.setState({ attempts: this.state.attempts + 1 })
+  }
+
+  reset() {
+    this.setState({
+      ...initialState,
+      values: initialState.values,
+      errors: initialState.errors,
+    })
+  }
 
   render() {
     const {
@@ -145,20 +193,21 @@ export default class ContactForm extends Component {
       values,
       errors,
       generalError,
-      successMsg,
+      hasSucceeded,
       isSubmitting,
     } = this.state
 
-    if (successMsg) {
+    if (hasSucceeded) {
       return (
         <div
+          id="success"
           css={{
             border: `1px solid green`,
             color: `green`,
             padding: `.5rem .5rem .4rem`,
           }}
         >
-          {successMsg}
+          {this.props.success}
         </div>
       )
     }
@@ -189,6 +238,7 @@ export default class ContactForm extends Component {
               onChange={this.handleChange}
               value={values.email}
               placeholder={emailPlaceholder}
+              readOnly={this.state.isSubmitting}
               required
             />
             {errors.email && (
@@ -219,6 +269,7 @@ export default class ContactForm extends Component {
               value={values.message}
               onInput={this.handleChange}
               maxRows={10}
+              readOnly={this.state.isSubmitting}
               required
               css={{
                 minHeight: `8rem`,
@@ -249,6 +300,7 @@ export default class ContactForm extends Component {
               checked={values.consent}
               onChange={this.handleChange}
               value={values.consent}
+              disabled={this.state.isSubmitting}
             />
             <span css={{ fontSize: `.9rem`, marginLeft: `.5rem` }}>
               {consentLabel}

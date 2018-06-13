@@ -145,6 +145,7 @@ const ContactPage = props => {
             emailPlaceholder={page.frontmatter.form.emailPlaceholder}
             messageLabel={page.frontmatter.form.messageLabel}
             consentLabel={page.frontmatter.form.consentLabel}
+            success={page.frontmatter.form.success}
             submitLabel={page.frontmatter.form.submitLabel}
             lang={props.pathContext.lang}
             emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
@@ -181,6 +182,7 @@ const ContactPage = props => {
               emailLabel={page.frontmatter.form.emailLabel}
               emailPlaceholder={page.frontmatter.form.emailPlaceholder}
               consentLabel={page.frontmatter.newsletter.consentLabel}
+              success={page.frontmatter.newsletter.success}
               submitLabel={page.frontmatter.form.submitLabel}
               lang={props.pathContext.lang}
               emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
@@ -231,11 +233,13 @@ export const query = graphql`
           messageLabel
           submitLabel
           consentLabel
+          success
         }
         newsletter {
           title
           descr
           consentLabel
+          success
         }
         errors {
           emailErrorLabel

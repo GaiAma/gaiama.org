@@ -6,7 +6,7 @@ import isEmail from 'validator/lib/isEmail'
 import { colors, fontFamilies } from '@/theme'
 import { Button } from '@/components/layout/Button'
 import localStore from '@/utils/local-store'
-import { axios } from '@/api'
+import axios from 'axios'
 
 const StyledInput = g.input({
   width: `100%`,
@@ -16,45 +16,43 @@ const StyledInput = g.input({
   padding: `0 .5rem`,
 })
 
+const initialState = {
+  values: {
+    email: ``,
+    consent: false,
+  },
+  errors: {
+    email: false,
+    consent: false,
+  },
+  generalError: ``,
+  hasSucceeded: false,
+  isSubmitting: false,
+  attempts: 0,
+}
+
 export class Newsletter extends Component {
   static propTypes = {
     emailLabel: PropTypes.string,
     emailPlaceholder: PropTypes.string,
-    // languageLabel: PropTypes.string,
-    // languages: PropTypes.array,
     emailErrorLabel: PropTypes.string,
     generalErrorLabel: PropTypes.string,
     consentLabel: PropTypes.string,
     submitLabel: PropTypes.string,
+    success: PropTypes.string,
     lang: PropTypes.string,
     endpoint: PropTypes.string,
   }
   static defaultProps = {
     emailLabel: ``,
     emailPlaceholder: ``,
-    // languageLabel: ``,
-    // languages: null,
     consentLabel: ``,
     submitLabel: ``,
     lang: `en`,
   }
   constructor(props) {
     super(props)
-    const state = {
-      values: {
-        email: ``,
-        // language: props.lang,
-        consent: false,
-      },
-      errors: {
-        email: false,
-        // language: false,
-        consent: false,
-      },
-      generalError: ``,
-      successMsg: ``,
-      isSubmitting: false,
-    }
+    const state = initialState
     if (!typeof window !== `undefined`) {
       state.values = {
         ...state.values,
@@ -64,11 +62,26 @@ export class Newsletter extends Component {
     this.state = state
   }
 
+  reset() {
+    this.setState({
+      ...initialState,
+      values: initialState.values,
+      errors: initialState.errors,
+    })
+  }
+
+  increaseAttempts() {
+    this.setState({ attempts: this.state.attempts + 1 })
+  }
+
   hasErrors = () => Object.values(this.state.errors).filter(x => x).length
 
   handleChange = event => {
     const target = event.target
-    const value = target.type === `checkbox` ? target.checked : target.value
+    const value =
+      target.type === `checkbox`
+        ? target.checked
+        : target.value.replace(/\s/g, ``)
     const name = target.name
 
     this.setState(
@@ -88,10 +101,20 @@ export class Newsletter extends Component {
     }
 
     event.preventDefault()
+
+    return this.submit()
+  }
+
+  submit(autoRetry) {
+    if (this.state.attempts > 2 && autoRetry) {
+      return this.setState({
+        isSubmitting: false,
+        generalError: this.props.generalErrorLabel,
+      })
+    }
     this.setState({ isSubmitting: true, generalError: ``, errors: {} })
     const { email, consent } = this.state.values
     const errors = {}
-    console.log(event.target.checkValidity())
 
     if (!isEmail(email)) {
       errors.email = this.props.emailErrorLabel
@@ -105,21 +128,30 @@ export class Newsletter extends Component {
       return this.setState({ errors, isSubmitting: false })
     }
 
+    this.increaseAttempts()
+
     return axios
       .patch(this.props.endpoint, {
-        email: email.trim(),
+        email,
         lang: this.props.lang,
       })
       .then(({ data }) => {
         if (data && data.msg === `OK`) {
-          localStore.removeItem(`ContactForm`)
-          this.setState({ generalError: `` })
-          return this.setState({ successMsg: `success` })
+          this.reset()
+          localStore.removeItem(`NewsletterForm`)
+          return this.setState({ hasSucceeded: true }, () => {
+            // scroll to success message
+            // eslint-disable-next-line
+            const el = document.getElementById(`success`)
+            // eslint-disable-next-line
+            el && window.scrollTo(0, el.offsetTop - 20)
+          })
         }
         throw new Error({ generalError: this.props.generalErrorLabel })
       })
       .catch(err => {
-        this.setState({ generalError: this.props.generalErrorLabel })
+        this.increaseAttempts()
+        this.submit(true)
       })
       .then(() => this.setState({ isSubmitting: false }))
   }
@@ -128,25 +160,33 @@ export class Newsletter extends Component {
     const {
       emailLabel,
       emailPlaceholder,
-      // languageLabel,
-      // languages,
       consentLabel,
       submitLabel,
       endpoint,
     } = this.props
-    const { values, errors, isSubmitting, successMsg } = this.state
+    const {
+      values,
+      errors,
+      isSubmitting,
+      hasSucceeded,
+      generalError,
+    } = this.state
 
-    if (successMsg) {
+    if (hasSucceeded) {
       return (
-        <div
+        <p
+          id="success"
           css={{
             border: `1px solid green`,
             color: `green`,
             padding: `.5rem .5rem .4rem`,
+            '& em': {
+              textDecoration: `underline`,
+              fontStyle: `normal`,
+            },
           }}
-        >
-          {successMsg}
-        </div>
+          dangerouslySetInnerHTML={{ __html: this.props.success }}
+        />
       )
     }
 
@@ -176,6 +216,7 @@ export class Newsletter extends Component {
               onChange={this.handleChange}
               value={values.email}
               placeholder={emailPlaceholder}
+              readOnly={this.isSubmitting}
               required
             />
             {errors.email && (
@@ -187,44 +228,6 @@ export class Newsletter extends Component {
             )}
           </label>
         </div>
-
-        {/* <div
-          css={{
-            position: `relative`,
-            paddingBottom: `1.4rem`,
-            '& label + label': {
-              marginLeft: `2rem`,
-            },
-          }}
-        >
-          {languageLabel && (
-            <div css={{ fontFamily: fontFamilies.accent, fontSize: `1.5rem` }}>
-              {languageLabel}
-            </div>
-          )}
-          {languages &&
-            languages.map(({ node: { frontmatter: lang } }) => (
-              <label key={lang.id}>
-                <input
-                  name="language"
-                  type="radio"
-                  checked={lang.id === values.language}
-                  onChange={this.handleChange}
-                  value={lang.id}
-                />
-                <span css={{ fontSize: `.9rem`, marginLeft: `.5rem` }}>
-                  {lang.title}
-                </span>
-              </label>
-            ))}
-          {errors.language && (
-            <div
-              css={{ position: `absolute`, color: `red`, fontSize: `.9rem` }}
-            >
-              {errors.language}
-            </div>
-          )}
-        </div> */}
 
         <div
           css={{
@@ -240,19 +243,27 @@ export class Newsletter extends Component {
               checked={values.consent}
               onChange={this.handleChange}
               value={values.consent}
+              disabled={this.isSubmitting}
             />
             <span css={{ fontSize: `.9rem`, marginLeft: `.5rem` }}>
               {consentLabel}
             </span>
-            {/* {errors.consent && (
-              <div
-                css={{ position: `absolute`, color: `red`, fontSize: `.9rem` }}
-              >
-                {errors.consent}
-              </div>
-            )} */}
           </label>
         </div>
+
+        {generalError && (
+          <div
+            css={{
+              border: `1px solid red`,
+              padding: `.5rem .5rem .4rem`,
+              marginBottom: `.5rem`,
+              color: `red`,
+              fontSize: `.9rem`,
+            }}
+          >
+            {generalError}
+          </div>
+        )}
 
         <Button
           label="Submit"
@@ -263,7 +274,7 @@ export class Newsletter extends Component {
             color: colors.darkWhite,
           }}
         >
-          {submitLabel}
+          {isSubmitting ? `loading...` : submitLabel}
         </Button>
       </form>
     )
