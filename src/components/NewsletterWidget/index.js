@@ -147,7 +147,7 @@ export class Newsletter extends Component {
             el && window.scrollTo(0, el.offsetTop - 20)
           })
         }
-        throw new Error({ generalError: this.props.generalErrorLabel })
+        throw new Error()
       })
       .catch(err => {
         this.increaseAttempts()
