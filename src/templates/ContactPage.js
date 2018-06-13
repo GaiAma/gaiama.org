@@ -36,6 +36,7 @@ const ContactPage = props => {
       <div
         css={{
           overflow: `hidden`,
+          padding: `.2rem`,
           display: `flex`,
           justifyContent: `space-between`,
           [media.lessThan(`xsmall`)]: {
