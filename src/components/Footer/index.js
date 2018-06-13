@@ -70,7 +70,7 @@ const Footer = ({
             },
           }}
         >
-          <Link to={link.to} activeClassName="active" exact>
+          <Link to={link.to} activeClassName={!link.lc && `active`} exact>
             {link.title}
           </Link>
         </div>
