@@ -68,9 +68,16 @@ const Footer = ({
             '& .active': {
               textDecoration: `underline`,
             },
+            '& .active-lang': {
+              fontWeight: 400,
+            },
           }}
         >
-          <Link to={link.to} activeClassName={!link.lc && `active`} exact>
+          <Link
+            to={link.to}
+            activeClassName={link.lc ? `active-lang` : `active`}
+            exact
+          >
             {link.title}
           </Link>
         </div>
