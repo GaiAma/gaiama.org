@@ -30,9 +30,9 @@ const redirections = [
   `https://gaiama.netlify.com/de/* https://www.gaiama.org/de/:splat 301!`,
   `https://gaiama.netlify.com/* https://www.gaiama.org/en/:splat 301!`,
   // redirect root to /de based on browser language
-  `/* /de/:splat 302 Language=de`,
-  // redirect root to /en by default
-  `/* /en/:splat 301`,
+  `/ /de/ 302 Language=de`, // remove * & :splat for now
+  // redirect root to /en otherwise
+  `/ /en/ 301`,
 ]
 
 const isPage = ({ node }) =>
