@@ -142,7 +142,7 @@ const SupportPage = props => {
                 marginTop: `-3rem`,
                 width: `300px`,
                 [media.greaterThan(`medium`)]: {
-                  marginTop: `-8rem`,
+                  marginTop: `-6rem`,
                   width: `450px`,
                 },
                 '& img': {
