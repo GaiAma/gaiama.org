@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+// TODO move messages to /content
 const messages = {
   en: {
     'happygaia.com': `HappyGaia is now GaiAma`,
