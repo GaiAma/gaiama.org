@@ -164,6 +164,9 @@ class BankDetails extends Component {
               border: `none`,
               background: `none`,
               padding: 0,
+              '&:hover': {
+                transform: `scale(1.02)`,
+              },
             }}
           >
             <img src={bankButton.publicURL} alt={bankButtonAlt} />
