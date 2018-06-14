@@ -7,7 +7,10 @@ import {
   faInstagram,
   faYoutube,
   faTwitter,
+  faTwitterSquare,
+  faGooglePlusSquare,
   faGithub,
+  faTelegramPlane,
 } from '@fortawesome/fontawesome-free-brands/shakable'
 
 import {
@@ -19,6 +22,7 @@ import {
   faCheck,
   faCaretLeft,
   faCaretRight,
+  faSync,
 } from '@fortawesome/fontawesome-free-solid/shakable'
 
 // Watch the DOM for any changes and add, replace, or modify icons on-the-fly
@@ -29,6 +33,8 @@ fontawesome.library.add(
   faInstagram,
   faYoutube,
   faTwitter,
+  faTwitterSquare,
+  faGooglePlusSquare,
   faGithub,
   faEnvelope,
   faCaretDown,
@@ -38,5 +44,7 @@ fontawesome.library.add(
   faSortNumericDown,
   faCheck,
   faCaretLeft,
-  faCaretRight
+  faCaretRight,
+  faSync,
+  faTelegramPlane
 )

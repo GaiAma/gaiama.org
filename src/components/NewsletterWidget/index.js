@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import g from 'glamorous'
-// import { Formik, Field, Form } from 'formik'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import isEmail from 'validator/lib/isEmail'
 import { colors, fontFamilies } from '@/theme'
 import { Button } from '@/components/layout/Button'
@@ -275,7 +275,11 @@ export class Newsletter extends Component {
             color: colors.darkWhite,
           }}
         >
-          {isSubmitting ? `loading...` : submitLabel}
+          {isSubmitting ? (
+            <FontAwesomeIcon icon={[`fas`, `sync`]} size="xs" spin />
+          ) : (
+            submitLabel
+          )}
         </Button>
       </form>
     )

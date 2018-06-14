@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import g from 'glamorous'
+import axios from 'axios'
 import isEmail from 'validator/lib/isEmail'
+import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { colors, fontFamilies } from '@/theme'
 import { Button } from '@/components/layout/Button'
 import TextareaAutosize from 'react-textarea-autosize'
 import localStore from '@/utils/local-store'
-import axios from 'axios'
 
 axios.defaults.headers.post[`Content-Type`] = `application/json`
 
@@ -338,7 +339,11 @@ export default class ContactForm extends Component {
             color: colors.darkWhite,
           }}
         >
-          {isSubmitting ? `loading...` : submitLabel}
+          {isSubmitting ? (
+            <FontAwesomeIcon icon={[`fas`, `sync`]} size="xs" spin />
+          ) : (
+            submitLabel
+          )}
         </Button>
       </form>
     )

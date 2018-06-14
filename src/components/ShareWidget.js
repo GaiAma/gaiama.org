@@ -1,12 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
-import {
-  faFacebookSquare,
-  faTwitterSquare,
-  faGooglePlusSquare,
-  faTelegramPlane,
-} from '@fortawesome/fontawesome-free-brands/shakable'
 import { colors, media } from '@/theme'
 
 const ShareWidget = ({ label, post, siteUrl, ...props }) => (
@@ -56,7 +50,7 @@ const ShareWidget = ({ label, post, siteUrl, ...props }) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={faFacebookSquare} size="lg" />
+          <FontAwesomeIcon icon={[`fab`, `facebook-square`]} size="lg" />
         </a>
       </div>
       <div
@@ -75,7 +69,7 @@ const ShareWidget = ({ label, post, siteUrl, ...props }) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={faTwitterSquare} size="lg" />
+          <FontAwesomeIcon icon={[`fab`, `twitter-square`]} size="lg" />
         </a>
       </div>
       <div css={{ '& svg': { color: colors.brands.gplus, margin: `0 1rem` } }}>
@@ -86,7 +80,7 @@ const ShareWidget = ({ label, post, siteUrl, ...props }) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={faGooglePlusSquare} size="lg" />
+          <FontAwesomeIcon icon={[`fab`, `google-plus-square`]} size="lg" />
         </a>
       </div>
       <div
@@ -99,7 +93,7 @@ const ShareWidget = ({ label, post, siteUrl, ...props }) => (
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={faTelegramPlane} size="lg" />
+          <FontAwesomeIcon icon={[`fab`, `telegram-plane`]} size="lg" />
         </a>
       </div>
     </div>
