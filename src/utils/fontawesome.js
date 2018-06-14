@@ -22,7 +22,7 @@ import {
   faCheck,
   faCaretLeft,
   faCaretRight,
-  faSync,
+  faSpinner,
 } from '@fortawesome/fontawesome-free-solid/shakable'
 
 // Watch the DOM for any changes and add, replace, or modify icons on-the-fly
@@ -45,6 +45,6 @@ fontawesome.library.add(
   faCheck,
   faCaretLeft,
   faCaretRight,
-  faSync,
+  faSpinner,
   faTelegramPlane
 )

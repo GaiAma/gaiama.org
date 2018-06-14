@@ -340,7 +340,7 @@ export default class ContactForm extends Component {
           }}
         >
           {isSubmitting ? (
-            <FontAwesomeIcon icon={[`fas`, `sync`]} size="xs" spin />
+            <FontAwesomeIcon icon={[`fas`, `spinner`]} size="xs" spin />
           ) : (
             submitLabel
           )}
