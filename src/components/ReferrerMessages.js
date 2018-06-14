@@ -23,15 +23,15 @@ const messages = {
 class ReferrerMessages extends Component {
   constructor(props) {
     super(props)
-    ;(this.element = null),
-      (this.state = {
-        height: 0,
-      })
+    // this.element = null
+    // this.state = {
+    //   height: 0,
+    // }
   }
 
-  componentDidMount() {
-    this.setState({ height: this.element.clientHeight })
-  }
+  // componentDidMount() {
+  //   this.setState({ height: this.element.clientHeight })
+  // }
 
   render() {
     const {
@@ -50,9 +50,9 @@ class ReferrerMessages extends Component {
     // const { type, message } = messages[lang][ref]
     return (
       <div
-        ref={x => {
-          this.element = x
-        }}
+        // ref={x => {
+        //   this.element = x
+        // }}
         css={{
           // animation: `${slideDown} 10s ease-in-out 3s forwards`,
           // // animation: `${slideDown} 10s cubic-bezier(0, .2, .5, 0) 3s forwards`,
