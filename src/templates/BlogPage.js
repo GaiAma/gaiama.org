@@ -17,23 +17,27 @@ const BlogPage = props => {
   const tags = filter || []
   const filterLabel = props.data.labels.frontmatter.labels.find(
     x => x.type === filter
-  )
+  ) || { value: filter }
 
-  const articles = props.data.articles.edges
-    .filter(
+  const filterWithFallback = items => {
+    const results = items.filter(
       a =>
         tags.length
-          ? a.node.frontmatter.tags &&
+          ? a.node.frontmatter.tags.length &&
             a.node.frontmatter.tags.some(t => tags.includes(t))
           : true
     )
-    .sort(({ node: a }, { node: b }) => {
+    return results.length ? results : items
+  }
+  const articles = filterWithFallback(props.data.articles.edges).sort(
+    ({ node: a }, { node: b }) => {
       const isBefore = a.fields.dateTime < b.fields.dateTime
       const isAfter = a.fields.dateTime > b.fields.dateTime
       const sortAsc = isBefore ? -1 : isAfter ? 1 : 0
       const sortDesc = isBefore ? 1 : isAfter ? -1 : 0
       return isSortAsc ? sortAsc : sortDesc
-    })
+    }
+  )
 
   return (
     <MainLayout cover={articles[0].node.frontmatter.cover.publicURL} {...props}>
