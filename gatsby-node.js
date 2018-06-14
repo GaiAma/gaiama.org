@@ -283,6 +283,17 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
           lang: node.fields.lang,
         },
       })
+      // create root 404
+      if (node.fields.layout === `404` && node.fields.lang === `en`) {
+        createPage({
+          path: `/404`,
+          component: resolve(`./src/templates/${node.fields.layout}.js`),
+          context: {
+            slug: node.fields.slug,
+            lang: node.fields.lang,
+          },
+        })
+      }
 
       // set up short url redirects
       const idsToRedirect = [shortId, shortlink, oldId, oldSlug]
