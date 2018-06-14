@@ -129,7 +129,7 @@ export default class ContactForm extends Component {
       errors.consent = true
     }
 
-    if (errors.email || errors.message) {
+    if (errors.email || errors.message || errors.consent) {
       return this.setState({ errors, isSubmitting: false })
     }
 
@@ -137,7 +137,6 @@ export default class ContactForm extends Component {
 
     return axios
       .post(this.props.endpoint, {
-        consent,
         email: email,
         lang: this.props.lang,
         message: message
