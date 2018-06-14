@@ -1,20 +1,19 @@
 // // require(`babel-polyfill`)
-
-// prevent gatsby from scrolling to top
-// if no hash included and action = push
-exports.shouldUpdateScroll = ({ pathname, prevRouterProps }) =>
-  pathname.includes(`#`) ||
-  (prevRouterProps && prevRouterProps.history.action !== `PUSH`)
+const idToJumpTo = `main-nav`
 
 /* eslint-disable */
 const scrollToMenu = () => {
-  const el = document.getElementById(`main-nav`)
-  if (!el) return
-  return window.scrollTo(0, el.offsetTop - 20)
+  const el = document.getElementById(idToJumpTo)
+  if (el) return window.scrollTo(0, el.offsetTop - 20)
 }
 
-exports.onRouteUpdate = ({ action, location }) => {
-  if (action === `PUSH` && !location.search && !location.hash) {
+// on scroll to top if no prevRouterProps
+exports.shouldUpdateScroll = ({ prevRouterProps }) => !prevRouterProps
+
+// redirect to menu if action = PUSH
+// and either no # at all or hash = idToJumpTo
+exports.onRouteUpdate = ({ action, location: { hash } }) => {
+  if (action === `PUSH` && (!hash || hash === `#${idToJumpTo}`)) {
     window.setTimeout(scrollToMenu, 10)
   }
 }
