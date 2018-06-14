@@ -1,22 +1,16 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-// import { keyframes } from 'glamor'
-// import { colors } from '@/theme'
 
 const messages = {
   en: {
-    'happygaia.com': { message: `HappyGaia is now GaiAma` },
-    'subscribed-to-newsletter': {
-      // type: `success`,
-      message: `Thanks for having successfully subscribed to our newsletter :-)`,
-    },
+    'happygaia.com': `HappyGaia is now GaiAma`,
+    subscribed: `Thanks for having successfully subscribed to our newsletter :-)`,
+    unsubscribed: `You've been successfully unsubscribed from our newsletter :-)`,
   },
   de: {
-    'happygaia.com': { message: `HappyGaia ist jetzt GaiAma` },
-    'subscribed-to-newsletter': {
-      // type: `success`,
-      message: `Du hast dich erfolgreich für unseren Newsletter angemeldet, vielen Dank :-)`,
-    },
+    'happygaia.com': `HappyGaia ist jetzt GaiAma`,
+    subscribed: `Du hast dich erfolgreich für unseren Newsletter angemeldet, vielen Dank :-)`,
+    unsubscribed: `Du wurdest erfolgreich von unserem Newsletter abgemeldet :-)`,
   },
 }
 
@@ -46,8 +40,9 @@ class ReferrerMessages extends Component {
     //   '100%': { top: `-${this.state.height}px` },
     // })
 
-    const { message } = messages[lang][ref]
-    // const { type, message } = messages[lang][ref]
+    const message = messages[lang][ref]
+    if (!message) return null
+
     return (
       <div
         // ref={x => {
