@@ -3,7 +3,7 @@ const { homepage } = require(`./package.json`)
 
 module.exports = {
   siteMetadata: {
-    title: `GaiAma`,
+    title: `GaiAma.org`,
     author: `GaiAma`,
     description: `GaiAma.org website`,
     siteUrl: homepage,

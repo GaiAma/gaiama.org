@@ -164,7 +164,7 @@ class MainLayout extends Component {
         }}
       >
         <Helmet
-          titleTemplate="%s - GaiAma.org"
+          titleTemplate={`%s - ${site.siteMetadata.title}`}
           defaultTitle={page.frontmatter.title}
         >
           <title>{page.frontmatter.title}</title>
@@ -193,15 +193,18 @@ class MainLayout extends Component {
           />
           <link rel="manifest" href="/site.webmanifest?v=1" />
           <link rel="shortcut icon" href="/favicon.ico?v=1" />
-          <meta name="apple-mobile-web-app-title" content="GaiAma" />
-          <meta name="application-name" content="GaiAma" />
+          <meta
+            name="apple-mobile-web-app-title"
+            content={site.siteMetadata.title}
+          />
+          <meta name="application-name" content={site.siteMetadata.title} />
           <meta name="msapplication-TileColor" content="#a4fcfb" />
           <meta name="theme-color" content="#ffffff" />
 
           {/* <meta name="msapplication-config" content="browserconfig.xml" /> */}
 
           {/* facebook */}
-          <meta property="og:site_name" content="GaiAma" />
+          <meta property="og:site_name" content={site.siteMetadata.title} />
           <meta
             property="og:url"
             content={`${site.siteMetadata.siteUrl}${page.frontmatter.slug}`}
@@ -213,7 +216,10 @@ class MainLayout extends Component {
           {getLang(page.frontmatter.lang, true).map(x => (
             <meta property="og:locale:alternate" content={x.lc} key={x.lc} />
           ))}
-          <meta property="og:title" content={page.frontmatter.title} />
+          <meta
+            property="og:title"
+            content={`${page.frontmatter.title} - ${site.siteMetadata.title}`}
+          />
           <meta
             property="og:description"
             content={page.frontmatter.summary || page.frontmatter.excerpt}
@@ -232,7 +238,14 @@ class MainLayout extends Component {
           {/* <meta property="og:image:alt" content={`A shiny red apple with a bite taken out`} /> */}
 
           {/* twitter */}
-          <meta property="twitter:site" content="@gaiama" />
+          <meta
+            property="twitter:site"
+            content={
+              this.props.data.Accounts.frontmatter.accounts.find(
+                x => x.service === `twitter`
+              ).handle
+            }
+          />
           <meta name="twitter:card" content="summary_large_image" />
 
           {translations.map(({ frontmatter: t }) => (
