@@ -230,7 +230,8 @@ class MainLayout extends Component {
               <meta
                 property={x}
                 key={cover || page.frontmatter.cover.publicURL}
-                content={cover || page.frontmatter.cover.publicURL}
+                content={`${site.siteMetadata.siteUrl}${cover ||
+                  page.frontmatter.cover.publicURL}`}
               />
             ))}
           {/* <meta property="og:image:width" content="1200"> */}
