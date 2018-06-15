@@ -220,6 +220,8 @@ class MainLayout extends Component {
             property="og:title"
             content={`${page.frontmatter.title} - ${site.siteMetadata.title}`}
           />
+          <meta property="og:type" content="website" />
+          <meta property="fb:admins" content="100000166597534" />
           <meta
             property="og:description"
             content={page.frontmatter.summary || page.frontmatter.excerpt}

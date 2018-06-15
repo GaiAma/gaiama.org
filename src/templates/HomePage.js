@@ -203,6 +203,7 @@ export const query = graphql`
         title
         lang
         slug
+        summary
         cover {
           publicURL
         }

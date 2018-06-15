@@ -42,6 +42,7 @@ export const query = graphql`
         lang
         slug
         content
+        summary
       }
     }
   }

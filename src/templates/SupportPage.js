@@ -483,6 +483,7 @@ export const query = graphql`
         lang
         slug
         contactLink
+        summary
         assets {
           arrow_left {
             image: childImageSharp {
