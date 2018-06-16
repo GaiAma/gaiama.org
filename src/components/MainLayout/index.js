@@ -251,6 +251,11 @@ class MainLayout extends Component {
           />
           <meta name="twitter:card" content="summary_large_image" />
 
+          <link
+            rel="alternate"
+            href={site.siteMetadata.siteUrl}
+            hrefLang="x-default"
+          />
           {translations.map(({ frontmatter: t }) => (
             <link
               rel="alternate"
