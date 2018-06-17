@@ -295,11 +295,7 @@ export const query = graphql`
 
 const renderAst = new rehypeReact({
   createElement,
-  components: {
-    // 'gaiama-image': GaimaImage,
-    // 'gaiama-link': Link,
-    // 'embed-video': GaimaVideo,
-  },
+  // components: { 'example-component': ExampleComponent },
 }).Compiler
 
 const PostHeader = ({ title, dateTime, dateStr, dateStrLocalized }) => (
