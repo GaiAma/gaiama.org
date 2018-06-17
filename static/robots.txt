@@ -1,0 +1,3 @@
+User-Agent: *
+Disallow: /en/thanks
+Disallow: /de/danke
