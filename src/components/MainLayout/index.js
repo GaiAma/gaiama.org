@@ -110,6 +110,7 @@ class MainLayout extends Component {
     pathContext: PropTypes.object,
     localPolyfills: PropTypes.array,
     cover: PropTypes.string,
+    location: PropTypes.object,
   }
 
   static defaultProps = {
@@ -136,6 +137,7 @@ class MainLayout extends Component {
       data: { site, SiteMeta, languages, homepage, page, menu },
       localPolyfills,
       cover,
+      location,
     } = this.props
 
     const lang = pathContext.lang
@@ -251,11 +253,13 @@ class MainLayout extends Component {
           />
           <meta name="twitter:card" content="summary_large_image" />
 
-          <link
-            rel="alternate"
-            href={site.siteMetadata.siteUrl}
-            hrefLang="x-default"
-          />
+          {[`/en`, `/de`].includes(location.pathname) && (
+            <link
+              rel="alternate"
+              href={site.siteMetadata.siteUrl}
+              hrefLang="x-default"
+            />
+          )}
           {translations.map(({ frontmatter: t }) => (
             <link
               rel="alternate"
