@@ -38,7 +38,10 @@ const redirections = [
 const isPage = ({ node }) =>
   node && node.internal && node.internal.type === `JavascriptFrontmatter`
 const isPost = ({ node }) =>
-  node && node.internal && node.internal.type === `MarkdownRemark`
+  node &&
+  node.internal &&
+  node.internal.type === `MarkdownRemark` &&
+  /\/(happygaia|blog)\//.test(node.fileAbsolutePath)
 const isPageOrPost = x => isPage(x) || isPost(x)
 
 // const chunkImages = chunk(IMAGES_PER_GALLERY)
@@ -160,12 +163,16 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
       }
 
       articles: allMarkdownRemark(
-        filter: { fields: { isPublished: { eq: true } } }
+        filter: {
+          fileAbsolutePath: { regex: "/(happygaia|blog)/" }
+          fields: { isPublished: { eq: true } }
+        }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
           node {
             id
+            fileAbsolutePath
             excerpt(pruneLength: 135)
             frontmatter {
               id
@@ -348,17 +355,18 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
     createNodeField({
       node,
       name: `suggested`,
-      value: node.frontmatter.suggested.length
-        ? collectSuggestedNodes(node).slice(0, 3)
-        : shuffle(
-            Posts.filter(
-              node =>
-                node.fields.isPublished &&
-                moment(node.fields.dateTime).isAfter(1427472056000)
+      value:
+        node.frontmatter.suggested && node.frontmatter.suggested.length
+          ? collectSuggestedNodes(node).slice(0, 3)
+          : shuffle(
+              Posts.filter(
+                node =>
+                  node.fields.isPublished &&
+                  moment(node.fields.dateTime).isAfter(1427472056000)
+              )
             )
-          )
-            .slice(0, 3)
-            .map(node => node.frontmatter.id),
+              .slice(0, 3)
+              .map(node => node.frontmatter.id),
     })
   )
 

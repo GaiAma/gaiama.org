@@ -202,7 +202,10 @@ export const query = graphql`
       }
     }
 
-    page: markdownRemark(frontmatter: { slug: { eq: $slug } }) {
+    page: markdownRemark(
+      fileAbsolutePath: { regex: "/(happygaia|blog)/" }
+      frontmatter: { slug: { eq: $slug } }
+    ) {
       fields {
         dateTime
         dateStr
