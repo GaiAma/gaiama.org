@@ -8,10 +8,11 @@ import ShareWidget from '@/components/ShareWidget'
 // import TitledCopy from '@/components/TitledCopy'
 import { SupportWidget } from '@/components/Shared'
 import Newsticker from '@/components/Newsticker'
+import PodcastPlayer from '@/components/PodcastPlayer'
 import { colors, fontFamilies, gradients, media } from '@/theme'
 
 const BlogPost = props => {
-  const { page: post, BlogPost, NewsTicker } = props.data
+  const { page: post, BlogPost, NewsTicker, PodcastPlayerMeta } = props.data
 
   return (
     <MainLayout {...props}>
@@ -52,6 +53,8 @@ const BlogPost = props => {
           datetime={post.fields.dateTime}
           dateStr={post.fields.dateStr}
           dateStrLocalized={post.fields.dateStrLocalized}
+          podcast={post.frontmatter.podcast}
+          podcastPlayerMeta={PodcastPlayerMeta}
         />
 
         <PostBody>{renderAst(post.htmlAst)}</PostBody>
@@ -185,6 +188,7 @@ export const query = graphql`
     ...Accounts
     ...SupportWidget
     ...NewsTicker
+    ...PodcastPlayer
 
     BlogPost: blogPostAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
@@ -270,6 +274,10 @@ export const query = graphql`
         cover {
           publicURL
         }
+        podcast {
+          audio
+          video
+        }
       }
     }
   }
@@ -301,7 +309,14 @@ const renderAst = new rehypeReact({
   // components: { 'example-component': ExampleComponent },
 }).Compiler
 
-const PostHeader = ({ title, dateTime, dateStr, dateStrLocalized }) => (
+const PostHeader = ({
+  title,
+  dateTime,
+  dateStr,
+  dateStrLocalized,
+  podcast,
+  podcastPlayerMeta,
+}) => (
   <div
     css={{
       textAlign: `center`,
@@ -355,6 +370,8 @@ const PostHeader = ({ title, dateTime, dateStr, dateStrLocalized }) => (
         {dateStrLocalized}
       </time>
     </div>
+
+    <PodcastPlayer podcast={podcast} meta={podcastPlayerMeta.frontmatter} />
   </div>
 )
 PostHeader.propTypes = {
@@ -363,6 +380,8 @@ PostHeader.propTypes = {
   publishedTime: PropTypes.object,
   dateStr: PropTypes.string,
   dateStrLocalized: PropTypes.string,
+  podcast: PropTypes.object,
+  podcastPlayerMeta: PropTypes.object,
 }
 
 const PostBody = ({ children }) => (

@@ -115,6 +115,7 @@ export const InstagramGradient = props => (
 // }
 
 export const SIZES = {
+  xxsmall: { min: 375, max: 424 },
   xsmall: { min: 425, max: 768 },
   small: { min: 769, max: 850 },
   medium: { min: 851, max: 992 },
