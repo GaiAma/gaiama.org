@@ -136,7 +136,6 @@ class MainLayout extends Component {
       wrapperStyles,
       data: { site, SiteMeta, languages, homepage, page, menu },
       localPolyfills,
-      cover,
       location,
     } = this.props
 
@@ -154,6 +153,10 @@ class MainLayout extends Component {
     const urlParams = QS.parse()
 
     const polyfills = [...globalPolyfills, ...localPolyfills]
+
+    const cover = `${site.siteMetadata.siteUrl}${this.props.cover ||
+      (page.frontmatter.cover && page.frontmatter.cover.publicURL) ||
+      SiteMeta.frontmatter.assets.globalCover.publicURL}`
 
     return (
       // <I18nextProvider //   i18n={i18n} //   initialLanguage={lang} //   initialI18nStore={i18nStore} // >
@@ -228,16 +231,9 @@ class MainLayout extends Component {
             property="og:description"
             content={page.frontmatter.summary || page.frontmatter.excerpt}
           />
-          {(cover ||
-            (page.frontmatter.cover && page.frontmatter.cover.publicURL)) &&
-            [`og:image`, `image`].map(x => (
-              <meta
-                property={x}
-                key={cover || page.frontmatter.cover.publicURL}
-                content={`${site.siteMetadata.siteUrl}${cover ||
-                  page.frontmatter.cover.publicURL}`}
-              />
-            ))}
+          {[`og:image`, `image`].map(x => (
+            <meta property={x} key={x} content={cover} />
+          ))}
           {/* <meta property="og:image:width" content="1200"> */}
           {/* <meta property="og:image:height" content="628"> */}
           {/* <meta property="og:image:alt" content={`A shiny red apple with a bite taken out`} /> */}

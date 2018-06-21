@@ -29,6 +29,9 @@ export const Fragments = graphql`
           paypalButton {
             publicURL
           }
+          globalCover {
+            publicURL
+          }
         }
         skipLinks {
           toContent
