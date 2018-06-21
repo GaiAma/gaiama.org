@@ -30,8 +30,8 @@ const redirections = [
   `https://gaiama.netlify.com/de/* https://www.gaiama.org/de/:splat 301!`,
   `https://gaiama.netlify.com/* https://www.gaiama.org/en/:splat 301!`,
   // subdomain redirects
-  `https://spende.gaiama.org/* /de/spenden/ 301`,
-  `https://donate.gaiama.org/* /en/donate/ 301`,
+  `https://spende.gaiama.org/* https://www.gaiama.org/de/spenden/ 301`,
+  `https://donate.gaiama.org/* https://www.gaiama.org/en/donate/ 301`,
   // redirect root to /de based on browser language
   `/ /de/ 302 Language=de`, // remove * & :splat for now
   // redirect root to /en otherwise
