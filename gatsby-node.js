@@ -33,9 +33,9 @@ const redirections = [
   `/ /de/ 302 Language=de`, // remove * & :splat for now
   // redirect root to /en otherwise
   `/ /en/ 301`,
-  `/spenden /de/spenden 301`,
-  `/spende /de/spenden 301`,
-  `/donate /en/donate 301`,
+  `/spenden /de/spenden/ 301`,
+  `/spende /de/spenden/ 301`,
+  `/donate /en/donate/ 301`,
 ]
 
 const isPage = ({ node }) =>
@@ -498,7 +498,7 @@ exports.onPostBuild = ({ store }) => {
   // })
 
   redirections.push(`/en/blog/* /en/blog/ 302`)
-  redirections.push(`/en/blog/* /en/blog/ 302`)
+  redirections.push(`/de/blog/* /de/blog/ 302`)
 
   redirections.push(`/en/* /en/404/?url=:splat 404`)
   redirections.push(`/de/* /de/404/?url=:splat 404`)
