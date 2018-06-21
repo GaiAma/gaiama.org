@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Img from 'gatsby-image'
+import Helmet from 'react-helmet'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
 import Newsticker from '@/components/Newsticker'
@@ -9,6 +10,10 @@ const PaypalSuccessPage = props => {
   const { page, NewsTicker } = props.data
   return (
     <MainLayout {...props}>
+      <Helmet>
+        <meta name="robots" content="noindex" />
+      </Helmet>
+
       <TitledCopy
         centered
         title={page.frontmatter.intro.title}
