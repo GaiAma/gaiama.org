@@ -33,6 +33,9 @@ const redirections = [
   `/ /de/ 302 Language=de`, // remove * & :splat for now
   // redirect root to /en otherwise
   `/ /en/ 301`,
+  `/spenden /de/spenden 301`,
+  `/spende /de/spenden 301`,
+  `/donate /en/donate 301`,
 ]
 
 const isPage = ({ node }) =>
@@ -494,8 +497,11 @@ exports.onPostBuild = ({ store }) => {
   //   redirections.push([fromPath, toPath, isPermanent ? 301 : null].join(` `))
   // })
 
-  redirections.push(`/en/* /en/404/?url=:splat 400`)
-  redirections.push(`/de/* /de/404/?url=:splat 400`)
+  redirections.push(`/en/blog/* /en/blog/ 302`)
+  redirections.push(`/en/blog/* /en/blog/ 302`)
+
+  redirections.push(`/en/* /en/404/?url=:splat 404`)
+  redirections.push(`/de/* /de/404/?url=:splat 404`)
 
   if (redirections.length) {
     writeFileSync(join(publicDir, `_redirects`), redirections.join(`\n`))
