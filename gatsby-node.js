@@ -501,8 +501,8 @@ exports.onPostBuild = ({ store }) => {
   //   redirections.push([fromPath, toPath, isPermanent ? 301 : null].join(` `))
   // })
 
-  redirections.push(`/en/blog/* /en/blog/ 302`)
-  redirections.push(`/de/blog/* /de/blog/ 302`)
+  redirections.push(`/en/blog/* /en/blog/ 301`)
+  redirections.push(`/de/blog/* /de/blog/ 301`)
 
   redirections.push(`/en/* /en/404/?url=:splat 404`)
   redirections.push(`/de/* /de/404/?url=:splat 404`)
