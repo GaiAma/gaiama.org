@@ -205,6 +205,14 @@ module.exports = {
         showSpinner: true,
       },
     },
+    {
+      resolve: `gatsby-plugin-netlify`,
+      options: {
+        headers: {
+          '/*': [`X-Robots-Tag: noindex, follow`],
+        },
+      },
+    },
     // {
     //   resolve: `gatsby-plugin-feed`,
     //   options: {
