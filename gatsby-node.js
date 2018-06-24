@@ -500,17 +500,20 @@ exports.onPostBuild = ({ store }) => {
   // redirects.forEach(({ fromPath, toPath, isPermanent }) => {
   //   redirections.push([fromPath, toPath, isPermanent ? 301 : null].join(` `))
   // })
+  const finalRedirections = redirections.concat([
+    `/en/blog/* /en/blog/?url=:splat 301`,
+    `/de/blog/* /de/blog/?url=:splat 301`,
 
-  redirections.push(`/en/blog/* /en/blog/ 301`)
-  redirections.push(`/de/blog/* /de/blog/ 301`)
+    // manual redirection fixes
+    `/globetrawter/blog/oh-don-t-stop/ /en/blog/oh-dont-stop/ 301`,
+    `/en/globetrawter/* /en/blog/ 301`,
 
-  // redirect everything still not catched to /en/:splat
-  redirections.push(`/* /en/:splat 301`)
+    // redirect everything still not catched to /en/:splat
+    `/* /en/:splat 301`,
 
-  redirections.push(`/en/* /en/404/?url=:splat 404`)
-  redirections.push(`/de/* /de/404/?url=:splat 404`)
+    `/en/* /en/404/?url=:splat 404`,
+    `/de/* /de/404/?url=:splat 404`,
+  ])
 
-  if (redirections.length) {
-    writeFileSync(join(publicDir, `_redirects`), redirections.join(`\n`))
-  }
+  writeFileSync(join(publicDir, `_redirects`), finalRedirections.join(`\n`))
 }
