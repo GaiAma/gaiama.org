@@ -507,6 +507,9 @@ exports.onPostBuild = ({ store }) => {
     // manual redirection fixes
     `/globetrawter/blog/oh-don-t-stop/ /en/blog/oh-dont-stop/ 301`,
     `/en/globetrawter/* /en/blog/ 301`,
+    // non existent?
+    `/de/10484/* /de/blog/ 301`,
+    `/en/1213/* /en/blog/ 301`,
 
     // redirect everything still not catched to /en/:splat
     `/* /en/:splat 301`,
