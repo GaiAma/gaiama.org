@@ -504,6 +504,9 @@ exports.onPostBuild = ({ store }) => {
   redirections.push(`/en/blog/* /en/blog/ 301`)
   redirections.push(`/de/blog/* /de/blog/ 301`)
 
+  // redirect everything still not catched to /en/:splat
+  redirections.push(`/* /en/:splat 301`)
+
   redirections.push(`/en/* /en/404/?url=:splat 404`)
   redirections.push(`/de/* /de/404/?url=:splat 404`)
 
