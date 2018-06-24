@@ -501,15 +501,29 @@ exports.onPostBuild = ({ store }) => {
   //   redirections.push([fromPath, toPath, isPermanent ? 301 : null].join(` `))
   // })
   const finalRedirections = redirections.concat([
+    `/en/blog/atom/* /en/blog/rss.xml 301`,
+    `/de/blog/atom/* /de/blog/rss.xml 301`,
+
     `/en/blog/* /en/blog/?url=:splat 301`,
     `/de/blog/* /de/blog/?url=:splat 301`,
 
     // manual redirection fixes
     `/globetrawter/blog/oh-don-t-stop/ /en/blog/oh-dont-stop/ 301`,
     `/en/globetrawter/* /en/blog/ 301`,
+    `/de/globetrawter/* /de/blog/ 301`,
+
+    `/en/de/* / 301`,
+    `/en/danke/* /de/spenden/ 301`,
+
     // non existent?
     `/de/10484/* /de/blog/ 301`,
     `/en/1213/* /en/blog/ 301`,
+    `/de/1047/* /de/blog/ 301`,
+    `/de/1213/* /de/blog/ 301`,
+    `/de/1210/* /de/blog/ 301`,
+    `/en/1210/* /en/blog/ 301`,
+    `/en/1193/* /en/blog/ 301`,
+    `/en/10592/* /en/blog/ 301`,
 
     // redirect everything still not catched to /en/:splat
     `/* /en/:splat 301`,
