@@ -11,12 +11,12 @@ exports.onRouteUpdate = ({ location: { pathname } }, { endpoint }) => {
   if (!isRecurring) {
     setTimeout(() => {
       const { title } = document
+      const nocache = `${Math.random()}`.replace(`0.`, ``)
       const pixel = new Image()
       pixel.src = endpoint
-        .replace(`[[nocache]]`, encodeURIComponent(Math.random()))
+        .replace(`[[nocache]]`, encodeURIComponent(nocache))
         .replace(`[[id]]`, encodeURIComponent(id))
         .replace(`[[title]]`, encodeURIComponent(title))
-        .concat(`&${`${Math.random()}`.replace(`0.`, ``)}`)
     }, 500)
   }
 }

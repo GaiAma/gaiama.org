@@ -206,8 +206,8 @@ module.exports = {
       resolve: `gatsby-plugin-pixel`,
       options: {
         endpoint: isProduction
-          ? `https://gaiama-analytics.now.sh/[[id]]/p?t=[[title]]`
-          : `http://localhost:7789/[[id]]/p?t=[[title]]`,
+          ? `https://gaiama-analytics.now.sh/[[nocache]]/p?id=[[id]]title=[[title]]`
+          : `http://localhost:7789/[[nocache]]/p?id=[[id]]title=[[title]]`,
       },
     },
   ],
