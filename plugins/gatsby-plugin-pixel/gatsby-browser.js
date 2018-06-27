@@ -2,7 +2,7 @@ import cuid from 'cuid'
 
 // store views so we won't count recurring pages
 const views = {}
-const id = cuid()
+const uid = cuid()
 
 exports.onRouteUpdate = ({ location: { pathname } }, { endpoint }) => {
   const isRecurring = !!views[pathname]
@@ -15,7 +15,7 @@ exports.onRouteUpdate = ({ location: { pathname } }, { endpoint }) => {
       const pixel = new Image()
       pixel.src = endpoint
         .replace(`[[nocache]]`, encodeURIComponent(nocache))
-        .replace(`[[id]]`, encodeURIComponent(id))
+        .replace(`[[uid]]`, encodeURIComponent(uid))
         .replace(`[[title]]`, encodeURIComponent(title))
     }, 500)
   }
