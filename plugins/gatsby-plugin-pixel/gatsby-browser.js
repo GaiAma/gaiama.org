@@ -16,6 +16,7 @@ exports.onRouteUpdate = ({ location: { pathname } }, { endpoint }) => {
         .replace(`[[nocache]]`, encodeURIComponent(Math.random()))
         .replace(`[[id]]`, encodeURIComponent(id))
         .replace(`[[title]]`, encodeURIComponent(title))
+        .concat(`&${`${Math.random()}`.replace(`0.`, ``)}`)
     }, 500)
   }
 }

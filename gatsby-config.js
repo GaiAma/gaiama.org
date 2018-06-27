@@ -1,6 +1,8 @@
 const path = require(`path`)
 const { homepage } = require(`./package.json`)
 
+const isProduction = process.env.GAIAMA_CONTENT_ID
+
 module.exports = {
   siteMetadata: {
     title: `GaiAma.org`,
@@ -31,7 +33,7 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: process.env.GAIAMA_CONTENT_ID
+        path: isProduction
           ? path.join(__dirname, `content`)
           : path.join(__dirname, `..`, `content`, `content`),
         name: `content`,
@@ -192,7 +194,7 @@ module.exports = {
       resolve: `gatsby-plugin-webpack-bundle-analyzer`,
       options: {
         production: true,
-        disable: process.env.GAIAMA_CONTENT_ID,
+        disable: isProduction,
       },
     },
     {
@@ -203,7 +205,9 @@ module.exports = {
     {
       resolve: `gatsby-plugin-pixel`,
       options: {
-        endpoint: `https://gaiama-analytics.now.sh/[[id]]/p?t=[[title]]`,
+        endpoint: isProduction
+          ? `https://gaiama-analytics.now.sh/[[id]]/p?t=[[title]]`
+          : `http://localhost:7789/[[id]]/p?t=[[title]]`,
       },
     },
   ],
