@@ -1,0 +1,7 @@
+{
+  "name": "gatsby-plugin-pixel",
+  "version": "",
+  "dependencies": {
+    "cuid": "^2.1.1"
+  }
+}

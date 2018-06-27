@@ -1,7 +1,7 @@
 {
   "name": "gaiama.org",
   "description": "GaiAma.org website",
-  "version": "1.5.22",
+  "version": "1.5.23",
   "author": "Can Rau <cansrau@gmail.com>",
   "license": "MIT",
   "homepage": "https://www.gaiama.org",
@@ -53,6 +53,7 @@
     "@fortawesome/react-fontawesome": "^0.0.17",
     "axios": "^0.18.0",
     "cryptocurrency-icons": "https://github.com/cjdowner/cryptocurrency-icons",
+    "cuid": "^2.1.1",
     "feed": "^1.1.1",
     "gatsby": "^1.9.241",
     "gatsby-image": "^1.0.35",

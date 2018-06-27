@@ -200,5 +200,11 @@ module.exports = {
       options: {},
     },
     `gatsby-plugin-glamor`,
+    {
+      resolve: `gatsby-plugin-pixel`,
+      options: {
+        endpoint: `https://gaiama-analytics.now.sh/[[id]]/p?t=[[title]]`,
+      },
+    },
   ],
 }
