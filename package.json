@@ -52,7 +52,7 @@
     "@fortawesome/fontawesome-free-solid": "^5.0.8",
     "@fortawesome/react-fontawesome": "^0.0.17",
     "axios": "^0.18.0",
-    "cryptocurrency-icons": "https://github.com/cjdowner/cryptocurrency-icons",
+    "cryptocurrency-icons": "https://github.com/hyperdexapp/cryptocurrency-icons",
     "cuid": "^2.1.1",
     "feed": "^1.1.1",
     "gatsby": "^1.9.241",
