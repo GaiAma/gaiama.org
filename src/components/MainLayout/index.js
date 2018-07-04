@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import QS from '@/utils/query-string'
 import '@/utils/fontawesome'
 import {
+  colors,
   media,
   screenReaderAndFocusable,
   focusOutlineNone,
@@ -203,8 +204,8 @@ class MainLayout extends Component {
             content={site.siteMetadata.title}
           />
           <meta name="application-name" content={site.siteMetadata.title} />
-          <meta name="msapplication-TileColor" content="#a4fcfb" />
-          <meta name="theme-color" content="#ffffff" />
+          <meta name="msapplication-TileColor" content={colors.primaryLite} />
+          <meta name="theme-color" content={colors.primaryLite} />
 
           {/* <meta name="msapplication-config" content="browserconfig.xml" /> */}
 
