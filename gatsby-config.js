@@ -210,5 +210,14 @@ module.exports = {
           : `http://localhost:7789/[[nocache]]/p?uid=[[uid]]&title=[[title]]`,
       },
     },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `#287482`,
+        // Disable the loading spinner.
+        showSpinner: true,
+      },
+    },
   ],
 }
