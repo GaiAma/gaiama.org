@@ -19,6 +19,7 @@ import {
 } from '@/theme'
 
 import './fragments'
+import './global.css'
 import 'typeface-amatic-sc'
 import 'typeface-quicksand'
 
