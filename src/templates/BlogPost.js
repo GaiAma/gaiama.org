@@ -21,7 +21,7 @@ const BlogPost = props => {
         meta={[
           {
             name: `description`,
-            content: post.excerpt || post.frontmatter.summary,
+            content: post.frontmatter.summary || post.excerpt,
           },
           {
             property: `og:type`,

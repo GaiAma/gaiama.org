@@ -14,7 +14,7 @@ const ArticlePreview = ({ article, isVisible, ...props }) => (
     </Link>
 
     <p css={articleStyles.body}>
-      {article.excerpt || article.frontmatter.summary}
+      {article.frontmatter.summary || article.excerpt}
     </p>
 
     <footer css={articleStyles.footer}>
