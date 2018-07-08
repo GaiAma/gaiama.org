@@ -4446,9 +4446,9 @@ fd-slicer@~1.1.0:
   dependencies:
     pend "~1.2.0"
 
-feed@^1.1.1:
+"feed@https://github.com/GaiAma/feed.git":
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/feed/-/feed-1.1.1.tgz#914897517e94fa327cc6f73bb585a47c4a9ed321"
+  resolved "https://github.com/GaiAma/feed.git#f9e0804b5c30f031cfd30eec3f5d43151b8280ac"
   dependencies:
     xml "^1.0.1"
 

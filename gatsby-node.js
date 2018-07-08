@@ -165,6 +165,10 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
               menu
               cover {
                 publicURL
+                size
+                internal {
+                  mediaType
+                }
               }
             }
             internal {
@@ -197,6 +201,10 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
               published
               cover {
                 publicURL
+                size
+                internal {
+                  mediaType
+                }
               }
             }
             fields {
@@ -461,7 +469,13 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
           link: `${homepage}${node.fields.slug}`,
           date: new Date(node.fields.dateTimeMod || node.fields.dateTime),
           content: node.excerpt,
-          image: `${homepage}${node.frontmatter.cover.publicURL}`,
+          image: node.frontmatter.cover
+            ? {
+                url: `${homepage}${node.frontmatter.cover.publicURL}`,
+                type: node.frontmatter.cover.internal.mediaType,
+                length: node.frontmatter.cover.size,
+              }
+            : null,
           author: [
             {
               name: `GaiAma`,
@@ -498,10 +512,21 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
           ),
           content: node.excerpt,
           image: node.frontmatter.cover
-            ? `${homepage}${node.frontmatter.cover.publicURL}`
+            ? {
+                url: `${homepage}${node.frontmatter.cover.publicURL}`,
+                type: node.frontmatter.cover.internal.mediaType,
+                length: node.frontmatter.cover.size,
+              }
             : node.fields.layout === `BlogPage`
               ? newestArticle.node.frontmatter.cover
-                ? `${homepage}${newestArticle.node.frontmatter.cover.publicURL}`
+                ? {
+                    url: `${homepage}${
+                      newestArticle.node.frontmatter.cover.publicURL
+                    }`,
+                    length: newestArticle.node.frontmatter.cover.size,
+                    type:
+                      newestArticle.node.frontmatter.cover.internal.mediaType,
+                  }
                 : null
               : null,
           author: [
