@@ -1,5 +1,6 @@
 const { resolve, join } = require(`path`)
 const { writeFileSync } = require(`fs`)
+const { homepage } = require(`./package.json`)
 const moment = require(`moment`)
 const mkDir = require(`make-dir`)
 // const webpack = require(`webpack`)
@@ -26,12 +27,12 @@ const publicDir = join(__dirname, `public`)
 
 const redirections = [
   // Redirect default Netlify subdomain to primary domain
-  `https://gaiama.netlify.com/en/* https://www.gaiama.org/en/:splat 301!`,
-  `https://gaiama.netlify.com/de/* https://www.gaiama.org/de/:splat 301!`,
-  `https://gaiama.netlify.com/* https://www.gaiama.org/en/:splat 301!`,
+  `https://gaiama.netlify.com/en/* ${homepage}/en/:splat 301!`,
+  `https://gaiama.netlify.com/de/* ${homepage}/de/:splat 301!`,
+  `https://gaiama.netlify.com/* ${homepage}/en/:splat 301!`,
   // subdomain redirects
-  `https://spende.gaiama.org/* https://www.gaiama.org/de/spenden/ 301!`,
-  `https://donate.gaiama.org/* https://www.gaiama.org/en/donate/ 301!`,
+  `https://spende.gaiama.org/* ${homepage}/de/spenden/ 301!`,
+  `https://donate.gaiama.org/* ${homepage}/en/donate/ 301!`,
   // donation shortcuts
   `/spenden /de/spenden/ 301`,
   `/spende /de/spenden/ 301`,
@@ -161,6 +162,10 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
             frontmatter {
               id
               translations
+              menu
+              cover {
+                publicURL
+              }
             }
             internal {
               type
@@ -189,6 +194,10 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
               oldId
               oldSlug
               translations
+              published
+              cover {
+                publicURL
+              }
             }
             fields {
               slug
@@ -396,12 +405,12 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
       copyright: langFeed.node.frontmatter.copyright,
       generator: langFeed.node.frontmatter.generator,
       feedLinks: {
-        json: `https://www.gaiama.org/${lang.node.frontmatter.id}/blog/json`,
-        atom: `https://www.gaiama.org/${lang.node.frontmatter.id}/blog/atom`,
+        json: `${homepage}/${lang.node.frontmatter.id}/blog/json`,
+        atom: `${homepage}/${lang.node.frontmatter.id}/blog/atom`,
       },
       author: {
         name: `GaiAma`,
-        link: `https://www.gaiama.org`,
+        link: homepage,
       },
     })
 
@@ -435,27 +444,103 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
           name: `newer`,
           value: newer && newer.id ? newer.id : null,
         })
+      })
 
-        feed.addItem({
+    const googleFeedItems = []
+
+    graphNodes.data.articles.edges
+      .filter(
+        ({ node }) =>
+          node.frontmatter.published &&
+          node.fields.lang === lang.node.frontmatter.id
+      )
+      .forEach(({ node }) => {
+        const feedItem = {
           title: node.frontmatter.title,
-          id: `https://www.gaiama.org${node.frontmatter.slug}`,
-          link: `https://www.gaiama.org${node.frontmatter.slug}`,
-          date: new Date(node.fields.dateTime),
+          id: `${homepage}${node.fields.slug}`,
+          link: `${homepage}${node.fields.slug}`,
+          date: new Date(node.fields.dateTimeMod || node.fields.dateTime),
           content: node.excerpt,
+          image: `${homepage}${node.frontmatter.cover.publicURL}`,
           author: [
             {
               name: `GaiAma`,
-              link: `https://www.gaiama.org`,
+              link: homepage,
+            },
+          ],
+        }
+        feed.addItem(feedItem)
+        googleFeedItems.push(feedItem)
+      })
+
+    const [newestArticle] = graphNodes.data.articles.edges.filter(
+      ({ node }) =>
+        node.frontmatter.published &&
+        node.fields.lang === lang.node.frontmatter.id
+    )
+
+    graphNodes.data.pages.edges
+      .filter(
+        ({ node }) =>
+          node.frontmatter.menu === `main` &&
+          node.fields.lang === lang.node.frontmatter.id
+      )
+      .forEach(({ node }) =>
+        feed.addItem({
+          title: node.frontmatter.title,
+          id: `${homepage}${node.fields.slug}`,
+          link: `${homepage}${node.fields.slug}`,
+          date: new Date(
+            node.fields.dateTimeMod ||
+              node.fields.dateTime ||
+              newestArticle.node.fields.dateTimeMod ||
+              newestArticle.node.fields.dateTime
+          ),
+          content: node.excerpt,
+          image: node.frontmatter.cover
+            ? `${homepage}${node.frontmatter.cover.publicURL}`
+            : node.fields.layout === `BlogPage`
+              ? newestArticle.node.frontmatter.cover
+                ? `${homepage}${newestArticle.node.frontmatter.cover.publicURL}`
+                : null
+              : null,
+          author: [
+            {
+              name: `GaiAma`,
+              link: homepage,
             },
           ],
         })
-      })
+      )
+
+    //     const sitemap = `
+    // <?xml version="1.0" encoding="UTF-8"?>
+    // <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    //   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+    //   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+    //   ${googleFeedItems
+    //     .map(
+    //       item => `
+    //     <url>
+    //       <loc>${item.link}</loc>
+    //       <lastmod>${item.date}</lastmod>
+    //       <changefreq>daily</changefreq>
+    //       <image:image>
+    //         <image:loc>${item.image}</image:loc>
+    //       </image:image>
+    //     </url>
+    //   `
+    //     )
+    //     .join(``)}
+    // </urlset>
+    //     `.trim()
 
     const feedDir = join(publicDir, lang.node.frontmatter.id, `blog`)
     mkDir.sync(feedDir)
     writeFileSync(join(feedDir, `atom.xml`), feed.atom1())
     writeFileSync(join(feedDir, `rss.xml`), feed.rss2())
     writeFileSync(join(feedDir, `feed.json`), feed.json1())
+    // writeFileSync(join(feedDir, `sitemap.xml`), sitemap)
   })
 
   return true
