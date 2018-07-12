@@ -91,10 +91,6 @@ const AboutPage = props => {
                   title={bio.name}
                   css={{
                     borderRadius: `50%`,
-                    [media.lessThan(`medium`)]: {
-                      width: `100px !important`,
-                      height: `100px !important`,
-                    },
                     [media.greaterThan(`medium`)]: {
                       marginRight: `2rem`,
                     },
@@ -168,8 +164,6 @@ const AboutPage = props => {
                     title={bio.name}
                     css={{
                       borderRadius: `50%`,
-                      width: `100px !important`,
-                      height: `100px !important`,
                     }}
                   />
                   <div>
