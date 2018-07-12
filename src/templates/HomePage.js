@@ -378,7 +378,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
             flex
             css={{
               margin: `0`,
-              [media.lessThan(`xsmall`)]: {
+              [media.lessThan(`medium`)]: {
                 flexDirection: i % 2 === 0 ? `column-reverse` : `column`,
               },
             }}
