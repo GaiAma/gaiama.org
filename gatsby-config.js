@@ -194,14 +194,6 @@ module.exports = {
     //   resolve: `gatsby-plugin-webpack-bundle-analyzer`,
     //   options: {
     //     production: true,
-    //     disable: isProduction,
-    //   },
-    // },
-    {
-      resolve: `gatsby-plugin-netlify`,
-      options: {},
-    },
-    `gatsby-plugin-glamor`,
     {
       resolve: `gatsby-plugin-pixel`,
       options: {
