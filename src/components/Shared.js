@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { colors, Box, fontFamilies, H2, fullPageWidth, media } from '@/theme'
@@ -251,7 +251,7 @@ const SupportWidget = ({
       >
         <Img
           resolutions={artwork.image.resolutions}
-          sizes={artwork.image.sizes}
+          fluid={artwork.image.fluid}
           css={{
             transform: `translateY(5rem)`,
             marginTop: `-5rem`,
@@ -509,7 +509,7 @@ const InstagramFeed = ({ user, followLink, bg, images }) => {
             >
               <Img
                 alt="GaiAma on Instagram"
-                sizes={x.node.image.image.sizes}
+                fluid={x.node.image.image.fluid}
                 css={{ border: `1px solid #000` }}
               />
             </a>
@@ -570,8 +570,8 @@ export const instaQuery = graphql`
         followLink
         bg {
           image: childImageSharp {
-            sizes(maxWidth: 1440, quality: 75) {
-              ...GatsbyImageSharpSizes
+            fluid(maxWidth: 1440, quality: 75) {
+              ...GatsbyImageSharpFluid
             }
           }
         }
@@ -586,8 +586,8 @@ export const instaQuery = graphql`
           username
           image {
             image: childImageSharp {
-              sizes(maxWidth: 240, maxHeight: 240, quality: 75) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 240, maxHeight: 240, quality: 75) {
+                ...GatsbyImageSharpFluid
               }
             }
           }

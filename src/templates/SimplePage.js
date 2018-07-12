@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import MainLayout from '@/components/MainLayout'
 
 const SimplePage = props => {

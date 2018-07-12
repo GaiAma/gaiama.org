@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import Head from 'react-helmet'
 import { css } from 'glamor'
 import QS from '@/utils/query-string'
@@ -250,8 +251,8 @@ export const query = graphql`
         sidebar {
           artwork {
             image: childImageSharp {
-              resolutions(quality: 75) {
-                ...GatsbyImageSharpResolutions
+              fixed(quality: 75) {
+                ...GatsbyImageSharpFixed
               }
             }
           }
@@ -288,13 +289,13 @@ export const query = graphql`
             cover {
               publicURL
               childImageSharp {
-                sizes(
+                fluid(
                   maxWidth: 400
                   maxHeight: 230
                   quality: 75
                   cropFocus: ENTROPY
                 ) {
-                  ...GatsbyImageSharpSizes
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

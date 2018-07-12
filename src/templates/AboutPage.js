@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import slugify from 'slugify'
 import MainLayout from '@/components/MainLayout'
@@ -26,11 +27,7 @@ const AboutPage = props => {
       }}
     >
       {page.frontmatter.peopleGallery.map((x, i) => (
-        <Img
-          key={i}
-          resolutions={x.image.resolutions}
-          css={{ maxWidth: `100%` }}
-        />
+        <Img key={i} fixed={x.image.fixed} css={{ maxWidth: `100%` }} />
       ))}
     </div>
   )
@@ -86,7 +83,7 @@ const AboutPage = props => {
                 }}
               >
                 <Img
-                  resolutions={bio.img.image.resolutions}
+                  fixed={bio.img.image.fixed}
                   alt={bio.name}
                   title={bio.name}
                   css={{
@@ -159,7 +156,7 @@ const AboutPage = props => {
                   css={{ textAlign: `center` }}
                 >
                   <Img
-                    resolutions={bio.img.image.resolutions}
+                    fixed={bio.img.image.fixed}
                     alt={bio.name}
                     title={bio.name}
                     css={{
@@ -250,8 +247,8 @@ export const query = graphql`
           bio
           img {
             image: childImageSharp {
-              resolutions(width: 150, height: 150, quality: 75) {
-                ...GatsbyImageSharpResolutions
+              fixed(width: 150, height: 150, quality: 75) {
+                ...GatsbyImageSharpFixed
               }
             }
           }
@@ -264,8 +261,8 @@ export const query = graphql`
             bio
             img {
               image: childImageSharp {
-                resolutions(width: 150, height: 150, quality: 75) {
-                  ...GatsbyImageSharpResolutions
+                fixed(width: 150, height: 150, quality: 75) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }
@@ -273,8 +270,8 @@ export const query = graphql`
         }
         peopleGallery {
           image: childImageSharp {
-            resolutions(width: 258, height: 258, quality: 75) {
-              ...GatsbyImageSharpResolutions
+            fixed(width: 258, height: 258, quality: 75) {
+              ...GatsbyImageSharpFixed
             }
           }
         }

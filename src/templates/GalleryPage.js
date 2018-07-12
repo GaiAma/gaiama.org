@@ -2,7 +2,7 @@
 // import PropTypes from 'prop-types'
 // // import Helmet from 'react-helmet'
 // import Img from 'gatsby-image'
-// import Link from 'gatsby-link'
+// import { graphql, Link } from 'gatsby'
 // import chunk from 'lodash/fp/chunk'
 // import compose from 'ramda/src/compose'
 // import flatten from 'ramda/src/flatten'
@@ -62,7 +62,7 @@
 //           },
 //         }}
 //       >
-//         <Img sizes={filename.image.sizes} />
+//         <Img fluid={filename.image.fluid} />
 //         <figcaption>
 //           <div>
 //             <h2
@@ -272,8 +272,8 @@
 //                 base
 //                 aspectRatio
 //                 image: childImageSharp {
-//                   sizes(maxWidth: 600, quality: 75) {
-//                     ...GatsbyImageSharpSizes
+//                   fluid(maxWidth: 600, quality: 75) {
+//                     ...GatsbyImageSharpFluid
 //                   }
 //                 }
 //               }

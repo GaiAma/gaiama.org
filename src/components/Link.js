@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import QS from '@/utils/query-string'
-import GatsbyLink from 'gatsby-link'
+import { Link as GatsbyLink } from 'gatsby'
 
 const Link = ({
   children,

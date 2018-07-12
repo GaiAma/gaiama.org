@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import MainLayout from '@/components/MainLayout'
@@ -28,9 +29,7 @@ const PaypalSuccessPage = props => {
           marginBottom: `2rem`,
         }}
       >
-        <Img
-          resolutions={page.frontmatter.assets.gratitude.image.resolutions}
-        />
+        <Img fixed={page.frontmatter.assets.gratitude.image.fixed} />
       </div>
 
       <Newsticker
@@ -87,8 +86,8 @@ export const query = graphql`
         assets {
           gratitude {
             image: childImageSharp {
-              resolutions(quality: 75) {
-                ...GatsbyImageSharpResolutions
+              fixed(quality: 75) {
+                ...GatsbyImageSharpFixed
               }
             }
           }

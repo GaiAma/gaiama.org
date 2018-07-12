@@ -1,5 +1,6 @@
 import React, { createElement } from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import Head from 'react-helmet'
 import rehypeReact from 'rehype-react'
 import MainLayout from '@/components/MainLayout'
@@ -250,13 +251,13 @@ export const query = graphql`
             summary
             cover {
               image: childImageSharp {
-                sizes(
+                fluid(
                   maxWidth: 400
                   maxHeight: 230
                   quality: 75
                   cropFocus: ENTROPY
                 ) {
-                  ...GatsbyImageSharpSizes
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

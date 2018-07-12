@@ -23,13 +23,13 @@ import './global.css'
 import 'typeface-amatic-sc'
 import 'typeface-quicksand'
 
-const isDev = process.env.NODE_ENV === `development`
+// const isDev = process.env.NODE_ENV === `development`
 
-const globalPolyfills = [
-  // `IntersectionObserver`,
-  `default`,
-  `Symbol`,
-]
+// const globalPolyfills = [
+//   // `IntersectionObserver`,
+//   `default`,
+//   `Symbol`,
+// ]
 
 const getLangFactory = languages => (lang, alternate = false) => {
   if (alternate) {
@@ -109,7 +109,7 @@ class MainLayout extends Component {
   static propTypes = {
     data: PropTypes.object,
     wrapperStyles: PropTypes.object,
-    pathContext: PropTypes.object,
+    pageContext: PropTypes.object,
     localPolyfills: PropTypes.array,
     cover: PropTypes.string,
     location: PropTypes.object,
@@ -117,7 +117,7 @@ class MainLayout extends Component {
 
   static defaultProps = {
     wrapperStyles: {},
-    pathContext: {
+    pageContext: {
       lang: `en`,
     },
   }
@@ -134,15 +134,15 @@ class MainLayout extends Component {
   render() {
     process.env.NODE_ENV !== `production` && console.log(this.props)
     const {
-      pathContext,
+      pageContext,
       wrapperStyles,
       data: { site, SiteMeta, languages, homepage, page, menu },
-      localPolyfills,
+      // localPolyfills,
       location,
     } = this.props
 
-    const lang = pathContext.lang
-    // const i18nStore = getI18nStore(lang, pathContext.messages)
+    const lang = pageContext.lang
+    // const i18nStore = getI18nStore(lang, pageContext.messages)
     const translations = getTranslations(page)
     const getLang = getLangFactory(languages.edges)
     const menuItems = menu.edges || []
@@ -154,7 +154,7 @@ class MainLayout extends Component {
     })
     const urlParams = QS.parse()
 
-    const polyfills = [...globalPolyfills, ...localPolyfills]
+    // const polyfills = [...globalPolyfills, ...localPolyfills]
 
     const cover = `${site.siteMetadata.siteUrl}${this.props.cover ||
       (page.frontmatter.cover && page.frontmatter.cover.publicURL) ||
@@ -279,13 +279,13 @@ class MainLayout extends Component {
               key={feed}
             />
           ))}
-          {!isDev && (
+          {/* {!isDev && (
             <script
               src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(
                 `,`
               )}`}
             />
-          )}
+          )} */}
           <html lang={lang} />
           {/* <body className={slugify(page.frontmatter.slug)} /> */}
         </Helmet>

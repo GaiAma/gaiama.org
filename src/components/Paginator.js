@@ -1,7 +1,7 @@
 /** @format */
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import map from 'ramda/src/map'
 import { colors, media } from '@/theme'

@@ -86,8 +86,8 @@ const isPageOrPost = x => isPage(x) || isPost(x)
 //   )(total)
 // }
 
-exports.onCreateNode = ({ node, boundActionCreators }) => {
-  const { createNodeField } = boundActionCreators
+exports.onCreateNode = ({ node, actions }) => {
+  const { createNodeField } = actions
   if (isPageOrPost({ node })) {
     const theMoment = moment(node.frontmatter.modified || node.frontmatter.date, `Y-MM-DD`)
     createNodeField({
@@ -129,8 +129,8 @@ exports.onCreateNode = ({ node, boundActionCreators }) => {
   }
 }
 
-exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
-  const { createPage, createNodeField } = boundActionCreators
+exports.createPages = async ({ actions, getNodes, graphql }) => {
+  const { createPage, createNodeField } = actions
 
   // get pages and posts
   const graphNodes = await graphql(`
@@ -575,7 +575,7 @@ exports.createPages = async ({ boundActionCreators, getNodes, graphql }) => {
  * maybe split up assets into subfolders?
  * check out https://github.com/webpack-contrib/file-loader#placeholders
  */
-exports.modifyWebpackConfig = ({ config, stage }) => {
+exports.onCreateWebpackConfig = ({ config, stage }) => {
   config.loader(`url-loader`, {
     query: {
       // regExp: /^\/.*()$/,

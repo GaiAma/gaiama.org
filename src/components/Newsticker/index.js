@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import { css } from 'glamor'
 import NewstickerItem from './NewstickerItem'
 import { media } from '@/theme'
@@ -156,13 +156,13 @@ export const fragment = graphql`
             slug
             cover {
               image: childImageSharp {
-                sizes(
+                fluid(
                   maxWidth: 400
                   maxHeight: 230
                   quality: 75
                   cropFocus: ENTROPY
                 ) {
-                  ...GatsbyImageSharpSizes
+                  ...GatsbyImageSharpFluid
                 }
               }
             }

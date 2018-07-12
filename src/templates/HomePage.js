@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { css } from 'glamor'
 import slugify from 'slugify'
@@ -42,7 +43,7 @@ const HomePage = props => (
                   border: `1px solid #979797`,
                   boxShadow: `1px 1px 6px rgba(0,0,0,0.50)`,
                 }}
-                resolutions={x.img.image.resolutions}
+                fixed={x.img.image.fixed}
               />
             ) : (
               <p
@@ -102,7 +103,7 @@ const HomePage = props => (
           }}
         >
           {props.data.page.frontmatter.intro.images.map(({ image }) => (
-            <Img sizes={image.sizes} key={image.sizes.src} />
+            <Img fluid={image.fluid} key={image.fluid.src} />
           ))}
         </div>
       </div>
@@ -140,7 +141,7 @@ const HomePage = props => (
     <InstagramFeed
       user={props.data.instagram.frontmatter.instagramUser}
       followLink={props.data.instagram.frontmatter.followLink}
-      bg={props.data.instagram.frontmatter.bg.image.sizes.src}
+      bg={props.data.instagram.frontmatter.bg.image.fluid.src}
       images={props.data.instagramImages.edges}
     />
 
@@ -212,8 +213,8 @@ export const query = graphql`
           content
           images {
             image: childImageSharp {
-              sizes(quality: 75) {
-                ...GatsbyImageSharpSizes
+              fluid(quality: 75) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -232,29 +233,29 @@ export const query = graphql`
             images {
               one {
                 image: childImageSharp {
-                  sizes(maxWidth: 320, quality: 75) {
-                    ...GatsbyImageSharpSizes
+                  fluid(maxWidth: 320, quality: 75) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
               two {
                 image: childImageSharp {
-                  sizes(maxWidth: 320, quality: 75) {
-                    ...GatsbyImageSharpSizes
+                  fluid(maxWidth: 320, quality: 75) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
               three {
                 image: childImageSharp {
-                  sizes(maxWidth: 320, quality: 75) {
-                    ...GatsbyImageSharpSizes
+                  fluid(maxWidth: 320, quality: 75) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
               four {
                 image: childImageSharp {
-                  sizes(maxWidth: 320, quality: 75) {
-                    ...GatsbyImageSharpSizes
+                  fluid(maxWidth: 320, quality: 75) {
+                    ...GatsbyImageSharpFluid
                   }
                 }
               }
@@ -268,15 +269,15 @@ export const query = graphql`
         assets {
           supportus {
             image: childImageSharp {
-              resolutions(width: 121, quality: 75) {
-                ...GatsbyImageSharpResolutions
+              fixed(width: 121, quality: 75) {
+                ...GatsbyImageSharpFixed
               }
             }
           }
           keyBg {
             image: childImageSharp {
-              resolutions(width: 238, quality: 75) {
-                ...GatsbyImageSharpResolutions
+              fixed(width: 238, quality: 75) {
+                ...GatsbyImageSharpFixed
               }
             }
           }
@@ -404,7 +405,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                 {Object.keys(x.images).map(key => (
                   <Img
                     key={key}
-                    sizes={x.images[key].image.sizes}
+                    fluid={x.images[key].image.fluid}
                     outerWrapperClassName={css({
                       width: `120px`,
                       [media.greaterThan(`xsmall`)]: {
@@ -470,7 +471,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                 {Object.keys(x.images).map(key => (
                   <Img
                     key={key}
-                    sizes={x.images[key].image.sizes}
+                    fluid={x.images[key].image.fluid}
                     outerWrapperClassName={css({
                       width: `120px`,
                       [media.greaterThan(`xsmall`)]: {

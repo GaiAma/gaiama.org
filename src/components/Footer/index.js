@@ -24,7 +24,7 @@ const Footer = ({
           ${hex2rgba(colors.primary, 0.85)},
           ${hex2rgba(colors.primary, 0.85)}
         ),
-        url(${bgImage.sizes.src}) no-repeat bottom`,
+        url(${bgImage.fluid.src}) no-repeat bottom`,
       backgroundSize: `cover`,
       display: `flex`,
       flexDirection: `column`,
