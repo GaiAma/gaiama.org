@@ -190,13 +190,13 @@ module.exports = {
         omitGoogleFont: true,
       },
     },
-    {
-      resolve: `gatsby-plugin-webpack-bundle-analyzer`,
-      options: {
-        production: true,
-        disable: isProduction,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-webpack-bundle-analyzer`,
+    //   options: {
+    //     production: true,
+    //     disable: isProduction,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-netlify`,
       options: {},
