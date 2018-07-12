@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import MainLayout from '@/components/MainLayout'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { colors, media } from '@/theme'
@@ -15,7 +16,7 @@ const ContactPage = props => {
       wrapperStyles={{
         [media.greaterThan(`small`)]: {
           background: `url(${
-            page.frontmatter.assets.bg.image.sizes.src
+            page.frontmatter.assets.bg.image.fluid.src
           }) no-repeat right 1rem`,
         },
         maxWidth: `100%`,
@@ -256,11 +257,11 @@ export const query = graphql`
         assets {
           bg {
             image: childImageSharp {
-              sizes(
+              fluid(
                 maxWidth: 800
                 quality: 75 #duotone: { #  highlight: "#ffffff", #  shadow: "#ff0016" #}
               ) {
-                ...GatsbyImageSharpSizes_noBase64
+                ...GatsbyImageSharpFluid_noBase64
               }
             }
           }

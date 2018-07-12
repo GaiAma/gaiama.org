@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import FontAwesomeIcon from '@fortawesome/react-fontawesome'
 import { css } from 'glamor'
@@ -46,7 +47,7 @@ const SupportPage = props => {
       >
         {[`arrow_left`, `arrow_right`].map(x => (
           <Img
-            sizes={props.data.page.frontmatter.assets[x].image.sizes}
+            fluid={props.data.page.frontmatter.assets[x].image.fluid}
             key={x}
             outerWrapperClassName={css({
               flex: `none`,
@@ -136,7 +137,7 @@ const SupportPage = props => {
         >
           {
             <Img
-              sizes={props.data.page.frontmatter.assets.parrots.image.sizes}
+              fluid={props.data.page.frontmatter.assets.parrots.image.fluid}
               css={{
                 transform: `translateY(3rem)`,
                 marginTop: `-3rem`,
@@ -487,29 +488,29 @@ export const query = graphql`
         assets {
           arrow_left {
             image: childImageSharp {
-              sizes(maxWidth: 125, quality: 75) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 125, quality: 75) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
           arrow_right {
             image: childImageSharp {
-              sizes(maxWidth: 112, quality: 75) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 112, quality: 75) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
           parrots {
             image: childImageSharp {
-              sizes(maxWidth: 450, quality: 75) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 450, quality: 75) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
           sidebarArtwork {
             image: childImageSharp {
-              sizes(maxWidth: 450, quality: 75) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 450, quality: 75) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
@@ -526,8 +527,8 @@ export const query = graphql`
             descr
             img {
               image: childImageSharp {
-                resolutions(width: 202, height: 202, quality: 75) {
-                  ...GatsbyImageSharpResolutions
+                fixed(width: 202, height: 202, quality: 75) {
+                  ...GatsbyImageSharpFixed
                 }
               }
             }

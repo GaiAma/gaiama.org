@@ -40,7 +40,7 @@ class Header extends Component {
           },
         }}
       >
-        <Img sizes={bgImage.sizes} />
+        <Img fluid={bgImage.fluid} />
         <div css={style.headerTop}>
           <div css={style.topInner}>
             <div css={style.headerBrand}>
@@ -96,9 +96,9 @@ class Header extends Component {
             // '& img': { margin: 0 },
           }}
         >
-          {/* <Img sizes={logo.sizes} alt="GaiAma Logo" css={style.headerLogo} /> */}
+          {/* <Img fluid={logo.fluid} alt="GaiAma Logo" css={style.headerLogo} /> */}
           <img
-            src={logo.sizes.src}
+            src={logo.fluid.src}
             alt="GaiAma Logo"
             css={{ ...style.headerLogo, margin: `0 auto` }}
           />
@@ -119,7 +119,7 @@ class Header extends Component {
           <nav
             aria-label="primary"
             css={style.headerNav({
-              bg: bgImage.sizes.src,
+              bg: bgImage.fluid.src,
               isSticky: this.state.isSticky,
             })}
           >

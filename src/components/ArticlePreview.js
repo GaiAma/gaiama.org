@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Link from 'gatsby-link'
+import { Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { colors } from '@/theme'
 
@@ -8,7 +8,7 @@ const ArticlePreview = ({ article, isVisible, ...props }) => (
   <article css={articleStyles.article(isVisible)} {...props}>
     <Link to={article.fields.slug}>
       {article.frontmatter.cover && (
-        <Img sizes={article.frontmatter.cover.childImageSharp.sizes} />
+        <Img fluid={article.frontmatter.cover.childImageSharp.fluid} />
       )}
       <h2 css={articleStyles.title}>{article.frontmatter.title}</h2>
       {/* {article.frontmatter.subtitle && (

@@ -14,15 +14,15 @@ export const Fragments = graphql`
         assets {
           logo {
             image: childImageSharp {
-              sizes(maxWidth: 420, quality: 75) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 420, quality: 75) {
+                ...GatsbyImageSharpFluid
               }
             }
           }
           headerBg {
             image: childImageSharp {
-              sizes(maxWidth: 1280, quality: 75) {
-                ...GatsbyImageSharpSizes
+              fluid(maxWidth: 1280, quality: 75) {
+                ...GatsbyImageSharpFluid
               }
             }
           }

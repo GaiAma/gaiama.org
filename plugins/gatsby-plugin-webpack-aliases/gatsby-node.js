@@ -1,6 +1,6 @@
 const path = require(`path`)
 
-exports.modifyWebpackConfig = ({ config, stage }, { aliases }) => {
+exports.onCreateWebpackConfig = ({ config, stage }, { aliases }) => {
   Object.keys(aliases).forEach(key => {
     config.merge({
       resolve: {

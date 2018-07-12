@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
 import { SupportWidget } from '@/components/Shared'
