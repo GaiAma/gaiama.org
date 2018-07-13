@@ -38,6 +38,8 @@ export class Newsletter extends Component {
     emailErrorLabel: PropTypes.string,
     generalErrorLabel: PropTypes.string,
     consentLabel: PropTypes.string,
+    privacyLabel: PropTypes.string,
+    privacyLink: PropTypes.string,
     submitLabel: PropTypes.string,
     success: PropTypes.string,
     lang: PropTypes.string,
@@ -161,6 +163,8 @@ export class Newsletter extends Component {
       emailLabel,
       emailPlaceholder,
       consentLabel,
+      privacyLabel,
+      privacyLink,
       submitLabel,
       endpoint,
     } = this.props
@@ -246,9 +250,12 @@ export class Newsletter extends Component {
               value={values.consent}
               disabled={this.isSubmitting}
             />
-            <span css={{ fontSize: `.9rem`, marginLeft: `.5rem` }}>
+            <span css={{ fontSize: `.9rem`, margin: `0 .5rem` }}>
               {consentLabel}
             </span>
+            <a href={privacyLink} target="_blank" rel="noopener noreferrer">
+              {privacyLabel}
+            </a>
           </label>
         </div>
 

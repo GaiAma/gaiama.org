@@ -144,6 +144,8 @@ const ContactPage = props => {
             emailLabel={page.frontmatter.form.emailLabel}
             emailPlaceholder={page.frontmatter.form.emailPlaceholder}
             messageLabel={page.frontmatter.form.messageLabel}
+            privacyLink={page.frontmatter.privacyLink}
+            privacyLabel={page.frontmatter.privacyLabel}
             consentLabel={page.frontmatter.form.consentLabel}
             success={page.frontmatter.form.success}
             submitLabel={page.frontmatter.form.submitLabel}
@@ -181,6 +183,8 @@ const ContactPage = props => {
             <Newsletter
               emailLabel={page.frontmatter.form.emailLabel}
               emailPlaceholder={page.frontmatter.form.emailPlaceholder}
+              privacyLink={page.frontmatter.privacyLink}
+              privacyLabel={page.frontmatter.privacyLabel}
               consentLabel={page.frontmatter.newsletter.consentLabel}
               success={page.frontmatter.newsletter.success}
               submitLabel={page.frontmatter.form.submitLabel}
@@ -228,6 +232,8 @@ export const query = graphql`
         slug
         summary
         cookieNote
+        privacyLink
+        privacyLabel
         form {
           descr
           emailLabel

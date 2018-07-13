@@ -47,6 +47,8 @@ export default class ContactForm extends Component {
     requiredLabel: PropTypes.string,
     generalErrorLabel: PropTypes.string,
     messageLabel: PropTypes.string,
+    privacyLabel: PropTypes.string,
+    privacyLink: PropTypes.string,
     consentLabel: PropTypes.string,
     submitLabel: PropTypes.string,
     success: PropTypes.string,
@@ -188,6 +190,8 @@ export default class ContactForm extends Component {
       submitLabel,
       endpoint,
       consentLabel,
+      privacyLabel,
+      privacyLink,
     } = this.props
     const {
       values,
@@ -303,9 +307,13 @@ export default class ContactForm extends Component {
               value={values.consent}
               disabled={this.state.isSubmitting}
             />
-            <span css={{ fontSize: `.9rem`, marginLeft: `.5rem` }}>
-              {consentLabel}
-            </span>
+            <span
+              css={{ fontSize: `.9rem`, margin: `0 .5rem` }}
+              dangerouslySetInnerHTML={{ __html: consentLabel }}
+            />
+            <a href={privacyLink} target="_blank" rel="noopener noreferrer">
+              {privacyLabel}
+            </a>
             {errors.consent && (
               <div
                 css={{ position: `absolute`, color: `red`, fontSize: `.9rem` }}
