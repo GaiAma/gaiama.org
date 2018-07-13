@@ -89,7 +89,7 @@ const isPageOrPost = x => isPage(x) || isPost(x)
 exports.onCreateNode = ({ node, boundActionCreators }) => {
   const { createNodeField } = boundActionCreators
   if (isPageOrPost({ node })) {
-    const theMoment = moment(node.frontmatter.date, `Y-MM-DD`)
+    const theMoment = moment(node.frontmatter.modified || node.frontmatter.date, `Y-MM-DD`)
     createNodeField({
       node,
       name: `slug`,
