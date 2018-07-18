@@ -244,7 +244,7 @@ class MainLayout extends Component {
           <meta
             property="twitter:site"
             content={
-              `gaiama_org`
+              `hellogaiama`
               // this.props.data.Accounts.frontmatter.accounts.find(
               //   x => x.service === `twitter`
               // ).handle
