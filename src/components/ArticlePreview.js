@@ -11,6 +11,9 @@ const ArticlePreview = ({ article, isVisible, ...props }) => (
         <Img sizes={article.frontmatter.cover.childImageSharp.sizes} />
       )}
       <h2 css={articleStyles.title}>{article.frontmatter.title}</h2>
+      {article.frontmatter.subtitle && (
+        <h4 css={articleStyles.title}>{article.frontmatter.subtitle}</h4>
+      )}
     </Link>
 
     <p css={articleStyles.body}>

@@ -282,6 +282,7 @@ export const query = graphql`
           frontmatter {
             id
             title
+            subtitle
             summary
             tags
             cover {

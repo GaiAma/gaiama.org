@@ -244,9 +244,10 @@ class MainLayout extends Component {
           <meta
             property="twitter:site"
             content={
-              this.props.data.Accounts.frontmatter.accounts.find(
-                x => x.service === `twitter`
-              ).handle
+              `gaiama_org`
+              // this.props.data.Accounts.frontmatter.accounts.find(
+              //   x => x.service === `twitter`
+              // ).handle
             }
           />
           <meta name="twitter:card" content="summary_large_image" />

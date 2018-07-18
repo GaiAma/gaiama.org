@@ -50,6 +50,7 @@ const BlogPost = props => {
       <article itemScope itemType="https://schema.org/BlogPosting">
         <PostHeader
           title={post.frontmatter.title}
+          subtitle={post.frontmatter.subtitle}
           datetime={post.fields.dateTime}
           dateStr={post.fields.dateStr}
           dateStrLocalized={post.fields.dateStrLocalized}
@@ -265,6 +266,7 @@ export const query = graphql`
       htmlAst
       frontmatter {
         title
+        subtitle
         id
         oldId
         slug
@@ -311,6 +313,7 @@ const renderAst = new rehypeReact({
 
 const PostHeader = ({
   title,
+  subtitle,
   dateTime,
   dateStr,
   dateStrLocalized,
@@ -326,6 +329,7 @@ const PostHeader = ({
     <h1 itemProp="headline" css={{ margin: 0 }}>
       {title}
     </h1>
+    {subtitle && <h3 css={{ marginTop: `.5rem` }}>{subtitle}</h3>}
 
     <div
       css={{
@@ -376,6 +380,7 @@ const PostHeader = ({
 )
 PostHeader.propTypes = {
   title: PropTypes.string.isRequired,
+  subtitle: PropTypes.string,
   dateTime: PropTypes.string,
   publishedTime: PropTypes.object,
   dateStr: PropTypes.string,
