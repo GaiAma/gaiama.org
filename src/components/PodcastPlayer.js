@@ -103,11 +103,11 @@ class PodcastPlayer extends Component {
               margin: `1rem auto 0`,
               position: `relative`,
               overflow: `hidden`,
-              // paddingTop: isVideo && `56.25%`,
-              paddingTop: isVideo && `36.25%`,
+              paddingTop: isVideo && `56.25%`,
               height: !isVideo && `102px`,
               [media.greaterThan(`medium`)]: {
                 width: `760px`,
+                paddingTop: isVideo && `36.25%`,
               },
             }}
           >
