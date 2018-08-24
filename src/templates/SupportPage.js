@@ -220,7 +220,7 @@ const SupportPage = props => {
             }}
           >
             <a
-              href={`/${props.pathContext.lang}/blog/rss.xml`}
+              href={`/${props.pageContext.lang}/blog/rss.xml`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -438,7 +438,7 @@ const SupportPage = props => {
         bankButtonAlt={props.data.SupportWidget.frontmatter.bankButtonAlt}
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
-        lang={props.pathContext.lang}
+        lang={props.pageContext.lang}
         css={{ margin: `3rem 0 5rem` }}
         artworkStyles={{
           width: `350px`,
@@ -449,7 +449,7 @@ const SupportPage = props => {
 }
 SupportPage.propTypes = {
   data: PropTypes.object,
-  pathContext: PropTypes.shape({
+  pageContext: PropTypes.shape({
     lang: PropTypes.string.isRequired,
   }),
 }

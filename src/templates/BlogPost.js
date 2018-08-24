@@ -95,7 +95,7 @@ const BlogPost = props => {
         bankButtonAlt={props.data.SupportWidget.frontmatter.bankButtonAlt}
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
-        lang={props.pathContext.lang}
+        lang={props.pageContext.lang}
         css={{ margin: `0 0 3rem` }}
       />
 
@@ -172,7 +172,7 @@ const BlogPost = props => {
 
 BlogPost.propTypes = {
   data: PropTypes.object,
-  pathContext: PropTypes.shape({
+  pageContext: PropTypes.shape({
     lang: PropTypes.string.isRequired,
   }),
 }

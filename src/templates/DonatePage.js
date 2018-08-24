@@ -26,7 +26,7 @@ const DonatePage = props => {
         bankButtonAlt={props.data.SupportWidget.frontmatter.bankButtonAlt}
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
-        lang={props.pathContext.lang}
+        lang={props.pageContext.lang}
         css={{ margin: `0 0 3rem` }}
       />
     </MainLayout>
@@ -38,7 +38,7 @@ DonatePage.propTypes = {
     SiteMeta: PropTypes.object,
     SupportWidget: PropTypes.object,
   }),
-  pathContext: PropTypes.object.isRequired,
+  pageContext: PropTypes.object.isRequired,
 }
 export default DonatePage
 

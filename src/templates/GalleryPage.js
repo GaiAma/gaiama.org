@@ -148,7 +148,7 @@
 //   // previous,
 //   // slug,
 //   // total,
-//   // } = props.pathContext
+//   // } = props.pageContext
 
 //   const imagesPerRow = mediaQuery(`(min-width: 425px)`) ? 3 : 2
 
