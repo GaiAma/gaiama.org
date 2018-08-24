@@ -19,7 +19,6 @@ module.exports = {
     'MarkdownRemark.fields.all': `JavascriptFrontmatter`,
   },
   plugins: [
-    `gatsby-plugin-react-next`,
     // `gatsby-plugin-fastclick`,
     {
       resolve: `gatsby-plugin-webpack-aliases`,
