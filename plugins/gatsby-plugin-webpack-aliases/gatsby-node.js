@@ -1,13 +1,16 @@
-const path = require(`path`)
+const { resolve } = require(`path`)
 
-exports.onCreateWebpackConfig = ({ config, stage }, { aliases }) => {
-  Object.keys(aliases).forEach(key => {
-    config.merge({
-      resolve: {
-        alias: {
-          [key]: path.resolve(aliases[key]),
-        },
-      },
-    })
+exports.onCreateWebpackConfig = ({ actions, stage }, { aliases }) => {
+  // if (stage !== `build-javascript`) return
+  actions.setWebpackConfig({
+    resolve: {
+      alias: Object.keys(aliases).reduce(
+        (acc, key) =>
+          Object.assign({}, acc, {
+            [key]: resolve(aliases[key]),
+          }),
+        {}
+      ),
+    },
   })
 }
