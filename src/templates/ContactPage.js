@@ -132,7 +132,7 @@ const ContactPage = props => {
               }}
             >
               <a
-                href={`/${props.pathContext.lang}/blog/rss.xml`}
+                href={`/${props.pageContext.lang}/blog/rss.xml`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -150,7 +150,7 @@ const ContactPage = props => {
             consentLabel={page.frontmatter.form.consentLabel}
             success={page.frontmatter.form.success}
             submitLabel={page.frontmatter.form.submitLabel}
-            lang={props.pathContext.lang}
+            lang={props.pageContext.lang}
             emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
             requiredLabel={page.frontmatter.errors.requiredLabel}
             generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
@@ -189,7 +189,7 @@ const ContactPage = props => {
               consentLabel={page.frontmatter.newsletter.consentLabel}
               success={page.frontmatter.newsletter.success}
               submitLabel={page.frontmatter.form.submitLabel}
-              lang={props.pathContext.lang}
+              lang={props.pageContext.lang}
               emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
               generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
               endpoint="https://gaiama-newsletter.now.sh"

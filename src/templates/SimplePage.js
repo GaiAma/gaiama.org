@@ -13,7 +13,7 @@ const SimplePage = props => {
 }
 SimplePage.propTypes = {
   data: PropTypes.object,
-  pathContext: PropTypes.object,
+  pageContext: PropTypes.object,
 }
 
 export default SimplePage

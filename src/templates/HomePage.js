@@ -127,7 +127,7 @@ const HomePage = props => (
       bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
       bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
       // artwork={props.data.page.frontmatter.assets.supportus}
-      lang={props.pathContext.lang}
+      lang={props.pageContext.lang}
       css={{
         margin: `3rem 0`,
       }}
@@ -172,7 +172,7 @@ HomePage.propTypes = {
     }),
     instagramImages: PropTypes.object,
   }),
-  pathContext: PropTypes.shape({
+  pageContext: PropTypes.shape({
     lang: PropTypes.string.isRequired,
   }),
 }
