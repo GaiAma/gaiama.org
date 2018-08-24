@@ -4,7 +4,7 @@ const { homepage } = require(`./package.json`)
 const moment = require(`moment`)
 const mkDir = require(`make-dir`)
 // const webpack = require(`webpack`)
-const Feed = require(`feed`)
+const { Feed } = require(`feed`)
 // const {
 //   compose,
 //   identity,
