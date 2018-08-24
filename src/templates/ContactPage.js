@@ -202,13 +202,13 @@ const ContactPage = props => {
 }
 ContactPage.propTypes = {
   data: PropTypes.object,
-  pathContext: PropTypes.object,
+  pageContext: PropTypes.object,
 }
 
 export default ContactPage
 
 export const query = graphql`
-  query ContactPageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages
@@ -292,7 +292,7 @@ export const query = graphql`
 // }
 
 // export const query = graphql`
-//   query ContactPageQuery(
+//   query(
 //     $lang: String!
 //     $slug: String!
 //   ) {

@@ -53,7 +53,7 @@ PaypalSuccessPage.propTypes = {
 export default PaypalSuccessPage
 
 export const query = graphql`
-  query PaypalSuccessPageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

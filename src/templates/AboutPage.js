@@ -203,7 +203,7 @@ AboutPage.propTypes = {
 export default AboutPage
 
 export const query = graphql`
-  query AboutPageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

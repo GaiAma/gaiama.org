@@ -180,7 +180,7 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const query = graphql`
-  query BlogPostQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

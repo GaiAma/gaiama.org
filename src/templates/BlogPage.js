@@ -215,7 +215,7 @@ BlogPage.propTypes = {
 export default BlogPage
 
 export const query = graphql`
-  query BlogPageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

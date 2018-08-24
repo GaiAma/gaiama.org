@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { graphql } from 'gatsby'
 import { PureButton } from '@/components/layout/Button'
 import { colors, media } from '@/theme'
 import g from 'glamorous'
@@ -134,8 +135,8 @@ class PodcastPlayer extends Component {
 
 export default PodcastPlayer
 
-export const query = graphql`
-  fragment PodcastPlayer on RootQueryType {
+export const fragment = graphql`
+  fragment PodcastPlayer on Query {
     PodcastPlayerMeta: podcastPlayerAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         short

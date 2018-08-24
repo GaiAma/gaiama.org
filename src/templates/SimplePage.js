@@ -19,7 +19,7 @@ SimplePage.propTypes = {
 export default SimplePage
 
 export const query = graphql`
-  query SimplePageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

@@ -17,7 +17,7 @@ NotFound.propTypes = {
 export default NotFound
 
 export const query = graphql`
-  query NotFoundPageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

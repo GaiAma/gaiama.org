@@ -220,12 +220,12 @@
 // }
 // GalleryPage.propTypes = {
 //   data: PropTypes.object,
-//   pathContext: PropTypes.object,
+//   pageContext: PropTypes.object,
 // }
 // export default GalleryPage
 
 // export const query = graphql`
-//   query GalleryPageQuery($lang: String!, $slug: String!) {
+//   query($lang: String!, $slug: String!) {
 //     ...siteData
 //     ...SiteMeta
 //     ...languages
