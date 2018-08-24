@@ -1,4 +1,3 @@
-// // require(`babel-polyfill`)
 const idToJumpTo = `main-nav`
 
 /* eslint-disable */
@@ -7,13 +6,34 @@ const scrollToMenu = () => {
   if (el) return window.scrollTo(0, el.offsetTop - 20)
 }
 
-// on scroll to top if no prevRouterProps
-exports.shouldUpdateScroll = ({ prevRouterProps }) => !prevRouterProps
-
-// redirect to menu if action = PUSH
-// and either no # at all or hash = idToJumpTo
-exports.onRouteUpdate = ({ action, location: { hash } }) => {
-  if (action === `PUSH` && (!hash || hash === `#${idToJumpTo}`)) {
-    window.setTimeout(scrollToMenu, 10)
+/**
+ * fix custom scroll behaviour using __navigatingToLink declared in Link.js
+ * by https://github.com/gatsbyjs/gatsby/issues/7454#issuecomment-415786239
+ * as reach/router does not (yet) provide the used action for onRouteUpdate
+ */
+exports.shouldUpdateScroll = () => {
+  /* eslint-disable */
+  if (window.__navigatingToLink === true) {
+    return [0, 0]
   }
+  return true
 }
+
+exports.onRouteUpdate = () => {
+  // eslint-disable-next-line
+  window.setTimeout(scrollToMenu, 10)
+  /* eslint-disable */
+  window.__navigatingToLink = false
+}
+
+// on scroll to top if no prevRouterProps
+// exports.shouldUpdateScroll = ({ prevRouterProps }) => !prevRouterProps
+
+// // redirect to menu if action = PUSH
+// // and either no # at all or hash = idToJumpTo
+// exports.onRouteUpdate = ({ action, location: { hash } }) => {
+//   console.log(action, action === `PUSH` && (!hash || hash === `#${idToJumpTo}`))
+//   if (action === `PUSH` && (!hash || hash === `#${idToJumpTo}`)) {
+//     window.setTimeout(scrollToMenu, 10)
+//   }
+// }
