@@ -293,7 +293,7 @@ const SupportPage = props => {
               }}
             >
               <Img
-                resolutions={x.img.image.resolutions}
+                fixed={x.img.image.fixed}
                 css={{
                   maxWidth: `100%`,
                   '&:after': {
