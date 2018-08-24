@@ -1,7 +1,5 @@
-import fontawesome from '@fortawesome/fontawesome'
-
-import { faEnvelope } from '@fortawesome/fontawesome-free-regular/shakable'
-
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faEnvelope } from '@fortawesome/free-regular-svg-icons'
 import {
   faFacebookSquare,
   faInstagram,
@@ -11,8 +9,7 @@ import {
   faGooglePlusSquare,
   faGithub,
   faTelegramPlane,
-} from '@fortawesome/fontawesome-free-brands/shakable'
-
+} from '@fortawesome/free-brands-svg-icons'
 import {
   faCaretDown,
   faNewspaper,
@@ -23,12 +20,9 @@ import {
   faCaretLeft,
   faCaretRight,
   faSpinner,
-} from '@fortawesome/fontawesome-free-solid/shakable'
+} from '@fortawesome/free-solid-svg-icons'
 
-// Watch the DOM for any changes and add, replace, or modify icons on-the-fly
-fontawesome.config.observeMutations = false
-
-fontawesome.library.add(
+library.add(
   faFacebookSquare,
   faInstagram,
   faYoutube,
