@@ -3,20 +3,7 @@ const { writeFileSync } = require(`fs`)
 const { homepage } = require(`./package.json`)
 const moment = require(`moment`)
 const mkDir = require(`make-dir`)
-// const webpack = require(`webpack`)
 const { Feed } = require(`feed`)
-// const {
-//   compose,
-//   identity,
-//   flatten,
-//   inc,
-//   indexOf,
-//   map,
-//   times,
-//   uniq,
-//   update,
-// } = require(`ramda`)
-// const { chunk, round } = require(`lodash/fp`)
 const { shuffle } = require(`lodash`)
 // const dotenv = require(`dotenv`).config({
 //   path: resolve(`..`, `.env`),
@@ -89,7 +76,8 @@ const isPageOrPost = x => isPage(x) || isPost(x)
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
   if (isPageOrPost({ node })) {
-    const theMoment = moment(node.frontmatter.modified || node.frontmatter.date, `Y-MM-DD`)
+    const theMoment = moment(node.frontmatter.date, `Y-MM-DD`)
+
     createNodeField({
       node,
       name: `slug`,
@@ -575,18 +563,38 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
  * maybe split up assets into subfolders?
  * check out https://github.com/webpack-contrib/file-loader#placeholders
  */
-exports.onCreateWebpackConfig = ({ config, stage }) => {
-  config.loader(`url-loader`, {
-    query: {
-      // regExp: /^\/.*()$/,
-      name: `static/[ext]/[name][hash:8].[ext]`,
+exports.onCreateWebpackConfig = ({ actions, stage }) => {
+  actions.setWebpackConfig({
+    resolve: {
+      modules: [resolve(__dirname), resolve(__dirname, `src`), `node_modules`],
     },
-  })
-  config.loader(`file-loader`, {
-    query: {
-      // regExp: /^\/.*()$/,
-      name: `static/[ext]/[name][hash:8].[ext]`,
-    },
+    // module: {
+    //   rules: [
+    //     {
+    //       test: /\.(png|jpg|gif)$/i,
+    //       use: [
+    //         {
+    //           loader: `url-loader`,
+    //           options: {
+    //             // limit: 8192,
+    //             name: `static/[ext]/[name][hash:8].[ext]`,
+    //           },
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       use: [
+    //         {
+    //           loader: `file-loader`,
+    //           options: {
+    //             // limit: 8192,
+    //             name: `static/[ext]/[name][hash:8].[ext]`,
+    //           },
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
   })
 
   /**
