@@ -179,7 +179,7 @@ HomePage.propTypes = {
 export default HomePage
 
 export const query = graphql`
-  query HomePageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

@@ -1,8 +1,7 @@
-/** @format */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { Link, graphql } from 'gatsby'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import map from 'ramda/src/map'
 import { colors, media } from '@/theme'
 
@@ -175,7 +174,7 @@ Pager.propTypes = {
 export { Paginator, Pager }
 
 export const PaginatorFragment = graphql`
-  fragment Paginator on RootQueryType {
+  fragment Paginator on Query {
     Paginator: paginatorAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         paginationNavAriaLabel

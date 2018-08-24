@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
+import { Link, graphql } from 'gatsby'
 import { css } from 'glamor'
 import NewstickerItem from './NewstickerItem'
 import { media } from '@/theme'
@@ -106,7 +106,7 @@ NewsTicker.defaultProps = {
 
 export default NewsTicker
 
-// fragment newstickerMessages on RootQueryType {
+// fragment newstickerMessages on Query {
 //   newstickerMessages: file (
 //     absolutePath: { regex: "/\/Newsticker\/messages\/$lang/" }
 //   ) {
@@ -115,7 +115,7 @@ export default NewsTicker
 // }
 
 export const fragment = graphql`
-  fragment NewsTicker on RootQueryType {
+  fragment NewsTicker on Query {
     NewsTicker: javascriptFrontmatter(
       fileAbsolutePath: { regex: "/components/NewsTicker/" }
       frontmatter: { lang: { eq: $lang } }
@@ -139,7 +139,7 @@ export const fragment = graphql`
     }
   }
 
-  fragment newstickerLandscape on RootQueryType {
+  fragment newstickerLandscape on Query {
     news: allMarkdownRemark(
       filter: { fields: { lang: { eq: $lang }, isPublished: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }

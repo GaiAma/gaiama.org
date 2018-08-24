@@ -457,7 +457,7 @@ SupportWidget.defaultProps = {
 }
 export { SupportWidget }
 export const SupportWidgetFragment = graphql`
-  fragment SupportWidget on RootQueryType {
+  fragment SupportWidget on Query {
     SupportWidget: supportWidgetAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         title
@@ -562,7 +562,7 @@ InstagramFeed.propTypes = {
 export { InstagramFeed }
 
 export const instaQuery = graphql`
-  fragment instagram on RootQueryType {
+  fragment instagram on Query {
     instagram: instagramFeedAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         lang

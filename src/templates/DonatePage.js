@@ -43,7 +43,7 @@ DonatePage.propTypes = {
 export default DonatePage
 
 export const query = graphql`
-  query DonatePageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

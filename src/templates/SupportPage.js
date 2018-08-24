@@ -456,7 +456,7 @@ SupportPage.propTypes = {
 export default SupportPage
 
 export const query = graphql`
-  query SupportPageQuery($lang: String!, $slug: String!) {
+  query($lang: String!, $slug: String!) {
     ...siteData
     ...SiteMeta
     ...languages

@@ -1,5 +1,7 @@
+import { graphql } from 'gatsby'
+
 export const Fragments = graphql`
-  fragment siteData on RootQueryType {
+  fragment siteData on Query {
     site {
       siteMetadata {
         title
@@ -8,7 +10,7 @@ export const Fragments = graphql`
     }
   }
 
-  fragment SiteMeta on RootQueryType {
+  fragment SiteMeta on Query {
     SiteMeta: siteMetaAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         assets {
@@ -48,7 +50,7 @@ export const Fragments = graphql`
     }
   }
 
-  fragment languages on RootQueryType {
+  fragment languages on Query {
     languages: allLanguagesAml {
       edges {
         node {
@@ -63,7 +65,7 @@ export const Fragments = graphql`
     }
   }
 
-  fragment Accounts on RootQueryType {
+  fragment Accounts on Query {
     Accounts: accountsAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         accounts {
@@ -79,7 +81,7 @@ export const Fragments = graphql`
     }
   }
 
-  fragment menu on RootQueryType {
+  fragment menu on Query {
     menu: allJavascriptFrontmatter(
       filter: {
         frontmatter: { menu: { regex: "/(main|meta)/" }, lang: { eq: $lang } }
@@ -101,7 +103,7 @@ export const Fragments = graphql`
     }
   }
 
-  fragment homepage on RootQueryType {
+  fragment homepage on Query {
     homepage: javascriptFrontmatter(
       frontmatter: { lang: { eq: $lang }, layout: { eq: "HomePage" } }
     ) {
@@ -117,7 +119,7 @@ export const Fragments = graphql`
     }
   }
 
-  fragment legal on RootQueryType {
+  fragment legal on Query {
     legal: allJavascriptFrontmatter(
       filter: { frontmatter: { lang: { eq: $lang }, menu: { eq: "legal" } } }
     ) {
