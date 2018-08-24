@@ -250,7 +250,7 @@ const SupportWidget = ({
         }}
       >
         <Img
-          resolutions={artwork.image.resolutions}
+          fixed={artwork.image.fixed}
           fluid={artwork.image.fluid}
           css={{
             transform: `translateY(5rem)`,
