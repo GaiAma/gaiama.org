@@ -162,7 +162,7 @@ const BlogPage = props => {
           </Link>
 
           {filter && (
-            <Link to={props.data.page.frontmatter.slug} exact>
+            <Link to={props.data.page.frontmatter.slug}>
               {props.data.page.frontmatter.sortLabels.all}
             </Link>
           )}
@@ -171,7 +171,6 @@ const BlogPage = props => {
             to={props.location.pathname}
             sort="asc"
             persistQuery
-            exact
             {...css({
               pointerEvents: isSortAsc && `none`,
               color: isSortAsc && colors.grayTurqoise,

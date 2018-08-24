@@ -30,7 +30,7 @@ const Link = ({
       {children}
     </a>
   ) : (
-    <GatsbyLink exact to={to} {...props}>
+    <GatsbyLink to={to} {...props}>
       {children}
     </GatsbyLink>
   )
