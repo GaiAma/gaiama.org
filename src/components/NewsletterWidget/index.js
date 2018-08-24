@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import g from 'glamorous'
-import FontAwesomeIcon from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import isEmail from 'validator/lib/isEmail'
 import { colors, fontFamilies } from '@/theme'
 import { Button } from '@/components/layout/Button'
