@@ -44,7 +44,7 @@ class Header extends Component {
         <div css={style.headerTop}>
           <div css={style.topInner}>
             <div css={style.headerBrand}>
-              <Link to={homepage.slug} {...css(style.headerLink)} exact>
+              <Link to={homepage.slug} {...css(style.headerLink)}>
                 <h2>
                   {homepage.header.title}
                   {homepage.header.subtitle && ` - ${homepage.header.subtitle}`}
@@ -62,7 +62,6 @@ class Header extends Component {
                   <Link
                     to={link.to}
                     activeClassName="active"
-                    exact
                     {...css(style.headerLink, style.headerMeta_headerLink)}
                   >
                     <span css={link.titleShort && visible.minMd}>
@@ -130,7 +129,6 @@ class Header extends Component {
                     <Link
                       to={link.to}
                       activeClassName="active"
-                      exact
                       {...css({
                         ...style.headerLink,
                         ...style.headerNav_headerLink,

@@ -76,7 +76,6 @@ const Footer = ({
           <Link
             to={link.to}
             activeClassName={link.lc ? `active-lang` : `active`}
-            exact
           >
             {link.title}
           </Link>
