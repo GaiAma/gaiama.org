@@ -30,13 +30,13 @@ const redirections = [
   `/ /en/ 301`,
 ]
 
-const isPage = ({ node }) =>
-  node && node.internal && node.internal.type === `JavascriptFrontmatter`
 const isPost = ({ node }) =>
-  node &&
-  node.internal &&
-  node.internal.type === `MarkdownRemark` &&
-  /\/(happygaia|blog)\//.test(node.fileAbsolutePath)
+  node.frontmatter && node.frontmatter.layout === `BlogPost`
+const isPage = ({ node }) =>
+  node.frontmatter &&
+  node.frontmatter.slug &&
+  node.frontmatter.layout &&
+  node.frontmatter.layout !== `BlogPost`
 const isPageOrPost = x => isPage(x) || isPost(x)
 
 // const chunkImages = chunk(IMAGES_PER_GALLERY)
@@ -78,6 +78,11 @@ exports.onCreateNode = ({ node, actions }) => {
   if (isPageOrPost({ node })) {
     const theMoment = moment(node.frontmatter.date, `Y-MM-DD`)
 
+    createNodeField({
+      node,
+      name: `type`,
+      value: isPost({ node }) ? `post` : `page`,
+    })
     createNodeField({
       node,
       name: `slug`,
@@ -138,26 +143,18 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       }
 
       pages: allJavascriptFrontmatter(
-        filter: { frontmatter: { slug: { ne: null }, layout: { ne: null } } }
+        filter: { fields: { type: { eq: "page" } } }
       ) {
         edges {
           node {
             fields {
               slug
               lang
-              layout
             }
             frontmatter {
               id
               translations
-              menu
-              cover {
-                publicURL
-                size
-                internal {
-                  mediaType
-                }
-              }
+              layout
             }
             internal {
               type
@@ -167,10 +164,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       }
 
       articles: allMarkdownRemark(
-        filter: {
-          fileAbsolutePath: { regex: "/(happygaia|blog)/" }
-          fields: { isPublished: { eq: true } }
-        }
+        filter: { fields: { type: { eq: "post" }, isPublished: { eq: true } } }
         sort: { fields: [frontmatter___date], order: DESC }
       ) {
         edges {
@@ -186,19 +180,11 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
               oldId
               oldSlug
               translations
-              published
-              cover {
-                publicURL
-                size
-                internal {
-                  mediaType
-                }
-              }
+              layout
             }
             fields {
               slug
               lang
-              layout
               dateTime
             }
             internal {
@@ -235,10 +221,9 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
   // create pages & blog posts
   graphNodes.data.pages.edges
     .concat(graphNodes.data.articles.edges)
-    .filter(isPageOrPost)
     .forEach(({ node }) => {
-      const { lang, layout, slug } = node.fields
-      const { shortId, shortlink, oldId, oldSlug } = node.frontmatter
+      const { lang, slug } = node.fields
+      const { layout, shortId, shortlink, oldId, oldSlug } = node.frontmatter
 
       if (layout === `GalleryPage`) {
         // const graphImages = graphNodes.data.gallery.edges
@@ -296,17 +281,17 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       // all non-gallery / non-paginated pages
       createPage({
         path: node.fields.slug,
-        component: resolve(`./src/templates/${node.fields.layout}.js`),
+        component: resolve(`./src/templates/${node.frontmatter.layout}.js`),
         context: {
           slug: node.fields.slug,
           lang: node.fields.lang,
         },
       })
       // create root 404
-      if (node.fields.layout === `404` && node.fields.lang === `en`) {
+      if (node.frontmatter.layout === `404` && node.fields.lang === `en`) {
         createPage({
           path: `/404`,
-          component: resolve(`./src/templates/${node.fields.layout}.js`),
+          component: resolve(`./src/templates/${node.frontmatter.layout}.js`),
           context: {
             slug: node.fields.slug,
             lang: node.fields.lang,
@@ -328,7 +313,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
   const PagesAndPosts = getNodes().filter(x => isPageOrPost({ node: x }))
   const Pages = PagesAndPosts.filter(x => isPage({ node: x }))
   const Posts = PagesAndPosts.filter(x => isPost({ node: x }))
-  const BlogPages = Pages.filter(node => node.fields.layout === `BlogPage`)
+  const BlogPages = Pages.filter(node => node.frontmatter.layout === `BlogPage`)
 
   // suggested content mapping
   const collectSuggestedNodes = node =>
