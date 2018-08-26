@@ -11,7 +11,11 @@ export const Fragments = graphql`
   }
 
   fragment SiteMeta on Query {
-    SiteMeta: siteMetaAml(frontmatter: { lang: { eq: $lang } }) {
+    SiteMeta: markdownRemark(
+      fileAbsolutePath: { regex: "/SiteMeta/" }
+      frontmatter: { lang: { eq: $lang } }
+    ) {
+      htmlAst
       frontmatter {
         assets {
           logo {
@@ -43,8 +47,6 @@ export const Fragments = graphql`
           menuTitle
           socialTitle
           supportTitle
-          metaTitle
-          meta
         }
       }
     }
