@@ -333,11 +333,10 @@ class MainLayout extends Component {
           menuTitle={SiteMeta.frontmatter.footer.menuTitle}
           socialTitle={SiteMeta.frontmatter.footer.socialTitle}
           supportTitle={SiteMeta.frontmatter.footer.supportTitle}
-          metaTitle={SiteMeta.frontmatter.footer.metaTitle}
-          meta={SiteMeta.frontmatter.footer.meta}
           legal={this.props.data.legal.edges}
           bgImage={SiteMeta.frontmatter.assets.headerBg.image}
           accounts={this.props.data.Accounts}
+          info={SiteMeta.htmlAst}
         />
 
         <InstagramGradient />

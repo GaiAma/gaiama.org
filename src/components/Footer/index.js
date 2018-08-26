@@ -1,21 +1,26 @@
-import React from 'react'
+import React, { createElement } from 'react'
 import PropTypes from 'prop-types'
+import rehypeReact from 'rehype-react'
 import { css } from 'glamor'
 import Link from '@/components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import hex2rgba from 'hex2rgba'
 import { colors, media } from '@/theme'
 
+const renderAst = new rehypeReact({
+  createElement,
+  // components: { 'example-component': ExampleComponent },
+}).Compiler
+
 const Footer = ({
   menu,
   menuTitle,
   socialTitle,
   supportTitle,
-  metaTitle,
-  meta,
   legal,
   bgImage,
   accounts,
+  info,
 }) => (
   <footer
     css={{
@@ -131,14 +136,16 @@ const Footer = ({
     <div>
       <div
         css={{
-          marginBottom: `1rem`,
+          '& .gatsby-resp-image-background-image': {
+            backgroundImage: `none !important`,
+          },
+          '& .gatsby-resp-image-image': {
+            boxShadow: `none !important`,
+          },
         }}
       >
-        {metaTitle}
+        {renderAst(info)}
       </div>
-      {meta.map((x, i) => (
-        <p key={i} dangerouslySetInnerHTML={{ __html: x }} />
-      ))}
       <div>
         {legal.length &&
           legal.map(({ node }) => (
@@ -160,11 +167,10 @@ Footer.propTypes = {
   menuTitle: PropTypes.string,
   socialTitle: PropTypes.string,
   supportTitle: PropTypes.string,
-  metaTitle: PropTypes.string,
-  meta: PropTypes.array,
   legal: PropTypes.array,
   bgImage: PropTypes.object,
   accounts: PropTypes.object,
+  info: PropTypes.object,
 }
 
 export default Footer
