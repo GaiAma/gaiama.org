@@ -135,7 +135,6 @@ export const fragment = graphql`
     html
     fields {
       lang
-      layout
     }
   }
 

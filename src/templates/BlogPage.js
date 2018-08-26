@@ -302,7 +302,6 @@ export const query = graphql`
           fields {
             slug
             lang
-            layout
             dateTime
             dateStrLocalized
           }
