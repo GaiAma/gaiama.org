@@ -1,9 +1,36 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import styled from 'react-emotion'
 import slugify from 'slugify'
 import { media } from '@/theme'
 import StateProvider from '@/components/StateProvider'
 import Button from '@/components/layout/Button'
+
+const Container = styled.div(props => ({
+  marginRight: `auto`,
+  marginLeft: `auto`,
+  textAlign: props.centered && `center`,
+  [media.greaterThan(`medium`)]: {
+    width: !props.full && [
+      // `753px`,
+      // `80ch`,
+      `81%`,
+    ],
+  },
+}))
+
+const H2 = styled.h2(props => ({
+  fontSize: `2.7rem`,
+  textAlign: props.centeredTitle && `center`,
+}))
+
+const ContentWrapper = styled.div(props => ({
+  fontSize: `1.1rem`,
+  textAlign: props.centeredCopy && `center`,
+  overflow: `hidden`,
+  transition: `max-height .3s`,
+  maxHeight: props.spoiler && (props.spoilerOpen ? `100%` : `100px`),
+}))
 
 const TitledCopy = ({
   title,
@@ -31,44 +58,20 @@ const TitledCopy = ({
     })
 
   return (
-    <div
-      css={{
-        marginRight: `auto`,
-        marginLeft: `auto`,
-        textAlign: centered && `center`,
-        [media.greaterThan(`medium`)]: {
-          width: !full && [
-            // `753px`,
-            // `80ch`,
-            `81%`,
-          ],
-        },
-      }}
-      {...props}
-    >
+    <Container centered={centered} full={full} {...props}>
       {title && (
-        <h2
-          id={slugifiedId}
-          css={{
-            fontSize: `2.7rem`,
-            textAlign: centeredTitle && `center`,
-          }}
-        >
+        <H2 id={slugifiedId} centeredTitle={centeredTitle}>
           {Array.isArray(title)
             ? title.map((x, i) => <div key={i}>{x}</div>)
             : title}
-        </h2>
+        </H2>
       )}
 
       {content && (
-        <div
-          css={{
-            fontSize: `1.1rem`,
-            textAlign: centeredCopy && `center`,
-            overflow: `hidden`,
-            transition: `max-height .3s`,
-            maxHeight: spoiler && (state.spoilerOpen ? `100%` : `100px`),
-          }}
+        <ContentWrapper
+          spoiler={spoiler}
+          spoilerOpen={state.spoilerOpen}
+          centeredCopy={centeredCopy}
         >
           {Array.isArray(content) ? (
             content.map((x, i) => (
@@ -77,13 +80,13 @@ const TitledCopy = ({
           ) : (
             <div dangerouslySetInnerHTML={{ __html: content }} />
           )}
-        </div>
+        </ContentWrapper>
       )}
       {spoiler &&
         !state.spoilerOpen && (
           <Button onClick={handleClick}>{spoilerLabel}</Button>
         )}
-    </div>
+    </Container>
   )
 }
 

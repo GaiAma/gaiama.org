@@ -1,12 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import g from 'glamorous'
-import {
-  fontSize,
-  space,
-  textAlign,
-  width,
-} from 'styled-system'
+import styled from 'react-emotion'
 
 /**
  * hiding outline for pointing devices based on
@@ -50,12 +44,7 @@ PureButton.defaultProps = {
   styles: {},
 }
 
-const Button = g(PureButton)(
-  fontSize,
-  space,
-  textAlign,
-  width
-)
+const Button = styled(PureButton)()
 
 export default Button
 export { Button, PureButton }

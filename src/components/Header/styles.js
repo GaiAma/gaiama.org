@@ -27,6 +27,17 @@ export default {
         color: colors.darkWhite,
       },
     },
+    '& > .gatsby-image-outer-wrapper': {
+      position: `absolute !important`,
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0,
+      overflow: `hidden`,
+      '& > .gatsby-image-wrapper': {
+        position: `static !important`,
+      },
+    },
   }),
 
   headerTop: {

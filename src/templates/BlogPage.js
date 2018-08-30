@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Head from 'react-helmet'
-import { css } from 'glamor'
 import QS from '@/utils/query-string'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
@@ -153,10 +152,10 @@ const BlogPage = props => {
             to={props.location.pathname}
             sort="desc"
             persistQuery
-            {...css({
+            css={{
               pointerEvents: !isSortAsc && `none`,
               color: !isSortAsc && colors.grayTurqoise,
-            })}
+            }}
           >
             {props.data.page.frontmatter.sortLabels.desc}
           </Link>
@@ -171,10 +170,10 @@ const BlogPage = props => {
             to={props.location.pathname}
             sort="asc"
             persistQuery
-            {...css({
+            css={{
               pointerEvents: isSortAsc && `none`,
               color: isSortAsc && colors.grayTurqoise,
-            })}
+            }}
           >
             {props.data.page.frontmatter.sortLabels.asc}
           </Link>

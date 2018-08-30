@@ -2,7 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
-import { css } from 'glamor'
 import { fontFamilies } from '@/theme'
 
 const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
@@ -18,10 +17,7 @@ const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
         }}
       >
         {coverImage && (
-          <Link
-            to={item.frontmatter.slug}
-            {...css(styles.imageWrapper(layout))}
-          >
+          <Link to={item.frontmatter.slug} css={styles.imageWrapper(layout)}>
             <Img fluid={coverImage} css={styles.image} />
           </Link>
         )}
@@ -35,7 +31,7 @@ const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
             {item.excerpt || item.frontmatter.summary}
 
             {readmoreLabel && (
-              <Link to={item.frontmatter.slug} {...css(styles.readmoreLink)}>
+              <Link to={item.frontmatter.slug} css={styles.readmoreLink}>
                 {readmoreLabel}
               </Link>
             )}

@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { css } from 'glamor'
 import Link from '@/components/Link'
 import Img from 'gatsby-image'
 import Headroom from 'react-headroom'
@@ -44,7 +43,7 @@ class Header extends Component {
         <div css={style.headerTop}>
           <div css={style.topInner}>
             <div css={style.headerBrand}>
-              <Link to={homepage.slug} {...css(style.headerLink)}>
+              <Link to={homepage.slug} css={style.headerLink}>
                 <h2>
                   {homepage.header.title}
                   {homepage.header.subtitle && ` - ${homepage.header.subtitle}`}
@@ -61,8 +60,8 @@ class Header extends Component {
                 >
                   <Link
                     to={link.to}
+                    css={(style.headerLink, style.headerMeta_headerLink)}
                     activeClassName="active"
-                    {...css(style.headerLink, style.headerMeta_headerLink)}
                   >
                     <span css={link.titleShort && visible.minMd}>
                       {link.title}
@@ -129,10 +128,10 @@ class Header extends Component {
                     <Link
                       to={link.to}
                       activeClassName="active"
-                      {...css({
+                      css={{
                         ...style.headerLink,
                         ...style.headerNav_headerLink,
-                      })}
+                      }}
                     >
                       <span css={link.titleShort && visible.minMd}>
                         {link.title}

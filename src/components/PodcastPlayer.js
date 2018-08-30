@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { PureButton } from '@/components/layout/Button'
 import { colors, media } from '@/theme'
-import g from 'glamorous'
+import styled from 'react-emotion'
 
-const Button = g(PureButton)({
+const Button = styled(PureButton)({
   margin: `0 1rem`,
   border: `none`,
   background: `transparent`,
@@ -20,8 +20,10 @@ const Button = g(PureButton)({
   },
 })
 
-const OnMobile = g.span({ [media.greaterThan(`medium`)]: { display: `none` } })
-const OnDesktop = g.span({
+const OnMobile = styled.span({
+  [media.greaterThan(`medium`)]: { display: `none` },
+})
+const OnDesktop = styled.span({
   [media.lessThan(`medium`)]: {
     display: `none`,
   },

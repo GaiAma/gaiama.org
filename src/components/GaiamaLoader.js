@@ -1,8 +1,7 @@
 import React from 'react'
-import { keyframes } from 'glamor'
-import g from 'glamorous'
+import styled, { keyframes } from 'react-emotion'
 
-const Path = g.path({
+const Path = styled.path({
   transform: `rotateZ(360deg)`,
   willChange: `opacity`,
 })

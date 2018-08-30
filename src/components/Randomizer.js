@@ -43,14 +43,13 @@ class Randomizer extends Component {
               '&:before, &:after': {
                 fontSize: `1.4rem`,
                 letterSpacing: `-0.2rem`,
-
               },
               '&:before': {
-                content: `>>`,
+                content: `">>"`,
                 marginRight: `.2rem`,
               },
               '&:after': {
-                content: `<<`,
+                content: `"<<"`,
                 marginLeft: `.2rem`,
               },
             }}
