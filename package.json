@@ -65,6 +65,7 @@
     "gatsby-plugin-canonical-urls": "next",
     "gatsby-plugin-catch-links": "next",
     "gatsby-plugin-emotion": "^2.0.0-rc.0",
+    "gatsby-plugin-layout": "^1.0.0-rc.0",
     "gatsby-plugin-lodash": "next",
     "gatsby-plugin-manifest": "next",
     "gatsby-plugin-netlify": "next",
