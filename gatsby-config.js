@@ -21,6 +21,12 @@ module.exports = {
   plugins: [
     // `gatsby-plugin-fastclick`,
     {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/layouts/index.js`),
+      },
+    },
+    {
       resolve: `gatsby-plugin-webpack-aliases`,
       options: {
         aliases: {
