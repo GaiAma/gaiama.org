@@ -1,17 +1,7 @@
 import React from 'react'
-import glamorous from 'glamorous'
+import styled from 'react-emotion'
 import propStyles from 'prop-styles'
 // import hex2rgba from 'hex2rgba'
-import {
-  fontSize,
-  // flex,
-  flexDirection,
-  alignItems,
-  justifyContent,
-  space,
-  textAlign,
-  width,
-} from 'styled-system'
 
 export const colors = {
   primary: `#042f37`,
@@ -232,71 +222,7 @@ export const fontFamilies = {
 //   },
 // }
 
-export const headlineStyles = {
-  fontFamily: fontFamilies.accent,
-  fontWeight: `100`,
-  letterSpacing: `.09rem`,
-}
-
-export const hugeFont = {
-  fontSize: `1.5rem`,
-
-  [media.greaterThan(`medium`)]: {
-    fontSize: `2.5rem`,
-  },
-}
-
-export const headlineVariations = propStyles({
-  simple: () => ({ fontFamily: `sans-serif` }),
-})
-
-export const H1 = glamorous.h1(
-  headlineStyles,
-  hugeFont,
-  headlineVariations,
-  fontSize,
-  space,
-  textAlign,
-  width
-)
-export const H2 = glamorous.h2(
-  headlineStyles,
-  hugeFont,
-  headlineVariations,
-  fontSize,
-  space,
-  textAlign,
-  width
-)
-export const H3 = glamorous.h3(
-  headlineStyles,
-  headlineVariations,
-  fontSize,
-  space,
-  textAlign,
-  width
-)
-export const H4 = glamorous.h4(
-  headlineStyles,
-  headlineVariations,
-  fontSize,
-  space,
-  textAlign,
-  width
-)
-
-export const Container = glamorous.div(
-  propStyles({
-    flex: () => ({ display: `flex` }),
-  }),
-  alignItems,
-  justifyContent,
-  flexDirection,
-  space,
-  width
-)
-
-export const Box = glamorous.div(
+export const Box = styled.div(
   propStyles({
     flex: () => ({
       display: `flex`,
@@ -305,9 +231,9 @@ export const Box = glamorous.div(
     spaceBetween: () => ({
       justifyContent: `space-between`,
     }),
-    center: () => ({ justifyContent: `center` }),
+    jcenter: () => ({ justifyContent: `center` }),
     aICenter: () => ({ alignItems: `center` }),
-    wrap: () => ({ flexWrap: `wrap` }),
+    fwrap: () => ({ flexWrap: `wrap` }),
     row: () => ({ flexDirection: `row` }),
     column: () => ({ flexDirection: `column` }),
     // responsive
@@ -318,24 +244,10 @@ export const Box = glamorous.div(
       boxShadow: `2px 2px 9px 1px rgba(0,0,0,0.50),
       inset 0 0 21px 0 rgba(0,0,0,0.50)`,
     }),
-  }),
-  alignItems,
-  justifyContent,
-  flexDirection,
-  space,
-  width
+  })
 )
 
-export const Button = glamorous.button(
-  {
-    border: `1px solid #b0b0b0`,
-    background: [`#e3e3e3`, `linear-gradient(to bottom, #e3e3e3, #f8f8fb)`],
-  },
-  space,
-  width
-)
-
-// export const Text = glamorous.span(
+// export const Text = styled.span(
 //   propStyles({
 //     faded: ({ theme }) => ({ ^: theme.colors.faded }),
 //     fadedExtra: ({ theme }) => ({ color: theme.colors.fadedExtra }),
@@ -375,13 +287,6 @@ export const visible = {
 export default {
   colors,
   fontFamilies,
-  // fonts,
-  H1,
-  H2,
-  H3,
-  H4,
-  Container,
   Box,
-  Button,
   visible,
 }

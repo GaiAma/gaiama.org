@@ -1,7 +1,6 @@
 import React, { createElement } from 'react'
 import PropTypes from 'prop-types'
 import rehypeReact from 'rehype-react'
-import { css } from 'glamor'
 import Link from '@/components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import hex2rgba from 'hex2rgba'
@@ -152,7 +151,7 @@ const Footer = ({
             <Link
               to={node.frontmatter.slug}
               key={node.frontmatter.slug}
-              {...css({ marginRight: `.5rem` })}
+              css={{ marginRight: `.5rem` }}
             >
               {node.frontmatter.title}
             </Link>

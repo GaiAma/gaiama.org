@@ -2,12 +2,21 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { css } from 'glamor'
+import styled, { css } from 'react-emotion'
 import slugify from 'slugify'
 import { Box, colors, fullPageWidth, maxWidthContent, media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
 import { InstagramFeed, SupportWidget } from '@/components/Shared'
 import TitledCopy from '@/components/TitledCopy'
+
+const KeyPrincipleRow = styled.div`
+  display: flex;
+  margin: 0;
+  ${media.lessThan(`xsmall`)} {
+    flexdirection: ${({ index }) =>
+      index % 2 === 0 ? `column-reverse` : `column`};
+  }
+`
 
 const HomePage = props => (
   <MainLayout {...props}>
@@ -362,7 +371,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                     fontSize: `2.5rem`,
                   },
                   '&:after': {
-                    content: `>>`,
+                    content: `">>"`,
                     position: `absolute`,
                     right: `-0.2rem`,
                     bottom: `-0.6rem`,
@@ -375,15 +384,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
               </h2>
             </div>
           )}
-          <Box
-            flex
-            css={{
-              margin: `0`,
-              [media.lessThan(`medium`)]: {
-                flexDirection: i % 2 === 0 ? `column-reverse` : `column`,
-              },
-            }}
-          >
+          <KeyPrincipleRow index={i}>
             {i % 2 === 0 && (
               <div
                 css={{
@@ -483,7 +484,7 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                 ))}
               </div>
             )}
-          </Box>
+          </KeyPrincipleRow>
         </div>
       </div>
     ))}

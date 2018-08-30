@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import g from 'glamorous'
+import styled from 'react-emotion'
 import axios from 'axios'
 import isEmail from 'validator/lib/isEmail'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -19,8 +19,8 @@ const inputStyle = {
   padding: `0 .5rem`,
 }
 
-const StyledInput = g.input(inputStyle)
-const StyledTextarea = g(TextareaAutosize)(inputStyle)
+const StyledInput = styled.input(inputStyle)
+const StyledTextarea = styled(TextareaAutosize)(inputStyle)
 
 const initialState = {
   values: {

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import g from 'glamorous'
+import styled from 'react-emotion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import isEmail from 'validator/lib/isEmail'
 import { colors, fontFamilies } from '@/theme'
@@ -8,7 +8,7 @@ import { Button } from '@/components/layout/Button'
 import localStore from '@/utils/local-store'
 import axios from 'axios'
 
-const StyledInput = g.input({
+const StyledInput = styled.input({
   width: `100%`,
   border: `1px solid #ccc`,
   background: `#fff`,
