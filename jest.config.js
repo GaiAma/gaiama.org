@@ -3,9 +3,5 @@ module.exports = {
   transform: {
     '.*': `<rootDir>/jest.transformer`,
   },
-  testPathIgnorePatterns: [
-    `/node_modules/`,
-    `/.cache/`,
-    `/public/`,
-  ],
+  testPathIgnorePatterns: [`/node_modules/`, `/.cache/`, `/public/`],
 }
