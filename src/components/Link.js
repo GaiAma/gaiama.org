@@ -3,6 +3,11 @@ import PropTypes from 'prop-types'
 import QS from '@/utils/query-string'
 import { Link as GatsbyLink } from 'gatsby'
 
+/**
+ * fix custom scroll behaviour using __navigatingToLink
+ * by https://github.com/gatsbyjs/gatsby/issues/7454#issuecomment-415786239
+ * as reach/router does not (yet) provide the used action for onRouteUpdate
+ */
 if (typeof window !== `undefined`) {
   // eslint-disable-next-line
   window.__navigatingToLink = false
@@ -20,32 +25,37 @@ const Link = ({
 }) => {
   if (persistQuery) {
     const qs = QS.parse()
-
     if (sort !== undefined) {
       qs.sort = sort
     }
-
     to = QS.stringify(qs, to)
   }
 
-  const target = blank ? `_blank` : ``
-
-  return ext !== undefined ? (
-    <a href={to} target={target} rel="noopener noreferrer" {...props}>
+  const externalLink = (
+    <a
+      {...props}
+      href={to}
+      target={blank ? `_blank` : ``}
+      rel="noopener noreferrer"
+    >
       {children}
     </a>
-  ) : (
+  )
+
+  const internalLink = (
     <GatsbyLink
+      {...props}
       to={to}
       onClick={() => {
         // eslint-disable-next-line
         window.__navigatingToLink = true
       }}
-      {...props}
     >
       {children}
     </GatsbyLink>
   )
+
+  return ext === undefined ? internalLink : externalLink
 }
 
 Link.propTypes = {
