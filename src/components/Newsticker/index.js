@@ -139,7 +139,7 @@ export const fragment = graphql`
 
   fragment newstickerLandscape on Query {
     news: allMarkdownRemark(
-      filter: { fields: { lang: { eq: $lang }, isPublished: { eq: true } } }
+      filter: { frontmatter: { lang: { eq: $lang }, published: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3
     ) {
