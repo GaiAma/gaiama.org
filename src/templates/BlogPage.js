@@ -260,8 +260,8 @@ export const query = graphql`
 
     articles: allMarkdownRemark(
       filter: {
-        fileAbsolutePath: { regex: "/(happygaia|blog)/" }
-        fields: { lang: { eq: $lang }, isPublished: { eq: true } }
+        fields: { type: { eq: "post" } }
+        frontmatter: { lang: { eq: $lang }, published: { eq: true } }
       }
       sort: { fields: [fields___dateTime], order: DESC }
     ) {
