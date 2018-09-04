@@ -11,10 +11,7 @@ export const Fragments = graphql`
   }
 
   fragment SiteMeta on Query {
-    SiteMeta: markdownRemark(
-      fileAbsolutePath: { regex: "/SiteMeta/" }
-      frontmatter: { lang: { eq: $lang } }
-    ) {
+    SiteMeta: siteMetaMarkdown(frontmatter: { lang: { eq: $lang } }) {
       htmlAst
       frontmatter {
         assets {

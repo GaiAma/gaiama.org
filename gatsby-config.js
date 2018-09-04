@@ -56,11 +56,9 @@ module.exports = {
     //     },
     //   },
     // },
+    `gatsby-transformer-archieml`,
     {
-      resolve: `gatsby-transformer-archieml`,
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-transformer-remark-multi-type`,
       options: {
         plugins: [
           `gatsby-remark-embed-video`,

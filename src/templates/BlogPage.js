@@ -308,7 +308,7 @@ export const query = graphql`
       }
     }
 
-    labels: siteMetaAml(frontmatter: { lang: { eq: $lang } }) {
+    labels: siteMetaMarkdown(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         labeled
         labels {
@@ -318,7 +318,7 @@ export const query = graphql`
       }
     }
 
-    quotes: quotesAml(frontmatter: { lang: { eq: $lang } }) {
+    quotes: quotesMarkdown(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         nextQuoteLabel
         quotes {
