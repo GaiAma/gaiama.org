@@ -12,7 +12,7 @@ const { redirects } = require(`./redirects.js`)
 //   path: resolve(`..`, `.env`),
 // })
 
-const isDev = process.env.NODE_ENV === `development`
+// const isDev = process.env.NODE_ENV === `development`
 const publicDir = join(__dirname, `public`)
 const feeds = {}
 
