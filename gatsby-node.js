@@ -2,6 +2,7 @@ const { resolve, join } = require(`path`)
 const { writeFileSync } = require(`fs`)
 const { homepage } = require(`./package.json`)
 const moment = require(`moment`)
+const { compareAsc, parse: parseDate } = require(`date-fns`)
 const mkDir = require(`make-dir`)
 const { Feed } = require(`feed`)
 const { shuffle } = require(`lodash`)
@@ -42,23 +43,23 @@ const getGroup = R.compose(
 )
 const sortByDirectory = R.sortBy(getGroup)
 const groupByPage = R.groupWith((a, b) => getGroup(a) === getGroup(b))
-const sortPagesFirst = R.sortWith([
-  R.ascend(
-    R.compose(
-      R.pathEq([`frontmatter`, `layout`], `BlogPost`),
-      R.head
-    )
-  ),
-])
-const groupPages = R.compose(
+// sort content: pages before articles, by date
+const sortTuplesByDateAndLayout = R.sort((a, b) => {
+  const _a = a[0].frontmatter
+  const _b = b[0].frontmatter
+  // either both layouts are equal in our case both equal BlogPost or none of them equals BlogPost
+  return _a.layout === _b.layout || [_a, _b].every(x => x.layout !== `BlogPost`)
+    ? compareAsc(parseDate(_a.date), parseDate(_b.date))
+    : _a.layout === `BlogPost`
+      ? 1
+      : -1
+})
+const prepareSortedTuple = R.compose(
+  sortTuplesByDateAndLayout,
   groupByPage,
   sortByDirectory
 )
-const sortEnglishLast = R.sortWith([
-  R.descend(R.path([`frontmatter`, `lang`])),
-  R.ascend(R.path([`frontmatter`, `date`])),
-  R.ascend(R.pathEq([`frontmatter`, `layout`], `BlogPost`)),
-])
+const sortEnglishLast = R.sortBy(R.path([`frontmatter`, `lang`]))
 const notIsErrorPage = node => node.frontmatter.is !== `ErrorPage`
 
 exports.onCreateNode = ({ node, actions }) => {
@@ -94,7 +95,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
   const Posts = PagesAndPosts.filter(isPost)
   const BlogPages = Pages.filter(node => node.frontmatter.layout === `BlogPage`)
 
-  sortPagesFirst(groupPages(PagesAndPosts)).forEach((group, index) =>
+  prepareSortedTuple(PagesAndPosts).forEach((group, index) =>
     sortEnglishLast(group).forEach((node, _, array) => {
       const { lang, slug } = node.fields
       const { layout, shortId, shortlink, oldId, oldSlug } = node.frontmatter
@@ -125,23 +126,28 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
         value: array.filter(n => n.id !== node.id).map(node => node.id),
       })
 
-      if (!isDev) {
-        // set up short url redirects
-        if (notIsErrorPage(node)) {
-          redirects.push(
-            `/${index + 1} ${node.frontmatter.slug} ${
-              node.frontmatter.lang === `de` ? `302 Language=de` : `301`
-            }`
-          )
-        }
-
-        // legacy short url redirects
-        const idsToRedirect = [shortId, shortlink, oldId, oldSlug]
-        idsToRedirect.map(id => {
-          if (!id) return false
-          return redirects.push(`${`/${lang}`}/${id} ${slug} 301`)
+      // set up short url redirects
+      if (notIsErrorPage(node)) {
+        const slug_short = `/${index + 1}`
+        console.log(`${slug_short} ${node.frontmatter.slug}`)
+        createNodeField({
+          node,
+          name: `slug_short`,
+          value: slug_short,
         })
+        redirects.push(
+          `${slug_short} ${node.frontmatter.slug} ${
+            node.frontmatter.lang === `de` ? `302 Language=de` : `301`
+          }`
+        )
       }
+
+      // legacy short url redirects
+      const idsToRedirect = [shortId, shortlink, oldId, oldSlug]
+      idsToRedirect.map(id => {
+        if (!id) return false
+        return redirects.push(`${`/${lang}`}/${id} ${slug} 301`)
+      })
     })
   )
 
