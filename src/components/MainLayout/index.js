@@ -241,7 +241,7 @@ class MainLayout extends Component {
           {/* <meta property="og:image:alt" content={`A shiny red apple with a bite taken out`} /> */}
 
           {/* twitter */}
-          <meta
+          {/* <meta
             property="twitter:site"
             content={
               `hellogaiama`
@@ -249,7 +249,7 @@ class MainLayout extends Component {
               //   x => x.service === `twitter`
               // ).handle
             }
-          />
+          /> */}
           <meta name="twitter:card" content="summary_large_image" />
 
           {[`/en`, `/de`].includes(location.pathname) && (
