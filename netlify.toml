@@ -9,3 +9,4 @@ ID = "gaiama"
 
 [context.v2]
   command = "wget -O content.tgz https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=v2&private_token=$GAIAMA_CONTENT_TOKEN && npm rebuild sharp && mkdir content && tar -xzf content.tgz -C content && yarn build"
+  environment = { NODE_VERSION = "10.8.0" }
