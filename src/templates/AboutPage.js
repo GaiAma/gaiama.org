@@ -278,7 +278,7 @@ export const query = graphql`
       }
     }
 
-    Labels: siteMetaAml(frontmatter: { lang: { eq: $lang } }) {
+    Labels: siteMetaMarkdown(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         readMore
       }
