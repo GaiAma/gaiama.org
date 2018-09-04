@@ -11,9 +11,7 @@ class Randomizer extends Component {
   }
 
   getCurrent = () => {
-    const current = this.props.quotes[
-      this.state.currentIndex
-    ]
+    const current = this.props.quotes[this.state.currentIndex]
     return current ? current : {}
   }
 
@@ -59,14 +57,10 @@ class Randomizer extends Component {
           />
 
           <footer>
-            <cite>
-              {this.getCurrent().author}
-            </cite>
+            <cite>{this.getCurrent().author}</cite>
 
             {nextQuoteLabel && (
-              <Button onClick={this.onNextClick}>
-                {nextQuoteLabel}
-              </Button>
+              <Button onClick={this.onNextClick}>{nextQuoteLabel}</Button>
             )}
           </footer>
         </blockquote>
