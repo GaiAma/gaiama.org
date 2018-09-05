@@ -26,7 +26,7 @@
     "clean:cache": "rimraf .cache",
     "clean:public": "rimraf public",
     "clean": "yarn clean:cache && yarn clean:public",
-    "build": "NODE_ENV=production gatsby build",
+    "build": "gatsby build",
     "serve": "serve",
     "preview": "yarn build && yarn serve",
     "fix-semi": "eslint --quiet --ignore-pattern node_modules --ignore-pattern public --parser babel-eslint --no-eslintrc --rule '{\"semi\": [2, \"never\"], \"no-extra-semi\": [2]}' --fix gatsby-node.js",
