@@ -8,7 +8,7 @@ GAIAMA_CONTENT_DIR="$NETLIFY_BUILD_BASE/repo/content"
 if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "Cached content missing or not up to date"
   if [ -d "$GAIAMA_CACHE_BASE" ]; then
-    rm -Rf $GAIAMA_CACHE_BASE
+    rm -Rf $GAIAMA_CACHE_DIR
     echo "removed old cache directory"
   fi
   mkdir -p $GAIAMA_CACHE_DIR
