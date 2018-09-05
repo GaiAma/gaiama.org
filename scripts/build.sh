@@ -15,11 +15,10 @@ if [ ! -f "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" ]; then
   echo "created cache directory"
   echo "Fetching content"
   wget -O $GAIAMA_CACHE_TAR $GAIAMA_CONTENT_URL
-  mkdir -p "$GAIAMA_CONTENT_DIR"
   tar -xzf $GAIAMA_CACHE_TAR -C "$GAIAMA_CACHE_DIR"
 fi
 
-mkdir "$GAIAMA_CONTENT_DIR"
+mkdir -p "$GAIAMA_CONTENT_DIR"
 mv "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" "$GAIAMA_CONTENT_DIR"
 
 #npm rebuild sharp
