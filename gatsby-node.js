@@ -13,8 +13,7 @@ const { redirects } = require(`./redirects.js`)
 //   path: resolve(`..`, `.env`),
 // })
 
-// const isDev = process.env.NODE_ENV === `development`
-const isProduction = process.env.NODE_ENV === `production`
+const isMaster = process.env.BRANCH === `master`
 const publicDir = join(__dirname, `public`)
 const feeds = {}
 
@@ -402,6 +401,10 @@ exports.onPostBuild = () => {
   redirects.push(`/en/* /en/404/?url=:splat 404`)
   redirects.push(`/de/* /de/404/?url=:splat 404`)
 
+  if (redirects.length) {
+    writeFileSync(join(publicDir, `_redirects`), redirects.join(`\n`))
+  }
+
   if (feeds.dir) {
     mkDir.sync(feeds.dir)
     writeFileSync(join(feeds.dir, `atom.xml`), feeds.atom)
@@ -409,8 +412,9 @@ exports.onPostBuild = () => {
     writeFileSync(join(feeds.dir, `feed.json`), feeds.json)
   }
 
-  // add robots.txt to site root
-  const robotsTxt = `User-agent: *\nDisallow:${isProduction ? `` : ` /`}`
+  // add robots.txt to site root depending on $BRANCH env var
+  console.log(`$BRANCH`, process.env.BRANCH, isMaster)
+  const robotsTxt = `User-agent: *\nDisallow:${isMaster ? `` : ` /`}`
   writeFileSync(join(publicDir, `robots.txt`), robotsTxt)
 }
 
