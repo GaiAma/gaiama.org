@@ -14,6 +14,7 @@ const { redirects } = require(`./redirects.js`)
 // })
 
 // const isDev = process.env.NODE_ENV === `development`
+const isProduction = process.env.NODE_ENV === `production`
 const publicDir = join(__dirname, `public`)
 const feeds = {}
 
@@ -401,16 +402,16 @@ exports.onPostBuild = () => {
   redirects.push(`/en/* /en/404/?url=:splat 404`)
   redirects.push(`/de/* /de/404/?url=:splat 404`)
 
-  if (redirects.length) {
-    writeFileSync(join(publicDir, `_redirects`), redirects.join(`\n`))
-  }
-
   if (feeds.dir) {
     mkDir.sync(feeds.dir)
     writeFileSync(join(feeds.dir, `atom.xml`), feeds.atom)
     writeFileSync(join(feeds.dir, `rss.xml`), feeds.rss)
     writeFileSync(join(feeds.dir, `feed.json`), feeds.json)
   }
+
+  // add robots.txt to site root
+  const robotsTxt = `User-agent: *\nDisallow:${isProduction ? `` : ` /`}`
+  writeFileSync(join(publicDir, `robots.txt`), robotsTxt)
 }
 
 /**
