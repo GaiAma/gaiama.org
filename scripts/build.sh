@@ -3,6 +3,7 @@ GAIAMA_CONTENT_HASH=$(curl -sI "$GAIAMA_CONTENT_URL" | grep -o -E 'filename="[^"
 GAIAMA_CACHE_BASE="$NETLIFY_BUILD_BASE/cache/gaiama"
 GAIAMA_CACHE_DIR="$GAIAMA_CACHE_BASE/$GAIAMA_CONTENT_HASH"
 GAIAMA_CACHE_TAR="$GAIAMA_CACHE_DIR/content.tgz"
+GAIAMA_CONTENT_DIR="$NETLIFY_BUILD_BASE/repo/content"
 
 if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "Cached content missing or not up to date"
@@ -14,14 +15,14 @@ if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "created cache directory"
   echo "Fetching content"
   wget -O $GAIAMA_CACHE_TAR $GAIAMA_CONTENT_URL
-  mkdir -p "$NETLIFY_BUILD_BASE/content"
+  mkdir -p "$GAIAMA_CONTENT_DIR"
   tar -xzf $GAIAMA_CACHE_TAR -C "$GAIAMA_CACHE_DIR"
 fi
 
-mkdir "$NETLIFY_BUILD_BASE/content"
-mv "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" "$NETLIFY_BUILD_BASE/content"
+mkdir "$GAIAMA_CONTENT_DIR"
+mv "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" "$GAIAMA_CONTENT_DIR"
 
-npm rebuild sharp
+#npm rebuild sharp
 yarn build
 
 export GAIAMA_CONTENT_HASH
