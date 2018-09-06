@@ -1,31 +1,34 @@
 GAIAMA_CONTENT_URL="https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
 GAIAMA_CONTENT_HASH=$(curl -sI "$GAIAMA_CONTENT_URL" | grep -o -E 'filename="[^"]+' | sed -e 's/filename="//' | sed -e 's/.tar.gz//')
 GAIAMA_CACHE_BASE="$NETLIFY_BUILD_BASE/cache/gaiama"
+# Directory named after the latest content repo hash
 GAIAMA_CACHE_DIR="$GAIAMA_CACHE_BASE/$GAIAMA_CONTENT_HASH"
-GAIAMA_CACHE_TAR="$GAIAMA_CACHE_DIR/content.tgz"
+GAIAMA_CONTENT_TAR="$GAIAMA_CACHE_DIR/content.tgz"
 GAIAMA_CONTENT_DIR="$NETLIFY_BUILD_BASE/repo/content"
 
-echo "preview $NETLIFY_BUILD_BASE/cache"
-ls -lah "$NETLIFY_BUILD_BASE/cache"
-echo "preview $GAIAMA_CACHE_BASE"
-ls -lah $GAIAMA_CACHE_BASE
 echo "preview $GAIAMA_CACHE_DIR"
 ls -lah "$GAIAMA_CACHE_DIR"
 
+rm -rf $GAIAMA_CACHE_BASE
+
+# if cache dir not existent, it must be old or missing
 if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "Cached content missing or not up to date"
+  # let's clean up, to remove old cache files
   if [ -d "$GAIAMA_CACHE_BASE" ]; then
     echo "removing old cache directory"
     rm -Rf $GAIAMA_CACHE_DIR
     echo "removed old cache directory"
   fi
-  echo "creating cache directory"
+  echo "ensuring cache directory"
   mkdir -p $GAIAMA_CACHE_DIR
-  echo "created cache directory"
+  echo "ensured cache directory"
   echo "Fetching content"
-  wget -O $GAIAMA_CACHE_TAR $GAIAMA_CONTENT_URL
+  wget -O $GAIAMA_CONTENT_TAR $GAIAMA_CONTENT_URL
   echo "Fetched content"
-  tar -xzf $GAIAMA_CACHE_TAR -C "$GAIAMA_CACHE_DIR"
+  echo "Extracting tarball"
+  tar -xzf $GAIAMA_CONTENT_TAR -C "$GAIAMA_CACHE_DIR"
+  echo "Extracted tarball"
 fi
 
 mkdir -p "$GAIAMA_CONTENT_DIR"
