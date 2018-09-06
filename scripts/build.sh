@@ -12,7 +12,7 @@ ls -lah $GAIAMA_CACHE_BASE
 echo "preview $GAIAMA_CACHE_DIR"
 ls -lah "$GAIAMA_CACHE_DIR"
 
-if [ ! -f "$GAIAMA_CACHE_DIR" ]; then
+if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "Cached content missing or not up to date"
   if [ -d "$GAIAMA_CACHE_BASE" ]; then
     echo "removing old cache directory"
