@@ -6,11 +6,6 @@ GAIAMA_CACHE_DIR="$GAIAMA_CACHE_BASE/$GAIAMA_CONTENT_HASH"
 GAIAMA_CONTENT_TAR="$GAIAMA_CACHE_DIR/content.tgz"
 GAIAMA_CONTENT_DIR="$NETLIFY_BUILD_BASE/repo/content"
 
-echo "preview $GAIAMA_CACHE_DIR"
-ls -lah "$GAIAMA_CACHE_DIR"
-
-rm -rf $GAIAMA_CACHE_BASE
-
 # if cache dir not existent, it must be old or missing
 if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "Cached content missing or not up to date"
