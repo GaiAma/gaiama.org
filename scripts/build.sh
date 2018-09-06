@@ -9,19 +9,22 @@ echo "preview $NETLIFY_BUILD_BASE/cache"
 ls -lah "$NETLIFY_BUILD_BASE/cache"
 echo "preview $GAIAMA_CACHE_BASE"
 ls -lah $GAIAMA_CACHE_BASE
-echo "preview $GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH"
-ls -lah "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH"
+echo "preview $GAIAMA_CACHE_DIR"
+ls -lah "$GAIAMA_CACHE_DIR"
 
-if [ ! -f "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" ]; then
+if [ ! -f "$GAIAMA_CACHE_DIR" ]; then
   echo "Cached content missing or not up to date"
   if [ -d "$GAIAMA_CACHE_BASE" ]; then
+    echo "removing old cache directory"
     rm -Rf $GAIAMA_CACHE_DIR
     echo "removed old cache directory"
   fi
+  echo "creating cache directory"
   mkdir -p $GAIAMA_CACHE_DIR
   echo "created cache directory"
   echo "Fetching content"
   wget -O $GAIAMA_CACHE_TAR $GAIAMA_CONTENT_URL
+  echo "Fetched content"
   tar -xzf $GAIAMA_CACHE_TAR -C "$GAIAMA_CACHE_DIR"
 fi
 
