@@ -11,33 +11,24 @@ if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "Cached content missing or not up to date"
   # let's clean up, to remove old cache files
   if [ -d "$GAIAMA_CACHE_BASE" ]; then
-    echo "removing old cache directory"
+    echo "Removing old cache directory..."
     rm -Rf $GAIAMA_CACHE_DIR
-    echo "removed old cache directory"
+    echo "Removed old cache directory"
   fi
-  echo "ensuring cache directory"
+  echo "Creating cache directory.."
   mkdir -p $GAIAMA_CACHE_DIR
-  echo "ensured cache directory"
-  echo "Fetching content"
+  echo "Created cache directory"
+  echo "Fetching content.."
   wget -O $GAIAMA_CONTENT_TAR $GAIAMA_CONTENT_URL
-  echo "Fetched content"
+  echo "Content successfully fetched"
 fi
 
-# ensure content dir in project root
-echo "Ensuring content directory"
+echo "Creating content directory"
 mkdir -p "$GAIAMA_CONTENT_DIR"
-echo "Ensured content directory"
-# symlink cached content
-#ln -s "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" $GAIAMA_CONTENT_DIR
+echo "Created content directory"
 echo "Extracting tarball"
 tar -xzf $GAIAMA_CONTENT_TAR -C "$GAIAMA_CONTENT_DIR"
 echo "Extracted tarball"
 
-echo ""
-echo ""
-echo "__PREVIEW__"
-ls -lah "$NETLIFY_BUILD_BASE/repo"
-echo ""
-echo ""
-
+echo "starting to build.."
 yarn build
