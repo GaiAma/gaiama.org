@@ -27,10 +27,15 @@ if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
 fi
 
 # ensure content dir in project root
-mkdir -p "$GAIAMA_CONTENT_DIR"
-# restore cached content
-mv "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" "$GAIAMA_CONTENT_DIR/"
+# mkdir -p "$GAIAMA_CONTENT_DIR"
+# symlink cached content
+ln -s "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" $GAIAMA_CONTENT_DIR
+
+echo ""
+echo ""
+echo "__PREVIEW__"
+ls -lah "$NETLIFY_BUILD_BASE/repo"
+echo ""
+echo ""
 
 yarn build
-
-export GAIAMA_CONTENT_HASH
