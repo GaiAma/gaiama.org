@@ -21,15 +21,17 @@ if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "Fetching content"
   wget -O $GAIAMA_CONTENT_TAR $GAIAMA_CONTENT_URL
   echo "Fetched content"
-  echo "Extracting tarball"
-  tar -xzf $GAIAMA_CONTENT_TAR -C "$GAIAMA_CACHE_DIR"
-  echo "Extracted tarball"
 fi
 
 # ensure content dir in project root
-# mkdir -p "$GAIAMA_CONTENT_DIR"
+echo "Ensuring content directory"
+mkdir -p "$GAIAMA_CONTENT_DIR"
+echo "Ensured content directory"
 # symlink cached content
-ln -s "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" $GAIAMA_CONTENT_DIR
+#ln -s "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" $GAIAMA_CONTENT_DIR
+echo "Extracting tarball"
+tar -xzf $GAIAMA_CONTENT_TAR -C "$GAIAMA_CONTENT_DIR"
+echo "Extracted tarball"
 
 echo ""
 echo ""
