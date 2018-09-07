@@ -26,8 +26,10 @@ if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   echo "Extracted tarball"
 fi
 
+# ensure content dir in project root
 mkdir -p "$GAIAMA_CONTENT_DIR"
-mv "$GAIAMA_CACHE_DIR/$GAIAMA_CONTENT_HASH" "$GAIAMA_CONTENT_DIR"
+# restore cached content
+mv $GAIAMA_CACHE_DIR $GAIAMA_CONTENT_DIR
 
 #npm rebuild sharp
 yarn build
