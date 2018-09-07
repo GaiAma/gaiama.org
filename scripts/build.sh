@@ -1,8 +1,3 @@
-#NETLIFY_BUILD_BASE="/Users/Can/Sites/GaiAma.org/gatsby/scripts"
-#GAIAMA_CONTENT_ID=7024924
-#BRANCH=v2
-#GAIAMA_CONTENT_TOKEN="d1LmyC3gbR-r1KuPycxA"
-
 GAIAMA_CONTENT_URL="https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
 GAIAMA_CONTENT_HASH=$(curl -sI "$GAIAMA_CONTENT_URL" | grep -o -E 'filename="[^"]+' | sed -e 's/filename="//' | sed -e 's/.tar.gz//')
 GAIAMA_CACHE_BASE="$NETLIFY_BUILD_BASE/cache/gaiama"
