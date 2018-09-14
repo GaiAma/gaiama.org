@@ -19,7 +19,7 @@ const Container = styled.div(props => ({
   },
 }))
 
-const H2 = styled.h2(props => ({
+const Title = styled.h2(props => ({
   fontSize: `2.7rem`,
   textAlign: props.centeredTitle && `center`,
 }))
@@ -34,6 +34,7 @@ const ContentWrapper = styled.div(props => ({
 
 const TitledCopy = ({
   title,
+  rank,
   paragraphs,
   centered,
   centeredTitle,
@@ -57,14 +58,16 @@ const TitledCopy = ({
       spoilerOpen: !state.spoilerOpen,
     })
 
+  const Tag = Title.withComponent(rank ? (rank > 6 ? `h6` : `h${rank}`) : `h2`)
+
   return (
     <Container centered={centered} full={full} {...props}>
       {title && (
-        <H2 id={slugifiedId} centeredTitle={centeredTitle}>
+        <Tag id={slugifiedId} centeredTitle={centeredTitle}>
           {Array.isArray(title)
             ? title.map((x, i) => <div key={i}>{x}</div>)
             : title}
-        </H2>
+        </Tag>
       )}
 
       {content && (
@@ -93,6 +96,7 @@ const TitledCopy = ({
 TitledCopy.propTypes = {
   title: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
   paragraphs: PropTypes.oneOfType([PropTypes.array, PropTypes.string]),
+  rank: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   centered: PropTypes.bool,
   centeredTitle: PropTypes.bool,
   centeredCopy: PropTypes.bool,
