@@ -1,3 +1,4 @@
+/* global document, window */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'react-emotion'
@@ -143,9 +144,7 @@ export class Newsletter extends Component {
           localStore.removeItem(`NewsletterForm`)
           return this.setState({ hasSucceeded: true }, () => {
             // scroll to success message
-            // eslint-disable-next-line
             const el = document.getElementById(`success`)
-            // eslint-disable-next-line
             el && window.scrollTo(0, el.offsetTop - 90)
           })
         }

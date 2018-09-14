@@ -1,3 +1,4 @@
+/* global document, window */
 import React, { Component } from 'react'
 import {
   StripeProvider,
@@ -32,7 +33,6 @@ class DonationForm extends Component {
   }
 
   componentDidMount() {
-    /* eslint-disable */
     const script = document.createElement(`script`)
     script.onload = () => {
       const stripe = window.Stripe(process.env.STRIPE_PUBLIC_KEY)
@@ -60,7 +60,6 @@ class DonationForm extends Component {
     }
     script.src = `https://js.stripe.com/v3/`
     document.head.appendChild(script)
-    /* eslint-enable */
   }
 
   handleChange = event => {
