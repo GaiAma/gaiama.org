@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { ToastContainer } from 'react-toastify'
 // import i18n from 'i18next'
 // import { I18nextProvider, translate } from 'react-i18next'
 import Header from '@/components/Header'
@@ -22,6 +23,7 @@ import './fragments'
 import './global.css'
 import 'typeface-amatic-sc'
 import 'typeface-quicksand'
+import 'react-toastify/dist/ReactToastify.css'
 
 // const isDev = process.env.NODE_ENV === `development`
 
@@ -340,6 +342,7 @@ class MainLayout extends Component {
         />
 
         <InstagramGradient />
+        <ToastContainer position="bottom-right" />
       </div>
       // </I18nextProvider>
     )
