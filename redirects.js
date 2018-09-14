@@ -1,4 +1,4 @@
-module.exports.redirects = [
+exports.redirects = [
   // Redirect default Netlify subdomain to primary domain
   `https://gaiama.netlify.com/en/* https://www.gaiama.org/en/:splat 301!`,
   `https://gaiama.netlify.com/de/* https://www.gaiama.org/de/:splat 301!`,
@@ -10,8 +10,4 @@ module.exports.redirects = [
   `/spenden /de/spenden/ 301`,
   `/spende /de/spenden/ 301`,
   `/donate /en/donate/ 301`,
-  // redirect root to /de based on browser language
-  `/ /de/ 302 Language=de`, // remove * & :splat for now
-  // redirect root to /en otherwise
-  `/ /en/ 301`,
 ]
