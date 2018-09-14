@@ -5,10 +5,7 @@ import {
   faInstagram,
   faYoutube,
   faTwitter,
-  faTwitterSquare,
-  faGooglePlusSquare,
   faGithub,
-  faTelegramPlane,
 } from '@fortawesome/free-brands-svg-icons'
 import {
   faCaretDown,
@@ -27,8 +24,6 @@ library.add(
   faInstagram,
   faYoutube,
   faTwitter,
-  faTwitterSquare,
-  faGooglePlusSquare,
   faGithub,
   faEnvelope,
   faCaretDown,
@@ -39,6 +34,5 @@ library.add(
   faCheck,
   faCaretLeft,
   faCaretRight,
-  faSpinner,
-  faTelegramPlane
+  faSpinner
 )
