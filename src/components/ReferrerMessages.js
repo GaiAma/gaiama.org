@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { toast } from '@/utils/toast'
 
 // TODO move messages to /content
 const messages = {
@@ -24,9 +25,14 @@ class ReferrerMessages extends Component {
     // }
   }
 
-  // componentDidMount() {
-  //   this.setState({ height: this.element.clientHeight })
-  // }
+  componentDidMount() {
+    // this.setState({ height: this.element.clientHeight })
+    const {
+      urlParams: { ref },
+      lang,
+    } = this.props
+    toast.success(messages[lang][ref])
+  }
 
   render() {
     const {
