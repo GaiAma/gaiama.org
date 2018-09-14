@@ -1,5 +1,5 @@
 const path = require(`path`)
-const { homepage } = require(`./package.json`)
+const { homepage, version } = require(`./package.json`)
 
 const isProduction = process.env.GAIAMA_CONTENT_ID
 
@@ -188,9 +188,10 @@ module.exports = {
     {
       resolve: `gatsby-plugin-pixel`,
       options: {
+        version,
         endpoint: isProduction
-          ? `https://gaiama-analytics.now.sh/[[nocache]]/p?uid=[[uid]]&title=[[title]]`
-          : `http://localhost:7789/[[nocache]]/p?uid=[[uid]]&title=[[title]]`,
+          ? `https://www.gaiama.org/api/p`
+          : `http://localhost:7789/p`,
       },
     },
     {
