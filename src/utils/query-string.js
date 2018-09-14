@@ -29,7 +29,9 @@ export const parse = (url = ``) => {
     const key = encodeURIComponent(_key.replace(`[]`, ``))
 
     // split to array if comma present
-    const val = _val.includes(`,`) ? _val.split(`,`) : encodeURIComponent(_val)
+    const val = _val.includes(`,`)
+      ? _val.split(`,`).map(encodeURIComponent)
+      : encodeURIComponent(_val)
 
     // if key exists it's an array
     if (acc[key]) {
@@ -57,5 +59,11 @@ export const parse = (url = ``) => {
 export const stringify = (qs, url = ``) =>
   Object.keys(qs).reduce((acc, key, i) => {
     const delimiter = i === 0 && acc ? `?` : !acc ? `` : `&`
-    return [acc, delimiter, key, `=`, qs[key]].join(``)
+    return [
+      acc,
+      delimiter,
+      encodeURIComponent(key),
+      `=`,
+      encodeURIComponent(qs[key]),
+    ].join(``)
   }, url)
