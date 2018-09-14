@@ -1,6 +1,6 @@
+/* global window, document */
 const idToJumpTo = `main-nav`
 
-/* eslint-disable */
 const scrollToMenu = () => {
   const el = document.getElementById(idToJumpTo)
   if (el) return window.scrollTo(0, el.offsetTop - 20)
@@ -12,7 +12,6 @@ const scrollToMenu = () => {
  * as reach/router does not (yet) provide the used action for onRouteUpdate
  */
 exports.shouldUpdateScroll = () => {
-  /* eslint-disable */
   if (window.__navigatingToLink === true) {
     return [0, 0]
   }
@@ -20,9 +19,7 @@ exports.shouldUpdateScroll = () => {
 }
 
 exports.onRouteUpdate = () => {
-  // eslint-disable-next-line
   window.setTimeout(scrollToMenu, 10)
-  /* eslint-disable */
   window.__navigatingToLink = false
 }
 

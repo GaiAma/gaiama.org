@@ -1,3 +1,4 @@
+/* global window */
 /**
  * Parse query string
  * inspired by https://gist.github.com/tjmehta/9204891
@@ -7,8 +8,9 @@ export const parse = (url = ``) => {
   const _url =
     url !== ``
       ? url
-      : // eslint-disable-next-line no-undef
-        typeof window !== `undefined` ? window.location.search : ``
+      : typeof window !== `undefined`
+        ? window.location.search
+        : ``
 
   const indexOfQueryDelimiter = _url.indexOf(`?`)
 
@@ -18,8 +20,9 @@ export const parse = (url = ``) => {
 
   const hashes = normalized
     ? normalized.split(`&`)
-    : /* eslint-disable-next-line no-undef */
-      typeof window !== `undefined` ? window.location.search : ``
+    : typeof window !== `undefined`
+      ? window.location.search
+      : ``
 
   return hashes.reduce((acc, hash) => {
     const [_key, _val = ``] = hash.split(`=`)

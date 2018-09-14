@@ -1,3 +1,4 @@
+/* global window */
 import React from 'react'
 import PropTypes from 'prop-types'
 import * as QS from '@/utils/query-string'
@@ -9,7 +10,6 @@ import { Link as GatsbyLink } from 'gatsby'
  * as reach/router does not (yet) provide the used action for onRouteUpdate
  */
 if (typeof window !== `undefined`) {
-  // eslint-disable-next-line
   window.__navigatingToLink = false
 }
 
@@ -47,7 +47,6 @@ const Link = ({
       {...props}
       to={to}
       onClick={() => {
-        // eslint-disable-next-line
         window.__navigatingToLink = true
       }}
     >

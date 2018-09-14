@@ -1,3 +1,4 @@
+/* global window */
 /**
  * lazy loading tricks from
  * https://www.screenshotbin.com/blog/handling-lazy-loaded-webpages-puppeteer
@@ -72,7 +73,6 @@ describe(`Visual regressions`, () => {
       async done => {
         await page.goto(x.url)
         // await page.evaluate(() => {
-        //   /* eslint-disable-next-line no-undef */
         //   window.scrollBy(0, window.innerHeight)
         // })
         // Get the height of the rendered page
@@ -85,7 +85,7 @@ describe(`Visual regressions`, () => {
         let viewportIncr = 0
         while (viewportIncr + viewportHeight < height) {
           await page.evaluate(_viewportHeight => {
-            window.scrollBy(0, _viewportHeight) // eslint-disable-line
+            window.scrollBy(0, _viewportHeight)
           }, viewportHeight)
           await wait(20)
           viewportIncr = viewportIncr + viewportHeight
@@ -93,7 +93,7 @@ describe(`Visual regressions`, () => {
 
         // Scroll back to top
         await page.evaluate(_ => {
-          window.scrollTo(0, 0) // eslint-disable-line
+          window.scrollTo(0, 0)
         })
 
         // Some extra delay to let images load
