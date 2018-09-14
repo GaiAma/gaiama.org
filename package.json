@@ -95,6 +95,7 @@
     "react-media": "^1.8.0",
     "react-textarea-autosize": "^6.0.0",
     "react-typography": "^0.16.13",
+    "react-toastify": "^4.3.1",
     "rehype-react": "^3.0.3",
     "slash": "^2.0.0",
     "slugify": "^1.2.9",
