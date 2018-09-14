@@ -1,7 +1,11 @@
 <p align="center">
-  <a href="https://www.gaiama.org"><img src="./src/assets/gaiama-avatar.png"></a>
+  <a href="https://www.gaiama.org/"><img src="./src/assets/gaiama-avatar.png"></a>
 </p>
 
-### Source code of [GaiAma.org](https://www.gaiama.org)
+### Source code of [GaiAma.org](https://www.gaiama.org/)
 
-> A lot of cleanup, refactoring, probably porting to [Gatsby v2](https://www.gatsby.org) will follow
+#### Features
+
+- [Gatsby v2](https://www.gatsbyjs.org/)
+- [Emotion CSS-in-JS](https://emotion.sh/)
+- [Netlify Hosted](https://www.netlify.com/)
