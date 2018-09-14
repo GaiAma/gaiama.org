@@ -62,7 +62,7 @@ Link.propTypes = {
   to: PropTypes.string,
   sort: PropTypes.string,
   filter: PropTypes.string,
-  ext: PropTypes.string,
+  ext: PropTypes.bool,
   blank: PropTypes.bool,
   persistQuery: PropTypes.bool,
 }
