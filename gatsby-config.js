@@ -42,6 +42,7 @@ module.exports = {
           ? path.join(__dirname, `content`)
           : path.join(__dirname, `..`, `content`, `content`),
         name: `content`,
+        ignore: isProduction ? [`**/.*`] : [`**/.*`, `**/happygaia/*`],
       },
     },
     // {
