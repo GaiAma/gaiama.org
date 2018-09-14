@@ -43,14 +43,16 @@ class Header extends Component {
         <div css={style.headerTop}>
           <div css={style.topInner}>
             <div css={style.headerBrand}>
-              <Link to={homepage.slug} css={style.headerLink}>
+              <Link to={homepage.fields.url} css={style.headerLink}>
                 <h2>
-                  {homepage.header.title}
-                  {homepage.header.subtitle && ` - ${homepage.header.subtitle}`}
+                  {homepage.frontmatter.header.title}
+                  {homepage.frontmatter.header.subtitle &&
+                    ` - ${homepage.frontmatter.header.subtitle}`}
                 </h2>
               </Link>
             </div>
 
+            {/* TODO: remember lang in local FORAGE? to show correct in 404 */}
             <nav css={style.headerMeta}>
               {meta.map((link, index) => (
                 <div

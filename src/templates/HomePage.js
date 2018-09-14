@@ -188,7 +188,7 @@ HomePage.propTypes = {
 export default HomePage
 
 export const query = graphql`
-  query($lang: String!, $slug: String!) {
+  query($lang: String!, $url: String!) {
     ...siteData
     ...SiteMeta
     ...languages
@@ -199,9 +199,13 @@ export const query = graphql`
     ...instagram
     ...SupportWidget
 
-    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
+    page: javascriptFrontmatter(fields: { url: { eq: $url } }) {
       fields {
+        url
         translations {
+          fields {
+            url
+          }
           frontmatter {
             title
             lang

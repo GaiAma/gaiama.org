@@ -98,6 +98,7 @@
     "rehype-react": "^3.0.3",
     "slash": "^2.0.0",
     "slugify": "^1.2.9",
+    "speakingurl": "^14.0.1",
     "typeface-amatic-sc": "^0.0.54",
     "typeface-quicksand": "^0.0.54",
     "typography": "^0.16.17",

@@ -161,7 +161,7 @@ const BlogPage = props => {
           </Link>
 
           {filter && (
-            <Link to={props.data.page.frontmatter.slug}>
+            <Link to={props.data.page.fields.url}>
               {props.data.page.frontmatter.sortLabels.all}
             </Link>
           )}
@@ -225,7 +225,11 @@ export const query = graphql`
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       fields {
+        url
         translations {
+          fields {
+            url
+          }
           frontmatter {
             title
             lang
@@ -299,6 +303,7 @@ export const query = graphql`
             }
           }
           fields {
+            url
             slug
             lang
             dateTime

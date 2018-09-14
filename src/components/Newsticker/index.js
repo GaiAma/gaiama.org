@@ -134,6 +134,7 @@ export const fragment = graphql`
     html
     fields {
       lang
+      url
     }
   }
 
