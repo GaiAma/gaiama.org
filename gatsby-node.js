@@ -128,8 +128,8 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
 
       // set up short url redirects
       if (notIsErrorPage(node)) {
-        const slug_short = `/${index + 1}`
-        console.log(`${slug_short} ${node.frontmatter.slug}`)
+        const slug_short = isHomePage(node) ? `/` : `/${index}`
+        // console.log(`${slug_short} ${node.frontmatter.slug}`)
         createNodeField({
           node,
           name: `slug_short`,
@@ -392,17 +392,40 @@ exports.onPostBuild = () => {
   //   redirects.push([fromPath, toPath, isPermanent ? 301 : null].join(` `))
   // })
 
-  redirects.push(`/en/blog/* /en/blog/ 301`)
-  redirects.push(`/de/blog/* /de/blog/ 301`)
+  const finalRedirects = redirects.concat([
+    `/en/blog/atom/* /en/blog/rss.xml 301`,
+    `/de/blog/atom/* /de/blog/rss.xml 301`,
 
-  // redirect everything still not catched to /en/:splat
-  redirects.push(`/* /en/:splat 301`)
+    `/en/blog/* /en/blog/?url=:splat 301`,
+    `/de/blog/* /de/blog/?url=:splat 301`,
 
-  redirects.push(`/en/* /en/404/?url=:splat 404`)
-  redirects.push(`/de/* /de/404/?url=:splat 404`)
+    // manual redirection fixes
+    `/globetrawter/blog/oh-don-t-stop/ /en/blog/oh-dont-stop/ 301`,
+    `/en/globetrawter/* /en/blog/ 301`,
+    `/de/globetrawter/* /de/blog/ 301`,
 
-  if (redirects.length) {
-    writeFileSync(join(publicDir, `_redirects`), redirects.join(`\n`))
+    `/en/de/* / 301`,
+    `/en/danke/* /de/spenden/ 301`,
+
+    // non existent?
+    `/de/10484/* /de/blog/ 301`,
+    `/en/1213/* /en/blog/ 301`,
+    `/de/1047/* /de/blog/ 301`,
+    `/de/1213/* /de/blog/ 301`,
+    `/de/1210/* /de/blog/ 301`,
+    `/en/1210/* /en/blog/ 301`,
+    `/en/1193/* /en/blog/ 301`,
+    `/en/10592/* /en/blog/ 301`,
+
+    // redirect everything still not catched to /en/:splat
+    `/* /en/:splat 301`,
+
+    `/en/* /en/404/?url=:splat 404`,
+    `/de/* /de/404/?url=:splat 404`,
+  ])
+
+  if (finalRedirects.length) {
+    writeFileSync(join(publicDir, `_redirects`), finalRedirects.join(`\n`))
   }
 
   if (feeds.dir) {
@@ -472,44 +495,4 @@ exports.onCreateWebpackConfig = ({ actions, stage }) => {
   //     }),
   //   ],
   // })
-}
-
-exports.onPostBuild = ({ store }) => {
-  // const { redirects } = store.getState()
-  // redirects.forEach(({ fromPath, toPath, isPermanent }) => {
-  //   redirections.push([fromPath, toPath, isPermanent ? 301 : null].join(` `))
-  // })
-  const finalRedirections = redirections.concat([
-    `/en/blog/atom/* /en/blog/rss.xml 301`,
-    `/de/blog/atom/* /de/blog/rss.xml 301`,
-
-    `/en/blog/* /en/blog/?url=:splat 301`,
-    `/de/blog/* /de/blog/?url=:splat 301`,
-
-    // manual redirection fixes
-    `/globetrawter/blog/oh-don-t-stop/ /en/blog/oh-dont-stop/ 301`,
-    `/en/globetrawter/* /en/blog/ 301`,
-    `/de/globetrawter/* /de/blog/ 301`,
-
-    `/en/de/* / 301`,
-    `/en/danke/* /de/spenden/ 301`,
-
-    // non existent?
-    `/de/10484/* /de/blog/ 301`,
-    `/en/1213/* /en/blog/ 301`,
-    `/de/1047/* /de/blog/ 301`,
-    `/de/1213/* /de/blog/ 301`,
-    `/de/1210/* /de/blog/ 301`,
-    `/en/1210/* /en/blog/ 301`,
-    `/en/1193/* /en/blog/ 301`,
-    `/en/10592/* /en/blog/ 301`,
-
-    // redirect everything still not catched to /en/:splat
-    `/* /en/:splat 301`,
-
-    `/en/* /en/404/?url=:splat 404`,
-    `/de/* /de/404/?url=:splat 404`,
-  ])
-
-  writeFileSync(join(publicDir, `_redirects`), finalRedirections.join(`\n`))
 }
