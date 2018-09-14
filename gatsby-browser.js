@@ -4,6 +4,7 @@ const idToJumpTo = `main-nav`
 const scrollToMenu = () => {
   const el = document.getElementById(idToJumpTo)
   if (el) return window.scrollTo(0, el.offsetTop - 20)
+  return false
 }
 
 /**
@@ -19,18 +20,9 @@ exports.shouldUpdateScroll = () => {
 }
 
 exports.onRouteUpdate = () => {
-  window.setTimeout(scrollToMenu, 10)
+  if (window.__navigatingToLink === true) {
+    window.setTimeout(scrollToMenu, 10)
+  }
   window.__navigatingToLink = false
 }
 
-// on scroll to top if no prevRouterProps
-// exports.shouldUpdateScroll = ({ prevRouterProps }) => !prevRouterProps
-
-// // redirect to menu if action = PUSH
-// // and either no # at all or hash = idToJumpTo
-// exports.onRouteUpdate = ({ action, location: { hash } }) => {
-//   console.log(action, action === `PUSH` && (!hash || hash === `#${idToJumpTo}`))
-//   if (action === `PUSH` && (!hash || hash === `#${idToJumpTo}`)) {
-//     window.setTimeout(scrollToMenu, 10)
-//   }
-// }
