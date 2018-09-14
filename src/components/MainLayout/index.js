@@ -48,14 +48,14 @@ const generateMainMenu = items =>
     .map(({ node }) => ({
       title: node.frontmatter.title,
       titleShort: node.frontmatter.titleShort,
-      to: node.frontmatter.slug,
+      to: node.fields.url,
     }))
 
 const generateMetaMenu = ({ translations, getLang, menuItems }) =>
   translations
     .map(x => ({
       ...getLang(x.frontmatter.lang),
-      to: x.frontmatter.slug,
+      to: x.fields.url,
     }))
     .concat(
       menuItems
@@ -64,7 +64,7 @@ const generateMetaMenu = ({ translations, getLang, menuItems }) =>
           title: node.frontmatter.title,
           titleShort: node.frontmatter.titleShort,
           icon: node.frontmatter.icon,
-          to: node.frontmatter.slug,
+          to: node.fields.url,
         }))
     )
 
@@ -76,6 +76,9 @@ const getTranslations = page =>
   [
     ...(page.fields.translations || []),
     {
+      fields: {
+        url: page.fields.url,
+      },
       frontmatter: {
         lang: page.frontmatter.lang,
         slug: page.frontmatter.slug,
@@ -216,7 +219,7 @@ class MainLayout extends Component {
           <meta property="og:site_name" content={site.siteMetadata.title} />
           <meta
             property="og:url"
-            content={`${site.siteMetadata.siteUrl}${page.frontmatter.slug}`}
+            content={`${site.siteMetadata.siteUrl}${page.fields.url}`}
           />
           <meta
             property="og:locale"
@@ -289,7 +292,7 @@ class MainLayout extends Component {
             />
           )} */}
           <html lang={lang} />
-          {/* <body className={slugify(page.frontmatter.slug)} /> */}
+          {/* <body className={slugify(page.fields.url)} /> */}
         </Helmet>
 
         <a href="#main" css={screenReaderAndFocusable}>
@@ -304,7 +307,7 @@ class MainLayout extends Component {
         )}
 
         <Header
-          homepage={homepage.frontmatter}
+          homepage={homepage}
           meta={metaMenu}
           menu={mainMenu}
           logo={SiteMeta.frontmatter.assets.logo.image}

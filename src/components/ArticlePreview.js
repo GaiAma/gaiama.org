@@ -6,7 +6,7 @@ import { colors } from '@/theme'
 
 const ArticlePreview = ({ article, isVisible, ...props }) => (
   <article css={articleStyles.article(isVisible)} {...props}>
-    <Link to={article.fields.slug}>
+    <Link to={article.fields.url}>
       {article.frontmatter.cover && (
         <Img fluid={article.frontmatter.cover.childImageSharp.fluid} />
       )}
@@ -23,7 +23,7 @@ const ArticlePreview = ({ article, isVisible, ...props }) => (
     <footer css={articleStyles.footer}>
       <div css={articleStyles.footerInner}>
         <time css={articleStyles.time}>{article.fields.dateStrLocalized}</time>
-        <Link to={article.fields.slug}>{`read more`}</Link>
+        <Link to={article.fields.url}>{`read more`}</Link>
       </div>
     </footer>
   </article>

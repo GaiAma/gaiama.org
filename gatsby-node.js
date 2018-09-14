@@ -1,12 +1,12 @@
 const { resolve, join } = require(`path`)
 const { writeFileSync } = require(`fs`)
-const { homepage } = require(`./package.json`)
 const moment = require(`moment`)
 const { compareAsc, parse: parseDate } = require(`date-fns`)
 const mkDir = require(`make-dir`)
 const { Feed } = require(`feed`)
 const { shuffle } = require(`lodash`)
 const R = require(`ramda`)
+const speakingUrl = require(`speakingurl`)
 const { homepage } = require(`./package.json`)
 const { redirects } = require(`./redirects.js`)
 // const dotenv = require(`dotenv`).config({
@@ -60,7 +60,26 @@ const prepareSortedTuple = R.compose(
   sortByDirectory
 )
 const sortEnglishLast = R.sortBy(R.path([`frontmatter`, `lang`]))
-const notIsErrorPage = node => node.frontmatter.is !== `ErrorPage`
+const notIsErrorPage = node => node.frontmatter.layout !== `ErrorPage`
+const isHomePage = node => node.frontmatter.layout === `HomePage`
+// TODO: maybe use slugify?
+const getSlug = node =>
+  speakingUrl(node.frontmatter.slug || node.frontmatter.title, {
+    lang: node.frontmatter.lang,
+  })
+const getUrl = node =>
+  [
+    ``,
+    node.frontmatter.lang,
+    isPost(node) ? `blog` : null,
+    isHomePage(node) ? null : getSlug(node),
+    ``,
+  ]
+    .filter(x => x !== null)
+    .join(`/`)
+// `/${node.frontmatter.lang}${isPost(node) && `/blog`}/${speakingUrl(node.frontmatter.title, {
+//         node.frontmatter.lang,
+//       })}`
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
@@ -74,7 +93,9 @@ exports.onCreateNode = ({ node, actions }) => {
       })
 
     addNodeField(`type`, isPost(node) ? `post` : `page`)
-    addNodeField(`slug`, node.frontmatter.slug)
+    // strip language from slug field
+    addNodeField(`slug`, getSlug(node))
+    addNodeField(`url`, getUrl(node))
     addNodeField(`lang`, node.frontmatter.lang)
     addNodeField(`dateTime`, theMoment.toISOString())
     addNodeField(`dateStr`, theMoment.format(`Y-MM-DD`))
@@ -97,28 +118,24 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
 
   prepareSortedTuple(PagesAndPosts).forEach((group, index) =>
     sortEnglishLast(group).forEach((node, _, array) => {
-      const { lang, slug } = node.fields
+      const { lang, url, slug } = node.fields
       const { layout, shortId, shortlink, oldId, oldSlug } = node.frontmatter
 
-      createPage({
-        path: node.fields.slug,
-        component: resolve(`./src/templates/${layout}.js`),
-        context: {
-          slug: node.fields.slug,
-          lang: node.fields.lang,
-        },
-      })
+      console.log(`${slug} => ${url}`)
+
+      const component = resolve(`./src/templates/${layout}.js`)
+      const context = { url, slug, lang }
+
+      createPage({ component, path: url, context })
+
       // create root 404
-      if (layout === `404` && node.fields.lang === `en`) {
+      slug === `404` &&
+        lang === `en` &&
         createPage({
+          component,
           path: `/404`,
-          component: resolve(`./src/templates/${layout}.js`),
-          context: {
-            slug: node.fields.slug,
-            lang: node.fields.lang,
-          },
+          context,
         })
-      }
 
       createNodeField({
         node,

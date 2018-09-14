@@ -17,21 +17,21 @@ const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
         }}
       >
         {coverImage && (
-          <Link to={item.frontmatter.slug} css={styles.imageWrapper(layout)}>
+          <Link to={item.fields.url} css={styles.imageWrapper(layout)}>
             <Img fluid={coverImage} css={styles.image} />
           </Link>
         )}
 
         <div>
           <h2 css={styles.title(layout)}>
-            <Link to={item.frontmatter.slug}>{item.frontmatter.title}</Link>
+            <Link to={item.fields.url}>{item.frontmatter.title}</Link>
           </h2>
 
           <p css={styles.excerpt}>
             {item.excerpt || item.frontmatter.summary}
 
             {readmoreLabel && (
-              <Link to={item.frontmatter.slug} css={styles.readmoreLink}>
+              <Link to={item.fields.url} css={styles.readmoreLink}>
                 {readmoreLabel}
               </Link>
             )}

@@ -89,13 +89,15 @@ export const Fragments = graphql`
     ) {
       edges {
         node {
+          fields {
+            url
+          }
           frontmatter {
             title
             titleShort
             menu
             slug
             lang
-            #icon
           }
         }
       }
@@ -106,6 +108,9 @@ export const Fragments = graphql`
     homepage: javascriptFrontmatter(
       frontmatter: { lang: { eq: $lang }, layout: { eq: "HomePage" } }
     ) {
+      fields {
+        url
+      }
       frontmatter {
         lang
         title
@@ -124,9 +129,11 @@ export const Fragments = graphql`
     ) {
       edges {
         node {
+          fields {
+            url
+          }
           frontmatter {
             lang
-            slug
             title
           }
         }

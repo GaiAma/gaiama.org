@@ -149,8 +149,8 @@ const Footer = ({
         {legal.length &&
           legal.map(({ node }) => (
             <Link
-              to={node.frontmatter.slug}
-              key={node.frontmatter.slug}
+              to={node.fields.url}
+              key={node.fields.url}
               css={{ marginRight: `.5rem` }}
             >
               {node.frontmatter.title}

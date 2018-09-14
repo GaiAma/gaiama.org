@@ -237,7 +237,11 @@
 
 //     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
 //       fields {
+// url
 //         translations {
+// fields {
+//   url
+// }
 //           frontmatter {
 //             title
 //             lang

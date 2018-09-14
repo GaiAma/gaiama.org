@@ -216,7 +216,11 @@ export const query = graphql`
         dateTime
         dateStr
         dateStrLocalized
+        url
         translations {
+          fields {
+            url
+          }
           frontmatter {
             title
             lang
@@ -243,6 +247,9 @@ export const query = graphql`
         }
         suggested {
           excerpt(pruneLength: 135)
+          fields {
+            url
+          }
           frontmatter {
             id
             title
