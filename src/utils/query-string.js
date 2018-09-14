@@ -3,7 +3,7 @@
  * inspired by https://gist.github.com/tjmehta/9204891
  * @param {string} url - Pure query string, url with or w/o query string or empty
  */
-const parse = (url = ``) => {
+export const parse = (url = ``) => {
   const _url =
     url !== ``
       ? url
@@ -54,13 +54,8 @@ const parse = (url = ``) => {
  * @param {object} qs - object containing desired key: value pairs
  * @param {string} url - url to prepend to query string or ``
  */
-const stringify = (qs, url = ``) =>
+export const stringify = (qs, url = ``) =>
   Object.keys(qs).reduce((acc, key, i) => {
     const delimiter = i === 0 && acc ? `?` : !acc ? `` : `&`
     return [acc, delimiter, key, `=`, qs[key]].join(``)
   }, url)
-
-export default {
-  parse,
-  stringify,
-}
