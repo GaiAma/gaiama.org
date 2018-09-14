@@ -50,12 +50,19 @@ module.exports = {
     "spyOn": true,
     "graphql": false
   },
+  "settings": {
+    "react": {
+      "version": "16.5"
+    }
+  },
   "rules": {
     "no-console": "off",
     "no-inner-declarations": "off",
     "valid-jsdoc": "off",
     "require-jsdoc": "off",
-    "quotes": ["error", "backtick", { "avoidEscape": true }],
+    "quotes": ["error", "backtick", {
+      "avoidEscape": true
+    }],
     "consistent-return": ["error"],
     "arrow-body-style": [
       "error",
@@ -84,19 +91,17 @@ module.exports = {
       "allowChildren": true
     }]
   },
-  "overrides": [
-    {
-      "files": [
-        "packages/**/gatsby-browser.js",
-        "packages/gatsby/cache-dir/**/*"
-      ],
-      "env": {
-        "browser": true
-      },
-      "globals": {
-        "___loader": false,
-        "___emitter": false
-      }
+  "overrides": [{
+    "files": [
+      "packages/**/gatsby-browser.js",
+      "packages/gatsby/cache-dir/**/*"
+    ],
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "___loader": false,
+      "___emitter": false
     }
-  ]
+  }]
 }
