@@ -293,78 +293,13 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
           name: `newer`,
           value: newer && newer.id ? newer.id : null,
         })
-      })
 
-    const googleFeedItems = []
-
-    graphNodes.data.articles.edges
-      .filter(
-        ({ node }) =>
-          node.frontmatter.published &&
-          node.fields.lang === lang.node.frontmatter.id
-      )
-      .forEach(({ node }) => {
-        const feedItem = {
-          title: node.frontmatter.title,
-          id: `${homepage}${node.fields.slug}`,
-          link: `${homepage}${node.fields.slug}`,
-          date: new Date(node.fields.dateTimeMod || node.fields.dateTime),
-          content: node.excerpt,
-          image: node.frontmatter.cover
-            ? {
-                url: `${homepage}${node.frontmatter.cover.publicURL}`,
-                type: node.frontmatter.cover.internal.mediaType,
-                length: node.frontmatter.cover.size,
-              }
-            : null,
-          author: [
-            {
-              name: `GaiAma`,
-              link: homepage,
-            },
-          ],
-        }
-        feed.addItem(feedItem)
-        googleFeedItems.push(feedItem)
-      })
-
-    const [newestArticle] = graphNodes.data.articles.edges.filter(
-      ({ node }) =>
-        node.frontmatter.published &&
-        node.fields.lang === lang.node.frontmatter.id
-    )
-
-    graphNodes.data.pages.edges
-      .filter(
-        ({ node }) =>
-          node.frontmatter.menu === `main` &&
-          node.fields.lang === lang.node.frontmatter.id
-      )
-      .forEach(({ node }) =>
         feed.addItem({
           title: node.frontmatter.title,
           id: `${homepage}${node.frontmatter.slug}`,
           link: `${homepage}${node.frontmatter.slug}`,
           date: new Date(node.fields.dateTime),
           content: node.excerpt,
-          image: node.frontmatter.cover
-            ? {
-                url: `${homepage}${node.frontmatter.cover.publicURL}`,
-                type: node.frontmatter.cover.internal.mediaType,
-                length: node.frontmatter.cover.size,
-              }
-            : node.fields.layout === `BlogPage`
-              ? newestArticle.node.frontmatter.cover
-                ? {
-                    url: `${homepage}${
-                      newestArticle.node.frontmatter.cover.publicURL
-                    }`,
-                    length: newestArticle.node.frontmatter.cover.size,
-                    type:
-                      newestArticle.node.frontmatter.cover.internal.mediaType,
-                  }
-                : null
-              : null,
           author: [
             {
               name: `GaiAma`,
@@ -372,29 +307,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
             },
           ],
         })
-      )
-
-    //     const sitemap = `
-    // <?xml version="1.0" encoding="UTF-8"?>
-    // <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    //   xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-    //   xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-    //   ${googleFeedItems
-    //     .map(
-    //       item => `
-    //     <url>
-    //       <loc>${item.link}</loc>
-    //       <lastmod>${item.date}</lastmod>
-    //       <changefreq>daily</changefreq>
-    //       <image:image>
-    //         <image:loc>${item.image}</image:loc>
-    //       </image:image>
-    //     </url>
-    //   `
-    //     )
-    //     .join(``)}
-    // </urlset>
-    //     `.trim()
+      })
 
     feeds.dir = join(publicDir, lang.node.frontmatter.id, `blog`)
     feeds.atom = feed.atom1()
@@ -453,8 +366,8 @@ exports.onPostBuild = () => {
   }
 
   // add robots.txt to site root depending on $BRANCH env var
-  console.log(`$BRANCH`, process.env.BRANCH, isMaster)
   const robotsTxt = `User-agent: *\nDisallow:${isMaster ? `` : ` /`}`
+  console.log(`$BRANCH`, process.env.BRANCH, isMaster, robotsTxt)
   writeFileSync(join(publicDir, `robots.txt`), robotsTxt)
 }
 
