@@ -13,7 +13,9 @@ const { redirects } = require(`./redirects.js`)
 //   path: resolve(`..`, `.env`),
 // })
 
-const isMaster = process.env.BRANCH === `master`
+const { BRANCH, GAIAMA_CONTENT_ID, GAIAMA_FULL_CONTENT } = process.env
+const isProduction = GAIAMA_CONTENT_ID
+const isMaster = BRANCH === `master`
 const publicDir = join(__dirname, `public`)
 const feeds = {}
 
@@ -104,6 +106,17 @@ exports.onCreateNode = ({ node, actions }) => {
       theMoment.locale(node.frontmatter.lang).format(`DD MMM Y`)
     )
     // .format(node.frontmatter.lang === `de` ? `DD.MM.Y` : `Y-MM-DD`),
+    // TODO: add "better" table of contents to markdown
+    // addNodeField(
+    //   `headings`,
+    //   node.headings &&
+    //     node.headings.map(x => ({
+    //       title: x.value,
+    //       anchor: speakingUrl(x.value, {
+    //         lang: node.frontmatter.lang,
+    //       }),
+    //     }))
+    // )
   }
 }
 
@@ -180,7 +193,8 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       )
       return suggestion
         ? suggestion.id
-        : console.log(`NO suggestion: `, id, node.frontmatter.slug)
+        : (isProduction || GAIAMA_FULL_CONTENT) &&
+            console.log(`NO suggestion: `, id, node.frontmatter.slug)
     })
 
   Posts.forEach(node =>
@@ -367,7 +381,7 @@ exports.onPostBuild = () => {
 
   // add robots.txt to site root depending on $BRANCH env var
   const robotsTxt = `User-agent: *\nDisallow:${isMaster ? `` : ` /`}`
-  console.log(`$BRANCH`, process.env.BRANCH, isMaster, robotsTxt)
+  console.log(`$BRANCH`, BRANCH, isMaster, robotsTxt)
   writeFileSync(join(publicDir, `robots.txt`), robotsTxt)
 }
 
