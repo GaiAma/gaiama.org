@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import Helmet from 'react-helmet'
 import styled, { css } from 'react-emotion'
 import slugify from 'slugify'
 import { Box, colors, fullPageWidth, maxWidthContent, media } from '@/theme'
@@ -20,6 +21,10 @@ const KeyPrincipleRow = styled.div`
 
 const HomePage = props => (
   <MainLayout {...props}>
+    <Helmet>
+      <title>{props.data.homepage.frontmatter.header.subtitle}</title>
+    </Helmet>
+
     <Box
       css={{
         textAlign: `center`,
