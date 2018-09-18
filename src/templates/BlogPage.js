@@ -91,6 +91,7 @@ const BlogPage = props => {
       )}
 
       <TitledCopy
+        rank="1"
         centered
         title={
           filter

@@ -10,6 +10,7 @@ const DonatePage = props => {
   return (
     <MainLayout {...props}>
       <TitledCopy
+        rank="1"
         centered
         title={page.frontmatter.intro.title}
         paragraphs={page.frontmatter.intro.text}

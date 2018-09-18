@@ -60,6 +60,7 @@ const ContactPage = props => {
           }}
         >
           <TitledCopy
+            rank="1"
             full
             title={page.frontmatter.title}
             // paragraphs={page.frontmatter.form.descr}
