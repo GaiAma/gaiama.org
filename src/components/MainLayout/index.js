@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { injectGlobal } from 'emotion'
 import { ToastContainer } from 'react-toastify'
 // import i18n from 'i18next'
 // import { I18nextProvider, translate } from 'react-i18next'
@@ -20,10 +21,20 @@ import {
 } from '@/theme'
 
 import './fragments'
-import './global.css'
 import 'typeface-amatic-sc'
 import 'typeface-quicksand'
 import 'react-toastify/dist/ReactToastify.css'
+
+// TODO: add PR to gatsby-remark-autolink-headers to disable floating
+// https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/gatsby-ssr.js#L10
+injectGlobal(`
+  .anchor {
+    float: none;
+  }
+  #nprogress .bar {
+    height: 5px !important;
+  }
+`)
 
 // const isDev = process.env.NODE_ENV === `development`
 
@@ -354,52 +365,3 @@ class MainLayout extends Component {
 
 // export default translate(`translations`, { i18n })(MainLayout)
 export default MainLayout
-
-// const globalStyles = {
-//   // fontFamily: fontFamilies.main,
-//   // fontWeight: 100,
-
-//   '& a': {
-//     color: colors.link,
-//     textDecoration: `none`,
-
-//     '&:hover': {
-//       color: colors.linkHover,
-//       textDecoration: `none`,
-//     },
-//   },
-
-//   // '& h1, & h2, & h3, & h4, & h5, & h6': {
-//   //   fontFamily: fontFamilies.accent,
-//   //   fontWeight: 400,
-//   //   letterSpacing: `.09rem`,
-//   //   lineHeight: 1.1,
-//   // },
-
-//   // '& h1, & h2': {
-//   //   fontSize: `1.5rem`,
-
-//   //   // [breakPoints.minMd]: {
-//   //   //   fontSize: `2.5rem`,
-//   //   // },
-//   // },
-
-//   // 'main': {
-//   //   minHeight: `50vh`,
-//   //   margin: `1rem`,
-//   // },
-
-//   // 'figure': {
-//   //   boxShadow: `2px 2px 9px 1px rgba(0, 0, 0, .5)`
-//   // },
-
-//   // 'img': {
-//   //   maxWidth: `100%`,
-//   //   height: `auto`,
-//   // },
-
-//   // 'floatLeft': {
-//   //   float: `left`,
-//   //   margin: `0 1rem 1rem 0`,
-//   // },
-// }
