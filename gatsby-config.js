@@ -1,7 +1,11 @@
 const path = require(`path`)
 const { homepage, version } = require(`./package.json`)
 
-const isProduction = process.env.GAIAMA_CONTENT_ID
+const { BRANCH, GAIAMA_CONTENT_ID, GAIAMA_FULL_CONTENT } = process.env
+const isProduction = GAIAMA_CONTENT_ID
+const isMaster = BRANCH === `master`
+// testing if GAIAMA_CONTENT_HASH will be available
+console.log(`GAIAMA_CONTENT_HASH:`, process.env.GAIAMA_CONTENT_HASH)
 
 module.exports = {
   siteMetadata: {
@@ -42,7 +46,10 @@ module.exports = {
           ? path.join(__dirname, `content`)
           : path.join(__dirname, `..`, `content`, `content`),
         name: `content`,
-        ignore: isProduction ? [`**/.*`] : [`**/.*`, `**/happygaia/*`],
+        ignore:
+          isProduction || GAIAMA_FULL_CONTENT
+            ? [`**/.*`]
+            : [`**/.*`, `**/happygaia/*`],
       },
     },
     // {
