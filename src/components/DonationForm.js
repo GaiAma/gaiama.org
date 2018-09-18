@@ -38,18 +38,18 @@ class DonationForm extends Component {
       const stripe = window.Stripe(process.env.STRIPE_PUBLIC_KEY)
 
       const paymentRequest = stripe.paymentRequest({
-        country: 'US',
-        currency: 'usd',
+        country: `US`,
+        currency: `usd`,
         total: {
-          label: 'Demo total',
+          label: `Demo total`,
           amount: 1000,
         },
       })
 
-      paymentRequest.on('token', ({ complete, token, ...data }) => {
-        console.log('Received Stripe token: ', token)
-        console.log('Received customer information: ', data)
-        complete('success')
+      paymentRequest.on(`token`, ({ complete, token, ...data }) => {
+        console.log(`Received Stripe token: `, token)
+        console.log(`Received customer information: `, data)
+        complete(`success`)
       })
 
       paymentRequest.canMakePayment().then(result => {
