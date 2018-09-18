@@ -50,11 +50,12 @@ const SupportPage = props => {
           <Img
             fluid={props.data.page.frontmatter.assets[x].image.fluid}
             key={x}
-            outerWrapperClassName={css({
+            css={{
               flex: `none`,
               marginBottom: `1rem`,
-            })}
-            css={{ width: `112px` }}
+              width: `112px`,
+              '& img': { objectFit: `contain !important` },
+            }}
           />
         ))}
       </div>

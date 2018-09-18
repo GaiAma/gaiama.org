@@ -411,13 +411,13 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                   <Img
                     key={key}
                     fluid={x.images[key].image.fluid}
-                    outerWrapperClassName={css({
+                    css={{
                       width: `120px`,
                       [media.greaterThan(`xsmall`)]: {
                         width: `153px`,
                       },
                       margin: `.2rem`,
-                    })}
+                    }}
                   />
                 ))}
               </div>
@@ -477,13 +477,13 @@ const KeyPrinciples = ({ title, content, ...props }) => (
                   <Img
                     key={key}
                     fluid={x.images[key].image.fluid}
-                    outerWrapperClassName={css({
+                    css={{
                       width: `120px`,
                       [media.greaterThan(`xsmall`)]: {
                         width: `153px`,
                       },
                       margin: `.2rem`,
-                    })}
+                    }}
                   />
                 ))}
               </div>
