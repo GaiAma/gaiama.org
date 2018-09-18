@@ -26,6 +26,7 @@ const SupportPage = props => {
   return (
     <MainLayout {...props}>
       <TitledCopy
+        rank="1"
         centered
         title={frontmatter.intro.title_}
         css={{
