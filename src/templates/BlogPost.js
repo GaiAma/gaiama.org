@@ -57,6 +57,9 @@ const BlogPost = props => {
           dateStrLocalized={post.fields.dateStrLocalized}
           podcast={post.frontmatter.podcast}
           podcastPlayerMeta={PodcastPlayerMeta}
+          shortUrl={
+            props.data.site.siteMetadata.siteUrl + post.fields.slug_short
+          }
         />
 
         <PostBody>{renderAst(post.htmlAst)}</PostBody>
@@ -208,14 +211,12 @@ export const query = graphql`
       }
     }
 
-    page: markdownRemark(
-      fileAbsolutePath: { regex: "/(happygaia|blog)/" }
-      frontmatter: { slug: { eq: $slug } }
-    ) {
+    page: markdownRemark(fields: { slug: { eq: $slug } }) {
       fields {
         dateTime
         dateStr
         dateStrLocalized
+        slug_short
         url
         translations {
           fields {
@@ -327,6 +328,7 @@ const PostHeader = ({
   dateStrLocalized,
   podcast,
   podcastPlayerMeta,
+  shortUrl,
 }) => (
   <div
     css={{
@@ -367,20 +369,22 @@ const PostHeader = ({
         },
       }}
     >
-      <time
-        itemProp="datePublished"
-        content={dateTime}
-        dateTime={dateTime}
-        css={{
-          position: `relative`,
-          display: `inline-block`,
-          background: `#fff`,
-          color: `#c3c3c3`,
-          padding: `0 .5rem`,
-        }}
-      >
-        {dateStrLocalized}
-      </time>
+      <Link to={shortUrl} title={shortUrl} ext>
+        <time
+          itemProp="datePublished"
+          content={dateTime}
+          dateTime={dateTime}
+          css={{
+            position: `relative`,
+            display: `inline-block`,
+            background: `#fff`,
+            color: `#c3c3c3`,
+            padding: `0 .5rem`,
+          }}
+        >
+          {dateStrLocalized}
+        </time>
+      </Link>
     </div>
 
     <PodcastPlayer podcast={podcast} meta={podcastPlayerMeta.frontmatter} />
@@ -395,6 +399,7 @@ PostHeader.propTypes = {
   dateStrLocalized: PropTypes.string,
   podcast: PropTypes.object,
   podcastPlayerMeta: PropTypes.object,
+  shortUrl: PropTypes.string,
 }
 
 const PostBody = ({ children }) => (
