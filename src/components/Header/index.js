@@ -23,22 +23,7 @@ class Header extends Component {
   render() {
     const { homepage, meta, menu, logo, bgImage } = this.props
     return (
-      <header
-        css={{
-          ...style.header(),
-          '& > .gatsby-image-outer-wrapper': {
-            position: `absolute !important`,
-            top: 0,
-            right: 0,
-            bottom: 0,
-            left: 0,
-            overflow: `hidden`,
-            '& > .gatsby-image-wrapper': {
-              position: `static !important`,
-            },
-          },
-        }}
-      >
+      <header css={style.header()}>
         <Img fluid={bgImage.fluid} />
         <div css={style.headerTop}>
           <div css={style.topInner}>
@@ -97,11 +82,13 @@ class Header extends Component {
           }}
         >
           {/* <Img fluid={logo.fluid} alt="GaiAma Logo" css={style.headerLogo} /> */}
-          <img
-            src={logo.fluid.src}
-            alt="GaiAma Logo"
-            css={{ ...style.headerLogo, margin: `0 auto` }}
-          />
+          <Link to={homepage.fields.url}>
+            <img
+              src={logo.fluid.src}
+              alt="GaiAma Logo"
+              css={{ ...style.headerLogo, margin: `0 auto` }}
+            />
+          </Link>
         </div>
 
         <Headroom
