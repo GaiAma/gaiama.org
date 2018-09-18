@@ -356,6 +356,7 @@ class MainLayout extends Component {
         />
 
         <InstagramGradient />
+        <ToastContainer position="bottom-right" />
       </div>
       // </I18nextProvider>
     )
