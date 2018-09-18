@@ -12,17 +12,16 @@ const scrollToMenu = () => {
  * by https://github.com/gatsbyjs/gatsby/issues/7454#issuecomment-415786239
  * as reach/router does not (yet) provide the used action for onRouteUpdate
  */
-exports.shouldUpdateScroll = () => {
+export const shouldUpdateScroll = () => {
   if (window.__navigatingToLink === true) {
     return [0, 0]
   }
   return true
 }
 
-exports.onRouteUpdate = () => {
+export const onRouteUpdate = () => {
   if (window.__navigatingToLink === true) {
     window.setTimeout(scrollToMenu, 10)
   }
   window.__navigatingToLink = false
 }
-
