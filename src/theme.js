@@ -190,11 +190,14 @@ export const fullPageWidth = {
 }
 
 const fallbackFont = [
+  `system-ui`,
   `-apple-system`,
   `BlinkMacSystemFont`,
   `Segoe UI`,
+  `Roboto`,
+  // `Helvetica Neue`,
   `Helvetica`,
-  `Arial`,
+  // `Arial`,
   `sans-serif`,
   `Apple Color Emoji`,
   `Segoe UI Emoji`,
@@ -202,8 +205,10 @@ const fallbackFont = [
 ]
 
 export const fontFamilies = {
-  main: [`Quicksand`].concat(fallbackFont).join(`,`),
-  accent: [`Amatic SC`].concat(fallbackFont).join(`,`),
+  // main: [`Quicksand`].concat(fallbackFont).join(`,`),
+  main: fallbackFont.join(`,`),
+  // accent: [`Amatic SC`].concat(fallbackFont).join(`,`),
+  accent: fallbackFont.join(`,`),
 }
 
 // export const fonts = {

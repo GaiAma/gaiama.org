@@ -21,9 +21,9 @@ import {
 } from '@/theme'
 
 import './fragments'
-import 'typeface-amatic-sc'
-import 'typeface-quicksand'
 import 'react-toastify/dist/ReactToastify.css'
+// import 'typeface-amatic-sc'
+// import 'typeface-quicksand'
 
 // TODO: add PR to gatsby-remark-autolink-headers to disable floating
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/gatsby-ssr.js#L10
