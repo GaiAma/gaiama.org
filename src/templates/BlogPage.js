@@ -61,7 +61,6 @@ const BlogPage = props => {
             '& p': {
               fontSize: `2rem`,
               lineHeight: 1.3,
-              fontFamily: `Amatic SC`,
               margin: 0,
               maxWidth: `650px`,
               [media.greaterThan(`medium`)]: {
