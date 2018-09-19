@@ -5,3 +5,4 @@ ID = "gaiama"
   base    = "/"
   publish = "public/"
   command = "./scripts/build.sh"
+  environment = { YARN_VERSION = "1.10.0" }
