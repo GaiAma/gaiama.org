@@ -4334,7 +4334,7 @@ dot-prop@^4.1.0, dot-prop@^4.1.1:
 
 dotenv@^4.0.0:
   version "4.0.0"
-  resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
+  resolved "http://registry.npmjs.org/dotenv/-/dotenv-4.0.0.tgz#864ef1379aced55ce6f95debecdce179f7a0cd1d"
 
 dotenv@^6.0.0:
   version "6.0.0"
@@ -4645,8 +4645,8 @@ eslint-import-resolver-node@^0.3.1:
     resolve "^1.5.0"
 
 eslint-loader@^2.0.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/eslint-loader/-/eslint-loader-2.1.0.tgz#61334c548aeb0b8e20ec3a552fb7a88c47261c6a"
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/eslint-loader/-/eslint-loader-2.1.1.tgz#2a9251523652430bfdd643efdb0afc1a2a89546a"
   dependencies:
     loader-fs-cache "^1.0.0"
     loader-utils "^1.0.2"
@@ -5660,8 +5660,8 @@ gatsby-cli@^2.0.0-rc.1, gatsby-cli@^2.4.1:
     yurnalist "^0.2.1"
 
 gatsby-image@^2.0.0-rc.1:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.0.5.tgz#81323df1e2183cf692c9d3c4b909b0551193e579"
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/gatsby-image/-/gatsby-image-2.0.6.tgz#b9ffbb9dc082cdca556c21a1d7cac54d825c52e5"
   dependencies:
     "@babel/runtime" "^7.0.0"
     prop-types "^15.6.1"
@@ -5833,8 +5833,8 @@ gatsby-react-router-scroll@^2.0.0:
     warning "^3.0.0"
 
 gatsby-remark-autolink-headers@^2.0.0-rc.1:
-  version "2.0.5"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-autolink-headers/-/gatsby-remark-autolink-headers-2.0.5.tgz#fd7413a125ce9f837436df57961a57da1e9a7199"
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-autolink-headers/-/gatsby-remark-autolink-headers-2.0.6.tgz#b0e5cff8f5c4e48cf233d2bd93153808c429cdf9"
   dependencies:
     "@babel/runtime" "^7.0.0"
     github-slugger "^1.1.1"
@@ -5982,8 +5982,8 @@ gatsby-transformer-yaml@^2.1.1-rc.1:
     unist-util-select "^1.5.0"
 
 gatsby@^2.0.0-rc.7:
-  version "2.0.4"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.4.tgz#b6735e4f8e799e537b27998ce5738448734b9472"
+  version "2.0.6"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.6.tgz#39523eb63837ce3cb24b7d7dbe97ad08abb1f308"
   dependencies:
     "@babel/code-frame" "^7.0.0"
     "@babel/core" "^7.0.0"
@@ -7133,7 +7133,7 @@ imagemin@^6.0.0:
 
 immutable@~3.7.6:
   version "3.7.6"
-  resolved "https://registry.yarnpkg.com/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
+  resolved "http://registry.npmjs.org/immutable/-/immutable-3.7.6.tgz#13b4d3cb12befa15482a26fe1b2ebae640071e4b"
 
 import-cwd@^2.0.0:
   version "2.1.0"
