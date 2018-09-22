@@ -39,18 +39,6 @@ module.exports = {
         name: `content`,
       },
     },
-    // {
-    //   resolve: 'gatsby-plugin-purify-css',
-    //   options: {
-    //     /* Defaults */
-    //     styleId: 'gatsby-inlined-css',
-    //     purifyOptions: {
-    //       info: true,
-    //       minify: true,
-    //       rejected: true,
-    //     },
-    //   },
-    // },
     {
       resolve: `gatsby-transformer-archieml`,
     },
