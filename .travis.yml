@@ -1,3 +1,6 @@
+env:
+  - GAIAMA_CONTENT_URL="https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$TRAVIS_BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
+
 language: node_js
 cache: yarn
 
@@ -10,7 +13,9 @@ before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
 
 script:
-  - ./scripts/build.sh
+  - wget -O content.tgz $GAIAMA_CONTENT_URL
+  - tar -xzf content.tgz -C content
+  - yarn build
   #- yarn test
 
 env:
