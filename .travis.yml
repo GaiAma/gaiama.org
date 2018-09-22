@@ -3,7 +3,6 @@ cache: yarn
 
 env:
   - CI=true
-  - GAIAMA_CONTENT_URL="https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$TRAVIS_BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
 
 #branches:
 #  only:
@@ -12,7 +11,7 @@ env:
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
-  - wget -O content.tgz $GAIAMA_CONTENT_URL
+  - wget -O content.tgz "https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$TRAVIS_BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
   - tar -xzf content.tgz -C content
 
 script:
