@@ -1,4 +1,4 @@
-GAIAMA_CONTENT_URL="https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
+GAIAMA_CONTENT_URL="https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=${BRANCH:-`echo $TRAVIS_BRANCH`}&private_token=$GAIAMA_CONTENT_TOKEN"
 GAIAMA_CONTENT_HASH=$(curl -sI "$GAIAMA_CONTENT_URL" | grep -o -E 'filename="[^"]+' | sed -e 's/filename="//' | sed -e 's/.tar.gz//')
 GAIAMA_CACHE_BASE="$NETLIFY_BUILD_BASE/cache/gaiama"
 # Directory named after the latest content repo hash
