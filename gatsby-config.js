@@ -175,8 +175,11 @@ module.exports = {
     },
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-lodash`,
-    `gatsby-plugin-offline`,
+    // `gatsby-plugin-lodash`,
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {},
+    },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
     {
