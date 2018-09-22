@@ -6,8 +6,11 @@ cache: yarn
 #    - develop
 #    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+
 script:
-  - yarn build
+  - ./scripts/build.sh
   #- yarn test
 
 env:
