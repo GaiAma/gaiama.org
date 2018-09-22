@@ -1,31 +1,30 @@
 language: node_js
-node_js: lts/*
 cache: yarn
 
-branches:
- only:
- - develop
- - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+#branches:
+#  only:
+#    - develop
+#    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
 script:
-  - yarn size
-  - yarn test
+  - yarn build
+  #- yarn test
 
 env:
   - CI=true
 
-before_deploy:
-  - yarn build
+#before_deploy:
+#  - yarn build
 
-deploy:
-  - provider: script
-    script: netlify deploy -s master -t $NETLIFY_ACCESS_TOKEN -p ./public
-    skip_cleanup: true
-    on:
-      branch: master
-      tags: true
-  - provider: script
-    script: netlify deploy -s dev -t $NETLIFY_ACCESS_TOKEN -p ./public
-    skip_cleanup: true
-    on:
-      branch: dev
+#deploy:
+#  - provider: script
+#    script: netlify deploy -s master -t $NETLIFY_ACCESS_TOKEN -p ./public
+#    skip_cleanup: true
+#    on:
+#      branch: master
+#      tags: true
+#  - provider: script
+#    script: netlify deploy -s dev -t $NETLIFY_ACCESS_TOKEN -p ./public
+#    skip_cleanup: true
+#    on:
+#      branch: dev
