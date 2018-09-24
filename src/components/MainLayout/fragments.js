@@ -89,6 +89,9 @@ export const Fragments = graphql`
     ) {
       edges {
         node {
+          internal {
+            type
+          }
           fields {
             url
           }
