@@ -151,7 +151,7 @@ const BlogPost = props => {
             x =>
               post.fields[x] && (
                 <div
-                  key={post.fields[x].frontmatter.slug}
+                  key={post.fields[x].fields.url}
                   css={{
                     color: `#c3c3c3`,
                     padding: `.5rem`,
@@ -159,7 +159,7 @@ const BlogPost = props => {
                   }}
                 >
                   <Link
-                    to={post.fields[x].frontmatter.slug}
+                    to={post.fields[x].fields.url}
                     title={post.fields[x].frontmatter.title}
                   >
                     {BlogPost.frontmatter.pager[x]}
@@ -231,19 +231,25 @@ export const query = graphql`
         newer {
           frontmatter {
             title
-            slug
+          }
+          fields {
+            url
           }
         }
         all {
           frontmatter {
             title
-            slug
+          }
+          fields {
+            url
           }
         }
         older {
           frontmatter {
             title
-            slug
+          }
+          fields {
+            url
           }
         }
         suggested {
