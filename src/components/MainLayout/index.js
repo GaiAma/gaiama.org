@@ -65,10 +65,8 @@ const generateMainMenu = items =>
 const generateMetaMenu = ({ translations, getLang, menuItems }) =>
   translations
     .map(x => {
-      if (!x) {
-        console.log(`THE_X`)
-        console.log(x)
-      }
+      console.log(`THE_X`)
+      console.log(x)
       return x || { frontmatter: {}, fields: {} }
     })
     .map(x => ({
