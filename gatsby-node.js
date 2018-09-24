@@ -166,7 +166,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
           value: slug_short,
         })
         redirects.push(
-          `${slug_short} ${node.frontmatter.slug} ${
+          `${slug_short} ${url} ${
             node.frontmatter.lang === `de` ? `302 Language=de` : `301`
           }`
         )
@@ -176,7 +176,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       const idsToRedirect = [shortId, shortlink, oldId, oldSlug]
       idsToRedirect.map(id => {
         if (!id) return false
-        return redirects.push(`${`/${lang}`}/${id} ${slug} 301`)
+        return redirects.push(`${`/${lang}`}/${id} ${url} 301`)
       })
     })
   )
