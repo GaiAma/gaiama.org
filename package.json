@@ -20,8 +20,8 @@
     "url": "https://github.com/gaiama/gaiama.org/issues"
   },
   "scripts": {
-    "dev": "gatsby develop",
-    "dev:full": "GAIAMA_FULL_CONTENT=1 gatsby develop",
+    "dev": "gatsby develop -So",
+    "dev:full": "GAIAMA_FULL_CONTENT=1 yarn dev",
     "lint": "eslint --ext .js,.jsx .",
     "fix": "eslint --fix --ext .js,.jsx .",
     "test": "jest",
