@@ -79,9 +79,6 @@ const getUrl = node =>
   ]
     .filter(x => x !== null)
     .join(`/`)
-// `/${node.frontmatter.lang}${isPost(node) && `/blog`}/${speakingUrl(node.frontmatter.title, {
-//         node.frontmatter.lang,
-//       })}`
 
 exports.onCreateNode = ({ node, actions }) => {
   const { createNodeField } = actions
@@ -95,7 +92,6 @@ exports.onCreateNode = ({ node, actions }) => {
       })
 
     addNodeField(`type`, isPost(node) ? `post` : `page`)
-    // strip language from slug field
     addNodeField(`slug`, getSlug(node))
     addNodeField(`url`, getUrl(node))
     addNodeField(`lang`, node.frontmatter.lang)
@@ -124,10 +120,34 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
   const { createPage, createNodeField } = actions
 
   // setup mappings
-  const PagesAndPosts = getNodes().filter(isPageOrPost)
+  const allNodes = getNodes()
+  const Languages = allNodes.filter(x => x.internal.type === `LanguagesAml`)
+  const Feeds = allNodes.filter(x => x.internal.type === `FeedAml`)
+  const PagesAndPosts = allNodes.filter(isPageOrPost)
   const Pages = PagesAndPosts.filter(isPage)
   const Posts = PagesAndPosts.filter(isPost)
-  const BlogPages = Pages.filter(node => node.frontmatter.layout === `BlogPage`)
+
+  // suggested content mapping
+  const collectSuggestedNodes = node =>
+    node.frontmatter.suggested.map(_id => {
+      const id = `${_id}`
+      const propToMatch = id.length === 4 ? `oldId` : `id`
+      const suggestion = Posts.find(
+        x =>
+          x.frontmatter[propToMatch] === id &&
+          x.frontmatter.lang === node.frontmatter.lang
+      )
+      return suggestion
+        ? suggestion.id
+        : (isProduction || GAIAMA_FULL_CONTENT) &&
+            console.log(`NO suggestion: `, id, node.frontmatter.slug)
+    })
+
+  const getBlogPage = lang =>
+    Pages.find(
+      node =>
+        node.frontmatter.layout === `BlogPage` && node.fields.lang === lang
+    )
 
   prepareSortedTuple(PagesAndPosts).forEach((group, index) =>
     sortEnglishLast(group).forEach((node, _, array) => {
@@ -178,102 +198,39 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
         if (!id) return false
         return redirects.push(`${`/${lang}`}/${id} ${url} 301`)
       })
-    })
-  )
 
-  // suggested content mapping
-  const collectSuggestedNodes = node =>
-    node.frontmatter.suggested.map(_id => {
-      const id = `${_id}`
-      const propToMatch = id.length === 4 ? `oldId` : `id`
-      const suggestion = Posts.find(
-        x =>
-          x.frontmatter[propToMatch] === id &&
-          x.frontmatter.lang === node.frontmatter.lang
-      )
-      return suggestion
-        ? suggestion.id
-        : (isProduction || GAIAMA_FULL_CONTENT) &&
-            console.log(`NO suggestion: `, id, node.frontmatter.slug)
-    })
-
-  Posts.forEach(node =>
-    createNodeField({
-      node,
-      name: `suggested`,
-      value:
-        node.frontmatter.suggested && node.frontmatter.suggested.length
-          ? collectSuggestedNodes(node).slice(0, 3)
-          : shuffle(
-              Posts.filter(node =>
-                moment(node.fields.dateTime).isAfter(1427472056000)
+      createNodeField({
+        node,
+        name: `suggested`,
+        value:
+          node.frontmatter.suggested && node.frontmatter.suggested.length
+            ? collectSuggestedNodes(node).slice(0, 3)
+            : shuffle(
+                Posts.filter(node =>
+                  moment(node.fields.dateTime).isAfter(1427472056000)
+                )
               )
-            )
-              .slice(0, 3)
-              .map(node => node.frontmatter.id),
+                .slice(0, 3)
+                .map(node => node.frontmatter.id),
+      })
     })
   )
-
-  const getBlogPage = lang => BlogPages.find(node => node.fields.lang === lang)
-
-  // get pages and posts
-  const graphNodes = await graphql(`
-    {
-      languages: allLanguagesAml {
-        edges {
-          node {
-            frontmatter {
-              id
-              title
-            }
-          }
-        }
-      }
-
-      feed: allFeedAml {
-        edges {
-          node {
-            frontmatter {
-              lang
-              title
-              description
-              id
-              link
-              image
-              favicon
-              copyright
-              generator
-            }
-          }
-        }
-      }
-    }
-  `)
-
-  if (graphNodes.errors) {
-    throw Promise.reject(graphNodes.errors)
-  }
-
-  const languages = graphNodes.data.languages.edges
-  const feedComponents = graphNodes.data.feed.edges
 
   // introduce blog posts to their siblings
-  languages.forEach(lang => {
-    const langFeed = feedComponents.find(
-      x => x.node.frontmatter.lang === lang.node.frontmatter.id
-    )
+  Languages.forEach(lang => {
+    const langFeed = Feeds.find(x => x.frontmatter.lang === lang.frontmatter.id)
     const feed = new Feed({
-      title: langFeed.node.frontmatter.title,
-      description: langFeed.node.frontmatter.description,
-      id: langFeed.node.frontmatter.id,
-      link: langFeed.node.frontmatter.link,
-      image: langFeed.node.frontmatter.image,
-      favicon: langFeed.node.frontmatter.favicon,
-      copyright: langFeed.node.frontmatter.copyright,
-      generator: langFeed.node.frontmatter.generator,
+      title: langFeed.frontmatter.title,
+      description: langFeed.frontmatter.description,
+      id: langFeed.frontmatter.id,
+      link: langFeed.frontmatter.link,
+      image: langFeed.frontmatter.image,
+      favicon: langFeed.frontmatter.favicon,
+      copyright: langFeed.frontmatter.copyright,
+      generator: langFeed.frontmatter.generator,
       feedLinks: {
-        json: `${homepage}/${lang.node.frontmatter.id}/blog/json`,
-        atom: `${homepage}/${lang.node.frontmatter.id}/blog/atom`,
+        json: `${homepage}/${lang.frontmatter.id}/blog/json`,
+        atom: `${homepage}/${lang.frontmatter.id}/blog/atom`,
       },
       author: {
         name: `GaiAma`,
@@ -281,7 +238,9 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       },
     })
 
-    Posts.filter(node => node.fields.lang === lang.node.frontmatter.id)
+    // TODO: we might be able to refactor, to stop redoing everything over and over..
+    // like sorting everything upfront
+    Posts.filter(node => node.fields.lang === lang.frontmatter.id)
       .sort((_a, _b) => {
         const a = moment(_a.fields.dateTime)
         const b = moment(_b.fields.dateTime)
@@ -323,7 +282,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
         })
       })
 
-    feeds.dir = join(publicDir, lang.node.frontmatter.id, `blog`)
+    feeds.dir = join(publicDir, lang.frontmatter.id, `blog`)
     feeds.atom = feed.atom1()
     feeds.rss = feed.rss2()
     feeds.json = feed.json1()
