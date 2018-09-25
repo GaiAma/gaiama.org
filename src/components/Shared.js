@@ -213,6 +213,56 @@ class BankDetails extends Component {
   }
 }
 
+const SupportWidgetContainer = styled.div({
+  position: `relative`,
+  zIndex: 1,
+  ...fullPageWidth,
+  '& img': {
+    margin: `0`,
+  },
+})
+
+const SupportWidgetArtwork = styled.div({
+  display: `flex`,
+  alignItems: `flex-end`,
+  marginBottom: `.5rem`,
+  '& .gatsby-image-outer-wrapper': {
+    zIndex: 1,
+  },
+})
+
+const SupportWidgetInner = styled.div({
+  margin: `2.5rem auto`,
+  display: `flex`,
+  justifyContent: `space-around`,
+  flexWrap: `wrap`,
+  width: `98%`,
+  maxWidth: `1280px`,
+  [media.lessThan(`xsmall`)]: {
+    flexDirection: `column`,
+  },
+  [media.greaterThan(`medium`)]: {
+    width: `50%`,
+  },
+})
+
+const SupportWidgetFormWrapper = styled.div({
+  textAlign: `center`,
+  marginBottom: `1rem`,
+  [media.greaterThan(`xsmall`)]: {
+    marginBottom: 0,
+  },
+  '&:hover > form': {
+    transform: `scale(1.02)`,
+  },
+  '& > form': {
+    marginBottom: 0,
+    '& [type="image"]': {
+      width: `150px`,
+    },
+  },
+})
+
 const SupportWidget = ({
   title,
   description,
@@ -230,29 +280,9 @@ const SupportWidget = ({
   bankDetails,
   ...props
 }) => (
-  <div
-    {...props}
-    css={{
-      position: `relative`,
-      zIndex: 1,
-      ...fullPageWidth,
-      '& img': {
-        margin: `0`,
-      },
-    }}
-  >
+  <SupportWidgetContainer {...props}>
     {artwork && (
-      <div
-        css={{
-          display: `flex`,
-          alignItems: `flex-end`,
-          marginBottom: `.5rem`,
-          '& .gatsby-image-outer-wrapper': {
-            zIndex: 1,
-          },
-          ...artworkWrapperStyles,
-        }}
-      >
+      <SupportWidgetArtwork css={artworkWrapperStyles}>
         <Img
           fixed={artwork.image.fixed}
           fluid={artwork.image.fluid}
@@ -263,7 +293,7 @@ const SupportWidget = ({
             ...artworkStyles,
           }}
         />
-      </div>
+      </SupportWidgetArtwork>
     )}
 
     <Box
@@ -300,40 +330,8 @@ const SupportWidget = ({
         </p>
       )}
 
-      <div
-        css={{
-          margin: `2.5rem auto`,
-          display: `flex`,
-          justifyContent: `space-around`,
-          flexWrap: `wrap`,
-          width: `98%`,
-          maxWidth: `1280px`,
-          [media.lessThan(`xsmall`)]: {
-            flexDirection: `column`,
-          },
-          [media.greaterThan(`medium`)]: {
-            width: `50%`,
-          },
-        }}
-      >
-        <div
-          css={{
-            textAlign: `center`,
-            marginBottom: `1rem`,
-            [media.greaterThan(`xsmall`)]: {
-              marginBottom: 0,
-            },
-            '&:hover > form': {
-              transform: `scale(1.02)`,
-            },
-            '& > form': {
-              marginBottom: 0,
-              '& [type="image"]': {
-                width: `150px`,
-              },
-            },
-          }}
-        >
+      <SupportWidgetInner>
+        <SupportWidgetFormWrapper>
           {lang === `en` ? (
             <form
               action="https://www.paypal.com/cgi-bin/webscr"
@@ -389,7 +387,7 @@ const SupportWidget = ({
               />
             </form>
           )}
-        </div>
+        </SupportWidgetFormWrapper>
 
         <BankDetails
           bankButton={bankButton}
@@ -430,10 +428,10 @@ const SupportWidget = ({
             </Link>
           </Box>
         )} */}
-      </div>
+      </SupportWidgetInner>
     </Box>
     {/* <DonationForm /> */}
-  </div>
+  </SupportWidgetContainer>
 )
 SupportWidget.propTypes = {
   title: PropTypes.string,
