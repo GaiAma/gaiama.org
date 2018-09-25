@@ -1,7 +1,7 @@
 /* global window */
 import React from 'react'
 import PropTypes from 'prop-types'
-import * as QS from '@/utils/query-string'
+import * as QS from '@gaiama/query-string'
 import { Link as GatsbyLink } from 'gatsby'
 
 /**

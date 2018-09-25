@@ -8,7 +8,7 @@ import { ToastContainer } from 'react-toastify'
 import Header from '@/components/Header'
 import ReferrerMessages from '@/components/ReferrerMessages'
 import Footer from '@/components/Footer'
-import * as QS from '@/utils/query-string'
+import * as QS from '@gaiama/query-string'
 import '@/utils/fontawesome'
 import {
   colors,
