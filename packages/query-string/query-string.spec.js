@@ -1,4 +1,5 @@
-import { parse, stringify } from './query-string'
+import { parse } from './parse'
+import { stringify } from './stringify'
 
 describe(`url params suite`, function() {
   test(`parse url query string correctly`, () => {

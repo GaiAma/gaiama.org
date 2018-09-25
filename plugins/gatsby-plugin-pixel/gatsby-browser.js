@@ -1,5 +1,5 @@
 const cuid = require(`cuid`)
-const Qs = require(`@/utils/query-string`)
+const { parse, stringify } = require(`@gaiama/query-string`)
 
 // store views so we won't count recurring pages
 const views = {}
@@ -18,7 +18,7 @@ exports.onRouteUpdate = (
   { endpoint, version }
 ) => {
   const isRecurring = !!views[pathname]
-  const { utm_source, utm_campaign, utm_content } = Qs.parse(search)
+  const { utm_source, utm_campaign, utm_content } = parse(search)
 
   views[pathname] = isRecurring ? views[pathname] + 1 : 1
 
@@ -34,7 +34,7 @@ exports.onRouteUpdate = (
       if (utm_content) query.cc = utm_content // campaign content
       if (version) query.av = version // application version
 
-      pixel.src = Qs.stringify(query, endpoint)
+      pixel.src = stringify(query, endpoint)
     }, 1000)
   }
 }
