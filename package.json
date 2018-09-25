@@ -1,5 +1,6 @@
 {
   "name": "gaiama.org",
+  "private": true,
   "description": "GaiAma.org website",
   "version": "2.0.0-alpha.1",
   "author": "Can Rau <cansrau@gmail.com>",
@@ -9,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/gaiama/gaiama.org.git"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "keywords": [
     "gatsby"
   ],
