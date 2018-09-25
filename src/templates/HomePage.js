@@ -10,12 +10,179 @@ import MainLayout from '@/components/MainLayout'
 import { InstagramFeed, SupportWidget } from '@/components/Shared'
 import TitledCopy from '@/components/TitledCopy'
 
+const IntroWrapper = styled(Box)`
+  text-align: center;
+`
+
+const PageTitle = styled.h1`
+  margin-top: 0;
+  font-size: 2rem;
+  ${media.greaterThan(`small`)} {
+    font-size: 2.7rem;
+  }
+`
+
+const IntroCopy = styled.p`
+  margin: 0;
+  ${media.lessThan(`small`)} {
+    font-size: 0.9rem;
+  }
+`
+
+const IntroImagesOuter = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0 3rem;
+  ${media.greaterThan(`small`)} {
+    margin: 2rem 0 4rem;
+  }
+`
+const IntroImages = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  & > div {
+    box-shadow: 1px 1px 2px 1px #999;
+  }
+  & > div:nth-child(2) {
+    margin: 0 1rem;
+  }
+  & .gatsby-image-wrapper {
+    width: 200px;
+    width: 30vw;
+  }
+  ${media.greaterThan(`small`)} {
+    & .gatsby-image-wrapper {
+      width: 280px;
+      transition: width 0.3s ease-in-out;
+    }
+    & > .gatsby-image-wrapper:not(:nth-child(2)) {
+      width: 200px;
+    }
+    &:hover .gatsby-image-wrapper {
+      width: 200px;
+    }
+    & > .gatsby-image-wrapper:hover {
+      width: 280px;
+    }
+  }
+`
+
+const StyledSupportWidget = styled(SupportWidget)`
+  margin: 3rem 0;
+`
+
+const KeyPrinciplesContainer = styled.div`
+  width: 90%;
+  margin: 2rem auto 0;
+  & > div + div {
+    margin-top: 3rem;
+  }
+`
+
 const KeyPrincipleRow = styled.div`
+  ${fullPageWidth};
+  background-color: ${({ index }) => index % 2 === 0 && colors.lightBlue};
+  padding: ${({ index }) => index % 2 === 0 && `2rem 0`};
+`
+
+const KeyPrincipleHeader = styled.div`
+  text-align: center;
+`
+
+const KeyPrincipleTitle = styled.h2`
+  letter-spacing: 0.3rem;
+  display: inline-block;
+  margin-bottom: 2.8rem;
+  border-bottom: 1px solid #000;
+  padding: 0 1.5rem 0.6rem 0;
+  line-height: 0.8;
+  position: relative;
+  font-size: 2.2rem;
+  ${media.greaterThan(`small`)} {
+    font-size: 2.5rem;
+  }
+  &:after {
+    content: '>>';
+    position: absolute;
+    right: -0.2rem;
+    bottom: -0.6rem;
+    font-size: 1.6rem;
+    letter-spacing: normal;
+  }
+`
+
+const KeyPrincipleRowInner = styled.div`
+  ${maxWidthContent};
+  max-width: 1050px;
+`
+
+const KeyPrincipleRowContent = styled.div`
   display: flex;
   margin: 0;
-  ${media.lessThan(`xsmall`)} {
-    flexdirection: ${({ index }) =>
+  ${media.lessThan(`small`)} {
+    flex-direction: ${({ index }) =>
       index % 2 === 0 ? `column-reverse` : `column`};
+  }
+`
+const KeyPrincipleRowImages = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  flex: 0 0 245px;
+  justify-content: center;
+  height: 245px;
+  ${media.lessThan(`small`)} {
+    margin-top: 1rem;
+  }
+  ${media.greaterThan(`small`)} {
+    height: 320px;
+    flex-basis: 320px;
+    margin-right: ${({ position }) => position === `left` && `3rem`};
+    margin-left: ${({ position }) => position === `right` && `3rem`};
+  }
+  & img {
+    margin: 0;
+  }
+`
+
+const KeyPrincipleRowImage = styled(Img)`
+  width: 120px;
+  ${media.greaterThan(`xsmall`)} {
+    width: 153px;
+  }
+  margin: 0.2rem;
+`
+
+const KeyPrincipleRowHeader = styled.div`
+  display: flex;
+`
+
+const KeyPrincipleRowTitle = styled.h2`
+  margin: 0.5rem 0 0.7rem;
+  font-size: 2rem;
+`
+
+const KeyPrincipleRowIcon = styled.img`
+  height: 48px;
+  width: 48px;
+  margin: 0;
+  margin-left: 1rem;
+`
+
+const KeyPrincipleRowCopy = styled.div`
+  font-size: 0.85rem;
+  ${media.greaterThan(`medium`)} {
+    font-size: 1rem;
+  }
+  text-align: justify;
+`
+
+const StyledTitledCopy = styled(TitledCopy)`
+  margin: 4rem auto;
+  & div {
+    ${media.lessThan(`small`)} {
+      font-size: 0.9rem;
+    },
   }
 `
 
@@ -25,110 +192,30 @@ const HomePage = props => (
       <title>{props.data.homepage.frontmatter.header.subtitle}</title>
     </Helmet>
 
-    <Box
-      css={{
-        textAlign: `center`,
-      }}
-    >
-      <h1
-        css={{
-          marginTop: 0,
-          fontSize: `2rem`,
-          [media.greaterThan(`small`)]: {
-            fontSize: `2.7rem`,
-          },
-        }}
-      >
-        {props.data.page.frontmatter.intro.title}
-      </h1>
+    <IntroWrapper>
+      <PageTitle>{props.data.page.frontmatter.intro.title}</PageTitle>
 
       <div>
-        {props.data.page.frontmatter.intro.content.map(
-          (x, i) =>
-            x.value ? (
-              <p key={i}>{x.value}</p>
-            ) : x.img && x.img.image ? (
-              <Img
-                key={i}
-                css={{
-                  float: `left`,
-                  marginRight: `1rem`,
-                  marginBottom: `.5rem`,
-                  border: `1px solid #979797`,
-                  boxShadow: `1px 1px 6px rgba(0,0,0,0.50)`,
-                }}
-                fixed={x.img.image.fixed}
-              />
-            ) : (
-              <p
-                key={i}
-                css={{
-                  margin: 0,
-                  [media.lessThan(`small`)]: {
-                    fontSize: `0.9rem`,
-                  },
-                }}
-              >
-                {x}
-              </p>
-            )
-        )}
+        {props.data.page.frontmatter.intro.content.map((x, i) => (
+          <IntroCopy key={i}>{x}</IntroCopy>
+        ))}
       </div>
 
-      <div
-        css={{
-          display: `flex`,
-          justifyContent: `center`,
-          margin: `2rem 0 3rem`,
-          [media.greaterThan(`small`)]: {
-            margin: `2rem 0 4rem`,
-          },
-        }}
-      >
-        <div
-          css={{
-            display: `flex`,
-            justifyContent: `center`,
-            alignItems: `center`,
-            '& > div': {
-              boxShadow: `1px 1px 2px 1px #999`,
-            },
-            '& > div:nth-child(2)': {
-              margin: `0 1rem`,
-            },
-            '& .gatsby-image-wrapper': {
-              width: [`200px`, `30vw`],
-            },
-            [media.greaterThan(`small`)]: {
-              '& .gatsby-image-wrapper': {
-                width: `280px`,
-                transition: `width .3s ease-in-out`,
-              },
-              '& > div:not(:nth-child(2)) .gatsby-image-wrapper': {
-                width: `200px`,
-              },
-              '&:hover .gatsby-image-wrapper': {
-                width: `200px`,
-              },
-              '& > div:hover .gatsby-image-wrapper': {
-                width: `280px`,
-              },
-            },
-          }}
-        >
+      <IntroImagesOuter>
+        <IntroImages>
           {props.data.page.frontmatter.intro.images.map(({ image }) => (
             <Img fluid={image.fluid} key={image.fluid.src} />
           ))}
-        </div>
-      </div>
-    </Box>
+        </IntroImages>
+      </IntroImagesOuter>
+    </IntroWrapper>
 
     <KeyPrinciples
       title={props.data.page.frontmatter.keyPrinciples.title}
       content={props.data.page.frontmatter.keyPrinciples.content}
     />
 
-    <SupportWidget
+    <StyledSupportWidget
       title={props.data.SupportWidget.frontmatter.title}
       description={props.data.SupportWidget.frontmatter.description}
       readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
@@ -141,9 +228,6 @@ const HomePage = props => (
       bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
       bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
       lang={props.pageContext.lang}
-      css={{
-        margin: `3rem 0`,
-      }}
       // artwork={props.data.page.frontmatter.assets.supportus}
       // artworkWrapperStyles={{
       //   position: `absolute`,
@@ -159,16 +243,10 @@ const HomePage = props => (
       images={props.data.instagramImages.edges}
     />
 
-    <TitledCopyStyled
+    <StyledTitledCopy
+      centered
       title={props.data.page.frontmatter.closing.title}
       paragraphs={props.data.page.frontmatter.closing.paragraphs}
-      css={{
-        '& div': {
-          [media.lessThan(`small`)]: {
-            fontSize: `0.9rem`,
-          },
-        },
-      }}
     />
   </MainLayout>
 )
@@ -305,206 +383,59 @@ export const query = graphql`
   }
 `
 
-export const IntroContainer = ({ children }) => (
-  <div
-    css={{
-      display: `flex`,
-      flexDirection: `column`,
-
-      [media.lessThan(`small`)]: {
-        '& > :last-child': {
-          marginTop: `3rem`,
-        },
-      },
-
-      [media.greaterThan(`small`)]: {
-        flexDirection: `row`,
-        justifyContent: `space-between`,
-
-        '& > :first-child': {
-          width: `60%`,
-        },
-        '& > :last-child': {
-          width: `33%`,
-        },
-      },
-    }}
-  >
-    {children}
-  </div>
-)
-
 const KeyPrinciples = ({ title, content, ...props }) => (
-  <div
-    css={{
-      width: `90%`,
-      margin: `2rem auto 0`,
-      '& > div + div': {
-        marginTop: `3rem`,
-      },
-    }}
-    {...props}
-  >
+  <KeyPrinciplesContainer {...props}>
     {content.map((x, i) => (
-      <div
-        key={i}
-        css={{
-          ...fullPageWidth,
-          backgroundColor: i % 2 === 0 && colors.lightBlue,
-          padding: i % 2 === 0 && `2rem 0`,
-        }}
-      >
-        <div
-          css={{
-            ...maxWidthContent,
-            maxWidth: `1050px`,
-          }}
-        >
+      <KeyPrincipleRow key={i} index={i}>
+        <KeyPrincipleRowInner>
           {i === 0 && (
-            <div
-              css={{
-                textAlign: `center`,
-              }}
-            >
-              <h2
-                css={{
-                  letterSpacing: `.3rem`,
-                  display: `inline-block`,
-                  marginBottom: `2.8rem`,
-                  borderBottom: `1px solid #000`,
-                  padding: `0 1.5rem .6rem 0`,
-                  lineHeight: `0.8`,
-                  position: `relative`,
-                  fontSize: `2.2rem`,
-                  [media.greaterThan(`small`)]: {
-                    fontSize: `2.5rem`,
-                  },
-                  '&:after': {
-                    content: `">>"`,
-                    position: `absolute`,
-                    right: `-0.2rem`,
-                    bottom: `-0.6rem`,
-                    fontSize: `1.6rem`,
-                    letterSpacing: `normal`,
-                  },
-                }}
-              >
-                {title}
-              </h2>
-            </div>
+            <KeyPrincipleHeader>
+              <KeyPrincipleTitle>{title}</KeyPrincipleTitle>
+            </KeyPrincipleHeader>
           )}
-          <KeyPrincipleRow index={i}>
+          <KeyPrincipleRowContent index={i}>
             {i % 2 === 0 && (
-              <div
-                css={{
-                  display: `flex`,
-                  flexWrap: `wrap`,
-                  flex: `0 0 245px`,
-                  justifyContent: `center`,
-                  height: `245px`,
-                  [media.greaterThan(`xsmall`)]: {
-                    height: `320px`,
-                    flexBasis: `320px`,
-                    marginRight: `3rem`,
-                  },
-                  '& img': {
-                    margin: 0,
-                  },
-                }}
-              >
+              <KeyPrincipleRowImages position="left">
                 {Object.keys(x.images).map(key => (
-                  <Img
+                  <KeyPrincipleRowImage
                     key={key}
                     fluid={x.images[key].image.fluid}
-                    css={{
-                      width: `120px`,
-                      [media.greaterThan(`xsmall`)]: {
-                        width: `153px`,
-                      },
-                      margin: `.2rem`,
-                    }}
                   />
                 ))}
-              </div>
+              </KeyPrincipleRowImages>
             )}
             <div>
-              <div css={{ display: `flex` }}>
-                <h2
-                  id={slugify(x.title)}
-                  css={{
-                    margin: `.5rem 0 .7rem`,
-                    fontSize: `2rem`,
-                  }}
-                >
+              <KeyPrincipleRowHeader>
+                <KeyPrincipleRowTitle id={slugify(x.title)}>
                   {x.title}
-                </h2>
-                <img
+                </KeyPrincipleRowTitle>
+                <KeyPrincipleRowIcon
                   src={x.image.src.publicURL}
                   alt={x.image.alt}
-                  css={{
-                    height: `48px`,
-                    width: `48px`,
-                    margin: 0,
-                    marginLeft: `1rem`,
-                  }}
                 />
-              </div>
-              <p
-                css={{
-                  fontSize: `.85rem`,
-                  [media.greaterThan(`medium`)]: {
-                    fontSize: `1rem`,
-                  },
-                  textAlign: `justify`,
-                }}
+              </KeyPrincipleRowHeader>
+              <KeyPrincipleRowCopy
                 dangerouslySetInnerHTML={{ __html: x.text }}
               />
             </div>
             {i % 2 === 1 && (
-              <div
-                css={{
-                  display: `flex`,
-                  flexWrap: `wrap`,
-                  flex: `0 0 245px`,
-                  justifyContent: `center`,
-                  height: `245px`,
-                  [media.greaterThan(`xsmall`)]: {
-                    height: `320px`,
-                    flexBasis: `320px`,
-                    marginLeft: `3rem`,
-                  },
-                  '& img': {
-                    margin: 0,
-                  },
-                }}
-              >
+              <KeyPrincipleRowImages position="right">
                 {Object.keys(x.images).map(key => (
-                  <Img
+                  <KeyPrincipleRowImage
                     key={key}
                     fluid={x.images[key].image.fluid}
-                    css={{
-                      width: `120px`,
-                      [media.greaterThan(`xsmall`)]: {
-                        width: `153px`,
-                      },
-                      margin: `.2rem`,
-                    }}
                   />
                 ))}
-              </div>
+              </KeyPrincipleRowImages>
             )}
-          </KeyPrincipleRow>
-        </div>
-      </div>
+          </KeyPrincipleRowContent>
+        </KeyPrincipleRowInner>
+      </KeyPrincipleRow>
     ))}
-  </div>
+  </KeyPrinciplesContainer>
 )
 KeyPrinciples.propTypes = {
   title: PropTypes.string,
   content: PropTypes.array,
 }
 export { KeyPrinciples }
-
-export const TitledCopyStyled = props => (
-  <TitledCopy centered css={{ margin: `4rem auto` }} {...props} />
-)
