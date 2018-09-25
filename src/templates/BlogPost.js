@@ -183,7 +183,7 @@ BlogPost.propTypes = {
 export default BlogPost
 
 export const query = graphql`
-  query($lang: String!, $slug: String!) {
+  query($lang: String!, $url: String!) {
     ...siteData
     ...SiteMeta
     ...languages
@@ -211,7 +211,7 @@ export const query = graphql`
       }
     }
 
-    page: markdownRemark(fields: { slug: { eq: $slug } }) {
+    page: markdownRemark(fields: { url: { eq: $url } }) {
       fields {
         dateTime
         dateStr
