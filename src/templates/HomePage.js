@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
-import styled, { css } from 'react-emotion'
+import styled from 'react-emotion'
 import slugify from 'slugify'
 import { Box, colors, fullPageWidth, maxWidthContent, media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
@@ -140,16 +140,16 @@ const HomePage = props => (
       bankButtonAlt={props.data.SupportWidget.frontmatter.bankButtonAlt}
       bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
       bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
-      // artwork={props.data.page.frontmatter.assets.supportus}
       lang={props.pageContext.lang}
       css={{
         margin: `3rem 0`,
       }}
-      artworkWrapperStyles={{
-        position: `absolute`,
-        bottom: `-2px`,
-        left: `-1px`,
-      }}
+      // artwork={props.data.page.frontmatter.assets.supportus}
+      // artworkWrapperStyles={{
+      //   position: `absolute`,
+      //   bottom: `-2px`,
+      //   left: `-1px`,
+      // }}
     />
 
     <InstagramFeed
