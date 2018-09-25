@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Head from 'react-helmet'
+import styled from 'react-emotion'
 import * as QS from '@gaiama/query-string'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
@@ -9,6 +10,40 @@ import TitledCopy from '@/components/TitledCopy'
 import Randomizer from '@/components/Randomizer'
 import RenderArticles from '@/components/RenderArticles'
 import { colors, media } from '@/theme'
+
+const StyledRandomizer = styled(Randomizer)`
+  text-align: center;
+  & blockquote {
+    display: inline-block;
+  }
+  & p {
+    font-size: 2rem;
+    line-height: 1.3;
+    margin: 0;
+    max-width: 650px;
+    ${media.greaterThan(`medium`)} {
+      font-size: 2.5rem;
+    }
+  }
+  & footer {
+    text-align: center;
+    font-size: 0.85rem;
+  }
+  & cite {
+    color: ${colors.gray};
+    font-style: normal;
+    margin: 0 1rem;
+  }
+  & button {
+    background: transparent;
+    border: transparent;
+    color: hsla(0, 0%, 0%, 0.8);
+    padding: 0
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+`
 
 const BlogPage = props => {
   const { sort, filter } = QS.parse()
@@ -50,42 +85,9 @@ const BlogPage = props => {
         ]}
       />
       {!filter && (
-        <Randomizer
+        <StyledRandomizer
           quotes={props.data.quotes.frontmatter.quotes}
           nextQuoteLabel={props.data.quotes.frontmatter.nextQuoteLabel}
-          css={{
-            textAlign: `center`,
-            '& blockquote': {
-              display: `inline-block`,
-            },
-            '& p': {
-              fontSize: `2rem`,
-              lineHeight: 1.3,
-              margin: 0,
-              maxWidth: `650px`,
-              [media.greaterThan(`medium`)]: {
-                '&': { fontSize: `2.5rem` },
-              },
-            },
-            '& footer': {
-              textAlign: `center`,
-              fontSize: `.85rem`,
-            },
-            '& cite': {
-              color: colors.gray,
-              fontStyle: `normal`,
-              margin: `0 1rem`,
-            },
-            '& button': {
-              background: `transparent`,
-              border: `transparent`,
-              color: `hsla(0,0%,0%,0.8)`,
-              padding: 0,
-              '&:hover': {
-                transform: `scale(1.05)`,
-              },
-            },
-          }}
         />
       )}
 
