@@ -178,7 +178,9 @@ module.exports = {
     // `gatsby-plugin-lodash`,
     {
       resolve: `gatsby-plugin-offline`,
-      options: {},
+      options: {
+        globPatterns: [`**/*.{js,css,html}`],
+      },
     },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
