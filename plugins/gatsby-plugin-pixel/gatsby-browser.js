@@ -4,7 +4,7 @@ const { parse, stringify } = require(`@gaiama/query-string`)
 // store views so we won't count recurring pages
 const views = {}
 // init Image here to be reused on every route change
-const pixel = new Image()
+const image = new Image()
 // uid used to group visitors instead of PII
 const uid = cuid()
 
@@ -34,8 +34,15 @@ exports.onRouteUpdate = (
       if (utm_campaign) query.cn = utm_campaign // campaign name
       if (utm_content) query.cc = utm_content // campaign content
       if (version) query.av = version // application version
+      if (window.navigator.sendBeacon) query.beacon = 1
 
-      pixel.src = stringify(query, endpoint)
+      const pixel = stringify(query, endpoint)
+
+      if (window.navigator.sendBeacon) {
+        window.navigator.sendBeacon(pixel)
+      } else {
+        image.src = pixel
+      }
     }, 1000)
   }
 }
