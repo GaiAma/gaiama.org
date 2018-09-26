@@ -135,8 +135,10 @@ const Footer = ({
     <div>
       <div
         css={{
-          '& .gatsby-resp-image-wrapper': {
-            margin: `0 !important`,
+          [media.greaterThan(`medium`)]: {
+            '& .gatsby-resp-image-wrapper': {
+              margin: `0 !important`,
+            },
           },
           '& .gatsby-resp-image-background-image': {
             backgroundImage: `none !important`,
