@@ -15,8 +15,9 @@ const uid = cuid()
  */
 exports.onRouteUpdate = (
   { location: { pathname, search } },
-  { endpoint, version }
+  { endpoint, version, enabled }
 ) => {
+  if (typeof enabled !== `undefined` && !enabled) return
   const isRecurring = !!views[pathname]
   const { utm_source, utm_campaign, utm_content } = parse(search)
 

@@ -202,9 +202,8 @@ module.exports = {
       resolve: `gatsby-plugin-pixel`,
       options: {
         version,
-        endpoint: isProduction
-          ? `https://www.gaiama.org/api/p`
-          : `http://localhost:7789/p`,
+        endpoint: `/api/pixel`,
+        enabled: !isProduction || (isProduction && isMaster),
       },
     },
     {
