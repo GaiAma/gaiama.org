@@ -215,7 +215,6 @@ module.exports = {
       options: {
         version,
         endpoint: `/api/pixel`,
-        enabled: !isProduction || (isProduction && isMaster),
       },
     },
     {
