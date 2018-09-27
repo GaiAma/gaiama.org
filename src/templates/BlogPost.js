@@ -67,6 +67,10 @@ const BlogPost = props => {
 
       <ShareWidget
         label={BlogPost.frontmatter.shareLabel}
+        shareUrlSuccessLabel={BlogPost.frontmatter.shareUrl.success}
+        shareUrlErrorLabel={BlogPost.frontmatter.shareUrl.error}
+        getShortUrlLabel={BlogPost.frontmatter.shareUrl.getShortUrlLabel}
+        copyLabel={BlogPost.frontmatter.shareUrl.copyLabel}
         post={post}
         siteUrl={props.data.site.siteMetadata.siteUrl}
         css={{
@@ -198,6 +202,12 @@ export const query = graphql`
     BlogPost: blogPostAml(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         shareLabel
+        shareUrl {
+          copyLabel
+          success
+          error
+          getShortUrlLabel
+        }
         relatedArticlesLabel
         SupportWidget {
           title

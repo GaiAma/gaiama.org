@@ -115,29 +115,32 @@ class ShareWidget extends Component {
   onClickLinkInput = () => this.linkInputRef.current.select()
 
   copyToClipboard = () => {
+    /* globals document */
+    const shareUrlInput = document.getElementById(`share-url`)
+    shareUrlInput.focus()
+    shareUrlInput.select()
+
     try {
-      // eslint-disable-next-line
-      navigator.clipboard
-        .writeText(this.getLink())
-        .then(() => {
-          // TODO: translate notifications
-          toast.success(
-            `Successfully copied to your clipboard, thanks for sharing`
-          )
-        })
-        .catch(() => {
-          toast.error(`I'm sorry, could't copy to your clipboard`)
-        })
-    } catch (error) {
-      toast.warning(
-        `Clipboard access not supported in your browser please right-click > copy or strg/cmd + C to copy`
-      )
+      if (document.execCommand(`copy`)) {
+        toast.success(this.props.shareUrlSuccessLabel)
+      } else {
+        throw new Error()
+      }
+    } catch (err) {
+      toast.error(this.props.shareUrlErrorLabel)
     }
   }
 
   render() {
     const { linkModalOpen } = this.state
-    const { label, post, siteUrl, ...props } = this.props
+    const {
+      label,
+      getShortUrlLabel,
+      copyLabel,
+      post,
+      siteUrl,
+      ...props
+    } = this.props
     const link = siteUrl + post.fields.url
     const shortLink = siteUrl + post.fields.slug_short
 
@@ -228,7 +231,7 @@ class ShareWidget extends Component {
         {linkModalOpen && (
           <LinkModal>
             <LinkModalHeader>
-              <LinkModalTitle>Share this link</LinkModalTitle>
+              <LinkModalTitle>{label}</LinkModalTitle>
               <FontAwesomeIcon
                 icon={faTimes}
                 onClick={this.toggleLinkModal}
@@ -240,17 +243,18 @@ class ShareWidget extends Component {
             </LinkModalHeader>
             <LinkWrapper>
               <InvisibleInput
+                id="share-url"
                 type="text"
                 value={this.state.showShortLink ? shortLink : link}
                 readOnly
                 onClick={this.onClickLinkInput}
                 innerRef={this.linkInputRef}
               />
-              <Button onClick={this.copyToClipboard}>Copy</Button>
+              <Button onClick={this.copyToClipboard}>{copyLabel}</Button>
             </LinkWrapper>
             <Label>
               <Checkbox type="checkbox" onClick={this.toggleLink} />
-              <span>Get shorter version</span>
+              <span>{getShortUrlLabel}</span>
             </Label>
           </LinkModal>
         )}
@@ -261,6 +265,10 @@ class ShareWidget extends Component {
 
 ShareWidget.propTypes = {
   label: PropTypes.string,
+  getShortUrlLabel: PropTypes.string,
+  copyLabel: PropTypes.string,
+  shareUrlSuccessLabel: PropTypes.string,
+  shareUrlErrorLabel: PropTypes.string,
   post: PropTypes.object,
   siteUrl: PropTypes.string,
 }
