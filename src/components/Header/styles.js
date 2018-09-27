@@ -10,12 +10,7 @@ import { colors, fontFamilies, media } from '@/theme'
  */
 
 export default {
-  header: ({ bg } = {}) => ({
-    ...(bg && {
-      background: `url(${bg}) no-repeat bottom`,
-      backgroundSize: `cover`,
-      backgroundColor: colors.primary,
-    }),
+  header: {
     position: `relative`,
     color: colors.darkWhite,
     whiteSpace: `nowrap`,
@@ -35,7 +30,7 @@ export default {
       left: 0,
       overflow: `hidden`,
     },
-  }),
+  },
 
   headerTop: {
     position: `relative`,
@@ -69,18 +64,9 @@ export default {
     zIndex: 2,
     '& h2': {
       fontSize: `1.1rem`,
-      letterSpacing: `0.1rem`,
       margin: 0,
-      [media.greaterThan(`small`)]: {
+      [media.greaterThan(`medium`)]: {
         fontSize: `1.7rem`,
-        letterSpacing: `0.12rem`,
-      },
-    },
-
-    [media.greaterThan(`large`)]: {
-      '& h2': {
-        fontSize: `1.7rem`,
-        letterSpacing: `0.12rem`,
       },
     },
   },
@@ -104,6 +90,10 @@ export default {
     [media.greaterThan(`small`)]: { height: `13rem` },
     [media.greaterThan(`medium`)]: { height: `16rem` },
     [media.greaterThan(`large`)]: { height: `25rem` },
+
+    '& .gatsby-image-wrapper': {
+      zIndex: 2,
+    },
   },
 
   headerLogo: {
@@ -173,14 +163,13 @@ export default {
     textAlign: `right`,
     fontFamily: fontFamilies.accent,
 
-    [media.greaterThan(`xsmall`)]: { height: `2.5rem` },
+    [media.greaterThan(`xsmall`)]: { height: `2.5rem`, width: `90%` },
     [media.greaterThan(`small`)]: { height: `3.5rem` },
     [media.greaterThan(`large`)]: { height: `4rem` },
   },
 
   headerNavItem: {
     height: `100%`,
-    fontSize: `1.1rem`,
 
     [media.greaterThan(`small`)]: { fontSize: `1.2rem` },
   },
