@@ -186,9 +186,15 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
           value: slug_short,
         })
         redirects.push(
-          `${slug_short} ${url} ${
-            node.frontmatter.lang === `de` ? `301 Language=de` : `301`
-          }`
+          [
+            slug_short,
+            `${url}?ref=${encodeURIComponent(homepage + slug_short)}`,
+            `301!`,
+            node.frontmatter.lang === `de` && `Language=de`,
+          ]
+            .filter(x => x)
+            .join(` `)
+            .trim()
         )
       }
 
@@ -196,7 +202,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       const idsToRedirect = [shortId, shortlink, oldId, oldSlug]
       idsToRedirect.map(id => {
         if (!id) return false
-        return redirects.push(`${`/${lang}`}/${id} ${url} 301`)
+        return redirects.push(`${`/${lang}`}/${id} ${url} 301!`)
       })
 
       createNodeField({
