@@ -8,6 +8,18 @@ const image = new Image()
 // uid used to group visitors instead of PII
 const uid = cuid()
 
+const getDuration = () => {
+  const start = window.pixelStart || new Date()
+  const now = new Date()
+  const difference = now.getTime() - start.getTime()
+
+  if (difference === 0) {
+    return null
+  }
+
+  return difference
+}
+
 /**
  * utm_source – Identifies which site sent the traffic - utm_source=Google
  * utm_campaign - Identifies a specific product promotion or strategic campaign - utm_campaign=spring_sale
@@ -27,7 +39,15 @@ export const onRouteUpdate = (
     setTimeout(() => {
       // eslint-disable-next-line
       const { title: dt, referrer } = document
-      const query = { uid, dt }
+      const query = {
+        uid,
+        dt,
+        plt: getDuration(),
+        sd: window.screen.colorDepth, // screen colors
+        de: document.characterSet, // document encoding
+        vp: `${window.innerWidth}x${window.innerHeight}`, // viewport size
+        sr: `${window.screen.width}x${window.screen.height}`, // screen resolution
+      }
 
       if (referrer) query.dr = referrer // document referrer
       if (utm_source) query.cs = utm_source // campaign source
