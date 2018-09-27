@@ -16,10 +16,6 @@ const IntroWrapper = styled(Box)`
 
 const PageTitle = styled.h1`
   margin-top: 0;
-  font-size: 2rem;
-  ${media.greaterThan(`small`)} {
-    font-size: 2.7rem;
-  }
 `
 
 const IntroCopy = styled.p`
