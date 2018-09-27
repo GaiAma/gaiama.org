@@ -1,5 +1,5 @@
-<a name="2.0.0-beta.2"></a>
-# [2.0.0-beta.2](https://github.com/gaiama/gaiama.org/compare/v1.5.37...v2.0.0-beta.2) (2018-09-27)
+<a name="2.0.0-beta.3"></a>
+# [2.0.0-beta.3](https://github.com/gaiama/gaiama.org/compare/v1.5.37...v2.0.0-beta.3) (2018-09-27)
 
 
 ### Bug Fixes
@@ -19,10 +19,11 @@
 * **package:** add missing jest dependency upgrades ([2a1d0c6](https://github.com/gaiama/gaiama.org/commit/2a1d0c6))
 * add missing gatsby-transformer-remark-multi-type plugin ([d9972e3](https://github.com/gaiama/gaiama.org/commit/d9972e3))
 * **Pixel:** proxy pixel to pixel.api.. ([a09eb92](https://github.com/gaiama/gaiama.org/commit/a09eb92))
+* **ReferrerMessages:** ensure message before toast + cleanup ([e600ae5](https://github.com/gaiama/gaiama.org/commit/e600ae5))
 * **SEO:** robots.txt generation, re-add _redirects ([b8dc570](https://github.com/gaiama/gaiama.org/commit/b8dc570))
 * **theme:** adjust xxxlarge to be > 1291 ([19a8668](https://github.com/gaiama/gaiama.org/commit/19a8668))
-* **TitledCopy:** decrease title size 2.7>2.5 ([55b8148](https://github.com/gaiama/gaiama.org/commit/55b8148))
 * redirects/short urls ([8686bde](https://github.com/gaiama/gaiama.org/commit/8686bde))
+* **TitledCopy:** decrease title size 2.7>2.5 ([55b8148](https://github.com/gaiama/gaiama.org/commit/55b8148))
 * removed outerWrapperClassName ([8ab29c9](https://github.com/gaiama/gaiama.org/commit/8ab29c9))
 
 
@@ -46,17 +47,19 @@
 * **Pixel:** use Beacon API where available ([5694b85](https://github.com/gaiama/gaiama.org/commit/5694b85))
 * **query-string:** remove default export ([5098b11](https://github.com/gaiama/gaiama.org/commit/5098b11))
 * **query-string:** uri encode all keys & values ([f6f6b77](https://github.com/gaiama/gaiama.org/commit/f6f6b77))
+* **Redirects:** change lang auto redirect to 301 ([ddd61d7](https://github.com/gaiama/gaiama.org/commit/ddd61d7))
+* **Redirects:** force 301! + slug_short more readable ([e3081bb](https://github.com/gaiama/gaiama.org/commit/e3081bb))
 * **ReferrerMessage:** show message additionally as toast ([25b4e4c](https://github.com/gaiama/gaiama.org/commit/25b4e4c))
 * **SEO:** generate robots.txt onPostBuild ([2403bd5](https://github.com/gaiama/gaiama.org/commit/2403bd5))
+* add humans.txt ([b8c0abe](https://github.com/gaiama/gaiama.org/commit/b8c0abe))
 * **ShareWidget:** add share link option, with short link ([59a51e2](https://github.com/gaiama/gaiama.org/commit/59a51e2))
 * **ShareWidget:** switch to execCommand(`copy`) + i18n ([927c7d8](https://github.com/gaiama/gaiama.org/commit/927c7d8))
-* add api proxy, update pixel endpoint ([834d340](https://github.com/gaiama/gaiama.org/commit/834d340))
-* add H1 titles to all pages ([6d658f5](https://github.com/gaiama/gaiama.org/commit/6d658f5))
-* add humans.txt ([b8c0abe](https://github.com/gaiama/gaiama.org/commit/b8c0abe))
-* remove additional heading font-sizes ([0dd2d2a](https://github.com/gaiama/gaiama.org/commit/0dd2d2a))
 * **slug:** add speakingurl, auto generate slug & new url field ([6251ca0](https://github.com/gaiama/gaiama.org/commit/6251ca0))
 * **template:** rename 404 to ErrorPage ([81f3a72](https://github.com/gaiama/gaiama.org/commit/81f3a72))
 * **theme:** use systemfont stack, drop webfonts ([6fce402](https://github.com/gaiama/gaiama.org/commit/6fce402))
+* add api proxy, update pixel endpoint ([834d340](https://github.com/gaiama/gaiama.org/commit/834d340))
+* add H1 titles to all pages ([6d658f5](https://github.com/gaiama/gaiama.org/commit/6d658f5))
+* remove additional heading font-sizes ([0dd2d2a](https://github.com/gaiama/gaiama.org/commit/0dd2d2a))
 * **TitledCopy:** allow change of title rank h1-h6 ([1eee180](https://github.com/gaiama/gaiama.org/commit/1eee180))
 * **toast:** init react-toastify and utils/toast.js ([b8f845f](https://github.com/gaiama/gaiama.org/commit/b8f845f))
 * **Toast:** pass options through, disable autoClose for error ([488e375](https://github.com/gaiama/gaiama.org/commit/488e375))
