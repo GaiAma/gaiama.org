@@ -86,6 +86,14 @@ const Footer = ({
           </Link>
         </div>
       ))}
+      <div css={{ marginTop: `2rem` }}>
+        <span>
+          Copyright &copy; 2017-
+          {new Date().getFullYear()}
+        </span>
+        <br />
+        GaiAma.org
+      </div>
     </nav>
 
     <div>
