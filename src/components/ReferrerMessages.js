@@ -17,21 +17,14 @@ const messages = {
 }
 
 class ReferrerMessages extends Component {
-  constructor(props) {
-    super(props)
-    // this.element = null
-    // this.state = {
-    //   height: 0,
-    // }
-  }
-
   componentDidMount() {
-    // this.setState({ height: this.element.clientHeight })
     const {
       urlParams: { ref },
       lang,
     } = this.props
-    toast.success(messages[lang][ref])
+    if (messages[lang][ref]) {
+      toast.success(messages[lang][ref])
+    }
   }
 
   render() {
@@ -41,30 +34,12 @@ class ReferrerMessages extends Component {
       ...props
     } = this.props
 
-    // const slideDown = keyframes({
-    //   '10%': { top: 0 },
-    //   '80%': { top: 0 },
-    //   '100%': { top: `-${this.state.height}px` },
-    // })
-
     const message = messages[lang][ref]
     if (!message) return null
 
     return (
       <div
-        // ref={x => {
-        //   this.element = x
-        // }}
         css={{
-          // animation: `${slideDown} 10s ease-in-out 3s forwards`,
-          // // animation: `${slideDown} 10s cubic-bezier(0, .2, .5, 0) 3s forwards`,
-          // background: colors[type],
-          // position: `absolute`,
-          // left: 0,
-          // right: 0,
-          // top: `-${this.state.height}px`,
-          // zIndex: 10,
-          // color: `#fff`,
           fontWeight: 500,
           letterSpacing: `.03rem`,
           padding: `.5rem 1rem`,
