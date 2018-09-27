@@ -1,5 +1,5 @@
-const cuid = require(`cuid`)
-const { parse, stringify } = require(`@gaiama/query-string`)
+import cuid from 'cuid'
+import { parse, stringify } from '@gaiama/query-string'
 
 // store views so we won't count recurring pages
 const views = {}
@@ -13,7 +13,7 @@ const uid = cuid()
  * utm_campaign - Identifies a specific product promotion or strategic campaign - utm_campaign=spring_sale
  * utm_content - Identifies what specifically was clicked to bring the user to the site - utm_content=logolink
  */
-exports.onRouteUpdate = (
+export const onRouteUpdate = (
   { location: { pathname, search } },
   { endpoint, version, enabled }
 ) => {
