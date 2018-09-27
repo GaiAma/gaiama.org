@@ -83,17 +83,20 @@ const AboutPage = props => {
                   },
                 }}
               >
-                <Img
-                  fixed={bio.img.image.fixed}
-                  alt={bio.name}
-                  title={bio.name}
+                <div
                   css={{
                     borderRadius: `50%`,
                     [media.greaterThan(`medium`)]: {
                       marginRight: `2rem`,
                     },
                   }}
-                />
+                >
+                  <Img
+                    fixed={bio.img.image.fixed}
+                    alt={bio.name}
+                    title={bio.name}
+                  />
+                </div>
                 <div>
                   <h4
                     id={slugify(bio.name)}
@@ -156,14 +159,17 @@ const AboutPage = props => {
                   id={slugify(bio.name)}
                   css={{ textAlign: `center` }}
                 >
-                  <Img
-                    fixed={bio.img.image.fixed}
-                    alt={bio.name}
-                    title={bio.name}
+                  <div
                     css={{
                       borderRadius: `50%`,
                     }}
-                  />
+                  >
+                    <Img
+                      fixed={bio.img.image.fixed}
+                      alt={bio.name}
+                      title={bio.name}
+                    />
+                  </div>
                   <div>
                     <h4 id={slugify(bio.name)} css={{ fontSize: `1.7rem` }}>
                       {bio.name}
