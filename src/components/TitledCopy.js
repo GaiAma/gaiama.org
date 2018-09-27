@@ -20,7 +20,7 @@ const Container = styled.div(props => ({
 }))
 
 const Title = styled.h2(props => ({
-  fontSize: `2.7rem`,
+  fontSize: `2.5rem`,
   textAlign: props.centeredTitle && `center`,
 }))
 
