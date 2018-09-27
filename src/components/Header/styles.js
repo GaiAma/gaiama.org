@@ -49,7 +49,7 @@ export default {
   },
 
   topInner: {
-    width: `90%`,
+    width: `96%`,
     maxWidth: `1280px`,
     display: `flex`,
     alignItems: `center`,
@@ -167,7 +167,6 @@ export default {
     display: `flex`,
     alignItems: `center`,
     justifyContent: `space-between`,
-    width: `90%`,
     maxWidth: `1280px`,
     margin: `0 auto`,
     height: `77%`,
@@ -223,15 +222,17 @@ export default {
     display: [`inline-block`, `flex`],
     alignItems: `center`,
     height: `100%`,
-    padding: `0 .65rem 0`,
+    padding: `0 .4rem 0`,
 
     ':hover, &.active': {
       background: colors.primary,
     },
 
+    [media.greaterThan(`xsmall`)]: {
+      padding: `0 .65rem 0`,
+    },
     [media.greaterThan(`small`)]: {
       fontSize: `1.1rem`,
-      letterSpacing: `.12rem`,
     },
     [media.greaterThan(`large`)]: {
       fontSize: `1.8rem`,
