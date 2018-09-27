@@ -394,7 +394,7 @@ const PostHeader = ({
             position: `relative`,
             display: `inline-block`,
             background: `#fff`,
-            color: `#c3c3c3`,
+            color: colors.black,
             padding: `0 .5rem`,
           }}
         >
