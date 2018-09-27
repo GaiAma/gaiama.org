@@ -187,7 +187,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
         })
         redirects.push(
           `${slug_short} ${url} ${
-            node.frontmatter.lang === `de` ? `302 Language=de` : `301`
+            node.frontmatter.lang === `de` ? `301 Language=de` : `301`
           }`
         )
       }
