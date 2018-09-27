@@ -1,10 +1,34 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import styled from 'react-emotion'
 import Link from '@/components/Link'
 import Img from 'gatsby-image'
 import Headroom from 'react-headroom'
 import { visible } from '@/theme'
 import style from './styles'
+
+const OnlyDesktop = styled.span(props => props.visible && visible.minMd)
+const OnlyMobile = styled.span(visible.maxMd)
+const HeaderWrapper = styled.header(style.header)
+const HeaderTop = styled.div(style.headerTop)
+const TopInner = styled.div(style.topInner)
+const Brand = styled.div(style.headerBrand)
+const HeaderLink = styled(Link)(style.headerLink)
+const MetaLink = styled(HeaderLink)(style.headerMeta_headerLink)
+const Meta = styled.nav(style.headerMeta)
+const MetaItem = styled.div(style.headerMetaItem)
+const NavInner = styled.div(style.headerNavInner)
+const Banner = styled.div(style.headerBanner)
+const Logo = styled.img(style.headerLogo)
+const StickyHeader = styled(Headroom)({
+  maxWidth: `1440px`,
+  margin: `0 auto`,
+  zIndex: 2,
+})
+const MainNav = styled.nav(props => style.headerNav(props))
+const NavScroller = styled.div(style.headerNavScroller)
+const NavItem = styled.div(style.headerNavItem)
+const MainLink = styled(HeaderLink)(style.headerNav_headerLink)
 
 class Header extends Component {
   constructor(props) {
@@ -23,119 +47,76 @@ class Header extends Component {
   render() {
     const { homepage, meta, menu, logo, bgImage } = this.props
     return (
-      <header css={style.header()}>
+      <HeaderWrapper>
         <Img fluid={bgImage.fluid} />
-        <div css={style.headerTop}>
-          <div css={style.topInner}>
-            <div css={style.headerBrand}>
-              <Link to={homepage.fields.url} css={style.headerLink}>
+        <HeaderTop>
+          <TopInner>
+            <Brand>
+              <HeaderLink to={homepage.fields.url}>
                 <h2>
                   {homepage.frontmatter.header.title}
                   {homepage.frontmatter.header.subtitle &&
                     ` - ${homepage.frontmatter.header.subtitle}`}
                 </h2>
-              </Link>
-            </div>
+              </HeaderLink>
+            </Brand>
 
             {/* TODO: remember lang in local FORAGE? to show correct in 404 */}
-            <nav css={style.headerMeta}>
+            <Meta>
               {meta.map((link, index) => (
-                <div
-                  className={link.class}
-                  css={style.headerMetaItem}
-                  key={index}
-                >
-                  <Link
-                    to={link.to}
-                    css={(style.headerLink, style.headerMeta_headerLink)}
-                    activeClassName="active"
-                  >
-                    <span css={link.titleShort && visible.minMd}>
+                <MetaItem className={link.class} key={index}>
+                  <MetaLink to={link.to} activeClassName="active">
+                    <OnlyDesktop visible={link.titleShort}>
                       {link.title}
-                    </span>
+                    </OnlyDesktop>
                     {link.titleShort && (
-                      <span
-                        css={{
-                          ...visible.maxMd,
-                          '& .svg-inline--fa': {
-                            verticalAlign: `-.2em`,
-                          },
-                        }}
-                      >
-                        {link.titleShort}
-                      </span>
+                      <OnlyMobile>{link.titleShort}</OnlyMobile>
                     )}
-                  </Link>
-                </div>
+                  </MetaLink>
+                </MetaItem>
               ))}
-            </nav>
-          </div>
-        </div>
+            </Meta>
+          </TopInner>
+        </HeaderTop>
 
-        <div
-          css={{
-            ...style.headerBanner,
-            '& .gatsby-image-wrapper': {
-              zIndex: 2,
-            },
-            // '& img': { margin: 0 },
-          }}
-        >
+        <Banner>
           {/* <Img fluid={logo.fluid} alt="GaiAma Logo" css={style.headerLogo} /> */}
           <Link to={homepage.fields.url}>
-            <img
-              src={logo.fluid.src}
-              alt="GaiAma Logo"
-              css={{ ...style.headerLogo, margin: `0 auto` }}
-            />
+            <Logo src={logo.fluid.src} alt="GaiAma Logo" />
           </Link>
-        </div>
+        </Banner>
 
-        <Headroom
+        <StickyHeader
           id="main-nav"
           pinStart={450}
           onPin={() => this.setSticky(true)}
           onUnpin={() => this.setSticky(false)}
           onUnfix={() => this.setSticky(false)}
-          style={{
-            maxWidth: `1440px`,
-            margin: `0 auto`,
-            zIndex: 2,
-          }}
         >
-          <nav
+          <MainNav
             aria-label="primary"
-            css={style.headerNav({
-              bg: bgImage.fluid.src,
-              isSticky: this.state.isSticky,
-            })}
+            bg={bgImage.fluid.src}
+            isSticky={this.state.isSticky}
           >
-            <div css={style.headerNavScroller}>
-              <div css={style.headerNavInner}>
+            <NavScroller>
+              <NavInner>
                 {menu.map((link, index) => (
-                  <div key={index} css={style.headerNavItem}>
-                    <Link
-                      to={link.to}
-                      activeClassName="active"
-                      css={{
-                        ...style.headerLink,
-                        ...style.headerNav_headerLink,
-                      }}
-                    >
-                      <span css={link.titleShort && visible.minMd}>
+                  <NavItem key={index}>
+                    <MainLink to={link.to} activeClassName="active">
+                      <OnlyDesktop visible={link.titleShort}>
                         {link.title}
-                      </span>
+                      </OnlyDesktop>
                       {link.titleShort && (
-                        <span css={visible.maxMd}>{link.titleShort}</span>
+                        <OnlyMobile>{link.titleShort}</OnlyMobile>
                       )}
-                    </Link>
-                  </div>
+                    </MainLink>
+                  </NavItem>
                 ))}
-              </div>
-            </div>
-          </nav>
-        </Headroom>
-      </header>
+              </NavInner>
+            </NavScroller>
+          </MainNav>
+        </StickyHeader>
+      </HeaderWrapper>
     )
   }
 }
