@@ -64,10 +64,7 @@ const generateMainMenu = items =>
 
 const generateMetaMenu = ({ translations, getLang, menuItems }) =>
   translations
-    .map(x => {
-      console.log(JSON.stringify(x))
-      return x.fields ? x : { frontmatter: {}, fields: {} }
-    })
+    .map(x => x.fields ? x : { frontmatter: {}, fields: {} })
     .map(x => ({
       ...getLang(x.frontmatter.lang),
       to: x.fields.url,
