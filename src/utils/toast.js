@@ -1,26 +1,32 @@
-import { toast as toastify } from 'react-toastify'
+import { toast as T } from 'react-toastify'
 
-export const toast = message =>
-  toastify(message, {
-    type: toastify.TYPE.DEFAULT,
+export const toast = (message, opts) =>
+  T(message, {
+    ...opts,
+    type: T.TYPE.DEFAULT,
   })
 
-toast.info = message =>
-  toastify(message, {
-    type: toastify.TYPE.INFO,
+toast.info = (message, opts) =>
+  T(message, {
+    ...opts,
+    type: T.TYPE.INFO,
   })
 
-toast.success = message =>
-  toastify(message, {
-    type: toastify.TYPE.SUCCESS,
+toast.success = (message, opts) =>
+  T(message, {
+    ...opts,
+    type: T.TYPE.SUCCESS,
   })
 
-toast.warning = message =>
-  toastify(message, {
-    type: toastify.TYPE.WARNING,
+toast.warning = (message, opts) =>
+  T(message, {
+    ...opts,
+    type: T.TYPE.WARNING,
   })
 
-toast.error = message =>
-  toastify(message, {
-    type: toastify.TYPE.ERROR,
+toast.error = (message, opts) =>
+  T(message, {
+    autoClose: 25000,
+    ...opts,
+    type: T.TYPE.ERROR,
   })
