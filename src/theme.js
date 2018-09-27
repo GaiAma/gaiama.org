@@ -27,7 +27,8 @@ export const colors = {
     telegram: `#1d95d3`,
     gplus: `#dc4436`,
     youtube: `#fd1402`,
-    github: `#000`,
+    github: `#24292e`,
+    steemit: `#06d6a9`,
   },
 }
 
