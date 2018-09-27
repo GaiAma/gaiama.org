@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import rehypeReact from 'rehype-react'
 import Link from '@/components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faComments } from '@fortawesome/free-regular-svg-icons'
 import hex2rgba from 'hex2rgba'
 import { colors, media } from '@/theme'
 
@@ -119,6 +120,23 @@ const Footer = ({
             </a>
           </li>
         ))}
+        <li
+          css={{
+            '&:hover svg': {
+              color: colors.brands.steemit,
+            },
+          }}
+        >
+          <a
+            href="https://steemit.com/@gaiama"
+            target="_blank"
+            rel="noopener noreferrer"
+            title="steemit"
+          >
+            <FontAwesomeIcon icon={faComments} />
+            Steemit
+          </a>
+        </li>
       </ul>
     </div>
 
