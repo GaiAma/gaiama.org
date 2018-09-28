@@ -81,7 +81,7 @@
     "gatsby-plugin-typography": "^2.2.0",
     "gatsby-remark-copy-linked-files": "^2.0.5",
     "gatsby-source-filesystem": "^2.0.1",
-    "gatsby-source-instagram": "^0.1.3",
+    "gatsby-source-instagram": "^0.1.4",
     "gatsby-transformer-sharp": "^2.1.1",
     "gray-percentage": "^2.0.0",
     "hex2rgba": "^0.0.1",
