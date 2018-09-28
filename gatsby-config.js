@@ -52,6 +52,12 @@ module.exports = {
             : [`**/.*`, `**/happygaia/*`],
       },
     },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: `gaiama_org`,
+      },
+    },
     // {
     //   resolve: 'gatsby-plugin-purify-css',
     //   options: {

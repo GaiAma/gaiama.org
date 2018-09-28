@@ -506,9 +506,9 @@ const InstagramFeed = ({ user, followLink, bg, images }) => {
             }}
           >
             <a
-              href={`https://www.instagram.com/p/${x.node.code}/?taken-by=${
-                x.node.username
-              }`}
+              href={`https://www.instagram.com/p/${
+                x.node.id
+              }/?taken-by=${user}`}
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -584,13 +584,14 @@ export const instaQuery = graphql`
       }
     }
 
-    instagramImages: allInstagramJson(limit: 4) {
+    instagramImages: allInstaNode(
+      limit: 4
+      sort: { fields: [timestamp], order: DESC }
+    ) {
       edges {
         node {
           id
-          code
-          username
-          image {
+          image: localFile {
             image: childImageSharp {
               fluid(maxWidth: 240, maxHeight: 240, quality: 75) {
                 ...GatsbyImageSharpFluid
