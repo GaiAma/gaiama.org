@@ -52,6 +52,12 @@ module.exports = {
             : [`**/.*`, `**/happygaia/*`],
       },
     },
+    {
+      resolve: `gatsby-source-instagram`,
+      options: {
+        username: `gaiama_org`,
+      },
+    },
     `gatsby-transformer-archieml`,
     {
       resolve: `gatsby-transformer-remark-multi-type`,
