@@ -222,6 +222,11 @@ const SupportWidgetContainer = styled.div({
   },
 })
 
+const SupportWidgetIntro = styled.div`
+  width: 95%;
+  margin: 0 auto;
+`
+
 const SupportWidgetArtwork = styled.div({
   display: `flex`,
   alignItems: `flex-end`,
@@ -305,30 +310,32 @@ const SupportWidget = ({
         },
       }}
     >
-      {title && <H2>{title}</H2>}
+      <SupportWidgetIntro>
+        {title && <H2>{title}</H2>}
 
-      {description && (
-        <p
-          css={{
-            textAlign: `center`,
-            marginBottom: `1rem`,
-          }}
-          dangerouslySetInnerHTML={{
-            __html: description,
-          }}
-        />
-      )}
+        {description && (
+          <p
+            css={{
+              textAlign: `center`,
+              marginBottom: `1rem`,
+            }}
+            dangerouslySetInnerHTML={{
+              __html: description,
+            }}
+          />
+        )}
 
-      {readMoreLink && (
-        <p
-          css={{
-            textAlign: `center`,
-            fontSize: `.9rem`,
-          }}
-        >
-          <Link to={readMoreLink}>{readMoreLabel}</Link>
-        </p>
-      )}
+        {readMoreLink && (
+          <p
+            css={{
+              textAlign: `center`,
+              fontSize: `.9rem`,
+            }}
+          >
+            <Link to={readMoreLink}>{readMoreLabel}</Link>
+          </p>
+        )}
+      </SupportWidgetIntro>
 
       <SupportWidgetInner>
         <SupportWidgetFormWrapper>
