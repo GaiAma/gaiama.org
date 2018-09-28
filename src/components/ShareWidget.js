@@ -35,6 +35,7 @@ const Title = styled.h4({
 const Button = styled(PureButton)`
   background-color: transparent;
   border: 0;
+  margin-left: 1rem;
   padding: 0.4rem 0.7rem;
 `
 
@@ -73,9 +74,6 @@ const LinkModalHeader = styled.header`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
-`
-const LinkModalTitle = styled.h3`
-  margin: 0;
 `
 
 const Label = styled.label`
@@ -258,7 +256,6 @@ class ShareWidget extends Component {
         {linkModalOpen && (
           <LinkModal>
             <LinkModalHeader>
-              <LinkModalTitle>{label}</LinkModalTitle>
               <Label>
                 <Checkbox type="checkbox" onClick={this.toggleLink} />
                 <span>{getFullUrlLabel}</span>
@@ -266,7 +263,6 @@ class ShareWidget extends Component {
               <FontAwesomeIcon
                 icon={faTimes}
                 onClick={this.toggleLinkModal}
-                size="lg"
                 css={`
                   color: #ccc;
                 `}
