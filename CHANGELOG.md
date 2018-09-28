@@ -1,5 +1,5 @@
-<a name="2.0.0-beta.3"></a>
-# [2.0.0-beta.3](https://github.com/gaiama/gaiama.org/compare/v1.5.37...v2.0.0-beta.3) (2018-09-27)
+<a name="2.0.0-beta.4"></a>
+# [2.0.0-beta.4](https://github.com/gaiama/gaiama.org/compare/v1.5.37...v2.0.0-beta.4) (2018-09-28)
 
 
 ### Bug Fixes
@@ -15,16 +15,18 @@
 * **Link:** fix propType of ext prop ([9078a25](https://github.com/gaiama/gaiama.org/commit/9078a25))
 * **MainLayout:** add missing ToastContainer ([67fd0d3](https://github.com/gaiama/gaiama.org/commit/67fd0d3))
 * **Offline:** gatsby-plugin-offline globPatterns ([a46ac9a](https://github.com/gaiama/gaiama.org/commit/a46ac9a))
+* redirects/short urls ([8686bde](https://github.com/gaiama/gaiama.org/commit/8686bde))
 * **package:** add missing gatsby-plugin-layout dependency ([f28802e](https://github.com/gaiama/gaiama.org/commit/f28802e))
 * **package:** add missing jest dependency upgrades ([2a1d0c6](https://github.com/gaiama/gaiama.org/commit/2a1d0c6))
 * add missing gatsby-transformer-remark-multi-type plugin ([d9972e3](https://github.com/gaiama/gaiama.org/commit/d9972e3))
 * **Pixel:** proxy pixel to pixel.api.. ([a09eb92](https://github.com/gaiama/gaiama.org/commit/a09eb92))
 * **ReferrerMessages:** ensure message before toast + cleanup ([e600ae5](https://github.com/gaiama/gaiama.org/commit/e600ae5))
 * **SEO:** robots.txt generation, re-add _redirects ([b8dc570](https://github.com/gaiama/gaiama.org/commit/b8dc570))
+* **SupportWidget:** limit content width for mobile ([a41838c](https://github.com/gaiama/gaiama.org/commit/a41838c))
 * **theme:** adjust xxxlarge to be > 1291 ([19a8668](https://github.com/gaiama/gaiama.org/commit/19a8668))
-* redirects/short urls ([8686bde](https://github.com/gaiama/gaiama.org/commit/8686bde))
 * **TitledCopy:** decrease title size 2.7>2.5 ([55b8148](https://github.com/gaiama/gaiama.org/commit/55b8148))
 * removed outerWrapperClassName ([8ab29c9](https://github.com/gaiama/gaiama.org/commit/8ab29c9))
+* scroll behaviour, now it's a 2 liner ([0c560e5](https://github.com/gaiama/gaiama.org/commit/0c560e5))
 
 
 ### Features
@@ -39,6 +41,7 @@
 * **gatsby-node:** add index based short urls ([82d7b46](https://github.com/gaiama/gaiama.org/commit/82d7b46))
 * **Header:** more width on mobile & font-size ([9f823ea](https://github.com/gaiama/gaiama.org/commit/9f823ea))
 * **HomePage:** beautify and seoify home page <title/> ([574b8c9](https://github.com/gaiama/gaiama.org/commit/574b8c9))
+* add H1 titles to all pages ([6d658f5](https://github.com/gaiama/gaiama.org/commit/6d658f5))
 * **layout:** add gatsby-plugin-layout ([6f53844](https://github.com/gaiama/gaiama.org/commit/6f53844))
 * **Pixel:** add more metrics (plt, sd, de, vp, sr) ([8d012c6](https://github.com/gaiama/gaiama.org/commit/8d012c6))
 * **Pixel:** add original referrer, utm params & app version ([9df96b8](https://github.com/gaiama/gaiama.org/commit/9df96b8))
@@ -51,14 +54,14 @@
 * **Redirects:** force 301! + slug_short more readable ([e3081bb](https://github.com/gaiama/gaiama.org/commit/e3081bb))
 * **ReferrerMessage:** show message additionally as toast ([25b4e4c](https://github.com/gaiama/gaiama.org/commit/25b4e4c))
 * **SEO:** generate robots.txt onPostBuild ([2403bd5](https://github.com/gaiama/gaiama.org/commit/2403bd5))
-* add humans.txt ([b8c0abe](https://github.com/gaiama/gaiama.org/commit/b8c0abe))
 * **ShareWidget:** add share link option, with short link ([59a51e2](https://github.com/gaiama/gaiama.org/commit/59a51e2))
 * **ShareWidget:** switch to execCommand(`copy`) + i18n ([927c7d8](https://github.com/gaiama/gaiama.org/commit/927c7d8))
+* **ShareWidget:** ui, share per mail and fix clipboard shortcuts ([c121634](https://github.com/gaiama/gaiama.org/commit/c121634))
 * **slug:** add speakingurl, auto generate slug & new url field ([6251ca0](https://github.com/gaiama/gaiama.org/commit/6251ca0))
 * **template:** rename 404 to ErrorPage ([81f3a72](https://github.com/gaiama/gaiama.org/commit/81f3a72))
-* **theme:** use systemfont stack, drop webfonts ([6fce402](https://github.com/gaiama/gaiama.org/commit/6fce402))
 * add api proxy, update pixel endpoint ([834d340](https://github.com/gaiama/gaiama.org/commit/834d340))
-* add H1 titles to all pages ([6d658f5](https://github.com/gaiama/gaiama.org/commit/6d658f5))
+* **theme:** use systemfont stack, drop webfonts ([6fce402](https://github.com/gaiama/gaiama.org/commit/6fce402))
+* add humans.txt ([b8c0abe](https://github.com/gaiama/gaiama.org/commit/b8c0abe))
 * remove additional heading font-sizes ([0dd2d2a](https://github.com/gaiama/gaiama.org/commit/0dd2d2a))
 * **TitledCopy:** allow change of title rank h1-h6 ([1eee180](https://github.com/gaiama/gaiama.org/commit/1eee180))
 * **toast:** init react-toastify and utils/toast.js ([b8f845f](https://github.com/gaiama/gaiama.org/commit/b8f845f))
