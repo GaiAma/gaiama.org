@@ -69,8 +69,10 @@ const BlogPost = props => {
         label={BlogPost.frontmatter.shareLabel}
         shareUrlSuccessLabel={BlogPost.frontmatter.shareUrl.success}
         shareUrlErrorLabel={BlogPost.frontmatter.shareUrl.error}
-        getShortUrlLabel={BlogPost.frontmatter.shareUrl.getShortUrlLabel}
+        getFullUrlLabel={BlogPost.frontmatter.shareUrl.getFullUrlLabel}
         copyLabel={BlogPost.frontmatter.shareUrl.copyLabel}
+        linkLabelShort={BlogPost.frontmatter.shareUrl.linkLabelShort}
+        linkLabelFull={BlogPost.frontmatter.shareUrl.linkLabelFull}
         post={post}
         siteUrl={props.data.site.siteMetadata.siteUrl}
         css={{
@@ -204,9 +206,11 @@ export const query = graphql`
         shareLabel
         shareUrl {
           copyLabel
+          linkLabelShort
+          linkLabelFull
           success
           error
-          getShortUrlLabel
+          getFullUrlLabel
         }
         relatedArticlesLabel
         SupportWidget {
