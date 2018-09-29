@@ -1,0 +1,27 @@
+{
+  "projectName": "gaiama.org",
+  "projectOwner": "GaiAma.org",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "contributors": [
+    {
+      "login": "CanRau",
+      "name": "Can",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/5196971?v=4",
+      "profile": "https://www.GaiAma.org",
+      "contributions": [
+        "code",
+        "design",
+        "doc",
+        "fundingFinding",
+        "ideas",
+        "infra"
+      ]
+    }
+  ]
+}
