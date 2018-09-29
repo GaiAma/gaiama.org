@@ -4,7 +4,6 @@ import rehypeReact from 'rehype-react'
 import Link from '@/components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments } from '@fortawesome/free-regular-svg-icons'
-import hex2rgba from 'hex2rgba'
 import { colors, media } from '@/theme'
 
 const renderAst = new rehypeReact({
@@ -26,14 +25,14 @@ const Footer = ({
     css={{
       background: `linear-gradient(
           0deg,
-          ${hex2rgba(colors.primary, 0.85)},
-          ${hex2rgba(colors.primary, 0.85)}
+          ${colors.primary85},
+          ${colors.primary85}
         ),
         url(${bgImage.fluid.src}) no-repeat bottom`,
       backgroundSize: `cover`,
       display: `flex`,
       flexDirection: `column`,
-      color: `#fff`,
+      color: colors.white,
       fontSize: `.9rem`,
       fontWeight: `100`,
       padding: `4rem 0 2rem`,
@@ -50,7 +49,7 @@ const Footer = ({
         justifyContent: `space-around`,
       },
       '& a': {
-        color: `#fff`,
+        color: colors.white,
       },
     }}
   >

@@ -33,15 +33,15 @@ const Title = styled.h4({
 })
 
 const Button = styled(PureButton)`
-  background-color: transparent;
+  background-color: ${colors.transparent};
   border: 0;
   margin-left: 1rem;
   padding: 0.4rem 0.7rem;
 `
 
 const LinkWrapper = styled.div`
-  background: #fafafa;
-  border: 1px solid #ededed;
+  background: ${colors.creme};
+  border: 1px solid ${colors.gray5};
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -55,13 +55,13 @@ const LinkLabel = styled.span`
 
 const InvisibleInput = styled.input`
   margin-left: 0.7rem;
-  background-color: transparent;
+  background-color: ${colors.transparent};
   border: none;
   width: 100%;
 `
 
 const LinkModal = styled.div`
-  background: #fff;
+  background: ${colors.white};
   padding: 0.5rem 1rem;
   min-width: 300px;
   max-width: 99%;
@@ -264,7 +264,7 @@ class ShareWidget extends Component {
                 icon={faTimes}
                 onClick={this.toggleLinkModal}
                 css={`
-                  color: #ccc;
+                  color: ${colors.gray3};
                 `}
               />
             </LinkModalHeader>

@@ -1,4 +1,3 @@
-import hex2rgba from 'hex2rgba'
 import { colors, fontFamilies, media } from '@/theme'
 
 /**
@@ -34,7 +33,7 @@ export default {
 
   headerTop: {
     position: `relative`,
-    backgroundColor: [colors.primary, hex2rgba(colors.primary, 0.85)],
+    backgroundColor: [colors.primary, colors.primary85],
     margin: 0,
     height: `2.5rem`,
 
@@ -145,11 +144,8 @@ export default {
     height: `130%`,
     background: [
       colors.primary,
-      hex2rgba(colors.primary, 0.72),
-      `linear-gradient(to right, ${hex2rgba(colors.primary, 0.58)}, ${hex2rgba(
-        colors.primary,
-        0.72
-      )})`,
+      colors.primary72,
+      `linear-gradient(to right, ${colors.primary58}, ${colors.primary72})`,
     ],
   },
 

@@ -1,35 +1,68 @@
+/* global window */
 import React from 'react'
 import styled from 'react-emotion'
 import propStyles from 'prop-styles'
-// import hex2rgba from 'hex2rgba'
+import preval from 'babel-plugin-preval/macro'
 
-export const colors = {
-  primary: `#042f37`,
-  primaryLite: `#287482`,
-  darkWhite: `#e2e2e2`,
-  lightBlue: `#f3f8fd`,
-  // lightBlue: `#f1f4f8`,
-  link: `#0e91a0`,
-  // linkHover: `#0fc1d6`,
-  linkHover: `#0a474e`,
-  // link: `#13abaa`,
-  // linkHover: `#1ed6d5`,
-  gray: `#afafaf`,
-  grayTurqoise: `#7aaaaf`,
-  black: `#222`,
-  oldWhite: `#e0e2c5`,
-  rss: `#faa949`,
-  success: `#74d27e`,
-  failure: `#d27474`,
-  brands: {
-    facebook: `#4466b3`,
-    twitter: `#1ca1f3`,
-    telegram: `#1d95d3`,
-    gplus: `#dc4436`,
-    youtube: `#fd1402`,
-    github: `#24292e`,
-    steemit: `#06d6a9`,
-  },
+export const colors = preval`
+  const h2a = require('hex2rgba')
+  const primaryColor = '#042f37'
+  module.exports = {
+    transparent: 'transparent',
+    primary: '#042f37',
+    primary58: h2a(primaryColor, 0.58),
+    primary72: h2a(primaryColor, 0.72),
+    primary85: h2a(primaryColor, 0.85),
+    primaryLite: '#287482',
+    white: '#fff',
+    darkWhite: '#e2e2e2',
+    creme: '#fafafa',
+    lightBlue: '#f3f8fd',
+    // lightBlue: '#f1f4f8',
+    link: '#0e91a0',
+    // linkHover: '#0fc1d6',
+    linkHover: '#0a474e',
+    // link: '#13abaa',
+    // linkHover: '#1ed6d5',
+    gray: '#afafaf',
+    gray2: '#a7a7a7',
+    gray3: '#ccc',
+    gray4: 'rgba(204,204,204,0.13)',
+    gray5: '#ececec',
+    gray6: '#979797',
+    gray7: '#999',
+    gray8: '#abaaaa',
+    gray9: '#6d6d6d',
+    grayTurqoise: '#7aaaaf',
+    turqoiseLight: '#a4fcfb',
+    black: '#222',
+    gray52: 'rgba(0,0,0,0.52)',
+    gray80: 'rgba(0,0,0,0.8)',
+    wine: '#9e2146',
+    oldWhite: '#e0e2c5',
+    blueLight: '#85bfff',
+    purple: '#424770',
+    purpleDark: '#2d2a34',
+    grayBlue: '#aab7c4',
+    rss: '#faa949',
+    success: '#74d27e',
+    failure: '#d27474',
+    brands: {
+      facebook: '#4466b3',
+      twitter: '#1ca1f3',
+      telegram: '#1d95d3',
+      gplus: '#dc4436',
+      youtube: '#fd1402',
+      github: '#24292e',
+      steemit: '#06d6a9',
+    },
+  }
+`
+if (typeof window !== `undefined`) {
+  window.GaiAma = {
+    ...window.GaiAma,
+    colors,
+  }
 }
 
 export const gradients = {
@@ -288,11 +321,4 @@ export const visible = {
       display: `none`,
     },
   },
-}
-
-export default {
-  colors,
-  fontFamilies,
-  Box,
-  visible,
 }

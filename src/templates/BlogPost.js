@@ -159,7 +159,6 @@ const BlogPost = props => {
                 <div
                   key={post.fields[x].fields.url}
                   css={{
-                    color: `#c3c3c3`,
                     padding: `.5rem`,
                     margin: `0 2rem`,
                   }}

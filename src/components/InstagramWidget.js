@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { fontFamilies, fullPageWidth, media } from '@/theme'
+import { colors, fontFamilies, fullPageWidth, media } from '@/theme'
 import Lazy from '@/components/Lazy'
 import { mediaQuery } from '@/components/MediaQuery'
 
@@ -41,7 +41,7 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
               <Img
                 alt="GaiAma on Instagram"
                 fluid={x.node.image.image.fluid}
-                css={{ border: `1px solid #000` }}
+                css={{ border: `1px solid ${colors.black}` }}
               />
             </a>
           </div>

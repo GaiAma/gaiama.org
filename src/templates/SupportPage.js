@@ -92,8 +92,9 @@ const SupportPage = props => {
               display: `block`,
               right: `0`,
               bottom: `0`,
-              // background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
-              background: `linear-gradient(to right, rgba(204,204,204,0.13), #abaaaa, #cccccc21) no-repeat`,
+              background: `linear-gradient(to right, ${colors.gray4}, ${
+                colors.gray8
+              }, ${colors.gray4}) no-repeat`,
               [media.lessThan(`medium`)]: {
                 left: `0`,
               },
@@ -101,8 +102,9 @@ const SupportPage = props => {
                 height: `100%`,
                 width: `1px`,
                 top: `0`,
-                // background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
-                background: `linear-gradient(to bottom, rgba(204,204,204,0.13), #abaaaa, rgba(204,204,204,0.13)) no-repeat`,
+                background: `linear-gradient(to bottom, ${colors.gray4}, ${
+                  colors.gray8
+                }, ${colors.gray4}) no-repeat`,
               },
             },
           }}
@@ -202,7 +204,8 @@ const SupportPage = props => {
           <div
             css={{
               '&:hover svg': {
-                color: `#73989a`,
+                color: colors.grayTurqoise,
+                // color: `#73989a`,
               },
             }}
           >
@@ -357,8 +360,9 @@ const SupportPage = props => {
                     display: `block`,
                     top: `0`,
                     right: `0`,
-                    // background: `linear-gradient(to bottom, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
-                    background: `linear-gradient(to bottom, rgba(204,204,204,0.13), #abaaaa, rgba(204,204,204,0.13)) no-repeat`,
+                    background: `linear-gradient(to bottom, ${colors.gray4}, ${
+                      colors.gray8
+                    }, ${colors.gray4}) no-repeat`,
                   },
                 },
                 '&:last-child': {

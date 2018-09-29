@@ -39,7 +39,7 @@ const IntroImages = styled.div`
   justify-content: center;
   align-items: center;
   & > div {
-    box-shadow: 1px 1px 2px 1px #999;
+    box-shadow: 1px 1px 2px 1px ${colors.gray7};
   }
   & > div:nth-child(2) {
     margin: 0 1rem;
@@ -91,7 +91,7 @@ const KeyPrincipleTitle = styled.h2`
   letter-spacing: 0.3rem;
   display: inline-block;
   margin-bottom: 2.8rem;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid ${colors.black};
   padding: 0 1.5rem 0.6rem 0;
   line-height: 0.8;
   position: relative;

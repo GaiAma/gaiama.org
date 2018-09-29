@@ -37,7 +37,7 @@ const StyledRandomizer = styled(Randomizer)`
   & button {
     background: transparent;
     border: transparent;
-    color: hsla(0, 0%, 0%, 0.8);
+    color: ${colors.gray80};
     padding: 0
     &:hover {
       transform: scale(1.05);
@@ -131,8 +131,9 @@ const BlogPage = props => {
             top: `50%`,
             left: `0`,
             right: `0`,
-            // background: `linear-gradient(to right, #cccccc21, #6d6d6d, #cccccc21) no-repeat`,
-            background: `linear-gradient(to right, rgba(204,204,204,0.13), #6d6d6d, rgba(204,204,204,0.13)) no-repeat`,
+            background: `linear-gradient(to right, ${colors.gray4}, ${
+              colors.gray9
+            }, ${colors.gray4}) no-repeat`,
           },
         }}
       >
@@ -140,7 +141,7 @@ const BlogPage = props => {
           css={{
             display: `flex`,
             justifyContent: `space-between`,
-            background: `#fff`,
+            background: colors.white,
             fontSize: `.9rem`,
             position: `relative`,
             // transform: `translateY(.8rem)`,

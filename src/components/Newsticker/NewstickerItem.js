@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
-import { fontFamilies } from '@/theme'
+import { colors, fontFamilies } from '@/theme'
 
 const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
   const coverImage =
@@ -66,7 +66,7 @@ const styles = {
 
   image: {
     maxWidth: `100%`,
-    border: `1px solid #979797`,
+    border: `1px solid ${colors.gray6}`,
     boxShadow: `1px 1px 6px rgba(0,0,0,0.50)`,
   },
 
