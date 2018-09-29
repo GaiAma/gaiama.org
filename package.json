@@ -16,6 +16,9 @@
   "keywords": [
     "gatsby"
   ],
+  "engines": {
+    "node": ">=10.10"
+  },
   "bugs": {
     "url": "https://github.com/gaiama/gaiama.org/issues"
   },
