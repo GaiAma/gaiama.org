@@ -25,10 +25,7 @@
   "scripts": {
     "dev": "gatsby develop -S",
     "dev:full": "GAIAMA_FULL_CONTENT=1 yarn dev",
-    "lint": "eslint --ext .js,.jsx .",
-    "fix": "eslint --fix --ext .js,.jsx .",
     "test": "jest",
-    "format": "prettier --config .prettierrc --write 'src/**/*.js' 'plugins/**/src/**/*.js' 'src/**/*.md'",
     "develop": "gatsby develop",
     "clean:cache": "rimraf .cache",
     "clean:public": "find ${PWD}/public/* -not -path '*public/static*' -exec rm -rf {} +",
@@ -38,7 +35,6 @@
     "build": "GAIAMA_FULL_CONTENT=1 gatsby build",
     "serve": "serve",
     "preview": "yarn build && yarn serve",
-    "precommit": "yarn format",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0 -u",
     "github-release": "conventional-github-releaser -p angular -r 0",
     "deploy": "netlify deploy",
