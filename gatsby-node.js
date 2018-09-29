@@ -154,7 +154,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       const { lang, url, slug } = node.fields
       const { layout, shortId, shortlink, oldId, oldSlug } = node.frontmatter
 
-      console.log(`${slug} => ${url}`)
+      // console.log(`${slug} => ${url}`)
 
       const component = resolve(`./src/templates/${layout}.js`)
       const context = { url, slug, lang }
@@ -179,7 +179,6 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       // set up short url redirects
       if (notIsErrorPage(node)) {
         const slug_short = isHomePage(node) ? `/` : `/${index}`
-        // console.log(`${slug_short} ${node.frontmatter.slug}`)
         createNodeField({
           node,
           name: `slug_short`,
