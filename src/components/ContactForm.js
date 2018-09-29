@@ -14,8 +14,8 @@ axios.defaults.headers.post[`Content-Type`] = `application/json`
 
 const inputStyle = {
   width: `100%`,
-  border: `1px solid #ccc`,
-  background: `#fff`,
+  border: `1px solid ${colors.gray3}`,
+  background: colors.white,
   lineHeight: 1.5,
   padding: `0 .5rem`,
 }
@@ -205,9 +205,9 @@ export default class ContactForm extends Component {
         <div
           id="success"
           css={{
-            background: `#fff`,
-            border: `1px solid green`,
-            color: `green`,
+            background: colors.white,
+            border: `1px solid ${colors.success}`,
+            color: colors.success,
             padding: `.5rem .5rem .4rem`,
           }}
         >
@@ -228,7 +228,7 @@ export default class ContactForm extends Component {
             position: `relative`,
             paddingBottom: `1.4rem`,
             '& input': {
-              borderColor: errors.email && `red`,
+              borderColor: errors.email && colors.failure,
             },
           }}
         >
@@ -247,7 +247,11 @@ export default class ContactForm extends Component {
             />
             {errors.email && (
               <div
-                css={{ position: `absolute`, color: `red`, fontSize: `.9rem` }}
+                css={{
+                  position: `absolute`,
+                  color: colors.failure,
+                  fontSize: `.9rem`,
+                }}
               >
                 {errors.email}
               </div>
@@ -260,7 +264,7 @@ export default class ContactForm extends Component {
             position: `relative`,
             paddingBottom: `1.4rem`,
             '& textarea': {
-              borderColor: errors.email && `red`,
+              borderColor: errors.email && colors.failure,
             },
           }}
         >
@@ -282,7 +286,11 @@ export default class ContactForm extends Component {
             />
             {errors.message && (
               <div
-                css={{ position: `absolute`, color: `red`, fontSize: `.9rem` }}
+                css={{
+                  position: `absolute`,
+                  color: colors.failure,
+                  fontSize: `.9rem`,
+                }}
               >
                 {errors.message}
               </div>
@@ -294,7 +302,7 @@ export default class ContactForm extends Component {
           css={{
             position: `relative`,
             paddingBottom: `1.4rem`,
-            color: errors.consent && `red`,
+            color: errors.consent && colors.failure,
           }}
         >
           <label>
@@ -315,7 +323,11 @@ export default class ContactForm extends Component {
             </a>
             {errors.consent && (
               <div
-                css={{ position: `absolute`, color: `red`, fontSize: `.9rem` }}
+                css={{
+                  position: `absolute`,
+                  color: colors.failure,
+                  fontSize: `.9rem`,
+                }}
               >
                 {errors.consent}
               </div>
@@ -329,7 +341,7 @@ export default class ContactForm extends Component {
               border: `1px solid red`,
               padding: `.5rem .5rem .4rem`,
               marginBottom: `.5rem`,
-              color: `red`,
+              color: colors.failure,
               fontSize: `.9rem`,
             }}
           >
@@ -342,7 +354,7 @@ export default class ContactForm extends Component {
           disabled={isSubmitting}
           css={{
             ...styles.button,
-            background: `#2d2a34`,
+            background: colors.purpleDark,
             color: colors.darkWhite,
           }}
         >
@@ -362,8 +374,8 @@ const styles = {
     fontFamily: fontFamilies.accent,
     fontSize: `1.5rem`,
     width: `100%`,
-    border: `1px solid #ccc`,
-    background: `#fff`,
+    border: `1px solid ${colors.gray3}`,
+    background: colors.white,
     transition: `background-color .2s linear`,
     '&:hover': {
       background: colors.primaryLite,

@@ -6,6 +6,7 @@ import {
   CardElement,
   IbanElement,
 } from 'react-stripe-elements'
+import { colors } from '@/theme'
 import localStore from '@/utils/local-store'
 
 class DonationForm extends Component {
@@ -156,7 +157,7 @@ class DonationForm extends Component {
           <Elements locale="at">
             <div
               css={{
-                border: `1px solid #ececec`,
+                border: `1px solid ${colors.gray5}`,
                 borderRadius: `2px`,
               }}
             >
@@ -174,15 +175,15 @@ class DonationForm extends Component {
                     style: {
                       base: {
                         flex: 1,
-                        color: `#424770`,
+                        color: colors.purple,
                         letterSpacing: `0.025em`,
                         fontFamily: `monospace`,
                         '::placeholder': {
-                          color: `#aab7c4`,
+                          color: colors.grayBlue,
                         },
                       },
                       invalid: {
-                        color: `#9e2146`,
+                        color: colors.wine,
                       },
                     },
                   }}
@@ -196,7 +197,7 @@ class DonationForm extends Component {
           <Elements locale="en">
             <div
               css={{
-                border: `1px solid #ececec`,
+                border: `1px solid ${colors.gray5}`,
                 borderRadius: `2px`,
               }}
             >
@@ -213,15 +214,15 @@ class DonationForm extends Component {
                     style: {
                       base: {
                         flex: 1,
-                        color: `#424770`,
+                        color: colors.purple,
                         letterSpacing: `0.025em`,
                         fontFamily: `monospace`,
                         '::placeholder': {
-                          color: `#aab7c4`,
+                          color: colors.grayBlue,
                         },
                       },
                       invalid: {
-                        color: `#9e2146`,
+                        color: colors.wine,
                       },
                     },
                   }}

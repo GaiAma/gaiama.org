@@ -419,8 +419,8 @@ const SupportWidget = ({
                 fontFamily: fontFamilies.accent,
                 fontSize: `1.5rem`,
                 width: `8rem`,
-                background: `#fff`,
-                boxShadow: `0px 1px 1px #99999973`,
+                background: colors.white,
+                boxShadow: `0px 1px 1px rgba(153, 153, 153, 0.45)`,
                 transition: `background-color .2s linear`,
                 textAlign: `center`,
                 '&:hover': {

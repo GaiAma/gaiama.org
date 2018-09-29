@@ -126,7 +126,7 @@ const Pager = ({
         justifyContent: `space-around`,
         '& > a': {
           background: colors.link,
-          color: `#fff`,
+          color: colors.white,
           borderRadius: `2px`,
           padding: `.5rem 1rem`,
           margin: `1rem`,

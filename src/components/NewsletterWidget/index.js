@@ -11,8 +11,8 @@ import axios from 'axios'
 
 const StyledInput = styled.input({
   width: `100%`,
-  border: `1px solid #ccc`,
-  background: `#fff`,
+  border: `1px solid ${colors.gray3}`,
+  background: colors.white,
   lineHeight: 1.5,
   padding: `0 .5rem`,
 })
@@ -180,9 +180,9 @@ export class Newsletter extends Component {
         <p
           id="success"
           css={{
-            background: `#fff`,
+            background: colors.white,
             border: `1px solid green`,
-            color: `green`,
+            color: colors.success,
             padding: `.5rem .5rem .4rem`,
             '& em': {
               textDecoration: `underline`,
@@ -225,7 +225,11 @@ export class Newsletter extends Component {
             />
             {errors.email && (
               <div
-                css={{ position: `absolute`, color: `red`, fontSize: `.9rem` }}
+                css={{
+                  position: `absolute`,
+                  color: colors.failure,
+                  fontSize: `.9rem`,
+                }}
               >
                 {errors.email}
               </div>
@@ -237,7 +241,7 @@ export class Newsletter extends Component {
           css={{
             position: `relative`,
             paddingBottom: `1.4rem`,
-            color: errors.consent && `red`,
+            color: errors.consent && colors.failure,
           }}
         >
           <label>
@@ -264,7 +268,7 @@ export class Newsletter extends Component {
               border: `1px solid red`,
               padding: `.5rem .5rem .4rem`,
               marginBottom: `.5rem`,
-              color: `red`,
+              color: colors.failure,
               fontSize: `.9rem`,
             }}
           >
@@ -277,7 +281,7 @@ export class Newsletter extends Component {
           disabled={isSubmitting}
           css={{
             ...styles.button,
-            background: `#2d2a34`,
+            background: colors.purpleDark,
             color: colors.darkWhite,
           }}
         >
@@ -297,8 +301,8 @@ const styles = {
     fontFamily: fontFamilies.accent,
     fontSize: `1.5rem`,
     width: `100%`,
-    border: `1px solid #ccc`,
-    background: `#fff`,
+    border: `1px solid ${colors.gray3}`,
+    background: colors.white,
     transition: `background-color .2s linear`,
     '&:hover': {
       background: colors.primaryLite,

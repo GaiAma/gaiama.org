@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'react-emotion'
+import { colors } from '@/theme'
 
 /**
  * hiding outline for pointing devices based on
@@ -19,7 +20,7 @@ const PureButton = ({ children, onClick, styles, ...props }) => (
         boxShadow: `none`,
       },
       '&:focus > span': {
-        boxShadow: `0 0 3px 2px #85bfff`,
+        boxShadow: `0 0 3px 2px ${colors.blueLight}`,
       },
     }}
     {...props}

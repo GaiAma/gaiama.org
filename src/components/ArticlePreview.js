@@ -43,8 +43,7 @@ const articleStyles = {
     // width: `327`,
     // width: `29%`,
     // marginBottom: `4rem`,
-    // boxShadow: `0 0 8px 0px #00000085`,
-    boxShadow: `0 0 8px 0px rgba(0,0,0,.52)`,
+    boxShadow: `0 0 8px 0px ${colors.gray52}`,
     background: colors.lightBlue,
     display: `flex`,
     flexDirection: `column`,
@@ -63,7 +62,7 @@ const articleStyles = {
     // borderTop: `1px solid #ccc`,
     // borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
     // borderImageSlice: `1`,
-    color: `#a7a7a7`,
+    color: colors.gray2,
     fontSize: `.9rem`,
     position: `relative`,
     '&:before': {
@@ -75,8 +74,9 @@ const articleStyles = {
       top: `0`,
       left: `0`,
       right: `0`,
-      // background: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21) no-repeat`,
-      background: `linear-gradient(to right, rgba(204,204,204,.13), #ccc, rgba(204,204,204,.13)) no-repeat`,
+      background: `linear-gradient(to right, ${colors.gray4}, ${
+        colors.gray3
+      }, ${colors.gray4}) no-repeat`,
     },
   },
   footerInner: {

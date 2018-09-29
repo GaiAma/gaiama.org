@@ -29,8 +29,8 @@ const styles = {
     fontFamily: fontFamilies.accent,
     fontSize: `1.5rem`,
     width: `100%`,
-    border: `1px solid #ccc`,
-    background: `#fff`,
+    border: `1px solid ${colors.gray3}`,
+    background: colors.white,
     transition: `background-color .2s linear`,
     '& svg': {
       visibility: `hidden`,

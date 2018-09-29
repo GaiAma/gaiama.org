@@ -77,14 +77,16 @@ class PodcastPlayer extends Component {
             color: colors.darkWhite,
             background: [
               colors.primary,
-              `linear-gradient(90deg, #fff, ${colors.primary} 15%, ${
+              `linear-gradient(90deg, ${colors.white}, ${colors.primary} 15%, ${
                 colors.primary
-              } 85%, #fff)`,
+              } 85%, ${colors.white})`,
             ],
             [media.greaterThan(`small`)]: {
               background: [
                 colors.primary,
-                `linear-gradient(90deg, #fff, ${colors.primary}, #fff)`,
+                `linear-gradient(90deg, ${colors.white}, ${colors.primary}, ${
+                  colors.white
+                })`,
               ],
             },
             [media.greaterThan(`medium`)]: {

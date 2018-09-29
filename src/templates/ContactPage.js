@@ -90,7 +90,7 @@ const ContactPage = props => {
                 // zIndex: 3,
                 marginBottom: `1.5rem`,
                 '& > a': {
-                  color: `#2d2a34`,
+                  color: colors.purpleDark,
                 },
               },
             }}
