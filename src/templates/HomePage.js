@@ -7,7 +7,8 @@ import styled from 'react-emotion'
 import slugify from 'slugify'
 import { Box, colors, fullPageWidth, maxWidthContent, media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
-import { InstagramFeed, SupportWidget } from '@/components/Shared'
+import { InstagramWidget } from '@/components/InstagramWidget'
+import { SupportWidget } from '@/components/Shared'
 import TitledCopy from '@/components/TitledCopy'
 
 const IntroWrapper = styled(Box)`
@@ -232,7 +233,7 @@ const HomePage = props => (
       // }}
     />
 
-    <InstagramFeed
+    <InstagramWidget
       user={props.data.instagram.frontmatter.instagramUser}
       followLink={props.data.instagram.frontmatter.followLink}
       bg={props.data.instagram.frontmatter.bg.image.fluid.src}
