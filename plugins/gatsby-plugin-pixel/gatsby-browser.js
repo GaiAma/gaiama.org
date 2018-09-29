@@ -31,7 +31,7 @@ export const onRouteUpdate = (
 ) => {
   if (typeof enabled !== `undefined` && !enabled) return
   const isRecurring = !!views[pathname]
-  const { utm_source, utm_campaign, utm_content } = parse(search)
+  const { utm_source, utm_campaign, utm_content, ref } = parse(search)
 
   views[pathname] = isRecurring ? views[pathname] + 1 : 1
 
@@ -49,7 +49,7 @@ export const onRouteUpdate = (
         sr: `${window.screen.width}x${window.screen.height}`, // screen resolution
       }
 
-      if (referrer) query.dr = referrer // document referrer
+      if (ref || referrer) query.dr = ref || referrer // document referrer
       if (utm_source) query.cs = utm_source // campaign source
       if (utm_campaign) query.cn = utm_campaign // campaign name
       if (utm_content) query.cc = utm_content // campaign content
