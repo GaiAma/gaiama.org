@@ -1,8 +1,8 @@
 <p align="center">
-  <a href="https://www.gaiama.org/"><img src="src/assets/gaiama-avatar.png"></a>
+  <a href="https://www.gaiama.org/"><img src="src/assets/gaiama-avatar.png" width="300"></a>
 </p>
 
-### Source code of [GaiAma.org](https://www.gaiama.org/)
+<h1 align="center"><a href="https://www.gaiama.org" title="GaiAma.org">GaiAma.org</a></h1>
 
 <p align="center">
   <a href="#contributors" title="All Contributors"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square"></a>
@@ -10,7 +10,7 @@
   <a href="https://david-dm.org/GaiAma/gaiama.org?type=dev" title="devDependencies status"><img src="https://david-dm.org/GaiAma/gaiama.org/dev-status.svg"/></a>
 </p>
 
-#### Features
+## Features
 
 - [Netlify](https://www.netlify.com/) hosted
 - [DigitalOcean](https://m.do.co/c/bcef7e4dac88) backed
@@ -33,12 +33,12 @@
 - [Yarn](https://yarnpkg.com)
 - [All Contributors by Kent C. Dodds](https://github.com/kentcdodds/all-contributors)
 
-#### Roadmap
+## Roadmap
 
 - more cleanup
 - integrate programming blog, which should reuse as much as possible
 
-#### Development
+## Development
 
 We use `yarn` as Node.js package manager instead of `npm` and a semantic commit convention based on [Angular's](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#-git-commit-guidelines).
 This way we can auto generate our [changelog](CHANGELOG.md) using [conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog).
