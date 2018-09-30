@@ -1,3 +1,5 @@
+# Not really used at the moment, just messing around ;-)
+
 language: node_js
 cache: yarn
 
@@ -10,24 +12,31 @@ env:
 #    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
-  - wget -O content.tgz "https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$TRAVIS_BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
-  - tar -xzf content.tgz -C content
+  # - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.10.1
+  # - yarn --version
+  # - wget -qO content.tgz "https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$TRAVIS_BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
+  # - mkdir content
+  # - tar -xzf content.tgz -C content
 
 script:
-  - yarn build
-  #- yarn test
+  - echo "noop"
+  # - yarn build
+  #- wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
 
-#before_deploy:
-#  - yarn build
-
-#deploy:
-#  - provider: script
-#    script: netlify deploy -s master -t $NETLIFY_ACCESS_TOKEN -p ./public
-#    skip_cleanup: true
-#    on:
-#      branch: master
-#      tags: true
+deploy:
+  - provider: script
+    script: curl -X POST -d '' "https://api.netlify.com/build_hooks/$NETLIFY_BUILD_HOOK_ID_V2"
+    skip_cleanup: true
+    on:
+      branch: v2
+  # - provider: script
+  #   #script: netlifyctl -A $NETLIFY_ACCESS_TOKEN deploy -s v2 -t  -p ./public
+  #   #script: netlify deploy -s v2 -t $NETLIFY_ACCESS_TOKEN -p ./public
+  #   #script: zip -r public.zip public && curl -H "Content-Type: application/zip" -H "Authorization: Bearer $NETLIFY_ACCESS_TOKEN" --data-binary "@public.zip" https://api.netlify.com/api/v1/sites/gaiama/deploys
+  #   skip_cleanup: true
+  #   on:
+  #     branch: v2
+  #     tags: true
 #  - provider: script
 #    script: netlify deploy -s dev -t $NETLIFY_ACCESS_TOKEN -p ./public
 #    skip_cleanup: true
