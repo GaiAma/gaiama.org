@@ -1,9 +1,12 @@
 <p align="center">
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
   <a href="https://www.gaiama.org/"><img src="src/assets/gaiama-avatar.png"></a>
 </p>
 
 ### Source code of [GaiAma.org](https://www.gaiama.org/)
+
+<p align="center">
+  <a href="#contributors" title="All Contributors"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square"></a>
+</p>
 
 #### Features
 
