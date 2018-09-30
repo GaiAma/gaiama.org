@@ -10,18 +10,24 @@ env:
 #    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
 
 before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.9.4
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.10.1
   - wget -O content.tgz "https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$TRAVIS_BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
+  - ls -lah
   - tar -xzf content.tgz -C content
+  - ls -lah
 
 script:
   - yarn build
-  #- yarn test
 
 #before_deploy:
 #  - yarn build
 
-#deploy:
+deploy:
+  - provider: script
+    script: curl -X POST -d '' "https://api.netlify.com/build_hooks/$NETLIFY_BUILD_HOOK_ID_V2"
+    skip_cleanup: true
+    on:
+      branch: v2
 #  - provider: script
 #    script: netlify deploy -s master -t $NETLIFY_ACCESS_TOKEN -p ./public
 #    skip_cleanup: true
