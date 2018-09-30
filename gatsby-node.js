@@ -344,9 +344,15 @@ exports.onPostBuild = () => {
   }
 
   // add robots.txt to site root depending on $BRANCH env var
-  const robotsTxt = `User-agent: *\nDisallow:${isMaster ? `` : ` /`}`
-  console.log(`$BRANCH`, BRANCH, isMaster, robotsTxt)
-  writeFileSync(join(publicDir, `robots.txt`), robotsTxt)
+  const robotsTxt = []
+  if (isMaster) {
+    robotsTxt.push(`User-agent: *\nDisallow:`)
+  } else {
+    robotsTxt.push(`User-agent: *\nDisallow: /`)
+  }
+  robotsTxt.push(`User-agent: *\nDisallow: /de/danke\nDisallow: /en/thanks`)
+  robotsTxt.push(`User-agent: Browsershots\nDisallow:`)
+  writeFileSync(join(publicDir, `robots.txt`), robotsTxt.join(`\n\n`))
 }
 
 /**
