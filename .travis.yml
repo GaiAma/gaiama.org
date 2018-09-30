@@ -11,7 +11,9 @@ env:
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.10.1
+  - yarn --version
   - wget -qO content.tgz "https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$TRAVIS_BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
+  - mkdir content
   - ls -lah
   - tar -xzf content.tgz -C content
   - ls -lah
