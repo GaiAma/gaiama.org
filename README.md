@@ -4,4 +4,4 @@
 
 ### Source code of [GaiAma.org](https://www.gaiama.org)
 
-> A lot of cleanup, refactoring, probably porting to [Gatsby v2](https://gatsby.org) will follow
+> A lot of cleanup, refactoring, probably porting to [Gatsby v2](https://www.gatsbyjs.org) will follow
