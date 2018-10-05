@@ -18,14 +18,14 @@ export const Fragments = graphql`
           logo {
             image: childImageSharp {
               fluid(maxWidth: 420, quality: 75) {
-                ...GatsbyImageSharpFluid
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
           headerBg {
             image: childImageSharp {
-              fluid(maxWidth: 1280, quality: 75) {
-                ...GatsbyImageSharpFluid
+              fluid(maxWidth: 1440, quality: 75) {
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
