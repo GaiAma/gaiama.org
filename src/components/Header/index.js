@@ -19,7 +19,7 @@ const Meta = styled.nav(style.headerMeta)
 const MetaItem = styled.div(style.headerMetaItem)
 const NavInner = styled.div(style.headerNavInner)
 const Banner = styled.div(style.headerBanner)
-const Logo = styled.img(style.headerLogo)
+const Logo = styled(Img)(style.headerLogo)
 const StickyHeader = styled(Headroom)({
   maxWidth: `1440px`,
   margin: `0 auto`,
@@ -80,9 +80,11 @@ class Header extends Component {
         </HeaderTop>
 
         <Banner>
-          {/* <Img fluid={logo.fluid} alt="GaiAma Logo" css={style.headerLogo} /> */}
           <Link to={homepage.fields.url}>
-            <Logo src={logo.fluid.src} alt="GaiAma Logo" />
+            <Logo
+              fluid={logo.fluid}
+              alt="GaiAma Logo"
+            />
           </Link>
         </Banner>
 
