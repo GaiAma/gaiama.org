@@ -1,79 +1,204 @@
+<a name="2.0.0-beta.7"></a>
+# [2.0.0-beta.7](https://github.com/gaiama/gaiama.org/compare/2.0.0-beta.6...2.0.0-beta.7) (2018-10-05)
+
+
+### Features
+
+* **BlogPost:** cleanup, fix header widths and li>p ([948edae](https://github.com/gaiama/gaiama.org/commit/948edae))
+* **Footer:** remove unneeded styles, add spacing to new logos ([810e47e](https://github.com/gaiama/gaiama.org/commit/810e47e))
+* **Header:** logo now responsive, add webp to logo&banner ([8647f41](https://github.com/gaiama/gaiama.org/commit/8647f41))
+* **redirects:** auto detect lang, redirect to #main-nav ([2f88071](https://github.com/gaiama/gaiama.org/commit/2f88071))
+* **SEO:** allow Browsershots, disallow /thanks in robots.txt ([9881474](https://github.com/gaiama/gaiama.org/commit/9881474))
+
+
+
 <a name="2.0.0-beta.6"></a>
-# [2.0.0-beta.6](https://github.com/gaiama/gaiama.org/compare/v1.5.37...v2.0.0-beta.6) (2018-09-30)
+# [2.0.0-beta.6](https://github.com/gaiama/gaiama.org/compare/2.0.0-beta.5...2.0.0-beta.6) (2018-09-30)
 
 
 ### Bug Fixes
 
-* **AboutPage:** wrap img in div for proper circles ([540cff5](https://github.com/gaiama/gaiama.org/commit/540cff5))
-* **BlogPage:** remove webfont ([2ac54dc](https://github.com/gaiama/gaiama.org/commit/2ac54dc))
-* **BlogPost:** change filter from $slug to $url ([54e4df6](https://github.com/gaiama/gaiama.org/commit/54e4df6))
-* **BlogPost:** fix pager, swap slug for url ([27c31b2](https://github.com/gaiama/gaiama.org/commit/27c31b2))
-* **Footer:** DO logo margin ([de30947](https://github.com/gaiama/gaiama.org/commit/de30947))
-* **Footer:** DO logo margin only on desktop ([337e439](https://github.com/gaiama/gaiama.org/commit/337e439))
-* **gatsby-browser:** auto scroll to menu only on link navigation ([b3fe3dd](https://github.com/gaiama/gaiama.org/commit/b3fe3dd))
-* **Header:** new gatsby-image without 2nd wrapper, add logo link ([87a421b](https://github.com/gaiama/gaiama.org/commit/87a421b))
-* redirects/short urls ([8686bde](https://github.com/gaiama/gaiama.org/commit/8686bde))
 * **HomePage:** import new InstagramWidget ([a2d5c97](https://github.com/gaiama/gaiama.org/commit/a2d5c97))
-* **Link:** fix propType of ext prop ([9078a25](https://github.com/gaiama/gaiama.org/commit/9078a25))
-* **MainLayout:** add missing ToastContainer ([67fd0d3](https://github.com/gaiama/gaiama.org/commit/67fd0d3))
-* **Offline:** gatsby-plugin-offline globPatterns ([a46ac9a](https://github.com/gaiama/gaiama.org/commit/a46ac9a))
-* **package:** add missing gatsby-plugin-layout dependency ([f28802e](https://github.com/gaiama/gaiama.org/commit/f28802e))
-* **package:** add missing jest dependency upgrades ([2a1d0c6](https://github.com/gaiama/gaiama.org/commit/2a1d0c6))
-* add missing gatsby-transformer-remark-multi-type plugin ([d9972e3](https://github.com/gaiama/gaiama.org/commit/d9972e3))
-* **Pixel:** proxy pixel to pixel.api.. ([a09eb92](https://github.com/gaiama/gaiama.org/commit/a09eb92))
-* **ReferrerMessages:** ensure message before toast + cleanup ([e600ae5](https://github.com/gaiama/gaiama.org/commit/e600ae5))
-* **SEO:** robots.txt generation, re-add _redirects ([b8dc570](https://github.com/gaiama/gaiama.org/commit/b8dc570))
-* **SupportWidget:** limit content width for mobile ([a41838c](https://github.com/gaiama/gaiama.org/commit/a41838c))
-* **theme:** adjust xxxlarge to be > 1291 ([19a8668](https://github.com/gaiama/gaiama.org/commit/19a8668))
-* removed outerWrapperClassName ([8ab29c9](https://github.com/gaiama/gaiama.org/commit/8ab29c9))
+
+
+### Features
+
+* **Pixel:** read & prefer ?ref over header ([f925e4b](https://github.com/gaiama/gaiama.org/commit/f925e4b))
+* **Theme:** unify colors, preval hex2rgba ([e91adb1](https://github.com/gaiama/gaiama.org/commit/e91adb1))
+* add dev info to console & expose some details ([5a7811d](https://github.com/gaiama/gaiama.org/commit/5a7811d))
+* upgrade gatsby-source-instagram@0.1.4 ([cfbfc36](https://github.com/gaiama/gaiama.org/commit/cfbfc36))
+
+
+
+<a name="2.0.0-beta.5"></a>
+# [2.0.0-beta.5](https://github.com/gaiama/gaiama.org/compare/2.0.0-beta.4...2.0.0-beta.5) (2018-09-28)
+
+
+### Features
+
+* **InstagramFeed:** replace manual by gatsby-source-instagram ([88f2724](https://github.com/gaiama/gaiama.org/commit/88f2724))
+* **InstagramWidget:** init, move InstagramFeed… ([f3a21f8](https://github.com/gaiama/gaiama.org/commit/f3a21f8))
+* **ShareWidget:** remove modal title, shrink close icon ([37ffdbd](https://github.com/gaiama/gaiama.org/commit/37ffdbd))
+
+
+
+<a name="2.0.0-beta.4"></a>
+# [2.0.0-beta.4](https://github.com/gaiama/gaiama.org/compare/2.0.0-beta.3...2.0.0-beta.4) (2018-09-28)
+
+
+### Bug Fixes
+
 * scroll behaviour, now it's a 2 liner ([0c560e5](https://github.com/gaiama/gaiama.org/commit/0c560e5))
-* **TitledCopy:** decrease title size 2.7>2.5 ([55b8148](https://github.com/gaiama/gaiama.org/commit/55b8148))
+* **SupportWidget:** limit content width for mobile ([a41838c](https://github.com/gaiama/gaiama.org/commit/a41838c))
+
+
+### Features
+
+* **ShareWidget:** ui, share per mail and fix clipboard shortcuts ([c121634](https://github.com/gaiama/gaiama.org/commit/c121634))
+
+
+
+<a name="2.0.0-beta.3"></a>
+# [2.0.0-beta.3](https://github.com/gaiama/gaiama.org/compare/2.0.0-beta.2...2.0.0-beta.3) (2018-09-27)
+
+
+### Bug Fixes
+
+* **ReferrerMessages:** ensure message before toast + cleanup ([e600ae5](https://github.com/gaiama/gaiama.org/commit/e600ae5))
+
+
+### Features
+
+* **Redirects:** change lang auto redirect to 301 ([ddd61d7](https://github.com/gaiama/gaiama.org/commit/ddd61d7))
+* **Redirects:** force 301! + slug_short more readable ([e3081bb](https://github.com/gaiama/gaiama.org/commit/e3081bb))
+
+
+
+<a name="2.0.0-beta.2"></a>
+# [2.0.0-beta.2](https://github.com/gaiama/gaiama.org/compare/2.0.0-beta.1...2.0.0-beta.2) (2018-09-27)
 
 
 ### Features
 
 * **BlogPost:** <time /> color to colors.black for a11y ([34f8bd1](https://github.com/gaiama/gaiama.org/commit/34f8bd1))
-* **BlogPost:** link <time/> to slug_short ([98e0993](https://github.com/gaiama/gaiama.org/commit/98e0993))
-* **FontAwesome:** remove global icons ([d780e94](https://github.com/gaiama/gaiama.org/commit/d780e94))
+* **ShareWidget:** switch to execCommand(`copy`) + i18n ([927c7d8](https://github.com/gaiama/gaiama.org/commit/927c7d8))
+* **Toast:** pass options through, disable autoClose for error ([488e375](https://github.com/gaiama/gaiama.org/commit/488e375))
+
+
+
+<a name="2.0.0-beta.1"></a>
+# [2.0.0-beta.1](https://github.com/gaiama/gaiama.org/compare/2.0.0-beta.0...2.0.0-beta.1) (2018-09-27)
+
+
+### Features
+
+* **Pixel:** add more metrics (plt, sd, de, vp, sr) ([8d012c6](https://github.com/gaiama/gaiama.org/commit/8d012c6))
+* remove additional heading font-sizes ([0dd2d2a](https://github.com/gaiama/gaiama.org/commit/0dd2d2a))
+
+
+
+<a name="2.0.0-beta.0"></a>
+# [2.0.0-beta.0](https://github.com/gaiama/gaiama.org/compare/2.0.0-alpha.4...2.0.0-beta.0) (2018-09-27)
+
+
+### Bug Fixes
+
+* **AboutPage:** wrap img in div for proper circles ([540cff5](https://github.com/gaiama/gaiama.org/commit/540cff5))
+* **Footer:** DO logo margin only on desktop ([337e439](https://github.com/gaiama/gaiama.org/commit/337e439))
+* **Pixel:** proxy pixel to pixel.api.. ([a09eb92](https://github.com/gaiama/gaiama.org/commit/a09eb92))
+* **TitledCopy:** decrease title size 2.7>2.5 ([55b8148](https://github.com/gaiama/gaiama.org/commit/55b8148))
+
+
+### Features
+
+* add humans.txt ([b8c0abe](https://github.com/gaiama/gaiama.org/commit/b8c0abe))
 * **Footer:** add Copyright note ([07f0d65](https://github.com/gaiama/gaiama.org/commit/07f0d65))
 * **Footer:** add Steemit link & color, fix github color ([1ab5c31](https://github.com/gaiama/gaiama.org/commit/1ab5c31))
-* **gatsby-browser:** change exports to es6 modules ([f05c88e](https://github.com/gaiama/gaiama.org/commit/f05c88e))
+* **Header:** more width on mobile & font-size ([9f823ea](https://github.com/gaiama/gaiama.org/commit/9f823ea))
+* **Pixel:** never disable ([1450975](https://github.com/gaiama/gaiama.org/commit/1450975))
+* **Pixel:** use Beacon API where available ([5694b85](https://github.com/gaiama/gaiama.org/commit/5694b85))
+
+
+
+<a name="2.0.0-alpha.4"></a>
+# [2.0.0-alpha.4](https://github.com/gaiama/gaiama.org/compare/2.0.0-alpha.3...2.0.0-alpha.4) (2018-09-26)
+
+
+### Features
+
 * add api proxy, update pixel endpoint ([834d340](https://github.com/gaiama/gaiama.org/commit/834d340))
+
+
+
+<a name="2.0.0-alpha.3"></a>
+# [2.0.0-alpha.3](https://github.com/gaiama/gaiama.org/compare/2.0.0-alpha.2...2.0.0-alpha.3) (2018-09-25)
+
+
+
+<a name="2.0.0-alpha.2"></a>
+# [2.0.0-alpha.2](https://github.com/gaiama/gaiama.org/compare/2.0.0-alpha.1...2.0.0-alpha.2) (2018-09-25)
+
+
+### Bug Fixes
+
+* **BlogPost:** change filter from $slug to $url ([54e4df6](https://github.com/gaiama/gaiama.org/commit/54e4df6))
+* **Offline:** gatsby-plugin-offline globPatterns ([a46ac9a](https://github.com/gaiama/gaiama.org/commit/a46ac9a))
+* **theme:** adjust xxxlarge to be > 1291 ([19a8668](https://github.com/gaiama/gaiama.org/commit/19a8668))
+
+
+
+<a name="2.0.0-alpha.1"></a>
+# [2.0.0-alpha.1](https://github.com/gaiama/gaiama.org/compare/2.0.0-alpha.0...2.0.0-alpha.1) (2018-09-24)
+
+
+### Bug Fixes
+
+* **BlogPost:** fix pager, swap slug for url ([27c31b2](https://github.com/gaiama/gaiama.org/commit/27c31b2))
+
+
+
+<a name="2.0.0-alpha.0"></a>
+# [2.0.0-alpha.0](https://github.com/gaiama/gaiama.org/compare/v1.5.37...2.0.0-alpha.0) (2018-09-24)
+
+
+### Bug Fixes
+
+* **BlogPage:** remove webfont ([2ac54dc](https://github.com/gaiama/gaiama.org/commit/2ac54dc))
+* **Footer:** DO logo margin ([de30947](https://github.com/gaiama/gaiama.org/commit/de30947))
+* **gatsby-browser:** auto scroll to menu only on link navigation ([b3fe3dd](https://github.com/gaiama/gaiama.org/commit/b3fe3dd))
+* **Header:** new gatsby-image without 2nd wrapper, add logo link ([87a421b](https://github.com/gaiama/gaiama.org/commit/87a421b))
+* **Link:** fix propType of ext prop ([9078a25](https://github.com/gaiama/gaiama.org/commit/9078a25))
+* **MainLayout:** add missing ToastContainer ([67fd0d3](https://github.com/gaiama/gaiama.org/commit/67fd0d3))
+* **package:** add missing gatsby-plugin-layout dependency ([f28802e](https://github.com/gaiama/gaiama.org/commit/f28802e))
+* **package:** add missing jest dependency upgrades ([2a1d0c6](https://github.com/gaiama/gaiama.org/commit/2a1d0c6))
+* add missing gatsby-transformer-remark-multi-type plugin ([d9972e3](https://github.com/gaiama/gaiama.org/commit/d9972e3))
+* redirects/short urls ([8686bde](https://github.com/gaiama/gaiama.org/commit/8686bde))
+* **SEO:** robots.txt generation, re-add _redirects ([b8dc570](https://github.com/gaiama/gaiama.org/commit/b8dc570))
+* removed outerWrapperClassName ([8ab29c9](https://github.com/gaiama/gaiama.org/commit/8ab29c9))
+
+
+### Features
+
+* **BlogPost:** link <time/> to slug_short ([98e0993](https://github.com/gaiama/gaiama.org/commit/98e0993))
+* **FontAwesome:** remove global icons ([d780e94](https://github.com/gaiama/gaiama.org/commit/d780e94))
+* **gatsby-browser:** change exports to es6 modules ([f05c88e](https://github.com/gaiama/gaiama.org/commit/f05c88e))
 * **gatsby-config:** ignore files starting with . and /happygaia/ ([e50beb6](https://github.com/gaiama/gaiama.org/commit/e50beb6))
 * **gatsby-node:** add index based short urls ([82d7b46](https://github.com/gaiama/gaiama.org/commit/82d7b46))
-* **Header:** more width on mobile & font-size ([9f823ea](https://github.com/gaiama/gaiama.org/commit/9f823ea))
 * **HomePage:** beautify and seoify home page <title/> ([574b8c9](https://github.com/gaiama/gaiama.org/commit/574b8c9))
-* **InstagramFeed:** replace manual by gatsby-source-instagram ([88f2724](https://github.com/gaiama/gaiama.org/commit/88f2724))
-* **InstagramWidget:** init, move InstagramFeed… ([f3a21f8](https://github.com/gaiama/gaiama.org/commit/f3a21f8))
 * **layout:** add gatsby-plugin-layout ([6f53844](https://github.com/gaiama/gaiama.org/commit/6f53844))
-* **slug:** add speakingurl, auto generate slug & new url field ([6251ca0](https://github.com/gaiama/gaiama.org/commit/6251ca0))
-* add dev info to console & expose some details ([5a7811d](https://github.com/gaiama/gaiama.org/commit/5a7811d))
-* **Pixel:** add more metrics (plt, sd, de, vp, sr) ([8d012c6](https://github.com/gaiama/gaiama.org/commit/8d012c6))
 * **Pixel:** add original referrer, utm params & app version ([9df96b8](https://github.com/gaiama/gaiama.org/commit/9df96b8))
-* **Pixel:** never disable ([1450975](https://github.com/gaiama/gaiama.org/commit/1450975))
 * **Pixel:** provide version and new url ([98a981d](https://github.com/gaiama/gaiama.org/commit/98a981d))
-* **Pixel:** read & prefer ?ref over header ([f925e4b](https://github.com/gaiama/gaiama.org/commit/f925e4b))
-* **Pixel:** use Beacon API where available ([5694b85](https://github.com/gaiama/gaiama.org/commit/5694b85))
 * **query-string:** remove default export ([5098b11](https://github.com/gaiama/gaiama.org/commit/5098b11))
 * **query-string:** uri encode all keys & values ([f6f6b77](https://github.com/gaiama/gaiama.org/commit/f6f6b77))
-* **Redirects:** change lang auto redirect to 301 ([ddd61d7](https://github.com/gaiama/gaiama.org/commit/ddd61d7))
-* **Redirects:** force 301! + slug_short more readable ([e3081bb](https://github.com/gaiama/gaiama.org/commit/e3081bb))
 * **ReferrerMessage:** show message additionally as toast ([25b4e4c](https://github.com/gaiama/gaiama.org/commit/25b4e4c))
 * **SEO:** generate robots.txt onPostBuild ([2403bd5](https://github.com/gaiama/gaiama.org/commit/2403bd5))
 * **ShareWidget:** add share link option, with short link ([59a51e2](https://github.com/gaiama/gaiama.org/commit/59a51e2))
-* **ShareWidget:** remove modal title, shrink close icon ([37ffdbd](https://github.com/gaiama/gaiama.org/commit/37ffdbd))
-* **ShareWidget:** switch to execCommand(`copy`) + i18n ([927c7d8](https://github.com/gaiama/gaiama.org/commit/927c7d8))
-* **ShareWidget:** ui, share per mail and fix clipboard shortcuts ([c121634](https://github.com/gaiama/gaiama.org/commit/c121634))
+* **slug:** add speakingurl, auto generate slug & new url field ([6251ca0](https://github.com/gaiama/gaiama.org/commit/6251ca0))
 * **template:** rename 404 to ErrorPage ([81f3a72](https://github.com/gaiama/gaiama.org/commit/81f3a72))
 * add H1 titles to all pages ([6d658f5](https://github.com/gaiama/gaiama.org/commit/6d658f5))
-* add humans.txt ([b8c0abe](https://github.com/gaiama/gaiama.org/commit/b8c0abe))
 * **theme:** use systemfont stack, drop webfonts ([6fce402](https://github.com/gaiama/gaiama.org/commit/6fce402))
-* **Theme:** unify colors, preval hex2rgba ([e91adb1](https://github.com/gaiama/gaiama.org/commit/e91adb1))
-* remove additional heading font-sizes ([0dd2d2a](https://github.com/gaiama/gaiama.org/commit/0dd2d2a))
-* upgrade gatsby-source-instagram@0.1.4 ([cfbfc36](https://github.com/gaiama/gaiama.org/commit/cfbfc36))
 * **TitledCopy:** allow change of title rank h1-h6 ([1eee180](https://github.com/gaiama/gaiama.org/commit/1eee180))
 * **toast:** init react-toastify and utils/toast.js ([b8f845f](https://github.com/gaiama/gaiama.org/commit/b8f845f))
-* **Toast:** pass options through, disable autoClose for error ([488e375](https://github.com/gaiama/gaiama.org/commit/488e375))
 
 
 ### BREAKING CHANGES
