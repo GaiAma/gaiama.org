@@ -135,6 +135,7 @@ module.exports = {
               linkImagesToOriginal: false,
               showCaptions: true,
               addAspectRatio: true,
+              quality: 75,
             },
           },
           `gatsby-remark-wrap-images`,
