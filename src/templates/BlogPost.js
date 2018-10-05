@@ -6,7 +6,6 @@ import rehypeReact from 'rehype-react'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
 import ShareWidget from '@/components/ShareWidget'
-// import TitledCopy from '@/components/TitledCopy'
 import { SupportWidget } from '@/components/Shared'
 import Newsticker from '@/components/Newsticker'
 import PodcastPlayer from '@/components/PodcastPlayer'
@@ -81,19 +80,6 @@ const BlogPost = props => {
         }}
       />
 
-      {/* <TitledCopy
-        centered
-        title={BlogPost.frontmatter.SupportWidget.title}
-        paragraphs={BlogPost.frontmatter.SupportWidget.description}
-        css={{
-          margin: `0 auto 3rem`,
-          [media.lessThan(`medium`)]: {
-            '& h2': { fontSize: `2rem` },
-            '& div': { fontSize: `.9rem` },
-          },
-        }}
-      /> */}
-
       <SupportWidget
         title={BlogPost.frontmatter.SupportWidget.title}
         description={BlogPost.frontmatter.SupportWidget.description}
@@ -140,7 +126,6 @@ const BlogPost = props => {
             top: `50%`,
             right: `0`,
             left: `0`,
-            // background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
             background: `linear-gradient(to right, rgba(204,204,204,0.13), #abaaaa, rgba(204,204,204,0.13)) no-repeat`,
           },
         }}
@@ -336,7 +321,6 @@ export const query = graphql`
 
 const renderAst = new rehypeReact({
   createElement,
-  // components: { 'example-component': ExampleComponent },
 }).Compiler
 
 const PostHeader = ({
@@ -351,14 +335,20 @@ const PostHeader = ({
 }) => (
   <div
     css={{
-      textAlign: `center`,
       margin: 0,
     }}
   >
-    <h1 itemProp="headline" css={{ margin: 0 }}>
+    <h1
+      itemProp="headline"
+      css={{ maxWidth: [`51rem`, `40ch`], margin: `0 auto` }}
+    >
       {title}
     </h1>
-    {subtitle && <h3 css={{ marginTop: `.5rem` }}>{subtitle}</h3>}
+    {subtitle && (
+      <h3 css={{ maxWidth: [`50.7rem`, `48.7ch`], margin: `1rem auto 0` }}>
+        {subtitle}
+      </h3>
+    )}
 
     <div
       css={{
@@ -383,7 +373,6 @@ const PostHeader = ({
           top: `50%`,
           left: `0`,
           right: `0`,
-          // background: `linear-gradient(to right, #cccccc21, #abaaaa, #cccccc21) no-repeat`,
           background: `linear-gradient(to right, rgba(204,204,204,0.13), #abaaaa, rgba(204,204,204,0.13)) no-repeat`,
         },
       }}
@@ -427,7 +416,7 @@ const PostBody = ({ children }) => (
       wordBreak: `break-word`,
       wordWrap: `break-word`,
       '& > div > *': {
-        maxWidth: [`760px`, `80ch`],
+        maxWidth: [`50rem`, `80ch`],
         marginTop: `2.5rem`,
         marginBottom: 0,
         // we reset inline-galleries later
@@ -436,7 +425,7 @@ const PostBody = ({ children }) => (
       },
       '& h2, & h3, & h4, & h5, & h6': {
         marginTop: `2rem`,
-        textAlign: `center`,
+        maxWidth: [`50.3rem`, `51.4ch`],
       },
       '& h3': { fontSize: `1.7rem` },
       '& p:first-child': {
@@ -448,12 +437,6 @@ const PostBody = ({ children }) => (
       '& ul, & ol': {
         listStylePosition: `inside`,
       },
-      // '& .text-centered': {
-      //   textAlign: `center`,
-      // },
-      // '& p + .inline-gallery': {
-      //   marginTop: `3rem`,
-      // },
       '& .inline-gallery': {
         maxWidth: `100%`,
         display: `flex`,
@@ -522,6 +505,7 @@ const PostBody = ({ children }) => (
       //   },
       // },
       '& iframe': { border: 0 },
+      'li p': { margin: `0 !important`, display: `inline` },
     }}
   >
     {children}
