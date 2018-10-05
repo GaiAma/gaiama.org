@@ -262,10 +262,7 @@ export const query = graphql`
         assets {
           bg {
             image: childImageSharp {
-              fluid(
-                maxWidth: 800
-                quality: 75 #duotone: { #  highlight: "#ffffff", #  shadow: "#ff0016" #}
-              ) {
+              fluid(maxWidth: 800, quality: 75) {
                 ...GatsbyImageSharpFluid_noBase64
               }
             }
