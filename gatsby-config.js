@@ -48,11 +48,12 @@ module.exports = {
         name: `content`,
         ignore:
           isProduction || GAIAMA_FULL_CONTENT
-            ? [`**/.*`]
-            : [`**/.*`, `**/happygaia/*`],
+            ? [`**/.git`]
+            : [`**/.git`, `**/happygaia/*`],
       },
     },
     {
+      // TODO: add internet connection check!
       resolve: `gatsby-source-instagram`,
       options: {
         username: `gaiama_org`,
