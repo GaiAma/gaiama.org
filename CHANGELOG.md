@@ -1,3 +1,13 @@
+<a name="2.0.2"></a>
+## [2.0.2](https://github.com/gaiama/gaiama.org/compare/v2.0.1...v2.0.2) (2018-10-06)
+
+
+### Features
+
+* **SEO:** add shortlink referrer as utm_source.. ([3466802](https://github.com/gaiama/gaiama.org/commit/3466802))
+
+
+
 <a name="2.0.1"></a>
 ## [2.0.1](https://github.com/gaiama/gaiama.org/compare/v2.0.0...v2.0.1) (2018-10-06)
 
