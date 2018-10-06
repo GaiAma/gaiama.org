@@ -27,8 +27,8 @@
 - [react-toastify](https://github.com/fkhadra/react-toastify)
 - [gatsby-plugin-pixel](plugins/gatsby-plugin-pixel) custom analytics using Google Analytics as Backend
 - [babel-plugin-preval](https://github.com/kentcdodds/babel-plugin-preval): pre-evaluate color conversions in [theme.js](src/theme.js)
-- [Offline support](https://www.npmjs.com/package/gatsby-plugin-offline)
-- Responsive images using [gatsby-image](https://npm.im/gatsby-image) and [gatsby-remark-images](https://npm.im/gatsby-remark-images)
+- [Offline support](/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-offline#readme)
+- Responsive images using [gatsby-image](/gatsbyjs/gatsby/tree/master/packages/gatsby-image#readme) and [gatsby-remark-images](/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-images#readme)
 - [SEO (OpenGraph Tags, Twitter Tags)](src/components/MainLayout/index.js#L195)
 - [gatsby-source-instagram](https://github.com/oorestisime/gatsby-source-instagram)
 - [conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog)
