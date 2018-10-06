@@ -44,7 +44,7 @@ module.exports = {
       options: {
         path: isProduction
           ? path.join(__dirname, `content`)
-          : path.join(__dirname, `..`, `content`, `content`),
+          : path.join(__dirname, `..`, `gaiama.org_content`),
         name: `content`,
         ignore:
           isProduction || GAIAMA_FULL_CONTENT
