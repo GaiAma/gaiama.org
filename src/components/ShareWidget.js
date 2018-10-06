@@ -119,11 +119,13 @@ class ShareWidget extends Component {
   copyToClipboard = () => {
     /* globals document */
     let shareUrlInput = document.getElementById(`share-url`)
+    let inputShouldBeRemoved = false
     try {
       if (!shareUrlInput) {
         shareUrlInput = document.createElement(`textarea`)
         shareUrlInput.value = this.getLink()
         document.getElementById(`sharewidget`).appendChild(shareUrlInput)
+        inputShouldBeRemoved = true
       }
       shareUrlInput.focus()
       shareUrlInput.select()
@@ -136,7 +138,9 @@ class ShareWidget extends Component {
     } catch (err) {
       toast.error(this.props.shareUrlErrorLabel)
     }
-    shareUrlInput.remove()
+    if (inputShouldBeRemoved) {
+      shareUrlInput.remove()
+    }
   }
 
   render() {
@@ -269,7 +273,7 @@ class ShareWidget extends Component {
               />
             </LinkModalHeader>
             <LinkWrapper>
-              <LinkLabel>
+              <LinkLabel onClick={this.onClickLinkInput}>
                 {showFullUrl ? linkLabelFull : linkLabelShort}
               </LinkLabel>
               <InvisibleInput
