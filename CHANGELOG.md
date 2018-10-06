@@ -1,3 +1,13 @@
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/gaiama/gaiama.org/compare/v2.0.0...v2.0.1) (2018-10-06)
+
+
+### Features
+
+* **SEO:** remove ?ref's on redirects for now ([e56ab82](https://github.com/gaiama/gaiama.org/commit/e56ab82))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/gaiama/gaiama.org/compare/v1.5.37...v2.0.0) (2018-10-06)
 
