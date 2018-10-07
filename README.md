@@ -24,6 +24,7 @@
 - [Changelog](CHANGELOG.md) (new)
 - [I18n: Auto discover & link translations](gatsby-node.js#L152)
 - [Pager: older / newer article](gatsby-node.js#L255)
+- [related articles](gatsby-node.js#L130) manual and auto suggestions
 - [react-toastify](https://github.com/fkhadra/react-toastify)
 - [gatsby-plugin-pixel](plugins/gatsby-plugin-pixel) custom analytics using Google Analytics as Backend
 - [babel-plugin-preval](https://github.com/kentcdodds/babel-plugin-preval): pre-evaluate color conversions in [theme.js](src/theme.js)
