@@ -5,13 +5,13 @@
 <h1 align="center"><a href="https://www.gaiama.org" title="GaiAma.org">GaiAma.org</a></h1>
 
 <p align="center">
-  <a href="#contributors" title="All Contributors"><img src="https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square"></a>
+  <a href="#contributors" title="All Contributors"><img src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square"></a>
   <a href="https://david-dm.org/GaiAma/gaiama.org" title="dependencies status"><img src="https://david-dm.org/GaiAma/gaiama.org/status.svg"/></a>
   <a href="https://david-dm.org/GaiAma/gaiama.org?type=dev" title="devDependencies status"><img src="https://david-dm.org/GaiAma/gaiama.org/dev-status.svg"/></a>
 </p>
 
 <p align="center">
-  <a title="Static Site Generator: GatsbyJS" href="https://www.gatsbyjs.org" target="_blank"><img src="https://www.gaiama.org/gatsby_logo.svg" width="30" height="30" alt="GatsbyJS Logo"></a> <a title="Hoster: Netlify" href="https://www.netlify.com" target="_blank"><img src="https://www.gaiama.org/netlify_logo.svg" width="30" height="30" alt="Netlify Logo"></a> <a title="Server: DigitalOcean" href="https://m.do.co/c/bcef7e4dac88" target="_blank"><img src="https://www.gaiama.org/digitalocean_logo.svg" width="30" height="30" alt="DigitalOcean Logo"></a>
+  <a title="Static Site Generator: GatsbyJS" href="https://www.gatsbyjs.org" target="_blank"><img src="https://www.gaiama.org/gatsby_logo.svg" width="40" alt="GatsbyJS Logo"></a> <a title="Hoster: Netlify" href="https://www.netlify.com" target="_blank"><img src="https://www.gaiama.org/netlify_logo.svg" width="40" alt="Netlify Logo"></a> <a title="Server: DigitalOcean" href="https://m.do.co/c/bcef7e4dac88" target="_blank"><img src="https://www.gaiama.org/digitalocean_logo.svg" width="40" alt="DigitalOcean Logo"></a>
 </p>
 
 ## Features
