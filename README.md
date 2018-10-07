@@ -27,8 +27,8 @@
 - [react-toastify](https://github.com/fkhadra/react-toastify)
 - [gatsby-plugin-pixel](plugins/gatsby-plugin-pixel) custom analytics using Google Analytics as Backend
 - [babel-plugin-preval](https://github.com/kentcdodds/babel-plugin-preval): pre-evaluate color conversions in [theme.js](src/theme.js)
-- [Offline support](/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-offline#readme)
-- Responsive images using [gatsby-image](/gatsbyjs/gatsby/tree/master/packages/gatsby-image#readme) and [gatsby-remark-images](/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-images#readme)
+- [Offline support](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-offline#readme)
+- [gatsby-image](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-image#readme) and [gatsby-remark-images](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-remark-images#readme) for responsive images
 - [SEO (OpenGraph Tags, Twitter Tags)](src/components/MainLayout/index.js#L195)
 - [gatsby-source-instagram](https://github.com/oorestisime/gatsby-source-instagram)
 - [conventional-changelog-cli](https://github.com/conventional-changelog/conventional-changelog)
@@ -38,8 +38,12 @@
 
 ## Roadmap
 
-- more cleanup
 - integrate programming blog, which should reuse as much as possible
+- move all APIs to DigitalOcean (some still on now.sh)
+- more cleanup
+- move from [gatsby-transformer-remark](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-remark) to [gatsby-mdx](https://github.com/ChristopherBiscardi/gatsby-mdx)
+- change [react-helmet](https://github.com/nfl/react-helmet) to [react-head](https://github.com/tizmagik/react-head)
+- improve [build](scripts/build.sh) script, to fix PR previews
 
 ## Development
 
