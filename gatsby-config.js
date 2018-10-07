@@ -195,13 +195,6 @@ module.exports = {
         display: `minimal-ui`,
       },
     },
-    {
-      resolve: `gatsby-plugin-typography`,
-      options: {
-        pathToConfigModule: `src/utils/typography`,
-        omitGoogleFont: true,
-      },
-    },
     // {
     //   resolve: `gatsby-plugin-webpack-bundle-analyzer`,
     //   options: {

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
-import { injectGlobal } from 'emotion'
 import { ToastContainer } from 'react-toastify'
 // import i18n from 'i18next'
 // import { I18nextProvider, translate } from 'react-i18next'
@@ -20,21 +19,9 @@ import {
   maxWidthContent,
 } from '@/theme'
 
+import './global.js'
 import './fragments'
 import 'react-toastify/dist/ReactToastify.css'
-// import 'typeface-amatic-sc'
-// import 'typeface-quicksand'
-
-// TODO: add PR to gatsby-remark-autolink-headers to disable floating
-// https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/gatsby-ssr.js#L10
-injectGlobal(`
-  .anchor {
-    float: none;
-  }
-  #nprogress .bar {
-    height: 5px !important;
-  }
-`)
 
 // const isDev = process.env.NODE_ENV === `development`
 
@@ -64,7 +51,7 @@ const generateMainMenu = items =>
 
 const generateMetaMenu = ({ translations, getLang, menuItems }) =>
   translations
-    .map(x => x.fields ? x : { frontmatter: {}, fields: {} })
+    .map(x => (x.fields ? x : { frontmatter: {}, fields: {} }))
     .map(x => ({
       ...getLang(x.frontmatter.lang),
       to: x.fields.url,

@@ -47,6 +47,7 @@ export const colors = preval`
     rss: '#faa949',
     success: '#74d27e',
     failure: '#d27474',
+    yellow: '#ff0',
     brands: {
       facebook: '#4466b3',
       twitter: '#1ca1f3',
