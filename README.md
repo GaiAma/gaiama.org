@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <a title="Static Site Generator: GatsbyJS" href="https://www.gatsbyjs.org" target="_blank"><img src="https://www.gaiama.org/gatsby_logo-ede9454f97aa6a57639256cd8a56b7c3.svg" width="30" height="30" alt="GatsbyJS Logo"></a> <a title="Hoster: Netlify" href="https://www.netlify.com" target="_blank"><img src="https://www.gaiama.org/netlify_logo-4791addcf46695b1002ab1c5c95091f1.svg" width="30" height="30" alt="Netlify Logo"></a> <a title="Server: DigitalOcean" href="https://m.do.co/c/bcef7e4dac88" target="_blank"><img src="https://www.gaiama.org/digitalocean_logo-c1a6f8b8c8635be3e528d017f46289dc.svg" width="30" height="30" alt="DigitalOcean Logo"></a>
+  <a title="Static Site Generator: GatsbyJS" href="https://www.gatsbyjs.org" target="_blank"><img src="https://www.gaiama.org/gatsby_logo.svg" width="30" height="30" alt="GatsbyJS Logo"></a> <a title="Hoster: Netlify" href="https://www.netlify.com" target="_blank"><img src="https://www.gaiama.org/netlify_logo.svg" width="30" height="30" alt="Netlify Logo"></a> <a title="Server: DigitalOcean" href="https://m.do.co/c/bcef7e4dac88" target="_blank"><img src="https://www.gaiama.org/digitalocean_logo.svg" width="30" height="30" alt="DigitalOcean Logo"></a>
 </p>
 
 ## Features
