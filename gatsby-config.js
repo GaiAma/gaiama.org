@@ -131,7 +131,7 @@ module.exports = {
             resolve: `gatsby-remark-images-with-ratio`,
             options: {
               maxWidth: 800,
-              backgroundColor: `#fff`,
+              backgroundColor: `#eae9e9`,
               linkImagesToOriginal: false,
               showCaptions: true,
               addAspectRatio: true,
