@@ -6,6 +6,7 @@ export const Fragments = graphql`
       siteMetadata {
         title
         siteUrl
+        version
       }
     }
   }
@@ -17,14 +18,22 @@ export const Fragments = graphql`
         assets {
           logo {
             image: childImageSharp {
-              fluid(maxWidth: 420, quality: 75) {
+              fluid(
+                maxWidth: 420
+                quality: 75
+                srcSetBreakpoints: [140, 240, 340, 840]
+              ) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
           headerBg {
             image: childImageSharp {
-              fluid(maxWidth: 1440, quality: 75) {
+              fluid(
+                maxWidth: 1440
+                quality: 75
+                srcSetBreakpoints: [320, 450, 640, 900, 1280]
+              ) {
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
