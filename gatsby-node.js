@@ -9,6 +9,7 @@ const R = require(`ramda`)
 const speakingUrl = require(`speakingurl`)
 const { homepage } = require(`./package.json`)
 const { redirects } = require(`./redirects.js`)
+const serveJson = require(`./serve.json`)
 // const dotenv = require(`dotenv`).config({
 //   path: resolve(`..`, `.env`),
 // })
@@ -334,6 +335,19 @@ exports.onPostBuild = () => {
 
   if (finalRedirects.length) {
     writeFileSync(join(publicDir, `_redirects`), finalRedirects.join(`\n`))
+
+    if (!isProduction) {
+      serveJson.redirects = serveJson.redirects.concat(
+        finalRedirects.map(x => {
+          const [source, destination] = x.replace(/(:splat|\*)/g, ``).split(` `)
+          return { source, destination }
+        })
+      )
+      writeFileSync(
+        join(publicDir, `serve.json`),
+        JSON.stringify(serveJson, null, 2)
+      )
+    }
   }
 
   if (feeds.dir) {
