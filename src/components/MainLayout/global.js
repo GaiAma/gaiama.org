@@ -126,11 +126,6 @@ injectGlobal(`
     font-style: italic;
   }
 
-  h1 {
-    font-size: 2em;
-    margin: 0.67em 0;
-  }
-
   mark {
     background-color: ${colors.yellow};
   }
@@ -321,7 +316,7 @@ injectGlobal(`
   }
 
   ol {
-    margin-left: 0 0 1.55rem 1.55rem;
+    margin: 0 0 1.55rem 1.55rem;
     padding: 0;
     list-style-position: outside;
     list-style-image: none;
@@ -339,7 +334,7 @@ injectGlobal(`
 
   p {
     padding: 0;
-    margin-bottom: 0 0 1.55rem;
+    margin: 0 0 1.55rem;
   }
 
   figure {
@@ -369,7 +364,7 @@ injectGlobal(`
   }
 
   blockquote {
-    margin-left: 0 1.55rem 1.55rem;
+    margin: 0 1.55rem 1.55rem;
     padding: 0;
   }
 
