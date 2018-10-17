@@ -13,6 +13,7 @@ module.exports = {
     author: `GaiAma`,
     description: `GaiAma.org website`,
     siteUrl: homepage,
+    version,
   },
   mapping: {
     'MarkdownRemark.fields.translations': `MarkdownRemark`,
@@ -190,8 +191,8 @@ module.exports = {
         name: `GaiAma`,
         short_name: `GaiAma`,
         start_url: `/`,
-        background_color: `#f7f7f7`,
-        theme_color: `#191919`,
+        background_color: `#287482`,
+        theme_color: `#287482`,
         display: `minimal-ui`,
       },
     },
