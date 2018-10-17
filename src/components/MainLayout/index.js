@@ -202,7 +202,6 @@ class MainLayout extends Component {
             sizes="16x16"
             href="/favicon-16x16.png?v=1"
           />
-          <link rel="manifest" href="/site.webmanifest?v=1" />
           <link rel="shortcut icon" href="/favicon.ico?v=1" />
           <meta
             name="apple-mobile-web-app-title"
