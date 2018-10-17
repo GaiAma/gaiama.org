@@ -1,3 +1,21 @@
+<a name="2.0.3"></a>
+## [2.0.3](https://github.com/gaiama/gaiama.org/compare/v2.0.2...v2.0.3) (2018-10-17)
+
+
+### Bug Fixes
+
+* global.js margin longhand/shorthand confusion, cleanup ([99dc6a7](https://github.com/gaiama/gaiama.org/commit/99dc6a7))
+* PWA theme and bg colors, add pkg version to siteMetadata ([c76eece](https://github.com/gaiama/gaiama.org/commit/c76eece))
+* **fragments:** explicitly specify image sizes.. ([cb5a488](https://github.com/gaiama/gaiama.org/commit/cb5a488))
+* **MainLayout:** remove manifest meta.. ([bd5a285](https://github.com/gaiama/gaiama.org/commit/bd5a285))
+
+
+### Features
+
+* **Gatsby:** change img background color to light gray ([51a4002](https://github.com/gaiama/gaiama.org/commit/51a4002))
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/gaiama/gaiama.org/compare/v2.0.1...v2.0.2) (2018-10-06)
 
