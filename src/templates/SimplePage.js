@@ -7,7 +7,7 @@ const SimplePage = props => {
   const { page } = props.data
   return (
     <MainLayout {...props}>
-      <p dangerouslySetInnerHTML={{ __html: page.frontmatter.content }} />
+      <div dangerouslySetInnerHTML={{ __html: page.frontmatter.content }} />
     </MainLayout>
   )
 }
