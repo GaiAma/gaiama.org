@@ -8,7 +8,6 @@ import {
   faFacebookSquare,
   faTwitterSquare,
   faGooglePlusSquare,
-  faTelegramPlane,
 } from '@fortawesome/free-brands-svg-icons'
 import { PureButton } from '@/components/layout/Button'
 import { toast } from '@/utils/toast'
@@ -175,6 +174,7 @@ class ShareWidget extends Component {
               )}`}
               target="_blank"
               rel="noopener noreferrer"
+              title="Share via Facebook"
             >
               <FontAwesomeIcon icon={faFacebookSquare} size="lg" />
             </a>
@@ -196,6 +196,7 @@ class ShareWidget extends Component {
               }
               target="_blank"
               rel="noopener noreferrer"
+              title="Share via Twitter"
             >
               <FontAwesomeIcon icon={faTwitterSquare} size="lg" />
             </a>
@@ -209,28 +210,14 @@ class ShareWidget extends Component {
               )}&hl=${encodeURIComponent(lang)}`}
               target="_blank"
               rel="noopener noreferrer"
+              title="Share via Google+"
             >
               <FontAwesomeIcon icon={faGooglePlusSquare} size="lg" />
             </a>
           </div>
           <div
             css={{
-              '& svg': { color: colors.brands.telegram, margin: `1rem` },
-            }}
-          >
-            <a
-              href={`https://telegram.me/share/url?url=${encodeURIComponent(
-                link
-              )}&text=${encodeURIComponent(title)}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={faTelegramPlane} size="lg" />
-            </a>
-          </div>
-          <div
-            css={{
-              '& svg': { color: colors.brands.telegram, margin: `1rem` },
+              '& svg': { color: colors.primaryLite, margin: `1rem` },
             }}
           >
             <a
@@ -238,6 +225,7 @@ class ShareWidget extends Component {
                 link
               )}&subject=${encodeURIComponent(title)}`}
               rel="noopener noreferrer"
+              title="Share via Mail"
             >
               <FontAwesomeIcon icon={faEnvelope} size="lg" />
             </a>
@@ -249,6 +237,7 @@ class ShareWidget extends Component {
             }}
           >
             <Button
+              aria-label="Copy Link"
               onClick={this.onLinkModalButtonClick}
               onDoubleClick={this.copyToClipboard}
             >

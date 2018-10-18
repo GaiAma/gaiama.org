@@ -51,7 +51,6 @@ export const colors = preval`
     brands: {
       facebook: '#4466b3',
       twitter: '#1ca1f3',
-      telegram: '#1d95d3',
       gplus: '#dc4436',
       youtube: '#fd1402',
       github: '#24292e',
