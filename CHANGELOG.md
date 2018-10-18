@@ -1,3 +1,13 @@
+<a name="2.0.4"></a>
+## [2.0.4](https://github.com/gaiama/gaiama.org/compare/v2.0.3...v2.0.4) (2018-10-18)
+
+
+### Bug Fixes
+
+* disappearing content on reload ([49be500](https://github.com/gaiama/gaiama.org/commit/49be500))
+
+
+
 <a name="2.0.3"></a>
 ## [2.0.3](https://github.com/gaiama/gaiama.org/compare/v2.0.2...v2.0.3) (2018-10-17)
 
