@@ -1,7 +1,7 @@
 /* global document */
 import React, { Component } from 'react'
 import pt from 'prop-types'
-import { Title, Meta, Link } from 'react-head'
+import { Title, Meta } from 'react-head'
 import { colors } from '@/theme'
 
 class SEO extends Component {
@@ -29,29 +29,9 @@ class SEO extends Component {
       <>
         <Title>Jop! {`${page.title} - ${site.title}`}</Title>
         <Meta name="description" content={page.summary || page.excerpt} />
-        <Link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png?v=1"
-        />
-        <Link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png?v=1"
-        />
-        <Link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png?v=1"
-        />
-        <Link rel="manifest" href="/site.webmanifest?v=1" />
-        <Link rel="shortcut icon" href="/favicon.ico?v=1" />
         <Meta name="apple-mobile-web-app-title" content={site.title} />
         <Meta name="application-name" content={site.title} />
         <Meta name="msapplication-TileColor" content={colors.turqoiseLight} />
-        <Meta name="theme-color" content={colors.white} />
 
         <meta property="og:site_name" content={site.title} />
         <meta property="og:url" content={`${site.siteUrl}${page.slug}`} />

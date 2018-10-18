@@ -184,32 +184,12 @@ class MainLayout extends Component {
             itemProp="description"
             content={page.frontmatter.summary || page.frontmatter.excerpt}
           />
-
-          <link
-            rel="apple-touch-icon"
-            sizes="180x180"
-            href="/apple-touch-icon.png?v=1"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="32x32"
-            href="/favicon-32x32.png?v=1"
-          />
-          <link
-            rel="icon"
-            type="image/png"
-            sizes="16x16"
-            href="/favicon-16x16.png?v=1"
-          />
-          <link rel="shortcut icon" href="/favicon.ico?v=1" />
           <meta
             name="apple-mobile-web-app-title"
             content={site.siteMetadata.title}
           />
           <meta name="application-name" content={site.siteMetadata.title} />
           <meta name="msapplication-TileColor" content={colors.primaryLite} />
-          <meta name="theme-color" content={colors.primaryLite} />
 
           {/* <meta name="msapplication-config" content="browserconfig.xml" /> */}
 

@@ -173,12 +173,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     // `gatsby-plugin-lodash`,
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        globPatterns: [`**/*.{js,css,html}`],
-      },
-    },
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
     {
@@ -190,10 +184,11 @@ module.exports = {
       options: {
         name: `GaiAma`,
         short_name: `GaiAma`,
-        start_url: `/`,
-        background_color: `#287482`,
+        start_url: `/?utm_source=a2hs`,
+        background_color: `#fff`,
         theme_color: `#287482`,
-        display: `minimal-ui`,
+        display: `standalone`,
+        icon: `static/gaiama_piktogram.png`,
       },
     },
     // {
@@ -226,6 +221,12 @@ module.exports = {
       resolve: `gatsby-plugin-emotion`,
       options: {
         // Accepts all options defined by `babel-plugin-emotion` plugin.
+      },
+    },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        globPatterns: [`**/*.{js,css,html}`],
       },
     },
   ],
