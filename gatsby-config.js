@@ -188,7 +188,7 @@ module.exports = {
       options: {
         name: `GaiAma`,
         short_name: `GaiAma`,
-        start_url: `/?utm_source=a2hs`,
+        start_url: [`/en/?utm_source=a2hs`, `/de/?utm_source=a2hs`],
         background_color: `#fff`,
         theme_color: `#287482`,
         display: `standalone`,
