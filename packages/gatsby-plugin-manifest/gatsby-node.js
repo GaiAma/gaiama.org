@@ -63,6 +63,24 @@ exports.onPostBootstrap = (args, pluginOptions) =>
       writeManifest({ manifest })
     }
 
+    fs.writeFileSync(
+      path.join(`public`, `browserconfig.xml`),
+      `<?xml version="1.0" encoding="utf-8"?>
+<browserconfig>
+    <msapplication>
+        <tile>
+            <TileColor>${manifest.background_color}</TileColor>
+            ${manifest.icons
+              .map(x => {
+                const { sizes, src } = x
+                return `<square${sizes}logo src="/${src}?v=1"/>`
+              })
+              .join(`\n            `)}
+        </tile>
+    </msapplication>
+</browserconfig>`
+    )
+
     // Only auto-generate icons if a src icon is defined.
     if (icon !== undefined) {
       // Check if the icon exists

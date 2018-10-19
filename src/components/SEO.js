@@ -31,7 +31,6 @@ class SEO extends Component {
         <Meta name="description" content={page.summary || page.excerpt} />
         <Meta name="apple-mobile-web-app-title" content={site.title} />
         <Meta name="application-name" content={site.title} />
-        <Meta name="msapplication-TileColor" content={colors.turqoiseLight} />
 
         <meta property="og:site_name" content={site.title} />
         <meta property="og:url" content={`${site.siteUrl}${page.slug}`} />

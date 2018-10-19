@@ -189,9 +189,6 @@ class MainLayout extends Component {
             content={site.siteMetadata.title}
           />
           <meta name="application-name" content={site.siteMetadata.title} />
-          <meta name="msapplication-TileColor" content={colors.primaryLite} />
-
-          {/* <meta name="msapplication-config" content="browserconfig.xml" /> */}
 
           {/* facebook */}
           <meta property="og:site_name" content={site.siteMetadata.title} />
