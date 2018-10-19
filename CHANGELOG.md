@@ -1,3 +1,21 @@
+<a name="2.0.5"></a>
+## [2.0.5](https://github.com/gaiama/gaiama.org/compare/v2.0.4...v2.0.5) (2018-10-19)
+
+
+### Bug Fixes
+
+* fix manifest icon, add utm_source ([8378e4b](https://github.com/gaiama/gaiama.org/commit/8378e4b))
+* **PWA:** appmanifest now supports i18n, patched version.. ([ae194c2](https://github.com/gaiama/gaiama.org/commit/ae194c2))
+
+
+### Features
+
+* **PWA:** add browserconfig.xml to plugin-manifest ([0fc2559](https://github.com/gaiama/gaiama.org/commit/0fc2559))
+* **SEO:** re-add twitter:site ([d4527ff](https://github.com/gaiama/gaiama.org/commit/d4527ff))
+* **ShareWidget:** add a11y labels, remove Telegram ([27b633c](https://github.com/gaiama/gaiama.org/commit/27b633c))
+
+
+
 <a name="2.0.4"></a>
 ## [2.0.4](https://github.com/gaiama/gaiama.org/compare/v2.0.3...v2.0.4) (2018-10-18)
 
