@@ -69,8 +69,6 @@ module.exports = (
     return {}
   }
 
-  console.log(`TYPE:`, type.name)
-
   pluginsCacheStr = pluginOptions.plugins.map(p => p.name).join(``)
   pathPrefixCacheStr = pathPrefix || ``
 

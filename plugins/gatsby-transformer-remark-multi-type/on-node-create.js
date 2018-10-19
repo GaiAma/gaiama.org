@@ -38,7 +38,6 @@ module.exports = async function onCreateNode(
   }
 
   const customType = customizeType({ ...node, frontmatter })
-  console.log(`customType:`, customType)
   const type = customType
     ? !`${customType}`.endsWith(`MarkdownRemark`)
       ? `${customType}MarkdownRemark`
