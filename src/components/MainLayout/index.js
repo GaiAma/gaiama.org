@@ -221,15 +221,7 @@ class MainLayout extends Component {
           {/* <meta property="og:image:alt" content={`A shiny red apple with a bite taken out`} /> */}
 
           {/* twitter */}
-          {/* <meta
-            property="twitter:site"
-            content={
-              `hellogaiama`
-              // this.props.data.Accounts.frontmatter.accounts.find(
-              //   x => x.service === `twitter`
-              // ).handle
-            }
-          /> */}
+          <meta property="twitter:site" content="hellogaiama" />
           <meta name="twitter:card" content="summary_large_image" />
 
           {[`/en`, `/de`].includes(location.pathname) && (
