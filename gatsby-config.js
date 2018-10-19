@@ -66,7 +66,7 @@ module.exports = {
           node.relativePath.includes(`newsletter`)
             ? `newsletter`
             : node.frontmatter.layout !== `BlogPost`
-              ? node.relativeDirectory
+              ? node.relativePath.split(`/`)[0]
               : ``,
         plugins: [
           `gatsby-remark-embed-video`,
