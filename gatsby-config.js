@@ -1,4 +1,4 @@
-const { join, resolve } = require(`path`)
+const { basename, dirname, join, resolve } = require(`path`)
 const { homepage, version } = require(`./package.json`)
 
 const { BRANCH, GAIAMA_CONTENT_ID, GAIAMA_FULL_CONTENT } = process.env
@@ -66,7 +66,7 @@ module.exports = {
           node.relativePath.includes(`newsletter`)
             ? `newsletter`
             : node.frontmatter.layout !== `BlogPost`
-              ? node.relativePath.split(`/`)[0]
+              ? basename(dirname(node.relativePath))
               : ``,
         plugins: [
           `gatsby-remark-embed-video`,
