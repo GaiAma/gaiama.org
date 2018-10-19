@@ -12,7 +12,7 @@ export const Fragments = graphql`
   }
 
   fragment SiteMeta on Query {
-    SiteMeta: siteMetaMarkdown(frontmatter: { lang: { eq: $lang } }) {
+    SiteMeta: siteMetaMarkdownRemark(frontmatter: { lang: { eq: $lang } }) {
       htmlAst
       frontmatter {
         assets {

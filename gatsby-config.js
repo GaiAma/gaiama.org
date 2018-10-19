@@ -1,11 +1,9 @@
-const path = require(`path`)
+const { join, resolve } = require(`path`)
 const { homepage, version } = require(`./package.json`)
 
 const { BRANCH, GAIAMA_CONTENT_ID, GAIAMA_FULL_CONTENT } = process.env
 const isProduction = GAIAMA_CONTENT_ID
 const isMaster = BRANCH === `master`
-// testing if GAIAMA_CONTENT_HASH will be available
-console.log(`GAIAMA_CONTENT_HASH:`, process.env.GAIAMA_CONTENT_HASH)
 
 module.exports = {
   siteMetadata: {
@@ -44,8 +42,8 @@ module.exports = {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: isProduction
-          ? path.join(__dirname, `content`)
-          : path.join(__dirname, `..`, `gaiama.org_content`),
+          ? join(__dirname, `content`)
+          : join(__dirname, `..`, `gaiama.org_content`),
         name: `content`,
         ignore:
           isProduction || GAIAMA_FULL_CONTENT
@@ -64,6 +62,12 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark-multi-type`,
       options: {
+        customizeType: node =>
+          node.relativePath.includes(`newsletter`)
+            ? `newsletter`
+            : node.frontmatter.layout !== `BlogPost`
+              ? node.relativeDirectory
+              : ``,
         plugins: [
           `gatsby-remark-embed-video`,
           // {
@@ -167,7 +171,7 @@ module.exports = {
         path: `frontmatter.id`,
         validValues: [`btc`, `bch`, `ltc`, `eth`, `dash`],
         extension: `svg`,
-        dir: path.resolve(`public/qr`),
+        dir: resolve(`public/qr`),
       },
     },
     `gatsby-transformer-sharp`,

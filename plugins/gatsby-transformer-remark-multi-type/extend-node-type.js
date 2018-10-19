@@ -65,7 +65,7 @@ module.exports = (
   { type, store, pathPrefix, getNode, getNodes, cache, reporter },
   pluginOptions
 ) => {
-  if (type.name !== `MarkdownRemark` && !type.name.endsWith(`Markdown`)) {
+  if (!type.name.endsWith(`MarkdownRemark`)) {
     return {}
   }
 

@@ -1,11 +1,10 @@
-const { basename } = require(`path`)
 const crypto = require(`crypto`)
 const grayMatter = require(`gray-matter`)
 const _ = require(`lodash`)
 
 module.exports = async function onCreateNode(
   { node, getNode, loadNodeContent, actions, createNodeId },
-  pluginOptions
+  { customizeType = () => ``, ...pluginOptions }
 ) {
   const { createNode, createParentChildLink } = actions
 
@@ -32,25 +31,34 @@ module.exports = async function onCreateNode(
     })
   }
 
+  const frontmatter = {
+    title: ``, // always include a title
+    ...data.data,
+    _PARENT: node.id,
+  }
+
+  const customType = customizeType({ ...node, frontmatter })
+  const type = customType
+    ? !`${customType}`.endsWith(`MarkdownRemark`)
+      ? `${customType}MarkdownRemark`
+      : customType
+    : `MarkdownRemark`
+
   const markdownNode = {
     id: createNodeId(`${node.id} >>> MarkdownRemark`),
     children: [],
     parent: node.id,
     internal: {
       content: data.content,
-      type:
-        data.data && data.data.layout === `BlogPost`
-          ? `MarkdownRemark`
-          : node.relativePath && node.relativePath.includes(`newsletter`)
-            ? `newsletterMarkdown`
-            : _.upperFirst(_.camelCase(`${basename(node.dir)} Markdown`)),
+      type,
+      // :
+      //   data.data && data.data.layout === `BlogPost`
+      //     ? `MarkdownRemark`
+      //     : node.relativePath && node.relativePath.includes(`newsletter`)
+      //       ? `newsletterMarkdown`
+      //       : _.upperFirst(_.camelCase(`${basename(node.dir)} Markdown`)),
     },
-  }
-
-  markdownNode.frontmatter = {
-    title: ``, // always include a title
-    ...data.data,
-    _PARENT: node.id,
+    frontmatter,
   }
 
   markdownNode.excerpt = data.excerpt
