@@ -192,7 +192,7 @@ module.exports = {
         background_color: `#fff`,
         theme_color: `#287482`,
         display: `standalone`,
-        icon: `static/gaiama_piktogram.png`,
+        icon: `static/gaiama_pictogram.png`,
       },
     },
     // {
