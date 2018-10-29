@@ -98,8 +98,12 @@ class PodcastPlayer extends Component {
             <OnMobile>{meta.short}</OnMobile>
             <OnDesktop>{meta.long}</OnDesktop>
           </div>
-          <Button onClick={this.setCurrent(audio, false)}>Audio</Button>
-          <Button onClick={this.setCurrent(video, true)}>Video</Button>
+          {audio && (
+            <Button onClick={this.setCurrent(audio, false)}>Audio</Button>
+          )}
+          {video && (
+            <Button onClick={this.setCurrent(video, true)}>Video</Button>
+          )}
         </div>
 
         {isOpen && (
