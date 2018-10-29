@@ -1,3 +1,20 @@
+<a name="2.0.7"></a>
+## [2.0.7](https://github.com/gaiama/gaiama.org/compare/v2.0.6...v2.0.7) (2018-10-29)
+
+
+### Bug Fixes
+
+* **a11y:** more distinguishable link color ([215cf08](https://github.com/gaiama/gaiama.org/commit/215cf08))
+* **GatsbyImage:** new wrapper class ([d6d29bc](https://github.com/gaiama/gaiama.org/commit/d6d29bc))
+
+
+### Features
+
+* **Brand:** new pictogram ([bcf7970](https://github.com/gaiama/gaiama.org/commit/bcf7970))
+* **PodcastPlayer:** check if defined before render button ([a2b8936](https://github.com/gaiama/gaiama.org/commit/a2b8936))
+
+
+
 <a name="2.0.6"></a>
 ## [2.0.6](https://github.com/gaiama/gaiama.org/compare/v2.0.5...v2.0.6) (2018-10-29)
 
