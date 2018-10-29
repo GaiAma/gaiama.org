@@ -1,6 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import Img from 'gatsby-image'
+import { media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
 import { SupportWidget } from '@/components/Shared'
@@ -9,13 +11,43 @@ const DonatePage = props => {
   const { page } = props.data
   return (
     <MainLayout {...props}>
-      <TitledCopy
-        rank="1"
-        centered
-        title={page.frontmatter.intro.title}
-        paragraphs={page.frontmatter.intro.text}
-        css={{ marginBottom: `2rem` }}
-      />
+      <div
+        css={`
+          display: flex;
+          flex-direction: column-reverse;
+          justify-content: space-between;
+          max-width: 950px;
+          margin: 0 auto 2rem;
+          ${media.greaterThan(`medium`)} {
+            flex-direction: row;
+          }
+        `}
+      >
+        <Img
+          fluid={page.frontmatter.image.image.fluid}
+          css={`
+            width: 100%;
+            margin: 2rem auto 0;
+            ${media.greaterThan(`medium`)} {
+              margin-right: 1rem;
+              max-width: 60%;
+            }
+          `}
+        />
+
+        <div>
+          <h1>{page.frontmatter.intro.title}</h1>
+          {page.frontmatter.intro.text.map(x => (
+            <div
+              key={x}
+              dangerouslySetInnerHTML={{ __html: x }}
+              css={`
+                line-height: 1.8rem;
+              `}
+            />
+          ))}
+        </div>
+      </div>
 
       <SupportWidget
         title={page.frontmatter.donationTitle}
@@ -79,6 +111,13 @@ export const query = graphql`
         }
         donationTitle
         donationDescr
+        image {
+          image: childImageSharp {
+            fluid(maxWidth: 950, quality: 75) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+          }
+        }
       }
     }
   }
