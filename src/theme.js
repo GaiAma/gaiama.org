@@ -7,19 +7,20 @@ import preval from 'babel-plugin-preval/macro'
 export const colors = preval`
   const h2a = require('hex2rgba')
   const primary = '#042f37'
+  const primaryLite = '#287482'
   module.exports = {
     transparent: 'transparent',
     primary,
+    primaryLite,
     primary58: h2a(primary, 0.58),
     primary72: h2a(primary, 0.72),
     primary85: h2a(primary, 0.85),
-    primaryLite: '#287482',
     white: '#fff',
     darkWhite: '#e2e2e2',
     creme: '#fafafa',
     lightBlue: '#f3f8fd',
     // lightBlue: '#f1f4f8',
-    link: '#0e91a0',
+    link: primaryLite, // axe '#0A616C', // before Lighthouse: '#0e91a0', 
     // linkHover: '#0fc1d6',
     linkHover: '#0a474e',
     // link: '#13abaa',
