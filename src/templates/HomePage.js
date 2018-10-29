@@ -51,17 +51,17 @@ const IntroImages = styled.div`
   ${media.greaterThan(`small`)} {
     & .gatsby-image-wrapper {
       width: 280px;
-      transition: width 0.3s ease-in-out;
+      /* transition: width 0.3s ease-in-out; */
     }
     & > .gatsby-image-wrapper:not(:nth-child(2)) {
       width: 200px;
     }
-    &:hover .gatsby-image-wrapper {
+    /* &:hover .gatsby-image-wrapper {
       width: 200px;
     }
     & > .gatsby-image-wrapper:hover {
       width: 280px;
-    }
+    } */
   }
 `
 
