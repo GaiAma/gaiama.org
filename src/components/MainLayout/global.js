@@ -8,7 +8,7 @@ import { colors } from '@/theme'
  * - https://github.com/erquhart/reboot.css/blob/master/src/reboot.css
  */
 
-injectGlobal(`
+injectGlobal`
   // TODO: add PR to gatsby-remark-autolink-headers to disable floating
   // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/gatsby-ssr.js#L10
   .anchor {
@@ -502,4 +502,4 @@ injectGlobal(`
   td:last-child {
     padding-right: 0;
   }
-`)
+`
