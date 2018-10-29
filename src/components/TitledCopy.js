@@ -24,7 +24,6 @@ const Title = styled.h2(props => ({
 }))
 
 const ContentWrapper = styled.div(props => ({
-  fontSize: `1.1rem`,
   textAlign: props.centeredCopy && `center`,
   overflow: `hidden`,
   transition: `max-height .3s`,
