@@ -18,16 +18,17 @@ const AboutPage = props => {
       css={{
         width: `23%`,
         margin: `2rem 0`,
-        '& .gatsby-image-outer-wrapper': {
-          display: `flex`,
-        },
         [media.lessThan(`medium`)]: {
           display: `none`,
         },
       }}
     >
       {page.frontmatter.peopleGallery.map((x, i) => (
-        <Img key={i} fixed={x.image.fixed} css={{ maxWidth: `100%` }} />
+        <Img
+          key={i}
+          fixed={x.image.fixed}
+          css={{ display: `flex !important`, maxWidth: `100%` }}
+        />
       ))}
     </div>
   )

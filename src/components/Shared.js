@@ -229,7 +229,7 @@ const SupportWidgetArtwork = styled.div({
   display: `flex`,
   alignItems: `flex-end`,
   marginBottom: `.5rem`,
-  '& .gatsby-image-outer-wrapper': {
+  '& .gatsby-image-wrapper': {
     zIndex: 1,
   },
 })
