@@ -1,3 +1,26 @@
+<a name="2.0.6"></a>
+## [2.0.6](https://github.com/gaiama/gaiama.org/compare/v2.0.5...v2.0.6) (2018-10-29)
+
+
+### Bug Fixes
+
+* **CI:** change customizeType prefix ([18b8d7a](https://github.com/gaiama/gaiama.org/commit/18b8d7a))
+* **CI:** Netlify CI breaking due to different relativePath ([598bc6d](https://github.com/gaiama/gaiama.org/commit/598bc6d))
+
+
+### Features
+
+* **DonatePage:** add 1€10m² image ([86a053d](https://github.com/gaiama/gaiama.org/commit/86a053d))
+* **HomePage:** disable 3 images hover ([5c70663](https://github.com/gaiama/gaiama.org/commit/5c70663))
+* **TitledCopy:** remove increased font-size ([0262760](https://github.com/gaiama/gaiama.org/commit/0262760))
+
+
+### Reverts
+
+* remove console.logs from remark debug ([fab260e](https://github.com/gaiama/gaiama.org/commit/fab260e))
+
+
+
 <a name="2.0.5"></a>
 ## [2.0.5](https://github.com/gaiama/gaiama.org/compare/v2.0.4...v2.0.5) (2018-10-19)
 
