@@ -1,3 +1,13 @@
+<a name="2.0.8"></a>
+## [2.0.8](https://github.com/gaiama/gaiama.org/compare/v2.0.7...v2.0.8) (2018-11-02)
+
+
+### Features
+
+* add www.spende/www.donate redirects ([becd85a](https://github.com/gaiama/gaiama.org/commit/becd85a))
+
+
+
 <a name="2.0.7"></a>
 ## [2.0.7](https://github.com/gaiama/gaiama.org/compare/v2.0.6...v2.0.7) (2018-10-29)
 
