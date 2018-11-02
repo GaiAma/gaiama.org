@@ -8,9 +8,13 @@ exports.redirects = [
   `/api/* https://api.gaiama.org/:splat 200`,
   // subdomain redirects
   `https://spende.gaiama.org/* https://www.gaiama.org/en/donate/?utm_source=spende.gaiama.org#main-nav 301! Language=en`,
+  `https://www.spende.gaiama.org/* https://www.gaiama.org/en/donate/?utm_source=spende.gaiama.org#main-nav 301! Language=en`,
   `https://spende.gaiama.org/* https://www.gaiama.org/de/spenden/?utm_source=spende.gaiama.org#main-nav 301!`,
+  `https://www.spende.gaiama.org/* https://www.gaiama.org/de/spenden/?utm_source=spende.gaiama.org#main-nav 301!`,
   `https://donate.gaiama.org/* https://www.gaiama.org/de/spenden/?utm_source=donate.gaiama.org#main-nav 301! Language=de`,
+  `https://www.donate.gaiama.org/* https://www.gaiama.org/de/spenden/?utm_source=donate.gaiama.org#main-nav 301! Language=de`,
   `https://donate.gaiama.org/* https://www.gaiama.org/en/donate/?utm_source=donate.gaiama.org#main-nav 301!`,
+  `https://www.donate.gaiama.org/* https://www.gaiama.org/en/donate/?utm_source=donate.gaiama.org#main-nav 301!`,
   // donation shortcuts
   `/spenden /de/spenden/?utm_source=gaiama.org/spenden#main-nav 301`,
   `/spende /de/spenden/?utm_source=gaiama.org/spende#main-nav 301`,
