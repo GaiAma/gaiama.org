@@ -280,18 +280,9 @@ export const query = graphql`
     ...SupportWidget
 
     page: javascriptFrontmatter(fields: { url: { eq: $url } }) {
+      ...PageTranslations
       fields {
         url
-        translations {
-          fields {
-            url
-          }
-          frontmatter {
-            title
-            lang
-            slug
-          }
-        }
       }
       frontmatter {
         title

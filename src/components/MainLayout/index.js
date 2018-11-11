@@ -71,28 +71,6 @@ const generateMetaMenu = ({ translations, getLang, menuItems }) =>
 //   [lang]: { translations: messages }
 // })
 
-const getTranslations = page =>
-  [
-    ...(page.fields.translations || []),
-    {
-      fields: {
-        url: page.fields.url,
-      },
-      frontmatter: {
-        lang: page.frontmatter.lang,
-        slug: page.frontmatter.slug,
-        title: page.frontmatter.title,
-      },
-    },
-  ].sort(
-    (a, b) =>
-      a.frontmatter.lang < b.frontmatter.lang
-        ? -1
-        : a.frontmatter.lang > b.frontmatter.lang
-          ? 1
-          : 0
-  )
-
 // i18n.init({
 //   initImmediate: false,
 //   fallbackLng: `en`,
@@ -147,7 +125,7 @@ class MainLayout extends Component {
 
     const lang = pageContext.lang
     // const i18nStore = getI18nStore(lang, pageContext.messages)
-    const translations = getTranslations(page)
+    const translations = page.fields.translations
     const getLang = getLangFactory(languages.edges)
     const menuItems = menu.edges || []
     const mainMenu = generateMainMenu(menuItems)
@@ -196,11 +174,8 @@ class MainLayout extends Component {
             property="og:url"
             content={`${site.siteMetadata.siteUrl}${page.fields.url}`}
           />
-          <meta
-            property="og:locale"
-            content={getLang(page.frontmatter.lang).lc}
-          />
-          {getLang(page.frontmatter.lang, true).map(x => (
+          <meta property="og:locale" content={getLang(lang).lc} />
+          {getLang(lang, true).map(x => (
             <meta property="og:locale:alternate" content={x.lc} key={x.lc} />
           ))}
           <meta

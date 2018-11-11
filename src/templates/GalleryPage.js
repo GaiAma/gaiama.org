@@ -236,6 +236,7 @@
 //     ...Paginator
 
 //     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
+// ...PageTranslations
 //       fields {
 // url
 //         translations {

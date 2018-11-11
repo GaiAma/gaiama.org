@@ -473,21 +473,9 @@ export const query = graphql`
     ...SupportWidget
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
+      ...PageTranslations
       fields {
         url
-        translations {
-          fields {
-            url
-          }
-          frontmatter {
-            title
-            lang
-            slug
-            cover {
-              publicURL
-            }
-          }
-        }
       }
       frontmatter {
         title

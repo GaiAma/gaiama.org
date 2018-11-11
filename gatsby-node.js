@@ -174,7 +174,38 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       createNodeField({
         node,
         name: `translations`,
-        value: array.filter(n => n.id !== node.id).map(node => node.id),
+        value: array
+          .map(n => {
+            const lang = Languages.find(
+              x => x.frontmatter.id === n.frontmatter.lang
+            )
+            if (!lang) return null
+            return Object.assign({}, lang.frontmatter, {
+              to: n.fields.url,
+              fields: {
+                url: n.fields.url,
+              },
+              frontmatter: {
+                title: n.frontmatter.title,
+                lang: n.frontmatter.lang,
+                slug: n.frontmatter.slug,
+                cover: {
+                  publicURL: n.frontmatter.cover
+                    ? n.frontmatter.cover.publicURL
+                    : ``,
+                },
+              },
+            })
+          }) //.filter(n => n.id !== node.id).map(node => node.id),
+          .filter(n => n)
+          .sort(
+            (a, b) =>
+              a.frontmatter.lang < b.frontmatter.lang
+                ? -1
+                : a.frontmatter.lang > b.frontmatter.lang
+                  ? 1
+                  : 0
+          ),
       })
 
       // set up short url redirects

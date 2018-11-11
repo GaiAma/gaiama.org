@@ -149,4 +149,24 @@ export const Fragments = graphql`
       }
     }
   }
+
+  fragment PageTranslations on JavascriptFrontmatter {
+    fields {
+      translations {
+        id
+        lc
+        title
+        titleShort
+        to
+        fields {
+          url
+        }
+        frontmatter {
+          title
+          lang
+          slug
+        }
+      }
+    }
+  }
 `

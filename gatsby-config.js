@@ -14,8 +14,6 @@ module.exports = {
     version,
   },
   mapping: {
-    'MarkdownRemark.fields.translations': `MarkdownRemark`,
-    'JavascriptFrontmatter.fields.translations': `JavascriptFrontmatter`,
     'MarkdownRemark.fields.suggested': `MarkdownRemark`,
     'MarkdownRemark.fields.newer': `MarkdownRemark`,
     'MarkdownRemark.fields.older': `MarkdownRemark`,

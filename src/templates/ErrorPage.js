@@ -29,15 +29,7 @@ export const query = graphql`
     page: javascriptFrontmatter(
       frontmatter: { slug: { eq: $slug }, lang: { eq: $lang } }
     ) {
-      fields {
-        translations {
-          frontmatter {
-            title
-            lang
-            slug
-          }
-        }
-      }
+      ...PageTranslations
       frontmatter {
         title
         lang
