@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { colors, fontFamilies, fullPageWidth, media } from '@/theme'
-import Lazy from '@/components/Lazy'
 import { mediaQuery } from '@/components/MediaQuery'
 
 const InstagramWidget = ({ user, followLink, bg, images }) => {
@@ -11,8 +10,7 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
 
   return (
     <div>
-      <Lazy
-        image={bg}
+      <div
         css={{
           display: `flex`,
           justifyContent: `space-around`,
@@ -22,6 +20,16 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
           ...fullPageWidth,
         }}
       >
+        <Img
+          fluid={bg}
+          css={`
+            position: absolute !important;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+          `}
+        />
         {imgs.map(x => (
           <div
             key={x.node.id}
@@ -46,7 +54,7 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
             </a>
           </div>
         ))}
-      </Lazy>
+      </div>
       <div
         css={{
           marginTop: `.5rem`,
@@ -89,7 +97,7 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
 InstagramWidget.propTypes = {
   user: PropTypes.string,
   followLink: PropTypes.string,
-  bg: PropTypes.string,
+  bg: PropTypes.object,
   images: PropTypes.array,
 }
 

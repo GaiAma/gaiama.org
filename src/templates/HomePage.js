@@ -236,7 +236,7 @@ const HomePage = props => (
     <InstagramWidget
       user={props.data.instagram.frontmatter.instagramUser}
       followLink={props.data.instagram.frontmatter.followLink}
-      bg={props.data.instagram.frontmatter.bg.image.fluid.src}
+      bg={props.data.instagram.frontmatter.bg.image.fluid}
       images={props.data.instagramImages.edges}
     />
 
