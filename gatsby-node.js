@@ -449,3 +449,8 @@ exports.onCreateWebpackConfig = ({ actions, stage }) => {
   //   ],
   // })
 }
+
+exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
+  setBabelPlugin({ name: `@babel/plugin-proposal-optional-chaining` })
+  setBabelPlugin({ name: `babel-plugin-transform-react-remove-prop-types` })
+}
