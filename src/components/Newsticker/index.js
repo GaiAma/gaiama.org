@@ -1,8 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
+import styled from 'react-emotion'
 import NewstickerItem from './NewstickerItem'
 import { media } from '@/theme'
+
+const StyledLink = styled(Link)`
+  font-size: 1rem;
+  border: none;
+`
 
 const NewsTicker = ({
   items,
@@ -43,9 +49,7 @@ const NewsTicker = ({
 
           {link && (
             <div>
-              <Link to={link} css={{ fontSize: `1rem` }}>
-                {linkLabel}
-              </Link>
+              <StyledLink to={link}>{linkLabel}</StyledLink>
             </div>
           )}
         </header>

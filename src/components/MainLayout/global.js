@@ -8,9 +8,16 @@ import { colors } from '@/theme'
  * - https://github.com/erquhart/reboot.css/blob/master/src/reboot.css
  */
 
+// TODO: add PR to gatsby-remark-autolink-headers to disable floating
+// https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/gatsby-ssr.js#L10
 injectGlobal`
-  // TODO: add PR to gatsby-remark-autolink-headers to disable floating
-  // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/gatsby-ssr.js#L10
+  /* *:focus,
+  *:focus + svg,
+  *:focus + svg * {
+    stroke: red;
+    outline: 1px solid red;
+    border: 1px solid red;
+  } */
   .anchor {
     float: none;
   }
@@ -25,7 +32,7 @@ injectGlobal`
   }
 
   html {
-    font: 105%/1.9 'system-ui', -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
+    font: 105%/1.6 'system-ui', -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
       'Roboto', 'Helvetica', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
 
@@ -97,18 +104,26 @@ injectGlobal`
   }
 
   a {
-    color: ${colors.link};
+    /* color: ${colors.link}; */
     text-decoration: none;
-    background-color: transparent;
-    -webkit-text-decoration-skip: objects;
+    transition: all 0.3s ease;
+    color: ${colors.gray80};
+    border-bottom: 2px solid ${colors.primaryLite};
   }
 
   a:active,
   a:hover {
-    color: ${colors.linkHover};
-    text-decoration: none;
-    outline-width: 0;
+    /* color: ${colors.linkHover}; */
+    background-color: ${colors.primaryLite};
+    color: #ffffff;
   }
+
+  /* #main a {
+  }
+
+  #main a:active,
+  #main a:hover {
+  } */
 
   abbr[title] {
     border-bottom: none;

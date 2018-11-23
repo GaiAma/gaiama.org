@@ -45,6 +45,12 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
               }/?taken-by=${user}`}
               target="_blank"
               rel="noopener noreferrer"
+              css={`
+                border: none;
+                :hover {
+                  background-color: transparent;
+                }
+              `}
             >
               <Img
                 alt="GaiAma on Instagram"
@@ -69,6 +75,7 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
           rel="noopener noreferrer"
           css={{
             display: `inline-block`,
+            border: `none`,
             fontFamily: fontFamilies.accent,
             lineHeight: `.8`,
             letterSpacing: `.2rem`,

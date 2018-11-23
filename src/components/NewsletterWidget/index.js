@@ -256,7 +256,14 @@ export class Newsletter extends Component {
             <span css={{ fontSize: `.9rem`, margin: `0 .5rem` }}>
               {consentLabel}
             </span>
-            <a href={privacyLink} target="_blank" rel="noopener noreferrer">
+            <a
+              href={privacyLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              css={`
+                border: none;
+              `}
+            >
               {privacyLabel}
             </a>
           </label>

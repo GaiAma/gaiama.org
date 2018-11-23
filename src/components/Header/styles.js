@@ -174,9 +174,11 @@ export default {
     display: `block`,
     color: colors.darkWhite,
     position: `relative`,
+    border: `none`,
     // zIndex: 1,
 
     ':hover, :active, :focus': {
+      backgroundColor: `transparent`,
       color: colors.darkWhite,
       textDecoration: `none`,
     },
@@ -199,6 +201,7 @@ export default {
     // transition: `transform .2s`,
     // WebkitFilter: `blur(0)`,
     '&:hover': {
+      backgroundColor: `transparent`,
       transform: `scale(1.048, 1.048)`,
     },
   },

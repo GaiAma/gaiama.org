@@ -318,7 +318,14 @@ export default class ContactForm extends Component {
               css={{ fontSize: `.9rem`, margin: `0 .5rem` }}
               dangerouslySetInnerHTML={{ __html: consentLabel }}
             />
-            <a href={privacyLink} target="_blank" rel="noopener noreferrer">
+            <a
+              href={privacyLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              css={`
+                border: none;
+              `}
+            >
               {privacyLabel}
             </a>
             {errors.consent && (

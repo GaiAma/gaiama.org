@@ -157,6 +157,7 @@ const BlogPage = props => {
             persistQuery
             css={{
               pointerEvents: !isSortAsc && `none`,
+              border: `none`,
               color: !isSortAsc && colors.grayTurqoise,
             }}
           >
@@ -175,6 +176,7 @@ const BlogPage = props => {
             persistQuery
             css={{
               pointerEvents: isSortAsc && `none`,
+              border: `none`,
               color: isSortAsc && colors.grayTurqoise,
             }}
           >

@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
+import styled from 'react-emotion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { css } from 'react-emotion'
 import MainLayout from '@/components/MainLayout'
@@ -9,6 +10,13 @@ import { SupportWidget } from '@/components/Shared'
 import CheckMark from '@/assets/check.png'
 import TitledCopy from '@/components/TitledCopy'
 import { colors, fullPageWidth, media, fontFamilies, visible } from '../theme'
+
+const StyledA = styled.a`
+  border: none;
+  :hover {
+    background-color: transparent;
+  }
+`
 
 const SupportPage = props => {
   const { frontmatter } = props.data.page
@@ -191,14 +199,14 @@ const SupportPage = props => {
                   },
                 }}
               >
-                <a
+                <StyledA
                   href={x.url}
                   target="_blank"
                   rel="noopener noreferrer"
                   title={x.description}
                 >
                   <FontAwesomeIcon icon={[`fab`, x.icon]} size="3x" />
-                </a>
+                </StyledA>
               </div>
             ))}
           <div
@@ -209,13 +217,13 @@ const SupportPage = props => {
               },
             }}
           >
-            <a
+            <StyledA
               href={`${props.data.page.frontmatter.contactLink}#Newsletter`}
               target="_blank"
               rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon={[`fas`, `newspaper`]} size="3x" />
-            </a>
+            </StyledA>
           </div>
           <div
             css={{
@@ -224,13 +232,13 @@ const SupportPage = props => {
               },
             }}
           >
-            <a
+            <StyledA
               href={`/${props.pageContext.lang}/blog/rss.xml`}
               target="_blank"
               rel="noopener noreferrer"
             >
               <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="3x" />
-            </a>
+            </StyledA>
           </div>
         </div>
       </div>

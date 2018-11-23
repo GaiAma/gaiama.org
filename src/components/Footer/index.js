@@ -80,6 +80,9 @@ const Footer = ({
           <Link
             to={link.to}
             activeClassName={link.lc ? `active-lang` : `active`}
+            css={`
+              border: none;
+            `}
           >
             {link.title}
           </Link>
@@ -121,6 +124,12 @@ const Footer = ({
               target="_blank"
               rel="noopener noreferrer"
               title={x.description}
+              css={`
+                border: none;
+                :hover {
+                  background-color: transparent;
+                }
+              `}
             >
               <FontAwesomeIcon icon={[`fab`, x.icon]} />
               {x.name}
@@ -139,6 +148,12 @@ const Footer = ({
             target="_blank"
             rel="noopener noreferrer"
             title="steemit"
+            css={`
+              border: none;
+              :hover {
+                background-color: transparent;
+              }
+            `}
           >
             <FontAwesomeIcon icon={faComments} />
             Steemit
@@ -159,11 +174,17 @@ const Footer = ({
 
     <div>
       <div
-        css={{
-          'a + a': {
-            marginLeft: `.7rem`,
-          },
-        }}
+        css={`
+          a {
+            border: none;
+          }
+          a:hover {
+            background-color: transparent;
+          }
+          a + a {
+            margin-left: 0.7rem;
+          }
+        `}
       >
         {renderAst(info)}
       </div>
@@ -173,7 +194,10 @@ const Footer = ({
             <Link
               to={node.fields.url}
               key={node.fields.url}
-              css={{ marginRight: `.5rem` }}
+              css={`
+                margin-right: 0.5rem;
+                border: none;
+              `}
             >
               {node.frontmatter.title}
             </Link>

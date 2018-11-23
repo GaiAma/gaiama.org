@@ -1,8 +1,17 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
+import styled from 'react-emotion'
 import Img from 'gatsby-image'
 import { colors, fontFamilies } from '@/theme'
+
+const StyledLink = styled(Link)`
+  border: none;
+  :hover {
+    background-color: transparent;
+    color: ${colors.link};
+  }
+`
 
 const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
   const coverImage =
@@ -17,23 +26,25 @@ const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
         }}
       >
         {coverImage && (
-          <Link to={item.fields.url} css={styles.imageWrapper(layout)}>
+          <StyledLink to={item.fields.url} css={styles.imageWrapper(layout)}>
             <Img fluid={coverImage} css={styles.image} />
-          </Link>
+          </StyledLink>
         )}
 
         <div>
           <h2 css={styles.title(layout)}>
-            <Link to={item.fields.url}>{item.frontmatter.title}</Link>
+            <StyledLink to={item.fields.url}>
+              {item.frontmatter.title}
+            </StyledLink>
           </h2>
 
           <p css={styles.excerpt}>
             {item.excerpt || item.frontmatter.summary}
 
             {readmoreLabel && (
-              <Link to={item.fields.url} css={styles.readmoreLink}>
+              <StyledLink to={item.fields.url} css={styles.readmoreLink}>
                 {readmoreLabel}
-              </Link>
+              </StyledLink>
             )}
           </p>
         </div>

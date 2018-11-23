@@ -151,6 +151,9 @@ const BlogPost = props => {
                   <Link
                     to={post.fields[x].fields.url}
                     title={post.fields[x].frontmatter.title}
+                    css={`
+                      border: none;
+                    `}
                   >
                     {BlogPost.frontmatter.pager[x]}
                   </Link>
@@ -506,6 +509,10 @@ const PostBody = ({ children }) => (
       // },
       '& iframe': { border: 0 },
       'li p': { margin: `0 !important`, display: `inline` },
+      'a.anchor': {
+        border: `none`,
+        ':hover': { backgroundColor: `transparent`, color: colors.link },
+      },
     }}
   >
     {children}

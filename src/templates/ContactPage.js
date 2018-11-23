@@ -1,12 +1,20 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import styled from 'react-emotion'
 import MainLayout from '@/components/MainLayout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { colors, media } from '@/theme'
 import TitledCopy from '@/components/TitledCopy'
 import { Newsletter } from '@/components/NewsletterWidget'
 import ContactForm from '@/components/ContactForm'
+
+const StyledA = styled.a`
+  border: none;
+  :hover {
+    background-color: transparent;
+  }
+`
 
 const ContactPage = props => {
   const { page } = props.data
@@ -112,14 +120,14 @@ const ContactPage = props => {
                     },
                   }}
                 >
-                  <a
+                  <StyledA
                     href={x.url}
                     target="_blank"
                     rel="noopener noreferrer"
                     title={x.description}
                   >
                     <FontAwesomeIcon icon={[`fab`, x.icon]} size="lg" />
-                  </a>
+                  </StyledA>
                 </div>
               ))}
             <div
@@ -132,13 +140,13 @@ const ContactPage = props => {
                 },
               }}
             >
-              <a
+              <StyledA
                 href={`/${props.pageContext.lang}/blog/rss.xml`}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="lg" />
-              </a>
+              </StyledA>
             </div>
           </div>
 

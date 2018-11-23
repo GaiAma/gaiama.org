@@ -2,11 +2,20 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
+import styled from 'react-emotion'
 import { colors } from '@/theme'
+
+const StyledLink = styled(Link)`
+  border: none;
+  :hover {
+    background-color: transparent;
+    color: ${colors.link};
+  }
+`
 
 const ArticlePreview = ({ article, isVisible, ...props }) => (
   <article css={articleStyles.article(isVisible)} {...props}>
-    <Link to={article.fields.url}>
+    <StyledLink to={article.fields.url}>
       {article.frontmatter.cover && (
         <Img fluid={article.frontmatter.cover.childImageSharp.fluid} />
       )}
@@ -14,7 +23,7 @@ const ArticlePreview = ({ article, isVisible, ...props }) => (
       {/* {article.frontmatter.subtitle && (
         <h4 css={articleStyles.title}>{article.frontmatter.subtitle}</h4>
       )} */}
-    </Link>
+    </StyledLink>
 
     <p css={articleStyles.body}>
       {article.frontmatter.summary || article.excerpt}
@@ -23,7 +32,7 @@ const ArticlePreview = ({ article, isVisible, ...props }) => (
     <footer css={articleStyles.footer}>
       <div css={articleStyles.footerInner}>
         <time css={articleStyles.time}>{article.fields.dateStrLocalized}</time>
-        <Link to={article.fields.url}>{`read more`}</Link>
+        <StyledLink to={article.fields.url}>{`read more`}</StyledLink>
       </div>
     </footer>
   </article>
