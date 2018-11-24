@@ -59,12 +59,6 @@ export const colors = preval`
     },
   }
 `
-if (typeof window !== `undefined`) {
-  window.GaiAma = {
-    ...window.GaiAma,
-    colors,
-  }
-}
 
 export const gradients = {
   primary: `linear-gradient(to right, rgba(4,47,55,0.58), rgba(4,47,55,0.72))`,

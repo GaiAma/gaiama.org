@@ -1,3 +1,4 @@
+/* global window */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
@@ -10,7 +11,6 @@ import Footer from '@/components/Footer'
 import * as QS from '@gaiama/query-string'
 import '@/utils/fontawesome'
 import {
-  colors,
   media,
   screenReaderAndFocusable,
   focusOutlineNone,
@@ -109,8 +109,14 @@ class MainLayout extends Component {
       console.log(`Thank you for installing our app!`, event)
     }
 
-    /* eslint-disable-next-line no-undef */
     window.onappinstalled = handleInstall
+
+    if (typeof window !== `undefined`) {
+      window.GaiAma = {
+        ...window.GaiAma,
+        accounts: this.props.data.Accounts.frontmatter.accounts,
+      }
+    }
   }
 
   render() {

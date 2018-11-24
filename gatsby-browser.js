@@ -20,6 +20,13 @@ try {
     `color:green;`
   )
   console.log(
+    `%cYou'll find the MIT licensed source code of the website at ${bugs.url.replace(
+      `/issues`,
+      ``
+    )}`,
+    `color:green;`
+  )
+  console.log(
     `%cIf you encounter anything unexpected, or have other feedback feel free to file an issue at ${
       bugs.url
     }`,
