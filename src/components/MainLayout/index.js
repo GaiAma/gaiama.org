@@ -153,7 +153,7 @@ class MainLayout extends Component {
         }}
       >
         <Helmet
-          titleTemplate={`%s - ${site.siteMetadata.title}`}
+          titleTemplate={`%s ♡ ${site.siteMetadata.title}`}
           defaultTitle={page.frontmatter.title}
         >
           <title>{page.frontmatter.title}</title>
