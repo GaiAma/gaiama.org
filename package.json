@@ -13,10 +13,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "keywords": [
-    "gatsby",
-    "gaiama"
-  ],
   "engines": {
     "node": ">=10.10"
   },
