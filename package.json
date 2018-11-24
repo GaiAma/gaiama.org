@@ -43,12 +43,6 @@
     "contributors:add": "all-contributors add",
     "contributors:generate": "all-contributors generate"
   },
-  "browserslist": [
-    "> 1%",
-    "last 4 versions",
-    "Firefox ESR",
-    "Opera 12.1"
-  ],
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "1.2.4",
     "@fortawesome/free-brands-svg-icons": "5.3.1",
