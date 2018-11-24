@@ -289,8 +289,12 @@ export class Newsletter extends Component {
           disabled={isSubmitting}
           css={{
             ...styles.button,
-            background: colors.purpleDark,
-            color: colors.darkWhite,
+            background: colors.primaryLite,
+            color: colors.white,
+            '&:hover': {
+              background: colors.purpleDark,
+              color: colors.darkWhite,
+            },
           }}
         >
           {isSubmitting ? (
