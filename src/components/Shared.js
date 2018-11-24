@@ -4,6 +4,7 @@ import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'react-emotion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown'
 import { colors, Box, fullPageWidth, media } from '@/theme'
 // import DonationForm from '@/components/DonationForm'
 // import { PureButton } from '@/components/layout/Button'
@@ -105,7 +106,7 @@ class CoinPicker extends Component {
             >
               <img src={x.icon} alt={x.name} />
               {selected.symbol === x.symbol && (
-                <FontAwesomeIcon icon="caret-down" size="lg" />
+                <FontAwesomeIcon icon={faCaretDown} size="lg" />
               )}
             </Box>
           ))}

@@ -5,6 +5,7 @@ import styled from 'react-emotion'
 import axios from 'axios'
 import isEmail from 'validator/lib/isEmail'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
 import { colors, fontFamilies } from '@/theme'
 import { Button } from '@/components/layout/Button'
 import TextareaAutosize from 'react-textarea-autosize'
@@ -366,7 +367,7 @@ export default class ContactForm extends Component {
           }}
         >
           {isSubmitting ? (
-            <FontAwesomeIcon icon={[`fas`, `spinner`]} size="xs" spin />
+            <FontAwesomeIcon icon={faSpinner} size="xs" spin />
           ) : (
             submitLabel
           )}

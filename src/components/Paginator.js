@@ -2,6 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft'
+import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight'
 import map from 'ramda/src/map'
 import { colors, media } from '@/theme'
 
@@ -138,7 +140,7 @@ const Pager = ({
     >
       {previous > 0 && (
         <Link to={`${slug}/${previous === 1 ? `` : previous}`}>
-          <FontAwesomeIcon icon="caret-left" size="lg" />
+          <FontAwesomeIcon icon={faCaretLeft} size="lg" />
           <span
             aria-label={previousPageAriaLabel}
             css={{ marginLeft: `.5rem` }}
@@ -153,7 +155,7 @@ const Pager = ({
           <span aria-label={nextPageAriaLabel} css={{ marginRight: `.5rem` }}>
             {nextPageLabel}
           </span>
-          <FontAwesomeIcon icon="caret-right" size="lg" />
+          <FontAwesomeIcon icon={faCaretRight} size="lg" />
         </Link>
       )}
     </nav>

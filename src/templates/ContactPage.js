@@ -4,6 +4,7 @@ import { graphql } from 'gatsby'
 import styled from 'react-emotion'
 import MainLayout from '@/components/MainLayout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
 import { colors, media } from '@/theme'
 import TitledCopy from '@/components/TitledCopy'
 import { Newsletter } from '@/components/NewsletterWidget'
@@ -145,7 +146,7 @@ const ContactPage = props => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="lg" />
+                <FontAwesomeIcon icon={faRssSquare} size="lg" />
               </StyledA>
             </div>
           </div>

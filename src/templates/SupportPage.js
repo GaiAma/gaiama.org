@@ -4,6 +4,8 @@ import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'react-emotion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper'
+import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
 import { css } from 'react-emotion'
 import MainLayout from '@/components/MainLayout'
 import { SupportWidget } from '@/components/Shared'
@@ -222,7 +224,7 @@ const SupportPage = props => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FontAwesomeIcon icon={[`fas`, `newspaper`]} size="3x" />
+              <FontAwesomeIcon icon={faNewspaper} size="3x" />
             </StyledA>
           </div>
           <div
@@ -237,7 +239,7 @@ const SupportPage = props => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <FontAwesomeIcon icon={[`fas`, `rss-square`]} size="3x" />
+              <FontAwesomeIcon icon={faRssSquare} size="3x" />
             </StyledA>
           </div>
         </div>

@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'react-emotion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
 import isEmail from 'validator/lib/isEmail'
 import { colors, fontFamilies } from '@/theme'
 import { Button } from '@/components/layout/Button'
@@ -293,7 +294,7 @@ export class Newsletter extends Component {
           }}
         >
           {isSubmitting ? (
-            <FontAwesomeIcon icon={[`fas`, `sync`]} size="xs" spin />
+            <FontAwesomeIcon icon={faSpinner} size="xs" spin />
           ) : (
             submitLabel
           )}
