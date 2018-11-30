@@ -1,42 +1,44 @@
 # Not really used at the moment, just messing around ;-)
-
+# Read git tag message to determine which site/page to build?!
 language: node_js
 cache: yarn
-
 env:
   - CI=true
 
-#branches:
-#  only:
-#    - develop
-#    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+branches:
+  only:
+    - /^v\d+\.\d+(\.\d+)?(-\S*)?$/
+    #- develop
 
 before_install:
-  # - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version 1.10.1
-  # - yarn --version
+  - wget -qO content.tgz "https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?private_token=$GAIAMA_CONTENT_TOKEN"; fi
+  - mkdir content
+  - tar -xzf content.tgz -C content
+  # get branch specific content
   # - wget -qO content.tgz "https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?sha=$TRAVIS_BRANCH&private_token=$GAIAMA_CONTENT_TOKEN"
-  # - mkdir content
-  # - tar -xzf content.tgz -C content
+  # if no branch specific content downloaded get master content
+  # - if [ ! -d "src" ]; then wget -qO content.tgz "https://gitlab.com/api/v4/projects/$GAIAMA_CONTENT_ID/repository/archive?private_token=$GAIAMA_CONTENT_TOKEN"; fi
 
 script:
-  - echo "noop"
-  # - yarn build
+  # - echo "noop"
+  - yarn build
   #- wget -qO- 'https://cli.netlify.com/download/latest/linux' | tar xz
 
 deploy:
-  - provider: script
-    script: curl -X POST -d '' "https://api.netlify.com/build_hooks/$NETLIFY_BUILD_HOOK_ID_V2"
-    skip_cleanup: true
-    on:
-      branch: v2
   # - provider: script
-  #   #script: netlifyctl -A $NETLIFY_ACCESS_TOKEN deploy -s v2 -t  -p ./public
-  #   #script: netlify deploy -s v2 -t $NETLIFY_ACCESS_TOKEN -p ./public
-  #   #script: zip -r public.zip public && curl -H "Content-Type: application/zip" -H "Authorization: Bearer $NETLIFY_ACCESS_TOKEN" --data-binary "@public.zip" https://api.netlify.com/api/v1/sites/gaiama/deploys
+  #   script: curl -X POST -d '' "https://api.netlify.com/build_hooks/$NETLIFY_BUILD_HOOK_ID_V2"
   #   skip_cleanup: true
   #   on:
-  #     branch: v2
   #     tags: true
+  #     #branch: v2
+  - provider: script
+    # script: netlifyctl -A $NETLIFY_ACCESS_TOKEN deploy -s gaiama -t  -p ./public
+    script: netlify deploy --prod --site gaiama --dir ./public
+    # script: zip -r public.zip public && curl -H "Content-Type: application/zip" -H "Authorization: Bearer $NETLIFY_ACCESS_TOKEN" --data-binary "@public.zip" https://api.netlify.com/api/v1/sites/gaiama/deploys
+    skip_cleanup: true
+    on:
+      # branch: master
+      tags: true
 #  - provider: script
 #    script: netlify deploy -s dev -t $NETLIFY_ACCESS_TOKEN -p ./public
 #    skip_cleanup: true
