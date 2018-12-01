@@ -140,7 +140,7 @@ export const SIZES = {
   medium: { min: 851, max: 992 },
   large: { min: 993, max: 1024 },
   xlarge: { min: 1025, max: 1200 },
-  xxlarge: { min: 1021, max: 1290 },
+  xxlarge: { min: 1201, max: 1290 },
   xxxlarge: { min: 1291, max: Infinity },
   // xsmall: { min: 0, max: 599 },
   // small: { min: 600, max: 779 },
