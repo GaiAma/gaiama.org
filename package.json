@@ -84,6 +84,7 @@
     "react-headroom": "2.2.4",
     "react-helmet": "5.2.0",
     "react-media": "1.8.0",
+    "react-spring": "^6.1.10",
     "react-textarea-autosize": "7.0.4",
     "react-toastify": "4.4.0",
     "rehype-react": "3.0.3",
