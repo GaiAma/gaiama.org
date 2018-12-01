@@ -1,14 +1,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import { media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
-import TitledCopy from '@/components/TitledCopy'
 import { SupportWidget } from '@/components/Shared'
 
+const calcTotalAmount = x =>
+  x.edges.reduce((acc, val) => acc + val.node.amount, 0)
+
 const DonatePage = props => {
-  const { page } = props.data
+  const { page, contributions } = props.data
   return (
     <MainLayout {...props}>
       <div
@@ -30,22 +32,33 @@ const DonatePage = props => {
             margin: 2rem auto 0;
             ${media.greaterThan(`medium`)} {
               margin-right: 1rem;
-              max-width: 60%;
+              max-width: 56%;
             }
           `}
         />
 
         <div>
           <h1>{page.frontmatter.intro.title}</h1>
-          {page.frontmatter.intro.text.map(x => (
-            <div
-              key={x}
-              dangerouslySetInnerHTML={{ __html: x }}
-              css={`
-                line-height: 1.8rem;
-              `}
-            />
-          ))}
+          <div>
+            {page.frontmatter.intro.text.map(x => (
+              <div
+                key={x}
+                dangerouslySetInnerHTML={{ __html: x }}
+                css={`
+                  line-height: 1.8rem;
+                `}
+              />
+            ))}
+          </div>
+          <div
+            css={`
+              margin-top: 1rem;
+            `}
+          >
+            Thanks to our <Link to="/en/contributors">supporters</Link> for
+            donating {calcTotalAmount(contributions)}
+            m²
+          </div>
         </div>
       </div>
 
@@ -68,6 +81,7 @@ const DonatePage = props => {
 DonatePage.propTypes = {
   data: PropTypes.shape({
     page: PropTypes.object,
+    contributions: PropTypes.object,
     SiteMeta: PropTypes.object,
     SupportWidget: PropTypes.object,
   }),
@@ -76,7 +90,7 @@ DonatePage.propTypes = {
 export default DonatePage
 
 export const query = graphql`
-  query($lang: String!, $slug: String!) {
+  query($lang: String!, $url: String!) {
     ...siteData
     ...SiteMeta
     ...languages
@@ -86,7 +100,7 @@ export const query = graphql`
     ...Accounts
     ...SupportWidget
 
-    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
+    page: javascriptFrontmatter(fields: { url: { eq: $url } }) {
       ...PageTranslations
       fields {
         url
@@ -108,6 +122,14 @@ export const query = graphql`
               ...GatsbyImageSharpFluid_withWebp
             }
           }
+        }
+      }
+    }
+
+    contributions: allPayPalJson {
+      edges {
+        node {
+          amount
         }
       }
     }
