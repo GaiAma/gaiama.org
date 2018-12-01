@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
+import styled from 'react-emotion'
 import slugify from 'slugify'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
@@ -10,8 +11,36 @@ import { mediaQuery } from '@/components/MediaQuery'
 import Media from 'react-media'
 import { colors, media } from '@/theme'
 
+const ContributorListTitle = styled.h2`
+  margin: 2rem 0 0;
+`
+const ContributorList = styled.div`
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
+const ContributorListLink = styled(Link)`
+  margin-top: 1rem;
+  display: inline-block;
+`
+const Contributor = styled.div`
+  width: 100%;
+  flex-shrink: 0;
+  max-width: 100%;
+  ${media.greaterThan(`small`)} {
+    width: 48%;
+  }
+  ${media.greaterThan(`medium`)} {
+    width: 30%;
+  }
+  ${media.greaterThan(`xxlarge`)} {
+    width: 24%;
+  }
+`
+
 const AboutPage = props => {
-  const { page, NewsTicker, Labels } = props.data
+  const { page, NewsTicker, Labels, contributors } = props.data
 
   const PeopleGallery = () => (
     <div
@@ -189,6 +218,20 @@ const AboutPage = props => {
         <Media query="(min-width: 779px)" render={PeopleGallery} />
       </div>
 
+      <div>
+        <ContributorListTitle id="contributors">
+          {page.frontmatter.contributors.title}
+        </ContributorListTitle>
+        <ContributorList>
+          {contributors.edges.map(x => (
+            <Contributor key={x.node.key}>{x.node.name}</Contributor>
+          ))}
+        </ContributorList>
+        <ContributorListLink to={page.frontmatter.contributors.link}>
+          {page.frontmatter.contributors.linkLabel}
+        </ContributorListLink>
+      </div>
+
       <Newsticker
         items={props.data.news.edges.map(x => x.node)}
         title={NewsTicker.frontmatter.title}
@@ -196,6 +239,9 @@ const AboutPage = props => {
         link={NewsTicker.frontmatter.link}
         readmoreLabel={NewsTicker.frontmatter.readmoreLabel}
         layout={page.frontmatter.NewsTicker.layout}
+        css={`
+          margin-top: 4rem;
+        `}
       />
     </MainLayout>
   )
@@ -242,6 +288,11 @@ export const query = graphql`
         NewsTicker {
           layout
         }
+        contributors {
+          title
+          link
+          linkLabel
+        }
         bios {
           id
           name
@@ -284,6 +335,20 @@ export const query = graphql`
     Labels: siteMetaMarkdownRemark(frontmatter: { lang: { eq: $lang } }) {
       frontmatter {
         readMore
+      }
+    }
+
+    contributors: allPayPalJson(
+      sort: { fields: [date], order: DESC }
+      limit: 30
+    ) {
+      edges {
+        node {
+          key
+          name
+          date
+          amount
+        }
       }
     }
   }
