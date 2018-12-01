@@ -1,3 +1,15 @@
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/gaiama/gaiama.org/compare/v2.1.0...v2.1.1) (2018-12-01)
+
+
+### Features
+
+* show only 5 contributors on mobile on about page ([cd5335b](https://github.com/gaiama/gaiama.org/commit/cd5335b))
+* **Donations:** add contributor list to SupportPage ([25a5fc6](https://github.com/gaiama/gaiama.org/commit/25a5fc6))
+* **Donations:** translate contributorInfo ([ff60c85](https://github.com/gaiama/gaiama.org/commit/ff60c85))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/gaiama/gaiama.org/compare/v2.0.8...v2.1.0) (2018-12-01)
 
