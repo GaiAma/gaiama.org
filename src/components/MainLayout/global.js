@@ -257,6 +257,11 @@ injectGlobal`
     overflow: auto;
   }
 
+  input,
+  textarea {
+    line-height: 1.5rem;
+  }
+
   [type='checkbox'],
   [type='radio'] {
     box-sizing: border-box;
@@ -323,18 +328,17 @@ injectGlobal`
     margin: 0 0 1.55rem;
   }
 
-  ul {
-    margin: 0 0 1.55rem 1.55rem;
+  ul,
+  ol {
+    margin: 1.55rem 0 0 1.55rem;
     padding: 0;
     list-style-position: outside;
     list-style-image: none;
   }
 
-  ol {
-    margin: 0 0 1.55rem 1.55rem;
-    padding: 0;
-    list-style-position: outside;
-    list-style-image: none;
+  ul:first-child,
+  ol:first-child {
+    margin-top: 0;
   }
 
   dl {
@@ -427,8 +431,8 @@ injectGlobal`
     font-weight: bold;
   }
 
-  li {
-    margin-bottom: calc(1.55rem / 2);
+  li + li {
+    margin-top: calc(1.55rem / 2);
   }
 
   ol li {
