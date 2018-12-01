@@ -1,3 +1,30 @@
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/gaiama/gaiama.org/compare/v2.0.8...v2.1.0) (2018-12-01)
+
+
+### Bug Fixes
+
+* **Theme:** fix list margins and input line-height ([746696d](https://github.com/gaiama/gaiama.org/commit/746696d))
+
+
+### Features
+
+* **Donations:** init ContributorsPage ([4d35fb2](https://github.com/gaiama/gaiama.org/commit/4d35fb2))
+* **Donations:** link to ContributorsPage from AboutPage ([359d8dd](https://github.com/gaiama/gaiama.org/commit/359d8dd))
+* **Donations:** link to ContributorsPage from DonatePage ([05f7e60](https://github.com/gaiama/gaiama.org/commit/05f7e60))
+* **i18n:** fix custom 404 pages ([a3649f6](https://github.com/gaiama/gaiama.org/commit/a3649f6))
+* **I18n:** simplify page translation logic ([83ef404](https://github.com/gaiama/gaiama.org/commit/83ef404))
+* **InstagramWidget:** remove lozad dependency ([b29290f](https://github.com/gaiama/gaiama.org/commit/b29290f))
+* add fallback arg to local-store ([d373ffd](https://github.com/gaiama/gaiama.org/commit/d373ffd))
+* replace <title/> - separator by ♡ ([60b118f](https://github.com/gaiama/gaiama.org/commit/60b118f))
+* **NewsletterWidget:** invert button colors ([d390b43](https://github.com/gaiama/gaiama.org/commit/d390b43))
+* **ShareWidget:** remove a border ([b0cf9f4](https://github.com/gaiama/gaiama.org/commit/b0cf9f4))
+* **SupportWidget:** fix <a/> border ([a8fb062](https://github.com/gaiama/gaiama.org/commit/a8fb062))
+* **Theme:** fix breakpoints overlapping ([b2c08b6](https://github.com/gaiama/gaiama.org/commit/b2c08b6))
+* **Typography:** increase link visibility, decrease line-height ([5f36678](https://github.com/gaiama/gaiama.org/commit/5f36678))
+
+
+
 <a name="2.0.8"></a>
 ## [2.0.8](https://github.com/gaiama/gaiama.org/compare/v2.0.7...v2.0.8) (2018-11-02)
 
