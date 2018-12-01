@@ -23,11 +23,20 @@ const ContributorList = styled.div`
 const ContributorListLink = styled(Link)`
   margin-top: 1rem;
   display: inline-block;
+  font-size: 0.85rem;
+  ${media.greaterThan(`small`)} {
+    font-size: 1rem;
+  }
 `
 const Contributor = styled.div`
   width: 100%;
   flex-shrink: 0;
   max-width: 100%;
+  ${media.lessThan(`small`)} {
+    :nth-child(1n + 5) {
+      display: none;
+    }
+  }
   ${media.greaterThan(`small`)} {
     width: 48%;
   }
