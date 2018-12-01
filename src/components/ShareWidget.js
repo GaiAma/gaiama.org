@@ -51,7 +51,9 @@ const LinkLabel = styled.span`
   white-space: nowrap;
   color: ${colors.gray};
 `
-
+const StyledA = styled.a`
+  border: none;
+`
 const InvisibleInput = styled.input`
   margin-left: 0.7rem;
   background-color: ${colors.transparent};
@@ -168,7 +170,7 @@ class ShareWidget extends Component {
               '& svg': { color: colors.brands.facebook, marginRight: `1rem` },
             }}
           >
-            <a
+            <StyledA
               href={`http://www.facebook.com/sharer.php?u=${encodeURIComponent(
                 link
               )}`}
@@ -177,14 +179,14 @@ class ShareWidget extends Component {
               title="Share via Facebook"
             >
               <FontAwesomeIcon icon={faFacebookSquare} size="lg" />
-            </a>
+            </StyledA>
           </div>
           <div
             css={{
               '& svg': { color: colors.brands.twitter, margin: `0 1rem` },
             }}
           >
-            <a
+            <StyledA
               href={
                 tweet_id
                   ? `https://twitter.com/intent/retweet?tweet_id=${encodeURIComponent(
@@ -199,12 +201,12 @@ class ShareWidget extends Component {
               title="Share via Twitter"
             >
               <FontAwesomeIcon icon={faTwitterSquare} size="lg" />
-            </a>
+            </StyledA>
           </div>
           <div
             css={{ '& svg': { color: colors.brands.gplus, margin: `0 1rem` } }}
           >
-            <a
+            <StyledA
               href={`https://plus.google.com/share?url=${encodeURIComponent(
                 link
               )}&hl=${encodeURIComponent(lang)}`}
@@ -213,14 +215,14 @@ class ShareWidget extends Component {
               title="Share via Google+"
             >
               <FontAwesomeIcon icon={faGooglePlusSquare} size="lg" />
-            </a>
+            </StyledA>
           </div>
           <div
             css={{
               '& svg': { color: colors.primaryLite, margin: `1rem` },
             }}
           >
-            <a
+            <StyledA
               href={`mailto:?body=${encodeURIComponent(
                 link
               )}&subject=${encodeURIComponent(title)}`}
@@ -228,7 +230,7 @@ class ShareWidget extends Component {
               title="Share via Mail"
             >
               <FontAwesomeIcon icon={faEnvelope} size="lg" />
-            </a>
+            </StyledA>
           </div>
 
           <div
