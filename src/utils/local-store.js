@@ -1,11 +1,11 @@
 /* global window */
 export default {
-  getItem: id => {
+  getItem: (id, fallback = {}) => {
     if (typeof window === `undefined`) return {}
     try {
-      return JSON.parse(window.localStorage.getItem(id))
+      return JSON.parse(window.localStorage.getItem(id)) || fallback
     } catch (err) {
-      return {}
+      return fallback
     }
   },
   setItem: (id, val) => {
