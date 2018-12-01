@@ -98,8 +98,10 @@
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.0.0",
     "all-contributors-cli": "5.4.0",
+    "babel-plugin-console": "0.2.1",
     "babel-plugin-preval": "3.0.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.20",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "cheerio": "1.0.0-rc.2",
     "dotenv": "6.0.0",
     "eslint": "5.6.1",
