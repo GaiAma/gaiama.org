@@ -157,19 +157,25 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
 
       // console.log(`${slug} => ${url}`)
 
-      const component = resolve(`./src/templates/${layout}.js`)
-      const context = { url, slug, lang }
-
-      createPage({ component, path: url, context })
+      const page = {
+        component: resolve(`./src/templates/${layout}.js`),
+        path: url,
+        context: { url, slug, lang },
+      }
+      // https://github.com/gatsbyjs/gatsby/issues/5129#issuecomment-442397391
+      if (slug === `404`) {
+        page.matchPath = `/${lang}/*`
+      }
+      createPage(page)
 
       // create root 404
-      slug === `404` &&
-        lang === `en` &&
-        createPage({
-          component,
-          path: `/404`,
-          context,
-        })
+      // slug === `404` &&
+      //   lang === `en` &&
+      //   createPage({
+      //     component,
+      //     path: `/404`,
+      //     context,
+      //   })
 
       createNodeField({
         node,
