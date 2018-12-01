@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
 import styled from 'react-emotion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,6 +13,43 @@ import CheckMark from '@/assets/check.png'
 import TitledCopy from '@/components/TitledCopy'
 import { colors, fullPageWidth, media, fontFamilies, visible } from '../theme'
 
+const ContributorListTitle = styled.h2`
+  margin: 2rem 0 0;
+`
+const ContributorList = styled.div`
+  margin-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+`
+const ContributorListLink = styled(Link)`
+  margin-top: 1rem;
+  display: inline-block;
+  font-size: 0.85rem;
+  ${media.greaterThan(`small`)} {
+    font-size: 1rem;
+  }
+`
+const Contributor = styled.div`
+  width: 100%;
+  flex-shrink: 0;
+  max-width: 100%;
+  ${media.lessThan(`small`)} {
+    :nth-child(1n + 5) {
+      display: none;
+    }
+  }
+  ${media.greaterThan(`small`)} {
+    width: 48%;
+  }
+  ${media.greaterThan(`medium`)} {
+    width: 30%;
+  }
+  ${media.greaterThan(`xxlarge`)} {
+    width: 24%;
+  }
+`
+
 const StyledA = styled.a`
   border: none;
   :hover {
@@ -21,7 +58,10 @@ const StyledA = styled.a`
 `
 
 const SupportPage = props => {
-  const { frontmatter } = props.data.page
+  const {
+    page: { frontmatter },
+    contributors,
+  } = props.data
   const initialStyle = css(visible.maxMd, {
     fontFamily: fontFamilies.accent,
     fontSize: `2.9rem`,
@@ -268,7 +308,7 @@ const SupportPage = props => {
 
       <div
         css={{
-          margin: `3rem 0 6rem`,
+          margin: `3rem 0 3rem`,
           display: `flex`,
           [media.lessThan(`small`)]: {
             flexDirection: `column`,
@@ -342,8 +382,23 @@ const SupportPage = props => {
         ))}
       </div>
 
+      <div>
+        <ContributorListTitle id="contributors">
+          {frontmatter.contributors.title}
+        </ContributorListTitle>
+        <ContributorList>
+          {contributors.edges.map(x => (
+            <Contributor key={x.node.key}>{x.node.name}</Contributor>
+          ))}
+        </ContributorList>
+        <ContributorListLink to={frontmatter.contributors.link}>
+          {frontmatter.contributors.linkLabel}
+        </ContributorListLink>
+      </div>
+
       <div
         css={{
+          marginTop: `4rem`,
           background: colors.lightBlue,
           position: `relative`,
           padding: `2rem 1rem`,
@@ -542,6 +597,11 @@ export const query = graphql`
             }
           }
         }
+        contributors {
+          title
+          link
+          linkLabel
+        }
         checklists {
           left {
             title
@@ -555,6 +615,20 @@ export const query = graphql`
         outro {
           title
           text
+        }
+      }
+    }
+
+    contributors: allPayPalJson(
+      sort: { fields: [date], order: DESC }
+      limit: 16
+    ) {
+      edges {
+        node {
+          key
+          name
+          date
+          amount
         }
       }
     }
