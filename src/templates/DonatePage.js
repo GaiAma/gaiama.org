@@ -54,11 +54,8 @@ const DonatePage = props => {
             css={`
               margin-top: 1rem;
             `}
-          >
-            Thanks to our <Link to="/en/contributors">supporters</Link> for
-            donating {calcTotalAmount(contributions)}
-            m²
-          </div>
+            dangerouslySetInnerHTML={{ __html: page.frontmatter.contributorInfo.replace(`[[amount]]`, calcTotalAmount(contributions)) }}
+          />
         </div>
       </div>
 
@@ -116,6 +113,7 @@ export const query = graphql`
         }
         donationTitle
         donationDescr
+        contributorInfo
         image {
           image: childImageSharp {
             fluid(maxWidth: 950, quality: 75) {
