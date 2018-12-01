@@ -317,6 +317,9 @@ const SupportWidget = ({
             css={{
               textAlign: `center`,
               marginBottom: `1rem`,
+              a: {
+                borderBottom: `1px solid #999`,
+              },
             }}
             dangerouslySetInnerHTML={{
               __html: description,
