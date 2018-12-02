@@ -1,0 +1,1 @@
+export GAIAMA_SITE_NAME=$(echo $TRAVIS_COMMIT_MESSAGE | sed -En "s/chore\(release\): (.*).*/\1/p")
