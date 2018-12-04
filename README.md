@@ -5,8 +5,8 @@
 <h1 align="center"><a href="https://www.gaiama.org" title="GaiAma.org">GaiAma.org</a></h1>
 
 <p align="center">
-  <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GSW23ZB3HLNS2" title="Donate via PayPal"><img src="https://img.shields.io/badge/$-support-green.svg"></a>
-  <a href="#contributors" title="All Contributors"><img src="https://img.shields.io/badge/all_contributors-2-orange.svg"></a>
+  <a href="https://donate.gaiama.org/?utm_source=github" title="Donate to help us protect more rainforest from being destroyed"><img src="https://img.shields.io/badge/$-support-green.svg"></a>
+  <a href="#contributors" title="All Contributors"><img src="https://img.shields.io/badge/all_contributors-3-orange.svg"></a>
   <a href="http://makeapullrequest.com/" title="PRs Welcome"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
   <!-- <a href="https://david-dm.org/GaiAma/gaiama.org" title="dependencies status"><img src="https://david-dm.org/GaiAma/gaiama.org/status.svg"/></a>
   <a href="https://david-dm.org/GaiAma/gaiama.org?type=dev" title="devDependencies status"><img src="https://david-dm.org/GaiAma/gaiama.org/dev-status.svg"/></a> -->
@@ -27,10 +27,10 @@
 - [GatsbyJS](https://www.gatsbyjs.org/) v2
 - [Emotion](https://emotion.sh/) for styling
 - [Node.js 10.10](https://nodejs.org/en/)
-- [Changelog](CHANGELOG.md) (new)
-- [I18n: Auto discover & link translations](gatsby-node.js#L152)
-- [Pager: older / newer article](gatsby-node.js#L255)
-- [related articles](gatsby-node.js#L130) manual and auto suggestions
+- [Changelog](CHANGELOG.md)
+- [I18n: Auto discover & link translations](gatsby-node.js#L153)
+- [Pager: older / newer article](gatsby-node.js#L287)
+- [related articles](gatsby-node.js#L246) manual and auto suggestions
 - [react-toastify](https://github.com/fkhadra/react-toastify)
 - [gatsby-plugin-pixel](plugins/gatsby-plugin-pixel) custom analytics using Google Analytics as Backend
 - [babel-plugin-preval](https://github.com/kentcdodds/babel-plugin-preval): pre-evaluate color conversions in [theme.js](src/theme.js)
@@ -65,9 +65,8 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore -->
-| [<img src="https://avatars0.githubusercontent.com/u/5196971?v=4" width="100px;"/><br /><sub><b>Can Rau</b></sub>](https://github.com/CanRau)<br />[💻](https://github.com/GaiAma/gaiama.org/commits?author=CanRau "Code") [🎨](#design-CanRau "Design") [📖](https://github.com/GaiAma/gaiama.org/commits?author=CanRau "Documentation") [🔍](#fundingFinding-CanRau "Funding Finding") [🤔](#ideas-CanRau "Ideas, Planning, & Feedback") [🚇](#infra-CanRau "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/79246?v=4" width="100px;"/><br /><sub><b>Stefan Ladwig</b></sub>](https://github.com/sladwig)<br />[📖](https://github.com/GaiAma/gaiama.org/commits?author=sladwig "Documentation") |
-| :---: | :---: |
-
+| [<img src="https://avatars0.githubusercontent.com/u/5196971?v=4" width="100px;"/><br /><sub><b>Can Rau</b></sub>](https://github.com/CanRau)<br />[💻](https://github.com/GaiAma/gaiama.org/commits?author=CanRau "Code") [🎨](#design-CanRau "Design") [📖](https://github.com/GaiAma/gaiama.org/commits?author=CanRau "Documentation") [🔍](#fundingFinding-CanRau "Funding Finding") [🤔](#ideas-CanRau "Ideas, Planning, & Feedback") [🚇](#infra-CanRau "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/79246?v=4" width="100px;"/><br /><sub><b>Stefan Ladwig</b></sub>](https://github.com/sladwig)<br />[📖](https://github.com/GaiAma/gaiama.org/commits?author=sladwig "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/37178032?v=4" width="100px;"/><br /><sub><b>Kemane Ba</b></sub>](https://github.com/kemane)<br />[🎨](#design-kemane "Design") |
+| :---: | :---: | :---: |
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
