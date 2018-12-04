@@ -1,4 +1,4 @@
-const select = require(`unist-util-select`)
+const { selectAll } = require(`unist-util-select`)
 const path = require(`path`)
 const isRelativeUrl = require(`is-relative-url`)
 const _ = require(`lodash`)
@@ -57,11 +57,11 @@ module.exports = (
   // console.log(JSON.stringify(markdownAST, null, 2))
 
   // This will only work for markdown syntax image tags
-  const markdownImageNodes = select(markdownAST, `image`)
+  const markdownImageNodes = selectAll(`image`, markdownAST)
   // console.log(`\nMARKDOWNIMAGENODES`)
   // console.log(markdownImageNodes)
   // This will also allow the use of html image tags
-  const rawHtmlNodes = select(markdownAST, `html`)
+  const rawHtmlNodes = selectAll(`html`, markdownAST)
 
   // Takes a node and generates the needed images and then returns
   // the needed HTML replacement for the image
