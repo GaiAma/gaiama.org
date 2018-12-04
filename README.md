@@ -30,7 +30,7 @@
 - [Changelog](CHANGELOG.md)
 - [I18n: Auto discover & link translations](gatsby-node.js#L153)
 - [Pager: older / newer article](gatsby-node.js#L287)
-- [related articles](gatsby-node.js#L246) manual and auto suggestions
+- [related articles](gatsby-node.js#L233) manual and auto suggestions
 - [react-toastify](https://github.com/fkhadra/react-toastify)
 - [gatsby-plugin-pixel](plugins/gatsby-plugin-pixel) custom analytics using Google Analytics as Backend
 - [babel-plugin-preval](https://github.com/kentcdodds/babel-plugin-preval): pre-evaluate color conversions in [theme.js](src/theme.js)
@@ -67,6 +67,7 @@ Thanks goes to these wonderful people ([emoji key](https://github.com/kentcdodds
 <!-- prettier-ignore -->
 | [<img src="https://avatars0.githubusercontent.com/u/5196971?v=4" width="100px;"/><br /><sub><b>Can Rau</b></sub>](https://github.com/CanRau)<br />[💻](https://github.com/GaiAma/gaiama.org/commits?author=CanRau "Code") [🎨](#design-CanRau "Design") [📖](https://github.com/GaiAma/gaiama.org/commits?author=CanRau "Documentation") [🔍](#fundingFinding-CanRau "Funding Finding") [🤔](#ideas-CanRau "Ideas, Planning, & Feedback") [🚇](#infra-CanRau "Infrastructure (Hosting, Build-Tools, etc)") | [<img src="https://avatars3.githubusercontent.com/u/79246?v=4" width="100px;"/><br /><sub><b>Stefan Ladwig</b></sub>](https://github.com/sladwig)<br />[📖](https://github.com/GaiAma/gaiama.org/commits?author=sladwig "Documentation") | [<img src="https://avatars3.githubusercontent.com/u/37178032?v=4" width="100px;"/><br /><sub><b>Kemane Ba</b></sub>](https://github.com/kemane)<br />[🎨](#design-kemane "Design") |
 | :---: | :---: | :---: |
+
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/kentcdodds/all-contributors) specification. Contributions of any kind welcome!
