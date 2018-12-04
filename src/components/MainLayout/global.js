@@ -1,5 +1,5 @@
 import { injectGlobal } from 'emotion'
-import { colors } from '@/theme'
+import { colors, media } from '@/theme'
 
 /**
  * work in progress
@@ -57,11 +57,15 @@ injectGlobal`
     font-family: 'system-ui', -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
       'Roboto', 'Helvetica', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
-    font-weight: 100;
+    font-weight: 400;
     word-wrap: break-word;
     font-kerning: normal;
     font-feature-settings: 'kern', 'liga', 'clig', 'calt';
     margin: 0;
+
+    ${media.greaterThan(`small`)} {
+      font-weight: 100;
+    }
   }
 
   /**
