@@ -38,6 +38,12 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-compile-es6-packages`,
+      options: {
+        modules: [`@gaiama/query-string`],
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         path: isProduction
