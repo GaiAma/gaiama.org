@@ -1,3 +1,12 @@
+## [2.1.4](https://github.com/gaiama/gaiama.org/compare/v2.1.3...v2.1.4) (2018-12-04)
+
+
+### Features
+
+* upgrade sharp in plugin-manifest ([67d76f8](https://github.com/gaiama/gaiama.org/commit/67d76f8))
+
+
+
 ## [2.1.3](https://github.com/gaiama/gaiama.org/compare/v2.1.2...v2.1.3) (2018-12-04)
 
 
