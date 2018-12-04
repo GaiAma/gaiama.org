@@ -30,7 +30,6 @@ module.exports = {
   },
   plugins: [
     // `gatsby-plugin-fastclick`,
-    `gatsby-plugin-netlify-cache`,
     {
       resolve: `gatsby-plugin-layout`,
       options: {

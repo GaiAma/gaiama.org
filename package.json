@@ -114,7 +114,6 @@
     "eslint-plugin-react": "7.11.1",
     "flow-bin": "0.87.0",
     "gatsby-plugin-netlify": "2.0.6",
-    "gatsby-plugin-netlify-cache": "1.0.0",
     "gatsby-plugin-sharp": "2.0.14",
     "gatsby-remark-copy-linked-files": "2.0.7",
     "gatsby-remark-custom-blocks": "2.0.2",
