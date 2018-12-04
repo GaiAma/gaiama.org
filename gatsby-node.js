@@ -128,22 +128,6 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
   const Pages = PagesAndPosts.filter(isPage)
   const Posts = PagesAndPosts.filter(isPost)
 
-  // suggested content mapping
-  const collectSuggestedNodes = node =>
-    node.frontmatter.suggested.map(_id => {
-      const id = `${_id}`
-      const propToMatch = id.length === 4 ? `oldId` : `id`
-      const suggestion = Posts.find(
-        x =>
-          x.frontmatter[propToMatch] === id &&
-          x.frontmatter.lang === node.frontmatter.lang
-      )
-      return suggestion
-        ? suggestion.id
-        : (isProduction || GAIAMA_FULL_CONTENT) &&
-            console.log(`NO suggestion: `, id, node.frontmatter.slug)
-    })
-
   const getBlogPage = lang =>
     Pages.find(
       node =>
@@ -163,6 +147,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
         context: { url, slug, lang },
       }
       // https://github.com/gatsbyjs/gatsby/issues/5129#issuecomment-442397391
+      // https://github.com/davidbailey00/manuelbieh.de/blob/62714633fb13b6e04c9e24f587114419299af946/gatsby-node.js
       if (slug === `404`) {
         page.matchPath = `/${lang}/*`
       }
@@ -245,16 +230,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       createNodeField({
         node,
         name: `suggested`,
-        value:
-          node.frontmatter.suggested && node.frontmatter.suggested.length
-            ? collectSuggestedNodes(node).slice(0, 3)
-            : shuffle(
-                Posts.filter(node =>
-                  moment(node.fields.dateTime).isAfter(1427472056000)
-                )
-              )
-                .slice(0, 3)
-                .map(node => node.frontmatter.id),
+        value: getSuggestedNodes(Posts, node),
       })
     })
   )
@@ -464,4 +440,42 @@ exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
     name: `babel-plugin-transform-remove-console`,
     options: { exclude: [`log`] },
   })
+}
+
+const getRemainingShuffledSuggestions = (length = 3) =>
+  R.pipe(
+    R.filter(node => moment(node.fields.dateTime).isAfter(1427472056000)),
+    shuffle,
+    R.slice(0, length)
+  )
+
+const getSuggestedNodes = (Posts, node) => {
+  const suggested = []
+
+  if (node.frontmatter.suggested && node.frontmatter.suggested.length) {
+    node.frontmatter.suggested.forEach(_id => {
+      const id = `${_id}`
+      const propToMatch = id.length === 4 ? `oldId` : `id`
+      const suggestion = Posts.find(
+        x =>
+          x.frontmatter[propToMatch] === id &&
+          x.frontmatter.lang === node.frontmatter.lang
+      )
+      if (suggestion) {
+        suggested.push(suggestion.id)
+      }
+    })
+  }
+
+  if (suggested.length < 3) {
+    getRemainingShuffledSuggestions(Math.abs(suggested.length - 3))(
+      Posts
+    ).forEach(n => suggested.push(n.id))
+  }
+
+  if (!suggested.length) {
+    console.log(`No suggestions found`, node.fields.slug)
+  }
+
+  return R.slice(0, 3, suggested)
 }
