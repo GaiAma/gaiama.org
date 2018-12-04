@@ -18,23 +18,16 @@ function generateIcons(icons, srcIcon) {
   })
 }
 
-const writeManifest = ({ manifest, lang }) => {
-  const suffix = lang ? `_${lang}` : ``
+const writeManifest = ({ language, ...manifest }) => {
+  const suffix = language ? `_${language}` : ``
   fs.writeFileSync(
     path.join(`public`, `manifest${suffix}.webmanifest`),
     JSON.stringify(manifest)
   )
 }
 
-exports.onPostBootstrap = (args, pluginOptions) =>
+const makeManifest = ({ icon, ...manifest }) =>
   new Promise((resolve, reject) => {
-    const { icon } = pluginOptions
-    const manifest = { ...pluginOptions }
-
-    // Delete options we won't pass to the manifest.webmanifest.
-    delete manifest.plugins
-    delete manifest.icon
-
     // If icons are not manually defined, use the default icon set.
     if (!manifest.icons) {
       manifest.icons = defaultIcons
@@ -48,20 +41,7 @@ exports.onPostBootstrap = (args, pluginOptions) =>
       fs.mkdirSync(iconPath)
     }
 
-    if (Array.isArray(manifest.start_url)) {
-      const { start_url, ..._manifest } = manifest
-      start_url.map(x =>
-        writeManifest({
-          manifest: {
-            ..._manifest,
-            start_url: x,
-          },
-          lang: x.replace(/^\//, ``).split(`/`)[0],
-        })
-      )
-    } else {
-      writeManifest({ manifest })
-    }
+    writeManifest(manifest)
 
     fs.writeFileSync(
       path.join(`public`, `browserconfig.xml`),
@@ -96,5 +76,20 @@ exports.onPostBootstrap = (args, pluginOptions) =>
       })
     } else {
       resolve()
+    }
+  })
+
+exports.onPostBootstrap = (args, pluginOptions) =>
+  new Promise((resolve, reject) => {
+    delete pluginOptions.plugins
+
+    if (Array.isArray(pluginOptions.manifests)) {
+      Promise.all(pluginOptions.manifests.map(makeManifest))
+        .then(resolve)
+        .catch(resolve)
+    } else {
+      makeManifest(pluginOptions)
+        .then(resolve)
+        .catch(resolve)
     }
   })

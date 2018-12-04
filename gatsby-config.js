@@ -5,6 +5,15 @@ const { BRANCH, GAIAMA_CONTENT_ID, GAIAMA_FULL_CONTENT } = process.env
 const isProduction = GAIAMA_CONTENT_ID
 const isMaster = BRANCH === `master`
 
+const sharedManifestProperties = {
+  name: `GaiAma`,
+  short_name: `GaiAma`,
+  background_color: `#fff`,
+  theme_color: `#287482`,
+  display: `standalone`,
+  icon: `static/gaiama_pictogram.png`,
+}
+
 module.exports = {
   siteMetadata: {
     title: `GaiAma.org`,
@@ -191,13 +200,18 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `GaiAma`,
-        short_name: `GaiAma`,
-        start_url: [`/en/?utm_source=a2hs`, `/de/?utm_source=a2hs`],
-        background_color: `#fff`,
-        theme_color: `#287482`,
-        display: `standalone`,
-        icon: `static/gaiama_pictogram.png`,
+        manifests: [
+          Object.assign({}, sharedManifestProperties, {
+            start_url: `/en/?utm_source=a2hs`,
+            // pattern: `^/en/.*$`,
+            language: `en`,
+          }),
+          Object.assign({}, sharedManifestProperties, {
+            start_url: `/de/?utm_source=a2hs`,
+            // pattern: `^/de/.*$`,
+            language: `de`,
+          }),
+        ],
       },
     },
     // {

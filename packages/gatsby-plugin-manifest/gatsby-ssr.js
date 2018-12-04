@@ -3,8 +3,34 @@ import { withPrefix } from 'gatsby'
 
 export const onRenderBody = (
   { pathname = `/`, setHeadComponents },
-  { icon, icons, start_url, theme_color }
+  pluginOptions
 ) => {
+  let manifest = pluginOptions
+  if (Array.isArray(pluginOptions.manifests)) {
+    // manifest = pluginOptions.find(x => RegExp(x.pattern).test(pathname))
+    manifest = pluginOptions.manifests.find(x => {
+      // console.log(
+      //   RegExp(`^/${x.language}/.*`).test(pathname),
+      //   x.language,
+      //   pathname,
+      //   RegExp(`^/${x.language}/.*`)
+      // )
+      return RegExp(`^/${x.language}/.*`).test(pathname)
+    })
+  }
+
+  if (!manifest) {
+    return console.log(
+      `missing manifest`,
+      pathname,
+      pluginOptions.manifests.find(x =>
+        RegExp(`^/${x.language}/.*`).test(pathname)
+      )
+    )
+  }
+
+  const { icon, icons, theme_color, language } = manifest
+
   // If icons were generated, also add a favicon link.
   if (icon) {
     let favicon = `/icons/icon-48x48.png`
@@ -24,26 +50,16 @@ export const onRenderBody = (
     ])
   }
 
-  const getLang = x => `${x}`.replace(/^\//, ``).split(`/`)[0]
-  const getSuffix = x =>
-    `_`.concat(x.map(getLang).find(x => x === getLang(pathname)))
-
-  const manifestLink = Array.isArray(start_url) ? (
-    <link
-      key={`gatsby-plugin-manifest-link`}
-      rel="manifest"
-      href={withPrefix(`/manifest${getSuffix(start_url)}.webmanifest`)}
-    />
-  ) : (
-    <link
-      key={`gatsby-plugin-manifest-link`}
-      rel="manifest"
-      href={withPrefix(`/manifest.webmanifest`)}
-    />
-  )
+  const manifestFilename = language
+    ? `/manifest_${language}.webmanifest`
+    : `/manifest.webmanifest`
 
   setHeadComponents([
-    manifestLink,
+    <link
+      key={`gatsby-plugin-manifest-link`}
+      rel="manifest"
+      href={withPrefix(manifestFilename)}
+    />,
     <meta
       key={`gatsby-plugin-manifest-meta`}
       name="theme-color"
