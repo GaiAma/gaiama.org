@@ -13,6 +13,7 @@ export default {
     position: `relative`,
     color: colors.darkWhite,
     whiteSpace: `nowrap`,
+    fontWeight: 100,
 
     '& a': {
       color: colors.darkWhite,
