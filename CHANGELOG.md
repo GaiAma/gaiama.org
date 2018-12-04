@@ -1,3 +1,12 @@
+## [2.1.5](https://github.com/gaiama/gaiama.org/compare/v2.1.4...v2.1.5) (2018-12-04)
+
+
+### Bug Fixes
+
+* Header font-width ([3ea5489](https://github.com/gaiama/gaiama.org/commit/3ea5489))
+
+
+
 ## [2.1.4](https://github.com/gaiama/gaiama.org/compare/v2.1.3...v2.1.4) (2018-12-04)
 
 
