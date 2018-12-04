@@ -1,4 +1,14 @@
-<a name="2.1.1"></a>
+## [2.1.2](https://github.com/gaiama/gaiama.org/compare/v2.1.1...v2.1.2) (2018-12-04)
+
+
+### Bug Fixes
+
+* increase mobile font-width ([5123ee6](https://github.com/gaiama/gaiama.org/commit/5123ee6))
+* new unist-util-select API ([4fc1e9c](https://github.com/gaiama/gaiama.org/commit/4fc1e9c))
+* plugin-manifest custom i18n ([3a7a692](https://github.com/gaiama/gaiama.org/commit/3a7a692))
+
+
+
 ## [2.1.1](https://github.com/gaiama/gaiama.org/compare/v2.1.0...v2.1.1) (2018-12-01)
 
 
@@ -10,7 +20,6 @@
 
 
 
-<a name="2.1.0"></a>
 # [2.1.0](https://github.com/gaiama/gaiama.org/compare/v2.0.8...v2.1.0) (2018-12-01)
 
 
@@ -37,7 +46,6 @@
 
 
 
-<a name="2.0.8"></a>
 ## [2.0.8](https://github.com/gaiama/gaiama.org/compare/v2.0.7...v2.0.8) (2018-11-02)
 
 
@@ -47,7 +55,6 @@
 
 
 
-<a name="2.0.7"></a>
 ## [2.0.7](https://github.com/gaiama/gaiama.org/compare/v2.0.6...v2.0.7) (2018-10-29)
 
 
@@ -64,7 +71,6 @@
 
 
 
-<a name="2.0.6"></a>
 ## [2.0.6](https://github.com/gaiama/gaiama.org/compare/v2.0.5...v2.0.6) (2018-10-29)
 
 
@@ -87,7 +93,6 @@
 
 
 
-<a name="2.0.5"></a>
 ## [2.0.5](https://github.com/gaiama/gaiama.org/compare/v2.0.4...v2.0.5) (2018-10-19)
 
 
@@ -105,7 +110,6 @@
 
 
 
-<a name="2.0.4"></a>
 ## [2.0.4](https://github.com/gaiama/gaiama.org/compare/v2.0.3...v2.0.4) (2018-10-18)
 
 
@@ -115,7 +119,6 @@
 
 
 
-<a name="2.0.3"></a>
 ## [2.0.3](https://github.com/gaiama/gaiama.org/compare/v2.0.2...v2.0.3) (2018-10-17)
 
 
@@ -133,7 +136,6 @@
 
 
 
-<a name="2.0.2"></a>
 ## [2.0.2](https://github.com/gaiama/gaiama.org/compare/v2.0.1...v2.0.2) (2018-10-06)
 
 
@@ -143,7 +145,6 @@
 
 
 
-<a name="2.0.1"></a>
 ## [2.0.1](https://github.com/gaiama/gaiama.org/compare/v2.0.0...v2.0.1) (2018-10-06)
 
 
@@ -153,7 +154,6 @@
 
 
 
-<a name="2.0.0"></a>
 # [2.0.0](https://github.com/gaiama/gaiama.org/compare/v1.5.37...v2.0.0) (2018-10-06)
 
 
@@ -259,7 +259,6 @@ feat(Pixel): provide version and new url
 
 
 
-<a name="1.5.37"></a>
 ## [1.5.37](https://github.com/gaiama/gaiama.org/compare/70cdd0f...v1.5.37) (2018-07-18)
 
 
