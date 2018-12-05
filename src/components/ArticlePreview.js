@@ -9,7 +9,7 @@ const StyledLink = styled(Link)`
   border: none;
   :hover {
     background-color: transparent;
-    color: ${colors.link};
+    color: ${colors.gray80};
   }
 `
 
@@ -52,11 +52,18 @@ const articleStyles = {
     // width: `327`,
     // width: `29%`,
     // marginBottom: `4rem`,
-    boxShadow: `0 0 8px 0px ${colors.gray52}`,
+    boxShadow: `0 0 4px 0px ${colors.gray52}`,
     background: colors.lightBlue,
     display: `flex`,
     flexDirection: `column`,
     overflow: `hidden`,
+    transition: `transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s, padding 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s`,
+    ':hover': {
+      // transform: `scale(1.03)`,
+      transform: `translateY(-4px)`,
+      boxShadow: `0 0 10px 0px ${colors.gray52}`,
+      // boxShadow: `rgba(25, 17, 34, 0.1) 0px 10px 42px`,
+    },
   }),
   title: {
     margin: `.5rem 1rem 0`,

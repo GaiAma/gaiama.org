@@ -13,43 +13,50 @@ const StyledLink = styled(Link)`
   }
 `
 
+const Wrapper = styled.div`
+  padding: 0.5rem;
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
+    padding 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
+  :hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 10px 0px ${colors.gray52};
+  }
+`
+
 const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
   const coverImage =
     item.frontmatter.cover && item.frontmatter.cover.image.fluid
 
   return (
-    <div {...props}>
+    <Wrapper {...props}>
       <div
         css={{
           display: `flex`,
           flexDirection: layout === `row` && `column`,
         }}
       >
-        {coverImage && (
-          <StyledLink to={item.fields.url} css={styles.imageWrapper(layout)}>
-            <Img fluid={coverImage} css={styles.image} />
-          </StyledLink>
-        )}
+        <StyledLink to={item.fields.url}>
+          {coverImage && (
+            <div css={styles.imageWrapper(layout)}>
+              <Img fluid={coverImage} css={styles.image} />
+            </div>
+          )}
 
-        <div>
-          <h2 css={styles.title(layout)}>
-            <StyledLink to={item.fields.url}>
-              {item.frontmatter.title}
-            </StyledLink>
-          </h2>
+          <div>
+            <h2 css={styles.title(layout)}>{item.frontmatter.title}</h2>
 
-          <p css={styles.excerpt}>
-            {item.excerpt || item.frontmatter.summary}
+            <p css={styles.excerpt}>
+              {item.excerpt || item.frontmatter.summary}
 
-            {readmoreLabel && (
-              <StyledLink to={item.fields.url} css={styles.readmoreLink}>
-                {readmoreLabel}
-              </StyledLink>
-            )}
-          </p>
-        </div>
+              {readmoreLabel && (
+                <span css={styles.readmoreLink}>{readmoreLabel}</span>
+              )}
+            </p>
+          </div>
+        </StyledLink>
       </div>
-    </div>
+    </Wrapper>
   )
 }
 NewstickerItem.propTypes = {
