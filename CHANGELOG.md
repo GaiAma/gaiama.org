@@ -1,3 +1,12 @@
+## [2.1.7](https://github.com/gaiama/gaiama.org/compare/v2.1.6...v2.1.7) (2018-12-05)
+
+
+### Bug Fixes
+
+* disable autolink-headers to fix custom scroll behavoir ([786a5d0](https://github.com/gaiama/gaiama.org/commit/786a5d0)), closes [/github.com/gatsbyjs/gatsby/issues/7454#issuecomment-444531023](https://github.com//github.com/gatsbyjs/gatsby/issues/7454/issues/issuecomment-444531023)
+
+
+
 ## [2.1.6](https://github.com/gaiama/gaiama.org/compare/v2.1.5...v2.1.6) (2018-12-05)
 
 
