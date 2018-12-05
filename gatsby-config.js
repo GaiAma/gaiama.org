@@ -134,7 +134,7 @@ module.exports = {
           //   },
           // },
           `gatsby-remark-emoji`,
-          `gatsby-remark-autolink-headers`,
+          // `gatsby-remark-autolink-headers`,
           {
             resolve: `gatsby-remark-custom-blocks`,
             options: {
