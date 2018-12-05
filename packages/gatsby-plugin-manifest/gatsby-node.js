@@ -79,12 +79,12 @@ const makeManifest = ({ icon, ...manifest }) =>
     }
   })
 
-exports.onPostBootstrap = (args, pluginOptions) =>
+exports.onPostBootstrap = (args, { manifests, ...pluginOptions }) =>
   new Promise((resolve, reject) => {
     delete pluginOptions.plugins
 
-    if (Array.isArray(pluginOptions.manifests)) {
-      Promise.all(pluginOptions.manifests.map(makeManifest))
+    if (Array.isArray(manifests)) {
+      Promise.all(manifests.map(makeManifest))
         .then(resolve)
         .catch(resolve)
     } else {
