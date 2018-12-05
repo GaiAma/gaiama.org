@@ -1,3 +1,20 @@
+## [2.1.6](https://github.com/gaiama/gaiama.org/compare/v2.1.5...v2.1.6) (2018-12-05)
+
+
+### Bug Fixes
+
+* add mobile styles to header donate button ([f020f1f](https://github.com/gaiama/gaiama.org/commit/f020f1f))
+* remove console.log from ErrorPage ([d742038](https://github.com/gaiama/gaiama.org/commit/d742038))
+
+
+### Features
+
+* add donate button to main-nav ([e3a0185](https://github.com/gaiama/gaiama.org/commit/e3a0185))
+* add visual to article preview hover ([d5d0239](https://github.com/gaiama/gaiama.org/commit/d5d0239))
+* desctructure manifests ([b8d937b](https://github.com/gaiama/gaiama.org/commit/b8d937b))
+
+
+
 ## [2.1.5](https://github.com/gaiama/gaiama.org/compare/v2.1.4...v2.1.5) (2018-12-04)
 
 
