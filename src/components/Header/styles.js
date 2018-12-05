@@ -168,6 +168,20 @@ export default {
   headerNavItem: {
     height: `100%`,
 
+    '&:last-child': {
+      height: `auto`,
+
+      a: {
+        background: `#bfde2c`,
+        display: `block`,
+        fontWeight: `400`,
+        borderRadius: `3px`,
+        color: `#042f37`,
+        fontSize: `1.2rem`,
+        padding: `0.2rem 0.7rem`,
+      },
+    },
+
     [media.greaterThan(`small`)]: { fontSize: `1.2rem` },
   },
 

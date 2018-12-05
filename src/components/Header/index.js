@@ -81,10 +81,7 @@ class Header extends Component {
 
         <Banner>
           <Link to={homepage.fields.url}>
-            <Logo
-              fluid={logo.fluid}
-              alt="GaiAma Logo"
-            />
+            <Logo fluid={logo.fluid} alt="GaiAma Logo" />
           </Link>
         </Banner>
 
