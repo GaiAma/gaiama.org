@@ -160,25 +160,44 @@ export default {
     textAlign: `right`,
     fontFamily: fontFamilies.accent,
 
-    [media.greaterThan(`xsmall`)]: { height: `2.5rem`, width: `90%` },
-    [media.greaterThan(`small`)]: { height: `3.5rem` },
+    [media.greaterThan(`xsmall`)]: { height: `2.5rem`, width: `98%` },
+    [media.greaterThan(`small`)]: { height: `3.5rem`, width: `90%` },
     [media.greaterThan(`large`)]: { height: `4rem` },
   },
 
   headerNavItem: {
     height: `100%`,
 
+    span: {
+      width: `100%`,
+    },
+
     '&:last-child': {
       height: `auto`,
 
       a: {
         background: `#bfde2c`,
-        display: `block`,
         fontWeight: `400`,
         borderRadius: `3px`,
         color: `#042f37`,
         fontSize: `1.2rem`,
         padding: `0.2rem 0.7rem`,
+      },
+
+      [media.lessThan(`small`)]: {
+        position: `absolute`,
+        bottom: `2.6rem`,
+        right: `7px`,
+
+        a: {
+          borderRadius: `50%`,
+          width: `3.3rem`,
+          height: `3.3rem`,
+          fontSize: `0.8rem`,
+          textAlign: `center`,
+          padding: `0`,
+          transform: `rotate(10deg)`,
+        },
       },
     },
 
