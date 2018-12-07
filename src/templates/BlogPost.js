@@ -364,7 +364,11 @@ const PostHeader = ({
   >
     <h1
       itemProp="headline"
-      css={{ maxWidth: [`51rem`, `40ch`], margin: `0 auto` }}
+      css={{
+        maxWidth: [`51rem`, `40ch`],
+        margin: `0 auto`,
+        textAlign: `center`,
+      }}
     >
       {title}
     </h1>
