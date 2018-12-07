@@ -1,3 +1,12 @@
+## [2.2.2](https://github.com/gaiama/gaiama.org/compare/v2.2.1...v2.2.2) (2018-12-07)
+
+
+### Bug Fixes
+
+* **VideoPlayer:** fix cookiewall padding ([1d0fc9f](https://github.com/gaiama/gaiama.org/commit/1d0fc9f))
+
+
+
 ## [2.2.1](https://github.com/gaiama/gaiama.org/compare/v2.2.0...v2.2.1) (2018-12-07)
 
 
