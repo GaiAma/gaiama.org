@@ -455,11 +455,11 @@ const getSuggestedNodes = (Posts, node) => {
   if (node.frontmatter.suggested && node.frontmatter.suggested.length) {
     node.frontmatter.suggested.forEach(_id => {
       const id = `${_id}`
-      const propToMatch = id.length === 4 ? `oldId` : `id`
       const suggestion = Posts.find(
         x =>
-          x.frontmatter[propToMatch] === id &&
-          x.frontmatter.lang === node.frontmatter.lang
+          [x.frontmatter.slug, x.frontmatter.id, x.frontmatter.oldId].includes(
+            id
+          ) && x.frontmatter.lang === node.frontmatter.lang
       )
       if (suggestion) {
         suggested.push(suggestion.id)
