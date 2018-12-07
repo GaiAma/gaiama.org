@@ -10,9 +10,14 @@ import MainLayout from '@/components/MainLayout'
 import { InstagramWidget } from '@/components/InstagramWidget'
 import { SupportWidget } from '@/components/Shared'
 import TitledCopy from '@/components/TitledCopy'
+import VideoPlayer from '@/components/VideoPlayer'
 
 const IntroWrapper = styled(Box)`
   text-align: center;
+`
+
+const StyledVideoPlayer = styled(VideoPlayer)`
+  margin-top: 2rem;
 `
 
 const PageTitle = styled.h1`
@@ -26,44 +31,44 @@ const IntroCopy = styled.p`
   }
 `
 
-const IntroImagesOuter = styled.div`
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0 3rem;
-  ${media.greaterThan(`small`)} {
-    margin: 2rem 0 4rem;
-  }
-`
-const IntroImages = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  & > div {
-    box-shadow: 1px 1px 2px 1px ${colors.gray7};
-  }
-  & > div:nth-child(2) {
-    margin: 0 1rem;
-  }
-  & .gatsby-image-wrapper {
-    width: 200px;
-    width: 30vw;
-  }
-  ${media.greaterThan(`small`)} {
-    & .gatsby-image-wrapper {
-      width: 280px;
-      /* transition: width 0.3s ease-in-out; */
-    }
-    & > .gatsby-image-wrapper:not(:nth-child(2)) {
-      width: 200px;
-    }
-    /* &:hover .gatsby-image-wrapper {
-      width: 200px;
-    }
-    & > .gatsby-image-wrapper:hover {
-      width: 280px;
-    } */
-  }
-`
+// const IntroImagesOuter = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   margin: 2rem 0 3rem;
+//   ${media.greaterThan(`small`)} {
+//     margin: 2rem 0 4rem;
+//   }
+// `
+// const IntroImages = styled.div`
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   & > div {
+//     box-shadow: 1px 1px 2px 1px ${colors.gray7};
+//   }
+//   & > div:nth-child(2) {
+//     margin: 0 1rem;
+//   }
+//   & .gatsby-image-wrapper {
+//     width: 200px;
+//     width: 30vw;
+//   }
+//   ${media.greaterThan(`small`)} {
+//     & .gatsby-image-wrapper {
+//       width: 280px;
+//       /* transition: width 0.3s ease-in-out; */
+//     }
+//     & > .gatsby-image-wrapper:not(:nth-child(2)) {
+//       width: 200px;
+//     }
+//     /* &:hover .gatsby-image-wrapper {
+//       width: 200px;
+//     }
+//     & > .gatsby-image-wrapper:hover {
+//       width: 280px;
+//     } */
+//   }
+// `
 
 const StyledSupportWidget = styled(SupportWidget)`
   margin: 3rem 0;
@@ -198,13 +203,21 @@ const HomePage = props => (
         ))}
       </div>
 
-      <IntroImagesOuter>
+      {/* <IntroImagesOuter>
         <IntroImages>
           {props.data.page.frontmatter.intro.images.map(({ image }) => (
             <Img fluid={image.fluid} key={image.fluid.src} />
           ))}
         </IntroImages>
-      </IntroImagesOuter>
+      </IntroImagesOuter> */}
+
+      {props.data.page.frontmatter.video?.url && (
+        <StyledVideoPlayer
+          video={props.data.page.frontmatter.video.url}
+          thumbnail={props.data.page.frontmatter.video?.thumbnail.image}
+          label={props.data.SiteMeta.frontmatter.videoPlayerCookieButton}
+        />
+      )}
     </IntroWrapper>
 
     <KeyPrinciples
@@ -291,6 +304,16 @@ export const query = graphql`
         summary
         cover {
           publicURL
+        }
+        video {
+          url
+          thumbnail {
+            image: childImageSharp {
+              fluid(maxWidth: 760, quality: 75, cropFocus: ENTROPY) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
         }
         intro {
           title
