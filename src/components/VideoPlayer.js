@@ -12,9 +12,6 @@ const CookieWallWrapper = styled.div`
   background: transparent;
   border: none;
   cursor: pointer;
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
 `
 const AcceptCookiesButton = styled.div`
   && {
@@ -87,7 +84,7 @@ class VideoPlayer extends React.Component {
 
   renderCookieWall = () => (
     <CookieWallWrapper
-      className={this.props.className}
+      className={this.props.className || ``}
       onClick={this.handleAcceptCookiesClick}
     >
       {this.props.thumbnail && (
@@ -105,7 +102,7 @@ class VideoPlayer extends React.Component {
   )
 
   renderVideo = () => (
-    <Wrapper className={this.props.className}>
+    <Wrapper className={this.props.className || ``}>
       <Iframe
         src={this.props.video}
         title="Video"
@@ -119,6 +116,7 @@ class VideoPlayer extends React.Component {
 VideoPlayer.propTypes = {
   video: PropTypes.string,
   thumbnail: PropTypes.string,
+  className: PropTypes.string,
 }
 
 export default VideoPlayer
