@@ -87,13 +87,13 @@ const Img = styled(GatsbyImage)`
 
 class VideoPlayer extends React.Component {
   state = {
-    cookiesAccepted: localStore.getItem(`cookies_accepted`, 0),
+    cookiesAccepted: 0, // localStore.getItem(`cookies_accepted`, 0),
   }
 
   handleAcceptCookiesClick = event =>
     this.setState(
-      { cookiesAccepted: true },
-      localStore.setItem(`cookies_accepted`, 1)
+      { cookiesAccepted: true }
+      // () => localStore.setItem(`cookies_accepted`, 1)
     )
 
   render() {
