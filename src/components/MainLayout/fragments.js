@@ -49,6 +49,7 @@ export const Fragments = graphql`
           toContent
           toNav
         }
+        videoPlayerCookieButton
         footer {
           menuTitle
           socialTitle
