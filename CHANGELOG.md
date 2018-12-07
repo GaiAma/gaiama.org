@@ -1,3 +1,12 @@
+## [2.2.4](https://github.com/gaiama/gaiama.org/compare/v2.2.3...v2.2.4) (2018-12-07)
+
+
+### Bug Fixes
+
+* disable gatsby-plugin-offline for now ([3795aaf](https://github.com/gaiama/gaiama.org/commit/3795aaf))
+
+
+
 ## [2.2.3](https://github.com/gaiama/gaiama.org/compare/v2.2.2...v2.2.3) (2018-12-07)
 
 
