@@ -4,13 +4,25 @@ import PropTypes from 'prop-types'
 import styled from 'react-emotion'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
+import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
 import { media } from '@/theme'
 import localStore from '@/utils/local-store'
 
 const CookieWallWrapper = styled.div`
   position: relative;
-  background: transparent;
+`
+const ThumbnailWrapper = styled.div`
+  position: relative;
+`
+const ClickButton = styled.button`
   border: none;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   cursor: pointer;
 `
 const AcceptCookiesButton = styled.div`
@@ -40,15 +52,16 @@ const ButtonWrapper = styled.div`
 const PlayIcon = styled(FontAwesomeIcon)`
   margin-right: 0.5rem;
 `
+const LoadingIcon = styled(FontAwesomeIcon)`
+  position: absolute;
+`
 const Wrapper = styled.div`
-  margin: 1rem auto 0;
+  margin: 0 auto;
   position: relative;
   overflow: hidden;
-  padding-top: 56.25%;
-  ${media.greaterThan(`medium`)} {
-    width: 760px;
-    padding-top: 36.25%;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 const Iframe = styled.iframe`
   position: absolute;
@@ -58,7 +71,14 @@ const Iframe = styled.iframe`
   height: 100%;
   border: 0;
 `
-
+const IframeWrapper = styled.div`
+  position: relative;
+  padding-top: 56.25%;
+  ${media.greaterThan(`medium`)} {
+    width: 760px;
+    padding-top: 36.25%;
+  }
+`
 const Img = styled(GatsbyImage)`
   height: auto;
   max-width: 760px;
@@ -87,39 +107,41 @@ class VideoPlayer extends React.Component {
   }
 
   renderCookieWall = () => (
-    <CookieWallWrapper
-      className={this.props.className || ``}
-      onClick={this.handleAcceptCookiesClick}
-    >
-      {this.props.thumbnail && (
-        <div>
-          <Img {...this.props.thumbnail} />
-        </div>
-      )}
+    <CookieWallWrapper className={this.props.className || ``}>
+      <ThumbnailWrapper>
+        <Img {...this.props.thumbnail} />
+      </ThumbnailWrapper>
       <ButtonWrapper>
         <AcceptCookiesButton>
           <PlayIcon icon={faPlay} size="lg" />
           {this.props.label}
         </AcceptCookiesButton>
+        <ClickButton
+          onClick={this.handleAcceptCookiesClick}
+          title={this.props.label}
+        />
       </ButtonWrapper>
     </CookieWallWrapper>
   )
 
   renderVideo = () => (
     <Wrapper className={this.props.className || ``}>
-      <Iframe
-        src={this.props.video}
-        title="Video"
-        frameBorder="0"
-        scrolling="no"
-      />
+      <LoadingIcon icon={faSpinner} spin size="3x" />
+      <IframeWrapper>
+        <Iframe
+          src={this.props.video}
+          title="Video"
+          frameBorder="0"
+          scrolling="no"
+        />
+      </IframeWrapper>
     </Wrapper>
   )
 }
 
 VideoPlayer.propTypes = {
-  video: PropTypes.string,
-  thumbnail: PropTypes.string,
+  video: PropTypes.string.isRequired,
+  thumbnail: PropTypes.string.isRequired,
   className: PropTypes.string,
 }
 
