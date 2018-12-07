@@ -1,3 +1,17 @@
+## [2.2.1](https://github.com/gaiama/gaiama.org/compare/v2.2.0...v2.2.1) (2018-12-07)
+
+
+### Bug Fixes
+
+* **VideoPlayer:** shrink button on mobile ([211e1fd](https://github.com/gaiama/gaiama.org/commit/211e1fd))
+
+
+### Features
+
+* **VideoPlayer:** add className fallback + cleanup ([d1e618f](https://github.com/gaiama/gaiama.org/commit/d1e618f))
+
+
+
 # [2.2.0](https://github.com/gaiama/gaiama.org/compare/v2.1.7...v2.2.0) (2018-12-07)
 
 
