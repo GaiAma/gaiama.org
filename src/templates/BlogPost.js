@@ -8,6 +8,7 @@ import Link from '@/components/Link'
 import ShareWidget from '@/components/ShareWidget'
 import { SupportWidget } from '@/components/Shared'
 import Newsticker from '@/components/Newsticker'
+import VideoPlayer from '@/components/VideoPlayer'
 import PodcastPlayer from '@/components/PodcastPlayer'
 import { colors, fontFamilies, gradients, media } from '@/theme'
 
@@ -61,7 +62,17 @@ const BlogPost = props => {
           }
         />
 
-        <PostBody>{renderAst(post.htmlAst)}</PostBody>
+        <PostBody>
+          {post.frontmatter.video?.url && (
+            <VideoPlayer
+              video={post.frontmatter.video.url}
+              thumbnail={post.frontmatter.video.thumbnail?.image}
+              label={props.data.SiteMeta.frontmatter.videoPlayerCookieButton}
+            />
+          )}
+
+          {renderAst(post.htmlAst)}
+        </PostBody>
       </article>
 
       <ShareWidget
@@ -296,6 +307,16 @@ export const query = graphql`
           audio
           video
         }
+        video {
+          url
+          thumbnail {
+            image: childImageSharp {
+              fluid(maxWidth: 760, quality: 75, cropFocus: ENTROPY) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
       }
     }
   }
@@ -398,7 +419,9 @@ const PostHeader = ({
       </Link>
     </div>
 
-    <PodcastPlayer podcast={podcast} meta={podcastPlayerMeta.frontmatter} />
+    {podcast && (
+      <PodcastPlayer podcast={podcast} meta={podcastPlayerMeta.frontmatter} />
+    )}
   </div>
 )
 PostHeader.propTypes = {
