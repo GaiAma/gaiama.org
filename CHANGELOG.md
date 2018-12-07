@@ -1,3 +1,15 @@
+# [2.2.0](https://github.com/gaiama/gaiama.org/compare/v2.1.7...v2.2.0) (2018-12-07)
+
+
+### Features
+
+* add VideoPlayer ([94a28f1](https://github.com/gaiama/gaiama.org/commit/94a28f1))
+* **BlogPost:** add VideoPlayer ([a568eb0](https://github.com/gaiama/gaiama.org/commit/a568eb0))
+* **BlogPost:** text-align: center h1 ([99144ce](https://github.com/gaiama/gaiama.org/commit/99144ce))
+* **HomePage:** add viral video ([28fcc50](https://github.com/gaiama/gaiama.org/commit/28fcc50))
+
+
+
 ## [2.1.7](https://github.com/gaiama/gaiama.org/compare/v2.1.6...v2.1.7) (2018-12-05)
 
 
