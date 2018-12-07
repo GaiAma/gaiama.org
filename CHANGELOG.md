@@ -1,3 +1,13 @@
+## [2.2.3](https://github.com/gaiama/gaiama.org/compare/v2.2.2...v2.2.3) (2018-12-07)
+
+
+### Features
+
+* **VideoPlayer:** disable LocalStorage for now ([078c608](https://github.com/gaiama/gaiama.org/commit/078c608))
+* **VideoPlayer:** remove && for css specificity ([0539494](https://github.com/gaiama/gaiama.org/commit/0539494))
+
+
+
 ## [2.2.2](https://github.com/gaiama/gaiama.org/compare/v2.2.1...v2.2.2) (2018-12-07)
 
 
