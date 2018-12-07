@@ -26,17 +26,15 @@ const ClickButton = styled.button`
   cursor: pointer;
 `
 const AcceptCookiesButton = styled.div`
-  && {
-    background: red;
-    border: none;
-    font-weight: 700;
-    padding: 0.4rem 1rem;
-    color: #fff;
-    border-radius: 3px;
-    font-size: 0.8rem;
-    ${media.greaterThan(`xsmall`)} {
-      font-size: 1rem;
-    }
+  background: red;
+  border: none;
+  font-weight: 700;
+  padding: 0.4rem 1rem;
+  color: #fff;
+  border-radius: 3px;
+  font-size: 0.8rem;
+  ${media.greaterThan(`xsmall`)} {
+    font-size: 1rem;
   }
 `
 const ButtonWrapper = styled.div`
