@@ -21,6 +21,10 @@ const AcceptCookiesButton = styled.div`
     padding: 0.4rem 1rem;
     color: #fff;
     border-radius: 3px;
+    font-size: 0.8rem;
+    ${media.greaterThan(`xsmall`)} {
+      font-size: 1rem;
+    }
   }
 `
 const ButtonWrapper = styled.div`
