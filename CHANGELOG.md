@@ -1,3 +1,12 @@
+## [2.2.5](https://github.com/gaiama/gaiama.org/compare/v2.2.4...v2.2.5) (2018-12-19)
+
+
+### Bug Fixes
+
+* **HomePage:** image blocks ([82554ed](https://github.com/gaiama/gaiama.org/commit/82554ed))
+
+
+
 ## [2.2.4](https://github.com/gaiama/gaiama.org/compare/v2.2.3...v2.2.4) (2018-12-07)
 
 
