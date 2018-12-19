@@ -150,7 +150,7 @@ const KeyPrincipleRowImages = styled.div`
 const KeyPrincipleRowImage = styled(Img)`
   width: 120px;
   ${media.greaterThan(`xsmall`)} {
-    width: 153px;
+    width: 152px;
   }
   margin: 0.2rem;
 `
