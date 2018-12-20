@@ -1,3 +1,7 @@
+## [2.2.6](https://github.com/gaiama/gaiama.org/compare/v2.2.5...v2.2.6) (2018-12-20)
+
+
+
 ## [2.2.5](https://github.com/gaiama/gaiama.org/compare/v2.2.4...v2.2.5) (2018-12-19)
 
 
