@@ -189,11 +189,11 @@ class ContributorsPage extends React.Component {
           {contributors.edges.map((x, index) => (
             <Contributor key={x.node.key + index} id={x.node.key}>
               <ContributorLink
-                href={`#${x.node.key}`}
-                highlighted={this.state.highlighted === x.node.key}
+                href={`#${x.node.anonymous ? `anon` : x.node.key}`}
+                highlighted={this.state.highlighted === x.node.anonymous ? `anon` : x.node.key}
                 onClick={this.handleClick(x.node.key)}
               >
-                {page.frontmatter.thanksLabel} <strong>{x.node.name}</strong>
+                {page.frontmatter.thanksLabel} <strong>{x.node.anonymous ? `Anonymous` : x.node.name}</strong>
                 {` `}
                 {page.frontmatter.forLabel} {x.node.amount}
                 {page.frontmatter.squareMeterLabel}
@@ -254,6 +254,7 @@ export const query = graphql`
           name
           date
           amount
+          anonymous
         }
       }
     }
