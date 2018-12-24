@@ -1,3 +1,12 @@
+## [2.2.7](https://github.com/gaiama/gaiama.org/compare/v2.2.6...v2.2.7) (2018-12-24)
+
+
+### Features
+
+* **ContributorPage:** add anonymous name option ([9bf2d84](https://github.com/gaiama/gaiama.org/commit/9bf2d84))
+
+
+
 ## [2.2.6](https://github.com/gaiama/gaiama.org/compare/v2.2.5...v2.2.6) (2018-12-20)
 
 
