@@ -99,14 +99,14 @@ export default {
   headerLogo: {
     display: `block`,
     position: `relative`,
-    transform: `translateY(-1.7rem)`,
+    // transform: `translateY(-1.7rem)`,
     margin: `0 auto`,
     maxWidth: `140px`,
     userSelect: `none`,
 
     [media.greaterThan(`small`)]: {
       maxWidth: `250px`,
-      transform: `translateY(-2.2rem)`,
+      // transform: `translateY(-2.2rem)`,
     },
     [media.greaterThan(`large`)]: { maxWidth: `420px` },
   },
