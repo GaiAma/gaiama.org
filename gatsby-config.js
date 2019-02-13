@@ -71,7 +71,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-gaiama-donations`,
+      resolve: `@gaiama/gatsby-source-gaiama-donations`,
       options: {
         TableName: `gaiama-donations`,
         accessKeyId: isProduction && GAIAMA_DONATIONS_ACCESS_KEY_ID,
