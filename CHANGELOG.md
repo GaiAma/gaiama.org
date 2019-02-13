@@ -1,3 +1,16 @@
+## [2.3.2](https://github.com/gaiama/gaiama.org/compare/v2.3.1...v2.3.2) (2019-02-13)
+
+
+### Bug Fixes
+
+* rename source-donations & add missing index.js ([ba453c5](https://github.com/gaiama/gaiama.org/commit/ba453c5))
+
+
+
+## [2.3.1](https://github.com/gaiama/gaiama.org/compare/v2.3.0...v2.3.1) (2019-02-13)
+
+
+
 # [2.3.0](https://github.com/gaiama/gaiama.org/compare/v2.2.7...v2.3.0) (2019-02-13)
 
 
