@@ -7,7 +7,7 @@ import MainLayout from '@/components/MainLayout'
 import { SupportWidget } from '@/components/Shared'
 
 const calcTotalAmount = x =>
-  x.edges.reduce((acc, val) => acc + val.node.amount, 0)
+  x.edges.reduce((acc, val) => acc + val.node.item.amount, 0).toFixed()
 
 const DonatePage = props => {
   const { page, contributions } = props.data
@@ -54,7 +54,12 @@ const DonatePage = props => {
             css={`
               margin-top: 1rem;
             `}
-            dangerouslySetInnerHTML={{ __html: page.frontmatter.contributorInfo.replace(`[[amount]]`, calcTotalAmount(contributions)) }}
+            dangerouslySetInnerHTML={{
+              __html: page.frontmatter.contributorInfo.replace(
+                `[[amount]]`,
+                calcTotalAmount(contributions)
+              ),
+            }}
           />
         </div>
       </div>
@@ -124,10 +129,12 @@ export const query = graphql`
       }
     }
 
-    contributions: allPayPalJson {
+    contributions: allGaiamaDonation {
       edges {
         node {
-          amount
+          item {
+            amount
+          }
         }
       }
     }

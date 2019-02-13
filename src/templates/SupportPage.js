@@ -388,7 +388,7 @@ const SupportPage = props => {
         </ContributorListTitle>
         <ContributorList>
           {contributors.edges.map(x => (
-            <Contributor key={x.node.key}>{x.node.name}</Contributor>
+            <Contributor key={x.node.item.key}>{x.node.item.name}</Contributor>
           ))}
         </ContributorList>
         <ContributorListLink to={frontmatter.contributors.link}>
@@ -619,16 +619,17 @@ export const query = graphql`
       }
     }
 
-    contributors: allPayPalJson(
-      sort: { fields: [date], order: DESC }
+    contributors: allGaiamaDonation(
+      filter: { item: { anonymous: { ne: true } } }
+      sort: { fields: [item___time_string], order: DESC }
       limit: 16
     ) {
       edges {
         node {
-          key
-          name
-          date
-          amount
+          item {
+            key
+            name
+          }
         }
       }
     }
