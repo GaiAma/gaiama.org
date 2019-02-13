@@ -73,13 +73,32 @@ const generateContributions = R.compose(
 
 module.exports.sourceNodes = async (
   { actions, createNodeId, cache },
-  pluginOptions
+  { TableName, accessKeyId, secretAccessKey, offline }
 ) => {
   const { createNode } = actions
-  const { TableName, accessKeyId, secretAccessKey } = pluginOptions
+
+  if (offline) {
+    return createNode({
+      id: `donations-offline`,
+      parent: null,
+      children: [],
+      internal: {
+        type: `gaiamaDonation`,
+        contentDigest: `offline placeholder`,
+      },
+      item: {
+        key: `offline`,
+        name: `Plugin offline`,
+        amount: 10000000000,
+        time_string: 1550073079989,
+        anonymous: false,
+      },
+    })
+  }
+
   const cacheKey = `source-gaiama-donations`
   const dynamoConf = {
-    apiVersion: '2012-08-10',
+    apiVersion: `2012-08-10`,
     region: `eu-west-1`,
     accessKeyId,
     secretAccessKey,

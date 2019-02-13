@@ -76,6 +76,7 @@ module.exports = {
         TableName: `gaiama-donations`,
         accessKeyId: isProduction && GAIAMA_DONATIONS_ACCESS_KEY_ID,
         secretAccessKey: isProduction && GAIAMA_DONATIONS_SECRET_ACCESS_KEY,
+        offline: !isProduction,
       },
     },
     {
