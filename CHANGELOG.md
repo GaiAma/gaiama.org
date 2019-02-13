@@ -1,3 +1,13 @@
+## [2.3.5](https://github.com/gaiama/gaiama.org/compare/v2.3.4...v2.3.5) (2019-02-13)
+
+
+### Features
+
+* add offline option to source-donations ([f0b1ddb](https://github.com/gaiama/gaiama.org/commit/f0b1ddb))
+* cleanup remove console.log ([6cc1251](https://github.com/gaiama/gaiama.org/commit/6cc1251))
+
+
+
 ## [2.3.4](https://github.com/gaiama/gaiama.org/compare/v2.3.3...v2.3.4) (2019-02-13)
 
 
