@@ -12,26 +12,32 @@ const TotalDonated = styled.h4`
 `
 const ContributorList = styled.div`
   margin-top: 4rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  ${media.greaterThan(`small`)} {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
 `
 const Contributor = styled.div`
-  margin-top: 0.5rem;
+  margin-top: 1rem;
   flex-shrink: 0;
   max-width: 100%;
+  ${media.greaterThan(`small`)} {
+    margin-top: 0.5rem;
+    min-height: 3rem;
+  }
   ${media.between(`small`, `large`)} {
     width: 48%;
     margin-top: 0;
     :nth-child(1n + 3) {
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
   }
   ${media.greaterThan(`xlarge`)} {
     width: 30%;
     margin-top: 0;
     :nth-child(1n + 4) {
-      margin-top: 2rem;
+      margin-top: 1rem;
     }
   }
 `
@@ -43,6 +49,11 @@ const ContributorLink = styled.a`
 
   background: ${p => (p.highlighted ? colors.primaryLite : `transparent`)};
   color: ${p => (p.highlighted ? `#fff` : colors.black)};
+  transition: all 0.2s;
+
+  :hover {
+    transform: scale(1.03);
+  }
 `
 const TotalAmount = ({ amount }) => (
   <Spring
@@ -57,15 +68,18 @@ const TotalAmount = ({ amount }) => (
     }}
   >
     {({ total }) => (
-      <animated.strong
+      <animated.span
         css={`
-          width: ${(`${amount}`.length || 1) + 1}rem;
+          width: ${(`${console.log(`amount`, amount) || amount}`.length || 1) +
+            1}rem;
           display: inline-block;
           text-align: right;
+          font-weight: 700;
         `}
       >
-        {total.interpolate(n => n.toFixed(0))}
-      </animated.strong>
+        {total}
+        {/* {total.interpolate(n => n.toFixed(0))} */}
+      </animated.span>
     )}
   </Spring>
 )
@@ -89,8 +103,10 @@ const TakeAction = ({ label, link }) => (
         text-align: center;
         margin: 2rem auto 0;
         font-weight: 300;
+        transition: all 0.1s;
         :hover {
           background: #287482;
+          transform: scale(1.03);
         }
       `}
     >
@@ -107,10 +123,9 @@ class ContributorsPage extends React.Component {
   state = {
     items: [],
     highlighted: null,
-    total: this.props.data.contributors.edges.reduce(
-      (acc, val) => acc + val.node.amount,
-      0
-    ),
+    total: this.props.data.contributors.edges
+      .reduce((acc, val) => acc + val.node.item.amount, 0)
+      .toFixed(0),
   }
 
   componentDidMount = () => {
@@ -137,8 +152,9 @@ class ContributorsPage extends React.Component {
         <TotalDonated>
           <TotalAmount amount={this.state.total} />
           <span>
-            {page.frontmatter.squareMeterLabel}{' '}
-            {page.frontmatter.donatedSoFarLabel}
+            {`${page.frontmatter.squareMeterLabel} ${
+              page.frontmatter.donatedSoFarLabel
+            }`}
           </span>
         </TotalDonated>
 
@@ -186,16 +202,20 @@ class ContributorsPage extends React.Component {
         </ContributorList> */}
 
         <ContributorList>
-          {contributors.edges.map((x, index) => (
-            <Contributor key={x.node.key + index} id={x.node.key}>
+          {contributors.edges.map(({ node: { item } }, index) => (
+            <Contributor key={item.key + index} id={item.key}>
               <ContributorLink
-                href={`#${x.node.anonymous ? `anon` : x.node.key}`}
-                highlighted={this.state.highlighted === x.node.anonymous ? `anon` : x.node.key}
-                onClick={this.handleClick(x.node.key)}
+                href={`#${item.anonymous ? `anon` : item.key}`}
+                highlighted={
+                  this.state.highlighted === item.anonymous ? `anon` : item.key
+                }
+                onClick={this.handleClick(item.key)}
               >
-                {page.frontmatter.thanksLabel} <strong>{x.node.anonymous ? `Anonymous` : x.node.name}</strong>
+                {page.frontmatter.thanksLabel}
                 {` `}
-                {page.frontmatter.forLabel} {x.node.amount}
+                <strong>{item.anonymous ? `Anonymous` : item.name}</strong>
+                {` `}
+                {page.frontmatter.forLabel} {item.amount}
                 {page.frontmatter.squareMeterLabel}
               </ContributorLink>
             </Contributor>
@@ -247,14 +267,17 @@ export const query = graphql`
       }
     }
 
-    contributors: allPayPalJson(sort: { fields: [date], order: DESC }) {
+    contributors: allGaiamaDonation(
+      sort: { fields: [item___time_string], order: DESC }
+    ) {
       edges {
         node {
-          key
-          name
-          date
-          amount
-          anonymous
+          item {
+            key
+            name
+            amount
+            anonymous
+          }
         }
       }
     }
