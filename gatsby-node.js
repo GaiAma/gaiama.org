@@ -54,8 +54,8 @@ const sortTuplesByDateAndLayout = R.sort((a, b) => {
   return _a.layout === _b.layout || [_a, _b].every(x => x.layout !== `BlogPost`)
     ? compareAsc(parseDate(_a.date), parseDate(_b.date))
     : _a.layout === `BlogPost`
-      ? 1
-      : -1
+    ? 1
+    : -1
 })
 const prepareSortedTuple = R.compose(
   sortTuplesByDateAndLayout,
@@ -189,13 +189,12 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
             })
           }) //.filter(n => n.id !== node.id).map(node => node.id),
           .filter(n => n)
-          .sort(
-            (a, b) =>
-              a.frontmatter.lang < b.frontmatter.lang
-                ? -1
-                : a.frontmatter.lang > b.frontmatter.lang
-                  ? 1
-                  : 0
+          .sort((a, b) =>
+            a.frontmatter.lang < b.frontmatter.lang
+              ? -1
+              : a.frontmatter.lang > b.frontmatter.lang
+              ? 1
+              : 0
           ),
       })
 
