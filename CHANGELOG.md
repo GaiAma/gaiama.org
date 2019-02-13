@@ -1,3 +1,12 @@
+## [2.3.3](https://github.com/gaiama/gaiama.org/compare/v2.3.2...v2.3.3) (2019-02-13)
+
+
+### Bug Fixes
+
+* switch missing to new donation source ([dded4cc](https://github.com/gaiama/gaiama.org/commit/dded4cc))
+
+
+
 ## [2.3.2](https://github.com/gaiama/gaiama.org/compare/v2.3.1...v2.3.2) (2019-02-13)
 
 
