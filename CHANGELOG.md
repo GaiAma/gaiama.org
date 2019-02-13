@@ -1,3 +1,21 @@
+# [2.3.0](https://github.com/gaiama/gaiama.org/compare/v2.2.7...v2.3.0) (2019-02-13)
+
+
+### Bug Fixes
+
+* **Header:** position of new logo ([f1e9e7b](https://github.com/gaiama/gaiama.org/commit/f1e9e7b))
+
+
+### Features
+
+* init source-gaiama-donations ([b50aa49](https://github.com/gaiama/gaiama.org/commit/b50aa49))
+* re-enable plugin-offline ([bf9a51b](https://github.com/gaiama/gaiama.org/commit/bf9a51b))
+* upgrade ContributorsPage ([93ed67e](https://github.com/gaiama/gaiama.org/commit/93ed67e))
+* upgrade dependencies ([3f3ad45](https://github.com/gaiama/gaiama.org/commit/3f3ad45))
+* upgrade manifest deps ([fe88fae](https://github.com/gaiama/gaiama.org/commit/fe88fae))
+
+
+
 ## [2.2.7](https://github.com/gaiama/gaiama.org/compare/v2.2.6...v2.2.7) (2018-12-24)
 
 
