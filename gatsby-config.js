@@ -259,11 +259,11 @@ module.exports = {
         // Accepts all options defined by `babel-plugin-emotion` plugin.
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-offline`,
-    //   options: {
-    //     globPatterns: [`**/*.{js,css,html}`],
-    //   },
-    // },
+    {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        // globPatterns: [`**/*.{js,css,html}`],
+      },
+    },
   ],
 }
