@@ -212,7 +212,7 @@ module.exports = {
       options: { siteUrl: homepage },
     },
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: `@gaiama/gatsby-plugin-manifest`,
       options: {
         manifests: [
           Object.assign({}, sharedManifestProperties, {

@@ -63,7 +63,7 @@
     "gatsby-plugin-compile-es6-packages": "^1.0.6",
     "gatsby-plugin-emotion": "2.0.7",
     "gatsby-plugin-layout": "1.0.12",
-    "gatsby-plugin-manifest": "2.0.5",
+    "@gaiama/gatsby-plugin-manifest": "2.0.5",
     "gatsby-plugin-nprogress": "2.0.8",
     "gatsby-plugin-offline": "2.0.22",
     "gatsby-plugin-react-helmet": "3.0.6",

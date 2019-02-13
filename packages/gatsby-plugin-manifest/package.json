@@ -1,5 +1,5 @@
 {
-  "name": "gatsby-plugin-manifest",
+  "name": "@gaiama/gatsby-plugin-manifest",
   "description": "Gatsby plugin which adds a manifest.webmanifest to make sites progressive web apps",
   "version": "2.0.5",
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",

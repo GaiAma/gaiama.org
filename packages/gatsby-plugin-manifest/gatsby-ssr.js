@@ -6,17 +6,12 @@ export const onRenderBody = (
   pluginOptions
 ) => {
   let manifest = pluginOptions
+
   if (Array.isArray(pluginOptions.manifests)) {
     // manifest = pluginOptions.find(x => RegExp(x.pattern).test(pathname))
-    manifest = pluginOptions.manifests.find(x => {
-      // console.log(
-      //   RegExp(`^/${x.language}/.*`).test(pathname),
-      //   x.language,
-      //   pathname,
-      //   RegExp(`^/${x.language}/.*`)
-      // )
-      return RegExp(`^/${x.language}/.*`).test(pathname)
-    })
+    manifest = pluginOptions.manifests.find(x =>
+      RegExp(`^/${x.language}/.*`).test(pathname)
+    )
   }
 
   if (!manifest) {
@@ -66,4 +61,6 @@ export const onRenderBody = (
       content={theme_color}
     />,
   ])
+
+  return true
 }
