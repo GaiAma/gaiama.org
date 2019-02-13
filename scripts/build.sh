@@ -19,7 +19,7 @@ if [ ! -d "$GAIAMA_CACHE_DIR" ]; then
   mkdir -p $GAIAMA_CACHE_DIR
   echo "Created cache directory"
   echo "Fetching content.."
-  wget -O $GAIAMA_CONTENT_TAR $GAIAMA_CONTENT_URL
+  wget --show-progrss -qO $GAIAMA_CONTENT_TAR $GAIAMA_CONTENT_URL
   echo "Content successfully fetched"
 fi
 
