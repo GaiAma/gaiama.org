@@ -70,8 +70,7 @@ const TotalAmount = ({ amount }) => (
     {({ total }) => (
       <animated.span
         css={`
-          width: ${(`${console.log(`amount`, amount) || amount}`.length || 1) +
-            1}rem;
+          width: ${(`${amount}`.length || 1) + 1}rem;
           display: inline-block;
           text-align: right;
           font-weight: 700;
