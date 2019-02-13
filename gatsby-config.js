@@ -1,7 +1,13 @@
 const { basename, dirname, join, resolve } = require(`path`)
 const { homepage, version } = require(`./package.json`)
 
-const { BRANCH, GAIAMA_CONTENT_ID, GAIAMA_FULL_CONTENT } = process.env
+const {
+  BRANCH,
+  GAIAMA_CONTENT_ID,
+  GAIAMA_FULL_CONTENT,
+  GAIAMA_DONATIONS_ACCESS_KEY_ID,
+  GAIAMA_DONATIONS_SECRET_ACCESS_KEY,
+} = process.env
 const isProduction = GAIAMA_CONTENT_ID
 const isMaster = BRANCH === `master`
 
@@ -65,6 +71,14 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-gaiama-donations`,
+      options: {
+        TableName: `gaiama-donations`,
+        accessKeyId: isProduction && GAIAMA_DONATIONS_ACCESS_KEY_ID,
+        secretAccessKey: isProduction && GAIAMA_DONATIONS_SECRET_ACCESS_KEY,
+      },
+    },
+    {
       // TODO: add internet connection check!
       resolve: `gatsby-source-instagram`,
       options: {
@@ -79,8 +93,8 @@ module.exports = {
           node.relativePath.includes(`newsletter`)
             ? `newsletter`
             : node.frontmatter.layout !== `BlogPost`
-              ? basename(dirname(node.relativePath))
-              : ``,
+            ? basename(dirname(node.relativePath))
+            : ``,
         plugins: [
           `gatsby-remark-embed-video`,
           // {
