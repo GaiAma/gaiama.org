@@ -1,3 +1,12 @@
+## [2.3.6](https://github.com/gaiama/gaiama.org/compare/v2.3.5...v2.3.6) (2019-02-14)
+
+
+### Features
+
+* temp redirects for old happygaia posts ([8228a7b](https://github.com/gaiama/gaiama.org/commit/8228a7b))
+
+
+
 ## [2.3.5](https://github.com/gaiama/gaiama.org/compare/v2.3.4...v2.3.5) (2019-02-13)
 
 
