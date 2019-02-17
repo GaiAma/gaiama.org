@@ -1,3 +1,12 @@
+## [2.3.7](https://github.com/gaiama/gaiama.org/compare/v2.3.6...v2.3.7) (2019-02-17)
+
+
+### Bug Fixes
+
+* **SourceDonations:** ensure proper anonymous inference ([d215cd7](https://github.com/gaiama/gaiama.org/commit/d215cd7))
+
+
+
 ## [2.3.6](https://github.com/gaiama/gaiama.org/compare/v2.3.5...v2.3.6) (2019-02-14)
 
 
