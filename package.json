@@ -97,6 +97,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@gaiama/gatsby-source-gaiama-donations": "^0.1.2",
     "all-contributors-cli": "5.4.1",
     "babel-plugin-console": "0.2.1",
     "babel-plugin-preval": "3.0.1",

@@ -1,6 +1,6 @@
 {
   "name": "@gaiama/gatsby-source-gaiama-donations",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
     "aws-sdk": "^2.398.0",
     "cuid": "^2.1.4",

@@ -106,7 +106,6 @@ module.exports.sourceNodes = async (
   const dynamodb = new AWS.DynamoDB.DocumentClient(dynamoConf)
 
   let donations = await cache.get(cacheKey)
-  // console.log(`donations`, donations)
 
   if (!donations) {
     console.log(`no cache`)
@@ -117,13 +116,17 @@ module.exports.sourceNodes = async (
     cache.set(cacheKey, donations)
   }
 
-  // console.log(donations)
-
-  const items = generateContributions(donations.Items).forEach(item => {
+  generateContributions(donations.Items).forEach(item => {
     const contentDigest = crypto
       .createHash(`md5`)
       .update(JSON.stringify(item))
       .digest(`hex`)
+
+    if (item.anonymous) {
+      item.anonymous = true
+    } else {
+      item.anonymous = false
+    }
 
     const node = {
       id: createNodeId(item.id),
