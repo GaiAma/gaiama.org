@@ -317,13 +317,13 @@ exports.onPostBuild = () => {
     `/en/blog/atom/* /en/blog/rss.xml 301`,
     `/de/blog/atom/* /de/blog/rss.xml 301`,
 
-    `/en/blog/* /en/blog/?url=:splat 301`,
-    `/de/blog/* /de/blog/?url=:splat 301`,
+    `/en/blog/* https://www.happygaia.com/en/blog/?url=:splat 301`,
+    `/de/blog/* https://www.happygaia.com/de/blog/?url=:splat 301`,
 
     // manual redirection fixes
-    `/globetrawter/blog/oh-don-t-stop/ /en/blog/oh-dont-stop/ 301`,
-    `/en/globetrawter/* /en/blog/ 301`,
-    `/de/globetrawter/* /de/blog/ 301`,
+    `/globetrawter/blog/oh-don-t-stop/ https://www.happygaia.com/en/blog/oh-dont-stop/ 301`,
+    `/en/globetrawter/* https://www.happygaia.com/en/blog/ 301`,
+    `/de/globetrawter/* https://www.happygaia.com/de/blog/ 301`,
 
     `/en/de/* / 301`,
     `/en/danke/* /de/spenden/ 301`,
@@ -338,11 +338,11 @@ exports.onPostBuild = () => {
     `/en/1193/* /en/blog/ 301`,
     `/en/10592/* /en/blog/ 301`,
 
-    // redirect everything still not catched to /en/:splat
-    `/* /en/:splat 301`,
-
     `/en/* /en/404/?url=:splat 404`,
     `/de/* /de/404/?url=:splat 404`,
+
+    // redirect everything still not catched to /en/:splat
+    `/* /en/:splat 301`,
   ])
 
   if (finalRedirects.length) {
