@@ -10,11 +10,8 @@ const speakingUrl = require(`speakingurl`)
 const { homepage } = require(`./package.json`)
 const { redirects } = require(`./redirects.js`)
 const serveJson = require(`./serve.json`)
-// const dotenv = require(`dotenv`).config({
-//   path: resolve(`..`, `.env`),
-// })
 
-const { BRANCH, GAIAMA_CONTENT_ID, GAIAMA_FULL_CONTENT } = process.env
+const { BRANCH, GAIAMA_CONTENT_ID } = process.env
 const isProduction = GAIAMA_CONTENT_ID
 const isMaster = BRANCH === `master`
 const publicDir = join(__dirname, `public`)
@@ -371,64 +368,15 @@ exports.onPostBuild = () => {
 
   // add robots.txt to site root depending on $BRANCH env var
   const robotsTxt = `User-agent: *\nDisallow:${isMaster ? `` : ` /`}`
-  console.log(`$BRANCH`, BRANCH, isMaster, robotsTxt)
   writeFileSync(join(publicDir, `robots.txt`), robotsTxt)
 }
 
-/**
- * maybe split up assets into subfolders?
- * check out https://github.com/webpack-contrib/file-loader#placeholders
- */
 exports.onCreateWebpackConfig = ({ actions, stage }) => {
   actions.setWebpackConfig({
     resolve: {
       modules: [resolve(__dirname), resolve(__dirname, `src`), `node_modules`],
     },
-    // check https://github.com/webpack-contrib/jshint-loader/issues/48
-    // & https://github.com/gatsbyjs/gatsby/issues/5520
-    // module: {
-    //   rules: [
-    //     {
-    //       test: /\.(png|jpg|gif)$/i,
-    //       use: [
-    //         {
-    //           loader: `url-loader`,
-    //           options: {
-    //             // limit: 8192,
-    //             name: `static/[ext]/[name][hash:8].[ext]`,
-    //           },
-    //         },
-    //       ],
-    //     },
-    //     {
-    //       use: [
-    //         {
-    //           loader: `file-loader`,
-    //           options: {
-    //             // limit: 8192,
-    //             name: `static/[ext]/[name][hash:8].[ext]`,
-    //           },
-    //         },
-    //       ],
-    //     },
-    //   ],
-    // },
   })
-
-  /**
-   * TODO move to dedicated plugin
-   * merge in dotenv vars
-   */
-  // config.merge({
-  //   plugins: [
-  //     new webpack.DefinePlugin({
-  //       'process.env': Object.keys(dotenv.parsed || {}).reduce((acc, index) => {
-  //         acc[index] = JSON.stringify(dotenv.parsed[index])
-  //         return acc
-  //       }, {}),
-  //     }),
-  //   ],
-  // })
 }
 
 exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {

@@ -64,10 +64,10 @@ module.exports = {
           ? join(__dirname, `content`)
           : join(__dirname, `..`, `gaiama.org_content`),
         name: `content`,
-        ignore:
-          isProduction || GAIAMA_FULL_CONTENT
-            ? [`**/.git`]
-            : [`**/.git`, `**/happygaia/*`],
+        ignore: [`**/.git`, `**/happygaia/*`],
+          // isProduction || GAIAMA_FULL_CONTENT
+          //   ? [`**/.git`]
+            // : [`**/.git`, `**/happygaia/*`],
       },
     },
     {
@@ -76,7 +76,7 @@ module.exports = {
         TableName: `gaiama-donations`,
         accessKeyId: isProduction && GAIAMA_DONATIONS_ACCESS_KEY_ID,
         secretAccessKey: isProduction && GAIAMA_DONATIONS_SECRET_ACCESS_KEY,
-        offline: !isProduction,
+        offline: !isProduction && !GAIAMA_FULL_CONTENT,
       },
     },
     {
