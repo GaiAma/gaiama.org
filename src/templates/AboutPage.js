@@ -341,7 +341,9 @@ export const query = graphql`
       }
     }
 
-    Labels: siteMetaMarkdownRemark(frontmatter: { lang: { eq: $lang } }) {
+    Labels: mdx(
+      frontmatter: { type: { eq: "SiteMeta" }, lang: { eq: $lang } }
+    ) {
       frontmatter {
         readMore
       }

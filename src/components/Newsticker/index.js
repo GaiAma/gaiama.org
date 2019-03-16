@@ -132,10 +132,12 @@ export const fragment = graphql`
     }
   }
 
-  fragment newstickerCommonFields on MarkdownRemark {
+  fragment newstickerCommonFields on Mdx {
     excerpt(pruneLength: 120)
     timeToRead
-    html
+    #code {
+    #  body
+    #}
     fields {
       lang
       url
@@ -143,7 +145,7 @@ export const fragment = graphql`
   }
 
   fragment newstickerLandscape on Query {
-    news: allMarkdownRemark(
+    news: allMdx(
       filter: { frontmatter: { lang: { eq: $lang }, published: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3

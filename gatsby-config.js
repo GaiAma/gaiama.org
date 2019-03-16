@@ -30,10 +30,14 @@ module.exports = {
     version,
   },
   mapping: {
-    'MarkdownRemark.fields.suggested': `MarkdownRemark`,
-    'MarkdownRemark.fields.newer': `MarkdownRemark`,
-    'MarkdownRemark.fields.older': `MarkdownRemark`,
-    'MarkdownRemark.fields.all': `JavascriptFrontmatter`,
+    'Mdx.fields.suggested': `Mdx`,
+    'Mdx.fields.newer': `Mdx`,
+    'Mdx.fields.older': `Mdx`,
+    'Mdx.fields.all': `JavascriptFrontmatter`,
+    // 'MarkdownRemark.fields.suggested': `MarkdownRemark`,
+    // 'MarkdownRemark.fields.newer': `MarkdownRemark`,
+    // 'MarkdownRemark.fields.older': `MarkdownRemark`,
+    // 'MarkdownRemark.fields.all': `JavascriptFrontmatter`,
   },
   plugins: [
     // `gatsby-plugin-fastclick`,
@@ -66,9 +70,9 @@ module.exports = {
           : join(__dirname, `..`, `gaiama.org_content`),
         name: `content`,
         ignore: [`**/.git`, `**/happygaia/*`],
-          // isProduction || GAIAMA_FULL_CONTENT
-          //   ? [`**/.git`]
-            // : [`**/.git`, `**/happygaia/*`],
+        // isProduction || GAIAMA_FULL_CONTENT
+        //   ? [`**/.git`]
+        // : [`**/.git`, `**/happygaia/*`],
       },
     },
     {
@@ -87,80 +91,13 @@ module.exports = {
         username: `gaiama_org`,
       },
     },
-    `gatsby-transformer-archieml`,
     {
-      resolve: `gatsby-transformer-remark-multi-type`,
+      resolve: `gatsby-mdx`,
       options: {
-        customizeType: node =>
-          node.relativePath.includes(`newsletter`)
-            ? `newsletter`
-            : node.frontmatter.layout !== `BlogPost`
-            ? basename(dirname(node.relativePath))
-            : ``,
-        plugins: [
-          `gatsby-remark-embed-video`,
-          // {
-          //   resolve: `gatsby-remark-iframes`,
-          //   options: {
-          //     // custom markdown iframe syntax !(http://hostname/foo)
-          //     'youtube.com': {
-          //       tag: `iframe`,
-          //       width: 560,
-          //       height: 315,
-          //       disabled: false,
-          //       replace: [
-          //         [`watch?v=`, `embed/`],
-          //         [`http://`, `https://`],
-          //         [`youtube.com`, `youtube-nocookie.com`],
-          //       ],
-          //       thumbnail: {
-          //         format: `http://img.youtube.com/vi/{id}/0.jpg`,
-          //         id: `.+/(.+)$`,
-          //       },
-          //       removeAfter: `&`,
-          //     },
-          //     'youtu.be': {
-          //       tag: `iframe`,
-          //       width: 560,
-          //       height: 315,
-          //       disabled: false,
-          //       replace: [
-          //         [`watch?v=`, `embed/`],
-          //         [`youtu.be`, `www.youtube.com/embed`],
-          //         [`youtube.com`, `youtube-nocookie.com`],
-          //       ],
-          //       thumbnail: {
-          //         format: `http://img.youtube.com/vi/{id}/0.jpg`,
-          //         id: `.+/x(.+)$`,
-          //       },
-          //       removeAfter: `&`,
-          //     },
-          //     'vimeo.com': {
-          //       tag: `iframe`,
-          //       width: 500,
-          //       height: 281,
-          //       disabled: false,
-          //       replace: [
-          //         [`http://`, `https://`],
-          //         [`www.`, ``],
-          //         [`vimeo.com/`, `player.vimeo.com/video/`],
-          //       ],
-          //       append: `?color=3d95a8&title=0&byline=0&portrait=0`,
-          //     },
-          //   },
-          // },
-          `gatsby-remark-emoji`,
-          // `gatsby-remark-autolink-headers`,
-          {
-            resolve: `gatsby-remark-custom-blocks`,
-            options: {
-              blocks: {
-                danger: `custom-block-danger`,
-                info: `custom-block-info`,
-              },
-            },
-          },
-          `gatsby-remark-external-links`,
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          { resolve: `gatsby-remark-embed-video` },
+          { resolve: `gatsby-remark-external-links` },
           {
             resolve: `gatsby-remark-images`,
             options: {
@@ -179,7 +116,7 @@ module.exports = {
               wrapperStyle: `margin: 0 auto 1.0725rem; max-width: 80%;`,
             },
           },
-          `gatsby-remark-copy-linked-files`,
+          { resolve: `gatsby-remark-copy-linked-files` },
           {
             resolve: `gatsby-remark-smartypants`,
             options: {
@@ -189,6 +126,108 @@ module.exports = {
         ],
       },
     },
+    `gatsby-transformer-archieml`,
+    // {
+    //   resolve: `gatsby-transformer-remark-multi-type`,
+    //   options: {
+    //     customizeType: node =>
+    //       node.relativePath.includes(`newsletter`)
+    //         ? `newsletter`
+    //         : node.frontmatter.layout !== `BlogPost`
+    //         ? basename(dirname(node.relativePath))
+    //         : ``,
+    //     plugins: [
+    //       `gatsby-remark-embed-video`,
+    //       // {
+    //       //   resolve: `gatsby-remark-iframes`,
+    //       //   options: {
+    //       //     // custom markdown iframe syntax !(http://hostname/foo)
+    //       //     'youtube.com': {
+    //       //       tag: `iframe`,
+    //       //       width: 560,
+    //       //       height: 315,
+    //       //       disabled: false,
+    //       //       replace: [
+    //       //         [`watch?v=`, `embed/`],
+    //       //         [`http://`, `https://`],
+    //       //         [`youtube.com`, `youtube-nocookie.com`],
+    //       //       ],
+    //       //       thumbnail: {
+    //       //         format: `http://img.youtube.com/vi/{id}/0.jpg`,
+    //       //         id: `.+/(.+)$`,
+    //       //       },
+    //       //       removeAfter: `&`,
+    //       //     },
+    //       //     'youtu.be': {
+    //       //       tag: `iframe`,
+    //       //       width: 560,
+    //       //       height: 315,
+    //       //       disabled: false,
+    //       //       replace: [
+    //       //         [`watch?v=`, `embed/`],
+    //       //         [`youtu.be`, `www.youtube.com/embed`],
+    //       //         [`youtube.com`, `youtube-nocookie.com`],
+    //       //       ],
+    //       //       thumbnail: {
+    //       //         format: `http://img.youtube.com/vi/{id}/0.jpg`,
+    //       //         id: `.+/x(.+)$`,
+    //       //       },
+    //       //       removeAfter: `&`,
+    //       //     },
+    //       //     'vimeo.com': {
+    //       //       tag: `iframe`,
+    //       //       width: 500,
+    //       //       height: 281,
+    //       //       disabled: false,
+    //       //       replace: [
+    //       //         [`http://`, `https://`],
+    //       //         [`www.`, ``],
+    //       //         [`vimeo.com/`, `player.vimeo.com/video/`],
+    //       //       ],
+    //       //       append: `?color=3d95a8&title=0&byline=0&portrait=0`,
+    //       //     },
+    //       //   },
+    //       // },
+    //       `gatsby-remark-emoji`,
+    //       // `gatsby-remark-autolink-headers`,
+    //       {
+    //         resolve: `gatsby-remark-custom-blocks`,
+    //         options: {
+    //           blocks: {
+    //             danger: `custom-block-danger`,
+    //             info: `custom-block-info`,
+    //           },
+    //         },
+    //       },
+    //       `gatsby-remark-external-links`,
+    //       {
+    //         resolve: `gatsby-remark-images`,
+    //         options: {
+    //           maxWidth: 800,
+    //           backgroundColor: `#eae9e9`,
+    //           linkImagesToOriginal: false,
+    //           showCaptions: true,
+    //           quality: 75,
+    //           wrapperStyle: f => `flex:${round(f.aspectRatio, 2)};`,
+    //         },
+    //       },
+    //       `@gaiama/gatsby-remark-wrap-images`,
+    //       {
+    //         resolve: `gatsby-remark-responsive-iframe`,
+    //         options: {
+    //           wrapperStyle: `margin: 0 auto 1.0725rem; max-width: 80%;`,
+    //         },
+    //       },
+    //       `gatsby-remark-copy-linked-files`,
+    //       {
+    //         resolve: `gatsby-remark-smartypants`,
+    //         options: {
+    //           dashes: `oldschool`,
+    //         },
+    //       },
+    //     ],
+    //   },
+    // },
     `gatsby-transformer-javascript-frontmatter`,
     `gatsby-transformer-yaml`,
     `gatsby-transformer-json`,

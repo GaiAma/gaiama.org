@@ -1,8 +1,9 @@
-import React, { createElement } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import Head from 'react-helmet'
-import rehypeReact from 'rehype-react'
+// import rehypeReact from 'rehype-react'
 import MainLayout from '@/components/MainLayout'
 import Link from '@/components/Link'
 import ShareWidget from '@/components/ShareWidget'
@@ -71,7 +72,7 @@ const BlogPost = props => {
             />
           )}
 
-          {renderAst(post.htmlAst)}
+          <MDXRenderer>{post.code.body}</MDXRenderer>
         </PostBody>
       </article>
 
@@ -223,7 +224,7 @@ export const query = graphql`
       }
     }
 
-    page: markdownRemark(fields: { url: { eq: $url } }) {
+    page: mdx(fields: { type: { eq: "post" }, url: { eq: $url } }) {
       fields {
         dateTime
         dateStr
@@ -290,16 +291,18 @@ export const query = graphql`
           }
         }
       }
-      htmlAst
+      code {
+        body
+      }
       frontmatter {
         title
-        subtitle
-        id
-        oldId
-        slug
+        #subtitle
+        #id
+        #oldId
+        #slug
         lang
         summary
-        tweet_id
+        #tweet_id
         cover {
           publicURL
         }
@@ -343,9 +346,9 @@ export const query = graphql`
 //   height: PropTypes.string,
 // }
 
-const renderAst = new rehypeReact({
-  createElement,
-}).Compiler
+// const renderAst = new rehypeReact({
+//   createElement,
+// }).Compiler
 
 const PostHeader = ({
   title,

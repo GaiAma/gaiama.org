@@ -1,15 +1,10 @@
-import React, { createElement } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import rehypeReact from 'rehype-react'
+import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import Link from '@/components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments } from '@fortawesome/free-regular-svg-icons'
 import { colors, media } from '@/theme'
-
-const renderAst = new rehypeReact({
-  createElement,
-  // components: { 'example-component': ExampleComponent },
-}).Compiler
 
 const Footer = ({
   menu,
@@ -186,7 +181,7 @@ const Footer = ({
           }
         `}
       >
-        {renderAst(info)}
+        <MDXRenderer>{info}</MDXRenderer>
       </div>
       <div>
         {legal.length &&

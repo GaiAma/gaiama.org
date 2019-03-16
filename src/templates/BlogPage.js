@@ -86,8 +86,8 @@ const BlogPage = props => {
       />
       {!filter && (
         <StyledRandomizer
-          quotes={props.data.quotes.frontmatter.quotes}
-          nextQuoteLabel={props.data.quotes.frontmatter.nextQuoteLabel}
+          quotes={props.data.quotes.quotes}
+          nextQuoteLabel={props.data.quotes.nextQuoteLabel}
         />
       )}
 
@@ -258,7 +258,7 @@ export const query = graphql`
       }
     }
 
-    articles: allMarkdownRemark(
+    articles: allMdx(
       filter: {
         fields: { type: { eq: "post" } }
         frontmatter: { lang: { eq: $lang }, published: { eq: true } }
@@ -309,7 +309,9 @@ export const query = graphql`
       }
     }
 
-    labels: siteMetaMarkdownRemark(frontmatter: { lang: { eq: $lang } }) {
+    labels: mdx(
+      frontmatter: { type: { eq: "SiteMeta" }, lang: { eq: $lang } }
+    ) {
       frontmatter {
         labeled
         labels {
@@ -319,13 +321,11 @@ export const query = graphql`
       }
     }
 
-    quotes: quotesMarkdownRemark(frontmatter: { lang: { eq: $lang } }) {
-      frontmatter {
-        nextQuoteLabel
-        quotes {
-          author
-          quote
-        }
+    quotes: quotesYaml(lang: { eq: $lang }) {
+      nextQuoteLabel
+      quotes {
+        author
+        quote
       }
     }
   }

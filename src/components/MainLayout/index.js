@@ -289,7 +289,7 @@ class MainLayout extends Component {
           legal={this.props.data.legal.edges}
           bgImage={SiteMeta.frontmatter.assets.headerBg.image}
           accounts={this.props.data.Accounts}
-          info={SiteMeta.htmlAst}
+          info={SiteMeta.code.body}
         />
 
         <InstagramGradient />
