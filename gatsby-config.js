@@ -34,10 +34,6 @@ module.exports = {
     'Mdx.fields.newer': `Mdx`,
     'Mdx.fields.older': `Mdx`,
     'Mdx.fields.all': `JavascriptFrontmatter`,
-    // 'MarkdownRemark.fields.suggested': `MarkdownRemark`,
-    // 'MarkdownRemark.fields.newer': `MarkdownRemark`,
-    // 'MarkdownRemark.fields.older': `MarkdownRemark`,
-    // 'MarkdownRemark.fields.all': `JavascriptFrontmatter`,
   },
   plugins: [
     // `gatsby-plugin-fastclick`,

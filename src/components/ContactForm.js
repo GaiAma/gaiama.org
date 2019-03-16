@@ -87,8 +87,8 @@ export default class ContactForm extends Component {
       type === `checkbox`
         ? checked
         : name === `email`
-          ? value.replace(/\s/g, ``)
-          : value
+        ? value.replace(/\s/g, ``)
+        : value
 
     this.setState(
       {

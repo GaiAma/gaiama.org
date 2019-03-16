@@ -183,7 +183,7 @@ const SupportPage = props => {
             }
           `}
         >
-          <p dangerouslySetInnerHTML={{ __html: neighbor }} />
+          {neighbor}
         </div>
 
         <div
@@ -193,9 +193,7 @@ const SupportPage = props => {
             }
           `}
         >
-          <div>
-            <p dangerouslySetInnerHTML={{ __html: support }} />
-          </div>
+          <div>{support}</div>
         </div>
       </div>
 

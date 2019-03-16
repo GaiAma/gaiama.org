@@ -56,12 +56,11 @@ const BlogPage = props => {
   ) || { value: filter }
 
   const filterWithFallback = items => {
-    const results = items.filter(
-      a =>
-        tags.length
-          ? a.node.frontmatter.tags.length &&
-            a.node.frontmatter.tags.some(t => tags.includes(t))
-          : true
+    const results = items.filter(a =>
+      tags.length
+        ? a.node.frontmatter.tags.length &&
+          a.node.frontmatter.tags.some(t => tags.includes(t))
+        : true
     )
     return results.length ? results : items
   }

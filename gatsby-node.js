@@ -143,21 +143,21 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
         path: url,
         context: { url, slug, lang },
       }
+
       // https://github.com/gatsbyjs/gatsby/issues/5129#issuecomment-442397391
       // https://github.com/davidbailey00/manuelbieh.de/blob/62714633fb13b6e04c9e24f587114419299af946/gatsby-node.js
       if (slug === `404`) {
+        // create root 404
+        if (lang === `en`) {
+          createPage({
+            ...page,
+            path: `/404`,
+          })
+        }
         page.matchPath = `/${lang}/*`
       }
-      createPage(page)
 
-      // create root 404
-      // slug === `404` &&
-      //   lang === `en` &&
-      //   createPage({
-      //     component,
-      //     path: `/404`,
-      //     context,
-      //   })
+      createPage(page)
 
       createNodeField({
         node,
@@ -184,8 +184,7 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
                 },
               },
             })
-          }) //.filter(n => n.id !== node.id).map(node => node.id),
-          .filter(n => n)
+          })
           .sort((a, b) =>
             a.frontmatter.lang < b.frontmatter.lang
               ? -1
