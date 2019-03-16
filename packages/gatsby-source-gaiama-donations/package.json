@@ -1,12 +1,8 @@
 {
   "name": "@gaiama/gatsby-source-gaiama-donations",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "dependencies": {
-    "aws-sdk": "^2.398.0",
-    "cuid": "^2.1.4",
-    "date-fns": "^2.0.0-alpha.27",
-    "lodash": "^4.17.11",
-    "ramda": "^0.26.1",
-    "speakingurl": "^14.0.1"
+    "@gaiama/helpers": "0.1.0",
+    "aws-sdk": "^2.409.0"
   }
 }
