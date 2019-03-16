@@ -115,7 +115,7 @@ module.exports = {
               wrapperStyle: f => `flex:${round(f.aspectRatio, 2)};`,
             },
           },
-          `gatsby-remark-wrap-images`,
+          { resolve: `@gaiama/gatsby-remark-wrap-images` },
           {
             resolve: `gatsby-remark-responsive-iframe`,
             options: {

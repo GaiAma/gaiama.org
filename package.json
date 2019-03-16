@@ -100,6 +100,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.0.0",
     "@gaiama/gatsby-source-gaiama-donations": "^0.1.2",
+    "@gaiama/gatsby-remark-wrap-images": "0.2.0",
     "all-contributors-cli": "5.4.1",
     "babel-plugin-console": "0.2.1",
     "babel-plugin-preval": "3.0.1",
@@ -125,7 +126,6 @@
     "gatsby-remark-external-links": "0.0.4",
     "gatsby-remark-responsive-iframe": "2.0.9",
     "gatsby-remark-smartypants": "2.0.8",
-    "gatsby-remark-wrap-images": "0.1.0",
     "gatsby-source-filesystem": "2.0.22",
     "gatsby-source-instagram": "0.2.5",
     "gatsby-transformer-javascript-frontmatter": "2.0.8",

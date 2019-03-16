@@ -1,6 +1,5 @@
-const cheerio = require(`cheerio`)
+// const cheerio = require(`cheerio`)
 const modifyChildren = require(`unist-util-modify-children`)
-const fs = require(`fs`)
 
 module.exports = ({ markdownAST }, pluginOptions) => {
   markdownAST.children
@@ -28,17 +27,17 @@ function modifier(node, index, parent) {
         class: `inline-gallery`,
       },
     }
-    parent.children.map(x => {
-      const $ = cheerio.load(x.value)
-      const imageWithRatio = $(`[data-ratio]`)
-      if (imageWithRatio) {
-        if (parent.children.length > 1) {
-          imageWithRatio.css(`flex`, imageWithRatio.attr(`data-ratio`))
-        }
-        imageWithRatio.attr(`data-ratio`, null)
-        x.value = $(`body`).html()
-      }
-    })
+    // parent.children.map(x => {
+    //   const $ = cheerio.load(x.value)
+    //   const imageWithRatio = $(`[data-ratio]`)
+    //   if (imageWithRatio) {
+    //     if (parent.children.length > 1) {
+    //       imageWithRatio.css(`flex`, imageWithRatio.attr(`data-ratio`))
+    //     }
+    //     imageWithRatio.attr(`data-ratio`, null)
+    //     x.value = $(`body`).html()
+    //   }
+    // })
     parent.children = whitespaceStripped
   }
 
