@@ -1,3 +1,29 @@
+# [2.4.0](https://github.com/gaiama/gaiama.org/compare/v2.3.8...v2.4.0) (2019-03-16)
+
+
+### Features
+
+* cleanup source-donations & init gaiama-helpers ([dd68f4b](https://github.com/gaiama/gaiama.org/commit/dd68f4b))
+* move sponsors to dedicated slot instead of html ([be72980](https://github.com/gaiama/gaiama.org/commit/be72980))
+* namespace and cleanup remark-wrap-images ([0cbe57a](https://github.com/gaiama/gaiama.org/commit/0cbe57a))
+* remove forked gatsby-remark-images(-with-ratio)... ([4adfa31](https://github.com/gaiama/gaiama.org/commit/4adfa31))
+* upgrade deps ([89da6e3](https://github.com/gaiama/gaiama.org/commit/89da6e3))
+* upgrade deps of gatsby-plugin-manifest ([5a760f2](https://github.com/gaiama/gaiama.org/commit/5a760f2))
+* upgrade fontawesome ([82fee84](https://github.com/gaiama/gaiama.org/commit/82fee84))
+* upgrade gatsby deps (2.1.17) ([9356ff1](https://github.com/gaiama/gaiama.org/commit/9356ff1))
+* upgrade to emotion 10 ([d0cfc11](https://github.com/gaiama/gaiama.org/commit/d0cfc11))
+
+
+
+## [2.3.8](https://github.com/gaiama/gaiama.org/compare/v2.3.7...v2.3.8) (2019-02-21)
+
+
+### Bug Fixes
+
+* happygaia redirects, release 2.3.8 ([b4e37cc](https://github.com/gaiama/gaiama.org/commit/b4e37cc))
+
+
+
 ## [2.3.7](https://github.com/gaiama/gaiama.org/compare/v2.3.6...v2.3.7) (2019-02-17)
 
 
