@@ -1,5 +1,6 @@
 const { basename, dirname, join, resolve } = require(`path`)
 const { homepage, version } = require(`./package.json`)
+const { round } = require(`lodash`)
 
 const {
   BRANCH,
@@ -161,14 +162,14 @@ module.exports = {
           },
           `gatsby-remark-external-links`,
           {
-            resolve: `gatsby-remark-images-with-ratio`,
+            resolve: `gatsby-remark-images`,
             options: {
               maxWidth: 800,
               backgroundColor: `#eae9e9`,
               linkImagesToOriginal: false,
               showCaptions: true,
-              addAspectRatio: true,
               quality: 75,
+              wrapperStyle: f => `flex:${round(f.aspectRatio, 2)};`,
             },
           },
           `gatsby-remark-wrap-images`,
