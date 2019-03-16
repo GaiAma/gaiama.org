@@ -20,10 +20,9 @@
     "url": "https://github.com/gaiama/gaiama.org/issues"
   },
   "scripts": {
-    "dev": "gatsby develop -So",
-    "dev:full": "GAIAMA_FULL_CONTENT=1 yarn dev",
+    "dev": "GATSBY_GRAPHQL_IDE=playground gatsby develop -So",
+    "dev:full": "GATSBY_GRAPHQL_IDE=playground GAIAMA_FULL_CONTENT=1 yarn dev",
     "test": "jest",
-    "develop": "gatsby develop",
     "clean:cache": "rimraf .cache",
     "clean:public": "find ${PWD}/public/* -not -path '*public/static*' -exec rm -rf {} +",
     "clean:public:all": "rimraf public",
