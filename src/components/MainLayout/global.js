@@ -1,4 +1,3 @@
-import { injectGlobal } from 'emotion'
 import { colors, media } from '@/theme'
 
 /**
@@ -10,17 +9,30 @@ import { colors, media } from '@/theme'
 
 // TODO: add PR to gatsby-remark-autolink-headers to disable floating
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/gatsby-ssr.js#L10
-injectGlobal`
-  /* *:focus,
+export const globalStyles = `
+  /**
+   * Debugger
+   * from https://medium.freecodecamp.org/heres-my-favorite-weird-trick-to-debug-css-88529aa5a6a3
+   */
+  /** *:not(path):not(g) {
+    color:                    hsla(210, 100%, 100%, 0.9) !important;
+    background:               hsla(210, 100%,  50%, 0.5) !important;
+    outline:    solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
+    box-shadow: none !important;
+  } */
+
+  /** *:focus,
   *:focus + svg,
   *:focus + svg * {
     stroke: red;
     outline: 1px solid red;
     border: 1px solid red;
   } */
+
   .anchor {
     float: none;
   }
+
   #nprogress .bar {
     height: 5px !important;
   }
@@ -32,8 +44,8 @@ injectGlobal`
   }
 
   html {
-    font: 105%/1.6 'system-ui', -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
-      'Roboto', 'Helvetica', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    font: 105%/1.6 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+      'Roboto', 'Helvetica', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
 
     box-sizing: border-box;
@@ -43,26 +55,16 @@ injectGlobal`
     -webkit-tap-highlight-color: rgba(0,0,0,0);
   }
 
-  /**
-   * IE10+ doesn't honor '<meta name="viewport">' in some cases.
-   */
-  :root {
-    @viewport {
-      width: device-width;
-    }
-  }
-
   body {
     color: ${colors.gray80};
-    font-family: 'system-ui', -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
-      'Roboto', 'Helvetica', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
+    font-family: 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
+      'Roboto', 'Helvetica', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
     font-weight: 400;
     word-wrap: break-word;
     font-kerning: normal;
     font-feature-settings: 'kern', 'liga', 'clig', 'calt';
     margin: 0;
-
     ${media.greaterThan(`small`)} {
       font-weight: 100;
     }
@@ -86,10 +88,7 @@ injectGlobal`
     outline: 0 !important;
   }
 
-  audio,
-  canvas,
-  progress,
-  video {
+  audio, canvas, progress, video {
     display: inline-block;
   }
 
@@ -108,7 +107,6 @@ injectGlobal`
   }
 
   a {
-    /* color: ${colors.link}; */
     text-decoration: none;
     transition: all 0.3s ease;
     color: ${colors.gray80};
@@ -117,17 +115,9 @@ injectGlobal`
 
   a:active,
   a:hover {
-    /* color: ${colors.linkHover}; */
     background-color: ${colors.primaryLite};
     color: #ffffff;
   }
-
-  /* #main a {
-  }
-
-  #main a:active,
-  #main a:hover {
-  } */
 
   abbr[title] {
     border-bottom: none;
@@ -135,8 +125,7 @@ injectGlobal`
     text-decoration: underline dotted;
   }
 
-  b,
-  strong {
+  b, strong {
     font-weight: inherit;
     font-weight: bolder;
   }
@@ -153,8 +142,7 @@ injectGlobal`
     font-size: 80%;
   }
 
-  sub,
-  sup {
+  sub, sup {
     font-size: 75%;
     line-height: 0;
     position: relative;
@@ -173,10 +161,7 @@ injectGlobal`
     overflow: hidden;
   }
 
-  code,
-  kbd,
-  pre,
-  samp {
+  code, kbd, pre, samp {
     font-family: monospace, monospace;
     font-size: 1em;
   }
@@ -187,7 +172,6 @@ injectGlobal`
 
   /**
    * Content grouping
-   *
    * 1. Add the correct box sizing in Firefox.
    * 2. Show the overflow in Edge and IE.
    */
@@ -197,11 +181,7 @@ injectGlobal`
     overflow: visible;
   }
 
-  button,
-  input,
-  optgroup,
-  select,
-  textarea {
+  button, input, optgroup, select, textarea {
     font: inherit;
     margin: 0;
   }
@@ -210,34 +190,32 @@ injectGlobal`
     font-weight: 700;
   }
 
-  button,
-  input {
+  button, input {
     overflow: visible;
   }
 
-  button,
-  select {
+  button, select {
     text-transform: none;
   }
 
-  [type='reset'],
+  /** [type='reset'],
   [type='submit'],
   button,
   html [type='button'] {
     -webkit-appearance: button;
-  }
+  } */
 
-  [type='button']::-moz-focus-inner,
-  [type='reset']::-moz-focus-inner,
-  [type='submit']::-moz-focus-inner,
+  [type="button"]::-moz-focus-inner,
+  [type="reset"]::-moz-focus-inner,
+  [type="submit"]::-moz-focus-inner,
   button::-moz-focus-inner {
     border-style: none;
     padding: 0;
   }
 
-  [type='button']:-moz-focusring,
-  [type='reset']:-moz-focusring,
-  [type='submit']:-moz-focusring,
+  [type="button"]:-moz-focusring,
+  [type="reset"]:-moz-focusring,
+  [type="submit"]:-moz-focusring,
   button:-moz-focusring {
     outline: 1px dotted ButtonText;
   }
@@ -261,29 +239,28 @@ injectGlobal`
     overflow: auto;
   }
 
-  input,
-  textarea {
+  input, textarea {
     line-height: 1.5rem;
   }
 
-  [type='checkbox'],
-  [type='radio'] {
+  [type="checkbox"],
+  [type="radio"] {
     box-sizing: border-box;
     padding: 0;
   }
 
-  [type='number']::-webkit-inner-spin-button,
-  [type='number']::-webkit-outer-spin-button {
+  [type="number"]::-webkit-inner-spin-button,
+  [type="number"]::-webkit-outer-spin-button {
     height: auto;
   }
 
-  [type='search'] {
+  [type="search"] {
     -webkit-appearance: textfield;
     outline-offset: -2px;
   }
 
-  [type='search']::-webkit-search-cancel-button,
-  [type='search']::-webkit-search-decoration {
+  [type="search"]::-webkit-search-cancel-button,
+  [type="search"]::-webkit-search-decoration {
     -webkit-appearance: none;
   }
 
@@ -304,18 +281,13 @@ injectGlobal`
     margin: 0 0 1.55rem;
   }
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     padding: 0;
     margin: 0 0 1.55rem;
     color: inherit;
-    font-family: 'system-ui', -apple-system, 'BlinkMacSystemFont', 'Segoe UI',
-      'Roboto', 'Helvetica', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol';
+    font-family: "system-ui", -apple-system, "BlinkMacSystemFont", "Segoe UI",
+      "Roboto", "Helvetica", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
     font-weight: 100;
     text-rendering: optimizeLegibility;
     line-height: 1.1;
@@ -332,35 +304,19 @@ injectGlobal`
     margin: 0 0 1.55rem;
   }
 
-  ul,
-  ol {
+  ul, ol {
     margin: 1.55rem 0 0 1.55rem;
     padding: 0;
     list-style-position: outside;
     list-style-image: none;
   }
 
-  ul:first-child,
-  ol:first-child {
+  ul:first-of-type,
+  ol:first-of-type {
     margin-top: 0;
   }
 
-  dl {
-    padding: 0;
-    margin: 0 0 1.55rem;
-  }
-
-  dd {
-    padding: 0;
-    margin: 0 0 1.55rem;
-  }
-
-  p {
-    padding: 0;
-    margin: 0 0 1.55rem;
-  }
-
-  figure {
+  dl, dd, p, figure {
     padding: 0;
     margin: 0 0 1.55rem;
   }
@@ -391,17 +347,7 @@ injectGlobal`
     padding: 0;
   }
 
-  form {
-    padding: 0;
-    margin: 0 0 1.55rem;
-  }
-
-  noscript {
-    padding: 0;
-    margin: 0 0 1.55rem;
-  }
-
-  iframe {
+  form, noscript, iframe, address {
     padding: 0;
     margin: 0 0 1.55rem;
   }
@@ -414,24 +360,7 @@ injectGlobal`
     height: 1px;
   }
 
-  address {
-    padding: 0;
-    margin: 0 0 1.55rem;
-  }
-
-  b {
-    font-weight: bold;
-  }
-
-  strong {
-    font-weight: bold;
-  }
-
-  dt {
-    font-weight: bold;
-  }
-
-  th {
+  b, strong, dt, th {
     font-weight: bold;
   }
 
@@ -439,10 +368,7 @@ injectGlobal`
     margin-top: calc(1.55rem / 2);
   }
 
-  ol li {
-    padding-left: 0;
-  }
-
+  ol li,
   ul li {
     padding-left: 0;
   }
@@ -454,14 +380,8 @@ injectGlobal`
     margin-top: calc(1.55rem / 2);
   }
 
-  blockquote *:last-child {
-    margin-bottom: 0;
-  }
-
-  li *:last-child {
-    margin-bottom: 0;
-  }
-
+  blockquote *:last-child,
+  li *:last-child,
   p *:last-child {
     margin-bottom: 0;
   }
@@ -470,34 +390,17 @@ injectGlobal`
     margin-bottom: calc(1.55rem / 2);
   }
 
-  code {
+  code, kbd, samp {
     font-size: 0.85rem;
     line-height: 1.55rem;
   }
 
-  kbd {
-    font-size: 0.85rem;
-    line-height: 1.55rem;
-  }
-
-  samp {
-    font-size: 0.85rem;
-    line-height: 1.55rem;
-  }
-
-  abbr {
-    border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
-    cursor: help;
-  }
-
-  acronym {
+  abbr, acronym {
     border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
     cursor: help;
   }
 
   abbr[title] {
-    border-bottom: 1px dotted hsla(0, 0%, 0%, 0.5);
-    cursor: help;
     text-decoration: none;
   }
 
@@ -505,8 +408,7 @@ injectGlobal`
     text-align: left;
   }
 
-  td,
-  th {
+  td, th {
     text-align: left;
     border-bottom: 1px solid hsla(0, 0%, 0%, 0.12);
     font-feature-settings: 'tnum';
@@ -516,8 +418,8 @@ injectGlobal`
     padding-bottom: calc(0.775rem - 1px);
   }
 
-  th:first-child,
-  td:first-child {
+  th:first-of-type,
+  td:first-of-type {
     padding-left: 0;
   }
 

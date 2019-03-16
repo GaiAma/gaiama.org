@@ -2,7 +2,8 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 import slugify from 'slugify'
 import MainLayout from '@/components/MainLayout'
 import TitledCopy from '@/components/TitledCopy'
@@ -33,7 +34,7 @@ const Contributor = styled.div`
   flex-shrink: 0;
   max-width: 100%;
   ${media.lessThan(`small`)} {
-    :nth-child(1n + 5) {
+    :nth-of-type(1n + 5) {
       display: none;
     }
   }
@@ -53,19 +54,22 @@ const AboutPage = props => {
 
   const PeopleGallery = () => (
     <div
-      css={{
-        width: `23%`,
-        margin: `2rem 0`,
-        [media.lessThan(`medium`)]: {
-          display: `none`,
-        },
-      }}
+      css={css`
+        width: 23%;
+        margin: 2rem 0;
+        ${media.lessThan(`medium`)} {
+          display: none;
+        }
+      `}
     >
       {page.frontmatter.peopleGallery.map((x, i) => (
         <Img
           key={i}
           fixed={x.image.fixed}
-          css={{ display: `flex !important`, maxWidth: `100%` }}
+          css={css`
+            display: flex !important;
+            max-width: 100%;
+          `}
         />
       ))}
     </div>
@@ -80,55 +84,71 @@ const AboutPage = props => {
         paragraphs={page.frontmatter.intro.text}
         spoiler={mediaQuery(`(max-width: 779px)`)}
         spoilerLabel={Labels.frontmatter.readMore}
-        css={{
-          marginBottom: `3rem`,
-          [media.greaterThan(`small`)]: {
-            marginBottom: `6rem`,
-          },
-          '& > button': {
-            background: `none`,
-            border: `none`,
-            color: colors.link,
-          },
-          [media.lessThan(`medium`)]: {
-            '& > h2': { fontSize: `2rem` },
-            '& > div, & > button': { fontSize: `.85rem` },
-          },
-        }}
+        css={css`
+          margin-bottom: 3rem;
+          ${media.greaterThan(`small`)} {
+            margin-bottom: 6rem;
+          }
+          & > button {
+            background: none;
+            border: none;
+            color: ${colors.link};
+          }
+          ${media.lessThan(`medium`)} {
+            & > h2 {
+              font-size: 2rem;
+            }
+            & > div,
+            & > button {
+              font-size: 0.85rem;
+            }
+          }
+        `}
       />
 
       <div
-        css={{
-          display: `flex`,
-          justifyContent: `space-between`,
-          marginBottom: `3rem`,
-        }}
+        css={css`
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 3rem;
+        `}
       >
-        <div css={{ [media.greaterThan(`medium`)]: { width: `70%` } }}>
-          <div css={{ '& > div': { marginBottom: `4rem` } }}>
+        <div
+          css={css`
+            ${media.greaterThan(`medium`)} {
+              width: 70%;
+            }
+          `}
+        >
+          <div
+            css={css`
+              & > div {
+                margin-bottom: 4rem;
+              }
+            `}
+          >
             {page.frontmatter.bios.map(bio => (
               <div
                 key={bio.id}
                 id={slugify(bio.name)}
-                css={{
-                  display: `flex`,
-                  [media.lessThan(`medium`)]: {
-                    flexDirection: `column`,
-                    alignItems: `center`,
-                    // textAlign: `center`,
-                  },
-                  [media.greaterThan(`medium`)]: {
-                    justifyContent: `space-between`,
-                  },
-                }}
+                css={css`
+                  display: flex;
+                  ${media.lessThan(`medium`)} {
+                    flex-direction: column;
+                    align-items: center;
+                  }
+                  ${media.greaterThan(`medium`)} {
+                    justify-content: space-between;
+                  }
+                `}
               >
                 <div
-                  css={{
-                    borderRadius: `50%`,
-                    [media.greaterThan(`medium`)]: {
-                      marginRight: `2rem`,
-                    },
-                  }}
+                  css={css`
+                    border-radius: 50%;
+                    ${media.greaterThan(`medium`)} {
+                      margin-right: 2rem;
+                    }
+                  `}
                 >
                   <Img
                     fixed={bio.img.image.fixed}
@@ -139,31 +159,35 @@ const AboutPage = props => {
                 <div>
                   <h4
                     id={slugify(bio.name)}
-                    css={{
-                      fontSize: `1.7rem`,
-                      marginBottom: `1rem`,
-                      [media.greaterThan(`medium`)]: {
-                        fontSize: `2rem`,
-                      },
-                    }}
+                    css={css`
+                      font-size: 1.7rem;
+                      margin-bottom: 1rem;
+                      ${media.greaterThan(`medium`)} {
+                        font-size: 2rem;
+                      }
+                    `}
                   >
                     {bio.name}
                   </h4>
-                  <div css={{ marginBottom: `1rem` }}>
+                  <div
+                    css={css`
+                      margin-bottom: 1rem;
+                    `}
+                  >
                     {bio.position}
                     <br />
                     {bio.field}
                   </div>
                   <p
-                    css={{
-                      textAlign: `left`,
-                      [media.lessThan(`medium`)]: {
-                        fontSize: `.85rem`,
-                      },
-                      [media.greaterThan(`medium`)]: {
-                        textAlign: `justify`,
-                      },
-                    }}
+                    css={css`
+                      text-align: left;
+                      ${media.lessThan(`medium`)} {
+                        font-size: 0.85rem;
+                      }
+                      ${media.greaterThan(`medium`)} {
+                        text-align: justify;
+                      }
+                    `}
                     dangerouslySetInnerHTML={{ __html: bio.bio }}
                   />
                 </div>
@@ -173,35 +197,37 @@ const AboutPage = props => {
 
           <div>
             <h2
-              css={{
-                fontSize: `2.3rem`,
-                marginBottom: `3.5rem`,
-                textAlign: `center`,
-              }}
+              css={css`
+                font-size: 2.3rem;
+                margin-bottom: 3.5rem;
+                text-align: center;
+              `}
             >
               {page.frontmatter.specialThanks.title}
             </h2>
 
             <div
-              css={{
-                display: `flex`,
-                justifyContent: `space-between`,
-                flexWrap: `wrap`,
-                '& > div:not(:last-child)': {
-                  marginBottom: `3rem`,
-                },
-              }}
+              css={css`
+                display: flex;
+                justify-content: space-between;
+                flex-wrap: wrap;
+                & > div:not(:last-child) {
+                  margin-bottom: 3rem;
+                }
+              `}
             >
               {page.frontmatter.specialThanks.bios.map(bio => (
                 <div
                   key={bio.id}
                   id={slugify(bio.name)}
-                  css={{ textAlign: `center` }}
+                  css={css`
+                    text-align: center;
+                  `}
                 >
                   <div
-                    css={{
-                      borderRadius: `50%`,
-                    }}
+                    css={css`
+                      border-radius: 50%;
+                    `}
                   >
                     <Img
                       fixed={bio.img.image.fixed}
@@ -210,11 +236,18 @@ const AboutPage = props => {
                     />
                   </div>
                   <div>
-                    <h4 id={slugify(bio.name)} css={{ fontSize: `1.7rem` }}>
+                    <h4
+                      id={slugify(bio.name)}
+                      css={css`
+                        font-size: 1.7rem;
+                      `}
+                    >
                       {bio.name}
                     </h4>
                     <p
-                      css={{ fontSize: `.85rem` }}
+                      css={css`
+                        font-size: 0.85rem;
+                      `}
                       dangerouslySetInnerHTML={{ __html: bio.bio }}
                     />
                   </div>
@@ -248,7 +281,7 @@ const AboutPage = props => {
         link={NewsTicker.frontmatter.link}
         readmoreLabel={NewsTicker.frontmatter.readmoreLabel}
         layout={page.frontmatter.NewsTicker.layout}
-        css={`
+        css={css`
           margin-top: 4rem;
         `}
       />

@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { colors, media } from '@/theme'
 import { faLink, faTimes, faEnvelope } from '@fortawesome/free-solid-svg-icons'
@@ -166,9 +167,12 @@ class ShareWidget extends Component {
 
         <ContainerInner>
           <div
-            css={{
-              '& svg': { color: colors.brands.facebook, marginRight: `1rem` },
-            }}
+            css={css`
+              & svg {
+                color: ${colors.brands.facebook};
+                margin-right: 1rem;
+              }
+            `}
           >
             <StyledA
               href={`http://www.facebook.com/sharer.php?u=${encodeURIComponent(
@@ -182,9 +186,12 @@ class ShareWidget extends Component {
             </StyledA>
           </div>
           <div
-            css={{
-              '& svg': { color: colors.brands.twitter, margin: `0 1rem` },
-            }}
+            css={css`
+              & svg {
+                color: ${colors.brands.twitter};
+                margin: 0 1rem;
+              }
+            `}
           >
             <StyledA
               href={
@@ -204,7 +211,12 @@ class ShareWidget extends Component {
             </StyledA>
           </div>
           <div
-            css={{ '& svg': { color: colors.brands.gplus, margin: `0 1rem` } }}
+            css={css`
+              & svg {
+                color: ${colors.brands.gplus};
+                margin: 0 1rem;
+              }
+            `}
           >
             <StyledA
               href={`https://plus.google.com/share?url=${encodeURIComponent(
@@ -218,9 +230,12 @@ class ShareWidget extends Component {
             </StyledA>
           </div>
           <div
-            css={{
-              '& svg': { color: colors.primaryLite, margin: `1rem` },
-            }}
+            css={css`
+              & svg {
+                color: ${colors.primaryLite};
+                margin: 1rem;
+              }
+            `}
           >
             <StyledA
               href={`mailto:?body=${encodeURIComponent(
@@ -234,9 +249,11 @@ class ShareWidget extends Component {
           </div>
 
           <div
-            css={{
-              '& svg': { color: colors.link },
-            }}
+            css={css`
+              & svg {
+                color: ${colors.link};
+              }
+            `}
           >
             <Button
               aria-label="Copy Link"
@@ -258,7 +275,7 @@ class ShareWidget extends Component {
               <FontAwesomeIcon
                 icon={faTimes}
                 onClick={this.toggleLinkModal}
-                css={`
+                css={css`
                   color: ${colors.gray3};
                 `}
               />

@@ -1,12 +1,12 @@
 import React from 'react'
 import GatsbyImage from 'gatsby-image'
 import PropTypes from 'prop-types'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
 import { media } from '@/theme'
-import localStore from '@/utils/local-store'
+// import localStore from '@/utils/local-store'
 
 const CookieWallWrapper = styled.div`
   position: relative;

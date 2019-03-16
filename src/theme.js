@@ -1,6 +1,6 @@
-/* global window */
 import React from 'react'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 import propStyles from 'prop-styles'
 import preval from 'babel-plugin-preval/macro'
 
@@ -101,12 +101,12 @@ export const focusOutlineNone = {
 // hide svg definitions from https://stackoverflow.com/a/24820654/3484824
 export const InstagramGradient = props => (
   <div
-    css={{
-      height: `0`,
-      width: `0`,
-      position: `absolute`,
-      visibility: `hidden`,
-    }}
+    css={css`
+      height: 0;
+      width: 0;
+      position: absolute;
+      visibility: hidden;
+    `}
   >
     <svg width="0" height="0">
       <radialGradient id="InstagramGradient" r="150%" cx="30%" cy="107%">

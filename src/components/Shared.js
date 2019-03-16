@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown'
 import { colors, Box, fullPageWidth, media } from '@/theme'
@@ -84,9 +85,9 @@ class CoinPicker extends Component {
         column
         aICenter
         fwrap
-        css={{
-          maxWidth: `100%`,
-        }}
+        css={css`
+          max-width: 100%;
+        `}
       >
         <Box flex fwrap>
           {this.props.coins.map(x => (
@@ -97,12 +98,12 @@ class CoinPicker extends Component {
               aICenter
               onClick={this.handleSelect(x)}
               onKeyPress={this.handleKeyDown}
-              css={{
-                margin: `0.1rem`,
-                '&:hover > img': {
-                  transform: `scale(1.05)`,
-                },
-              }}
+              css={css`
+                margin: 0.1rem;
+                &:hover > img {
+                  transform: scale(1.05);
+                }
+              `}
             >
               <img src={x.icon} alt={x.name} />
               {selected.symbol === x.symbol && (
@@ -116,9 +117,18 @@ class CoinPicker extends Component {
             flex
             column
             aICenter
-            css={{ marginTop: `0.5rem`, maxWidth: `100%` }}
+            css={css`
+              margin-top: 0.5rem;
+              max-width: 100%;
+            `}
           >
-            <strong css={{ fontWeight: `700` }}>{selected.name}</strong>
+            <strong
+              css={css`
+                font-weight: 700;
+              `}
+            >
+              {selected.name}
+            </strong>
             <a
               href={`bitcoin:${selected.address}`}
               rel="noopener noreferrer"
@@ -127,15 +137,17 @@ class CoinPicker extends Component {
               <img
                 src={selected.qr}
                 alt={selected.name}
-                css={{ width: `150px` }}
+                css={css`
+                  width: 150px;
+                `}
               />
             </a>
             <Box
-              css={{
-                overflowWrap: `break-word`,
-                wordBreak: `break-all`,
-                fontSize: `.75rem`,
-              }}
+              css={css`
+                overflow-wrap: break-word;
+                word-break: break-all;
+                font-size: 0.75rem;
+              `}
             >
               <a
                 href={`bitcoin:${selected.address}`}
@@ -169,17 +181,21 @@ class BankDetails extends Component {
     const { bankButton, bankButtonAlt, bankInfo, bankDetails } = this.props
     return (
       <div>
-        <div css={{ textAlign: `center` }}>
+        <div
+          css={css`
+            text-align: center;
+          `}
+        >
           <button
             onClick={this.toggleInfos}
-            css={{
-              border: `none`,
-              background: `none`,
-              padding: 0,
-              '&:hover': {
-                transform: `scale(1.02)`,
-              },
-            }}
+            css={css`
+              border: none;
+              background: none;
+              padding: 0;
+              &:hover {
+                transform: scale(1.02);
+              }
+            `}
           >
             <img src={bankButton.publicURL} alt={bankButtonAlt} />
           </button>
@@ -187,20 +203,20 @@ class BankDetails extends Component {
 
         {this.state.isOpen && (
           <div
-            css={{
-              background: colors.lightBlue,
-              position: `absolute`,
-              marginTop: `.4rem`,
-              left: 0,
-              right: 0,
-              padding: `1rem`,
-            }}
+            css={css`
+              background: ${colors.lightBlue};
+              position: absolute;
+              margin-top: 0.4rem;
+              left: 0;
+              right: 0;
+              padding: 1rem;
+            `}
           >
             <div
-              css={{
-                marginLeft: `50%`,
-                transform: `translateX(-50%)`,
-              }}
+              css={css`
+                margin-left: 50%;
+                transform: translateX(-50%);
+              `}
             >
               <p dangerouslySetInnerHTML={{ __html: bankInfo }} />
               <p dangerouslySetInnerHTML={{ __html: bankDetails }} />
@@ -286,41 +302,45 @@ const SupportWidget = ({
 }) => (
   <SupportWidgetContainer {...props}>
     {artwork && (
-      <SupportWidgetArtwork css={artworkWrapperStyles}>
+      <SupportWidgetArtwork
+        css={css`
+          ${artworkWrapperStyles}
+        `}
+      >
         <Img
           fixed={artwork.image.fixed}
           fluid={artwork.image.fluid}
-          css={{
-            transform: `translateY(5rem)`,
-            marginTop: `-5rem`,
-            maxWidth: `100vw`,
-            ...artworkStyles,
-          }}
+          css={css`
+            transform: translateY(5rem);
+            margin-top: -5rem;
+            max-width: 100vw;
+            ${artworkStyles};
+          `}
         />
       </SupportWidgetArtwork>
     )}
 
     <Box
       oh
-      css={{
-        background: !transparent && colors.lightBlue,
-        [media.lessThan(`medium`)]: {
-          paddingTop: `3rem`,
-        },
-      }}
+      css={css`
+        background: ${!transparent && colors.lightBlue};
+        ${media.lessThan(`medium`)} {
+          padding-top: 3rem;
+        }
+      `}
     >
       <SupportWidgetIntro>
         {title && <H2>{title}</H2>}
 
         {description && (
           <p
-            css={{
-              textAlign: `center`,
-              marginBottom: `1rem`,
-              a: {
-                borderBottom: `1px solid #999`,
-              },
-            }}
+            css={css`
+              text-align: center;
+              margin-bottom: 1rem;
+              a {
+                border-bottom: 1px solid #999;
+              }
+            `}
             dangerouslySetInnerHTML={{
               __html: description,
             }}
@@ -329,10 +349,10 @@ const SupportWidget = ({
 
         {readMoreLink && (
           <p
-            css={{
-              textAlign: `center`,
-              fontSize: `.9rem`,
-            }}
+            css={css`
+              text-align: center;
+              font-size: 0.9rem;
+            `}
           >
             <Link to={readMoreLink}>{readMoreLabel}</Link>
           </p>
@@ -406,11 +426,11 @@ const SupportWidget = ({
         />
 
         <div
-          css={{
-            [media.lessThan(`xsmall`)]: {
-              margin: `1rem 0 0`,
-            },
-          }}
+          css={css`
+            ${media.lessThan(`xsmall`)} {
+              margin: 1rem 0 0;
+            }
+          `}
         >
           <CoinPicker coins={cryptos} />
         </div>

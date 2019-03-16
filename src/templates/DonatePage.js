@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
+import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 import { media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
@@ -14,7 +15,7 @@ const DonatePage = props => {
   return (
     <MainLayout {...props}>
       <div
-        css={`
+        css={css`
           display: flex;
           flex-direction: column-reverse;
           justify-content: space-between;
@@ -27,7 +28,7 @@ const DonatePage = props => {
       >
         <Img
           fluid={page.frontmatter.image.image.fluid}
-          css={`
+          css={css`
             width: 100%;
             margin: 2rem auto 0;
             ${media.greaterThan(`medium`)} {
@@ -44,14 +45,14 @@ const DonatePage = props => {
               <div
                 key={x}
                 dangerouslySetInnerHTML={{ __html: x }}
-                css={`
+                css={css`
                   line-height: 1.8rem;
                 `}
               />
             ))}
           </div>
           <div
-            css={`
+            css={css`
               margin-top: 1rem;
             `}
             dangerouslySetInnerHTML={{
@@ -75,7 +76,9 @@ const DonatePage = props => {
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
         lang={props.pageContext.lang}
-        css={{ margin: `0 0 3rem` }}
+        css={css`
+          margin: 0 0 3rem;
+        `}
       />
     </MainLayout>
   )

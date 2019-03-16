@@ -2,8 +2,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
-import styled from 'react-emotion'
 import { Spring, animated, config } from 'react-spring'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 import MainLayout from '@/components/MainLayout'
 import { colors, media } from '@/theme'
 
@@ -29,14 +30,14 @@ const Contributor = styled.div`
   ${media.between(`small`, `large`)} {
     width: 48%;
     margin-top: 0;
-    :nth-child(1n + 3) {
+    :nth-of-type(1n + 3) {
       margin-top: 1rem;
     }
   }
   ${media.greaterThan(`xlarge`)} {
     width: 30%;
     margin-top: 0;
-    :nth-child(1n + 4) {
+    :nth-of-type(1n + 4) {
       margin-top: 1rem;
     }
   }
@@ -69,7 +70,7 @@ const TotalAmount = ({ amount }) => (
   >
     {({ total }) => (
       <animated.span
-        css={`
+        css={css`
           width: ${(`${amount}`.length || 1) + 1}rem;
           display: inline-block;
           text-align: right;
@@ -90,7 +91,7 @@ const TakeAction = ({ label, link }) => (
   <h1>
     <Link
       to={link}
-      css={`
+      css={css`
         display: block;
         width: 100%;
         max-width: 350px;

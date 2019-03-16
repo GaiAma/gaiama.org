@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import slugify from 'slugify'
 import { Box, colors, fullPageWidth, maxWidthContent, media } from '@/theme'
 import MainLayout from '@/components/MainLayout'
@@ -46,7 +46,7 @@ const IntroCopy = styled.p`
 //   & > div {
 //     box-shadow: 1px 1px 2px 1px ${colors.gray7};
 //   }
-//   & > div:nth-child(2) {
+//   & > div:nth-of-type(2) {
 //     margin: 0 1rem;
 //   }
 //   & .gatsby-image-wrapper {
@@ -58,7 +58,7 @@ const IntroCopy = styled.p`
 //       width: 280px;
 //       /* transition: width 0.3s ease-in-out; */
 //     }
-//     & > .gatsby-image-wrapper:not(:nth-child(2)) {
+//     & > .gatsby-image-wrapper:not(:nth-of-type(2)) {
 //       width: 200px;
 //     }
 //     /* &:hover .gatsby-image-wrapper {

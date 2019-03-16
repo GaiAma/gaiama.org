@@ -1,7 +1,8 @@
 /* global document, window */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 import axios from 'axios'
 import isEmail from 'validator/lib/isEmail'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -205,12 +206,12 @@ export default class ContactForm extends Component {
       return (
         <div
           id="success"
-          css={{
-            background: colors.white,
-            border: `1px solid ${colors.success}`,
-            color: colors.success,
-            padding: `.5rem .5rem .4rem`,
-          }}
+          css={css`
+            background: ${colors.white};
+            border: 1px solid ${colors.success};
+            color: ${colors.success};
+            padding: 0.5rem 0.5rem 0.4rem;
+          `}
         >
           {this.props.success}
         </div>
@@ -225,16 +226,21 @@ export default class ContactForm extends Component {
         noValidate
       >
         <div
-          css={{
-            position: `relative`,
-            paddingBottom: `1.4rem`,
-            '& input': {
-              borderColor: errors.email && colors.failure,
-            },
-          }}
+          css={css`
+            position: relative;
+            padding-bottom: 1.4rem;
+            & input {
+              border-color: ${errors.email && colors.failure};
+            }
+          `}
         >
           <label>
-            <div css={{ fontFamily: fontFamilies.accent, fontSize: `1.5rem` }}>
+            <div
+              css={css`
+                font-family: ${fontFamilies.accent};
+                font-size: 1.5rem;
+              `}
+            >
               {emailLabel}
             </div>
             <StyledInput
@@ -248,11 +254,11 @@ export default class ContactForm extends Component {
             />
             {errors.email && (
               <div
-                css={{
-                  position: `absolute`,
-                  color: colors.failure,
-                  fontSize: `.9rem`,
-                }}
+                css={css`
+                  position: absolute;
+                  color: ${colors.failure};
+                  font-size: 0.9rem;
+                `}
               >
                 {errors.email}
               </div>
@@ -261,16 +267,21 @@ export default class ContactForm extends Component {
         </div>
 
         <div
-          css={{
-            position: `relative`,
-            paddingBottom: `1.4rem`,
-            '& textarea': {
-              borderColor: errors.email && colors.failure,
-            },
-          }}
+          css={css`
+            position: relative;
+            padding-bottom: 1.4rem;
+            & textarea {
+              border-color: ${errors.email && colors.failure};
+            }
+          `}
         >
           <label>
-            <div css={{ fontFamily: fontFamilies.accent, fontSize: `1.5rem` }}>
+            <div
+              css={css`
+                font-family: ${fontFamilies.accent};
+                font-size: 1.5rem;
+              `}
+            >
               {messageLabel}
             </div>
             <StyledTextarea
@@ -280,18 +291,18 @@ export default class ContactForm extends Component {
               maxRows={10}
               readOnly={this.state.isSubmitting}
               required
-              css={{
-                minHeight: `8rem`,
-                width: `100%`,
-              }}
+              css={css`
+                min-height: 8rem;
+                width: 100%;
+              `}
             />
             {errors.message && (
               <div
-                css={{
-                  position: `absolute`,
-                  color: colors.failure,
-                  fontSize: `.9rem`,
-                }}
+                css={css`
+                  position: absolute;
+                  color: ${colors.failure};
+                  font-size: 0.9rem;
+                `}
               >
                 {errors.message}
               </div>
@@ -300,11 +311,11 @@ export default class ContactForm extends Component {
         </div>
 
         <div
-          css={{
-            position: `relative`,
-            paddingBottom: `1.4rem`,
-            color: errors.consent && colors.failure,
-          }}
+          css={css`
+            position: relative;
+            padding-bottom: 1.4rem;
+            color: ${errors.consent && colors.failure};
+          `}
         >
           <label>
             <input
@@ -316,14 +327,17 @@ export default class ContactForm extends Component {
               disabled={this.state.isSubmitting}
             />
             <span
-              css={{ fontSize: `.9rem`, margin: `0 .5rem` }}
+              css={css`
+                font-size: 0.9rem;
+                margin: 0 0.5rem;
+              `}
               dangerouslySetInnerHTML={{ __html: consentLabel }}
             />
             <a
               href={privacyLink}
               target="_blank"
               rel="noopener noreferrer"
-              css={`
+              css={css`
                 border: none;
               `}
             >
@@ -331,11 +345,11 @@ export default class ContactForm extends Component {
             </a>
             {errors.consent && (
               <div
-                css={{
-                  position: `absolute`,
-                  color: colors.failure,
-                  fontSize: `.9rem`,
-                }}
+                css={css`
+                  position: absolute;
+                  color: ${colors.failure};
+                  font-size: 0.9rem;
+                `}
               >
                 {errors.consent}
               </div>
@@ -345,13 +359,13 @@ export default class ContactForm extends Component {
 
         {generalError && (
           <div
-            css={{
-              border: `1px solid red`,
-              padding: `.5rem .5rem .4rem`,
-              marginBottom: `.5rem`,
-              color: colors.failure,
-              fontSize: `.9rem`,
-            }}
+            css={css`
+              border: 1px solid red;
+              padding: 0.5rem 0.5rem 0.4rem;
+              margin-bottom: 0.5rem;
+              color: ${colors.failure};
+              font-size: 0.9rem;
+            `}
           >
             {generalError}
           </div>
@@ -360,11 +374,11 @@ export default class ContactForm extends Component {
         <Button
           label="Submit"
           disabled={isSubmitting}
-          css={{
-            ...styles.button,
-            background: colors.purpleDark,
-            color: colors.darkWhite,
-          }}
+          css={css`
+            ${styles.button};
+            background: ${colors.purpleDark};
+            color: ${colors.darkWhite};
+          `}
         >
           {isSubmitting ? (
             <FontAwesomeIcon icon={faSpinner} size="xs" spin />

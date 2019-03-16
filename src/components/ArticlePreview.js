@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { colors } from '@/theme'
 
 const StyledLink = styled(Link)`

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import MainLayout from '@/components/MainLayout'
@@ -19,15 +20,17 @@ const PaypalSuccessPage = props => {
         centered
         title={page.frontmatter.intro.title}
         paragraphs={page.frontmatter.intro.text}
-        css={{ marginBottom: `2rem` }}
+        css={css`
+          margin-bottom: 2rem;
+        `}
       />
 
       <div
-        css={{
-          display: `flex`,
-          justifyContent: `center`,
-          marginBottom: `2rem`,
-        }}
+        css={css`
+          display: flex;
+          justify-content: center;
+          margin-bottom: 2rem;
+        `}
       >
         <Img fixed={page.frontmatter.assets.gratitude.image.fixed} />
       </div>

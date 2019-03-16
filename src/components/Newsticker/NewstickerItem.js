@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 import { colors, fontFamilies } from '@/theme'
 
@@ -31,10 +32,10 @@ const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
   return (
     <Wrapper {...props}>
       <div
-        css={{
-          display: `flex`,
-          flexDirection: layout === `row` && `column`,
-        }}
+        css={css`
+          display: flex;
+          flex-direction: ${layout === `row` && `column`};
+        `}
       >
         <StyledLink to={item.fields.url}>
           {coverImage && (

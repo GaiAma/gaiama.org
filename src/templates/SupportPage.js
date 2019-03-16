@@ -2,11 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper'
 import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
-import { css } from 'react-emotion'
+import { css } from '@emotion/core'
 import MainLayout from '@/components/MainLayout'
 import { SupportWidget } from '@/components/Shared'
 import CheckMark from '@/assets/check.png'
@@ -35,7 +35,7 @@ const Contributor = styled.div`
   flex-shrink: 0;
   max-width: 100%;
   ${media.lessThan(`small`)} {
-    :nth-child(1n + 5) {
+    :nth-of-type(1n + 5) {
       display: none;
     }
   }
@@ -62,112 +62,136 @@ const SupportPage = props => {
     page: { frontmatter },
     contributors,
   } = props.data
-  const initialStyle = css(visible.maxMd, {
-    fontFamily: fontFamilies.accent,
-    fontSize: `2.9rem`,
-    lineHeight: 1,
-    float: `left`,
-    marginRight: `1rem`,
-  })
+
+  const initialStyle = css`
+    ${visible.maxMd};
+    font-family: ${fontFamilies.accent};
+    font-size: 2.9rem;
+    line-height: 1;
+    float: left;
+    margin-right: 1rem;
+  `
+
   const [neighbor, support] = [
     frontmatter.intro.neighbor,
     frontmatter.intro.support,
-  ].map((x, i) => `<span class="${initialStyle}">${i + 1}.</span>${x}`)
+  ].map((x, i) => (
+    <>
+      <span css={initialStyle}>{i + 1}.</span>
+      <span dangerouslySetInnerHTML={{ __html: x }} />
+    </>
+  ))
+
   return (
     <MainLayout {...props}>
       <TitledCopy
         rank="1"
         centered
         title={frontmatter.intro.title_}
-        css={{
-          [media.lessThan(`medium`)]: {
-            '& > h2': { fontSize: `2rem` },
-            '& > div, & > button': { fontSize: `.85rem` },
-          },
-        }}
+        css={css`
+          ${media.lessThan(`medium`)} {
+            & > h2 {
+              font-size: 2rem;
+            }
+            & > div,
+            & > button {
+              font-size: 0.85rem;
+            }
+          }
+        `}
       />
 
       <div
-        css={{
-          display: `flex`,
-          justifyContent: `space-around`,
-          [media.lessThan(`medium`)]: {
-            display: `none`,
-          },
-        }}
+        css={css`
+          display: flex;
+          justify-content: space-around;
+          ${media.lessThan(`medium`)} {
+            display: none;
+          }
+        `}
       >
         {[`arrow_left`, `arrow_right`].map(x => (
           <Img
             fluid={props.data.page.frontmatter.assets[x].image.fluid}
             key={x}
-            css={{
-              flex: `none`,
-              marginBottom: `1rem`,
-              width: `112px`,
-              '& img': { objectFit: `contain !important` },
-            }}
+            css={css`
+              flex: none;
+              margin-bottom: 1rem;
+              width: 112px;
+              & img {
+                object-fit: contain !important;
+              }
+            `}
           />
         ))}
       </div>
 
       <div
-        css={{
-          display: `flex`,
-          [media.lessThan(`medium`)]: {
-            flexDirection: `column`,
-          },
-          [media.greaterThan(`medium`)]: {
-            justifyContent: `space-between`,
-            '& > div': {
-              width: `50%`,
-            },
-          },
-        }}
+        css={css`
+          display: flex;
+          ${media.lessThan(`medium`)} {
+            flex-direction: column;
+          }
+          ${media.greaterThan(`medium`)} {
+            justify-content: space-between;
+            & > div {
+              width: 50%;
+            }
+          }
+        `}
       >
         <div
-          css={{
-            border: `none`,
-            position: `relative`,
-            [media.lessThan(`medium`)]: {
-              marginBottom: `2rem`,
-            },
-            [media.greaterThan(`medium`)]: {
-              paddingRight: `3rem`,
-            },
-            '&:after': {
-              content: `""`,
-              height: `1px`,
-              width: `100%`,
-              position: `absolute`,
-              display: `block`,
-              right: `0`,
-              bottom: `0`,
-              background: `linear-gradient(to right, ${colors.gray4}, ${
-                colors.gray8
-              }, ${colors.gray4}) no-repeat`,
-              [media.lessThan(`medium`)]: {
-                left: `0`,
-              },
-              [media.greaterThan(`medium`)]: {
-                height: `100%`,
-                width: `1px`,
-                top: `0`,
-                background: `linear-gradient(to bottom, ${colors.gray4}, ${
-                  colors.gray8
-                }, ${colors.gray4}) no-repeat`,
-              },
-            },
-          }}
+          css={css`
+            border: none;
+            position: relative;
+            ${media.lessThan(`medium`)} {
+              margin-bottom: 2rem;
+            }
+            ${media.greaterThan(`medium`)} {
+              padding-right: 3rem;
+            }
+            &:after {
+              content: '';
+              height: 1px;
+              width: 100%;
+              position: absolute;
+              display: block;
+              right: 0;
+              bottom: 0;
+              background: linear-gradient(
+                  to right,
+                  ${colors.gray4},
+                  ${colors.gray8},
+                  ${colors.gray4}
+                )
+                no-repeat;
+              ${media.lessThan(`medium`)} {
+                left: 0;
+              }
+              ${media.greaterThan(`medium`)} {
+                height: 100%;
+                width: 1px;
+                top: 0;
+                background: linear-gradient(
+                    to bottom,
+                    ${colors.gray4},
+                    ${colors.gray8},
+                    ${colors.gray4}
+                  )
+                  no-repeat;
+              }
+            }
+          `}
         >
           <p dangerouslySetInnerHTML={{ __html: neighbor }} />
         </div>
 
         <div
-          css={{
-            [media.greaterThan(`medium`)]: {
-              paddingLeft: `3rem`,
-            },
-          }}
+          css={css`
+            ${media.greaterThan(`medium`)} {
+              padding-left: 3rem;
+            }
+          `}
         >
           <div>
             <p dangerouslySetInnerHTML={{ __html: support }} />
@@ -176,70 +200,71 @@ const SupportPage = props => {
       </div>
 
       <div
-        css={{
-          position: `relative`,
-          marginBottom: `3rem`,
-          ...fullPageWidth,
-        }}
+        css={css`
+          position: relative;
+          margin-bottom: 3rem;
+          ${fullPageWidth};
+        `}
       >
         <div
-          css={{
-            display: `flex`,
-            justifyContent: `flex-end`,
-            marginBottom: `.5rem`,
-          }}
+          css={css`
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 0.5rem;
+          `}
         >
           {
             <Img
               fluid={props.data.page.frontmatter.assets.parrots.image.fluid}
-              css={{
-                transform: `translateY(3rem)`,
-                marginTop: `-3rem`,
-                width: `300px`,
-                [media.greaterThan(`medium`)]: {
-                  marginTop: `-6rem`,
-                  width: `450px`,
-                },
-                '& img': {
-                  margin: `0`,
-                },
-              }}
+              css={css`
+                transform: translateY(3rem);
+                margin-top: -3rem;
+                width: 300px;
+                ${media.greaterThan(`medium`)} {
+                  width: 450px;
+                }
+                & img {
+                  margin: 0;
+                }
+              `}
             />
           }
         </div>
 
         <div
-          css={{
-            background: colors.lightBlue,
-            display: `flex`,
-            justifyContent: `space-around`,
-            marginBottom: `5rem`,
-            '& > div': {
-              position: `relative`,
-              zIndex: 3,
-              margin: `2.5rem 0`,
-              '& > a': {
-                color: colors.black,
-                [media.lessThan(`medium`)]: {
-                  fontSize: `.7rem`,
-                },
-              },
-            },
-          }}
+          css={css`
+            background: ${colors.lightBlue};
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 5rem;
+            & > div {
+              position: relative;
+              z-index: 3;
+              margin: 2.5rem 0;
+              & > a {
+                color: ${colors.black};
+                ${media.lessThan(`medium`)} {
+                  font-size: 0.7rem;
+                }
+              }
+            }
+          `}
         >
           {props.data.Accounts.frontmatter.accounts
             .filter(x => x.meta !== `true`)
             .map(x => (
               <div
                 key={x.service}
-                css={{
-                  '&:hover svg': x.service !== `instagram` && {
-                    color: colors.brands[x.service],
-                  },
-                  '&:hover svg *': x.service === `instagram` && {
-                    fill: `url(#InstagramGradient)`,
-                  },
-                }}
+                css={css`
+                  &:hover svg {
+                    color: ${x.service !== `instagram` &&
+                      colors.brands[x.service]};
+                  }
+                  &:hover svg * {
+                    fill: ${x.service === `instagram` &&
+                      `url(#InstagramGradient)`};
+                  }
+                `}
               >
                 <StyledA
                   href={x.url}
@@ -252,12 +277,11 @@ const SupportPage = props => {
               </div>
             ))}
           <div
-            css={{
-              '&:hover svg': {
-                color: colors.grayTurqoise,
-                // color: `#73989a`,
-              },
-            }}
+            css={css`
+              &:hover svg {
+                color: ${colors.grayTurqoise};
+              }
+            `}
           >
             <StyledA
               href={`${props.data.page.frontmatter.contactLink}#Newsletter`}
@@ -268,11 +292,11 @@ const SupportPage = props => {
             </StyledA>
           </div>
           <div
-            css={{
-              '&:hover svg': {
-                color: colors.rss,
-              },
-            }}
+            css={css`
+              &:hover svg {
+                color: ${colors.rss};
+              }
+            `}
           >
             <StyledA
               href={`/${props.pageContext.lang}/blog/rss.xml`}
@@ -288,94 +312,103 @@ const SupportPage = props => {
       <TitledCopy
         centered
         title={frontmatter.getIdea.title}
-        css={{
-          '& > h2': {
-            marginBottom: `.7rem`,
-            [media.lessThan(`medium`)]: {
-              fontSize: `2rem`,
-            },
-          },
-          '& > div': {
-            fontSize: `.9rem`,
-            [media.greaterThan(`medium`)]: {
-              fontSize: `1rem`,
-            },
-          },
-        }}
+        css={css`
+          & > h2 {
+            margin-bottom: 0.7rem;
+            ${media.lessThan(`medium`)} {
+              font-size: 2rem;
+            }
+          }
+          & > div {
+            font-size: 0.9rem;
+            ${media.greaterThan(`medium`)} {
+              font-size: 1rem;
+            }
+          }
+        `}
       >
         {frontmatter.getIdea.subtitle}
       </TitledCopy>
 
       <div
-        css={{
-          margin: `3rem 0 3rem`,
-          display: `flex`,
-          [media.lessThan(`small`)]: {
-            flexDirection: `column`,
-            alignItems: `center`,
-            '& div + div': {
-              marginTop: `1rem`,
-            },
-          },
-          [media.greaterThan(`small`)]: {
-            justifyContent: `space-between`,
-          },
-          '& > div': {
-            position: `relative`,
-            textAlign: `center`,
-            color: colors.darkWhite,
-            fontSize: `.98rem`,
-            display: `flex`,
-            alignItems: `center`,
-            [media.greaterThan(`small`)]: {
-              width: `19%`,
-            },
-            '& > div': {
-              transition: `transform .5s`,
-              width: `100%`,
-            },
-            '&:hover > div': {
-              transform: `scale(1.06)`,
-            },
-          },
-        }}
+        css={css`
+          margin: 3rem 0 3rem;
+          display: flex;
+          ${media.lessThan(`small`)} {
+            flex-direction: column;
+            align-items: center;
+            & div + div {
+              margin-top: 1rem;
+            }
+          }
+          ${media.greaterThan(`small`)} {
+            justify-content: space-between;
+          }
+          & > div {
+            position: relative;
+            text-align: center;
+            color: ${colors.darkWhite};
+            font-size: 0.98rem;
+            display: flex;
+            align-items: center;
+            ${media.greaterThan(`small`)} {
+              width: 19%;
+            }
+            & > div {
+              transition: transform 0.5s;
+              width: 100%;
+            }
+            &:hover > div {
+              transform: scale(1.06);
+            }
+          }
+        `}
       >
         {frontmatter.getIdea.insights.map((x, i) => (
-          <div key={i} css={{ userSelect: `none` }}>
+          <div
+            key={i}
+            css={css`
+              user-select: none;
+            `}
+          >
             <div
-              css={{
-                position: `relative`,
-              }}
+              css={css`
+                position: relative;
+              `}
             >
               <Img
                 fixed={x.img.image.fixed}
-                css={{
-                  maxWidth: `100%`,
-                  '&:after': {
-                    content: `""`,
-                    background: `linear-gradient(to right, rgba(4,47,55,0.58), rgba(4,47,55,0.72))`,
-                    position: `absolute`,
-                    display: `block`,
-                    top: 0,
-                    right: 0,
-                    bottom: 0,
-                    left: 0,
-                  },
-                }}
+                css={css`
+                  max-width: 100%;
+                  &:after {
+                    content: '';
+                    background: linear-gradient(
+                      to right,
+                      rgba(4, 47, 55, 0.58),
+                      rgba(4, 47, 55, 0.72)
+                    );
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                  }
+                `}
               />
             </div>
             <p
-              css={{
-                position: `absolute`,
-                top: 0,
-                right: 0,
-                bottom: 0,
-                left: 0,
-                margin: `1rem`,
-                display: `flex`,
-                justifyContent: `center`,
-                alignItems: `center`,
-              }}
+              css={css`
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                margin: 1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+              `}
               dangerouslySetInnerHTML={{ __html: x.descr }}
             />
           </div>
@@ -397,82 +430,86 @@ const SupportPage = props => {
       </div>
 
       <div
-        css={{
-          marginTop: `4rem`,
-          background: colors.lightBlue,
-          position: `relative`,
-          padding: `2rem 1rem`,
-          ...fullPageWidth,
-        }}
+        css={css`
+          margin-top: 4rem;
+          background: ${colors.lightBlue};
+          position: relative;
+          padding: 2rem 1rem;
+          ${fullPageWidth}
+        `}
       >
         <div
-          css={{
-            [media.greaterThan(`small`)]: {
-              display: `flex`,
-              justifyContent: `center`,
-            },
-            '& > div': {
-              [media.greaterThan(`small`)]: {
-                width: `47%`,
-                '&:first-child': {
-                  paddingRight: `3rem`,
-                  position: `relative`,
-                  '&:after': {
-                    content: `""`,
-                    height: `100%`,
-                    width: `1px`,
-                    position: `absolute`,
-                    display: `block`,
-                    top: `0`,
-                    right: `0`,
-                    background: `linear-gradient(to bottom, ${colors.gray4}, ${
-                      colors.gray8
-                    }, ${colors.gray4}) no-repeat`,
-                  },
-                },
-                '&:last-child': {
-                  paddingLeft: `3rem`,
-                },
-              },
-            },
-          }}
+          css={css`
+            ${media.greaterThan(`small`)} {
+              display: flex;
+              justify-content: center;
+            }
+            & > div {
+              ${media.greaterThan(`small`)} {
+                width: 47%;
+                &:first-of-type {
+                  padding-right: 3rem;
+                  position: relative;
+                  &:after {
+                    content: '';
+                    height: 100%;
+                    width: 1px;
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    right: 0;
+                    background: linear-gradient(
+                        to bottom,
+                        ${colors.gray4},
+                        ${colors.gray8},
+                        ${colors.gray4}
+                      )
+                      no-repeat;
+                  }
+                }
+                &:last-child {
+                  padding-left: 3rem;
+                }
+              }
+            }
+          `}
         >
           {[`left`, `right`].map(x => (
-            <div key={x} css={{}}>
+            <div key={x}>
               <h3
-                css={{
-                  textAlign: `center`,
-                  fontSize: `1.8rem`,
-                }}
+                css={css`
+                  text-align: center;
+                  font-size: 1.8rem;
+                `}
               >
                 {frontmatter.checklists[x].title}
               </h3>
 
               <div
-                css={{
-                  marginLeft: `3rem`,
-                  display: `flex`,
-                  flexDirection: `column`,
-                  alignItems: `space-between`,
-                  '& > div': {
-                    position: `relative`,
-                    fontSize: `.9rem`,
-                  },
-                  '& > div:not(:last-child)': {
-                    marginBottom: `1.3rem`,
-                  },
-                  '& > div:before': {
-                    content: `url(${CheckMark})`,
-                    position: `absolute`,
-                    left: `-3rem`,
-                    top: `0.4rem`,
-                  },
-                  [media.lessThan(`small`)]: {
-                    '& > div:last-child': {
-                      marginBottom: `1.5rem`,
-                    },
-                  },
-                }}
+                css={css`
+                  margin-left: 3rem;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: space-between;
+                  & > div {
+                    position: relative;
+                    font-size: 0.9rem;
+                  }
+                  & > div:not(:last-child) {
+                    margin-bottom: 1.3rem;
+                  }
+                  & > div:before {
+                    content: url(${CheckMark});
+                    position: absolute;
+                    left: -3rem;
+                    top: 0.4rem;
+                  }
+                  ${media.lessThan(`small`)} {
+                    & > div:last-child {
+                      margin-bottom: 1.5rem;
+                    }
+                  }
+                `}
               >
                 {frontmatter.checklists[x].items.map((x, i) => (
                   <div key={i}>{x}</div>
@@ -487,15 +524,15 @@ const SupportPage = props => {
         centered
         title={frontmatter.outro.title}
         paragraphs={frontmatter.outro.text}
-        css={{
-          margin: `5rem auto 0`,
-          [media.lessThan(`medium`)]: {
-            '& div': {
-              fontSize: `.9rem`,
-              textAlign: `center`,
-            },
-          },
-        }}
+        css={css`
+          margin: 5rem auto 0;
+          ${media.lessThan(`medium`)} {
+            & div {
+              font-size: 0.9rem;
+              text-align: center;
+            }
+          }
+        `}
       />
 
       <SupportWidget
@@ -510,7 +547,9 @@ const SupportPage = props => {
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
         lang={props.pageContext.lang}
-        css={{ margin: `3rem 0 5rem` }}
+        css={css`
+          margin: 3rem 0 5rem;
+        `}
         artworkStyles={{
           width: `350px`,
         }}

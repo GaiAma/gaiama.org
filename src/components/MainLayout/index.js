@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import Helmet from 'react-helmet'
+import { Global, css } from '@emotion/core'
 import { ToastContainer } from 'react-toastify'
 // import i18n from 'i18next'
 // import { I18nextProvider, translate } from 'react-i18next'
@@ -18,8 +19,8 @@ import {
   maxWidthLayout,
   maxWidthContent,
 } from '@/theme'
+import { globalStyles } from './global.js'
 
-import './global.js'
 import './fragments'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -151,12 +152,13 @@ class MainLayout extends Component {
     return (
       // <I18nextProvider //   i18n={i18n} //   initialLanguage={lang} //   initialI18nStore={i18nStore} // >
       <div
-        css={{
-          width: [`100%`, `100vw`],
-          ...maxWidthLayout,
-          margin: `0 auto`,
-          wordBreak: `keep-all`,
-        }}
+        css={css`
+          width: 100%;
+          width: 100vw;
+          ${maxWidthLayout};
+          margin: 0 auto;
+          word-break: keep-all;
+        `}
       >
         <Helmet
           titleTemplate={`%s ♡ ${site.siteMetadata.title}`}
@@ -243,6 +245,8 @@ class MainLayout extends Component {
           {/* <body className={slugify(page.fields.url)} /> */}
         </Helmet>
 
+        <Global styles={css(globalStyles)} />
+
         <a href="#main" css={screenReaderAndFocusable}>
           {SiteMeta.frontmatter.skipLinks.toContent}
         </a>
@@ -265,18 +269,17 @@ class MainLayout extends Component {
         <main
           id="main"
           tabIndex="-1"
-          css={{
-            ...focusOutlineNone,
-            margin: `0 auto`,
-            // padding: `3rem .8rem 1.45rem`,
-            padding: `3rem 0 1.45rem`,
-            width: !wrapperStyles.width && `98%`,
-            ...maxWidthContent,
-            [media.greaterThan(`medium`)]: {
-              width: !wrapperStyles.width && `90%`,
-            },
-            ...wrapperStyles,
-          }}
+          css={css`
+            ${focusOutlineNone};
+            margin: 0 auto;
+            padding: 3rem 0 1.45rem;
+            width: ${!wrapperStyles.width && `98%`};
+            ${maxWidthContent};
+            ${media.greaterThan(`medium`)} {
+              width: ${!wrapperStyles.width && `90%`};
+            }
+            ${wrapperStyles};
+          `}
         >
           {this.props.children}
         </main>

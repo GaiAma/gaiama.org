@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { css } from '@emotion/core'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
 import { colors, fontFamilies, fullPageWidth, media } from '@/theme'
@@ -11,18 +12,18 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
   return (
     <div>
       <div
-        css={{
-          display: `flex`,
-          justifyContent: `space-around`,
-          backgroundSize: `cover`,
-          position: `relative`,
-          padding: `2rem 0`,
-          ...fullPageWidth,
-        }}
+        css={css`
+          display: flex;
+          justify-content: space-around;
+          background-size: cover;
+          position: relative;
+          padding: 2rem 0;
+          ${fullPageWidth};
+        `}
       >
         <Img
           fluid={bg}
-          css={`
+          css={css`
             position: absolute !important;
             top: 0;
             bottom: 0;
@@ -33,11 +34,13 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
         {imgs.map(x => (
           <div
             key={x.node.id}
-            css={{
-              width: `240px`,
-              transition: `all .3s ease`,
-              ':hover': { transform: `scale(1.02)` },
-            }}
+            css={css`
+              width: 240px;
+              transition: all 0.3s ease;
+              :hover {
+                transform: scale(1.02);
+              }
+            `}
           >
             <a
               href={`https://www.instagram.com/p/${
@@ -45,7 +48,7 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
               }/?taken-by=${user}`}
               target="_blank"
               rel="noopener noreferrer"
-              css={`
+              css={css`
                 border: none;
                 :hover {
                   background-color: transparent;
@@ -55,41 +58,43 @@ const InstagramWidget = ({ user, followLink, bg, images }) => {
               <Img
                 alt="GaiAma on Instagram"
                 fluid={x.node.image.image.fluid}
-                css={{ border: `1px solid ${colors.black}` }}
+                css={css`
+                  border: 1px solid ${colors.black};
+                `}
               />
             </a>
           </div>
         ))}
       </div>
       <div
-        css={{
-          marginTop: `.5rem`,
-          [media.greaterThan(`xsmall`)]: {
-            textAlign: `right`,
-          },
-        }}
+        css={css`
+          margin-top: 0.5rem;
+          ${media.greaterThan(`xsmall`)} {
+            text-align: right;
+          }
+        `}
       >
         <a
           href={`https://instagram.com/${user}`}
           target="_blank"
           rel="noopener noreferrer"
-          css={{
-            display: `inline-block`,
-            border: `none`,
-            fontFamily: fontFamilies.accent,
-            lineHeight: `.8`,
-            letterSpacing: `.2rem`,
-            fontSize: `1rem`,
-            [media.greaterThan(`small`)]: {
-              letterSpacing: `.3rem`,
-            },
-          }}
+          css={css`
+            display: inline-block;
+            border: none;
+            font-family: ${fontFamilies.accent};
+            line-height: 0.8;
+            letter-spacing: 0.2rem;
+            font-size: 1rem;
+            ${media.greaterThan(`small`)} {
+              letter-spacing: 0.3rem;
+            }
+          `}
         >
           <span
-            css={{
-              letterSpacing: `-.1rem`,
-              marginRight: `1rem`,
-            }}
+            css={css`
+              letter-spacing: -0.1rem;
+              margin-right: 1rem;
+            `}
           >
             —————————&gt;&gt;
           </span>

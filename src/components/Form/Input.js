@@ -1,18 +1,23 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import { css } from '@emotion/core'
 import TextareaAutosize from 'react-textarea-autosize'
 import { colors, fontFamilies } from '@/theme'
 
 const Input = ({ label, value, type, placeholder, onInput, ...props }) => (
-  <div css={{ marginBottom: `.8rem` }}>
+  <div
+    css={css`
+      margin-bottom: 0.8rem;
+    `}
+  >
     <label>
       {label && (
         <span
-          css={{
-            fontFamily: fontFamilies.accent,
-            fontSize: `1.5rem`,
-            display: `block`,
-          }}
+          css={css`
+            font-family: ${fontFamilies.accent};
+            font-size: 1.5rem;
+            display: block;
+          `}
         >
           {label}
         </span>
@@ -24,10 +29,10 @@ const Input = ({ label, value, type, placeholder, onInput, ...props }) => (
           onInput={e => onInput(e)}
           maxRows={10}
           placeholder={placeholder}
-          css={{
-            ...styles.input,
-            minHeight: `8rem`,
-          }}
+          css={css`
+            ${styles.input};
+            min-height: 8rem;
+          `}
           {...props}
         />
       ) : (

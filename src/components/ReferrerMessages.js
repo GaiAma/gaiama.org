@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { css } from '@emotion/core'
 import { toast } from '@/utils/toast'
 
 // TODO move messages to /content
@@ -39,12 +40,12 @@ class ReferrerMessages extends Component {
 
     return (
       <div
-        css={{
-          fontWeight: 500,
-          letterSpacing: `.03rem`,
-          padding: `.5rem 1rem`,
-          textAlign: `center`,
-        }}
+        css={css`
+          font-weight: 500;
+          letter-spacing: 0.03rem;
+          padding: 0.5rem 1rem;
+          text-align: center;
+        `}
         {...props}
       >
         {message}

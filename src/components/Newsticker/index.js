@@ -1,7 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
-import styled from 'react-emotion'
+import styled from '@emotion/styled'
+import { css } from '@emotion/core'
 import NewstickerItem from './NewstickerItem'
 import { media } from '@/theme'
 
@@ -21,27 +22,27 @@ const NewsTicker = ({
 }) => (
   <div {...props}>
     <div
-      css={{
-        paddingLeft: layout === `column` && `1.5rem`,
-        position: `relative`,
-      }}
+      css={css`
+        padding-left: ${layout === `column` && `1.5rem`};
+        position: relative;
+      `}
     >
       {(title || link) && (
         <header
-          css={{
-            display: `flex`,
-            alignItems: `baseline`,
-            justifyContent: `space-between`,
-            marginBottom: `1rem`,
-          }}
+          css={css`
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+          `}
         >
           {title && (
             <h3
-              css={{
-                fontSize: `2.2rem`,
-                margin: 0,
-                lineHeight: 1.2,
-              }}
+              css={css`
+                font-size: 2.2rem;
+                margin: 0;
+                line-height: 1.2;
+              `}
             >
               {title}
             </h3>
@@ -56,17 +57,17 @@ const NewsTicker = ({
       )}
 
       <div
-        css={{
-          display: layout === `row` && `flex`,
-          flexDirection: `column`,
-          [media.lessThan(`medium`)]: {
-            alignItems: `center`,
-          },
-          [media.greaterThan(`medium`)]: {
-            flexDirection: `row`,
-            justifyContent: `space-between`,
-          },
-        }}
+        css={css`
+          display: ${layout === `row` && `flex`};
+          flex-direction: column;
+          ${media.lessThan(`medium`)} {
+            align-items: center;
+          }
+          ${media.greaterThan(`medium`)} {
+            flex-direction: row;
+            justify-content: space-between;
+          }
+        `}
       >
         {items.map(
           (item, index) =>
@@ -76,18 +77,15 @@ const NewsTicker = ({
                 item={item}
                 readmoreLabel={readmoreLabel}
                 layout={layout}
-                css={{
-                  marginBottom: `3rem`,
-                  width: `90%`,
-                  maxWidth: `370px`,
-                  [media.greaterThan(`medium`)]: {
-                    width: `30%`,
-                    marginBottom: `1.6rem`,
-                  },
-                  // '&:not(:last-child)': {
-                  //   marginRight: layout === `row` && `4rem`,
-                  // },
-                }}
+                css={css`
+                  margin-bottom: 3rem;
+                  width: 90%;
+                  max-width: 370px;
+                  ${media.greaterThan(`medium`)} {
+                    width: 30%;
+                    margin-bottom: 1.6rem;
+                  }
+                `}
               />
             )
         )}

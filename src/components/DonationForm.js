@@ -6,6 +6,7 @@ import {
   CardElement,
   IbanElement,
 } from 'react-stripe-elements'
+import { css } from '@emotion/core'
 import { colors } from '@/theme'
 import localStore from '@/utils/local-store'
 
@@ -156,17 +157,17 @@ class DonationForm extends Component {
 
           <Elements locale="at">
             <div
-              css={{
-                border: `1px solid ${colors.gray5}`,
-                borderRadius: `2px`,
-              }}
+              css={css`
+                border: 1px solid ${colors.gray5};
+                border-radius: 2px;
+              `}
             >
               <label
-                css={{
-                  display: `flex`,
-                  alignItems: `center`,
-                  padding: `.3rem 1rem`,
-                }}
+                css={css`
+                  display: flex;
+                  align-items: center;
+                  padding: 0.3rem 1rem;
+                `}
               >
                 {/* <span>IBAN</span> */}
                 <IbanElement
@@ -187,26 +188,26 @@ class DonationForm extends Component {
                       },
                     },
                   }}
-                  css={{
-                    flex: 1,
-                  }}
+                  css={css`
+                    flex: 1;
+                  `}
                 />
               </label>
             </div>
           </Elements>
           <Elements locale="en">
             <div
-              css={{
-                border: `1px solid ${colors.gray5}`,
-                borderRadius: `2px`,
-              }}
+              css={css`
+                border: 1px solid ${colors.gray5};
+                border-radius: 2px;
+              `}
             >
               <label
-                css={{
-                  display: `flex`,
-                  alignItems: `center`,
-                  padding: `.3rem 1rem`,
-                }}
+                css={css`
+                  display: flex;
+                  alignitems: center;
+                  padding: 0.3rem 1rem;
+                `}
               >
                 {/* <span>Kreditkarte</span> */}
                 <CardElement
@@ -226,9 +227,9 @@ class DonationForm extends Component {
                       },
                     },
                   }}
-                  css={{
-                    flex: 1,
-                  }}
+                  css={css`
+                    flex: 1;
+                  `}
                 />
               </label>
             </div>

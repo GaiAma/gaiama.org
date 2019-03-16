@@ -42,6 +42,12 @@ module.exports = {
   plugins: [
     // `gatsby-plugin-fastclick`,
     {
+      resolve: `gatsby-plugin-emotion`,
+      options: {
+        labelFormat: `[filename]--[local]`,
+      },
+    },
+    {
       resolve: `gatsby-plugin-layout`,
       options: {
         component: require.resolve(`./src/layouts/index.js`),
@@ -287,23 +293,17 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-plugin-offline`,
+      options: {
+        // globPatterns: [`**/*.{js,css,html}`],
+      },
+    },
+    {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {
           '/*': isMaster ? [] : [`X-Robots-Tag: noindex, follow`],
         },
-      },
-    },
-    {
-      resolve: `gatsby-plugin-emotion`,
-      options: {
-        // Accepts all options defined by `babel-plugin-emotion` plugin.
-      },
-    },
-    {
-      resolve: `gatsby-plugin-offline`,
-      options: {
-        // globPatterns: [`**/*.{js,css,html}`],
       },
     },
   ],
