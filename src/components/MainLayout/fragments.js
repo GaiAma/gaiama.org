@@ -59,6 +59,15 @@ export const Fragments = graphql`
           socialTitle
           supportTitle
         }
+        sponsors {
+          id
+          href
+          title
+          src {
+            publicURL
+          }
+          alt
+        }
       }
     }
   }

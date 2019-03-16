@@ -16,6 +16,7 @@ const Footer = ({
   bgImage,
   accounts,
   info,
+  sponsors,
 }) => (
   <footer
     css={css`
@@ -195,6 +196,35 @@ const Footer = ({
       >
         <MDXRenderer>{info}</MDXRenderer>
       </div>
+
+      {sponsors.length && (
+        <div
+          css={css`
+            a {
+              border: none;
+            }
+            a:hover {
+              background-color: transparent;
+            }
+            a + a {
+              margin-left: 0.7rem;
+            }
+          `}
+        >
+          {sponsors.map(s => (
+            <a
+              key={s.id}
+              title={s.title}
+              href={s.href}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={s.src.publicURL} alt={s.alt} width="30" height="30" />
+            </a>
+          ))}
+        </div>
+      )}
+
       <div>
         {legal.length &&
           legal.map(({ node }) => (
@@ -223,6 +253,7 @@ Footer.propTypes = {
   bgImage: PropTypes.object,
   accounts: PropTypes.object,
   info: PropTypes.object,
+  sponsors: PropTypes.array,
 }
 
 export default Footer
