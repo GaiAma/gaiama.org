@@ -8,8 +8,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.3.4",
-    "bluebird": "^3.5.3",
-    "sharp": "^0.21.3"
+    "bluebird": "^3.5.4",
+    "sharp": "^0.22.0"
   },
   "homepage": "https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-manifest#readme",
   "keywords": [

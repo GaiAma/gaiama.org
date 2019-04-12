@@ -274,18 +274,25 @@ module.exports = {
     //   resolve: `gatsby-plugin-webpack-bundle-analyzer`,
     //   options: {
     //     production: true,
-    {
-      resolve: `gatsby-plugin-pixel`,
-      options: {
-        version,
-        endpoint: `/api/pixel`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-pixel`,
+    //   options: {
+    //     version,
+    //     endpoint: `/api/pixel`,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         color: `#ba0d24`, //`#870515`,
         showSpinner: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-google-tagmanager`,
+      options: {
+        id: `GTM-P2HCKV6`,
+        includeInDevelopment: true,
       },
     },
     {
