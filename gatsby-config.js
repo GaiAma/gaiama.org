@@ -312,7 +312,7 @@ module.exports = {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {
-          '/*': isMaster ? [] : [`X-Robots-Tag: noindex, follow`],
+          '/*': !isMaster ? [`X-Robots-Tag: noindex, follow`] : [],
         },
       },
     },
