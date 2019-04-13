@@ -1,6 +1,7 @@
-/* global window */
+/* global document window */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+// import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import { Global, css } from '@emotion/core'
 import { ToastContainer } from 'react-toastify'
@@ -12,6 +13,7 @@ import Footer from '@components/Footer'
 import * as QS from '@gaiama/query-string'
 import '@src/utils/fontawesome'
 import {
+  // colors,
   media,
   screenReaderAndFocusable,
   focusOutlineNone,
@@ -23,6 +25,7 @@ import { globalStyles } from './global.js'
 
 import './fragments'
 import 'react-toastify/dist/ReactToastify.css'
+// import { CookieBanner } from '@components/CookieBanner.js'
 
 // const isDev = process.env.NODE_ENV === `development`
 
@@ -87,6 +90,16 @@ const generateMetaMenu = ({ translations, getLang, menuItems }) =>
 //     bindStore: false,
 //   },
 // })
+
+// const injectGTMCode = () => {
+//   const gtm = document.createElement(`script`)
+//   gtm.innerHTML = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+// new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+// j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+// 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+// })(window,document,'script','dataLayer','GTM-P2HCKV6');`
+//   document.head.insertBefore(gtm, document.head.children[1])
+// }
 
 class MainLayout extends Component {
   static propTypes = {
@@ -295,6 +308,41 @@ class MainLayout extends Component {
           info={SiteMeta.code.body}
           sponsors={SiteMeta.frontmatter.sponsors}
         />
+
+        {/* <CookieBanner onAccept={injectGTMCode}>
+          {({ setAccept, setReject }) => (
+            <div
+              css={css`
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                color: #fff;
+                background: ${colors.primaryLite};
+                padding: 1rem;
+                z-index: 10;
+                display: flex;
+                align-content: center;
+                justify-content: space-between;
+              `}
+            >
+              <div>
+                Cookie Banner
+                <span
+                  css={css`
+                    font-size: smaller;
+                  `}
+                >
+                  <Link to="/datenschutz">Datenschutz</Link>
+                </span>
+              </div>
+              <div>
+                <button onClick={setReject}>Reject</button>
+                <button onClick={setAccept}>Accept</button>
+              </div>
+            </div>
+          )}
+        </CookieBanner> */}
 
         <InstagramGradient />
         <ToastContainer position="bottom-right" />
