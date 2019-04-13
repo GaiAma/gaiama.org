@@ -98,8 +98,12 @@ module.exports = {
       resolve: `gatsby-mdx`,
       options: {
         extensions: [`.mdx`, `.md`],
+        globalScope: `
+          import { VideoPlayer } from "@gaiama/react-video-player";
+          export default { VideoPlayer };
+        `,
         gatsbyRemarkPlugins: [
-          { resolve: `gatsby-remark-embed-video` },
+          // { resolve: `gatsby-remark-embed-video` },
           { resolve: `gatsby-remark-external-links` },
           {
             resolve: `gatsby-remark-images`,
@@ -113,12 +117,13 @@ module.exports = {
             },
           },
           { resolve: `@gaiama/gatsby-remark-wrap-images` },
-          {
-            resolve: `gatsby-remark-responsive-iframe`,
-            options: {
-              wrapperStyle: `margin: 0 auto 1.0725rem; max-width: 80%;`,
-            },
-          },
+          // {
+          //   // TODO: check why it's not working/wrapping anymore e.g. /en/blog/tie-your-hair-without-hair-tie/
+          //   resolve: `gatsby-remark-responsive-iframe`,
+          //   options: {
+          //     wrapperStyle: `margin: 0 auto 1.0725rem; max-width: 80%;`,
+          //   },
+          // },
           { resolve: `gatsby-remark-copy-linked-files` },
           {
             resolve: `gatsby-remark-smartypants`,

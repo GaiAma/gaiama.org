@@ -10,7 +10,7 @@ import Link from '@components/Link'
 import ShareWidget from '@components/ShareWidget'
 import { SupportWidget } from '@components/Shared'
 import Newsticker from '@components/Newsticker'
-import VideoPlayer from '@components/VideoPlayer'
+import { VideoPlayer } from '@gaiama/react-video-player'
 import PodcastPlayer from '@components/PodcastPlayer'
 import { colors, fontFamilies, gradients, media } from '@src/theme'
 

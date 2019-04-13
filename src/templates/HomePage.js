@@ -10,7 +10,7 @@ import MainLayout from '@components/MainLayout'
 import { InstagramWidget } from '@components/InstagramWidget'
 import { SupportWidget } from '@components/Shared'
 import TitledCopy from '@components/TitledCopy'
-import VideoPlayer from '@components/VideoPlayer'
+import { VideoPlayer } from '@gaiama/react-video-player'
 
 const IntroWrapper = styled(Box)`
   text-align: center;
