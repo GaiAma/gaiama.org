@@ -1,18 +1,26 @@
+/* global window dataLayer */
 import preval from 'babel-plugin-preval/macro'
-const { version, bugs } = preval`
+const { version, bugs, branch } = preval`
   const { version, bugs } = require('./package.json')
-  module.exports = { version, bugs }
+  const branch = process.env.BRANCH || 'dev'
+  module.exports = { version, bugs, branch }
 `
 
+// TODO: maybe improve on it https://github.com/gatsbyjs/gatsby/pull/11379/files
+window.dataLayer = window.dataLayer || []
+dataLayer.push({
+  GAIAMA_BRANCH: branch,
+})
+
 try {
-  /* global window */
   window.GaiAma = {
     ...window.GaiAma,
+    branch,
     version,
     bugTracker: bugs,
   }
   console.log(
-    `%cWelcome to GaiAma.org version ${version}`,
+    `%cWelcome to GaiAma.org version ${version}, you're on the ${branch} branch`,
     `font-size:13px;color:#01422e;`
   )
   console.log(
@@ -29,7 +37,7 @@ try {
   console.log(
     `%cIf you encounter anything unexpected, or have other feedback feel free to file an issue at ${
       bugs.url
-    }`,
+    }/new?labels=ViaDevTools`,
     `color:#3a9a02;`
   )
   /* eslint-disable-next-line */
