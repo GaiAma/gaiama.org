@@ -423,5 +423,49 @@ const getSuggestedNodes = (Posts, node) => {
     console.log(`No suggestions found`, node.fields.slug)
   }
 
+  // console.log(`suggested`, node.fields.url, suggested)
+
   return R.slice(0, 3, suggested)
+}
+
+exports.sourceNodes = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type TranslationFields {
+      url: String
+    }
+    type TranslationFrontmatter {
+      title: String
+      lang: String
+      slug: String
+    }
+    type Translations {
+      id: String
+      title: String
+      titleShort: String
+      lc: String
+      to: String
+      fields: TranslationFields
+      frontmatter: TranslationFrontmatter
+    }
+
+    type MdxFields {
+      newer: Mdx
+      older: Mdx
+      all: Mdx
+      suggested: [Mdx]
+      translations: [Translations]
+      slug_short: String
+    }
+    type Mdx implements Node {
+      fields: MdxFields
+    }
+    type JavascriptFrontmatterFields {
+      translations: [Translations]
+    }
+    type JavascriptFrontmatter implements Node {
+      fields: JavascriptFrontmatterFields
+    }
+  `
+  createTypes(typeDefs)
 }
