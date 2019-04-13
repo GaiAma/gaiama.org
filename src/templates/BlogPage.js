@@ -190,6 +190,7 @@ const BlogPage = props => {
 
       <RenderArticles
         articles={articles}
+        readMoreLabel={props.data.page.frontmatter.readMoreLabel}
         css={css`
           display: flex;
           flex-wrap: wrap;
@@ -222,7 +223,7 @@ BlogPage.propTypes = {
 export default BlogPage
 
 export const query = graphql`
-  query($lang: String!, $slug: String!) {
+  query($lang: String!, $url: String!) {
     ...siteData
     ...SiteMeta
     ...languages
@@ -231,7 +232,7 @@ export const query = graphql`
     ...legal
     ...Accounts
 
-    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
+    page: javascriptFrontmatter(fields: { url: { eq: $url } }) {
       ...PageTranslations
       fields {
         url
@@ -244,6 +245,7 @@ export const query = graphql`
         intro {
           paragraphs
         }
+        readMoreLabel
         sortLabels {
           all
           asc

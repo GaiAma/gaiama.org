@@ -13,7 +13,7 @@ const StyledLink = styled(Link)`
   }
 `
 
-const ArticlePreview = ({ article, isVisible, ...props }) => (
+const ArticlePreview = ({ article, isVisible, readMoreLabel, ...props }) => (
   <article css={articleStyles.article(isVisible)} {...props}>
     <StyledLink to={article.fields.url}>
       {article.frontmatter.cover && (
@@ -32,7 +32,7 @@ const ArticlePreview = ({ article, isVisible, ...props }) => (
     <footer css={articleStyles.footer}>
       <div css={articleStyles.footerInner}>
         <time css={articleStyles.time}>{article.fields.dateStrLocalized}</time>
-        <StyledLink to={article.fields.url}>{`read more`}</StyledLink>
+        <StyledLink to={article.fields.url}>{readMoreLabel}</StyledLink>
       </div>
     </footer>
   </article>

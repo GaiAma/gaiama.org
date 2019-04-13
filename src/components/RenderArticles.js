@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 // import VisibilitySensor from 'react-visibility-sensor'
 import ArticlePreview from '@components/ArticlePreview'
 
-const RenderArticles = ({ articles, ...props }) => (
+const RenderArticles = ({ articles, readMoreLabel, ...props }) => (
   <div {...props}>
     {articles &&
       articles.map(({ node }) => (
@@ -15,6 +15,7 @@ const RenderArticles = ({ articles, ...props }) => (
         <ArticlePreview
           key={node.frontmatter.id || node.fields.url}
           article={node}
+          readMoreLabel={readMoreLabel}
           // isVisible={isVisible}
         />
         //   }
