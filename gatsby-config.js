@@ -114,6 +114,7 @@ module.exports = {
               showCaptions: true,
               quality: 75,
               wrapperStyle: f => `flex:${round(f.aspectRatio, 2)};`,
+              ignoreFileExtensions: [], // the quick fix? #6698
             },
           },
           { resolve: `@gaiama/gatsby-remark-wrap-images` },
