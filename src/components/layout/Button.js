@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 import styled from '@emotion/styled'
-import { colors } from '@/theme'
+import { colors } from '@src/theme'
 
 /**
  * hiding outline for pointing devices based on

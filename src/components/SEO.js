@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import pt from 'prop-types'
 import { Title, Meta } from 'react-head'
-import { colors } from '@/theme'
+import { colors } from '@src/theme'
 
 class SEO extends Component {
   componentDidUpdate = () => {

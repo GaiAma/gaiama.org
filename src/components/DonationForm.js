@@ -7,8 +7,8 @@ import {
   IbanElement,
 } from 'react-stripe-elements'
 import { css } from '@emotion/core'
-import { colors } from '@/theme'
-import localStore from '@/utils/local-store'
+import { colors } from '@src/theme'
+import localStore from '@src/utils/local-store'
 
 class DonationForm extends Component {
   constructor(props) {

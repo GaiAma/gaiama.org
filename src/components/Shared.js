@@ -6,10 +6,10 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown'
-import { colors, Box, fullPageWidth, media } from '@/theme'
-// import DonationForm from '@/components/DonationForm'
-// import { PureButton } from '@/components/layout/Button'
-// import PatreonButton from '@/assets/become_a_patron_button.png'
+import { colors, Box, fullPageWidth, media } from '@src/theme'
+// import DonationForm from '@components/DonationForm'
+// import { PureButton } from '@components/layout/Button'
+// import PatreonButton from '@src/assets/become_a_patron_button.png'
 
 export const H2 = styled.h2`
   text-align: center;
@@ -47,7 +47,7 @@ export const cryptos = [
 ].map(x => ({
   ...x,
   icon: require(`cryptocurrency-icons/svg/color/${x.symbol}.svg`),
-  qr: require(`~/public/qr/${x.symbol}.svg`),
+  qr: require(`@root/public/qr/${x.symbol}.svg`),
 }))
 
 class CoinPicker extends Component {

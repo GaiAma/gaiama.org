@@ -5,12 +5,12 @@ import Head from 'react-helmet'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import * as QS from '@gaiama/query-string'
-import MainLayout from '@/components/MainLayout'
-import Link from '@/components/Link'
-import TitledCopy from '@/components/TitledCopy'
-import Randomizer from '@/components/Randomizer'
-import RenderArticles from '@/components/RenderArticles'
-import { colors, media } from '@/theme'
+import MainLayout from '@components/MainLayout'
+import Link from '@components/Link'
+import TitledCopy from '@components/TitledCopy'
+import Randomizer from '@components/Randomizer'
+import RenderArticles from '@components/RenderArticles'
+import { colors, media } from '@src/theme'
 
 const StyledRandomizer = styled(Randomizer)`
   text-align: center;

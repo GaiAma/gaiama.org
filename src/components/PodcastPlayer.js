@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { PureButton } from '@/components/layout/Button'
+import { PureButton } from '@components/layout/Button'
 import { css } from '@emotion/core'
-import { colors, media } from '@/theme'
+import { colors, media } from '@src/theme'
 import styled from '@emotion/styled'
 
 const Button = styled(PureButton)({

@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import { colors, fontFamilies, fullPageWidth, media } from '@/theme'
-import { mediaQuery } from '@/components/MediaQuery'
+import { colors, fontFamilies, fullPageWidth, media } from '@src/theme'
+import { mediaQuery } from '@components/MediaQuery'
 
 const InstagramWidget = ({ user, followLink, bg, images }) => {
   const imgs = mediaQuery(`(max-width: 779px)`) ? images.slice(0, 3) : images

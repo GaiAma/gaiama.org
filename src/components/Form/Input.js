@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 import TextareaAutosize from 'react-textarea-autosize'
-import { colors, fontFamilies } from '@/theme'
+import { colors, fontFamilies } from '@src/theme'
 
 const Input = ({ label, value, type, placeholder, onInput, ...props }) => (
   <div

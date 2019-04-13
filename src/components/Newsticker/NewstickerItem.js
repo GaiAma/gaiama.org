@@ -4,7 +4,7 @@ import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import Img from 'gatsby-image'
-import { colors, fontFamilies } from '@/theme'
+import { colors, fontFamilies } from '@src/theme'
 
 const StyledLink = styled(Link)`
   border: none;

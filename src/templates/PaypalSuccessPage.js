@@ -4,9 +4,9 @@ import { graphql } from 'gatsby'
 import { css } from '@emotion/core'
 import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
-import MainLayout from '@/components/MainLayout'
-import TitledCopy from '@/components/TitledCopy'
-import Newsticker from '@/components/Newsticker'
+import MainLayout from '@components/MainLayout'
+import TitledCopy from '@components/TitledCopy'
+import Newsticker from '@components/Newsticker'
 
 const PaypalSuccessPage = props => {
   const { page, NewsTicker } = props.data

@@ -3,13 +3,13 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
-import MainLayout from '@/components/MainLayout'
+import MainLayout from '@components/MainLayout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
-import { colors, media } from '@/theme'
-import TitledCopy from '@/components/TitledCopy'
-import { Newsletter } from '@/components/NewsletterWidget'
-import ContactForm from '@/components/ContactForm'
+import { colors, media } from '@src/theme'
+import TitledCopy from '@components/TitledCopy'
+import { Newsletter } from '@components/NewsletterWidget'
+import ContactForm from '@components/ContactForm'
 
 const StyledA = styled.a`
   border: none;
@@ -276,7 +276,7 @@ export const query = graphql`
 
 // import React from 'react'
 // import rehypeReact from 'rehype-react'
-// import MainLayout from '@/components/Layouts/MainLayout'
+// import MainLayout from '@components/Layouts/MainLayout'
 
 // const renderAst = new rehypeReact({
 //   createElement: React.createElement

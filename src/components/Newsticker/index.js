@@ -4,7 +4,7 @@ import { Link, graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import NewstickerItem from './NewstickerItem'
-import { media } from '@/theme'
+import { media } from '@src/theme'
 
 const StyledLink = styled(Link)`
   font-size: 1rem;

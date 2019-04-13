@@ -6,11 +6,11 @@ import { Global, css } from '@emotion/core'
 import { ToastContainer } from 'react-toastify'
 // import i18n from 'i18next'
 // import { I18nextProvider, translate } from 'react-i18next'
-import Header from '@/components/Header'
-import ReferrerMessages from '@/components/ReferrerMessages'
-import Footer from '@/components/Footer'
+import Header from '@components/Header'
+import ReferrerMessages from '@components/ReferrerMessages'
+import Footer from '@components/Footer'
 import * as QS from '@gaiama/query-string'
-import '@/utils/fontawesome'
+import '@src/utils/fontawesome'
 import {
   media,
   screenReaderAndFocusable,
@@ -18,7 +18,7 @@ import {
   InstagramGradient,
   maxWidthLayout,
   maxWidthContent,
-} from '@/theme'
+} from '@src/theme'
 import { globalStyles } from './global.js'
 
 import './fragments'

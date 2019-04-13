@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-import Button from '@/components/layout/Button'
+import Button from '@components/layout/Button'
 
 class Randomizer extends Component {
   constructor(props) {

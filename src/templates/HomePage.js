@@ -5,12 +5,12 @@ import Img from 'gatsby-image'
 import Helmet from 'react-helmet'
 import styled from '@emotion/styled'
 import slugify from 'slugify'
-import { Box, colors, fullPageWidth, maxWidthContent, media } from '@/theme'
-import MainLayout from '@/components/MainLayout'
-import { InstagramWidget } from '@/components/InstagramWidget'
-import { SupportWidget } from '@/components/Shared'
-import TitledCopy from '@/components/TitledCopy'
-import VideoPlayer from '@/components/VideoPlayer'
+import { Box, colors, fullPageWidth, maxWidthContent, media } from '@src/theme'
+import MainLayout from '@components/MainLayout'
+import { InstagramWidget } from '@components/InstagramWidget'
+import { SupportWidget } from '@components/Shared'
+import TitledCopy from '@components/TitledCopy'
+import VideoPlayer from '@components/VideoPlayer'
 
 const IntroWrapper = styled(Box)`
   text-align: center;

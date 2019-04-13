@@ -11,10 +11,10 @@
 // import path from 'ramda/src/path'
 // import merge from 'ramda/src/merge'
 // import Media from 'react-media'
-// import MainLayout from '@/components/MainLayout'
-// import { mediaQuery } from '@/components/MediaQuery'
-// // import { Pager, Paginator } from '@/components/Paginator'
-// import { colors, gradients, media } from '@/theme'
+// import MainLayout from '@components/MainLayout'
+// import { mediaQuery } from '@components/MediaQuery'
+// // import { Pager, Paginator } from '@components/Paginator'
+// import { colors, gradients, media } from '@src/theme'
 
 // const Image = ({ filename, description, slug, title, linkLabel }) => (
 //   <div key={filename.base} css={{ flex: filename.aspectRatio }}>

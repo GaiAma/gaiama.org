@@ -2,9 +2,9 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import slugify from 'slugify'
-import { media } from '@/theme'
-import StateProvider from '@/components/StateProvider'
-import Button from '@/components/layout/Button'
+import { media } from '@src/theme'
+import StateProvider from '@components/StateProvider'
+import Button from '@components/layout/Button'
 
 const Container = styled.div(props => ({
   marginRight: `auto`,

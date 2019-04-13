@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { colors, fontFamilies } from '@/theme'
+import { colors, fontFamilies } from '@src/theme'
 
 const Input = ({ children, onClick, ...props }) => (
   <div css={styles.wrapper} {...props}>

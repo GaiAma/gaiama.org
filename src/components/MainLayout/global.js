@@ -1,5 +1,5 @@
-import { colors, media } from '@/theme'
-
+import { colors, media } from '@src/theme'
+// TODO: https://github.com/sindresorhus/modern-normalize ?
 /**
  * work in progress
  *

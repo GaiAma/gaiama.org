@@ -5,12 +5,12 @@ import Img from 'gatsby-image'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import slugify from 'slugify'
-import MainLayout from '@/components/MainLayout'
-import TitledCopy from '@/components/TitledCopy'
-import Newsticker from '@/components/Newsticker'
-import { mediaQuery } from '@/components/MediaQuery'
+import MainLayout from '@components/MainLayout'
+import TitledCopy from '@components/TitledCopy'
+import Newsticker from '@components/Newsticker'
+import { mediaQuery } from '@components/MediaQuery'
 import Media from 'react-media'
-import { colors, media } from '@/theme'
+import { colors, media } from '@src/theme'
 
 const ContributorListTitle = styled.h2`
   margin: 2rem 0 0;

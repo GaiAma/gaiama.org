@@ -3,9 +3,9 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import { css } from '@emotion/core'
 import Img from 'gatsby-image'
-import { media } from '@/theme'
-import MainLayout from '@/components/MainLayout'
-import { SupportWidget } from '@/components/Shared'
+import { media } from '@src/theme'
+import MainLayout from '@components/MainLayout'
+import { SupportWidget } from '@components/Shared'
 
 const calcTotalAmount = x =>
   x.edges.reduce((acc, val) => acc + val.node.item.amount, 0).toFixed()

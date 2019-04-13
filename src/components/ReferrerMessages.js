@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
-import { toast } from '@/utils/toast'
+import { toast } from '@src/utils/toast'
 
 // TODO move messages to /content
 const messages = {

@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import MainLayout from '@/components/MainLayout'
+import MainLayout from '@components/MainLayout'
 
 // pull in all content then maybe KCDs match-sorter to sort by urls
 const NotFound = props => (

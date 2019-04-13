@@ -1,4 +1,4 @@
-import { colors, fontFamilies, media } from '@/theme'
+import { colors, fontFamilies, media } from '@src/theme'
 
 /**
  *

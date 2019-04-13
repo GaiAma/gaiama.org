@@ -6,9 +6,9 @@ import { css } from '@emotion/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
 import isEmail from 'validator/lib/isEmail'
-import { colors, fontFamilies } from '@/theme'
-import { Button } from '@/components/layout/Button'
-import localStore from '@/utils/local-store'
+import { colors, fontFamilies } from '@src/theme'
+import { Button } from '@components/layout/Button'
+import localStore from '@src/utils/local-store'
 import axios from 'axios'
 
 const StyledInput = styled.input({

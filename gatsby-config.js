@@ -53,8 +53,9 @@ module.exports = {
       resolve: `gatsby-plugin-webpack-aliases`,
       options: {
         aliases: {
-          '~': `./`,
-          '@': `src`,
+          '@root': `./`,
+          '@src': `./src`,
+          '@components': `./src/components`,
         },
       },
     },

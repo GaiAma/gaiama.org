@@ -3,15 +3,15 @@ import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { colors, media } from '@/theme'
+import { colors, media } from '@src/theme'
 import { faLink, faTimes, faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import {
   faFacebookSquare,
   faTwitterSquare,
   faGooglePlusSquare,
 } from '@fortawesome/free-brands-svg-icons'
-import { PureButton } from '@/components/layout/Button'
-import { toast } from '@/utils/toast'
+import { PureButton } from '@components/layout/Button'
+import { toast } from '@src/utils/toast'
 
 const Container = styled.div({
   [media.greaterThan(`xsmall`)]: {

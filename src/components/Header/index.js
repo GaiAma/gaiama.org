@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
-import Link from '@/components/Link'
+import Link from '@components/Link'
 import Img from 'gatsby-image'
 import Headroom from 'react-headroom'
-import { visible } from '@/theme'
+import { visible } from '@src/theme'
 import style from './styles'
 
 const OnlyDesktop = styled.span(props => props.visible && visible.minMd)

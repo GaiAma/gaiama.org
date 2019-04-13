@@ -7,10 +7,10 @@ import axios from 'axios'
 import isEmail from 'validator/lib/isEmail'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
-import { colors, fontFamilies } from '@/theme'
-import { Button } from '@/components/layout/Button'
+import { colors, fontFamilies } from '@src/theme'
+import { Button } from '@components/layout/Button'
 import TextareaAutosize from 'react-textarea-autosize'
-import localStore from '@/utils/local-store'
+import localStore from '@src/utils/local-store'
 
 axios.defaults.headers.post[`Content-Type`] = `application/json`
 

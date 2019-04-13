@@ -5,8 +5,8 @@ import { graphql, Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import { Spring, animated, config } from 'react-spring/renderprops'
-import MainLayout from '@/components/MainLayout'
-import { colors, media } from '@/theme'
+import MainLayout from '@components/MainLayout'
+import { colors, media } from '@src/theme'
 
 const TotalDonated = styled.h4`
   text-align: center;

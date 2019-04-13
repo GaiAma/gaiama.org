@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretLeft } from '@fortawesome/free-solid-svg-icons/faCaretLeft'
 import { faCaretRight } from '@fortawesome/free-solid-svg-icons/faCaretRight'
 import map from 'ramda/src/map'
-import { colors, media } from '@/theme'
+import { colors, media } from '@src/theme'
 
 const Paginator = ({
   pagination,

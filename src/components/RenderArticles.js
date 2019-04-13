@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 // import VisibilitySensor from 'react-visibility-sensor'
-import ArticlePreview from '@/components/ArticlePreview'
+import ArticlePreview from '@components/ArticlePreview'
 
 const RenderArticles = ({ articles, ...props }) => (
   <div {...props}>

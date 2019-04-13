@@ -2,10 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import { css } from '@emotion/core'
-import Link from '@/components/Link'
+import Link from '@components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faComments } from '@fortawesome/free-regular-svg-icons'
-import { colors, media } from '@/theme'
+import { colors, media } from '@src/theme'
 
 const Footer = ({
   menu,
