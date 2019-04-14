@@ -1,3 +1,8 @@
+import preval from 'babel-plugin-preval/macro'
+const { homepage } = preval`
+  const { homepage } = require('../../../package.json')
+  module.exports = { homepage }
+`
 import { colors, media } from '@src/theme'
 // TODO: https://github.com/sindresorhus/modern-normalize ?
 /**
@@ -14,12 +19,13 @@ export const globalStyles = `
    * Debugger
    * from https://medium.freecodecamp.org/heres-my-favorite-weird-trick-to-debug-css-88529aa5a6a3
    */
-  /** *:not(path):not(g) {
+  // *:not(path):not(g),
+  .debug *:not(path):not(g) {
     color:                    hsla(210, 100%, 100%, 0.9) !important;
     background:               hsla(210, 100%,  50%, 0.5) !important;
     outline:    solid 0.25rem hsla(210, 100%, 100%, 0.5) !important;
     box-shadow: none !important;
-  } */
+  }
 
   /** *:focus,
   *:focus + svg,
@@ -426,5 +432,61 @@ export const globalStyles = `
   th:last-child,
   td:last-child {
     padding-right: 0;
+  }
+
+  @media print {
+    body {
+      margin-bottom: 0;
+
+      box-shadow: none;
+      -moz-box-shadow: none;
+      -webkit-box-shadow: none;
+    }
+
+    h1 {
+        margin-top: 0;
+    }
+
+    header,
+    footer {
+      display: none;
+      visibility: hidden;
+    }
+
+    img {
+      display: block;
+      page-break-before: always;
+      page-break-inside: avoid;
+    }
+
+    span.gatsby-resp-image-wrapper {
+      position: static;
+      display: inline;
+      margin-left: auto;
+      margin-right: auto;
+      flex: none;
+      max-width: 60%;
+
+      img {
+        width: auto;
+        height: auto;
+        max-with: 60%;
+        margin: 0px auto;
+        vertical-align: unset;
+        position: static;
+        box-shadow: none;
+      }
+    }
+
+    .postBody a {
+      border: none;
+    }
+    .postBody a:link:after, .postBody a:visited:after {
+      content: " (" attr(href) ") ";
+      font-size: 90%;
+    }
+    .postBody a[href^="/"]:after {
+      content: " (${homepage}" attr(href) ") ";
+    }
   }
 `

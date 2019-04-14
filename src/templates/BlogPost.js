@@ -441,6 +441,7 @@ PostHeader.propTypes = {
 
 const PostBody = ({ children }) => (
   <div
+    className="postBody"
     css={css`
       word-break: break-word;
       word-wrap: break-word;

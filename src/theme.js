@@ -71,6 +71,13 @@ export const gradients = {
   primary: `linear-gradient(to right, rgba(4,47,55,0.58), rgba(4,47,55,0.72))`,
 }
 
+export const ignoreInPrint = css`
+  @media print {
+    display: none;
+    visibility: hidden;
+  }
+`
+
 export const screenReaderOnly = {
   position: `absolute`,
   width: `1px`,
