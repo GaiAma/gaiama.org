@@ -108,9 +108,9 @@ const BlogPost = props => {
         `}
       />
 
-      {post.fields.suggested?.length && (
+      {post.suggested?.length && (
         <Newsticker
-          items={post.fields.suggested}
+          items={post.suggested}
           title={BlogPost.frontmatter.relatedArticlesLabel}
           linkLabel={NewsTicker.frontmatter.linkLabel}
           link={NewsTicker.frontmatter.link}
@@ -233,6 +233,31 @@ export const query = graphql`
     }
 
     page: mdx(fields: { type: { eq: "post" }, url: { eq: $url } }) {
+      suggested(count: 3) {
+        excerpt(pruneLength: 135)
+        fields {
+          url
+        }
+        frontmatter {
+          id
+          title
+          lang
+          slug
+          summary
+          cover {
+            image: childImageSharp {
+              fluid(
+                maxWidth: 400
+                maxHeight: 230
+                quality: 75
+                cropFocus: ENTROPY
+              ) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
       fields {
         dateTime
         dateStr
@@ -271,31 +296,6 @@ export const query = graphql`
           }
           fields {
             url
-          }
-        }
-        suggested {
-          excerpt(pruneLength: 135)
-          fields {
-            url
-          }
-          frontmatter {
-            id
-            title
-            lang
-            slug
-            summary
-            cover {
-              image: childImageSharp {
-                fluid(
-                  maxWidth: 400
-                  maxHeight: 230
-                  quality: 75
-                  cropFocus: ENTROPY
-                ) {
-                  ...GatsbyImageSharpFluid
-                }
-              }
-            }
           }
         }
       }

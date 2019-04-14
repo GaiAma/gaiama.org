@@ -1,3 +1,4 @@
+const { GraphQLInt } = require(`gatsby/graphql`)
 const { resolve, join } = require(`path`)
 const { writeFileSync } = require(`fs`)
 const moment = require(`moment`)
@@ -222,11 +223,11 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
         return redirects.push(`${`/${lang}`}/${id} ${url} 301!`)
       })
 
-      createNodeField({
-        node,
-        name: `suggested`,
-        value: getSuggestedNodes(Posts, node),
-      })
+      // createNodeField({
+      //   node,
+      //   name: `suggested`,
+      //   value: getSuggestedNodes(Posts, node),
+      // })
     })
   )
 
@@ -388,45 +389,47 @@ exports.onCreateBabelConfig = ({ actions: { setBabelPlugin } }) => {
   })
 }
 
-const getRemainingShuffledSuggestions = (length = 3) =>
+const getRemainingShuffledSuggestions = (id, length) =>
   R.pipe(
-    R.filter(node => moment(node.fields.dateTime).isAfter(1427472056000)),
+    R.filter(n => n.frontmatter.id !== id),
     shuffle,
     R.slice(0, length)
   )
 
-const getSuggestedNodes = (Posts, node) => {
-  const suggested = []
+// const getSuggestedNodes = (Posts, node) => {
+//   const suggested = []
 
-  if (node.frontmatter.suggested && node.frontmatter.suggested.length) {
-    node.frontmatter.suggested.forEach(_id => {
-      const id = `${_id}`
-      const suggestion = Posts.find(
-        x =>
-          [x.frontmatter.slug, x.frontmatter.id, x.frontmatter.oldId].includes(
-            id
-          ) && x.frontmatter.lang === node.frontmatter.lang
-      )
-      if (suggestion) {
-        suggested.push(suggestion.id)
-      }
-    })
-  }
+//   if (node.frontmatter.suggested && node.frontmatter.suggested.length) {
+//     node.frontmatter.suggested.forEach(_id => {
+//       const id = `${_id}`
+//       const suggestion = Posts.find(
+//         x =>
+//           [x.frontmatter.slug, x.frontmatter.id, x.frontmatter.oldId].includes(
+//             id
+//           ) && x.frontmatter.lang === node.frontmatter.lang
+//       )
+//       if (suggestion) {
+//         suggested.push(suggestion.id)
+//       }
+//     })
+//   }
 
-  if (suggested.length < 3) {
-    getRemainingShuffledSuggestions(Math.abs(suggested.length - 3))(
-      Posts
-    ).forEach(n => suggested.push(n.id))
-  }
+//   const SUGGESTED_POST_COUNT = 3
+//   if (suggested.length < SUGGESTED_POST_COUNT) {
+//     getRemainingShuffledSuggestions(
+//       node.frontmatter.id,
+//       Math.abs(suggested.length - SUGGESTED_POST_COUNT)
+//     )(Posts).forEach(n => suggested.push(n.id))
+//   }
 
-  if (!suggested.length) {
-    console.log(`No suggestions found`, node.fields.slug)
-  }
+//   if (!suggested.length) {
+//     console.log(`No suggestions found`, node.fields.slug)
+//   }
 
-  // console.log(`suggested`, node.fields.url, suggested)
+//   // console.log(`suggested`, node.fields.url, suggested)
 
-  return R.slice(0, 3, suggested)
-}
+//   return R.slice(0, SUGGESTED_POST_COUNT, suggested)
+// }
 
 exports.sourceNodes = ({ actions }) => {
   const { createTypes } = actions
@@ -453,7 +456,7 @@ exports.sourceNodes = ({ actions }) => {
       newer: Mdx
       older: Mdx
       all: Mdx
-      suggested: [Mdx]
+      #suggested: [Mdx]
       translations: [Translations]
       slug_short: String
     }
@@ -468,4 +471,26 @@ exports.sourceNodes = ({ actions }) => {
     }
   `
   createTypes(typeDefs)
+}
+
+// based on https://github.com/gatsbyjs/gatsby/blob/master/examples/using-type-definitions/gatsby-node.js#L63
+exports.createResolvers = ({ createResolvers }) => {
+  createResolvers({
+    Mdx: {
+      suggested: {
+        type: `[Mdx!]!`,
+        args: {
+          count: GraphQLInt,
+        },
+        resolve(source, { count }, context, info) {
+          const result = context.nodeModel.getAllNodes({
+            type: `Mdx`,
+          })
+          return getRemainingShuffledSuggestions(source.frontmatter.id, count)(
+            result.filter(n => isPost(n))
+          )
+        },
+      },
+    },
+  })
 }
