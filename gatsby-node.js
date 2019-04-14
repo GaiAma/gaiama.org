@@ -196,17 +196,17 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
       })
 
       // set up short url redirects
+      const slug_short = isHomePage(node) ? `/` : `/${index}`
+      createNodeField({
+        node,
+        name: `slug_short`,
+        value: notIsErrorPage(node) ? slug_short : null,
+      })
       if (notIsErrorPage(node)) {
-        const slug_short = isHomePage(node) ? `/` : `/${index}`
-        createNodeField({
-          node,
-          name: `slug_short`,
-          value: slug_short,
-        })
         redirects.push(
           [
             slug_short,
-            `${url}?utm_source=${encodeURIComponent(homepage + slug_short)}`,
+            `${url}?ref=${encodeURIComponent(slug_short)}`,
             `301!`,
             node.frontmatter.lang === `de` && `Language=de`,
           ]

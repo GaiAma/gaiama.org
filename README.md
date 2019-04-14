@@ -5,7 +5,7 @@
 <h1 align="center"><a href="https://www.gaiama.org" title="GaiAma.org">GaiAma.org</a></h1>
 
 <p align="center">
-  <a href="https://donate.gaiama.org/?utm_source=github" title="Donate to help us protect more rainforest from being destroyed"><img src="https://img.shields.io/badge/$-support-green.svg"></a>
+  <a href="https://donate.gaiama.org/" title="Donate to help us protect more rainforest from being destroyed"><img src="https://img.shields.io/badge/$-support-green.svg"></a>
   <a href="#contributors" title="All Contributors"><img src="https://img.shields.io/badge/all_contributors-3-orange.svg"></a>
   <a href="http://makeapullrequest.com/" title="PRs Welcome"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg"></a>
   <!-- <a href="https://david-dm.org/GaiAma/gaiama.org" title="dependencies status"><img src="https://david-dm.org/GaiAma/gaiama.org/status.svg"/></a>

@@ -265,12 +265,12 @@ module.exports = {
       options: {
         manifests: [
           Object.assign({}, sharedManifestProperties, {
-            start_url: `/en/?utm_source=a2hs`,
+            start_url: `/en/?ref=a2hs`,
             // pattern: `^/en/.*$`,
             language: `en`,
           }),
           Object.assign({}, sharedManifestProperties, {
-            start_url: `/de/?utm_source=a2hs`,
+            start_url: `/de/?ref=a2hs`,
             // pattern: `^/de/.*$`,
             language: `de`,
           }),

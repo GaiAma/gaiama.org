@@ -1,3 +1,4 @@
+# Travis locally: https://stackoverflow.com/questions/21053657/how-to-run-travis-ci-locally
 language: node_js
 cache: yarn
 
