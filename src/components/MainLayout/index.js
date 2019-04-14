@@ -189,7 +189,6 @@ class MainLayout extends Component {
           />
           <meta name="application-name" content={site.siteMetadata.title} />
 
-          {/* facebook */}
           <meta property="og:site_name" content={site.siteMetadata.title} />
           <meta
             property="og:url"

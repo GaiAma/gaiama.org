@@ -20,14 +20,17 @@
     "url": "https://github.com/gaiama/gaiama.org/issues"
   },
   "scripts": {
-    "dev": "GATSBY_GRAPHQL_IDE=playground gatsby develop -So",
+    "dev": "GATSBY_TELEMETRY_DISABLED=1 GATSBY_TELEMETRY_DEBUG=0 GATSBY_GRAPHQL_IDE=playground ENABLE_GATSBY_REFRESH_ENDPOINT=1 gatsby develop -So",
     "dev:full": "GATSBY_GRAPHQL_IDE=playground GAIAMA_FULL_CONTENT=1 yarn dev",
+    "debug": "DEBUG=* yarn dev",
+    "debug:gatsby": "DEBUG=gatsby* yarn dev",
     "test": "jest",
-    "clean:cache": "rimraf .cache",
+    "clean:cache": "find ${PWD}/.cache/* -not -path '*.cache/@gaiama*' -exec rm -rf {} +",
+    "clean:cache:all": "rimraf .cache",
     "clean:public": "find ${PWD}/public/* -not -path '*public/static*' -exec rm -rf {} +",
     "clean:public:all": "rimraf public",
     "clean": "yarn clean:cache && yarn clean:public",
-    "clean:all": "yarn clean:cache && yarn clean:public:all",
+    "clean:all": "yarn clean:cache:all && yarn clean:public:all",
     "build": "GAIAMA_FULL_CONTENT=1 gatsby build",
     "serve": "serve -c public/serve.json",
     "preview": "yarn clean && yarn build && yarn serve",
@@ -35,9 +38,7 @@
     "github-release": "conventional-github-releaser -p angular -r 0",
     "setup:git": "git config commit.template .github/commit_template",
     "contributors:add": "all-contributors add",
-    "current-branch1": "BRANCH=$(git symbolic-ref HEAD | sed -e 's,.*/(.*),1,')",
-    "current-branch2": "BRANCH=$(git branch | sed -n -e 's/^* (.*)/1/p')",
-    "current-branch": "BRANCH=$(git rev-parse --abbrev-ref HEAD)",
+    "r": "curl -X POST https://localhost:8000/__refresh",
     "contributors:generate": "all-contributors generate"
   },
   "dependencies": {
