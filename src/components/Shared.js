@@ -7,6 +7,7 @@ import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons/faCaretDown'
+import { faCaretUp } from '@fortawesome/free-solid-svg-icons/faCaretUp'
 import { colors, Box, fullPageWidth, media } from '@src/theme'
 // import DonationForm from '@components/DonationForm'
 // import { PureButton } from '@components/layout/Button'
@@ -202,12 +203,21 @@ class BankDetails extends Component {
               border: none;
               background: none;
               padding: 0;
+              position: relative;
               &:hover {
                 transform: scale(1.02);
               }
             `}
           >
             <img src={bankButton.publicURL} alt={bankButtonAlt} />
+            <FontAwesomeIcon
+              icon={this.state.isOpen ? faCaretUp : faCaretDown}
+              css={css`
+                position: absolute;
+                top: 0.67rem;
+                right: 0.7rem;
+              `}
+            />
           </button>
         </div>
 
