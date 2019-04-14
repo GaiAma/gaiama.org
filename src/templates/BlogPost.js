@@ -4,7 +4,6 @@ import { graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 import { css } from '@emotion/core'
 import Head from 'react-helmet'
-// import rehypeReact from 'rehype-react'
 import MainLayout from '@components/MainLayout'
 import Link from '@components/Link'
 import ShareWidget from '@components/ShareWidget'
@@ -109,7 +108,7 @@ const BlogPost = props => {
         `}
       />
 
-      {post.fields.suggested && (
+      {post.fields.suggested?.length && (
         <Newsticker
           items={post.fields.suggested}
           title={BlogPost.frontmatter.relatedArticlesLabel}
@@ -161,7 +160,7 @@ const BlogPost = props => {
         >
           {[`older`, `all`, `newer`].map(
             x =>
-              post.fields[x] && (
+              post.fields[x]?.url && (
                 <div
                   key={post.fields[x].fields.url}
                   css={css`
@@ -333,31 +332,6 @@ export const query = graphql`
     }
   }
 `
-
-// const GaimaImage = ({ aspectRatio, children }) => (
-//   <div css={{ flex: aspectRatio }}>{children}</div>
-// )
-// GaimaImage.propTypes = {
-//   aspectRatio: PropTypes.string,
-// }
-
-// const GaimaVideo = ({ preview, src, width, height }) => (
-//   // <iframe src={children} title={children}></iframe>
-//   <div>
-//     <img src={preview} alt="video preview" width={width} height={height} />
-//     <iframe src={src} width={width} height={height} title="youtube video" />
-//   </div>
-// )
-// GaimaVideo.propTypes = {
-//   preview: PropTypes.string,
-//   src: PropTypes.string,
-//   width: PropTypes.string,
-//   height: PropTypes.string,
-// }
-
-// const renderAst = new rehypeReact({
-//   createElement,
-// }).Compiler
 
 const PostHeader = ({
   title,
