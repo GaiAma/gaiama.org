@@ -1,3 +1,10 @@
+/**
+ * Build reusable React components that can be styled with css, css modules, inline styles & many css-in-js libs
+ * https://github.com/jfschwarz/substyle
+ *
+ * maybe https://wiredjs.com/ ? "hand" drawn components?
+ * maybe https://github.com/bradlc/babel-plugin-tailwind-components ?
+ */
 import React from 'react'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'

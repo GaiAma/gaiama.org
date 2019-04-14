@@ -6,3 +6,9 @@ ID = "gaiama"
   publish = "public/"
   command = "./scripts/build.sh"
   environment = { YARN_VERSION = "1.9.4" }
+
+# https://github.com/netlify/netlify-dev-plugin
+[dev]
+  base    = "/"
+  publish = "public/"
+  command = "yarn build"
