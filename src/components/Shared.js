@@ -1,3 +1,4 @@
+/* global dataLayer */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
@@ -64,9 +65,12 @@ class CoinPicker extends Component {
 
   handleSelect = ({ symbol }) => () => {
     this.state.selected.symbol !== symbol &&
-      this.setState({
-        selected: this.props.coins.find(x => x.symbol === symbol),
-      })
+      this.setState(
+        {
+          selected: this.props.coins.find(x => x.symbol === symbol),
+        },
+        () => dataLayer.push({ event: `donation_method`, method: symbol })
+      )
 
     this.state.selected.symbol === symbol && this.setState({ selected: {} })
   }
@@ -175,6 +179,12 @@ class BankDetails extends Component {
     isOpen: false,
   }
   toggleInfos = () => {
+    if (!this.state.isOpen) {
+      dataLayer.push({
+        event: `donation_method`,
+        method: `bank_details_button`,
+      })
+    }
     this.setState({ isOpen: !this.state.isOpen })
   }
   render() {
@@ -361,61 +371,54 @@ const SupportWidget = ({
 
       <SupportWidgetInner>
         <SupportWidgetFormWrapper>
-          {lang === `en` ? (
-            <form
-              action="https://www.paypal.com/cgi-bin/webscr"
-              method="post"
-              target="_top"
-            >
-              <input type="hidden" name="cmd" value="_s-xclick" />
-              <input
-                type="hidden"
-                name="hosted_button_id"
-                value="TU5GAQZHYT8NC"
-              />
-              <input
-                type="image"
-                src={paypalButton}
-                border="0"
-                name="submit"
-                alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."
-              />
-              <img
-                alt=""
-                border="0"
-                src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif"
-                width="1"
-                height="1"
-              />
-            </form>
-          ) : (
-            <form
-              action="https://www.paypal.com/cgi-bin/webscr"
-              method="post"
-              target="_top"
-            >
-              <input type="hidden" name="cmd" value="_s-xclick" />
-              <input
-                type="hidden"
-                name="hosted_button_id"
-                value="8VVPYXKG7E7CE"
-              />
-              <input
-                type="image"
-                src={paypalButton}
-                border="0"
-                name="submit"
-                alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."
-              />
-              <img
-                alt=""
-                border="0"
-                src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif"
-                width="1"
-                height="1"
-              />
-            </form>
-          )}
+          <form
+            action="https://www.paypal.com/cgi-bin/webscr"
+            method="post"
+            target="_top"
+            onSubmit={() =>
+              dataLayer.push({ event: `donation_method`, method: `paypal` })
+            }
+          >
+            <input type="hidden" name="cmd" value="_s-xclick" />
+            {lang === `en` ? (
+              <>
+                <input
+                  type="hidden"
+                  name="hosted_button_id"
+                  value="TU5GAQZHYT8NC"
+                />
+                <input
+                  type="image"
+                  src={paypalButton}
+                  border="0"
+                  name="submit"
+                  alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."
+                />
+              </>
+            ) : (
+              <>
+                <input
+                  type="hidden"
+                  name="hosted_button_id"
+                  value="8VVPYXKG7E7CE"
+                />
+                <input
+                  type="image"
+                  src={paypalButton}
+                  border="0"
+                  name="submit"
+                  alt="Jetzt einfach, schnell und sicher online bezahlen – mit PayPal."
+                />
+              </>
+            )}
+            <img
+              alt=""
+              border="0"
+              src="https://www.paypalobjects.com/de_DE/i/scr/pixel.gif"
+              width="1"
+              height="1"
+            />
+          </form>
         </SupportWidgetFormWrapper>
 
         <BankDetails
