@@ -214,6 +214,25 @@ exports.createPages = async ({ actions, getNodes, graphql }) => {
             .join(` `)
             .trim()
         )
+
+        // &fb_locale=en_US redirections as in https://stackoverflow.com/a/20827962/3484824
+        node.fields.translations
+          .filter(x => x.id !== node.frontmatter.lang)
+          .forEach(lang =>
+            redirects.push(
+              [
+                `${node.fields.url}?fb_locale=${lang.lc}`,
+                `${lang.to}?ref=${encodeURIComponent(
+                  `${node.fields.url}?fb_locale=${lang.lc}`
+                )}`,
+                `301!`,
+                `Language=${lang.id}`,
+              ]
+                .filter(x => x)
+                .join(` `)
+                .trim()
+            )
+          )
       }
 
       // legacy short url redirects
