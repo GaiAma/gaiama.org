@@ -71,7 +71,7 @@ const NewsTicker = ({
       >
         {items.map(
           (item, index) =>
-            item && (
+            item?.frontmatter && (
               <NewstickerItem
                 key={item.frontmatter.id || index}
                 item={item}

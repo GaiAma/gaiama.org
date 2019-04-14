@@ -83,10 +83,9 @@ const TitledCopy = ({
           )}
         </ContentWrapper>
       )}
-      {spoiler &&
-        !state.spoilerOpen && (
-          <Button onClick={handleClick}>{spoilerLabel}</Button>
-        )}
+      {spoiler && !state.spoilerOpen && (
+        <Button onClick={handleClick}>{spoilerLabel}</Button>
+      )}
     </Container>
   )
 }
