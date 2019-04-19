@@ -18,11 +18,10 @@ let page
 let browser
 
 const testIf =
-  process.env.MODE && process.env.MODE === `skipsnapshots`
+  (process.env.MODE && process.env.MODE === `skipsnapshots`) ||
+  (process.env.SKIP && process.env.SKIP === `e2e`)
     ? test.skip
-    : process.env.SKIP && process.env.SKIP === `e2e`
-      ? test.skip
-      : test
+    : test
 
 beforeAll(async () => {
   browser = await puppeteer.launch({
