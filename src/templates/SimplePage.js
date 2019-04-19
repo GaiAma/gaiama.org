@@ -1,13 +1,21 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
+import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+// import { withMDXScope } from 'gatsby-mdx/context'
+// import { MDXTag } from '@mdx-js/tag'
+// import { TableOfContents } from '@gaiama/react-mdx-table-of-contents'
 import MainLayout from '@components/MainLayout'
 
 const SimplePage = props => {
-  const { page } = props.data
+  const { page /*,scope*/ } = props.data
+  // const TOC = () =>
+  //   TableOfContents({ items: props.data.page.tableOfContents.items })
   return (
     <MainLayout {...props}>
-      <div dangerouslySetInnerHTML={{ __html: page.frontmatter.content }} />
+      <MDXRenderer /*scope={{ TableOfContents: TOC, ...scope }}*/>
+        {page.code.body}
+      </MDXRenderer>
     </MainLayout>
   )
 }
@@ -17,6 +25,7 @@ SimplePage.propTypes = {
 }
 
 export default SimplePage
+// export default withMDXScope(SimplePage)
 
 export const query = graphql`
   query($lang: String!, $url: String!) {
@@ -28,16 +37,28 @@ export const query = graphql`
     ...legal
     ...Accounts
 
-    page: javascriptFrontmatter(fields: { url: { eq: $url } }) {
-      ...PageTranslations
+    page: mdx(fields: { url: { eq: $url } }) {
+      code {
+        body
+      }
+      #tableOfContents
       fields {
         url
+        translations {
+          fields {
+            url
+          }
+          frontmatter {
+            title
+            lang
+            slug
+          }
+        }
       }
       frontmatter {
         title
         lang
         slug
-        content
         summary
       }
     }

@@ -147,7 +147,7 @@ export const Fragments = graphql`
   }
 
   fragment legal on Query {
-    legal: allJavascriptFrontmatter(
+    legal: allMdx(
       filter: { frontmatter: { lang: { eq: $lang }, menu: { eq: "legal" } } }
     ) {
       edges {
