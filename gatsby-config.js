@@ -260,20 +260,39 @@ module.exports = {
       resolve: `gatsby-plugin-canonical-urls`,
       options: { siteUrl: homepage },
     },
+    // {
+    //   resolve: `@gaiama/gatsby-plugin-manifest`,
+    //   options: {
+    //     manifests: [
+    //       Object.assign({}, sharedManifestProperties, {
+    //         start_url: `/en/?ref=a2hs`,
+    //         // pattern: `^/en/.*$`,
+    //         language: `en`,
+    //       }),
+    //       Object.assign({}, sharedManifestProperties, {
+    //         start_url: `/de/?ref=a2hs`,
+    //         // pattern: `^/de/.*$`,
+    //         language: `de`,
+    //       }),
+    //     ],
+    //   },
+    // },
     {
       resolve: `@gaiama/gatsby-plugin-manifest`,
       options: {
         manifests: [
-          Object.assign({}, sharedManifestProperties, {
-            start_url: `/en/?ref=a2hs`,
-            // pattern: `^/en/.*$`,
-            language: `en`,
-          }),
-          Object.assign({}, sharedManifestProperties, {
+          {
+            ...sharedManifestProperties,
             start_url: `/de/?ref=a2hs`,
-            // pattern: `^/de/.*$`,
+            regex: `^/de/.*`,
             language: `de`,
-          }),
+          },
+          {
+            ...sharedManifestProperties,
+            start_url: `/en/?ref=a2hs`,
+            regex: `^/en/.*`,
+            language: `en`,
+          },
         ],
       },
     },

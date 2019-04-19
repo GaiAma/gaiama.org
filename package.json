@@ -49,7 +49,7 @@
     "@fortawesome/free-regular-svg-icons": "5.8.1",
     "@fortawesome/free-solid-svg-icons": "5.8.1",
     "@fortawesome/react-fontawesome": "0.1.4",
-    "@gaiama/gatsby-plugin-manifest": "2.0.5",
+    "@gaiama/gatsby-plugin-manifest": "2.0.29",
     "@gaiama/query-string": "0.1.0",
     "@gaiama/react-video-player": "0.3.0",
     "@mdx-js/mdx": "^0.20.3",
