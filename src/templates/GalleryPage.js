@@ -1,7 +1,7 @@
 // import React from 'react'
 // import PropTypes from 'prop-types'
 // // import Helmet from 'react-helmet'
-// import Img from 'gatsby-image'
+// import Img from 'gatsby-image/withIEPolyfill'
 // import { graphql, Link } from 'gatsby'
 // import chunk from 'lodash/fp/chunk'
 // import compose from 'ramda/src/compose'

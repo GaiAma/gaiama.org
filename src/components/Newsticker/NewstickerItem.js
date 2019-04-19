@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
-import Img from 'gatsby-image'
+import Img from 'gatsby-image/withIEPolyfill'
 import { colors, fontFamilies } from '@src/theme'
 
 const StyledLink = styled(Link)`

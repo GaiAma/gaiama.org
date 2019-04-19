@@ -1,5 +1,5 @@
 import React from 'react'
-// import GatsbyImage from 'gatsby-image'
+// import GatsbyImage from 'gatsby-image/withIEPolyfill'
 import PropTypes from 'prop-types'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'

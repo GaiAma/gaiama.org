@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { css } from '@emotion/core'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image'
+import Img from 'gatsby-image/withIEPolyfill'
 import { colors, fontFamilies, fullPageWidth, media } from '@src/theme'
 import { mediaQuery } from '@components/MediaQuery'
 
