@@ -215,7 +215,7 @@ class BankDetails extends Component {
               css={css`
                 position: absolute;
                 top: 0.67rem;
-                right: 0.7rem;
+                right: 0.4rem;
               `}
             />
           </button>
