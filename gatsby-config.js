@@ -428,7 +428,7 @@ module.exports = {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {
-          '/*': !isNetlifyProduction ? [`X-Robots-Tag: noindex, follow`] : [],
+          '/*': !isNetlifyProduction ? [`X-Robots-Tag: noindex, nofollow`] : [],
         },
       },
     },
