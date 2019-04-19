@@ -1,16 +1,19 @@
-const { basename, dirname, join, resolve } = require(`path`)
-const { homepage, version } = require(`./package.json`)
+const { join } = require(`path`)
 const { round } = require(`lodash`)
+const { homepage, version } = require(`./package.json`)
 
 const {
-  BRANCH,
-  GAIAMA_CONTENT_ID,
-  GAIAMA_FULL_CONTENT,
-  GAIAMA_DONATIONS_ACCESS_KEY_ID,
-  GAIAMA_DONATIONS_SECRET_ACCESS_KEY,
+  URL: NETLIFY_SITE_URL = homepage,
+  DEPLOY_PRIME_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = process.env.NODE_ENV,
 } = process.env
-const isProduction = GAIAMA_CONTENT_ID
-const isMaster = BRANCH === `master`
+
+const isOnline = process.env.GAIAMA_CONTENT_ID
+
+// if `production` or A/B testing branch prefixed with `ab_`
+const isNetlifyProduction =
+  NETLIFY_ENV === `production` || `${process.env.BRANCH}`.startsWith(`ab_`)
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : DEPLOY_PRIME_URL
 
 const sharedManifestProperties = {
   name: `GaiAma`,
@@ -26,29 +29,38 @@ module.exports = {
     title: `GaiAma.org`,
     author: `GaiAma`,
     description: `GaiAma.org website`,
-    siteUrl: homepage,
+    siteUrl,
     version,
   },
-  mapping: {
-    'Mdx.fields.suggested': `Mdx`,
-    'Mdx.fields.newer': `Mdx`,
-    'Mdx.fields.older': `Mdx`,
-    'Mdx.fields.all': `JavascriptFrontmatter`,
-  },
   plugins: [
-    // `gatsby-plugin-fastclick`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: `*` }],
+          },
+          'deploy-preview': {
+            policy: [{ userAgent: `*`, disallow: [`/`] }],
+          },
+          ...(!isNetlifyProduction
+            ? {
+                'branch-deploy': {
+                  policy: [{ userAgent: `*`, disallow: [`/`] }],
+                },
+              }
+            : {}),
+        },
+      },
+    },
     {
       resolve: `gatsby-plugin-emotion`,
       options: {
         labelFormat: `[filename]--[local]`,
       },
     },
-    {
-      resolve: `gatsby-plugin-layout`,
-      options: {
-        component: require.resolve(`./src/layouts/index.js`),
-      },
-    },
+    `gatsby-plugin-layout`,
     {
       resolve: `gatsby-plugin-webpack-aliases`,
       options: {
@@ -68,23 +80,20 @@ module.exports = {
     {
       resolve: `gatsby-source-filesystem`,
       options: {
-        path: isProduction
+        path: isOnline
           ? join(__dirname, `content`)
           : join(__dirname, `..`, `gaiama.org_content`),
         name: `content`,
         ignore: [`**/.git`, `**/happygaia/*`],
-        // isProduction || GAIAMA_FULL_CONTENT
-        //   ? [`**/.git`]
-        // : [`**/.git`, `**/happygaia/*`],
       },
     },
     {
       resolve: `@gaiama/gatsby-source-gaiama-donations`,
       options: {
         TableName: `gaiama-donations`,
-        accessKeyId: isProduction && GAIAMA_DONATIONS_ACCESS_KEY_ID,
-        secretAccessKey: isProduction && GAIAMA_DONATIONS_SECRET_ACCESS_KEY,
-        offline: !isProduction && !GAIAMA_FULL_CONTENT,
+        accessKeyId: process.env.GAIAMA_DONATIONS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.GAIAMA_DONATIONS_SECRET_ACCESS_KEY,
+        offline: !isOnline && !process.env.GAIAMA_FULL_CONTENT,
       },
     },
     {
@@ -248,11 +257,17 @@ module.exports = {
         path: `frontmatter.id`,
         validValues: [`btc`, `bch`, `ltc`, `eth`, `dash`],
         extension: `svg`,
-        dir: resolve(`public/qr`),
+        dir: join(__dirname, `public`, `qr`),
       },
     },
     `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        // TODO: enable for better compression
+        // useMozJpeg: true,
+      },
+    },
     // `gatsby-plugin-lodash`,
     `gatsby-plugin-catch-links`,
     `gatsby-plugin-react-helmet`,
@@ -299,7 +314,7 @@ module.exports = {
     // {
     //   resolve: `gatsby-plugin-webpack-bundle-analyzer`,
     //   options: {
-    //     production: true,
+    //     production: false,
     // {
     //   resolve: `gatsby-plugin-pixel`,
     //   options: {
@@ -321,6 +336,88 @@ module.exports = {
         includeInDevelopment: true,
       },
     },
+    // {
+    //   resolve: `@gaiama/gatsby-plugin-feed`,
+    //   options: {
+    //     // this base query will be merged with any queries in each feed
+    //     query: `
+    //       {
+    //         site {
+    //           siteMetadata {
+    //             title
+    //             description
+    //             siteUrl
+    //             site_url: siteUrl
+    //           }
+    //         }
+    //       }
+    //     `,
+    //     feeds: [
+    //       {
+    //         output: x => `/rss.xml`,
+    //         title: x => `Gatsby RSS Feed`,
+    //         serialize: ({
+    //           query: {
+    //             site: { siteMetadata },
+    //             items,
+    //             languages,
+    //           },
+    //         }) => ({
+    //           languages: languages.map(l => l.frontmatter),
+    //           items: items.group.map(group => ({
+    //             language: group.lang,
+    //             items: group.nodes.map(n => {
+    //               const { slug } = n.fields
+    //               return {
+    //                 ...n.frontmatter,
+    //                 description: n.excerpt,
+    //                 url: `${siteMetadata.siteUrl}/${group.lang}/${slug}`,
+    //                 guid: `${siteMetadata.siteUrl}/${group.lang}/${slug}`,
+    //                 // custom_elements: [{ 'content:encoded': edge.node.html }],
+    //               }
+    //             }),
+    //           })),
+    //         }),
+    //         query: `
+    //           {
+    //             languages: allLanguagesAml {
+    //               nodes {
+    //                 frontmatter {
+    //                   id
+    //                   title
+    //                   titleShort
+    //                   lc
+    //                 }
+    //               }
+    //             }
+
+    //             items: allMdx(
+    //               filter: {
+    //                 frontmatter: { type: { eq: "article" }, published: { eq: true } }
+    //               }
+    //               sort: { order: DESC, fields: [frontmatter___date] }
+    //             ) {
+    //               group(field: frontmatter___lang) {
+    //                 lang: fieldValue
+    //                 totalCount
+    //                 nodes {
+    //                   excerpt
+    //                   fields { slug }
+    //                   frontmatter {
+    //                     title
+    //                     date
+    //                     language: lang
+    //                   }
+    //                 }
+    //               }
+    //             }
+    //           }
+
+    //         `,
+    //       },
+    //     ],
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-offline`,
       options: {
@@ -331,7 +428,7 @@ module.exports = {
       resolve: `gatsby-plugin-netlify`,
       options: {
         headers: {
-          '/*': !isMaster ? [`X-Robots-Tag: noindex, follow`] : [],
+          '/*': !isNetlifyProduction ? [`X-Robots-Tag: noindex, follow`] : [],
         },
       },
     },
