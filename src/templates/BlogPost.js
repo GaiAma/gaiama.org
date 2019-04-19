@@ -14,8 +14,14 @@ import PodcastPlayer from '@components/PodcastPlayer'
 import { colors, fontFamilies, gradients, media } from '@src/theme'
 
 const BlogPost = props => {
-  const { page: post, BlogPost, NewsTicker, PodcastPlayerMeta } = props.data
-
+  const {
+    page: post,
+    BlogPost,
+    BlogPage,
+    NewsTicker,
+    PodcastPlayerMeta,
+  } = props.data
+  const { newer, older } = post
   return (
     <MainLayout {...props}>
       <Head
@@ -158,7 +164,7 @@ const BlogPost = props => {
             background: #fff;
           `}
         >
-          {[`older`, `all`, `newer`].map(
+          {[older, BlogPage, newer].map(
             x =>
               post.fields[x]?.url && (
                 <div
@@ -232,73 +238,19 @@ export const query = graphql`
       }
     }
 
-    page: mdx(fields: { type: { eq: "post" }, url: { eq: $url } }) {
-      suggested(count: 3) {
-        excerpt(pruneLength: 135)
-        fields {
-          url
-        }
-        frontmatter {
-          id
-          title
-          lang
-          slug
-          summary
-          cover {
-            image: childImageSharp {
-              fluid(
-                maxWidth: 400
-                maxHeight: 230
-                quality: 75
-                cropFocus: ENTROPY
-              ) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
+    BlogPage: javascriptFrontmatter(
+      frontmatter: { layout: { eq: "BlogPage" } }
+      fields: { lang: { eq: $lang } }
+    ) {
+      frontmatter {
+        title
       }
       fields {
-        dateTime
-        dateStr
-        dateStrLocalized
-        slug_short
         url
-        translations {
-          fields {
-            url
-          }
-          frontmatter {
-            title
-            lang
-            slug
-          }
-        }
-        newer {
-          frontmatter {
-            title
-          }
-          fields {
-            url
-          }
-        }
-        all {
-          frontmatter {
-            title
-          }
-          fields {
-            url
-          }
-        }
-        older {
-          frontmatter {
-            title
-          }
-          fields {
-            url
-          }
-        }
       }
+    }
+
+    page: mdx(fields: { type: { eq: "post" }, url: { eq: $url } }) {
       code {
         body
       }
@@ -323,6 +275,64 @@ export const query = graphql`
           thumbnail {
             image: childImageSharp {
               fluid(maxWidth: 760, quality: 75, cropFocus: ENTROPY) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+      }
+      fields {
+        dateTime
+        dateStr
+        dateStrLocalized
+        slug_short
+        url
+        translations {
+          fields {
+            url
+          }
+          frontmatter {
+            title
+            lang
+            slug
+          }
+        }
+      }
+      newer {
+        frontmatter {
+          title
+        }
+        fields {
+          url
+        }
+      }
+      older {
+        frontmatter {
+          title
+        }
+        fields {
+          url
+        }
+      }
+      suggested(count: 3) {
+        excerpt(pruneLength: 135)
+        fields {
+          url
+        }
+        frontmatter {
+          id
+          title
+          lang
+          slug
+          summary
+          cover {
+            image: childImageSharp {
+              fluid(
+                maxWidth: 400
+                maxHeight: 230
+                quality: 75
+                cropFocus: ENTROPY
+              ) {
                 ...GatsbyImageSharpFluid
               }
             }

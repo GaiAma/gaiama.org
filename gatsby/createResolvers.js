@@ -38,20 +38,6 @@ module.exports = store =>
             return newer && newer.id ? newer : null
           },
         },
-        overview: {
-          type: `JavascriptFrontmatter`,
-          resolve(source, _, { nodeModel }) {
-            const result = nodeModel.getAllNodes({
-              type: `JavascriptFrontmatter`,
-            })
-            const overview = result.find(
-              n =>
-                n.frontmatter.layout === `BlogPage` &&
-                n.fields.lang === source.frontmatter.lang
-            )
-            return overview && overview.id ? overview : null
-          },
-        },
       },
     })
   }
