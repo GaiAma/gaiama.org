@@ -5,7 +5,7 @@ import Img from 'gatsby-image/withIEPolyfill'
 import styled from '@emotion/styled'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper'
-import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
+// import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
 import { css } from '@emotion/core'
 import MainLayout from '@components/MainLayout'
 import { SupportWidget } from '@components/Shared'
@@ -289,7 +289,7 @@ const SupportPage = props => {
               <FontAwesomeIcon icon={faNewspaper} size="3x" />
             </StyledA>
           </div>
-          <div
+          {/* <div
             css={css`
               &:hover svg {
                 color: ${colors.rss};
@@ -303,7 +303,7 @@ const SupportPage = props => {
             >
               <FontAwesomeIcon icon={faRssSquare} size="3x" />
             </StyledA>
-          </div>
+          </div> */}
         </div>
       </div>
 
