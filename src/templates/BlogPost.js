@@ -485,6 +485,11 @@ const PostBody = ({ children }) => (
       & ol {
         list-style-position: inside;
       }
+      /**
+       * TODO: check out grids
+       * https://cloudfour.com/thinks/breaking-out-with-css-grid-layout/
+       * https://gedd.ski/post/article-grid-layout/
+      */
       & .inline-gallery {
         max-width: 100%;
         display: flex;
