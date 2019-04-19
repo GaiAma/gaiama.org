@@ -68,7 +68,7 @@ module.exports = {
     'jsx-quotes': ['error', 'prefer-double'],
     semi: ['error', 'never'],
     'object-curly-spacing': ['error', 'always'],
-    'no-magic-numbers': ['error', { ignore: [1], ignoreArrayIndexes: true }],
+    // 'no-magic-numbers': ['error', { ignore: [1], ignoreArrayIndexes: true }],
     'comma-dangle': [
       'error',
       {
