@@ -110,16 +110,7 @@ const plugins = [
     resolve: `gatsby-mdx`,
     options: {
       extensions: [`.mdx`, `.md`],
-      globalScope: `
-          import { VideoPlayer } from "@gaiama/react-video-player";
-          import { TableOfContents } from "@gaiama/react-mdx-table-of-contents";
-          export default {
-            VideoPlayer,
-            TableOfContents,
-          }
-        `,
-      // rehypePlugins: [require(`rehype-slug`)],
-      hastPlugins: [require(`rehype-slug`)],
+      rehypePlugins: [require(`rehype-slug`)],
       gatsbyRemarkPlugins: [
         // { resolve: `gatsby-remark-embed-video` },
         { resolve: `gatsby-remark-external-links` },

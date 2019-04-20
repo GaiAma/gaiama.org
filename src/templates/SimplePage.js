@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import MDXRenderer from 'gatsby-mdx/mdx-renderer'
 // import { withMDXScope } from 'gatsby-mdx/context'
-// import { MDXTag } from '@mdx-js/tag'
 // import { TableOfContents } from '@gaiama/react-mdx-table-of-contents'
 import MainLayout from '@components/MainLayout'
 
