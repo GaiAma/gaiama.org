@@ -4,7 +4,7 @@
  */
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
-import { VideoPlayer } from '@gaiama/react-video-player'
+// import { VideoPlayer } from '@gaiama/react-video-player'
 // import { TableOfContents } from "@gaiama/react-mdx-table-of-contents"
 
 // if (process.env.DEBUG) {
@@ -13,7 +13,7 @@ import { VideoPlayer } from '@gaiama/react-video-player'
 // }
 
 const Layout = ({ children }) => (
-  <MDXProvider components={{ VideoPlayer }}>{children}</MDXProvider>
+  <MDXProvider /*components={{ VideoPlayer }}*/>{children}</MDXProvider>
 )
 
 export default Layout

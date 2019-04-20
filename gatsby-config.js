@@ -84,7 +84,8 @@ const plugins = [
     resolve: `gatsby-source-filesystem`,
     options: {
       path: isOnline
-        ? join(__dirname, `.cache`, `gatsby-source-git`, `repo-one`)
+        ? // ? join(__dirname, `.cache`, `gatsby-source-git`, `gaiama-content`)
+          join(__dirname, `.vscode`)
         : join(__dirname, `..`, `gaiama.org_content`),
       name: `content`,
       ignore: [`**/.git`, `**/happygaia/*`],
