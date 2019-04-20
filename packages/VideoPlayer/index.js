@@ -9,6 +9,10 @@ import { css } from '@emotion/core'
 // import { media } from '@src/theme'
 // import localStore from '@src/utils/local-store'
 
+/**
+ * TODO: consider https://www.npmjs.com/package/react-player
+ */
+
 const ThumbnailWrapperStyles = css`
   position: absolute;
   margin: 0 auto;
