@@ -74,7 +74,7 @@ const plugins = [
     ? {
         resolve: `gatsby-source-git`,
         options: {
-          name: `repo-one`,
+          name: `gaiama-content`,
           remote: `https://gitlab.com:${GAIAMA_CONTENT_TOKEN}@gitlab.com/gaiama/content.git`,
           // branch: `develop`,
         },
