@@ -29,7 +29,7 @@ module.exports = {
     'prettier/react',
     'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['flowtype', 'react', 'jsx-a11y'],
+  plugins: ['flowtype', 'react', 'jsx-a11y', `react-hooks`],
   parserOptions: {
     ecmaVersion: 2016,
     sourceType: 'module',
@@ -52,6 +52,8 @@ module.exports = {
     },
   },
   rules: {
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
     'no-console': 'off',
     'no-inner-declarations': 'off',
     'valid-jsdoc': 'off',
