@@ -27,219 +27,264 @@ const Footer = ({
         ),
         url(${bgImage.fluid.src}) no-repeat bottom;
       background-size: cover;
-      display: flex;
-      flex-direction: column;
       color: ${colors.white};
       font-size: 0.9rem;
       font-weight: 100;
       padding: 4rem 0 2rem;
-      ${media.lessThan(`medium`)} {
-        text-align: center;
-        align-items: center;
-        & > *:not(:last-child) {
-          marginbottom: 3rem;
-        }
-        & > div {
-          width: 100%;
-        }
-      }
-      ${media.greaterThan(`medium`)} {
-        flex-direction: row;
-        justify-content: space-around;
-      }
       & a {
         color: ${colors.white};
       }
     `}
   >
-    <nav>
-      <div
-        css={css`
-          margin-bottom: 1rem;
-        `}
-      >
-        {menuTitle}
-      </div>
-      {menu.map((link, i) => (
-        <div
-          key={i}
-          css={css`
-            margin: 0.5rem 0;
-            ${media.greaterThan(`medium`)} {
-              margin: 0.2rem 0;
-            }
-            & .active {
-              text-decoration: underline;
-            }
-            & .active-lang {
-              font-weight: 400;
-            }
-          `}
-        >
-          <Link
-            to={link.to}
-            activeClassName={link.lc ? `active-lang` : `active`}
-            css={css`
-              border: none;
-            `}
-          >
-            {link.title}
-          </Link>
-        </div>
-      ))}
-      <div
-        css={css`
-          margin-top: 2rem;
-        `}
-      >
-        <span>
-          Copyright &copy; 2017-
-          {new Date().getFullYear()}
-        </span>
-        <br />
-        GaiAma.org
-      </div>
-    </nav>
-
-    <div>
-      <div
-        css={css`
-          margin-bottom: 1rem;
-        `}
-      >
-        {socialTitle}
-      </div>
-      <ul
-        className="fa-ul"
-        css={css`
-          margin-left: 0;
-          & svg {
-            margin-right: 0.4rem;
+    <div
+      css={css`
+        display: flex;
+        flex-direction: column;
+        ${media.lessThan(`medium`)} {
+          text-align: center;
+          align-items: center;
+          > *:not(:last-child) {
+            margin-bottom: 3rem;
           }
+          > * {
+            width: 100%;
+          }
+        }
+        ${media.greaterThan(`medium`)} {
+          flex-direction: row;
+          justify-content: space-around;
+          > * {
+            width: 33.33%;
+          }
+        }
+      `}
+    >
+      <nav
+        css={css`
+          display: flex;
+          justify-content: center;
         `}
       >
-        {accounts.frontmatter.accounts.map(x => (
-          <li
-            key={x.service}
+        <div>
+          <div
             css={css`
-              &:hover svg {
-                color: ${x.service !== `instagram` && colors.brands[x.service]};
-              }
-              &:hover svg * {
-                fill: ${x.service === `instagram` && `url(#InstagramGradient)`};
-              }
+              margin-bottom: 1rem;
             `}
           >
-            <a
-              href={x.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              title={x.description}
+            {menuTitle}
+          </div>
+          {menu.map((link, i) => (
+            <div
+              key={i}
               css={css`
-                border: none;
-                :hover {
-                  background-color: transparent;
+                margin: 0.5rem 0;
+                ${media.greaterThan(`medium`)} {
+                  margin: 0.2rem 0;
+                }
+                & .active {
+                  text-decoration: underline;
+                }
+                & .active-lang {
+                  font-weight: 400;
                 }
               `}
             >
-              <FontAwesomeIcon icon={[`fab`, x.icon]} />
-              {x.name}
-            </a>
-          </li>
-        ))}
-        <li
+              <Link
+                to={link.to}
+                activeClassName={link.lc ? `active-lang` : `active`}
+                css={css`
+                  border: none;
+                `}
+              >
+                {link.title}
+              </Link>
+            </div>
+          ))}
+        </div>
+      </nav>
+
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <div>
+          <div
+            css={css`
+              margin-bottom: 1rem;
+            `}
+          >
+            {socialTitle}
+          </div>
+          <ul
+            className="fa-ul"
+            css={css`
+              margin-left: 0;
+              & svg {
+                margin-right: 0.4rem;
+              }
+            `}
+          >
+            {accounts.frontmatter.accounts.map(x => (
+              <li
+                key={x.service}
+                css={css`
+                  &:hover svg {
+                    color: ${x.service !== `instagram` &&
+                      colors.brands[x.service]};
+                  }
+                  &:hover svg * {
+                    fill: ${x.service === `instagram` &&
+                      `url(#InstagramGradient)`};
+                  }
+                `}
+              >
+                <a
+                  href={x.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title={x.description}
+                  css={css`
+                    border: none;
+                    :hover {
+                      background-color: transparent;
+                    }
+                  `}
+                >
+                  <FontAwesomeIcon icon={[`fab`, x.icon]} />
+                  {x.name}
+                </a>
+              </li>
+            ))}
+            <li
+              css={css`
+                &:hover svg {
+                  color: ${colors.brands.steemit};
+                }
+              `}
+            >
+              <a
+                href="https://steemit.com/@gaiama"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="steemit"
+                css={css`
+                  border: none;
+                  :hover {
+                    background-color: transparent;
+                  }
+                `}
+              >
+                <FontAwesomeIcon icon={faComments} />
+                Steemit
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* <div>
+        <div
           css={css`
-            &:hover svg {
-              color: ${colors.brands.steemit};
-            }
+            margin-bottom: 1rem;
           `}
         >
-          <a
-            href="https://steemit.com/@gaiama"
-            target="_blank"
-            rel="noopener noreferrer"
-            title="steemit"
+          {supportTitle}
+        </div>
+      </div> */}
+
+      <div
+        css={css`
+          display: flex;
+          justify-content: center;
+        `}
+      >
+        <div>
+          <div
             css={css`
-              border: none;
-              :hover {
+              a {
+                border: none;
+              }
+              a:hover {
                 background-color: transparent;
               }
             `}
           >
-            <FontAwesomeIcon icon={faComments} />
-            Steemit
-          </a>
-        </li>
-      </ul>
-    </div>
+            <MDXRenderer>{info}</MDXRenderer>
+          </div>
 
-    {/* <div>
-      <div
-        css={css`
-          margin-bottom: 1rem;
-        `}
-      >
-        {supportTitle}
-      </div>
-    </div> */}
-
-    <div>
-      <div
-        css={css`
-          a {
-            border: none;
-          }
-          a:hover {
-            background-color: transparent;
-          }
-        `}
-      >
-        <MDXRenderer>{info}</MDXRenderer>
-      </div>
-
-      {sponsors.length && (
-        <div
-          css={css`
-            a {
-              border: none;
-            }
-            a:hover {
-              background-color: transparent;
-            }
-            a + a {
-              margin-left: 0.7rem;
-            }
-          `}
-        >
-          {sponsors.map(s => (
-            <a
-              key={s.id}
-              title={s.title}
-              href={s.href}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <img src={s.src.publicURL} alt={s.alt} width="30" height="30" />
-            </a>
-          ))}
-        </div>
-      )}
-
-      <div>
-        {legal.length &&
-          legal.map(({ node }) => (
-            <Link
-              to={node.fields.url}
-              key={node.fields.url}
+          {sponsors.length && (
+            <div
               css={css`
-                margin-right: 0.5rem;
-                border: none;
+                a {
+                  border: none;
+                }
+                a:hover {
+                  background-color: transparent;
+                }
+                a + a {
+                  margin-left: 0.7rem;
+                }
               `}
             >
-              {node.frontmatter.title}
-            </Link>
-          ))}
+              {sponsors.map(s => (
+                <a
+                  key={s.id}
+                  title={s.title}
+                  href={s.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img
+                    src={s.src.publicURL}
+                    alt={s.alt}
+                    width="30"
+                    height="30"
+                  />
+                </a>
+              ))}
+            </div>
+          )}
+
+          <div>
+            {legal.length &&
+              legal.map(({ node }) => (
+                <Link
+                  to={node.fields.url}
+                  key={node.fields.url}
+                  css={css`
+                    margin-right: 0.5rem;
+                    border: none;
+                  `}
+                >
+                  {node.frontmatter.title}
+                </Link>
+              ))}
+          </div>
+        </div>
       </div>
+    </div>
+
+    <div
+      css={css`
+        margin-top: 0.5rem;
+        text-align: center;
+        ${media.greaterThan(`xlarge`)} {
+          margin: 0;
+        }
+      `}
+    >
+      <span>Copyright ©</span>
+      <span
+        css={css`
+          padding: 0 0.5rem;
+        `}
+      >
+        2017-
+        {new Date().getFullYear()}
+      </span>
+      <span>GaiAma.org</span>
     </div>
   </footer>
 )
