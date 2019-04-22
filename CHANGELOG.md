@@ -1,3 +1,35 @@
+# [2.5.0](https://github.com/gaiama/gaiama.org/compare/v2.4.0...v2.5.0) (2019-04-22)
+
+
+### Bug Fixes
+
+* **feed:** disable feeds (icons) until working ([43a6a39](https://github.com/gaiama/gaiama.org/commit/43a6a39))
+* add TOC module dir ([b69265d](https://github.com/gaiama/gaiama.org/commit/b69265d))
+* add translated readMoreLabel + use $url to query ([d3ec307](https://github.com/gaiama/gaiama.org/commit/d3ec307))
+* bank button caret positioning ([cd202d3](https://github.com/gaiama/gaiama.org/commit/cd202d3))
+* make gaiama_pictogram a proper square ([6931a15](https://github.com/gaiama/gaiama.org/commit/6931a15))
+* **footer:** move © below menus.. ([419701a](https://github.com/gaiama/gaiama.org/commit/419701a))
+* **Newsticker:** ensure property + style ([392006a](https://github.com/gaiama/gaiama.org/commit/392006a))
+* **pwa:** upgrade forked plugin + fix manifests ([50aae3d](https://github.com/gaiama/gaiama.org/commit/50aae3d))
+
+
+### Features
+
+* add &fb_locale=en_US redirections ([1e1a3cb](https://github.com/gaiama/gaiama.org/commit/1e1a3cb))
+* init CookieBanner, disabled for now ([f3795d2](https://github.com/gaiama/gaiama.org/commit/f3795d2))
+* move VideoPlayer to /packages & removal of cookiewall ([19d21e3](https://github.com/gaiama/gaiama.org/commit/19d21e3))
+* **SupportWidget:** add caret up/down to bank button ([cfc35af](https://github.com/gaiama/gaiama.org/commit/cfc35af))
+* provide branch name && add ViaDevTools ([ecb928a](https://github.com/gaiama/gaiama.org/commit/ecb928a))
+* set robots to also nofollow if !isNetlifyProduction ([af78032](https://github.com/gaiama/gaiama.org/commit/af78032))
+* **BlogPost:** ensure properties + cleanup ([b68a9ec](https://github.com/gaiama/gaiama.org/commit/b68a9ec))
+* **gatsby-image:** use withIEPolyfill version ([d014cad](https://github.com/gaiama/gaiama.org/commit/d014cad))
+* **localStore:** always return the fallback ([335f728](https://github.com/gaiama/gaiama.org/commit/335f728))
+* **redirects:** disable happygaia.com redirects ([f1ac5b5](https://github.com/gaiama/gaiama.org/commit/f1ac5b5))
+* **SupportWidget:** add donation_method GA event + cleanup ([7347c03](https://github.com/gaiama/gaiama.org/commit/7347c03))
+* **theme:** init print css & ignoreInPrint ([4daf518](https://github.com/gaiama/gaiama.org/commit/4daf518))
+
+
+
 # [2.4.0](https://github.com/gaiama/gaiama.org/compare/v2.3.8...v2.4.0) (2019-03-16)
 
 
