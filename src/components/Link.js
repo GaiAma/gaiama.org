@@ -31,6 +31,8 @@ const Link = ({
     to = QS.stringify(qs, to)
   }
 
+  const isExt = ext || !/^\/(?!\/)/.test(to)
+
   const externalLink = (
     <a
       {...props}
@@ -54,7 +56,7 @@ const Link = ({
     </GatsbyLink>
   )
 
-  return ext === undefined ? internalLink : externalLink
+  return isExt ? externalLink : internalLink
 }
 
 Link.propTypes = {
