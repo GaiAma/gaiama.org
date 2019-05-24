@@ -2,7 +2,9 @@
   <a href="https://www.gaiama.org/"><img src="src/assets/Kies-Logo-Round_small.png"></a>
 </p>
 
-<h1 align="center"><a href="https://www.gaiama.org" title="GaiAma.org">GaiAma.org</a></h1>
+<h1 align="center"><a href="https://www.gaiama.org" title="GaiAma.org">GaiAma.org</a><br>
+<small>Making rainforests cool again</small>
+</h1>
 
 <p align="center"><img alt="GitHub package.json version" src="https://img.shields.io/github/package-json/v/GaiAma/gaiama.org.svg?style=for-the-badge"></p>
 
@@ -31,6 +33,7 @@
 - [GatsbyJS](https://www.gatsbyjs.org/)
 - [Emotion](https://emotion.sh/) for styling
 - [Node.js 10.10](https://nodejs.org/en/)
+- [MDX](https://github.com/ChristopherBiscardi/gatsby-mdx)
 - [Changelog](CHANGELOG.md)
 - [I18n: Auto discover & link translations](gatsby/createPages.js#L47-L80)
 - [Pager: older / newer article](gatsby/createResolvers.js#L21-L40)
@@ -49,11 +52,8 @@
 ## Roadmap
 
 - integrate programming blog, which should reuse as much as possible
-- move all APIs to DigitalOcean (some still on now.sh)
-- more cleanup
-- move from [gatsby-transformer-remark](https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-transformer-remark) to [gatsby-mdx](https://github.com/ChristopherBiscardi/gatsby-mdx)
 - change [react-helmet](https://github.com/nfl/react-helmet) to [react-head](https://github.com/tizmagik/react-head)
-- improve [build](scripts/build.sh) script, to fix PR previews
+- code improvements
 
 ## Development
 
