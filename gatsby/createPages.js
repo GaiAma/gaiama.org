@@ -94,7 +94,7 @@ module.exports = store => ({ actions, getNodes, graphql }) => {
             `301!`,
             node.frontmatter.lang === `de` && `Language=de`,
           ]
-            .filter(x => x)
+            .filter(Boolean)
             .join(` `)
             .trim()
         )
