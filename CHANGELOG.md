@@ -1,3 +1,18 @@
+## [2.5.1](https://github.com/gaiama/gaiama.org/compare/v2.5.0...v2.5.1) (2019-05-24)
+
+
+### Bug Fixes
+
+* add readmorelabel to proptypes ([58141fa](https://github.com/gaiama/gaiama.org/commit/58141fa))
+* **Link:** fix isExt regex ([a331afc](https://github.com/gaiama/gaiama.org/commit/a331afc))
+
+
+### Features
+
+* **SupportPage:** disable neighbor checklist ([5158173](https://github.com/gaiama/gaiama.org/commit/5158173))
+
+
+
 # [2.5.0](https://github.com/gaiama/gaiama.org/compare/v2.4.0...v2.5.0) (2019-04-22)
 
 
