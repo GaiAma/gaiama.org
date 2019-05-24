@@ -41,6 +41,7 @@ const ArticlePreview = ({ article, isVisible, readMoreLabel, ...props }) => (
 ArticlePreview.propTypes = {
   article: PropTypes.object.isRequired,
   isVisible: PropTypes.bool,
+  readMoreLabel: PropTypes.string,
 }
 
 export default ArticlePreview
