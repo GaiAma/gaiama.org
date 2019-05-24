@@ -445,7 +445,7 @@ const SupportPage = props => {
             & > div {
               ${media.greaterThan(`small`)} {
                 width: 47%;
-                &:first-of-type {
+                /* &:first-of-type {
                   padding-right: 3rem;
                   position: relative;
                   &:after {
@@ -467,12 +467,12 @@ const SupportPage = props => {
                 }
                 &:last-child {
                   padding-left: 3rem;
-                }
+                } */
               }
             }
           `}
         >
-          {[`left`, `right`].map(x => (
+          {[`left`].map(x => (
             <div key={x}>
               <h3
                 css={css`
