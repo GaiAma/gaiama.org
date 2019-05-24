@@ -428,9 +428,9 @@ const plugins = [
   {
     resolve: `gatsby-plugin-netlify`,
     options: {
-      headers: {
-        '/*': !isNetlifyProduction ? [`X-Robots-Tag: noindex, nofollow`] : [],
-      },
+      allPageHeaders: [
+        ...(!isNetlifyProduction ? [`X-Robots-Tag: noindex, nofollow`] : []),
+      ],
     },
   },
 ].filter(x => x)
