@@ -39,9 +39,7 @@ const BlogPost = props => {
             property: `og:image`,
             content:
               post.frontmatter.cover &&
-              `${props.data.site.siteMetadata.siteUrl}${
-                post.frontmatter.cover.publicURL
-              }`,
+              `${props.data.site.siteMetadata.siteUrl}${post.frontmatter.cover.publicURL}`,
           },
           {
             property: `article:published_time`,
@@ -505,6 +503,10 @@ const PostBody = ({ children }) => (
           width: 600px;
           max-width: 80%;
           margin: 0 0.5rem;
+        }
+        /* TODO: remove this quick fix when .inline-gallery has been upgraded  */
+        .gatsby-resp-image-background-image {
+          padding-bottom: 0 !important;
         }
       }
       & .inline-gallery + .inline-gallery {
