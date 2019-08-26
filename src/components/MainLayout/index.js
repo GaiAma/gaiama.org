@@ -304,7 +304,7 @@ class MainLayout extends Component {
           legal={this.props.data.legal.edges}
           bgImage={SiteMeta.frontmatter.assets.headerBg.image}
           accounts={this.props.data.Accounts}
-          info={SiteMeta.code.body}
+          info={SiteMeta.body}
           sponsors={SiteMeta.frontmatter.sponsors}
         />
 

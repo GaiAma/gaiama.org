@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
-// import { withMDXScope } from 'gatsby-mdx/context'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
+// import { withMDXScope } from 'gatsby-plugin-mdx/context'
 // import { TableOfContents } from '@gaiama/react-mdx-table-of-contents'
 import MainLayout from '@components/MainLayout'
 
@@ -13,7 +13,7 @@ const SimplePage = props => {
   return (
     <MainLayout {...props}>
       <MDXRenderer /*scope={{ TableOfContents: TOC, ...scope }}*/>
-        {page.code.body}
+        {page.body}
       </MDXRenderer>
     </MainLayout>
   )
@@ -37,9 +37,7 @@ export const query = graphql`
     ...Accounts
 
     page: mdx(fields: { url: { eq: $url } }) {
-      code {
-        body
-      }
+      body
       #tableOfContents
       fields {
         url

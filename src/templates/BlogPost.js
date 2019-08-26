@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { css } from '@emotion/core'
 import Head from 'react-helmet'
 import MainLayout from '@components/MainLayout'
@@ -76,7 +76,7 @@ const BlogPost = props => {
             />
           )}
 
-          <MDXRenderer>{post.code.body}</MDXRenderer>
+          <MDXRenderer>{post.body}</MDXRenderer>
         </PostBody>
       </article>
 
@@ -249,9 +249,7 @@ export const query = graphql`
     }
 
     page: mdx(fields: { type: { eq: "post" }, url: { eq: $url } }) {
-      code {
-        body
-      }
+      body
       frontmatter {
         title
         #subtitle

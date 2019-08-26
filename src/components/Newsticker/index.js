@@ -134,9 +134,7 @@ export const fragment = graphql`
   fragment newstickerCommonFields on Mdx {
     excerpt(pruneLength: 120)
     timeToRead
-    #code {
-    #  body
-    #}
+    #body
     fields {
       lang
       url

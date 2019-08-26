@@ -15,9 +15,7 @@ export const Fragments = graphql`
     SiteMeta: mdx(
       frontmatter: { type: { eq: "SiteMeta" }, lang: { eq: $lang } }
     ) {
-      code {
-        body
-      }
+      body
       frontmatter {
         assets {
           logo {

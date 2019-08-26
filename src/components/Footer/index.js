@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import MDXRenderer from 'gatsby-mdx/mdx-renderer'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { css } from '@emotion/core'
 import Link from '@components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
