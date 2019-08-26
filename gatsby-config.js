@@ -108,7 +108,7 @@ const plugins = [
     },
   },
   {
-    resolve: `gatsby-mdx`,
+    resolve: `gatsby-plugin-mdx`,
     options: {
       extensions: [`.mdx`, `.md`],
       rehypePlugins: [require(`rehype-slug`)],
@@ -294,7 +294,7 @@ const plugins = [
   //   },
   // },
   {
-    resolve: `@gaiama/gatsby-plugin-manifest`,
+    resolve: `gatsby-plugin-manifest`,
     options: {
       manifests: [
         {
