@@ -1,4 +1,4 @@
-const { compareAsc, parse: parseDate } = require(`date-fns`)
+const { compareAsc, parseISO } = require(`date-fns`)
 const R = require(`ramda`)
 const { shuffle } = require(`lodash`)
 const speakingUrl = require(`speakingurl`)
@@ -42,7 +42,7 @@ const sortTuplesByDateAndLayout = R.sort((a, b) => {
   const _b = b[0].frontmatter
   // either both layouts are equal in our case both equal BlogPost or none of them equals BlogPost
   return _a.layout === _b.layout || [_a, _b].every(x => x.layout !== `BlogPost`)
-    ? compareAsc(parseDate(_a.date), parseDate(_b.date))
+    ? compareAsc(parseISO(_a.date), parseISO(_b.date))
     : _a.layout === `BlogPost`
     ? 1
     : -1
