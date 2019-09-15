@@ -1,10 +1,21 @@
+## [2.5.2](https://github.com/gaiama/gaiama.org/compare/v2.5.1...v2.5.2) (2019-09-15)
+
+
+### Bug Fixes
+
+* **MDX:** imports & query ([3ce9d77](https://github.com/gaiama/gaiama.org/commit/3ce9d77))
+* date-fns imports (new version) ([8665d53](https://github.com/gaiama/gaiama.org/commit/8665d53))
+* whitespace above inline-gallery ([b97a844](https://github.com/gaiama/gaiama.org/commit/b97a844))
+
+
+
 ## [2.5.1](https://github.com/gaiama/gaiama.org/compare/v2.5.0...v2.5.1) (2019-05-24)
 
 
 ### Bug Fixes
 
-* add readmorelabel to proptypes ([58141fa](https://github.com/gaiama/gaiama.org/commit/58141fa))
 * **Link:** fix isExt regex ([a331afc](https://github.com/gaiama/gaiama.org/commit/a331afc))
+* add readmorelabel to proptypes ([58141fa](https://github.com/gaiama/gaiama.org/commit/58141fa))
 
 
 ### Features
@@ -18,30 +29,30 @@
 
 ### Bug Fixes
 
-* **feed:** disable feeds (icons) until working ([43a6a39](https://github.com/gaiama/gaiama.org/commit/43a6a39))
+* **footer:** move © below menus.. ([419701a](https://github.com/gaiama/gaiama.org/commit/419701a))
 * add TOC module dir ([b69265d](https://github.com/gaiama/gaiama.org/commit/b69265d))
 * add translated readMoreLabel + use $url to query ([d3ec307](https://github.com/gaiama/gaiama.org/commit/d3ec307))
 * bank button caret positioning ([cd202d3](https://github.com/gaiama/gaiama.org/commit/cd202d3))
 * make gaiama_pictogram a proper square ([6931a15](https://github.com/gaiama/gaiama.org/commit/6931a15))
-* **footer:** move © below menus.. ([419701a](https://github.com/gaiama/gaiama.org/commit/419701a))
+* **feed:** disable feeds (icons) until working ([43a6a39](https://github.com/gaiama/gaiama.org/commit/43a6a39))
 * **Newsticker:** ensure property + style ([392006a](https://github.com/gaiama/gaiama.org/commit/392006a))
 * **pwa:** upgrade forked plugin + fix manifests ([50aae3d](https://github.com/gaiama/gaiama.org/commit/50aae3d))
 
 
 ### Features
 
-* add &fb_locale=en_US redirections ([1e1a3cb](https://github.com/gaiama/gaiama.org/commit/1e1a3cb))
-* init CookieBanner, disabled for now ([f3795d2](https://github.com/gaiama/gaiama.org/commit/f3795d2))
-* move VideoPlayer to /packages & removal of cookiewall ([19d21e3](https://github.com/gaiama/gaiama.org/commit/19d21e3))
-* **SupportWidget:** add caret up/down to bank button ([cfc35af](https://github.com/gaiama/gaiama.org/commit/cfc35af))
-* provide branch name && add ViaDevTools ([ecb928a](https://github.com/gaiama/gaiama.org/commit/ecb928a))
 * set robots to also nofollow if !isNetlifyProduction ([af78032](https://github.com/gaiama/gaiama.org/commit/af78032))
 * **BlogPost:** ensure properties + cleanup ([b68a9ec](https://github.com/gaiama/gaiama.org/commit/b68a9ec))
 * **gatsby-image:** use withIEPolyfill version ([d014cad](https://github.com/gaiama/gaiama.org/commit/d014cad))
 * **localStore:** always return the fallback ([335f728](https://github.com/gaiama/gaiama.org/commit/335f728))
 * **redirects:** disable happygaia.com redirects ([f1ac5b5](https://github.com/gaiama/gaiama.org/commit/f1ac5b5))
-* **SupportWidget:** add donation_method GA event + cleanup ([7347c03](https://github.com/gaiama/gaiama.org/commit/7347c03))
 * **theme:** init print css & ignoreInPrint ([4daf518](https://github.com/gaiama/gaiama.org/commit/4daf518))
+* add &fb_locale=en_US redirections ([1e1a3cb](https://github.com/gaiama/gaiama.org/commit/1e1a3cb))
+* **SupportWidget:** add caret up/down to bank button ([cfc35af](https://github.com/gaiama/gaiama.org/commit/cfc35af))
+* **SupportWidget:** add donation_method GA event + cleanup ([7347c03](https://github.com/gaiama/gaiama.org/commit/7347c03))
+* init CookieBanner, disabled for now ([f3795d2](https://github.com/gaiama/gaiama.org/commit/f3795d2))
+* move VideoPlayer to /packages & removal of cookiewall ([19d21e3](https://github.com/gaiama/gaiama.org/commit/19d21e3))
+* provide branch name && add ViaDevTools ([ecb928a](https://github.com/gaiama/gaiama.org/commit/ecb928a))
 
 
 
@@ -212,10 +223,10 @@
 
 ### Features
 
-* add VideoPlayer ([94a28f1](https://github.com/gaiama/gaiama.org/commit/94a28f1))
 * **BlogPost:** add VideoPlayer ([a568eb0](https://github.com/gaiama/gaiama.org/commit/a568eb0))
 * **BlogPost:** text-align: center h1 ([99144ce](https://github.com/gaiama/gaiama.org/commit/99144ce))
 * **HomePage:** add viral video ([28fcc50](https://github.com/gaiama/gaiama.org/commit/28fcc50))
+* add VideoPlayer ([94a28f1](https://github.com/gaiama/gaiama.org/commit/94a28f1))
 
 
 
@@ -283,9 +294,9 @@
 
 ### Features
 
-* show only 5 contributors on mobile on about page ([cd5335b](https://github.com/gaiama/gaiama.org/commit/cd5335b))
 * **Donations:** add contributor list to SupportPage ([25a5fc6](https://github.com/gaiama/gaiama.org/commit/25a5fc6))
 * **Donations:** translate contributorInfo ([ff60c85](https://github.com/gaiama/gaiama.org/commit/ff60c85))
+* show only 5 contributors on mobile on about page ([cd5335b](https://github.com/gaiama/gaiama.org/commit/cd5335b))
 
 
 
@@ -299,18 +310,18 @@
 
 ### Features
 
+* add fallback arg to local-store ([d373ffd](https://github.com/gaiama/gaiama.org/commit/d373ffd))
 * **Donations:** init ContributorsPage ([4d35fb2](https://github.com/gaiama/gaiama.org/commit/4d35fb2))
 * **Donations:** link to ContributorsPage from AboutPage ([359d8dd](https://github.com/gaiama/gaiama.org/commit/359d8dd))
 * **Donations:** link to ContributorsPage from DonatePage ([05f7e60](https://github.com/gaiama/gaiama.org/commit/05f7e60))
 * **i18n:** fix custom 404 pages ([a3649f6](https://github.com/gaiama/gaiama.org/commit/a3649f6))
 * **I18n:** simplify page translation logic ([83ef404](https://github.com/gaiama/gaiama.org/commit/83ef404))
 * **InstagramWidget:** remove lozad dependency ([b29290f](https://github.com/gaiama/gaiama.org/commit/b29290f))
-* add fallback arg to local-store ([d373ffd](https://github.com/gaiama/gaiama.org/commit/d373ffd))
-* replace <title/> - separator by ♡ ([60b118f](https://github.com/gaiama/gaiama.org/commit/60b118f))
 * **NewsletterWidget:** invert button colors ([d390b43](https://github.com/gaiama/gaiama.org/commit/d390b43))
 * **ShareWidget:** remove a border ([b0cf9f4](https://github.com/gaiama/gaiama.org/commit/b0cf9f4))
 * **SupportWidget:** fix <a/> border ([a8fb062](https://github.com/gaiama/gaiama.org/commit/a8fb062))
 * **Theme:** fix breakpoints overlapping ([b2c08b6](https://github.com/gaiama/gaiama.org/commit/b2c08b6))
+* replace <title/> - separator by ♡ ([60b118f](https://github.com/gaiama/gaiama.org/commit/60b118f))
 * **Typography:** increase link visibility, decrease line-height ([5f36678](https://github.com/gaiama/gaiama.org/commit/5f36678))
 
 
@@ -367,8 +378,8 @@
 
 ### Bug Fixes
 
-* fix manifest icon, add utm_source ([8378e4b](https://github.com/gaiama/gaiama.org/commit/8378e4b))
 * **PWA:** appmanifest now supports i18n, patched version.. ([ae194c2](https://github.com/gaiama/gaiama.org/commit/ae194c2))
+* fix manifest icon, add utm_source ([8378e4b](https://github.com/gaiama/gaiama.org/commit/8378e4b))
 
 
 ### Features
@@ -393,10 +404,10 @@
 
 ### Bug Fixes
 
-* global.js margin longhand/shorthand confusion, cleanup ([99dc6a7](https://github.com/gaiama/gaiama.org/commit/99dc6a7))
-* PWA theme and bg colors, add pkg version to siteMetadata ([c76eece](https://github.com/gaiama/gaiama.org/commit/c76eece))
 * **fragments:** explicitly specify image sizes.. ([cb5a488](https://github.com/gaiama/gaiama.org/commit/cb5a488))
 * **MainLayout:** remove manifest meta.. ([bd5a285](https://github.com/gaiama/gaiama.org/commit/bd5a285))
+* global.js margin longhand/shorthand confusion, cleanup ([99dc6a7](https://github.com/gaiama/gaiama.org/commit/99dc6a7))
+* PWA theme and bg colors, add pkg version to siteMetadata ([c76eece](https://github.com/gaiama/gaiama.org/commit/c76eece))
 
 
 ### Features
@@ -428,13 +439,11 @@
 
 ### Bug Fixes
 
-* change page&post detection ([439e3ab](https://github.com/gaiama/gaiama.org/commit/439e3ab))
-* **Footer:** DO logo margin ([27ae2d5](https://github.com/gaiama/gaiama.org/commit/27ae2d5))
-* import of feed package ([e73033f](https://github.com/gaiama/gaiama.org/commit/e73033f))
 * **AboutPage:** wrap img in div for proper circles ([7ca2926](https://github.com/gaiama/gaiama.org/commit/7ca2926))
 * **BlogPage:** remove webfont ([b59a135](https://github.com/gaiama/gaiama.org/commit/b59a135))
 * **BlogPost:** change filter from $slug to $url ([f35b7aa](https://github.com/gaiama/gaiama.org/commit/f35b7aa))
 * **BlogPost:** fix pager, swap slug for url ([46eafcf](https://github.com/gaiama/gaiama.org/commit/46eafcf))
+* **Footer:** DO logo margin ([27ae2d5](https://github.com/gaiama/gaiama.org/commit/27ae2d5))
 * **Footer:** DO logo margin only on desktop ([6039ecb](https://github.com/gaiama/gaiama.org/commit/6039ecb))
 * **gatsby-browser:** auto scroll to menu only on link navigation ([c5b91b4](https://github.com/gaiama/gaiama.org/commit/c5b91b4))
 * **Header:** new gatsby-image without 2nd wrapper, add logo link ([101d901](https://github.com/gaiama/gaiama.org/commit/101d901))
@@ -443,32 +452,28 @@
 * **Offline:** gatsby-plugin-offline globPatterns ([c19d1e8](https://github.com/gaiama/gaiama.org/commit/c19d1e8))
 * **Pixel:** proxy pixel to pixel.api.. ([304acc8](https://github.com/gaiama/gaiama.org/commit/304acc8))
 * **ReferrerMessages:** ensure message before toast + cleanup ([c7ad777](https://github.com/gaiama/gaiama.org/commit/c7ad777))
-* **SEO:** robots.txt generation, re-add _redirects ([a004aa2](https://github.com/gaiama/gaiama.org/commit/a004aa2))
 * **ShareWidget:** remove input only if it wasn't present ([de3e6b6](https://github.com/gaiama/gaiama.org/commit/de3e6b6))
+* **SupportWidget:** limit content width for mobile ([985f4d4](https://github.com/gaiama/gaiama.org/commit/985f4d4))
+* import of feed package ([e73033f](https://github.com/gaiama/gaiama.org/commit/e73033f))
 * redirects/short urls ([d9ceae7](https://github.com/gaiama/gaiama.org/commit/d9ceae7))
+* scroll behaviour, now it's a 2 liner ([535235c](https://github.com/gaiama/gaiama.org/commit/535235c))
+* **SEO:** robots.txt generation, re-add _redirects ([a004aa2](https://github.com/gaiama/gaiama.org/commit/a004aa2))
+* **theme:** adjust xxxlarge to be > 1291 ([cea783a](https://github.com/gaiama/gaiama.org/commit/cea783a))
+* **TitledCopy:** decrease title size 2.7>2.5 ([f68d9a1](https://github.com/gaiama/gaiama.org/commit/f68d9a1))
+* change page&post detection ([439e3ab](https://github.com/gaiama/gaiama.org/commit/439e3ab))
 * remove Link's exact attribute ([12f68d1](https://github.com/gaiama/gaiama.org/commit/12f68d1))
 * removed outerWrapperClassName ([5f97762](https://github.com/gaiama/gaiama.org/commit/5f97762))
-* scroll behaviour, now it's a 2 liner ([535235c](https://github.com/gaiama/gaiama.org/commit/535235c))
 * update custom plugins ([4262f4c](https://github.com/gaiama/gaiama.org/commit/4262f4c))
 * update custom scroll behaviour ([042974e](https://github.com/gaiama/gaiama.org/commit/042974e)), closes [/github.com/gatsbyjs/gatsby/issues/7454#issuecomment-415786239](https://github.com//github.com/gatsbyjs/gatsby/issues/7454/issues/issuecomment-415786239)
 * update graphql queries, add graphql import ([1ca929a](https://github.com/gaiama/gaiama.org/commit/1ca929a))
 * update missing gatsby-image attributes ([9a135e1](https://github.com/gaiama/gaiama.org/commit/9a135e1))
 * update pathContext to pageContext ([fa9ce72](https://github.com/gaiama/gaiama.org/commit/fa9ce72))
 * update webpack-aliases plugin onCreateWebpackConfig ([5ba28d2](https://github.com/gaiama/gaiama.org/commit/5ba28d2))
-* **SupportWidget:** limit content width for mobile ([985f4d4](https://github.com/gaiama/gaiama.org/commit/985f4d4))
-* **theme:** adjust xxxlarge to be > 1291 ([cea783a](https://github.com/gaiama/gaiama.org/commit/cea783a))
-* **TitledCopy:** decrease title size 2.7>2.5 ([f68d9a1](https://github.com/gaiama/gaiama.org/commit/f68d9a1))
 * visual regressions ([8829a0a](https://github.com/gaiama/gaiama.org/commit/8829a0a))
 
 
 ### Features
 
-* add api proxy, update pixel endpoint ([04b3b7f](https://github.com/gaiama/gaiama.org/commit/04b3b7f))
-* add dev info to console & expose some details ([5fcb2e6](https://github.com/gaiama/gaiama.org/commit/5fcb2e6))
-* add H1 titles to all pages ([8601e6c](https://github.com/gaiama/gaiama.org/commit/8601e6c))
-* add humans.txt ([3bd0c95](https://github.com/gaiama/gaiama.org/commit/3bd0c95))
-* remove additional heading font-sizes ([2a45326](https://github.com/gaiama/gaiama.org/commit/2a45326))
-* update FontAwesome 5.0.x to 5.1.0 ([f9c51e7](https://github.com/gaiama/gaiama.org/commit/f9c51e7))
 * **BlogPost:** <time /> color to colors.black for a11y ([0f6d2d3](https://github.com/gaiama/gaiama.org/commit/0f6d2d3))
 * **BlogPost:** cleanup, fix header widths and li>p ([b604026](https://github.com/gaiama/gaiama.org/commit/b604026))
 * **BlogPost:** link <time/> to slug_short ([c5709cd](https://github.com/gaiama/gaiama.org/commit/c5709cd))
@@ -494,22 +499,28 @@
 * **query-string:** uri encode all keys & values ([2706f94](https://github.com/gaiama/gaiama.org/commit/2706f94))
 * **redirects:** auto detect lang, redirect to #main-nav ([1832b6b](https://github.com/gaiama/gaiama.org/commit/1832b6b))
 * **Redirects:** change lang auto redirect to 301 ([8dbc18c](https://github.com/gaiama/gaiama.org/commit/8dbc18c))
+* **SEO:** allow Browsershots, disallow /thanks in robots.txt ([8db3280](https://github.com/gaiama/gaiama.org/commit/8db3280))
+* add dev info to console & expose some details ([5fcb2e6](https://github.com/gaiama/gaiama.org/commit/5fcb2e6))
 * **Redirects:** force 301! + slug_short more readable ([61f3dea](https://github.com/gaiama/gaiama.org/commit/61f3dea))
 * **ReferrerMessage:** show message additionally as toast ([8558679](https://github.com/gaiama/gaiama.org/commit/8558679))
-* **SEO:** allow Browsershots, disallow /thanks in robots.txt ([8db3280](https://github.com/gaiama/gaiama.org/commit/8db3280))
 * **SEO:** generate robots.txt onPostBuild ([0f4a6cb](https://github.com/gaiama/gaiama.org/commit/0f4a6cb))
-* **ShareWidget:** add share link option, with short link ([7cb28a7](https://github.com/gaiama/gaiama.org/commit/7cb28a7))
-* **ShareWidget:** remove modal title, shrink close icon ([e49836e](https://github.com/gaiama/gaiama.org/commit/e49836e))
 * **ShareWidget:** switch to execCommand(`copy`) + i18n ([7bdd760](https://github.com/gaiama/gaiama.org/commit/7bdd760))
 * **ShareWidget:** ui, share per mail and fix clipboard shortcuts ([0fdc977](https://github.com/gaiama/gaiama.org/commit/0fdc977))
+* **Theme:** unify colors, preval hex2rgba ([00a76d3](https://github.com/gaiama/gaiama.org/commit/00a76d3))
+* upgrade gatsby-source-instagram@0.1.4 ([216083f](https://github.com/gaiama/gaiama.org/commit/216083f))
+* **ShareWidget:** remove modal title, shrink close icon ([e49836e](https://github.com/gaiama/gaiama.org/commit/e49836e))
+* **toast:** init react-toastify and utils/toast.js ([080da06](https://github.com/gaiama/gaiama.org/commit/080da06))
+* **Toast:** pass options through, disable autoClose for error ([056fad2](https://github.com/gaiama/gaiama.org/commit/056fad2))
+* add api proxy, update pixel endpoint ([04b3b7f](https://github.com/gaiama/gaiama.org/commit/04b3b7f))
+* add H1 titles to all pages ([8601e6c](https://github.com/gaiama/gaiama.org/commit/8601e6c))
+* add humans.txt ([3bd0c95](https://github.com/gaiama/gaiama.org/commit/3bd0c95))
+* remove additional heading font-sizes ([2a45326](https://github.com/gaiama/gaiama.org/commit/2a45326))
+* **ShareWidget:** add share link option, with short link ([7cb28a7](https://github.com/gaiama/gaiama.org/commit/7cb28a7))
 * **slug:** add speakingurl, auto generate slug & new url field ([b8cd7f5](https://github.com/gaiama/gaiama.org/commit/b8cd7f5))
 * **template:** rename 404 to ErrorPage ([c0ec137](https://github.com/gaiama/gaiama.org/commit/c0ec137))
 * **theme:** use systemfont stack, drop webfonts ([0e8daf0](https://github.com/gaiama/gaiama.org/commit/0e8daf0))
-* **Theme:** unify colors, preval hex2rgba ([00a76d3](https://github.com/gaiama/gaiama.org/commit/00a76d3))
-* upgrade gatsby-source-instagram@0.1.4 ([216083f](https://github.com/gaiama/gaiama.org/commit/216083f))
 * **TitledCopy:** allow change of title rank h1-h6 ([af102a1](https://github.com/gaiama/gaiama.org/commit/af102a1))
-* **toast:** init react-toastify and utils/toast.js ([080da06](https://github.com/gaiama/gaiama.org/commit/080da06))
-* **Toast:** pass options through, disable autoClose for error ([056fad2](https://github.com/gaiama/gaiama.org/commit/056fad2))
+* update FontAwesome 5.0.x to 5.1.0 ([f9c51e7](https://github.com/gaiama/gaiama.org/commit/f9c51e7))
 
 
 ### BREAKING CHANGES
