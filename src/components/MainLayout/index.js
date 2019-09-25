@@ -134,7 +134,7 @@ class MainLayout extends Component {
   }
 
   render() {
-    process.env.NODE_ENV !== `production` && console.log(this.props)
+    process.env.NODE_ENV !== `production` && console.log(`DEVMODE`, this.props)
     const {
       pageContext,
       wrapperStyles,
