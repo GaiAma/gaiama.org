@@ -90,9 +90,9 @@ module.exports = store => ({ actions, getNodes, graphql }) => {
         redirects.push(
           [
             slugShort,
-            url + isHomePage(node)
-              ? ``
-              : `?ref=${encodeURIComponent(slugShort)}`,
+            `${url}${
+              isHomePage(node) ? `` : `?ref=${encodeURIComponent(slugShort)}`
+            }`,
             `301!`,
             node.frontmatter.lang === `de` && `Language=de`,
           ]
