@@ -1,19 +1,37 @@
-## [2.5.3](https://github.com/gaiama/gaiama.org/compare/v2.5.1...v2.5.3) (2019-09-25)
+## [2.5.4](https://github.com/gaiama/gaiama.org/compare/v2.5.3...v2.5.4) (2019-09-25)
 
 
 ### Bug Fixes
 
-* **MDX:** imports & query ([3ce9d77](https://github.com/gaiama/gaiama.org/commit/3ce9d77))
+* redirects [#63](https://github.com/gaiama/gaiama.org/issues/63)af9d1 ([ac45b3c](https://github.com/gaiama/gaiama.org/commit/ac45b3c)), closes [#63af9d1](https://github.com/gaiama/gaiama.org/issues/63af9d1)
+* remove gloabl document ([e9bccc5](https://github.com/gaiama/gaiama.org/commit/e9bccc5))
+
+
+
+## [2.5.3](https://github.com/gaiama/gaiama.org/compare/v2.5.2...v2.5.3) (2019-09-25)
+
+
+### Bug Fixes
+
 * add missing return statement ([532e2f8](https://github.com/gaiama/gaiama.org/commit/532e2f8))
-* date-fns imports (new version) ([8665d53](https://github.com/gaiama/gaiama.org/commit/8665d53))
 * plugin-manifest config & upgrade ([af52d3d](https://github.com/gaiama/gaiama.org/commit/af52d3d))
 * remove ?ref from / redirect ([63af9d1](https://github.com/gaiama/gaiama.org/commit/63af9d1))
-* whitespace above inline-gallery ([b97a844](https://github.com/gaiama/gaiama.org/commit/b97a844))
 
 
 ### Features
 
 * upgrade all dependencies ([29e7c94](https://github.com/gaiama/gaiama.org/commit/29e7c94))
+
+
+
+## [2.5.2](https://github.com/gaiama/gaiama.org/compare/v2.5.1...v2.5.2) (2019-09-15)
+
+
+### Bug Fixes
+
+* date-fns imports (new version) ([8665d53](https://github.com/gaiama/gaiama.org/commit/8665d53))
+* whitespace above inline-gallery ([b97a844](https://github.com/gaiama/gaiama.org/commit/b97a844))
+* **MDX:** imports & query ([3ce9d77](https://github.com/gaiama/gaiama.org/commit/3ce9d77))
 
 
 
