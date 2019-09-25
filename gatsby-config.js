@@ -296,18 +296,13 @@ const plugins = [
   {
     resolve: `gatsby-plugin-manifest`,
     options: {
-      manifests: [
+      ...sharedManifestProperties,
+      start_url: `/de/?ref=a2hs`,
+      lang: `de`,
+      localize: [
         {
-          ...sharedManifestProperties,
-          start_url: `/de/?ref=a2hs`,
-          regex: `^/de/.*`,
-          language: `de`,
-        },
-        {
-          ...sharedManifestProperties,
           start_url: `/en/?ref=a2hs`,
-          regex: `^/en/.*`,
-          language: `en`,
+          lang: `en`,
         },
       ],
     },
@@ -326,7 +321,7 @@ const plugins = [
   {
     resolve: `gatsby-plugin-nprogress`,
     options: {
-      color: `#ba0d24`, //`#870515`,
+      color: `#ba0d24`, // `#870515`,
       showSpinner: true,
     },
   },
