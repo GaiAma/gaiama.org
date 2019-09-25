@@ -47,7 +47,7 @@ module.exports.sourceNodes = async (
     cache.set(cacheKey, donations)
   }
 
-  generateContributions(donations.Items).forEach(item => {
+  return generateContributions(donations.Items).forEach(item => {
     const contentDigest = crypto
       .createHash(`md5`)
       .update(JSON.stringify(item))
