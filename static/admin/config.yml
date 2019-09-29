@@ -1,0 +1,30 @@
+backend:
+  name: test-repo
+
+media_folder_relative: true
+
+collections:
+  - name: 'blog' # Used in routes, e.g., /admin/collections/blog
+    label: 'Blog' # Used in the UI
+    folder: 'blog' # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    slug: '{{slug}}' # Filename template, e.g., title.md
+    fields: # The fields for each document, usually in front matter
+      # - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'blog' }
+      - { label: 'Published', name: 'published', widget: 'boolean' }
+      - { label: 'Language', name: 'lang' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Subtitle', name: 'subtitle', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Featured Image', name: 'cover', widget: 'image' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Summary', name: 'summary', widget: 'string' }
+      - {
+          label: 'Suggested Content',
+          name: 'suggested',
+          widget: 'relation',
+          collection: 'blog',
+          searchFields: ['title'],
+          displayFields: ['title'],
+          valueField: 'slug',
+        }
