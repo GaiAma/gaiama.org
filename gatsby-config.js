@@ -53,6 +53,7 @@ const plugins = [
       labelFormat: `[filename]--[local]`,
     },
   },
+  `gatsby-plugin-theme-ui`,
   `gatsby-plugin-layout`,
   {
     resolve: `gatsby-plugin-webpack-aliases`,
