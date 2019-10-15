@@ -3,6 +3,6 @@
   "version": "0.1.3",
   "dependencies": {
     "@gaiama/helpers": "0.1.0",
-    "aws-sdk": "^2.538.0"
+    "aws-sdk": "^2.549.0"
   }
 }
