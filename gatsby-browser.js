@@ -21,7 +21,7 @@ try {
   }
   console.log(
     `%cWelcome to GaiAma.org version ${version}, you're on the ${branch} branch`,
-    `font-size:13px;color:#01422e;`
+    `font-size:13px;color:#056b4d;`
   )
   console.log(
     `%cFeel free to inspect everything, e.g. 'window.GaiAma'`,
