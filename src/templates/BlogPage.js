@@ -2,49 +2,13 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Head from 'react-helmet'
-import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import * as QS from '@gaiama/query-string'
 import MainLayout from '@components/MainLayout'
 import Link from '@components/Link'
 import TitledCopy from '@components/TitledCopy'
-import Randomizer from '@components/Randomizer'
 import RenderArticles from '@components/RenderArticles'
 import { colors, media } from '@src/theme'
-
-const StyledRandomizer = styled(Randomizer)`
-  text-align: center;
-  & blockquote {
-    display: inline-block;
-  }
-  & p {
-    font-size: 2rem;
-    line-height: 1.3;
-    margin: 0;
-    max-width: 650px;
-    ${media.greaterThan(`medium`)} {
-      font-size: 2.5rem;
-    }
-  }
-  & footer {
-    text-align: center;
-    font-size: 0.85rem;
-  }
-  & cite {
-    color: ${colors.gray};
-    font-style: normal;
-    margin: 0 1rem;
-  }
-  & button {
-    background: transparent;
-    border: transparent;
-    color: ${colors.gray80};
-    padding: 0;
-    &:hover {
-      transform: scale(1.05);
-    }
-  }
-`
 
 const BlogPage = props => {
   const { sort, filter } = QS.parse()
@@ -84,12 +48,6 @@ const BlogPage = props => {
           },
         ]}
       />
-      {!filter && (
-        <StyledRandomizer
-          quotes={props.data.quotes.quotes}
-          nextQuoteLabel={props.data.quotes.nextQuoteLabel}
-        />
-      )}
 
       <TitledCopy
         rank="1"
@@ -323,14 +281,6 @@ export const query = graphql`
           type
           value
         }
-      }
-    }
-
-    quotes: quotesYaml(lang: { eq: $lang }) {
-      nextQuoteLabel
-      quotes {
-        author
-        quote
       }
     }
   }
