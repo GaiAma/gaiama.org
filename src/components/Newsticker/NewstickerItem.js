@@ -1,29 +1,38 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
 import Img from 'gatsby-image/withIEPolyfill'
 import { colors, fontFamilies } from '@src/theme'
 
-const StyledLink = styled(Link)`
-  border: none;
-  :hover {
-    background-color: transparent;
-    color: ${colors.link};
-  }
-`
+const StyledLink = props => (
+  <Link
+    {...props}
+    sx={{
+      border: `none`,
+      ':hover': {
+        backgroundColor: `transparent`,
+        color: colors.link,
+      },
+    }}
+  />
+)
 
-const Wrapper = styled.div`
-  padding: 0.5rem;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
-    padding 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s;
-  :hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 10px 0px ${colors.gray52};
-  }
-`
+const Wrapper = props => (
+  <div
+    {...props}
+    sx={{
+      padding: `0.5rem`,
+      transition: `transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
+                    box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s,
+                    padding 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s`,
+      ':hover': {
+        transform: `translateY(-4px)`,
+        boxShadow: `0 0 10px 0px ${colors.gray52}`,
+      },
+    }}
+  />
+)
 
 const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
   const coverImage =
@@ -32,26 +41,26 @@ const NewstickerItem = ({ item, readmoreLabel, layout, ...props }) => {
   return (
     <Wrapper {...props}>
       <div
-        css={css`
-          display: flex;
-          flex-direction: ${layout === `row` && `column`};
-        `}
+        sx={{
+          display: `flex`,
+          flexDirection: layout === `row` && `column`,
+        }}
       >
         <StyledLink to={item.fields.url}>
           {coverImage && (
-            <div css={styles.imageWrapper(layout)}>
-              <Img fluid={coverImage} css={styles.image} />
+            <div sx={styles.imageWrapper(layout)}>
+              <Img fluid={coverImage} sx={styles.image} />
             </div>
           )}
 
           <div>
-            <h2 css={styles.title(layout)}>{item.frontmatter.title}</h2>
+            <h2 sx={styles.title(layout)}>{item.frontmatter.title}</h2>
 
-            <p css={styles.excerpt}>
+            <p sx={styles.excerpt}>
               {item.excerpt || item.frontmatter.summary}
 
               {readmoreLabel && (
-                <span css={styles.readmoreLink}>{readmoreLabel}</span>
+                <span sx={styles.readmoreLink}>{readmoreLabel}</span>
               )}
             </p>
           </div>

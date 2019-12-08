@@ -26,7 +26,7 @@ const ContactPage = props => {
       wrapperStyles={{
         [media.greaterThan(`small`)]: {
           background: `url(${
-            page.frontmatter.assets.bg.image.fluid.src
+            page.frontmatter.assets.bg.image.fluid.src // TODO: dark-theme remove bg or replace
           }) no-repeat right 1rem`,
         },
         maxWidth: `100%`,

@@ -1,8 +1,9 @@
-import React from 'react'
+/** @jsx jsx */
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
 import Helmet from 'react-helmet'
+import { jsx } from 'theme-ui'
 import styled from '@emotion/styled'
 import slugify from 'slugify'
 import { Box, colors, fullPageWidth, maxWidthContent, media } from '@src/theme'
@@ -84,7 +85,6 @@ const KeyPrinciplesContainer = styled.div`
 
 const KeyPrincipleRow = styled.div`
   ${fullPageWidth};
-  background-color: ${({ index }) => index % 2 === 0 && colors.lightBlue};
   padding: ${({ index }) => index % 2 === 0 && `2rem 0`};
 `
 
@@ -397,7 +397,13 @@ export const query = graphql`
 const KeyPrinciples = ({ title, content, ...props }) => (
   <KeyPrinciplesContainer {...props}>
     {content.map((x, i) => (
-      <KeyPrincipleRow key={i} index={i}>
+      <KeyPrincipleRow
+        key={i}
+        index={i}
+        sx={{
+          backgroundColor: i % 2 === 0 ? `background2` : `background`,
+        }}
+      >
         <KeyPrincipleRowInner>
           {i === 0 && (
             <KeyPrincipleHeader>

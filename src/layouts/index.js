@@ -12,8 +12,7 @@ import { MDXProvider } from '@mdx-js/react'
 //   wDyr(React)
 // }
 
-const Layout = ({ children }) => (
-  <MDXProvider /*components={{ VideoPlayer }}*/>{children}</MDXProvider>
-)
+/* components={{ VideoPlayer }} */
+const Layout = ({ children }) => <MDXProvider>{children}</MDXProvider>
 
 export default Layout

@@ -35,9 +35,7 @@ try {
     `color:green;`
   )
   console.log(
-    `%cIf you encounter anything unexpected, or have other feedback feel free to file an issue at ${
-      bugs.url
-    }/new?labels=ViaDevTools`,
+    `%cIf you encounter anything unexpected, or have other feedback feel free to file an issue at ${bugs.url}/new?labels=ViaDevTools`,
     `color:#3a9a02;`
   )
   /* eslint-disable-next-line */

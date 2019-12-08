@@ -1,25 +1,17 @@
 import { colors, fontFamilies, media } from '@src/theme'
 
-/**
- *
- * switching form breakPoints to media destroyed navbar spacings -.-#
- *
- * does it work now?
- *
- */
-
 export default {
   header: {
     position: `relative`,
-    color: colors.darkWhite,
+    color: `darkWhite`,
     whiteSpace: `nowrap`,
     fontWeight: 100,
 
     '& a': {
-      color: colors.darkWhite,
+      color: `darkWhite`,
 
       '&:hover': {
-        color: colors.darkWhite,
+        color: `darkWhite`,
       },
     },
     '& > .gatsby-image-wrapper': {
@@ -34,7 +26,7 @@ export default {
 
   headerTop: {
     position: `relative`,
-    backgroundColor: [colors.primary, colors.primary85],
+    backgroundColor: [`primary`, `primary85`],
     margin: 0,
     height: `2.5rem`,
 

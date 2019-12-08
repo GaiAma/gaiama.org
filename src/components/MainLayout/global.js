@@ -1,9 +1,10 @@
 import preval from 'babel-plugin-preval/macro'
+import { css } from '@emotion/core'
 const { homepage } = preval`
   const { homepage } = require('../../../package.json')
   module.exports = { homepage }
 `
-import { colors, media } from '@src/theme'
+import { media } from '@src/theme'
 // TODO: https://github.com/sindresorhus/modern-normalize ?
 /**
  * work in progress
@@ -14,12 +15,12 @@ import { colors, media } from '@src/theme'
 
 // TODO: add PR to gatsby-remark-autolink-headers to disable floating
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-autolink-headers/src/gatsby-ssr.js#L10
-export const globalStyles = `
+export const globalStyles = theme => css`
   /**
    * Debugger
    * from https://medium.freecodecamp.org/heres-my-favorite-weird-trick-to-debug-css-88529aa5a6a3
    */
-  // *:not(path):not(g),
+  /* *:not(path):not(g), */
   .debug *:not(path):not(g) {
     color:                    hsla(210, 100%, 100%, 0.9) !important;
     background:               hsla(210, 100%,  50%, 0.5) !important;
@@ -62,7 +63,8 @@ export const globalStyles = `
   }
 
   body {
-    color: ${colors.gray80};
+    color: ${theme.colors.text};
+    background: ${theme.colors.background};
     font-family: 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
       'Roboto', 'Helvetica', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
@@ -115,13 +117,13 @@ export const globalStyles = `
   a {
     text-decoration: none;
     transition: all 0.3s ease;
-    color: ${colors.gray80};
-    border-bottom: 2px solid ${colors.primaryLite};
+    color: ${theme.colors.gray80};
+    border-bottom: 2px solid ${theme.colors.primaryLite};
   }
 
   a:active,
   a:hover {
-    background-color: ${colors.primaryLite};
+    background-color: ${theme.colors.primaryLite};
     color: #ffffff;
   }
 
@@ -141,7 +143,7 @@ export const globalStyles = `
   }
 
   mark {
-    background-color: ${colors.yellow};
+    background-color: ${theme.colors.yellow};
   }
 
   small {

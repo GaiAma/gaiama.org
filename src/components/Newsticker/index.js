@@ -1,15 +1,19 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
 import NewstickerItem from './NewstickerItem'
 import { media, ignoreInPrint } from '@src/theme'
 
-const StyledLink = styled(Link)`
-  font-size: 1rem;
-  border: none;
-`
+const StyledLink = props => (
+  <Link
+    {...props}
+    sx={{
+      fontSize: `1rem`,
+      border: `none`,
+    }}
+  />
+)
 
 const NewsTicker = ({
   items,
@@ -22,28 +26,28 @@ const NewsTicker = ({
 }) => (
   <div {...props}>
     <div
-      css={css`
-        padding-left: ${layout === `column` && `1.5rem`};
-        position: relative;
-        ${ignoreInPrint};
-      `}
+      sx={{
+        paddingLeft: layout === `column` && `1.5rem`,
+        position: `relative`,
+        ...ignoreInPrint,
+      }}
     >
       {(title || link) && (
         <header
-          css={css`
-            display: flex;
-            align-items: baseline;
-            justify-content: space-between;
-            margin-bottom: 1rem;
-          `}
+          sx={{
+            display: `flex`,
+            alignItems: `baseline`,
+            justifyContent: `space-between`,
+            marginBottom: `1rem`,
+          }}
         >
           {title && (
             <h3
-              css={css`
-                font-size: 2.2rem;
-                margin: 0;
-                line-height: 1.2;
-              `}
+              sx={{
+                fontSize: `2.2rem`,
+                margin: 0,
+                lineHeight: 1.2,
+              }}
             >
               {title}
             </h3>
@@ -58,17 +62,17 @@ const NewsTicker = ({
       )}
 
       <div
-        css={css`
-          display: ${layout === `row` && `flex`};
-          flex-direction: column;
-          ${media.lessThan(`medium`)} {
-            align-items: center;
-          }
-          ${media.greaterThan(`medium`)} {
-            flex-direction: row;
-            justify-content: space-between;
-          }
-        `}
+        sx={{
+          display: layout === `row` && `flex`,
+          flexDirection: `column`,
+          [media.lessThan(`medium`)]: {
+            alignItems: `center`,
+          },
+          [media.greaterThan(`medium`)]: {
+            flexDirection: `row`,
+            justifyContent: `space-between`,
+          },
+        }}
       >
         {items.map(
           (item, index) =>
@@ -78,15 +82,15 @@ const NewsTicker = ({
                 item={item}
                 readmoreLabel={readmoreLabel}
                 layout={layout}
-                css={css`
-                  margin-bottom: 3rem;
-                  width: 90%;
-                  max-width: 370px;
-                  ${media.greaterThan(`medium`)} {
-                    width: 30%;
-                    margin-bottom: 1.6rem;
-                  }
-                `}
+                sx={{
+                  marginBottom: `3rem`,
+                  width: `90%`,
+                  maxWidth: `370px`,
+                  [media.greaterThan(`medium`)]: {
+                    width: `30%`,
+                    marginBottom: `1.6rem`,
+                  },
+                }}
               />
             )
         )}

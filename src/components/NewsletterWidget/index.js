@@ -1,8 +1,8 @@
 /* global document, window */
-import React, { Component } from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
+import { Component } from 'react'
 import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
 import isEmail from 'validator/lib/isEmail'
@@ -11,13 +11,17 @@ import { Button } from '@components/layout/Button'
 import localStore from '@src/utils/local-store'
 import axios from 'axios'
 
-const StyledInput = styled.input({
-  width: `100%`,
-  border: `1px solid ${colors.gray3}`,
-  background: colors.white,
-  lineHeight: 1.5,
-  padding: `0 .5rem`,
-})
+const StyledInput = () => (
+  <input
+    sx={{
+      width: `100%`,
+      border: `1px solid ${colors.gray3}`,
+      background: colors.white,
+      lineHeight: 1.5,
+      padding: `0 .5rem`,
+    }}
+  />
+)
 
 const initialState = {
   values: {
@@ -181,16 +185,16 @@ export class Newsletter extends Component {
       return (
         <p
           id="success"
-          css={css`
-            background: ${colors.white};
-            border: 1px solid green;
-            color: ${colors.success};
-            padding: 0.5rem 0.5rem 0.4rem;
-            & em {
-              text-decoration: underline;
-              font-style: normal;
-            }
-          `}
+          sx={{
+            background: colors.white,
+            border: `1px solid green`,
+            color: colors.success,
+            padding: `0.5rem 0.5rem 0.4rem`,
+            '& em': {
+              textDecoration: `underline`,
+              fontStyle: `normal`,
+            },
+          }}
           dangerouslySetInnerHTML={{ __html: this.props.success }}
         />
       )
@@ -204,20 +208,20 @@ export class Newsletter extends Component {
         noValidate
       >
         <div
-          css={css`
-            position: relative;
-            padding-bottom: 1.4rem;
-            & input {
-              border: ${errors.email && `1px solid red`};
-            }
-          `}
+          sx={{
+            position: `relative`,
+            paddingBottom: `1.4rem`,
+            '& input': {
+              border: errors.email && `1px solid red`,
+            },
+          }}
         >
           <label>
             <div
-              css={css`
-                font-family: ${fontFamilies.accent};
-                font-size: 1.5rem;
-              `}
+              sx={{
+                fontFamily: fontFamilies.accent,
+                fontSize: `1.5rem`,
+              }}
             >
               {emailLabel}
             </div>
@@ -232,11 +236,11 @@ export class Newsletter extends Component {
             />
             {errors.email && (
               <div
-                css={css`
-                  position: absolute;
-                  color: ${colors.failure};
-                  font-size: 0.9rem;
-                `}
+                sx={{
+                  position: `absolute`,
+                  color: colors.failure,
+                  fontSize: `0.9rem`,
+                }}
               >
                 {errors.email}
               </div>
@@ -245,11 +249,11 @@ export class Newsletter extends Component {
         </div>
 
         <div
-          css={css`
-            position: relative;
-            padding-bottom: 1.4rem;
-            color: ${errors.consent && colors.failure};
-          `}
+          sx={{
+            position: `relative`,
+            paddingBottom: `1.4rem`,
+            color: errors.consent && colors.failure,
+          }}
         >
           <label>
             <input
@@ -261,10 +265,10 @@ export class Newsletter extends Component {
               disabled={this.isSubmitting}
             />
             <span
-              css={css`
-                font-size: 0.9rem;
-                margin: 0 0.5rem;
-              `}
+              sx={{
+                fontSize: `0.9rem`,
+                margin: `0 0.5rem`,
+              }}
             >
               {consentLabel}
             </span>
@@ -272,9 +276,9 @@ export class Newsletter extends Component {
               href={privacyLink}
               target="_blank"
               rel="noopener noreferrer"
-              css={css`
-                border: none;
-              `}
+              sx={{
+                border: `none`,
+              }}
             >
               {privacyLabel}
             </a>
@@ -283,13 +287,13 @@ export class Newsletter extends Component {
 
         {generalError && (
           <div
-            css={css`
-              border: 1px solid red;
-              padding: 0.5rem 0.5rem 0.4rem;
-              margin-bottom: 0.5rem;
-              color: ${colors.failure};
-              font-size: 0.9rem;
-            `}
+            sx={{
+              border: `1px solid red`,
+              padding: `0.5rem 0.5rem 0.4rem`,
+              marginBottom: `0.5rem`,
+              color: colors.failure,
+              fontSize: `0.9rem`,
+            }}
           >
             {generalError}
           </div>
@@ -298,15 +302,15 @@ export class Newsletter extends Component {
         <Button
           label="Submit"
           disabled={isSubmitting}
-          css={css`
-            ${styles.button};
-            background: ${colors.primaryLite};
-            color: ${colors.white};
-            &:hover {
-              background: ${colors.purpleDark};
-              color: ${colors.darkWhite};
-            }
-          `}
+          sx={{
+            ...styles.button,
+            background: colors.primaryLite,
+            color: colors.white,
+            '&:hover': {
+              background: colors.purpleDark,
+              color: colors.darkWhite,
+            },
+          }}
         >
           {isSubmitting ? (
             <FontAwesomeIcon icon={faSpinner} size="xs" spin />

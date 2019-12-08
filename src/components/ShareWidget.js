@@ -33,7 +33,7 @@ const Title = styled.h4({
 })
 
 const Button = styled(PureButton)`
-  background-color: ${colors.transparent};
+  background-color: transparent;
   border: 0;
   margin-left: 1rem;
   padding: 0.4rem 0.7rem;
@@ -57,7 +57,7 @@ const StyledA = styled.a`
 `
 const InvisibleInput = styled.input`
   margin-left: 0.7rem;
-  background-color: ${colors.transparent};
+  background-color: transparent;
   border: none;
   width: 100%;
 `

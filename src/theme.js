@@ -16,7 +16,6 @@ export const colors = preval`
   const primary = '#042f37'
   const primaryLite = '#287482'
   module.exports = {
-    transparent: 'transparent',
     primary,
     primaryLite,
     primary58: h2a(primary, 0.58),
@@ -179,9 +178,7 @@ export const media = {
       if (SIZES[largeKey].max === Infinity) {
         return `@media (min-width: ${SIZES[smallKey].min}px)`
       } else {
-        return `@media (min-width: ${SIZES[smallKey].min}px) and (max-width: ${
-          SIZES[largeKey].max
-        }px)`
+        return `@media (min-width: ${SIZES[smallKey].min}px) and (max-width: ${SIZES[largeKey].max}px)`
       }
     }
   },
@@ -284,14 +281,7 @@ export const Box = styled.div(
     fwrap: () => ({ flexWrap: `wrap` }),
     row: () => ({ flexDirection: `row` }),
     column: () => ({ flexDirection: `column` }),
-    // responsive
     oh: () => ({ overflow: `hidden` }),
-    glass: () => ({
-      background: `#fff`,
-      padding: `1rem`,
-      boxShadow: `2px 2px 9px 1px rgba(0,0,0,0.50),
-      inset 0 0 21px 0 rgba(0,0,0,0.50)`,
-    }),
   })
 )
 

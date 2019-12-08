@@ -1,123 +1,134 @@
-import React, { Component } from 'react'
+/** @jsx jsx */
+import { useState } from 'react'
 import PropTypes from 'prop-types'
-import styled from '@emotion/styled'
+import { jsx, useColorMode } from 'theme-ui'
 import Link from '@components/Link'
 import Img from 'gatsby-image/withIEPolyfill'
 import Headroom from 'react-headroom'
 import { visible } from '@src/theme'
 import style from './styles'
 
-const OnlyDesktop = styled.span(props => props.visible && visible.minMd)
-const OnlyMobile = styled.span(visible.maxMd)
-const HeaderWrapper = styled.header(style.header)
-const HeaderTop = styled.div(style.headerTop)
-const TopInner = styled.div(style.topInner)
-const Brand = styled.div(style.headerBrand)
-const HeaderLink = styled(Link)(style.headerLink)
-const MetaLink = styled(HeaderLink)(style.headerMeta_headerLink)
-const Meta = styled.nav(style.headerMeta)
-const MetaItem = styled.div(style.headerMetaItem)
-const NavInner = styled.div(style.headerNavInner)
-const Banner = styled.div(style.headerBanner)
-const Logo = styled(Img)(style.headerLogo)
-const StickyHeader = styled(Headroom)({
-  maxWidth: `1440px`,
-  margin: `0 auto`,
-  zIndex: 2,
-})
-const MainNav = styled.nav(props => style.headerNav(props))
-const NavScroller = styled.div(style.headerNavScroller)
-const NavItem = styled.div(style.headerNavItem)
-const MainLink = styled(HeaderLink)(style.headerNav_headerLink)
+const OnlyDesktop = props => (
+  <span sx={props.visible && visible.minMd} {...props} />
+)
+OnlyDesktop.propTypes = {
+  visible: PropTypes.bool,
+}
+const OnlyMobile = props => <span sx={visible.maxMd} {...props} />
+const HeaderWrapper = props => <header sx={style.header} {...props} />
+const HeaderTop = props => <div sx={style.headerTop} {...props} />
+const TopInner = props => <div sx={style.topInner} {...props} />
+const Brand = props => <div sx={style.headerBrand} {...props} />
+const HeaderLink = props => <Link sx={style.headerLink} {...props} />
+const MetaLink = props => (
+  <HeaderLink sx={style.headerMeta_headerLink} {...props} />
+)
+const Meta = props => <nav sx={style.headerMeta} {...props} />
+const MetaItem = props => <div sx={style.headerMetaItem} {...props} />
+const NavInner = props => <div sx={style.headerNavInner} {...props} />
+const Banner = props => <div sx={style.headerBanner} {...props} />
+const Logo = props => <Img sx={style.headerLogo} {...props} />
+const StickyHeader = props => (
+  <Headroom
+    sx={{
+      maxWidth: `1440px`,
+      margin: `0 auto`,
+      zIndex: 2,
+    }}
+    {...props}
+  />
+)
+const MainNav = ({ bg, isSticky, ...props }) => (
+  <nav sx={style.headerNav({ bg, isSticky })} {...props} />
+)
+MainNav.propTypes = {
+  bg: PropTypes.string,
+  isSticky: PropTypes.bool,
+}
+const NavScroller = props => <div sx={style.headerNavScroller} {...props} />
+const NavItem = props => <div sx={style.headerNavItem} {...props} />
+const MainLink = props => (
+  <HeaderLink sx={style.headerNav_headerLink} {...props} />
+)
 
-class Header extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      isSticky: false,
-    }
-  }
+const Header = ({ homepage, meta, menu, logo, bgImage }) => {
+  const [isSticky, setIsSticky] = useState(false)
+  const [colorMode] = useColorMode()
 
-  setSticky = sticky => this.setState({ isSticky: sticky })
+  return (
+    <HeaderWrapper>
+      <Img
+        fluid={bgImage.fluid}
+        sx={{ filter: colorMode === `dark` && `brightness(0.6)` }}
+      />
+      <HeaderTop>
+        <TopInner>
+          <Brand>
+            <HeaderLink to={homepage.fields.url}>
+              <h2>
+                {homepage.frontmatter.header.title}
+                {homepage.frontmatter.header.subtitle &&
+                  ` - ${homepage.frontmatter.header.subtitle}`}
+              </h2>
+            </HeaderLink>
+          </Brand>
 
-  shouldComponentUpdate(nextProps, nextState) {
-    return nextState.isSticky !== this.state.isSticky
-  }
+          {/* TODO: remember lang in local FORAGE? to show correct in 404 */}
+          <Meta>
+            {meta.map((link, index) => (
+              <MetaItem className={link.class} key={index}>
+                <MetaLink to={link.to} activeClassName="active">
+                  <OnlyDesktop visible={link.titleShort}>
+                    {link.title}
+                  </OnlyDesktop>
+                  {link.titleShort && (
+                    <OnlyMobile>{link.titleShort}</OnlyMobile>
+                  )}
+                </MetaLink>
+              </MetaItem>
+            ))}
+          </Meta>
+        </TopInner>
+      </HeaderTop>
 
-  render() {
-    const { homepage, meta, menu, logo, bgImage } = this.props
-    return (
-      <HeaderWrapper>
-        <Img fluid={bgImage.fluid} />
-        <HeaderTop>
-          <TopInner>
-            <Brand>
-              <HeaderLink to={homepage.fields.url}>
-                <h2>
-                  {homepage.frontmatter.header.title}
-                  {homepage.frontmatter.header.subtitle &&
-                    ` - ${homepage.frontmatter.header.subtitle}`}
-                </h2>
-              </HeaderLink>
-            </Brand>
+      <Banner sx={{ filter: colorMode === `dark` && `brightness(0.6)` }}>
+        <Link to={homepage.fields.url}>
+          <Logo fluid={logo.fluid} alt="GaiAma Logo" />
+        </Link>
+      </Banner>
 
-            {/* TODO: remember lang in local FORAGE? to show correct in 404 */}
-            <Meta>
-              {meta.map((link, index) => (
-                <MetaItem className={link.class} key={index}>
-                  <MetaLink to={link.to} activeClassName="active">
+      <StickyHeader
+        id="main-nav"
+        pinStart={450}
+        onPin={() => setIsSticky(true)}
+        onUnpin={() => setIsSticky(false)}
+        onUnfix={() => setIsSticky(false)}
+      >
+        <MainNav
+          aria-label="primary"
+          bg={bgImage.fluid.src}
+          isSticky={isSticky}
+        >
+          <NavScroller>
+            <NavInner>
+              {menu.map((link, index) => (
+                <NavItem key={index}>
+                  <MainLink to={link.to} activeClassName="active">
                     <OnlyDesktop visible={link.titleShort}>
                       {link.title}
                     </OnlyDesktop>
                     {link.titleShort && (
                       <OnlyMobile>{link.titleShort}</OnlyMobile>
                     )}
-                  </MetaLink>
-                </MetaItem>
+                  </MainLink>
+                </NavItem>
               ))}
-            </Meta>
-          </TopInner>
-        </HeaderTop>
-
-        <Banner>
-          <Link to={homepage.fields.url}>
-            <Logo fluid={logo.fluid} alt="GaiAma Logo" />
-          </Link>
-        </Banner>
-
-        <StickyHeader
-          id="main-nav"
-          pinStart={450}
-          onPin={() => this.setSticky(true)}
-          onUnpin={() => this.setSticky(false)}
-          onUnfix={() => this.setSticky(false)}
-        >
-          <MainNav
-            aria-label="primary"
-            bg={bgImage.fluid.src}
-            isSticky={this.state.isSticky}
-          >
-            <NavScroller>
-              <NavInner>
-                {menu.map((link, index) => (
-                  <NavItem key={index}>
-                    <MainLink to={link.to} activeClassName="active">
-                      <OnlyDesktop visible={link.titleShort}>
-                        {link.title}
-                      </OnlyDesktop>
-                      {link.titleShort && (
-                        <OnlyMobile>{link.titleShort}</OnlyMobile>
-                      )}
-                    </MainLink>
-                  </NavItem>
-                ))}
-              </NavInner>
-            </NavScroller>
-          </MainNav>
-        </StickyHeader>
-      </HeaderWrapper>
-    )
-  }
+            </NavInner>
+          </NavScroller>
+        </MainNav>
+      </StickyHeader>
+    </HeaderWrapper>
+  )
 }
 
 Header.propTypes = {

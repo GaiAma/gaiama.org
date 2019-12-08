@@ -1,14 +1,15 @@
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Head from 'react-helmet'
-import { css } from '@emotion/core'
 import * as QS from '@gaiama/query-string'
 import MainLayout from '@components/MainLayout'
 import Link from '@components/Link'
 import TitledCopy from '@components/TitledCopy'
 import RenderArticles from '@components/RenderArticles'
-import { colors, media } from '@src/theme'
+import { media } from '@src/theme'
 
 const BlogPage = props => {
   const { sort, filter } = QS.parse()
@@ -59,68 +60,73 @@ const BlogPage = props => {
         }
         // : props.data.page.frontmatter.title}
         paragraphs={props.data.page.frontmatter.intro.paragraphs}
-        css={css`
-          margin-bottom: 1.5rem;
-          & div {
-            font-size: 0.85rem;
-            ${media.greaterThan(`medium`)} {
-              font-size: 1rem;
-            }
-          }
-        `}
+        sx={{
+          marginBottom: `1.5rem`,
+          '& div': {
+            fontSize: `0.85rem`,
+            [media.greaterThan(`medium`)]: {
+              fontSize: `1rem`,
+            },
+          },
+        }}
       />
 
       <div
-        css={css`
-          display: flex;
-          justify-content: center;
-          text-align: center;
-          position: relative;
-          margin: 2rem auto 3rem;
-          ${media.greaterThan(`small`)} {
-            width: 60%;
-          }
-          &:before {
-            content: '';
-            height: 1px;
-            width: 100%;
-            position: absolute;
-            display: block;
-            top: 50%;
-            left: 0;
-            right: 0;
-            background: linear-gradient(
+        sx={{
+          display: `flex`,
+          justifyContent: `center`,
+          textAlign: `center`,
+          position: `relative`,
+          margin: `2rem auto 3rem`,
+          [media.greaterThan(`small`)]: {
+            width: `60%`,
+          },
+          // [media.greaterThan(`xxxlarge`)]: {
+          '&:before': {
+            content: `""`,
+            height: `1px`,
+            width: `100%`,
+            position: `absolute`,
+            display: `block`,
+            top: `50%`,
+            left: 0,
+            right: 0,
+            background: ({ colors }) => `linear-gradient(
                 to right,
                 ${colors.gray4},
                 ${colors.gray9},
                 ${colors.gray4}
               )
-              no-repeat;
-          }
-        `}
+              no-repeat`,
+            // background: `linear-gradient(to right,rgba(204,204,204,0.13),#6D6D6C 35.5%, transparent 35.5%) no-repeat, linear-gradient(to left,rgba(204,204,204,0.13),#6D6D6C 35.5%, transparent 35.5%) no-repeat`,
+          },
+          // },
+        }}
       >
         <div
-          css={css`
-            display: flex;
-            justify-content: space-between;
-            background: ${colors.white};
-            font-size: 0.9rem;
-            position: relative;
-            & > a {
-              margin: 0 0.5rem;
-              padding: 0.2rem 0.5rem;
-            }
-          `}
+          sx={{
+            display: `flex`,
+            justifyContent: `space-between`,
+            backgroundColor: `darkWhite`,
+            fontSize: `0.9rem`,
+            position: `relative`,
+            '& > a': {
+              margin: `0 0.5rem`,
+              padding: `0.2rem 0.5rem`,
+            },
+          }}
         >
           <Link
             to={props.location.pathname}
-            sort="desc"
             persistQuery
-            css={css`
-              pointer-events: ${!isSortAsc && `none`};
-              border: none;
-              color: ${!isSortAsc && colors.grayTurqoise};
-            `}
+            activeClassName="active"
+            sx={{
+              border: `none`,
+              '&.active': {
+                pointerEvents: `none`,
+                color: `grayTurqoise`,
+              },
+            }}
           >
             {props.data.page.frontmatter.sortLabels.desc}
           </Link>
@@ -135,11 +141,14 @@ const BlogPage = props => {
             to={props.location.pathname}
             sort="asc"
             persistQuery
-            css={css`
-              pointer-events: ${isSortAsc && `none`};
-              border: none;
-              color: ${isSortAsc && colors.grayTurqoise};
-            `}
+            activeClassName="active"
+            sx={{
+              border: `none`,
+              '&.active': {
+                pointerEvents: `none`,
+                color: `grayTurqoise`,
+              },
+            }}
           >
             {props.data.page.frontmatter.sortLabels.asc}
           </Link>
@@ -149,25 +158,25 @@ const BlogPage = props => {
       <RenderArticles
         articles={articles}
         readMoreLabel={props.data.page.frontmatter.readMoreLabel}
-        css={css`
-          display: flex;
-          flex-wrap: wrap;
-          justify-content: center;
-          ${media.greaterThan(`small`)} {
-            justify-content: space-between;
-          }
-          & > article {
-            flex: 0 0 97%;
-            max-width: 370px;
-            margin-bottom: 4rem;
-            ${media.greaterThan(`small`)} {
-              flex-basis: 47%;
-            }
-            ${media.greaterThan(`large`)} {
-              flex-basis: 29%;
-            }
-          }
-        `}
+        sx={{
+          display: `flex`,
+          flexWrap: `wrap`,
+          justifyContent: `center`,
+          [media.greaterThan(`small`)]: {
+            justifyContent: `space-between`,
+          },
+          '& > article': {
+            flex: `0 0 97%`,
+            maxWidth: `370px`,
+            marginBottom: `4rem`,
+            [media.greaterThan(`small`)]: {
+              flexBasis: `47%`,
+            },
+            [media.greaterThan(`large`)]: {
+              flexBasis: `29%`,
+            },
+          },
+        }}
       />
     </MainLayout>
   )
