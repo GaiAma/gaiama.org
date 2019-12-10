@@ -1,4 +1,4 @@
-import headings from '../components/headings'
+import headings from '@components/headings'
 
 export default {
   headings,
