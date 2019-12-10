@@ -219,7 +219,7 @@ export class Newsletter extends Component {
           <label>
             <div
               sx={{
-                fontFamily: fontFamilies.accent,
+                fontFamily: `accent`,
                 fontSize: `1.5rem`,
               }}
             >
