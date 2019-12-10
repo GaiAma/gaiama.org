@@ -1,0 +1,1 @@
+I suggest using [query-string](https://www.npmjs.com/package/query-string) ([GitHub](https://github.com/sindresorhus/query-string)) instead as it is better maintained and covers more use and edge cases.
