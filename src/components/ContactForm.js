@@ -379,7 +379,7 @@ export default class ContactForm extends Component {
           disabled={isSubmitting}
           sx={{
             ...styles.button,
-            background: `purpleDark`,
+            backgroundColor: `purpleDark`,
             color: `darkWhite`,
           }}
         >
