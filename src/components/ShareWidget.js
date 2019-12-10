@@ -104,9 +104,10 @@ class ShareWidget extends Component {
 
   getLink = () =>
     this.props.siteUrl +
-    (this.state.showFullUrl
-      ? this.props.post.fields.url
-      : this.props.post.fields.slug_short)
+    // (this.state.showFullUrl
+    //   ?
+    this.props.post.fields.url
+  // : this.props.post.fields.slug_short)
 
   onLinkModalButtonClick = ({ metaKey }) =>
     metaKey ? this.copyToClipboard() : this.toggleLinkModal()
@@ -157,9 +158,10 @@ class ShareWidget extends Component {
       siteUrl,
       ...props
     } = this.props
-    const { title, tweet_id, lang } = post.frontmatter
+    const { title, tweet_id: tweetId, lang } = post.frontmatter
     const link = siteUrl + post.fields.url
-    const shortLink = siteUrl + post.fields.slug_short
+    // const shortLink = siteUrl + post.fields.slug_short
+    const shortLink = link
 
     return (
       <Container id="sharewidget" {...props}>
@@ -195,9 +197,9 @@ class ShareWidget extends Component {
           >
             <StyledA
               href={
-                tweet_id
+                tweetId
                   ? `https://twitter.com/intent/retweet?tweet_id=${encodeURIComponent(
-                      tweet_id
+                      tweetId
                     )}`
                   : `http://twitter.com/share?text=${encodeURIComponent(
                       title

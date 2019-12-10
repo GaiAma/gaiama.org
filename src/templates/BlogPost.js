@@ -63,7 +63,8 @@ const BlogPost = props => {
           podcast={post.frontmatter.podcast}
           podcastPlayerMeta={PodcastPlayerMeta}
           shortUrl={
-            props.data.site.siteMetadata.siteUrl + post.fields.slug_short
+            // props.data.site.siteMetadata.siteUrl + post.fields.slug_short
+            props.data.site.siteMetadata.siteUrl + post.fields.url
           }
         />
 
@@ -275,7 +276,7 @@ export const query = graphql`
         dateTime
         dateStr
         dateStrLocalized
-        slug_short
+        # slug_short
         url
         translations {
           fields {
