@@ -5,9 +5,12 @@ import { graphql } from 'gatsby'
 import MainLayout from '@components/MainLayout'
 import { useScript } from '../utils/use-script'
 import GaiamaLoader from '@components/GaiamaLoader'
+import { useEffect } from 'react'
 
 const ShopPage = props => {
   const {
+    shopName,
+    prefix,
     shopScript,
     fallbackLinkInfo,
     fallbackLinkUrl,
@@ -19,13 +22,19 @@ const ShopPage = props => {
   )
   const locale = lang?.node?.frontmatter?.lc || `en_US`
 
-  /* global window */
-  window.spread_shop_config = {
-    shopName: `gaiama`,
-    locale,
-    prefix: `https://shop.spreadshirt.de`,
-    baseId: `GaiAmaShop`,
-  }
+  useEffect(() => {
+    /* global window */
+    window.spread_shop_config = {
+      locale,
+      shopName,
+      prefix,
+      baseId: `GaiAmaShop`,
+    }
+
+    return () => {
+      delete window.spread_shop_config
+    }
+  }, [locale])
 
   useScript(shopScript)
 
@@ -90,6 +99,8 @@ export const query = graphql`
         lang
         slug
         summary
+        shopName
+        prefix
         shopScript
         fallbackLinkInfo
         fallbackLinkUrl
