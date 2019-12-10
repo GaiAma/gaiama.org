@@ -3,14 +3,19 @@ const R = require(`ramda`)
 const { shuffle } = require(`lodash`)
 const speakingUrl = require(`speakingurl`)
 
-const isPost = R.and(
-  R.pathEq([`frontmatter`, `layout`], `BlogPost`),
-  R.pathEq([`frontmatter`, `published`], true)
+const isPost = R.both(
+  R.pathEq([`frontmatter`, `published`], true),
+  R.pathEq([`frontmatter`, `layout`], `BlogPost`)
 )
 
-const isPage = R.compose(
+const isPageLayout = R.compose(
   R.endsWith(`Page`),
   R.pathOr(`N/A`, [`frontmatter`, `layout`])
+)
+
+const isPage = R.both(
+  R.pathEq([`frontmatter`, `published`], true),
+  isPageLayout
 )
 
 const isPageOrPost = R.anyPass([isPage, isPost])
@@ -77,14 +82,14 @@ const getUrl = node =>
     .filter(x => x !== null)
     .join(`/`)
 
-const getRemainingSuggestions = (id, node_count) =>
+const getRemainingSuggestions = (id, nodeCount) =>
   R.pipe(
     R.filter(n => n.frontmatter.id !== id),
     shuffle,
-    R.slice(0, node_count)
+    R.slice(0, nodeCount)
   )
 
-const getSuggestedNodes = (Posts, node, node_count) => {
+const getSuggestedNodes = (Posts, node, nodeCount) => {
   const suggested = []
 
   if (node.frontmatter.suggested && node.frontmatter.suggested.length) {
@@ -99,10 +104,10 @@ const getSuggestedNodes = (Posts, node, node_count) => {
     })
   }
 
-  if (suggested.length < node_count) {
+  if (suggested.length < nodeCount) {
     getRemainingSuggestions(
       node.frontmatter.id,
-      Math.abs(suggested.length - node_count)
+      Math.abs(suggested.length - nodeCount)
     )(Posts).forEach(n => suggested.push(n.id))
   }
 
@@ -110,7 +115,7 @@ const getSuggestedNodes = (Posts, node, node_count) => {
     console.log(`No suggestions found`, node.fields.slug)
   }
 
-  return R.slice(0, node_count, suggested)
+  return R.slice(0, nodeCount, suggested)
 }
 
 module.exports = {

@@ -21,8 +21,6 @@ module.exports = store => ({ actions, getNodes, graphql }) => {
       const { lang, url, slug } = node.fields
       const { layout, shortId, shortlink, oldId, oldSlug } = node.frontmatter
 
-      // console.log(`${slug} => ${url}`)
-
       const page = {
         component: resolve(`./src/templates/${layout}.js`),
         path: url,
