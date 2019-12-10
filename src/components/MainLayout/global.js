@@ -357,7 +357,13 @@ export const globalStyles = theme => css`
 
   form, noscript, iframe, address {
     padding: 0;
-    margin: 0 0 1.55rem;
+    margin: 0;
+  }
+
+  #main {
+    form, noscript, iframe, address {
+      margin-bottom: 0 0 1.55rem;
+    }
   }
 
   hr {
