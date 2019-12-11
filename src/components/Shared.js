@@ -71,8 +71,9 @@ class CoinPicker extends Component {
       this.setState(
         {
           selected: this.props.coins.find(x => x.symbol === symbol),
-        },
-        () => dataLayer.push({ event: `donation_method`, method: symbol })
+        }
+        // ,
+        // () => dataLayer.push({ event: `donation_method`, method: symbol })
       )
 
     this.state.selected.symbol === symbol && this.setState({ selected: {} })
@@ -182,12 +183,12 @@ class BankDetails extends Component {
     isOpen: false,
   }
   toggleInfos = () => {
-    if (!this.state.isOpen) {
-      dataLayer.push({
-        event: `donation_method`,
-        method: `bank_details_button`,
-      })
-    }
+    // if (!this.state.isOpen) {
+    //   dataLayer.push({
+    //     event: `donation_method`,
+    //     method: `bank_details_button`,
+    //   })
+    // }
     this.setState({ isOpen: !this.state.isOpen })
   }
   render() {
@@ -387,9 +388,9 @@ const SupportWidget = ({
             action="https://www.paypal.com/cgi-bin/webscr"
             method="post"
             target="_top"
-            onSubmit={() =>
-              dataLayer.push({ event: `donation_method`, method: `paypal` })
-            }
+            // onSubmit={() =>
+            //   dataLayer.push({ event: `donation_method`, method: `paypal` })
+            // }
           >
             <input type="hidden" name="cmd" value="_s-xclick" />
             {lang === `en` ? (

@@ -7,10 +7,10 @@ const { version, bugs, branch } = preval`
 `
 
 // TODO: maybe improve on it https://github.com/gatsbyjs/gatsby/pull/11379/files
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-  GAIAMA_BRANCH: branch,
-})
+// window.dataLayer = window.dataLayer || []
+// dataLayer.push({
+//   GAIAMA_BRANCH: branch,
+// })
 
 try {
   window.GaiAma = {
