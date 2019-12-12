@@ -4,6 +4,8 @@
  */
 import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
+import Link from '@components/Link'
+import DonateButton from '@components/DonateButton'
 // import { VideoPlayer } from '@gaiama/react-video-player'
 // import { TableOfContents } from "@gaiama/react-mdx-table-of-contents"
 
@@ -13,6 +15,13 @@ import { MDXProvider } from '@mdx-js/react'
 // }
 
 /* components={{ VideoPlayer }} */
-const Layout = ({ children }) => <MDXProvider>{children}</MDXProvider>
+const components = {
+  Link,
+  DonateButton,
+}
+
+const Layout = ({ children }) => (
+  <MDXProvider components={components}>{children}</MDXProvider>
+)
 
 export default Layout
