@@ -1,5 +1,6 @@
 /* global window */
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import * as QS from '@gaiama/query-string'
 import { Link as GatsbyLink } from 'gatsby'
@@ -13,6 +14,29 @@ if (typeof window !== `undefined`) {
   window.__navigatingToLink = false
 }
 
+const Cta = props => (
+  <div
+    {...props}
+    sx={{
+      display: `inline-block`,
+      backgroundColor: `cta`,
+      fontWeight: `400`,
+      borderRadius: `3px`,
+      color: `#042f37`,
+      fontSize: `1.2rem`,
+      padding: `0.2rem 0.7rem`,
+      margin: `0 1rem`,
+      textAlign: `center`,
+      a: {
+        border: `none`,
+        ':hover': {
+          background: `none`,
+        },
+      },
+    }}
+  />
+)
+
 const Link = ({
   children,
   to,
@@ -21,6 +45,7 @@ const Link = ({
   ext,
   blank,
   persistQuery,
+  cta,
   ...props
 }) => {
   if (persistQuery) {
@@ -56,7 +81,9 @@ const Link = ({
     </GatsbyLink>
   )
 
-  return isExt ? externalLink : internalLink
+  const link = isExt ? externalLink : internalLink
+
+  return !cta ? link : <Cta>{link}</Cta>
 }
 
 Link.propTypes = {
@@ -66,6 +93,7 @@ Link.propTypes = {
   ext: PropTypes.bool,
   blank: PropTypes.bool,
   persistQuery: PropTypes.bool,
+  cta: PropTypes.bool,
 }
 
 Link.defaultProps = {
