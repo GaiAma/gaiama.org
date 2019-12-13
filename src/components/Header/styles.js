@@ -168,9 +168,9 @@ export default {
       height: `auto`,
 
       a: {
-        background: `#bfde2c`,
+        backgroundColor: `cta`,
         fontWeight: `400`,
-        borderRadius: `3px`,
+        borderRadius: `sm`,
         color: `#042f37`,
         fontSize: `1.2rem`,
         padding: `0.2rem 0.7rem`,
@@ -182,7 +182,7 @@ export default {
         right: `7px`,
 
         a: {
-          borderRadius: `50%`,
+          borderRadius: `round`,
           width: `3.3rem`,
           height: `3.3rem`,
           fontSize: `0.8rem`,
@@ -233,7 +233,7 @@ export default {
   },
 
   headerNav_headerLink: {
-    display: [`inline-block`, `flex`],
+    display: `flex`,
     alignItems: `center`,
     height: `100%`,
     padding: `0 .4rem 0`,
