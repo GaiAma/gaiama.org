@@ -296,7 +296,7 @@ export const globalStyles = theme => css`
     font-family: "system-ui", -apple-system, "BlinkMacSystemFont", "Segoe UI",
       "Roboto", "Helvetica", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
       "Segoe UI Symbol";
-    font-weight: 100;
+    font-weight: 300;
     text-rendering: optimizeLegibility;
     line-height: 1.1;
   }
