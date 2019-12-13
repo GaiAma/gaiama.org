@@ -15,10 +15,19 @@ module.exports = [
   `https://www.donate.gaiama.org/* https://www.gaiama.org/de/spenden/?ref=donate.gaiama.org#main-nav 301! Language=de`,
   `https://donate.gaiama.org/* https://www.gaiama.org/en/donate/?ref=donate.gaiama.org#main-nav 301!`,
   `https://www.donate.gaiama.org/* https://www.gaiama.org/en/donate/?ref=donate.gaiama.org#main-nav 301!`,
+
+  `https://www.shop.gaiama.org/* https://www.gaiama.org/de/shop/?ref=www.shop.gaiama.org#main-nav 301! Language=de`,
+  `https://www.shop.gaiama.org/* https://www.gaiama.org/en/shop/?ref=www.shop.gaiama.org#main-nav 301!`,
+  `https://shop.gaiama.org/* https://www.gaiama.org/de/shop/?ref=shop.gaiama.org#main-nav 301! Language=de`,
+  `https://shop.gaiama.org/* https://www.gaiama.org/en/shop/?ref=shop.gaiama.org#main-nav 301!`,
+
   // donation shortcuts
   `/spenden /de/spenden/?ref=gaiama.org/spenden#main-nav 301`,
   `/spende /de/spenden/?ref=gaiama.org/spende#main-nav 301`,
   `/donate /en/donate/?ref=gaiama.org/donate#main-nav 301`,
+
+  `/de/blog* /de 301 Language=de`,
+  `/en/blog* /en 301`,
 
   // `/Left-in-the_Dark_free-edition-c604d4d35b6aedd11d4470a8cee465fd.pdf /assets/Left-in-the_Dark_free-edition.pdf 301`,
 
