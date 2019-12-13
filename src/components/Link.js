@@ -19,18 +19,18 @@ const Cta = props => (
     {...props}
     sx={{
       display: `inline-block`,
-      backgroundColor: `cta`,
-      fontWeight: `400`,
-      borderRadius: `3px`,
-      color: `#042f37`,
-      fontSize: `1.2rem`,
-      padding: `0.2rem 0.7rem`,
-      margin: `0 1rem`,
       textAlign: `center`,
       a: {
+        fontWeight: `400`,
+        borderRadius: `sm`,
+        fontSize: `1.2rem`,
+        backgroundColor: `cta`,
+        color: `#042f37`,
         border: `none`,
+        padding: `0.5rem 1rem`,
         ':hover': {
-          background: `none`,
+          color: `white`,
+          backgroundColor: `primary`,
         },
       },
     }}
