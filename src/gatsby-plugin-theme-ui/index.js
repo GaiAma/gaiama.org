@@ -14,6 +14,7 @@ export default {
     text: gray80,
     background: `#fff`,
     background2: lightBlue,
+    cta: `#bfde2c`,
 
     // legacy palette
     primary: `#042f37`,
@@ -79,7 +80,27 @@ export default {
 
   fonts: {
     body: `"system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
-    accent: `body`,
+    accent: `"system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  },
+
+  text: {
+    caps: {
+      textTransform: `uppercase`,
+      letterSpacing: `0.2em`,
+    },
+    heading: {
+      fontFamily: `body`,
+      fontWeight: `body`,
+      lineHeight: `body`,
+    },
+  },
+
+  radii: {
+    none: 0,
+    sm: `0.2rem`,
+    md: `0.4rem`,
+    lg: `0.6rem`,
+    round: `50%`,
   },
 
   shadows: {},
