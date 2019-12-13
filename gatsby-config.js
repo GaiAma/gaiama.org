@@ -122,7 +122,10 @@ const plugins = [
             maxWidth: 800,
             backgroundColor: `#eae9e9`,
             linkImagesToOriginal: false,
-            showCaptions: true,
+            showCaptions: [`title`],
+            markdownCaptions: true,
+            disableBgImageOnAlpha: true,
+            withWebp: isOnline,
             quality: 75,
             wrapperStyle: f => `flex:${round(f.aspectRatio, 2)};`,
             ignoreFileExtensions: [], // the quick fix? #6698
