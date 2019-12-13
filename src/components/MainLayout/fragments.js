@@ -126,7 +126,7 @@ export const Fragments = graphql`
   }
 
   fragment homepage on Query {
-    homepage: javascriptFrontmatter(
+    homepage: mdx(
       frontmatter: { lang: { eq: $lang }, layout: { eq: "HomePage" } }
     ) {
       fields {
@@ -163,6 +163,26 @@ export const Fragments = graphql`
   }
 
   fragment PageTranslations on JavascriptFrontmatter {
+    fields {
+      translations {
+        id
+        lc
+        title
+        titleShort
+        to
+        fields {
+          url
+        }
+        frontmatter {
+          title
+          lang
+          slug
+        }
+      }
+    }
+  }
+
+  fragment MdxTranslations on Mdx {
     fields {
       translations {
         id
