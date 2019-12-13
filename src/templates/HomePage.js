@@ -1,268 +1,237 @@
 /** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
 import Helmet from 'react-helmet'
-import { jsx } from 'theme-ui'
 import styled from '@emotion/styled'
-import slugify from 'slugify'
-import { Box, colors, fullPageWidth, maxWidthContent, media } from '@src/theme'
+// import slugify from 'slugify'
+// import { Box, colors, fullPageWidth, maxWidthContent, media } from '@src/theme'
 import MainLayout from '@components/MainLayout'
-import { InstagramWidget } from '@components/InstagramWidget'
-import { SupportWidget } from '@components/Shared'
-import TitledCopy from '@components/TitledCopy'
-import { VideoPlayer } from '@gaiama/react-video-player'
+// import { InstagramWidget } from '@components/InstagramWidget'
+// import { SupportWidget } from '@components/Shared'
+// import TitledCopy from '@components/TitledCopy'
+// import { VideoPlayer } from '@gaiama/react-video-player'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
+import { MDXProvider } from '@mdx-js/react'
+import { Box, Heading, Text, Grid /*, Flex*/ } from '@theme-ui/components'
+import space from '@styled-system/space'
+import { createShouldForwardProp } from '@styled-system/should-forward-prop'
+import Link from '@components/Link'
+import { VideoPlayer } from '@components/VideoPlayer'
 
-const IntroWrapper = styled(Box)`
-  text-align: center;
-`
-
-const StyledVideoPlayer = styled(VideoPlayer)`
-  margin-top: 2rem;
-`
-
-const PageTitle = styled.h1`
-  margin-top: 0;
-`
-
-const IntroCopy = styled.p`
-  margin: 0;
-  ${media.lessThan(`small`)} {
-    font-size: 0.9rem;
-  }
-`
-
-// const IntroImagesOuter = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   margin: 2rem 0 3rem;
-//   ${media.greaterThan(`small`)} {
-//     margin: 2rem 0 4rem;
-//   }
-// `
-// const IntroImages = styled.div`
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   & > div {
-//     box-shadow: 1px 1px 2px 1px ${colors.gray7};
-//   }
-//   & > div:nth-of-type(2) {
-//     margin: 0 1rem;
-//   }
-//   & .gatsby-image-wrapper {
-//     width: 200px;
-//     width: 30vw;
-//   }
-//   ${media.greaterThan(`small`)} {
-//     & .gatsby-image-wrapper {
-//       width: 280px;
-//       /* transition: width 0.3s ease-in-out; */
-//     }
-//     & > .gatsby-image-wrapper:not(:nth-of-type(2)) {
-//       width: 200px;
-//     }
-//     /* &:hover .gatsby-image-wrapper {
-//       width: 200px;
-//     }
-//     & > .gatsby-image-wrapper:hover {
-//       width: 280px;
-//     } */
-//   }
-// `
-
-const StyledSupportWidget = styled(SupportWidget)`
-  margin: 3rem 0;
-`
-
-const KeyPrinciplesContainer = styled.div`
-  width: 90%;
-  margin: 2rem auto 0;
-  & > div + div {
-    margin-top: 3rem;
-  }
-`
-
-const KeyPrincipleRow = styled.div`
-  ${fullPageWidth};
-  padding: ${({ index }) => index % 2 === 0 && `2rem 0`};
-`
-
-const KeyPrincipleHeader = styled.div`
-  text-align: center;
-`
-
-const KeyPrincipleTitle = styled.h2`
-  letter-spacing: 0.3rem;
-  display: inline-block;
-  margin-bottom: 2.8rem;
-  border-bottom: 1px solid ${colors.black};
-  padding: 0 1.5rem 0.6rem 0;
-  line-height: 0.8;
-  position: relative;
-  font-size: 2.2rem;
-  ${media.greaterThan(`small`)} {
-    font-size: 2.5rem;
-  }
-  &:after {
-    content: '>>';
-    position: absolute;
-    right: -0.2rem;
-    bottom: -0.6rem;
-    font-size: 1.6rem;
-    letter-spacing: normal;
-  }
-`
-
-const KeyPrincipleRowInner = styled.div`
-  ${maxWidthContent};
-  max-width: 1050px;
-`
-
-const KeyPrincipleRowContent = styled.div`
-  display: flex;
-  margin: 0;
-  ${media.lessThan(`small`)} {
-    flex-direction: ${({ index }) =>
-      index % 2 === 0 ? `column-reverse` : `column`};
-  }
-`
-const KeyPrincipleRowImages = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex: 0 0 245px;
-  justify-content: center;
-  height: 245px;
-  ${media.lessThan(`small`)} {
-    margin-top: 1rem;
-  }
-  ${media.greaterThan(`small`)} {
-    height: 320px;
-    flex-basis: 320px;
-    margin-right: ${({ position }) => position === `left` && `3rem`};
-    margin-left: ${({ position }) => position === `right` && `3rem`};
-  }
-  & img {
-    margin: 0;
-  }
-`
-
-const KeyPrincipleRowImage = styled(Img)`
-  width: 120px;
-  ${media.greaterThan(`xsmall`)} {
-    width: 152px;
-  }
-  margin: 0.2rem;
-`
-
-const KeyPrincipleRowHeader = styled.div`
-  display: flex;
-`
-
-const KeyPrincipleRowTitle = styled.h2`
-  margin: 0.5rem 0 0.7rem;
-  font-size: 2rem;
-`
-
-const KeyPrincipleRowIcon = styled.img`
-  height: 48px;
-  width: 48px;
-  margin: 0;
-  margin-left: 1rem;
-`
-
-const KeyPrincipleRowCopy = styled.div`
-  font-size: 0.85rem;
-  ${media.greaterThan(`medium`)} {
-    font-size: 1rem;
-  }
-  text-align: justify;
-`
-
-const StyledTitledCopy = styled(TitledCopy)`
-  margin: 4rem auto;
-  & div {
-    ${media.lessThan(`small`)} {
-      font-size: 0.9rem;
-    },
-  }
-`
-
-const HomePage = props => (
-  <MainLayout {...props}>
-    <Helmet>
-      <title>{props.data.homepage.frontmatter.header.subtitle}</title>
-    </Helmet>
-
-    <IntroWrapper>
-      <PageTitle>{props.data.page.frontmatter.intro.title}</PageTitle>
-
-      <div>
-        {props.data.page.frontmatter.intro.content.map((x, i) => (
-          <IntroCopy key={i}>{x}</IntroCopy>
-        ))}
-      </div>
-
-      {/* <IntroImagesOuter>
-        <IntroImages>
-          {props.data.page.frontmatter.intro.images.map(({ image }) => (
-            <Img fluid={image.fluid} key={image.fluid.src} />
-          ))}
-        </IntroImages>
-      </IntroImagesOuter> */}
-
-      {props.data.page.frontmatter.video?.url && (
-        <StyledVideoPlayer
-          video={props.data.page.frontmatter.video.url}
-          thumbnail={props.data.page.frontmatter.video?.thumbnail.image}
-          label={props.data.SiteMeta.frontmatter.videoPlayerCookieButton}
-        />
-      )}
-    </IntroWrapper>
-
-    <KeyPrinciples
-      title={props.data.page.frontmatter.keyPrinciples.title}
-      content={props.data.page.frontmatter.keyPrinciples.content}
-    />
-
-    <StyledSupportWidget
-      title={props.data.SupportWidget.frontmatter.title}
-      description={props.data.SupportWidget.frontmatter.description}
-      readMoreLink={props.data.SupportWidget.frontmatter.readMoreLink}
-      readMoreLabel={props.data.SupportWidget.frontmatter.readMoreLabel}
-      paypalButton={
-        props.data.SiteMeta.frontmatter.assets.paypalButton.publicURL
-      }
-      bankButton={props.data.SupportWidget.frontmatter.bankButton}
-      bankButtonAlt={props.data.SupportWidget.frontmatter.bankButtonAlt}
-      bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
-      bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
-      lang={props.pageContext.lang}
-      // artwork={props.data.page.frontmatter.assets.supportus}
-      // artworkWrapperStyles={{
-      //   position: `absolute`,
-      //   bottom: `-2px`,
-      //   left: `-1px`,
-      // }}
-    />
-
-    <InstagramWidget
-      user={props.data.instagram.frontmatter.instagramUser}
-      followLink={props.data.instagram.frontmatter.followLink}
-      bg={props.data.instagram.frontmatter.bg.image.fluid}
-      images={props.data.instagramImages.edges}
-    />
-
-    <StyledTitledCopy
-      centered
-      title={props.data.page.frontmatter.closing.title}
-      paragraphs={props.data.page.frontmatter.closing.paragraphs}
-    />
-  </MainLayout>
+// const Flex = props => (
+//   <div
+//     sx={{
+//       display: `flex`,
+//       flexWrap: `wrap`,
+//       div: {
+//         // width: 100 / props.children.length + `%`,
+//       },
+//     }}
+//     {...props}
+//   />
+// )
+const Flex = styled(`div`, {
+  shouldForwardProp: createShouldForwardProp([...space.propNames]),
+})(space, {
+  display: `flex`,
+  flexWrap: `wrap`,
+})
+const Column = ({
+  // title,
+  // titleLevel: Level = `h2`,
+  // content,
+  width = `100%`,
+  children,
+  ...props
+}) => (
+  <div sx={{ width: [`100%`, width] }} {...props}>
+    {/* {!!title && <Level>{title}</Level>}
+    {!!content && <p>{content}</p>} */}
+    {!!children && children}
+  </div>
 )
+Column.propTypes = {
+  width: PropTypes.string,
+}
+
+const components = {
+  Flex,
+  Column,
+  Heading,
+  Text,
+  Box,
+}
+
+const ImageBlock = ({ image, stacked, ...props }) => (
+  <Box sx={{ width: [`100%`, !stacked && `33%`] }} {...props}>
+    <Img {...image} />
+  </Box>
+)
+ImageBlock.propTypes = {
+  image: PropTypes.object,
+  stacked: PropTypes.bool,
+}
+
+const ContentBlocks = ({ mdx, stacked = false }) => {
+  const {
+    title,
+    style,
+    background,
+    image,
+    videoPosition,
+    videoPoster,
+    blockVideo,
+  } = mdx.frontmatter
+  const blocks = mdx.frontmatter.blocks || []
+  const actions = mdx.frontmatter.actions || []
+  const { file, position: imagePosition } = image || {}
+
+  if (blocks.length) {
+    return (
+      <Box mt="3rem" bg={background && `background2`} p="3rem">
+        <Box mx="auto" sx={{ maxWidth: `50rem` }}>
+          {!!title && <h2 sx={{ textAlign: `center` }}>{title}</h2>}
+          <Grid columns={[1, null, blocks.length]} gap={4}>
+            {blocks.map(block => (
+              <Box key={block.relativePath}>
+                <ContentBlocks {...block} stacked={true} />
+              </Box>
+            ))}
+          </Grid>
+        </Box>
+      </Box>
+    )
+  }
+
+  return (
+    <Box
+      sx={{
+        // mt: !stacked && `2rem`,
+        backgroundColor: background && `background2`,
+        // width: `90%`,
+        mt: !stacked && `3rem`,
+        p: !stacked && background && `3rem`,
+      }}
+    >
+      <Box
+        sx={{
+          maxWidth: `50rem`,
+          mx: `auto`,
+          display: !stacked && `flex`,
+          flexWrap: `wrap`,
+          flexDirection: [`column-reverse`, `row`],
+          ...(style === `center` ? { h2: { textAlign: `center` } } : {}),
+        }}
+      >
+        {[`left`, `top`].includes(imagePosition) && (
+          <ImageBlock
+            stacked={stacked}
+            image={file.image}
+            mt={!!stacked && 0}
+            mx={imagePosition === `top` && `auto`}
+            mr="auto"
+          />
+        )}
+
+        {[`left`, `top`].includes(videoPosition) && (
+          <VideoPlayer
+            video={blockVideo}
+            poster={videoPoster.publicURL}
+            mt={!!stacked && 0}
+            mx={videoPosition === `top` && `auto`}
+            mr={videoPosition === `right` && `auto`}
+            wrapperStyles={{ maxWidth: `35rem` }}
+          />
+        )}
+
+        <Box
+          sx={{
+            width: [`90%`, !!file && !stacked ? `60%` : `100%`],
+            mx: [`auto`, 0],
+            mt: !!stacked && `1rem`,
+          }}
+        >
+          {!!title && <h2 sx={{ mt: [`2rem`, 0] }}>{title}</h2>}
+
+          <MDXRenderer>{mdx.body}</MDXRenderer>
+
+          {!!actions.length && (
+            <Box sx={{ '> * + *': { ml: `1rem` } }}>
+              {actions.map(x => (
+                <Link key={x.link} cta={x.type === `cta`} to={x.link}>
+                  {x.text}
+                </Link>
+              ))}
+            </Box>
+          )}
+        </Box>
+
+        {[`right`, `bottom`].includes(imagePosition) && (
+          <ImageBlock stacked={stacked} image={file.image} ml="auto" />
+        )}
+
+        {[`right`, `bottom`].includes(videoPosition) && (
+          <VideoPlayer
+            video={blockVideo}
+            poster={videoPoster.publicURL}
+            ml={videoPosition === `right` && `auto`}
+            mx={videoPosition === `bottom` && `auto`}
+            wrapperStyles={{ maxWidth: `35rem` }}
+          />
+        )}
+      </Box>
+    </Box>
+  )
+}
+ContentBlocks.propTypes = {
+  stacked: PropTypes.boolean,
+  mdx: PropTypes.shape({
+    body: PropTypes.string,
+    frontmatter: PropTypes.shapre({
+      title: PropTypes.string,
+      background: PropTypes.boolean,
+      style: PropTypes.string,
+      image: PropTypes.object,
+      blocks: PropTypes.array,
+      videoPosition: PropTypes.string,
+      blockVideo: PropTypes.object,
+    }),
+  }),
+}
+
+const HomePage = props => {
+  const { homepage, page } = props.data
+
+  return (
+    <MainLayout
+      {...props}
+      // wrapperStyles={{ maxWidth: `50rem`, '> div + div': { mt: `3rem` } }}
+      wrapperStyles={{
+        width: `100%`,
+        maxWidth: `100%`,
+        pt: 0,
+        '> div + div': { mt: `5rem` },
+      }}
+    >
+      <Helmet>
+        <title>{homepage.frontmatter.header.subtitle}</title>
+      </Helmet>
+
+      <MDXProvider components={components}>
+        {!!page.frontmatter.blocks.length &&
+          page.frontmatter.blocks.map(block => (
+            <ContentBlocks key={block.relativePath} {...block} />
+          ))}
+      </MDXProvider>
+    </MainLayout>
+  )
+}
 HomePage.propTypes = {
   data: PropTypes.shape({
     page: PropTypes.object,
+    homepage: PropTypes.object,
     SupportWidget: PropTypes.object,
     SiteMeta: PropTypes.object,
     instagram: PropTypes.shape({
@@ -281,6 +250,65 @@ HomePage.propTypes = {
 export default HomePage
 
 export const query = graphql`
+  fragment MdxBlocksImage on MdxFrontmatter {
+    image {
+      position
+      file {
+        relativePath
+        image: childImageSharp {
+          fluid(
+            maxWidth: 420
+            quality: 75
+            srcSetBreakpoints: [140, 240, 340, 840]
+          ) {
+            ...GatsbyImageSharpFluid_withWebp
+          }
+        }
+      }
+    }
+  }
+  fragment MdxBlocksFrontmatter on MdxFrontmatter {
+    title
+    style
+    background
+    ...MdxBlocksImage
+    actions {
+      type
+      link
+      text
+    }
+    videoPosition
+    videoPoster {
+      publicURL
+    }
+    blockVideo {
+      type
+      file {
+        publicURL
+      }
+    }
+  }
+  fragment MdxBlocks on MdxFrontmatter {
+    blocks {
+      relativePath
+      mdx: childMdx {
+        body
+        frontmatter {
+          ...MdxBlocksFrontmatter
+          blocks {
+            relativePath
+            mdx: childMdx {
+              body
+              frontmatter {
+                ...MdxBlocksFrontmatter
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
   query($lang: String!, $url: String!) {
     ...siteData
     ...SiteMeta
@@ -292,8 +320,9 @@ export const query = graphql`
     ...instagram
     ...SupportWidget
 
-    page: javascriptFrontmatter(fields: { url: { eq: $url } }) {
-      ...PageTranslations
+    page: mdx(fields: { url: { eq: $url } }) {
+      ...MdxTranslations
+      body
       fields {
         url
       }
@@ -305,154 +334,8 @@ export const query = graphql`
         cover {
           publicURL
         }
-        video {
-          url
-          thumbnail {
-            image: childImageSharp {
-              fluid(maxWidth: 760, quality: 75, cropFocus: ENTROPY) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-        intro {
-          title
-          content
-          images {
-            image: childImageSharp {
-              fluid(quality: 75) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
-        keyPrinciples {
-          title
-          content {
-            title
-            text
-            image {
-              alt
-              src {
-                publicURL
-              }
-            }
-            images {
-              one {
-                image: childImageSharp {
-                  fluid(maxWidth: 320, quality: 75) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-              two {
-                image: childImageSharp {
-                  fluid(maxWidth: 320, quality: 75) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-              three {
-                image: childImageSharp {
-                  fluid(maxWidth: 320, quality: 75) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-              four {
-                image: childImageSharp {
-                  fluid(maxWidth: 320, quality: 75) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-            }
-          }
-        }
-        closing {
-          title
-          paragraphs
-        }
-        assets {
-          supportus {
-            image: childImageSharp {
-              fixed(width: 121, quality: 75) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-          keyBg {
-            image: childImageSharp {
-              fixed(width: 238, quality: 75) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-        }
+        ...MdxBlocks
       }
     }
   }
 `
-
-const KeyPrinciples = ({ title, content, ...props }) => (
-  <KeyPrinciplesContainer {...props}>
-    {content.map((x, i) => (
-      <KeyPrincipleRow
-        key={i}
-        index={i}
-        sx={{
-          backgroundColor: i % 2 === 0 ? `background2` : `background`,
-        }}
-      >
-        <KeyPrincipleRowInner>
-          {i === 0 && (
-            <KeyPrincipleHeader>
-              <KeyPrincipleTitle>{title}</KeyPrincipleTitle>
-            </KeyPrincipleHeader>
-          )}
-          <KeyPrincipleRowContent index={i}>
-            {i % 2 === 0 && (
-              <KeyPrincipleRowImages position="left">
-                {Object.keys(x.images).map(key => (
-                  <KeyPrincipleRowImage
-                    key={key}
-                    fluid={x.images[key].image.fluid}
-                  />
-                ))}
-              </KeyPrincipleRowImages>
-            )}
-            <div>
-              <KeyPrincipleRowHeader>
-                <KeyPrincipleRowTitle id={slugify(x.title)}>
-                  {x.title}
-                </KeyPrincipleRowTitle>
-                <KeyPrincipleRowIcon
-                  src={x.image.src.publicURL}
-                  alt={x.image.alt}
-                />
-              </KeyPrincipleRowHeader>
-              <KeyPrincipleRowCopy
-                dangerouslySetInnerHTML={{ __html: x.text }}
-              />
-            </div>
-            {i % 2 === 1 && (
-              <KeyPrincipleRowImages position="right">
-                {Object.keys(x.images).map(key => (
-                  <KeyPrincipleRowImage
-                    key={key}
-                    fluid={x.images[key].image.fluid}
-                  />
-                ))}
-              </KeyPrincipleRowImages>
-            )}
-          </KeyPrincipleRowContent>
-        </KeyPrincipleRowInner>
-      </KeyPrincipleRow>
-    ))}
-  </KeyPrinciplesContainer>
-)
-KeyPrinciples.propTypes = {
-  title: PropTypes.string,
-  content: PropTypes.array,
-}
-export { KeyPrinciples }
