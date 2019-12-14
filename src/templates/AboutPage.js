@@ -1,266 +1,173 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
 import slugify from 'slugify'
+import { Box, Heading, Grid } from '@theme-ui/components'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import MainLayout from '@components/MainLayout'
-import TitledCopy from '@components/TitledCopy'
-import Newsticker from '@components/Newsticker'
-import { mediaQuery } from '@components/MediaQuery'
-import Media from 'react-media'
-import { colors, media } from '@src/theme'
+// import Media from 'react-media'
+import { media } from '@src/theme'
 
-const ContributorListTitle = styled.h2`
-  margin: 2rem 0 0;
-`
-const ContributorList = styled.div`
-  margin-top: 2rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`
-const ContributorListLink = styled(Link)`
-  margin-top: 1rem;
-  display: inline-block;
-  font-size: 0.85rem;
-  ${media.greaterThan(`small`)} {
-    font-size: 1rem;
-  }
-`
-const Contributor = styled.div`
-  width: 100%;
-  flex-shrink: 0;
-  max-width: 100%;
-  ${media.lessThan(`small`)} {
-    :nth-of-type(1n + 5) {
-      display: none;
-    }
-  }
-  ${media.greaterThan(`small`)} {
-    width: 48%;
-  }
-  ${media.greaterThan(`medium`)} {
-    width: 30%;
-  }
-  ${media.greaterThan(`xxlarge`)} {
-    width: 24%;
-  }
-`
+const slug = x => slugify(x, { remove: /[*+~.()'"!:@]/g })
 
 const AboutPage = props => {
-  const { page, NewsTicker, Labels, contributors } = props.data
+  const { page, Partners } = props.data
 
-  const PeopleGallery = () => (
-    <div
-      css={css`
-        width: 23%;
-        margin: 2rem 0;
-        ${media.lessThan(`medium`)} {
-          display: none;
-        }
-      `}
-    >
-      {page.frontmatter.peopleGallery.map((x, i) => (
-        <Img
-          key={i}
-          fixed={x.image.fixed}
-          css={css`
-            display: flex !important;
-            max-width: 100%;
-          `}
-        />
-      ))}
-    </div>
-  )
+  // const PeopleGallery = () => (
+  //   <div
+  //     css={css`
+  //       width: 23%;
+  //       margin: 2rem 0;
+  //       ${media.lessThan(`medium`)} {
+  //         display: none;
+  //       }
+  //     `}
+  //   >
+  //     {page.frontmatter.peopleGallery.map((x, i) => (
+  //       <Img
+  //         key={i}
+  //         fixed={x.image.fixed}
+  //         css={css`
+  //           display: flex !important;
+  //           max-width: 100%;
+  //         `}
+  //       />
+  //     ))}
+  //   </div>
+  // )
 
   return (
-    <MainLayout {...props}>
-      <TitledCopy
-        rank="1"
-        centered
-        title={page.frontmatter.intro.title}
-        paragraphs={page.frontmatter.intro.text}
-        spoiler={mediaQuery(`(max-width: 779px)`)}
-        spoilerLabel={Labels.frontmatter.readMore}
-        css={css`
-          margin-bottom: 3rem;
-          ${media.greaterThan(`small`)} {
-            margin-bottom: 6rem;
-          }
-          & > button {
-            background: none;
-            border: none;
-            color: ${colors.link};
-          }
-          ${media.lessThan(`medium`)} {
-            & > h2 {
-              font-size: 2rem;
-            }
-            & > div,
-            & > button {
-              font-size: 0.85rem;
-            }
-          }
-        `}
-      />
+    <MainLayout
+      {...props}
+      wrapperStyles={{
+        width: `100%`,
+        maxWidth: `100%`,
+        pt: 0,
+        '> div + div': { mt: `5rem` },
+      }}
+    >
+      <Box
+        sx={{
+          backgroundColor: `background2`,
+          mt: `3rem`,
+          p: `3rem`,
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: `50rem`,
+            mx: `auto`,
+          }}
+        >
+          <Heading as="h1" id={slug(page.frontmatter.goals.title)} sx={{ textAlign: `center` }}>{page.frontmatter.goals.title}</Heading>
+          <Grid columns={[1, 2]} gap="6" mt="3rem">
+            {page.frontmatter.goals.goals.map(goal => (
+              <Box key={goal.title}>
+                <Heading id={slug(goal.title)}>{goal.title}</Heading>
+                <Box
+                  as="ul"
+                  mt="2rem"
+                  sx={{ listStyle: `none`, ml: `-2.5rem` }}
+                >
+                  {goal.goals.map(x => (
+                    <li key={x.text}>
+                      <div
+                        sx={{
+                          display: `flex`,
+                        }}
+                      >
+                        <div
+                          sx={{ width: `2rem`, fontSize: `2rem`, mr: `0.5rem` }}
+                        >
+                          {x.emoji}
+                        </div>
+                        <div>{x.text}</div>
+                      </div>
+                    </li>
+                  ))}
+                </Box>
+                {!!goal.image && (
+                  <Img fluid={goal.image.image.fluid} sx={{ mt: `1rem` }} />
+                )}
+              </Box>
+            ))}
+          </Grid>
+        </Box>
+      </Box>
 
       <div
-        css={css`
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 3rem;
-        `}
+        sx={{
+          maxWidth: `50rem`,
+          mx: `auto`,
+        }}
       >
-        <div
-          css={css`
-            ${media.greaterThan(`medium`)} {
-              width: 70%;
-            }
-          `}
-        >
-          <div
-            css={css`
-              & > div {
-                margin-bottom: 4rem;
-              }
-            `}
-          >
-            {page.frontmatter.bios.map(bio => (
-              <div
-                key={bio.id}
-                id={slugify(bio.name)}
-                css={css`
-                  display: flex;
-                  ${media.lessThan(`medium`)} {
-                    flex-direction: column;
-                    align-items: center;
-                  }
-                  ${media.greaterThan(`medium`)} {
-                    justify-content: space-between;
-                  }
-                `}
-              >
-                <div
-                  css={css`
-                    border-radius: 50%;
-                    ${media.greaterThan(`medium`)} {
-                      margin-right: 2rem;
-                    }
-                  `}
-                >
-                  <Img
-                    fixed={bio.img.image.fixed}
-                    alt={bio.name}
-                    title={bio.name}
-                  />
-                </div>
-                <div>
-                  <h4
-                    id={slugify(bio.name)}
-                    css={css`
-                      font-size: 1.7rem;
-                      margin-bottom: 1rem;
-                      ${media.greaterThan(`medium`)} {
-                        font-size: 2rem;
-                      }
-                    `}
-                  >
-                    {bio.name}
-                  </h4>
-                  <div
-                    css={css`
-                      margin-bottom: 1rem;
-                    `}
-                  >
-                    {bio.position}
-                    <br />
-                    {bio.field}
-                  </div>
-                  <p
-                    css={css`
-                      text-align: left;
-                      ${media.lessThan(`medium`)} {
-                        font-size: 0.85rem;
-                      }
-                      ${media.greaterThan(`medium`)} {
-                        text-align: justify;
-                      }
-                    `}
-                    dangerouslySetInnerHTML={{ __html: bio.bio }}
-                  />
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div>
-            <h2
-              css={css`
-                font-size: 2.3rem;
-                margin-bottom: 3.5rem;
-                text-align: center;
-              `}
-            >
-              {page.frontmatter.specialThanks.title}
-            </h2>
-
+        <Grid columns={[1, 2, 4]} gap="36px" sx={{ rowGap: `60px` }}>
+          {page.frontmatter.bios.map(bio => (
             <div
-              css={css`
-                display: flex;
-                justify-content: space-between;
-                flex-wrap: wrap;
-                & > div:not(:last-child) {
-                  margin-bottom: 3rem;
-                }
-              `}
+              key={bio.id}
+              id={slug(bio.name)}
+              sx={{
+                textAlign: `center`,
+              }}
             >
-              {page.frontmatter.specialThanks.bios.map(bio => (
-                <div
-                  key={bio.id}
-                  id={slugify(bio.name)}
-                  css={css`
-                    text-align: center;
-                  `}
-                >
-                  <div
-                    css={css`
-                      border-radius: 50%;
-                    `}
-                  >
-                    <Img
-                      fixed={bio.img.image.fixed}
-                      alt={bio.name}
-                      title={bio.name}
-                    />
-                  </div>
-                  <div>
-                    <h4
-                      id={slugify(bio.name)}
-                      css={css`
-                        font-size: 1.7rem;
-                      `}
-                    >
-                      {bio.name}
-                    </h4>
-                    <p
-                      css={css`
-                        font-size: 0.85rem;
-                      `}
-                      dangerouslySetInnerHTML={{ __html: bio.bio }}
-                    />
-                  </div>
-                </div>
-              ))}
+              <div>
+                <Img
+                  fixed={bio.img.image.fixed}
+                  alt={bio.name}
+                  title={bio.name}
+                />
+              </div>
+              <div>
+                <Heading as="h4" id={slug(bio.name)}>
+                  {bio.name}
+                </Heading>
+                <Box mt="0.5rem">
+                  {bio.position}
+                  <br />
+                  {bio.field}
+                </Box>
+              </div>
             </div>
-          </div>
-        </div>
-
-        <Media query="(min-width: 779px)" render={PeopleGallery} />
+          ))}
+        </Grid>
       </div>
 
-      <div>
+      {/* <Media query="(min-width: 779px)" render={PeopleGallery} /> */}
+      {/* </div> */}
+
+      <Box
+        sx={{
+          backgroundColor: `background2`,
+          mt: `3rem`,
+          p: `3rem`,
+        }}
+      >
+        <Box
+          sx={{
+            maxWidth: `50rem`,
+            mx: `auto`,
+            '.inline-gallery': {
+              textAlign: `center`,
+              display: `grid`,
+              gridTemplateColumns: [`repeat(1,1fr)`,`repeat(4,1fr)`],
+              gridGap: `36px`,
+              '> span': {
+                width: `100%`,
+                alignSelf: `center`,
+              },
+            },
+          }}
+        >
+          <Heading id={slug(Partners.mdx.frontmatter.title)}>{Partners.mdx.frontmatter.title}</Heading>
+          <Box mt="2rem">
+              <MDXRenderer>{Partners.mdx.body}</MDXRenderer>
+          </Box>
+        </Box>
+      </Box>
+
+      {/* <div>
         <ContributorListTitle id="contributors">
           {page.frontmatter.contributors.title}
         </ContributorListTitle>
@@ -272,19 +179,7 @@ const AboutPage = props => {
         <ContributorListLink to={page.frontmatter.contributors.link}>
           {page.frontmatter.contributors.linkLabel}
         </ContributorListLink>
-      </div>
-
-      <Newsticker
-        items={props.data.news.edges.map(x => x.node)}
-        title={NewsTicker.frontmatter.title}
-        linkLabel={NewsTicker.frontmatter.linkLabel}
-        link={NewsTicker.frontmatter.link}
-        readmoreLabel={NewsTicker.frontmatter.readmoreLabel}
-        layout={page.frontmatter.NewsTicker.layout}
-        css={css`
-          margin-top: 4rem;
-        `}
-      />
+      </div> */}
     </MainLayout>
   )
 }
@@ -293,7 +188,8 @@ AboutPage.propTypes = {
     page: PropTypes.object,
     Cryptos: PropTypes.object,
     news: PropTypes.object,
-    NewsTicker: PropTypes.object,
+    Partners: PropTypes.object,
+    // contributors: PropTypes.array,
   }),
 }
 export default AboutPage
@@ -305,13 +201,11 @@ export const query = graphql`
     ...languages
     ...homepage
     ...menu
-    ...NewsTicker
-    ...newstickerLandscape
     ...legal
     ...Accounts
 
-    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
-      ...PageTranslations
+    page: mdx(frontmatter: { slug: { eq: $slug } }) {
+      ...MdxTranslations
       fields {
         url
       }
@@ -323,24 +217,41 @@ export const query = graphql`
         cover {
           publicURL
         }
+        goals {
+          title
+          goals {
+            title
+            goals {
+              emoji
+              text
+            }
+            image {
+              image: childImageSharp {
+                fluid(
+                  maxWidth: 1000
+                  quality: 75 # srcSetBreakpoints: [140, 240, 340, 840]
+                ) {
+                  ...GatsbyImageSharpFluid_withWebp
+                }
+              }
+            }
+          }
+        }
         intro {
           title
           text
         }
-        NewsTicker {
-          layout
-        }
-        contributors {
-          title
-          link
-          linkLabel
-        }
+        # contributors {
+        #   title
+        #   link
+        #   linkLabel
+        # }
         bios {
           id
           name
           position
           field
-          bio
+          # bio
           img {
             image: childImageSharp {
               fixed(width: 150, height: 150, quality: 75) {
@@ -349,52 +260,49 @@ export const query = graphql`
             }
           }
         }
-        specialThanks {
+        # peopleGallery {
+        #   image: childImageSharp {
+        #     fixed(width: 258, height: 258, quality: 75) {
+        #       ...GatsbyImageSharpFixed
+        #     }
+        #   }
+        # }
+      }
+    }
+
+    Partners: file(
+      relativePath: { regex: "/^partners/" }
+      name: { eq: $lang }
+    ) {
+      mdx: childMdx {
+        frontmatter {
           title
-          bios {
-            id
-            name
-            bio
-            img {
-              image: childImageSharp {
-                fixed(width: 150, height: 150, quality: 75) {
-                  ...GatsbyImageSharpFixed
-                }
-              }
-            }
-          }
         }
-        peopleGallery {
-          image: childImageSharp {
-            fixed(width: 258, height: 258, quality: 75) {
-              ...GatsbyImageSharpFixed
-            }
-          }
-        }
+        body
       }
     }
 
-    Labels: mdx(
-      frontmatter: { type: { eq: "SiteMeta" }, lang: { eq: $lang } }
-    ) {
-      frontmatter {
-        readMore
-      }
-    }
+    # Labels: mdx(
+    #   frontmatter: { type: { eq: "SiteMeta" }, lang: { eq: $lang } }
+    # ) {
+    #   frontmatter {
+    #     readMore
+    #   }
+    # }
 
-    contributors: allGaiamaDonation(
-      sort: { fields: [item___time_string], order: DESC }
-      filter: { item: { anonymous: { ne: true } } }
-      limit: 30
-    ) {
-      edges {
-        node {
-          item {
-            key
-            name
-          }
-        }
-      }
-    }
+    # contributors: allGaiamaDonation(
+    #   sort: { fields: [item___time_string], order: DESC }
+    #   filter: { item: { anonymous: { ne: true } } }
+    #   limit: 30
+    # ) {
+    #   edges {
+    #     node {
+    #       item {
+    #         key
+    #         name
+    #       }
+    #     }
+    #   }
+    # }
   }
 `
