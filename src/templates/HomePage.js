@@ -234,14 +234,14 @@ HomePage.propTypes = {
     homepage: PropTypes.object,
     SupportWidget: PropTypes.object,
     SiteMeta: PropTypes.object,
-    instagram: PropTypes.shape({
-      frontmatter: PropTypes.shape({
-        instagramUser: PropTypes.string,
-        followLink: PropTypes.string,
-        bg: PropTypes.object,
-      }),
-    }),
-    instagramImages: PropTypes.object,
+    // instagram: PropTypes.shape({
+    //   frontmatter: PropTypes.shape({
+    //     instagramUser: PropTypes.string,
+    //     followLink: PropTypes.string,
+    //     bg: PropTypes.object,
+    //   }),
+    // }),
+    // instagramImages: PropTypes.object,
   }),
   pageContext: PropTypes.shape({
     lang: PropTypes.string.isRequired,
@@ -317,7 +317,7 @@ export const query = graphql`
     ...menu
     ...legal
     ...Accounts
-    ...instagram
+    # ...instagram
     ...SupportWidget
 
     page: mdx(fields: { url: { eq: $url } }) {

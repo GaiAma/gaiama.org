@@ -101,13 +101,13 @@ const plugins = [
       offline: !isOnline && !process.env.GAIAMA_FULL_CONTENT,
     },
   },
-  {
-    // TODO: add internet connection check!
-    resolve: `gatsby-source-instagram`,
-    options: {
-      username: `gaiama_org`,
-    },
-  },
+  // {
+  //   // TODO: add internet connection check!
+  //   resolve: `gatsby-source-instagram`,
+  //   options: {
+  //     username: `gaiama_org`,
+  //   },
+  // },
   {
     resolve: `gatsby-plugin-mdx`,
     options: {
