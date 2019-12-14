@@ -6,10 +6,10 @@ import Img from 'gatsby-image/withIEPolyfill'
 import Helmet from 'react-helmet'
 import MainLayout from '@components/MainLayout'
 import TitledCopy from '@components/TitledCopy'
-import Newsticker from '@components/Newsticker'
+// import Newsticker from '@components/Newsticker'
 
 const PaypalSuccessPage = props => {
-  const { page, NewsTicker } = props.data
+  const { page } = props.data
   return (
     <MainLayout {...props}>
       <Helmet>
@@ -35,14 +35,14 @@ const PaypalSuccessPage = props => {
         <Img fixed={page.frontmatter.assets.gratitude.image.fixed} />
       </div>
 
-      <Newsticker
+      {/* <Newsticker
         items={props.data.news.edges.map(x => x.node)}
         title={NewsTicker.frontmatter.title}
         linkLabel={NewsTicker.frontmatter.linkLabel}
         link={NewsTicker.frontmatter.link}
         readmoreLabel={NewsTicker.frontmatter.readmoreLabel}
         layout="row"
-      />
+      /> */}
     </MainLayout>
   )
 }
@@ -50,7 +50,7 @@ PaypalSuccessPage.propTypes = {
   data: PropTypes.shape({
     page: PropTypes.object,
     news: PropTypes.object,
-    NewsTicker: PropTypes.object,
+    // NewsTicker: PropTypes.object,
   }),
 }
 export default PaypalSuccessPage
@@ -64,8 +64,8 @@ export const query = graphql`
     ...menu
     ...legal
     ...Accounts
-    ...NewsTicker
-    ...newstickerLandscape
+    # ...NewsTicker
+    # ...newstickerLandscape
 
     page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
       ...PageTranslations
