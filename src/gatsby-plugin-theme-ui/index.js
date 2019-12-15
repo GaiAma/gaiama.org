@@ -52,14 +52,14 @@ export default {
     success: `#74d27e`,
     failure: `#d27474`,
     yellow: `#ff0`,
-    brands: {
-      facebook: `#4466b3`,
-      twitter: `#1ca1f3`,
-      gplus: `#dc4436`,
-      youtube: `#fd1402`,
-      github: `#24292e`,
-      steemit: `#06d6a9`,
-    },
+
+    newsletter: `#009fff`,
+    facebook: `#4466b3`,
+    twitter: `#1ca1f3`,
+    gplus: `#dc4436`,
+    youtube: `#fd1402`,
+    github: `#24292e`,
+    steemit: `#06d6a9`,
 
     modes: {
       dark: {
