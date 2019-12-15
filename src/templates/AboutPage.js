@@ -1,14 +1,13 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
 import slugify from 'slugify'
 import { Box, Heading, Grid } from '@theme-ui/components'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import MainLayout from '@components/MainLayout'
 // import Media from 'react-media'
-import { media } from '@src/theme'
 
 const slug = x => slugify(x, { remove: /[*+~.()'"!:@]/g })
 
@@ -61,7 +60,13 @@ const AboutPage = props => {
             mx: `auto`,
           }}
         >
-          <Heading as="h1" id={slug(page.frontmatter.goals.title)} sx={{ textAlign: `center` }}>{page.frontmatter.goals.title}</Heading>
+          <Heading
+            as="h1"
+            id={slug(page.frontmatter.goals.title)}
+            sx={{ textAlign: `center` }}
+          >
+            {page.frontmatter.goals.title}
+          </Heading>
           <Grid columns={[1, 2]} gap="6" mt="3rem">
             {page.frontmatter.goals.goals.map(goal => (
               <Box key={goal.title}>
@@ -151,7 +156,7 @@ const AboutPage = props => {
             '.inline-gallery': {
               textAlign: `center`,
               display: `grid`,
-              gridTemplateColumns: [`repeat(1,1fr)`,`repeat(4,1fr)`],
+              gridTemplateColumns: [`repeat(1,1fr)`, `repeat(4,1fr)`],
               gridGap: `36px`,
               '> span': {
                 width: `100%`,
@@ -160,9 +165,11 @@ const AboutPage = props => {
             },
           }}
         >
-          <Heading id={slug(Partners.mdx.frontmatter.title)}>{Partners.mdx.frontmatter.title}</Heading>
+          <Heading id={slug(Partners.mdx.frontmatter.title)}>
+            {Partners.mdx.frontmatter.title}
+          </Heading>
           <Box mt="2rem">
-              <MDXRenderer>{Partners.mdx.body}</MDXRenderer>
+            <MDXRenderer>{Partners.mdx.body}</MDXRenderer>
           </Box>
         </Box>
       </Box>
