@@ -212,7 +212,7 @@ const MainLayout = props => {
             key={t.lang}
           />
         ))}
-        {[`atom.xml`, `rss.xml`, `feed.json`].map(feed => (
+        {/* {[`atom.xml`, `rss.xml`, `feed.json`].map(feed => (
           <link
             rel="alternate"
             href={`${site.siteMetadata.siteUrl}/${lang}/blog/${feed}`}
@@ -221,7 +221,7 @@ const MainLayout = props => {
             }
             key={feed}
           />
-        ))}
+        ))} */}
         {/* {!isDev && (<script src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(`,`)}`}/>)} */}
         <html lang={lang} />
       </Helmet>
