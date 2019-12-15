@@ -228,8 +228,8 @@ export const query = graphql`
     ...legal
     ...Accounts
 
-    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
-      ...PageTranslations
+    page: mdx(frontmatter: { slug: { eq: $slug } }) {
+      ...MdxTranslations
       fields {
         url
       }
