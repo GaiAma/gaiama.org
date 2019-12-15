@@ -1,6 +1,6 @@
 const { resolve } = require(`path`)
 const {
-  isHomePage,
+  // isHomePage,
   isPageOrPost,
   notIsErrorPage,
   prepareSortedTuple,
