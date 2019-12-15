@@ -1,17 +1,16 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
-import { css } from '@emotion/core'
 import { Link } from '@components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faComments } from '@fortawesome/free-regular-svg-icons'
-import { colors, media } from '@src/theme'
+import { media } from '@src/theme'
 
 const Footer = ({
   menu,
   menuTitle,
   socialTitle,
-  supportTitle,
+  // supportTitle,
   legal,
   bgImage,
   accounts,
@@ -19,82 +18,80 @@ const Footer = ({
   sponsors,
 }) => (
   <footer
-    css={css`
-      background: linear-gradient(
+    sx={{
+      background: theme => `linear-gradient(
           0deg,
-          ${colors.primary85},
-          ${colors.primary85}
+          ${theme.colors.primary85},
+          ${theme.colors.primary85}
         ),
-        url(${bgImage.fluid.src}) no-repeat bottom;
-      background-size: cover;
-      color: ${colors.white};
-      font-size: 0.9rem;
-      font-weight: 100;
-      padding: 4rem 0 2rem;
-      & a {
-        color: ${colors.white};
-      }
-    `}
+        url(${bgImage.fluid.src}) no-repeat bottom`,
+      backgroundSize: `cover`,
+      color: `white`,
+      fontSize: `0.9rem`,
+      fontWeight: 100,
+      padding: `4rem 0 2rem`,
+      '& a': {
+        color: `white`,
+      },
+    }}
   >
     <div
-      css={css`
-        display: flex;
-        flex-direction: column;
-        ${media.lessThan(`medium`)} {
-          text-align: center;
-          align-items: center;
-          > *:not(:last-child) {
-            margin-bottom: 3rem;
-          }
-          > * {
-            width: 100%;
-          }
-        }
-        ${media.greaterThan(`medium`)} {
-          flex-direction: row;
-          justify-content: space-around;
-          > * {
-            width: 33.33%;
-          }
-        }
-      `}
+      sx={{
+        display: `flex`,
+        flexDirection: `column`,
+        [media.lessThan(`medium`)]: {
+          textAlign: `center`,
+          alignItems: `center`,
+          '> *:not(:last-child)': {
+            marginBottom: `3rem`,
+          },
+          '> *': {
+            width: `100%`,
+          },
+        },
+        [media.greaterThan(`medium`)]: {
+          flexDirection: `row`,
+          justifyContent: `space-around`,
+          '> *': {
+            width: `33.33%`,
+          },
+        },
+      }}
     >
       <nav
-        css={css`
-          display: flex;
-          justify-content: center;
-        `}
+        sx={{
+          display: `flex`,
+          justifyContent: `center`,
+        }}
       >
         <div>
           <div
-            css={css`
-              margin-bottom: 1rem;
-            `}
+            sx={{
+              marginBottom: `1rem`,
+            }}
           >
             {menuTitle}
           </div>
           {menu.map((link, i) => (
             <div
               key={i}
-              css={css`
-                margin: 0.5rem 0;
-                ${media.greaterThan(`medium`)} {
-                  margin: 0.2rem 0;
-                }
-                & .active {
-                  text-decoration: underline;
-                }
-                & .active-lang {
-                  font-weight: 400;
-                }
-              `}
+              sx={{
+                margin: `0.5rem 0`,
+                [media.greaterThan(`medium`)]: {
+                  margin: `0.2rem 0`,
+                },
+                '& .active': {
+                  textDecoration: `underline`,
+                },
+                '& .active-lang': {
+                  fontWeight: 400,
+                },
+              }}
             >
               <Link
                 to={link.to}
                 activeClassName={link.lc ? `active-lang` : `active`}
-                css={css`
-                  border: none;
-                `}
+                variant="plain"
               >
                 {link.title}
               </Link>
@@ -104,129 +101,78 @@ const Footer = ({
       </nav>
 
       <div
-        css={css`
-          display: flex;
-          justify-content: center;
-        `}
+        sx={{
+          display: `flex`,
+          justifyContent: `center`,
+        }}
       >
         <div>
-          <div
-            css={css`
-              margin-bottom: 1rem;
-            `}
-          >
-            {socialTitle}
-          </div>
+          <div sx={{ mb: `1rem` }}>{socialTitle}</div>
           <ul
             className="fa-ul"
-            css={css`
-              margin-left: 0;
-              & svg {
-                margin-right: 0.4rem;
-              }
-            `}
+            sx={{
+              ml: 0,
+              '& svg': {
+                mr: `0.4rem`,
+              },
+            }}
           >
             {accounts.frontmatter.accounts.map(x => (
               <li
                 key={x.service}
-                css={css`
-                  &:hover svg {
-                    color: ${x.service !== `instagram` &&
-                      colors.brands[x.service]};
-                  }
-                  &:hover svg * {
-                    fill: ${x.service === `instagram` &&
-                      `url(#InstagramGradient)`};
-                  }
-                `}
+                sx={{
+                  '&:hover svg': {
+                    color: x.service !== `instagram` && x.service,
+                  },
+                  '&:hover svg *': {
+                    fill:
+                      x.service === `instagram` && `url(#InstagramGradient)`,
+                  },
+                }}
               >
-                <a
-                  href={x.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={x.description}
-                  css={css`
-                    border: none;
-                    :hover {
-                      background-color: transparent;
-                    }
-                  `}
-                >
-                  <FontAwesomeIcon icon={[`fab`, x.icon]} />
+                <Link to={x.url} variant="plain" title={x.description}>
+                  <FontAwesomeIcon icon={[x.icon.prefix, x.icon.name]} />
                   {x.name}
-                </a>
+                </Link>
               </li>
             ))}
-            <li
-              css={css`
-                &:hover svg {
-                  color: ${colors.brands.steemit};
-                }
-              `}
-            >
-              <a
-                href="https://steemit.com/@gaiama"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="steemit"
-                css={css`
-                  border: none;
-                  :hover {
-                    background-color: transparent;
-                  }
-                `}
-              >
-                <FontAwesomeIcon icon={faComments} />
-                Steemit
-              </a>
-            </li>
           </ul>
         </div>
       </div>
 
-      {/* <div>
-        <div
-          css={css`
-            margin-bottom: 1rem;
-          `}
-        >
-          {supportTitle}
-        </div>
-      </div> */}
-
       <div
-        css={css`
-          display: flex;
-          justify-content: center;
-        `}
+        sx={{
+          display: `flex`,
+          justifyContent: `center`,
+        }}
       >
         <div>
           <div
-            css={css`
-              a {
-                border: none;
-              }
-              a:hover {
-                background-color: transparent;
-              }
-            `}
+            sx={{
+              a: {
+                border: `none`,
+              },
+              'a:hover': {
+                backgroundColor: `transparent`,
+              },
+            }}
           >
             <MDXRenderer>{info}</MDXRenderer>
           </div>
 
           {sponsors.length && (
             <div
-              css={css`
-                a {
-                  border: none;
-                }
-                a:hover {
-                  background-color: transparent;
-                }
-                a + a {
-                  margin-left: 0.7rem;
-                }
-              `}
+              sx={{
+                a: {
+                  border: `none`,
+                },
+                'a:hover': {
+                  backgroundColor: `transparent`,
+                },
+                'a + a': {
+                  ml: `0.7rem`,
+                },
+              }}
             >
               {sponsors.map(s => (
                 <a
@@ -251,12 +197,10 @@ const Footer = ({
             {legal.length &&
               legal.map(({ node }) => (
                 <Link
-                  to={node.fields.url}
                   key={node.fields.url}
-                  css={css`
-                    margin-right: 0.5rem;
-                    border: none;
-                  `}
+                  to={node.fields.url}
+                  variant="plain"
+                  mr="0.5rem"
                 >
                   {node.frontmatter.title}
                 </Link>
@@ -267,22 +211,17 @@ const Footer = ({
     </div>
 
     <div
-      css={css`
-        margin-top: 0.5rem;
-        text-align: center;
-        ${media.greaterThan(`xlarge`)} {
-          margin: 0;
-        }
-      `}
+      sx={{
+        mt: `0.5rem`,
+        textAlign: `center`,
+        [media.greaterThan(`xlarge`)]: {
+          margin: 0,
+        },
+      }}
     >
       <span>Copyright ©</span>
-      <span
-        css={css`
-          padding: 0 0.5rem;
-        `}
-      >
-        2017-
-        {new Date().getFullYear()}
+      <span sx={{ p: `0 0.5rem` }}>
+        2017 - ∞{/* {new Date().getFullYear()} */}
       </span>
       <span>GaiAma.org</span>
     </div>
@@ -293,7 +232,7 @@ Footer.propTypes = {
   menu: PropTypes.array,
   menuTitle: PropTypes.string,
   socialTitle: PropTypes.string,
-  supportTitle: PropTypes.string,
+  // supportTitle: PropTypes.string,
   legal: PropTypes.array,
   bgImage: PropTypes.object,
   accounts: PropTypes.object,
