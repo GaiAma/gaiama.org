@@ -43,3 +43,12 @@ try {
 
 export const shouldUpdateScroll = ({ prevRouterProps }) =>
   prevRouterProps && prevRouterProps.location ? `main-nav` : true
+
+// implement https://github.com/bvaughn/react-error-boundary
+// export const wrapRootElement = ({ element }) => {
+//   return (
+//     <ErrorBundary>
+//       {element}
+//     </ErrorBundary>
+//   )
+// }
