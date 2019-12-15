@@ -27,7 +27,7 @@ const DonatePage = props => {
         `}
       >
         <Img
-          fluid={page.frontmatter.image.image.fluid}
+          fluid={page.frontmatter.image.file.image.fluid}
           css={css`
             width: 100%;
             margin: 2rem auto 0;
@@ -123,9 +123,11 @@ export const query = graphql`
         donationDescr
         contributorInfo
         image {
-          image: childImageSharp {
-            fluid(maxWidth: 950, quality: 75) {
-              ...GatsbyImageSharpFluid_withWebp
+          file {
+            image: childImageSharp {
+              fluid(maxWidth: 950, quality: 75) {
+                ...GatsbyImageSharpFluid_withWebp
+              }
             }
           }
         }
