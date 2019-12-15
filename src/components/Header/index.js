@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { jsx, useColorMode } from 'theme-ui'
-import Link from '@components/Link'
+import { Link } from '@components/Link'
 import Img from 'gatsby-image/withIEPolyfill'
 import Headroom from 'react-headroom'
 import { visible } from '@src/theme'
@@ -19,7 +19,9 @@ const HeaderWrapper = props => <header sx={style.header} {...props} />
 const HeaderTop = props => <div sx={style.headerTop} {...props} />
 const TopInner = props => <div sx={style.topInner} {...props} />
 const Brand = props => <div sx={style.headerBrand} {...props} />
-const HeaderLink = props => <Link sx={style.headerLink} {...props} />
+const HeaderLink = props => (
+  <Link variant="plain" sx={style.headerLink} {...props} />
+)
 const MetaLink = props => (
   <HeaderLink sx={style.headerMeta_headerLink} {...props} />
 )

@@ -6,7 +6,7 @@ import { faPaypal } from '@fortawesome/free-brands-svg-icons/faPaypal'
 import { faCcVisa } from '@fortawesome/free-brands-svg-icons/faCcVisa'
 import { faCcMastercard } from '@fortawesome/free-brands-svg-icons/faCcMastercard'
 import { faCcAmex } from '@fortawesome/free-brands-svg-icons/faCcAmex'
-import Link from '@components/Link'
+import { Link } from '@components/Link'
 
 export const DonateButton = ({ paymentOptions = false, ...props }) => (
   <div

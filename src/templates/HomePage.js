@@ -17,7 +17,7 @@ import { MDXProvider } from '@mdx-js/react'
 import { Box, Heading, Text, Grid /*, Flex*/ } from '@theme-ui/components'
 import space from '@styled-system/space'
 import { createShouldForwardProp } from '@styled-system/should-forward-prop'
-import Link from '@components/Link'
+import { Link } from '@components/Link'
 import { VideoPlayer } from '@components/VideoPlayer'
 
 // const Flex = props => (
@@ -160,7 +160,7 @@ const ContentBlocks = ({ mdx, stacked = false }) => {
           {!!actions.length && (
             <Box sx={{ '> * + *': { ml: `1rem` } }}>
               {actions.map(x => (
-                <Link key={x.link} cta={x.type === `cta`} to={x.link}>
+                <Link key={x.link} variant={x.variant} to={x.link}>
                   {x.text}
                 </Link>
               ))}
