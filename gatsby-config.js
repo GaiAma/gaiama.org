@@ -25,6 +25,33 @@ const sharedManifestProperties = {
   icon: `static/gaiama_pictogram.png`,
 }
 
+const getSitemapForLanguage = lang => ({
+  output: `/${lang}/sitemap.xml`,
+  exclude: [`/${lang}/paypal-success/*`, `/${lang}/404/*`],
+  createLinkInHead: false, // done manually in MainLayout
+  query: `
+    {
+      site {
+        siteMetadata {
+          siteUrl
+        }
+      }
+      allSitePage( filter: { path: { regex: "/^\/${lang}\//" } } ) {
+        edges {
+          node {
+            path
+          }
+        }
+      }
+    }`,
+  serialize: ({ site, allSitePage }) =>
+    allSitePage.edges.map(edge => ({
+      url: site.siteMetadata.siteUrl + edge.node.path,
+      changefreq: `daily`,
+      priority: 0.7,
+    })),
+})
+
 const plugins = [
   {
     resolve: `gatsby-plugin-robots-txt`,
@@ -420,6 +447,14 @@ const plugins = [
   //     ],
   //   },
   // },
+  {
+    resolve: `gatsby-plugin-sitemap`,
+    options: getSitemapForLanguage(`en`),
+  },
+  {
+    resolve: `gatsby-plugin-sitemap`,
+    options: getSitemapForLanguage(`de`),
+  },
   {
     resolve: `gatsby-plugin-offline`,
     options: {

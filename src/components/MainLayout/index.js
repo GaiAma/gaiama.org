@@ -197,6 +197,12 @@ const MainLayout = props => {
         <meta property="twitter:site" content="hellogaiama" />
         <meta name="twitter:card" content="summary_large_image" />
 
+        <link
+          rel="sitemap"
+          type="application/xml"
+          href={`/${lang}/sitemap.xml`}
+        />
+
         {[`/en`, `/de`].includes(location.pathname) && (
           <link
             rel="alternate"
