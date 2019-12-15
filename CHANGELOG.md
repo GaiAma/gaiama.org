@@ -1,16 +1,18 @@
-# [2.6.0](https://github.com/gaiama/gaiama.org/compare/v2.5.3...v2.6.0) (2019-12-15)
+## [2.6.1](https://github.com/gaiama/gaiama.org/compare/v2.5.3...v2.6.1) (2019-12-15)
 
 
 ### Bug Fixes
 
+* **About:** remove boxShadow on partners ([4c597d1](https://github.com/gaiama/gaiama.org/commit/4c597d19a06ffa6fa14f2ae379be3fb411b664a1))
 * **DonateButton:** paymentOptions spacing ([390e3b4](https://github.com/gaiama/gaiama.org/commit/390e3b4933c98cb7c5000aa8aefc97828d768f8e))
 * **Footer:** use theme-ui & new <Link/> ([a45d6dc](https://github.com/gaiama/gaiama.org/commit/a45d6dcb6c95326c23f0eba79cc5943f7f26a9fd))
 * **Header:** update styles ([4063284](https://github.com/gaiama/gaiama.org/commit/4063284ba2526e653f2ebb7ed929c5be3dbb849a))
 * **HomePage:** action type -> variant ([66ea865](https://github.com/gaiama/gaiama.org/commit/66ea86592ada9c666cd4cd3725b2052ed5958665))
+* **Layout:** DonateButton import ([bd899c5](https://github.com/gaiama/gaiama.org/commit/bd899c5baf6f1e26cade97e8b8e43c21958fc2a4))
+* **Link:** strip target&rel from wrapper ([85016d0](https://github.com/gaiama/gaiama.org/commit/85016d06aef4669ea3409efdeb1630a5bb1e6493))
 * **Link:** unclickable padding ([deb596f](https://github.com/gaiama/gaiama.org/commit/deb596feaeee1a949a3d4a2463c9ed41822771d3))
 * **Shop:** add missing hook deps, update css ([fb990ed](https://github.com/gaiama/gaiama.org/commit/fb990ed670acfd1cdd0518fad8df9973e7c95de6))
 * BlogPage & BlogPost comment-out everything ([43e3932](https://github.com/gaiama/gaiama.org/commit/43e39322bfd414ff90a7293d5867e489ac6e668d))
-* **Layout:** DonateButton import ([bd899c5](https://github.com/gaiama/gaiama.org/commit/bd899c5baf6f1e26cade97e8b8e43c21958fc2a4))
 * **theme:** accent fontFamily ([f7570ff](https://github.com/gaiama/gaiama.org/commit/f7570ff746fc01ba779f1173d0243fb5c80b3f9e))
 * **theme:** form backgroundColor ([e317a27](https://github.com/gaiama/gaiama.org/commit/e317a27721482212d5358dfea3837aaec6355699))
 * disable non-deterministic slug_short ([7ff0ed7](https://github.com/gaiama/gaiama.org/commit/7ff0ed75b5cdbb58f5754183aeddd1a15324b6b9))
@@ -20,6 +22,7 @@
 
 ### Features
 
+* inline-gallerie for linked imgs ([9648414](https://github.com/gaiama/gaiama.org/commit/9648414f2323a133c699450ce84408876643b755))
 * remove obsolete global var dataLayer ([1b51129](https://github.com/gaiama/gaiama.org/commit/1b5112915f479663965dc67bc3676200af78fe7c))
 * update FA icon library ([62c24fa](https://github.com/gaiama/gaiama.org/commit/62c24fa1157283043c2f3b0e2f37e5f7628b5b0d))
 * **ContactPage:** use grid + cleanup ([78339f0](https://github.com/gaiama/gaiama.org/commit/78339f0506e0a334c26788fe4932e5a411962ed7))
@@ -32,7 +35,6 @@
 * **MainLayout:** add MdxTranslations & mdx homepage ([f399518](https://github.com/gaiama/gaiama.org/commit/f399518599c30b07a16b225d0adfb295a3b328bb))
 * **MainLayout:** increase global heading weight ([659935f](https://github.com/gaiama/gaiama.org/commit/659935f73243a5d0ce4e74a13c74d3ee465be480))
 * **MainLayout:** move maxWidth to <main/> + cleanup ([a25f501](https://github.com/gaiama/gaiama.org/commit/a25f5016a672be55e50457a14224a7a93dbc17b9))
-* **SupportPage:** switch to mdx ([51a6bfe](https://github.com/gaiama/gaiama.org/commit/51a6bfe865087a46ae13808302d47ace7aa3ba42))
 * **SupportPage:** updates + cleanup ([5fc73e6](https://github.com/gaiama/gaiama.org/commit/5fc73e6002fd403ba2f784e630a71ddf688f16cd))
 * **Theme:** unpack colors.brands ([2e0657b](https://github.com/gaiama/gaiama.org/commit/2e0657b1f6fde1e431add443de778429304710d0))
 * add <DonateButton/> ([0d2b8f1](https://github.com/gaiama/gaiama.org/commit/0d2b8f1e5a03f4f0e75c902ff4959c5ecc46e4ec))
@@ -50,15 +52,16 @@
 * switch to mdx ([4023aeb](https://github.com/gaiama/gaiama.org/commit/4023aeb137c825f3a1ada39c123bdf566d6892b0))
 * theme-ui headings helper ([e1537a7](https://github.com/gaiama/gaiama.org/commit/e1537a7ab4c6a2f018ba120ce2dd6b91ded14d15))
 * update <Link/> imports & use everywhere ([f1fa2b9](https://github.com/gaiama/gaiama.org/commit/f1fa2b999e7035ba58075598b5f3896fa1e4954e))
-* upgrade all dependencies ([ad19c62](https://github.com/gaiama/gaiama.org/commit/ad19c62d6dcee2c47a0a46eb7fe2a7b0f3ea3f5a))
-* upgrade all dependencies ([b24878e](https://github.com/gaiama/gaiama.org/commit/b24878ed2e083aca34f5adc86a4c65f358898ac0))
-* upgrade all dependencies ([6251bd7](https://github.com/gaiama/gaiama.org/commit/6251bd73a434c75093dd024a77bfd7c51dc4737a))
 * use borderRadius from theme-ui ([94cfd12](https://github.com/gaiama/gaiama.org/commit/94cfd1271cb44d042861f70700ae9c40f8e72162))
 * use image.file ([8405cda](https://github.com/gaiama/gaiama.org/commit/8405cda0bbdc27d72aa62d5fca224399e1b51253))
+* **SupportPage:** switch to mdx ([51a6bfe](https://github.com/gaiama/gaiama.org/commit/51a6bfe865087a46ae13808302d47ace7aa3ba42))
 * wrap inline images in .inline-gallery too ([4f9ed65](https://github.com/gaiama/gaiama.org/commit/4f9ed65d5cdc1bca537df0bd6e945eb060e98040))
-* **Blog:** remove random quote ([9c8bc28](https://github.com/gaiama/gaiama.org/commit/9c8bc28ac0b94dff582d61617ea378328b778ace))
 * **theme:** add colors.cta, radii & text styles ([5fc7f63](https://github.com/gaiama/gaiama.org/commit/5fc7f63ad6148417a4c3dd1dc4e716b37340e119))
+* upgrade all dependencies ([ad19c62](https://github.com/gaiama/gaiama.org/commit/ad19c62d6dcee2c47a0a46eb7fe2a7b0f3ea3f5a))
+* **Blog:** remove random quote ([9c8bc28](https://github.com/gaiama/gaiama.org/commit/9c8bc28ac0b94dff582d61617ea378328b778ace))
 * **theme:** first dark mode ([1049da3](https://github.com/gaiama/gaiama.org/commit/1049da3d3986279de6d49b245092fd2e4b506856))
+* upgrade all dependencies ([b24878e](https://github.com/gaiama/gaiama.org/commit/b24878ed2e083aca34f5adc86a4c65f358898ac0))
+* upgrade all dependencies ([6251bd7](https://github.com/gaiama/gaiama.org/commit/6251bd73a434c75093dd024a77bfd7c51dc4737a))
 
 
 

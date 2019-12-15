@@ -114,6 +114,7 @@ const plugins = [
       extensions: [`.mdx`, `.md`],
       rehypePlugins: [require(`rehype-slug`)],
       remarkPlugins: [require(`remark-squeeze-paragraphs`)],
+      // plugins: [`gatsby-remark-images`], // TODO: until https://github.com/gatsbyjs/gatsby/issues/15486 is fixed
       gatsbyRemarkPlugins: [
         // { resolve: `gatsby-remark-embed-video` },
         { resolve: `gatsby-remark-external-links` },
