@@ -8,13 +8,19 @@ import { faCcMastercard } from '@fortawesome/free-brands-svg-icons/faCcMastercar
 import { faCcAmex } from '@fortawesome/free-brands-svg-icons/faCcAmex'
 import { Link } from '@components/Link'
 
-export const DonateButton = ({ paymentOptions = false, ...props }) => (
+export const DonateButton = ({
+  paymentOptions = false,
+  outerStyles,
+  ...props
+}) => (
   <div
     sx={{
       display: `flex`,
       maxWidth: `14rem`,
       flexDirection: `column`,
       margin: `0 auto`,
+      textAlign: `center`,
+      ...outerStyles,
     }}
   >
     <Link {...props} sx={{ display: `block` }} />
@@ -46,4 +52,6 @@ export const DonateButton = ({ paymentOptions = false, ...props }) => (
 
 DonateButton.propTypes = {
   paymentOptions: PropTypes.bool,
+  outerStyles: PropTypes.object,
+  textAlign: `center`,
 }
