@@ -20,7 +20,7 @@
     "url": "https://github.com/gaiama/gaiama.org/issues"
   },
   "scripts": {
-    "dev": "NODE_TLS_REJECT_UNAUTHORIZED=0 GATSBY_TELEMETRY_DISABLED=1 GATSBY_TELEMETRY_DEBUG=0 GATSBY_GRAPHQL_IDE=playground ENABLE_GATSBY_REFRESH_ENDPOINT=1 gatsby develop --https --host 0.0.0.0",
+    "dev": "GATSBY_TELEMETRY_DISABLED=1 GATSBY_TELEMETRY_DEBUG=0 GATSBY_GRAPHQL_IDE=playground ENABLE_GATSBY_REFRESH_ENDPOINT=1 gatsby develop --https --host 0.0.0.0",
     "dev:full": "GATSBY_GRAPHQL_IDE=playground GAIAMA_FULL_CONTENT=1 yarn dev",
     "debug": "DEBUG=* yarn dev",
     "debug:gatsby": "DEBUG=gatsby* yarn dev",
