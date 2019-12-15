@@ -20,16 +20,9 @@ const isPage = R.both(
 
 const isPageOrPost = R.anyPass([isPage, isPost])
 
-const getNLast = n =>
-  R.compose(
-    R.head,
-    R.takeLast(n)
-  )
+const getNLast = n => R.compose(R.head, R.takeLast(n))
 
-const lastContains = R.compose(
-  R.contains(`index`),
-  R.last
-)
+const lastContains = R.compose(R.contains(`index`), R.last)
 
 const getGroup = R.compose(
   R.ifElse(lastContains, getNLast(3), getNLast(2)),
