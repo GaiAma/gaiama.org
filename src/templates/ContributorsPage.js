@@ -152,9 +152,7 @@ class ContributorsPage extends React.Component {
         <TotalDonated>
           <TotalAmount amount={this.state.total} />
           <span>
-            {`${page.frontmatter.squareMeterLabel} ${
-              page.frontmatter.donatedSoFarLabel
-            }`}
+            {`${page.frontmatter.squareMeterLabel} ${page.frontmatter.donatedSoFarLabel}`}
           </span>
         </TotalDonated>
 
@@ -247,8 +245,8 @@ export const query = graphql`
     ...legal
     ...Accounts
 
-    page: javascriptFrontmatter(fields: { url: { eq: $url } }) {
-      ...PageTranslations
+    page: mdx(fields: { url: { eq: $url } }) {
+      ...MdxTranslations
       fields {
         url
       }

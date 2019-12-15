@@ -1,61 +1,80 @@
+/** @jsx jsx */
 import React from 'react'
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
+import { Box, Heading, Text } from '@theme-ui/components'
+import { graphql } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
-import styled from '@emotion/styled'
+import { Link } from '@components/Link'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faNewspaper } from '@fortawesome/free-solid-svg-icons/faNewspaper'
 // import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
-import { css } from '@emotion/core'
 import MainLayout from '@components/MainLayout'
 import { SupportWidget } from '@components/Shared'
-import CheckMark from '@src/assets/check.png'
 import TitledCopy from '@components/TitledCopy'
-import { colors, fullPageWidth, media, fontFamilies, visible } from '../theme'
+import { media, visible } from '@src/theme'
+import { DonateButton } from '@components/DonateButton'
 
-const ContributorListTitle = styled.h2`
-  margin: 2rem 0 0;
-`
-const ContributorList = styled.div`
-  margin-top: 1rem;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-`
-const ContributorListLink = styled(Link)`
-  margin-top: 1rem;
-  display: inline-block;
-  font-size: 0.85rem;
-  ${media.greaterThan(`small`)} {
-    font-size: 1rem;
-  }
-`
-const Contributor = styled.div`
-  width: 100%;
-  flex-shrink: 0;
-  max-width: 100%;
-  ${media.lessThan(`small`)} {
-    :nth-of-type(1n + 5) {
-      display: none;
-    }
-  }
-  ${media.greaterThan(`small`)} {
-    width: 48%;
-  }
-  ${media.greaterThan(`medium`)} {
-    width: 30%;
-  }
-  ${media.greaterThan(`xxlarge`)} {
-    width: 24%;
-  }
-`
+const ContributorList = props => (
+  <div
+    sx={{
+      marginTop: `1rem`,
+      display: `flex`,
+      flexWrap: `wrap`,
+      justifyContent: `space-between`,
+    }}
+    {...props}
+  />
+)
+const ContributorListLink = props => (
+  <Link
+    sx={{
+      marginTop: `1rem`,
+      display: `inline-block`,
+      fontSize: `0.85rem`,
+      [media.greaterThan(`small`)]: {
+        fontSize: `1rem`,
+      },
+    }}
+    {...props}
+  />
+)
+const Contributor = props => (
+  <div
+    sx={{
+      width: `100%`,
+      flexShrink: 0,
+      maxWidth: `100%`,
+      [media.lessThan(`small`)]: {
+        ':nth-of-type(1n + 5)': {
+          display: `none`,
+        },
+      },
+      [media.greaterThan(`small`)]: {
+        width: `48%`,
+      },
+      [media.greaterThan(`medium`)]: {
+        width: `30%`,
+      },
+      [media.greaterThan(`xxlarge`)]: {
+        width: `24%`,
+      },
+    }}
+    {...props}
+  />
+)
 
-const StyledA = styled.a`
-  border: none;
-  :hover {
-    background-color: transparent;
-  }
-`
+const StyledA = props => (
+  /* eslint-disable-next-line */
+  <a
+    sx={{
+      border: `none`,
+      ':hover': {
+        backgroundColor: `transparent`,
+      },
+    }}
+    {...props}
+  />
+)
 
 const SupportPage = props => {
   const {
@@ -63,474 +82,343 @@ const SupportPage = props => {
     contributors,
   } = props.data
 
-  const initialStyle = css`
-    ${visible.maxMd};
-    font-family: ${fontFamilies.accent};
-    font-size: 2.9rem;
-    line-height: 1;
-    float: left;
-    margin-right: 1rem;
-  `
+  const initialStyle = {
+    ...visible.maxMd,
+    fontFamily: `accent`,
+    fontSize: `2.9rem`,
+    lineHeight: 1,
+    float: `left`,
+    marginRight: `1rem`,
+  }
 
   const [neighbor, support] = [
     frontmatter.intro.neighbor,
     frontmatter.intro.support,
   ].map((x, i) => (
     <>
-      <span css={initialStyle}>{i + 1}.</span>
+      <span sx={initialStyle}>{i + 1}.</span>
       <span dangerouslySetInnerHTML={{ __html: x }} />
     </>
   ))
 
   return (
-    <MainLayout {...props}>
+    <MainLayout
+      {...props}
+      wrapperStyles={{
+        width: `100%`,
+        maxWidth: `100%`,
+        pt: 0,
+      }}
+    >
       <TitledCopy
         rank="1"
         centered
         title={frontmatter.intro.title_}
-        css={css`
-          ${media.lessThan(`medium`)} {
-            & > h2 {
-              font-size: 2rem;
-            }
-            & > div,
-            & > button {
-              font-size: 0.85rem;
-            }
-          }
-        `}
+        sx={{
+          mx: `auto`,
+          maxWidth: `50rem`,
+          mt: `3rem`,
+          [media.lessThan(`medium`)]: {
+            '& > h2': {
+              fontSize: `2rem`,
+            },
+            '& > div, & > button': {
+              fontSize: `0.85rem`,
+            },
+          },
+        }}
       />
 
       <div
-        css={css`
-          display: flex;
-          justify-content: space-around;
-          ${media.lessThan(`medium`)} {
-            display: none;
-          }
-        `}
+        sx={{
+          mx: `auto`,
+          maxWidth: `50rem`,
+          display: `flex`,
+          justifyContent: `space-around`,
+          [media.lessThan(`medium`)]: {
+            display: `none`,
+          },
+        }}
       >
         {[`arrow_left`, `arrow_right`].map(x => (
           <Img
             fluid={props.data.page.frontmatter.assets[x].image.fluid}
             key={x}
-            css={css`
-              flex: none;
-              margin-bottom: 1rem;
-              width: 112px;
-              & img {
-                object-fit: contain !important;
-              }
-            `}
+            sx={{
+              flex: `none`,
+              marginBottom: `1rem`,
+              width: `112px`,
+              '& img': {
+                objectFit: `contain !important`,
+              },
+            }}
           />
         ))}
       </div>
 
       <div
-        css={css`
-          display: flex;
-          ${media.lessThan(`medium`)} {
-            flex-direction: column;
-          }
-          ${media.greaterThan(`medium`)} {
-            justify-content: space-between;
-            & > div {
-              width: 50%;
-            }
-          }
-        `}
+        sx={{
+          mx: `auto`,
+          maxWidth: `50rem`,
+          display: `flex`,
+          [media.lessThan(`medium`)]: {
+            flexDirection: `column`,
+          },
+          [media.greaterThan(`medium`)]: {
+            justifyContent: `space-between`,
+            '& > div': {
+              width: `50%`,
+            },
+          },
+        }}
       >
         <div
-          css={css`
-            border: none;
-            position: relative;
-            ${media.lessThan(`medium`)} {
-              margin-bottom: 2rem;
-            }
-            ${media.greaterThan(`medium`)} {
-              padding-right: 3rem;
-            }
-            &:after {
-              content: '';
-              height: 1px;
-              width: 100%;
-              position: absolute;
-              display: block;
-              right: 0;
-              bottom: 0;
-              background: linear-gradient(
-                  to right,
-                  ${colors.gray4},
-                  ${colors.gray8},
-                  ${colors.gray4}
-                )
-                no-repeat;
-              ${media.lessThan(`medium`)} {
-                left: 0;
-              }
-              ${media.greaterThan(`medium`)} {
-                height: 100%;
-                width: 1px;
-                top: 0;
-                background: linear-gradient(
-                    to bottom,
-                    ${colors.gray4},
-                    ${colors.gray8},
-                    ${colors.gray4}
-                  )
-                  no-repeat;
-              }
-            }
-          `}
+          sx={{
+            border: `none`,
+            position: `relative`,
+            display: `flex`,
+            flexDirection: `column`,
+            [media.lessThan(`medium`)]: {
+              marginBottom: `2rem`,
+            },
+            [media.greaterThan(`medium`)]: {
+              paddingRight: `3rem`,
+            },
+            '&:after': {
+              content: `""`,
+              height: `1px`,
+              width: `100%`,
+              position: `absolute`,
+              display: `block`,
+              right: 0,
+              bottom: 0,
+              background: theme =>
+                `linear-gradient( to right, ${theme.colors.gray4}, ${theme.colors.gray8}, ${theme.colors.gray4}) no-repeat`,
+              [media.lessThan(`medium`)]: {
+                left: 0,
+              },
+              [media.greaterThan(`medium`)]: {
+                height: `100%`,
+                width: `1px`,
+                top: 0,
+                background: theme =>
+                  `linear-gradient(to bottom, ${theme.colors.gray4}, ${theme.colors.gray8}, ${theme.colors.gray4})no-repeat`,
+              },
+            },
+          }}
         >
-          {neighbor}
+          <div>{neighbor}</div>
+
+          <DonateButton
+            variant="cta"
+            to="/de/spenden/"
+            outerStyles={{ m: `auto 0 0` }}
+          >
+            Jetzt spenden
+          </DonateButton>
         </div>
 
         <div
-          css={css`
-            ${media.greaterThan(`medium`)} {
-              padding-left: 3rem;
-            }
-          `}
+          sx={{
+            [media.greaterThan(`medium`)]: {
+              paddingLeft: `3rem`,
+            },
+          }}
         >
           <div>{support}</div>
-        </div>
-      </div>
 
-      <div
-        css={css`
-          position: relative;
-          margin-bottom: 3rem;
-          ${fullPageWidth};
-        `}
-      >
-        <div
-          css={css`
-            display: flex;
-            justify-content: flex-end;
-            margin-bottom: 0.5rem;
-          `}
-        >
-          {
-            <Img
-              fluid={props.data.page.frontmatter.assets.parrots.image.fluid}
-              css={css`
-                transform: translateY(3rem);
-                margin-top: -3rem;
-                width: 300px;
-                ${media.greaterThan(`medium`)} {
-                  width: 450px;
-                }
-                & img {
-                  margin: 0;
-                }
-              `}
-            />
-          }
-        </div>
-
-        <div
-          css={css`
-            background: ${colors.lightBlue};
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 5rem;
-            & > div {
-              position: relative;
-              z-index: 3;
-              margin: 2.5rem 0;
-              & > a {
-                color: ${colors.black};
-                ${media.lessThan(`medium`)} {
-                  font-size: 0.7rem;
-                }
-              }
-            }
-          `}
-        >
-          {props.data.Accounts.frontmatter.accounts
-            .filter(x => x.meta !== `true`)
-            .map(x => (
-              <div
-                key={x.service}
-                css={css`
-                  &:hover svg {
-                    color: ${x.service !== `instagram` &&
-                      colors.brands[x.service]};
-                  }
-                  &:hover svg * {
-                    fill: ${x.service === `instagram` &&
-                      `url(#InstagramGradient)`};
-                  }
-                `}
-              >
-                <StyledA
-                  href={x.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title={x.description}
-                >
-                  <FontAwesomeIcon icon={[`fab`, x.icon]} size="3x" />
-                </StyledA>
-              </div>
-            ))}
           <div
-            css={css`
-              &:hover svg {
-                color: ${colors.grayTurqoise};
-              }
-            `}
+            sx={{
+              display: `flex`,
+              margin: `1rem -0.5rem 0`,
+            }}
           >
-            <StyledA
-              href={`${props.data.page.frontmatter.contactLink}#Newsletter`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={faNewspaper} size="3x" />
-            </StyledA>
+            {props.data.Accounts.frontmatter.accounts
+              .filter(x => x.meta !== `true`)
+              .map(x => (
+                <div
+                  key={x.service}
+                  sx={{
+                    mx: `0.5rem`,
+                    svg: {
+                      color: x.service !== `instagram` && x.service,
+                    },
+                    'svg *': {
+                      fill:
+                        x.service === `instagram` && `url(#InstagramGradient)`,
+                    },
+                    ':hover svg': {
+                      color: `black`,
+                      '*': {
+                        fill: `black`,
+                      },
+                    },
+                  }}
+                >
+                  <StyledA
+                    href={x.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={x.description}
+                  >
+                    <FontAwesomeIcon
+                      icon={[x.icon.prefix, x.icon.name]}
+                      size="3x"
+                    />
+                  </StyledA>
+                </div>
+              ))}
           </div>
-          {/* <div
-            css={css`
-              &:hover svg {
-                color: ${colors.rss};
-              }
-            `}
-          >
-            <StyledA
-              href={`/${props.pageContext.lang}/blog/rss.xml`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FontAwesomeIcon icon={faRssSquare} size="3x" />
-            </StyledA>
-          </div> */}
         </div>
       </div>
+
+      <Box mt="5rem" bg={`background2`} p="2rem">
+        <Box mx="auto" sx={{ maxWidth: `50rem` }}>
+          <Heading id="contributors">{frontmatter.contributors.title}</Heading>
+          <Text mt="1rem">
+            {frontmatter.contributors.descr}
+            <Link
+              to={frontmatter.contributors.donateLink}
+              sx={{ ml: `0.5rem` }}
+            >
+              {frontmatter.contributors.donateLabel}
+            </Link>
+          </Text>
+          <ContributorList>
+            {contributors.edges.map(x => (
+              <Contributor key={x.node.item.key}>
+                {x.node.item.name}
+              </Contributor>
+            ))}
+          </ContributorList>
+          <ContributorListLink to={frontmatter.contributors.link}>
+            {frontmatter.contributors.linkLabel}
+          </ContributorListLink>
+        </Box>
+      </Box>
 
       <TitledCopy
-        centered
+        // centered
         title={frontmatter.getIdea.title}
-        css={css`
-          & > h2 {
-            margin-bottom: 0.7rem;
-            ${media.lessThan(`medium`)} {
-              font-size: 2rem;
-            }
-          }
-          & > div {
-            font-size: 0.9rem;
-            ${media.greaterThan(`medium`)} {
-              font-size: 1rem;
-            }
-          }
-        `}
+        sx={{
+          mt: `5rem`,
+          mx: `auto`,
+          maxWidth: `50rem`,
+          '& > h2': {
+            marginBottom: `0.7rem`,
+            [media.lessThan(`medium`)]: {
+              fontSize: `2rem`,
+            },
+          },
+          '& > div': {
+            fontSize: `0.9rem`,
+            [media.greaterThan(`medium`)]: {
+              fontSize: `1rem`,
+            },
+          },
+        }}
       >
         {frontmatter.getIdea.subtitle}
       </TitledCopy>
 
       <div
-        css={css`
-          margin: 3rem 0 3rem;
-          display: flex;
-          ${media.lessThan(`small`)} {
-            flex-direction: column;
-            align-items: center;
-            & div + div {
-              margin-top: 1rem;
-            }
-          }
-          ${media.greaterThan(`small`)} {
-            justify-content: space-between;
-          }
-          & > div {
-            position: relative;
-            text-align: center;
-            color: ${colors.darkWhite};
-            font-size: 0.98rem;
-            display: flex;
-            align-items: center;
-            ${media.greaterThan(`small`)} {
-              width: 19%;
-            }
-            & > div {
-              transition: transform 0.5s;
-              width: 100%;
-            }
-            &:hover > div {
-              transform: scale(1.06);
-            }
-          }
-        `}
+        sx={{
+          mt: `2rem`,
+          mx: `auto`,
+          maxWidth: `50rem`,
+          display: `flex`,
+          [media.lessThan(`small`)]: {
+            flexDirection: `column`,
+            alignItems: `center`,
+            '& div + div': {
+              marginTop: `1rem`,
+            },
+          },
+          [media.greaterThan(`small`)]: {
+            justifyContent: `space-between`,
+          },
+          '& > div': {
+            position: `relative`,
+            textAlign: `center`,
+            color: `darkWhite`,
+            fontSize: `0.98rem`,
+            display: `flex`,
+            alignItems: `center`,
+            [media.greaterThan(`small`)]: {
+              width: `19%`,
+            },
+            '& > div': {
+              transition: `transform 0.5s`,
+              width: `100%`,
+            },
+            '&:hover > div': {
+              transform: `scale(1.06)`,
+            },
+          },
+        }}
       >
         {frontmatter.getIdea.insights.map((x, i) => (
           <div
             key={i}
-            css={css`
-              user-select: none;
-            `}
+            sx={{
+              userSelect: `none`,
+            }}
           >
             <div
-              css={css`
-                position: relative;
-              `}
+              sx={{
+                position: `relative`,
+              }}
             >
               <Img
                 fixed={x.img.image.fixed}
-                css={css`
-                  max-width: 100%;
-                  &:after {
-                    content: '';
-                    background: linear-gradient(
-                      to right,
-                      rgba(4, 47, 55, 0.58),
-                      rgba(4, 47, 55, 0.72)
-                    );
-                    position: absolute;
-                    display: block;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
-                    left: 0;
-                  }
-                `}
+                sx={{
+                  maxWidth: `100%`,
+                  '&:after': {
+                    content: `""`,
+                    background: `linear-gradient(to right, rgba(4, 47, 55, 0.58), rgba(4, 47, 55, 0.72))`,
+                    position: `absolute`,
+                    display: `block`,
+                    top: 0,
+                    right: 0,
+                    bottom: 0,
+                    left: 0,
+                  },
+                }}
               />
             </div>
             <p
-              css={css`
-                position: absolute;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                margin: 1rem;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-              `}
+              sx={{
+                position: `absolute`,
+                top: 0,
+                right: 0,
+                bottom: 0,
+                left: 0,
+                margin: `1rem`,
+                display: `flex`,
+                justifyContent: `center`,
+                alignItems: `center`,
+              }}
               dangerouslySetInnerHTML={{ __html: x.descr }}
             />
           </div>
         ))}
       </div>
 
-      <div>
-        <ContributorListTitle id="contributors">
-          {frontmatter.contributors.title}
-        </ContributorListTitle>
-        <ContributorList>
-          {contributors.edges.map(x => (
-            <Contributor key={x.node.item.key}>{x.node.item.name}</Contributor>
-          ))}
-        </ContributorList>
-        <ContributorListLink to={frontmatter.contributors.link}>
-          {frontmatter.contributors.linkLabel}
-        </ContributorListLink>
-      </div>
-
-      <div
-        css={css`
-          margin-top: 4rem;
-          background: ${colors.lightBlue};
-          position: relative;
-          padding: 2rem 1rem;
-          ${fullPageWidth}
-        `}
-      >
-        <div
-          css={css`
-            ${media.greaterThan(`small`)} {
-              display: flex;
-              justify-content: center;
-            }
-            & > div {
-              ${media.greaterThan(`small`)} {
-                width: 47%;
-                /* &:first-of-type {
-                  padding-right: 3rem;
-                  position: relative;
-                  &:after {
-                    content: '';
-                    height: 100%;
-                    width: 1px;
-                    position: absolute;
-                    display: block;
-                    top: 0;
-                    right: 0;
-                    background: linear-gradient(
-                        to bottom,
-                        ${colors.gray4},
-                        ${colors.gray8},
-                        ${colors.gray4}
-                      )
-                      no-repeat;
-                  }
-                }
-                &:last-child {
-                  padding-left: 3rem;
-                } */
-              }
-            }
-          `}
-        >
-          {[`left`].map(x => (
-            <div key={x}>
-              <h3
-                css={css`
-                  text-align: center;
-                  font-size: 1.8rem;
-                `}
-              >
-                {frontmatter.checklists[x].title}
-              </h3>
-
-              <div
-                css={css`
-                  margin-left: 3rem;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: space-between;
-                  & > div {
-                    position: relative;
-                    font-size: 0.9rem;
-                  }
-                  & > div:not(:last-child) {
-                    margin-bottom: 1.3rem;
-                  }
-                  & > div:before {
-                    content: url(${CheckMark});
-                    position: absolute;
-                    left: -3rem;
-                    top: 0.4rem;
-                  }
-                  ${media.lessThan(`small`)} {
-                    & > div:last-child {
-                      margin-bottom: 1.5rem;
-                    }
-                  }
-                `}
-              >
-                {frontmatter.checklists[x].items.map((x, i) => (
-                  <div key={i}>{x}</div>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
       <TitledCopy
-        centered
+        // centered
         title={frontmatter.outro.title}
         paragraphs={frontmatter.outro.text}
-        css={css`
-          margin: 5rem auto 0;
-          ${media.lessThan(`medium`)} {
-            & div {
-              font-size: 0.9rem;
-              text-align: center;
-            }
-          }
-        `}
+        sx={{
+          mt: `5rem`,
+          mx: `auto`,
+          maxWidth: `50rem`,
+          [media.lessThan(`medium`)]: {
+            '& div': {
+              fontSize: `0.9rem`,
+              textAlign: `center`,
+            },
+          },
+        }}
       />
 
       <SupportWidget
@@ -545,9 +433,9 @@ const SupportPage = props => {
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
         lang={props.pageContext.lang}
-        css={css`
-          margin: 3rem 0 5rem;
-        `}
+        sx={{
+          margin: `3rem 0 5rem`,
+        }}
         artworkStyles={{
           width: `350px`,
         }}
@@ -574,8 +462,8 @@ export const query = graphql`
     ...Accounts
     ...SupportWidget
 
-    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
-      ...PageTranslations
+    page: mdx(frontmatter: { slug: { eq: $slug } }) {
+      ...MdxTranslations
       fields {
         url
       }
@@ -636,18 +524,11 @@ export const query = graphql`
         }
         contributors {
           title
+          descr
+          donateLabel
+          donateLink
           link
           linkLabel
-        }
-        checklists {
-          left {
-            title
-            items
-          }
-          right {
-            title
-            items
-          }
         }
         outro {
           title

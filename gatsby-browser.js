@@ -1,4 +1,4 @@
-/* global window dataLayer */
+/* global window */
 import preval from 'babel-plugin-preval/macro'
 const { version, bugs, branch } = preval`
   const { version, bugs } = require('./package.json')
@@ -7,10 +7,10 @@ const { version, bugs, branch } = preval`
 `
 
 // TODO: maybe improve on it https://github.com/gatsbyjs/gatsby/pull/11379/files
-window.dataLayer = window.dataLayer || []
-dataLayer.push({
-  GAIAMA_BRANCH: branch,
-})
+// window.dataLayer = window.dataLayer || []
+// dataLayer.push({
+//   GAIAMA_BRANCH: branch,
+// })
 
 try {
   window.GaiAma = {
@@ -21,7 +21,7 @@ try {
   }
   console.log(
     `%cWelcome to GaiAma.org version ${version}, you're on the ${branch} branch`,
-    `font-size:13px;color:#01422e;`
+    `font-size:13px;color:#056b4d;`
   )
   console.log(
     `%cFeel free to inspect everything, e.g. 'window.GaiAma'`,
@@ -35,9 +35,7 @@ try {
     `color:green;`
   )
   console.log(
-    `%cIf you encounter anything unexpected, or have other feedback feel free to file an issue at ${
-      bugs.url
-    }/new?labels=ViaDevTools`,
+    `%cIf you encounter anything unexpected, or have other feedback feel free to file an issue at ${bugs.url}/new?labels=ViaDevTools`,
     `color:#3a9a02;`
   )
   /* eslint-disable-next-line */
@@ -45,3 +43,12 @@ try {
 
 export const shouldUpdateScroll = ({ prevRouterProps }) =>
   prevRouterProps && prevRouterProps.location ? `main-nav` : true
+
+// implement https://github.com/bvaughn/react-error-boundary
+// export const wrapRootElement = ({ element }) => {
+//   return (
+//     <ErrorBundary>
+//       {element}
+//     </ErrorBundary>
+//   )
+// }

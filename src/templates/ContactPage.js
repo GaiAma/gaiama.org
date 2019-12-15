@@ -1,22 +1,15 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
+import Img from 'gatsby-image/withIEPolyfill'
+import { Box, Flex, Text, Grid } from '@theme-ui/components'
 import MainLayout from '@components/MainLayout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
-import { colors, media } from '@src/theme'
 import TitledCopy from '@components/TitledCopy'
 import { Newsletter } from '@components/NewsletterWidget'
 import ContactForm from '@components/ContactForm'
-
-const StyledA = styled.a`
-  border: none;
-  :hover {
-    background-color: transparent;
-  }
-`
+import { Link } from '@components/Link'
 
 const ContactPage = props => {
   const { page } = props.data
@@ -24,19 +17,11 @@ const ContactPage = props => {
     <MainLayout
       {...props}
       wrapperStyles={{
-        [media.greaterThan(`small`)]: {
-          background: `url(${
-            page.frontmatter.assets.bg.image.fluid.src
-          }) no-repeat right 1rem`,
-        },
         maxWidth: `100%`,
         minHeight: `680px`,
         paddingTop: `2rem`,
         paddingRight: 0,
         paddingBottom: 0,
-        [media.greaterThan(`medium`)]: {
-          width: `100%`,
-        },
       }}
     >
       {/* <p>
@@ -44,113 +29,61 @@ const ContactPage = props => {
         Ihrer angegebenen Daten zum Zweck der Bearbeitung Ihrer Anfrage
         einverstanden ([LINK]Datenschutzerklärung und Widerrufshinweise[/LINK])
       </p> */}
-      <div
-        css={css`
-          overflow: hidden;
-          padding: 0.2rem;
-          display: flex;
-          justify-content: space-between;
-          ${media.lessThan(`xsmall`)} {
-            flex-direction: column;
-          }
-          ${media.greaterThan(`xsmall`)} {
-            & > div {
-              width: 40%;
-            }
-          }
-          ${media.greaterThan(`medium`)} {
-            width: 57%;
-            margin: 3rem 2rem 0 6rem;
-          }
-        `}
+      <Grid
+        columns={[1, null, null, 3]}
+        gap={5}
+        sx={{
+          mx: `auto`,
+          maxWidth: `100rem`,
+          mb: `4rem`,
+        }}
       >
-        <div
-          css={css`
-            margin-bottom: 3rem;
-          `}
-        >
+        <Box mb="3rem">
           <TitledCopy
             rank="1"
             full
             title={page.frontmatter.title}
-            // paragraphs={page.frontmatter.form.descr}
-            css={css`
-              margin-bottom: 1.5rem;
-              & h2 {
-                margin-bottom: 1rem;
-              }
-              & div {
-                font-size: 0.9rem;
-              }
-              ${media.lessThan(`xsmall`)} {
-                text-align: center;
-              }
-            `}
+            sx={{
+              marginBottom: `1.5rem`,
+              '& h2': {
+                marginBottom: `1rem`,
+              },
+              '& div': {
+                fontSize: `0.9rem`,
+              },
+            }}
           />
 
-          <div
-            css={css`
-              display: flex;
-              justify-content: space-between;
-              ${media.lessThan(`small`)} {
-                margin-bottom: 2rem;
-              }
-              & > div {
-                margin-bottom: 1.5rem;
-                & > a {
-                  color: ${colors.purpleDark};
-                }
-              }
-            `}
-          >
-            {props.data.Accounts.frontmatter.accounts
-              .filter(x => x.meta !== `true`)
-              .map(x => (
-                <div
-                  key={x.service}
-                  css={css`
-                    & svg {
-                      color: ${x.service !== `instagram` &&
-                        colors.brands[x.service]};
-                    }
-                    & svg * {
-                      fill: ${x.service === `instagram` &&
-                        `url(#InstagramGradient)`};
-                    }
-                    &:hover svg {
-                      color: ${colors.black};
-                    }
-                  `}
-                >
-                  <StyledA
-                    href={x.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    title={x.description}
-                  >
-                    <FontAwesomeIcon icon={[`fab`, x.icon]} size="lg" />
-                  </StyledA>
-                </div>
-              ))}
-            {/* <div
-              css={css`
-                & svg {
-                  color: ${colors.rss};
-                }
-                &:hover svg {
-                  color: ${colors.black};
-                }
-              `}
-            >
-              <StyledA
-                href={`/${props.pageContext.lang}/blog/rss.xml`}
-                target="_blank"
-                rel="noopener noreferrer"
+          <Flex mx="-1rem" mb="1rem">
+            {props.data.Accounts.frontmatter.accounts.map(x => (
+              <Box
+                key={x.service}
+                mx="1rem"
+                sx={{
+                  '& svg': {
+                    color: x.service !== `instagram` && x.service,
+                  },
+                  '& svg *': {
+                    fill:
+                      x.service === `instagram` && `url(#InstagramGradient)`,
+                  },
+                  '&:hover svg': {
+                    color: `black`,
+                    '*': {
+                      fill: `black`,
+                    },
+                  },
+                }}
               >
-                <FontAwesomeIcon icon={faRssSquare} size="lg" />
-              </StyledA>
-            </div> */}
-          </div>
+                <Link to={x.url} variant="plain" title={x.description}>
+                  <FontAwesomeIcon
+                    icon={[x.icon.prefix, x.icon.name]}
+                    size="2x"
+                  />
+                </Link>
+              </Box>
+            ))}
+          </Flex>
 
           <ContactForm
             emailLabel={page.frontmatter.form.emailLabel}
@@ -167,30 +100,30 @@ const ContactPage = props => {
             generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
             endpoint="https://gaiama-contact.now.sh"
           />
-        </div>
+        </Box>
 
         <div
-          css={css`
-            display: flex;
-          `}
+          sx={{
+            display: `flex`,
+            form: {
+              mt: `2rem`,
+            },
+          }}
         >
           <div>
             <TitledCopy
               full
               title={page.frontmatter.newsletter.title}
               paragraphs={page.frontmatter.newsletter.descr}
-              css={css`
-                margin-bottom: 1.3rem;
-                & h2 {
-                  margin-bottom: 1rem;
-                }
-                & div {
-                  font-size: 0.9rem;
-                }
-                ${media.lessThan(`xsmall`)} {
-                  text-align: center;
-                }
-              `}
+              sx={{
+                marginBottom: `1.3rem`,
+                '& h2': {
+                  marginBottom: `1rem`,
+                },
+                '& div': {
+                  fontSize: `0.9rem`,
+                },
+              }}
             />
             <Newsletter
               emailLabel={page.frontmatter.form.emailLabel}
@@ -207,7 +140,12 @@ const ContactPage = props => {
             />
           </div>
         </div>
-      </div>
+
+        <Box>
+          <Img fluid={page.frontmatter.assets.team.image.fluid} />
+          <Text mt="1rem">{page.frontmatter.greeting}</Text>
+        </Box>
+      </Grid>
     </MainLayout>
   )
 }
@@ -228,8 +166,8 @@ export const query = graphql`
     ...legal
     ...Accounts
 
-    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
-      ...PageTranslations
+    page: mdx(frontmatter: { slug: { eq: $slug } }) {
+      ...MdxTranslations
       fields {
         url
       }
@@ -260,11 +198,12 @@ export const query = graphql`
           requiredLabel
           generalErrorLabel
         }
+        greeting
         assets {
-          bg {
+          team {
             image: childImageSharp {
               fluid(maxWidth: 800, quality: 75) {
-                ...GatsbyImageSharpFluid_noBase64
+                ...GatsbyImageSharpFluid_withWebp
               }
             }
           }
@@ -273,34 +212,3 @@ export const query = graphql`
     }
   }
 `
-
-// import React from 'react'
-// import rehypeReact from 'rehype-react'
-// import MainLayout from '@components/Layouts/MainLayout'
-
-// const renderAst = new rehypeReact({
-//   createElement: React.createElement
-// }).Compiler
-
-// export default props => {
-//   return (
-//     <MainLayout pageProps={props}>
-//       <h1>{props.data.page.frontmatter.title}</h1>
-
-//       <div>
-//         {/* {renderAst(props.data.page.htmlAst)} */}
-//       </div>
-//     </MainLayout>
-//   )
-// }
-
-// export const query = graphql`
-//   query(
-//     $lang: String!
-//     $slug: String!
-//   ) {
-//     ...homepage
-//     ...menu
-//     ...pageJs
-//   }
-// `

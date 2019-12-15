@@ -94,7 +94,10 @@ export const Fragments = graphql`
           description
           handle
           url
-          icon
+          icon {
+            name
+            prefix
+          }
           meta
         }
       }
@@ -102,7 +105,7 @@ export const Fragments = graphql`
   }
 
   fragment menu on Query {
-    menu: allJavascriptFrontmatter(
+    menu: allMdx(
       filter: {
         frontmatter: { menu: { regex: "/(main|meta)/" }, lang: { eq: $lang } }
       }
@@ -126,7 +129,7 @@ export const Fragments = graphql`
   }
 
   fragment homepage on Query {
-    homepage: javascriptFrontmatter(
+    homepage: mdx(
       frontmatter: { lang: { eq: $lang }, layout: { eq: "HomePage" } }
     ) {
       fields {
@@ -162,7 +165,7 @@ export const Fragments = graphql`
     }
   }
 
-  fragment PageTranslations on JavascriptFrontmatter {
+  fragment MdxTranslations on Mdx {
     fields {
       translations {
         id

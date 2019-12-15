@@ -1,8 +1,10 @@
 /* global dataLayer */
+/** @jsx jsx */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
+import { jsx } from 'theme-ui'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -69,8 +71,9 @@ class CoinPicker extends Component {
       this.setState(
         {
           selected: this.props.coins.find(x => x.symbol === symbol),
-        },
-        () => dataLayer.push({ event: `donation_method`, method: symbol })
+        }
+        // ,
+        // () => dataLayer.push({ event: `donation_method`, method: symbol })
       )
 
     this.state.selected.symbol === symbol && this.setState({ selected: {} })
@@ -180,12 +183,12 @@ class BankDetails extends Component {
     isOpen: false,
   }
   toggleInfos = () => {
-    if (!this.state.isOpen) {
-      dataLayer.push({
-        event: `donation_method`,
-        method: `bank_details_button`,
-      })
-    }
+    // if (!this.state.isOpen) {
+    //   dataLayer.push({
+    //     event: `donation_method`,
+    //     method: `bank_details_button`,
+    //   })
+    // }
     this.setState({ isOpen: !this.state.isOpen })
   }
   render() {
@@ -342,8 +345,8 @@ const SupportWidget = ({
 
     <Box
       oh
+      sx={{ backgroundColor: !transparent && `background2` }}
       css={css`
-        background: ${!transparent && colors.lightBlue};
         ${media.lessThan(`medium`)} {
           padding-top: 3rem;
         }
@@ -385,9 +388,9 @@ const SupportWidget = ({
             action="https://www.paypal.com/cgi-bin/webscr"
             method="post"
             target="_top"
-            onSubmit={() =>
-              dataLayer.push({ event: `donation_method`, method: `paypal` })
-            }
+            // onSubmit={() =>
+            //   dataLayer.push({ event: `donation_method`, method: `paypal` })
+            // }
           >
             <input type="hidden" name="cmd" value="_s-xclick" />
             {lang === `en` ? (

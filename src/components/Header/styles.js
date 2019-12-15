@@ -1,25 +1,21 @@
-import { colors, fontFamilies, media } from '@src/theme'
-
-/**
- *
- * switching form breakPoints to media destroyed navbar spacings -.-#
- *
- * does it work now?
- *
- */
+import { colors, fontFamilies, media, maxWidthLayout } from '@src/theme'
 
 export default {
   header: {
     position: `relative`,
-    color: colors.darkWhite,
+    color: `darkWhite`,
     whiteSpace: `nowrap`,
     fontWeight: 100,
 
+    width: `100vw`,
+    ...maxWidthLayout,
+    margin: `0 auto`,
+
     '& a': {
-      color: colors.darkWhite,
+      color: `darkWhite`,
 
       '&:hover': {
-        color: colors.darkWhite,
+        color: `darkWhite`,
       },
     },
     '& > .gatsby-image-wrapper': {
@@ -34,7 +30,7 @@ export default {
 
   headerTop: {
     position: `relative`,
-    backgroundColor: [colors.primary, colors.primary85],
+    backgroundColor: [`primary`, `primary85`],
     margin: 0,
     height: `2.5rem`,
 
@@ -176,9 +172,9 @@ export default {
       height: `auto`,
 
       a: {
-        background: `#bfde2c`,
+        backgroundColor: `cta`,
         fontWeight: `400`,
-        borderRadius: `3px`,
+        borderRadius: `sm`,
         color: `#042f37`,
         fontSize: `1.2rem`,
         padding: `0.2rem 0.7rem`,
@@ -190,7 +186,7 @@ export default {
         right: `7px`,
 
         a: {
-          borderRadius: `50%`,
+          borderRadius: `round`,
           width: `3.3rem`,
           height: `3.3rem`,
           fontSize: `0.8rem`,
@@ -205,16 +201,18 @@ export default {
   },
 
   headerLink: {
-    display: `block`,
-    color: colors.darkWhite,
-    position: `relative`,
-    border: `none`,
-    // zIndex: 1,
-
-    ':hover, :active, :focus': {
-      backgroundColor: `transparent`,
+    a: {
+      display: `block`,
       color: colors.darkWhite,
-      textDecoration: `none`,
+      position: `relative`,
+      border: `none`,
+      // zIndex: 1,
+
+      ':hover, :active, :focus': {
+        backgroundColor: `transparent`,
+        color: colors.darkWhite,
+        textDecoration: `none`,
+      },
     },
   },
 
@@ -229,35 +227,39 @@ export default {
   },
 
   headerMeta_headerLink: {
-    // WebkitFontSmoothing: `antialiased`,
-    // WebkitBackfaceVisibility: `hidden`,
-    // transform: `perspective(1px) translateZ(0)`,
-    // transition: `transform .2s`,
-    // WebkitFilter: `blur(0)`,
-    '&:hover': {
-      backgroundColor: `transparent`,
-      transform: `scale(1.048, 1.048)`,
+    a: {
+      // WebkitFontSmoothing: `antialiased`,
+      // WebkitBackfaceVisibility: `hidden`,
+      // transform: `perspective(1px) translateZ(0)`,
+      // transition: `transform .2s`,
+      // WebkitFilter: `blur(0)`,
+      '&:hover': {
+        backgroundColor: `transparent`,
+        transform: `scale(1.048, 1.048)`,
+      },
     },
   },
 
   headerNav_headerLink: {
-    display: [`inline-block`, `flex`],
-    alignItems: `center`,
-    height: `100%`,
-    padding: `0 .4rem 0`,
+    a: {
+      display: `flex`,
+      alignItems: `center`,
+      height: `100%`,
+      padding: `0 .4rem 0`,
 
-    ':hover, &.active': {
-      background: colors.primary,
-    },
+      ':hover, &.active': {
+        background: colors.primary,
+      },
 
-    [media.greaterThan(`xsmall`)]: {
-      padding: `0 .65rem 0`,
-    },
-    [media.greaterThan(`small`)]: {
-      fontSize: `1.1rem`,
-    },
-    [media.greaterThan(`large`)]: {
-      fontSize: `1.8rem`,
+      [media.greaterThan(`xsmall`)]: {
+        padding: `0 .65rem 0`,
+      },
+      [media.greaterThan(`small`)]: {
+        fontSize: `1.1rem`,
+      },
+      [media.greaterThan(`large`)]: {
+        fontSize: `1.8rem`,
+      },
     },
   },
 }

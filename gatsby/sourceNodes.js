@@ -25,7 +25,7 @@ module.exports = store =>
       older: Mdx
       all: Mdx
       translations: [Translations]
-      slug_short: String
+      # slug_short: String
     }
     type Mdx implements Node {
       fields: MdxFields

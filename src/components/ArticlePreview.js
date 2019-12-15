@@ -1,37 +1,42 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { Link } from 'gatsby'
 import Img from 'gatsby-image/withIEPolyfill'
-import styled from '@emotion/styled'
 import { colors } from '@src/theme'
 
-const StyledLink = styled(Link)`
-  border: none;
-  :hover {
-    background-color: transparent;
-    color: ${colors.gray80};
-  }
-`
+const StyledLink = props => (
+  <Link
+    sx={{
+      border: `none`,
+      ':hover': {
+        backgroundColor: `transparent`,
+        color: `gray80`,
+      },
+    }}
+    {...props}
+  />
+)
 
-const ArticlePreview = ({ article, isVisible, readMoreLabel, ...props }) => (
-  <article css={articleStyles.article(isVisible)} {...props}>
+const ArticlePreview = ({ article, readMoreLabel, ...props }) => (
+  <article sx={articleStyles.article} {...props}>
     <StyledLink to={article.fields.url}>
       {article.frontmatter.cover && (
         <Img fluid={article.frontmatter.cover.childImageSharp.fluid} />
       )}
-      <h2 css={articleStyles.title}>{article.frontmatter.title}</h2>
+      <h2 sx={articleStyles.title}>{article.frontmatter.title}</h2>
       {/* {article.frontmatter.subtitle && (
-        <h4 css={articleStyles.title}>{article.frontmatter.subtitle}</h4>
+        <h4 sx={articleStyles.title}>{article.frontmatter.subtitle}</h4>
       )} */}
     </StyledLink>
 
-    <p css={articleStyles.body}>
+    <p sx={articleStyles.body}>
       {article.frontmatter.summary || article.excerpt}
     </p>
 
-    <footer css={articleStyles.footer}>
-      <div css={articleStyles.footerInner}>
-        <time css={articleStyles.time}>{article.fields.dateStrLocalized}</time>
+    <footer sx={articleStyles.footer}>
+      <div sx={articleStyles.footerInner}>
+        <time sx={articleStyles.time}>{article.fields.dateStrLocalized}</time>
         <StyledLink to={article.fields.url}>{readMoreLabel}</StyledLink>
       </div>
     </footer>
@@ -40,33 +45,27 @@ const ArticlePreview = ({ article, isVisible, readMoreLabel, ...props }) => (
 
 ArticlePreview.propTypes = {
   article: PropTypes.object.isRequired,
-  isVisible: PropTypes.bool,
   readMoreLabel: PropTypes.string,
 }
 
 export default ArticlePreview
 
 const articleStyles = {
-  article: isVisible => ({
-    // flex: `0 0 327`,
+  article: {
     position: `relative`,
-    // width: `327`,
-    // width: `29%`,
-    // marginBottom: `4rem`,
-    boxShadow: `0 0 4px 0px ${colors.gray52}`,
-    background: colors.lightBlue,
+    boxShadow: ({ colors }) => `0 0 4px 0px ${colors.gray52}`,
+    backgroundColor: `lightBlue`,
     display: `flex`,
     flexDirection: `column`,
     overflow: `hidden`,
     transition: `transform 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s, padding 250ms cubic-bezier(0.4, 0, 0.2, 1) 0s`,
     ':hover': {
-      // transform: `scale(1.03)`,
       transform: `translateY(-4px)`,
-      boxShadow: `0 0 10px 0px ${colors.gray52}`,
-      // boxShadow: `rgba(25, 17, 34, 0.1) 0px 10px 42px`,
+      boxShadow: ({ colors }) => `0 0 10px 0px ${colors.gray52}`,
     },
-  }),
+  },
   title: {
+    // color: `text`,
     margin: `.5rem 1rem 0`,
     letterSpacing: `.05rem`,
   },
@@ -91,9 +90,7 @@ const articleStyles = {
       top: `0`,
       left: `0`,
       right: `0`,
-      background: `linear-gradient(to right, ${colors.gray4}, ${
-        colors.gray3
-      }, ${colors.gray4}) no-repeat`,
+      background: `linear-gradient(to right, ${colors.gray4}, ${colors.gray3}, ${colors.gray4}) no-repeat`,
     },
   },
   footerInner: {

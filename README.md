@@ -22,18 +22,18 @@
 </p>
 
 <p align="center">
-  <a title="Static Site Generator: GatsbyJS" href="https://www.gatsbyjs.org" target="_blank"><img src="https://www.gaiama.org/gatsby_logo.svg" width="40" alt="GatsbyJS Logo"></a> <a title="Hoster: Netlify" href="https://www.netlify.com" target="_blank"><img src="https://www.gaiama.org/netlify_logo.svg" width="40" alt="Netlify Logo"></a> <a title="Server: DigitalOcean" href="https://m.do.co/c/bcef7e4dac88" target="_blank"><img src="https://www.gaiama.org/digitalocean_logo.svg" width="40" alt="DigitalOcean Logo"></a>
-<!-- ![GatsbyJS](https://img.shields.io/badge/dynamic/json.svg?color=%23663399&label=GatsbyJS&prefix=v&query=%24.dependencies.gatsby&url=https%3A%2F%2Fraw.githubusercontent.com%2FGaiAma%2Fgaiama.org%2Fmaster%2Fpackage.json) -->
+  <a title="Static Site Generator: GatsbyJS" href="https://www.gatsbyjs.org" target="_blank"><img src="https://www.gaiama.org/gatsby_logo.svg" width="40" alt="GatsbyJS Logo"></a> <a title="Hoster: Netlify" href="https://www.netlify.com" target="_blank"><img src="https://www.gaiama.org/netlify_logo.svg" width="40" alt="Netlify Logo"></a>
+  <a title="Serverless: Zeit" href="https://zeit.co/" target="_blank"><img src="https://unpkg.com/simple-icons@latest/icons/zeit.svg" width="40" alt="Zeit Logo"></a>
 </p>
 
 ## Features
 
-- [Netlify](https://www.netlify.com/): front-end hosting
-- [DigitalOcean](https://m.do.co/c/bcef7e4dac88): back-end hosting
 - [GatsbyJS](https://www.gatsbyjs.org/)
-- [Emotion](https://emotion.sh/) for styling
-- [Node.js 10.10](https://nodejs.org/en/)
-- [MDX](https://github.com/ChristopherBiscardi/gatsby-mdx)
+- [Netlify](https://www.netlify.com/): front-end hosting
+- [Zeit](https://zeit.co): serverless hosting
+- [Theme UI](https://theme-ui.com/) & [Emotion](https://emotion.sh/) for styling
+- [Node.js 12.10](https://nodejs.org/en/)
+- [MDX](https://www.gatsbyjs.org/docs/mdx/)
 - [Changelog](CHANGELOG.md)
 - [I18n: Auto discover & link translations](gatsby/createPages.js#L47-L80)
 - [Pager: older / newer article](gatsby/createResolvers.js#L21-L40)

@@ -1,7 +1,7 @@
 const { resolve } = require(`path`)
 const {
-  isHomePage,
-  isPageOrPost,
+  // isHomePage,
+  isPage,
   notIsErrorPage,
   prepareSortedTuple,
   sortEnglishLast,
@@ -14,14 +14,12 @@ module.exports = store => ({ actions, getNodes, graphql }) => {
   // setup mappings
   const allNodes = getNodes()
   const Languages = allNodes.filter(x => x.internal.type === `LanguagesAml`)
-  const PagesAndPosts = allNodes.filter(isPageOrPost)
+  const PagesAndPosts = allNodes.filter(isPage)
 
   prepareSortedTuple(PagesAndPosts).forEach((group, index) =>
     sortEnglishLast(group).forEach((node, _, array) => {
       const { lang, url, slug } = node.fields
       const { layout, shortId, shortlink, oldId, oldSlug } = node.frontmatter
-
-      // console.log(`${slug} => ${url}`)
 
       const page = {
         component: resolve(`./src/templates/${layout}.js`),
@@ -80,26 +78,26 @@ module.exports = store => ({ actions, getNodes, graphql }) => {
       })
 
       // set up short url redirects
-      const slugShort = isHomePage(node) ? `/` : `/${index}`
-      createNodeField({
-        node,
-        name: `slug_short`,
-        value: notIsErrorPage(node) ? slugShort : null,
-      })
+      // const slugShort = isHomePage(node) ? `/` : `/${index}`
+      // createNodeField({
+      //   node,
+      //   name: `slug_short`,
+      //   value: notIsErrorPage(node) ? slugShort : null,
+      // })
       if (notIsErrorPage(node)) {
-        redirects.push(
-          [
-            slugShort,
-            `${url}${
-              isHomePage(node) ? `` : `?ref=${encodeURIComponent(slugShort)}`
-            }`,
-            `301!`,
-            node.frontmatter.lang === `de` && `Language=de`,
-          ]
-            .filter(Boolean)
-            .join(` `)
-            .trim()
-        )
+        // redirects.push(
+        //   [
+        //     slugShort,
+        //     url + (isHomePage(node)
+        //       ? ``
+        //       : `?ref=${encodeURIComponent(slugShort)}`),
+        //     `301!`,
+        //     node.frontmatter.lang === `de` && `Language=de`,
+        //   ]
+        //     .filter(Boolean)
+        //     .join(` `)
+        //     .trim()
+        // )
 
         // &fb_locale=en_US redirections as in https://stackoverflow.com/a/20827962/3484824
         node.fields.translations

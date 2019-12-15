@@ -1,7 +1,9 @@
+/** @jsx jsx */
 /* global window */
-import React, { Component } from 'react'
+// eslint-disable-next-line no-unused-vars
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
-// import { Link } from 'gatsby'
+import { jsx, useColorMode } from 'theme-ui'
 import Helmet from 'react-helmet'
 import { Global, css } from '@emotion/core'
 import { ToastContainer } from 'react-toastify'
@@ -13,12 +15,10 @@ import Footer from '@components/Footer'
 import * as QS from '@gaiama/query-string'
 import '@src/utils/fontawesome'
 import {
-  // colors,
   media,
   screenReaderAndFocusable,
   focusOutlineNone,
   InstagramGradient,
-  maxWidthLayout,
   maxWidthContent,
 } from '@src/theme'
 import { globalStyles } from './global.js'
@@ -101,24 +101,11 @@ const generateMetaMenu = ({ translations, getLang, menuItems }) =>
 //   document.head.insertBefore(gtm, document.head.children[1])
 // }
 
-class MainLayout extends Component {
-  static propTypes = {
-    data: PropTypes.object,
-    wrapperStyles: PropTypes.object,
-    pageContext: PropTypes.object,
-    localPolyfills: PropTypes.array,
-    cover: PropTypes.string,
-    location: PropTypes.object,
-  }
+const isDev = process.env.NODE_ENV !== `production`
 
-  static defaultProps = {
-    wrapperStyles: {},
-    pageContext: {
-      lang: `en`,
-    },
-  }
-
-  componentDidMount() {
+const MainLayout = props => {
+  const [colorMode, setColorMode] = useColorMode()
+  useEffect(() => {
     function handleInstall(event) {
       console.log(`Thank you for installing our app!`, event)
     }
@@ -128,187 +115,186 @@ class MainLayout extends Component {
     if (typeof window !== `undefined`) {
       window.GaiAma = {
         ...window.GaiAma,
-        accounts: this.props.data.Accounts.frontmatter.accounts,
+        accounts: props.data.Accounts.frontmatter.accounts,
       }
     }
-  }
+  }, [props.data.Accounts.frontmatter.accounts])
 
-  render() {
-    process.env.NODE_ENV !== `production` && console.log(`DEVMODE`, this.props)
-    const {
-      pageContext,
-      wrapperStyles,
-      data: { site, SiteMeta, languages, homepage, page, menu },
-      // localPolyfills,
-      location,
-    } = this.props
+  isDev && console.log(`DEVMODE`, props)
+  const {
+    pageContext,
+    wrapperStyles,
+    data: { site, SiteMeta, languages, homepage, page, menu },
+    // localPolyfills,
+    location,
+  } = props
 
-    const lang = pageContext.lang
-    // const i18nStore = getI18nStore(lang, pageContext.messages)
-    const translations = page.fields.translations
-    const getLang = getLangFactory(languages.edges)
-    const menuItems = menu.edges || []
-    const mainMenu = generateMainMenu(menuItems)
-    const metaMenu = generateMetaMenu({
-      translations,
-      getLang,
-      menuItems,
-    })
-    const urlParams = QS.parse()
+  const lang = pageContext.lang
+  // const i18nStore = getI18nStore(lang, pageContext.messages)
+  const translations = page.fields.translations
+  const getLang = getLangFactory(languages.edges)
+  const menuItems = menu.edges || []
+  const mainMenu = generateMainMenu(menuItems)
+  const metaMenu = generateMetaMenu({
+    translations,
+    getLang,
+    menuItems,
+  })
+  const urlParams = QS.parse()
 
-    // const polyfills = [...globalPolyfills, ...localPolyfills]
+  // const polyfills = [...globalPolyfills, ...localPolyfills]
 
-    const cover = `${site.siteMetadata.siteUrl}${this.props.cover ||
-      (page.frontmatter.cover && page.frontmatter.cover.publicURL) ||
-      SiteMeta.frontmatter.assets.globalCover.publicURL}`
+  const cover = `${site.siteMetadata.siteUrl}${props.cover ||
+    (page.frontmatter.cover && page.frontmatter.cover.publicURL) ||
+    SiteMeta.frontmatter.assets.globalCover.publicURL}`
 
-    return (
-      // <I18nextProvider //   i18n={i18n} //   initialLanguage={lang} //   initialI18nStore={i18nStore} // >
-      <div
-        css={css`
-          width: 100%;
-          width: 100vw;
-          ${maxWidthLayout};
-          margin: 0 auto;
-          word-break: keep-all;
-        `}
+  return (
+    // <I18nextProvider //   i18n={i18n} //   initialLanguage={lang} //   initialI18nStore={i18nStore} // >
+    <>
+      <Helmet
+        titleTemplate={`%s ♡ ${site.siteMetadata.title}`}
+        defaultTitle={page.frontmatter.title}
       >
-        <Helmet
-          titleTemplate={`%s ♡ ${site.siteMetadata.title}`}
-          defaultTitle={page.frontmatter.title}
-        >
-          <title>{page.frontmatter.title}</title>
-          <meta
-            name="description"
-            itemProp="description"
-            content={page.frontmatter.summary || page.frontmatter.excerpt}
-          />
-          <meta
-            name="apple-mobile-web-app-title"
-            content={site.siteMetadata.title}
-          />
-          <meta name="application-name" content={site.siteMetadata.title} />
-
-          <meta property="og:site_name" content={site.siteMetadata.title} />
-          <meta
-            property="og:url"
-            content={`${site.siteMetadata.siteUrl}${page.fields.url}`}
-          />
-          <meta property="og:locale" content={getLang(lang).lc} />
-          {getLang(lang, true).map(x => (
-            <meta property="og:locale:alternate" content={x.lc} key={x.lc} />
-          ))}
-          <meta
-            property="og:title"
-            content={`${page.frontmatter.title} - ${site.siteMetadata.title}`}
-          />
-          <meta property="og:type" content="website" />
-          <meta property="fb:admins" content="100000166597534" />
-          <meta
-            property="og:description"
-            content={page.frontmatter.summary || page.frontmatter.excerpt}
-          />
-          {[`og:image`, `image`].map(x => (
-            <meta property={x} key={x} content={cover} />
-          ))}
-          {/* <meta property="og:image:width" content="1200"> */}
-          {/* <meta property="og:image:height" content="628"> */}
-          {/* <meta property="og:image:alt" content={`A shiny red apple with a bite taken out`} /> */}
-
-          {/* twitter */}
-          <meta property="twitter:site" content="hellogaiama" />
-          <meta name="twitter:card" content="summary_large_image" />
-
-          {[`/en`, `/de`].includes(location.pathname) && (
-            <link
-              rel="alternate"
-              href={site.siteMetadata.siteUrl}
-              hrefLang="x-default"
-            />
-          )}
-          {translations.map(({ frontmatter: t }) => (
-            <link
-              rel="alternate"
-              href={`${site.siteMetadata.siteUrl}${t.slug}`}
-              hrefLang={t.lang}
-              key={t.lang}
-            />
-          ))}
-          {[`atom.xml`, `rss.xml`, `feed.json`].map(feed => (
-            <link
-              rel="alternate"
-              href={`${site.siteMetadata.siteUrl}/${lang}/blog/${feed}`}
-              type={
-                feed.includes(`json`)
-                  ? `application/json`
-                  : `application/rss+xml`
-              }
-              key={feed}
-            />
-          ))}
-          {/* {!isDev && (
-            <script
-              src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(
-                `,`
-              )}`}
-            />
-          )} */}
-          <html lang={lang} />
-          {/* <body className={slugify(page.fields.url)} /> */}
-        </Helmet>
-
-        <Global styles={css(globalStyles)} />
-
-        <a href="#main" css={screenReaderAndFocusable}>
-          {SiteMeta.frontmatter.skipLinks.toContent}
-        </a>
-        <a href="#main-nav" css={screenReaderAndFocusable}>
-          {SiteMeta.frontmatter.skipLinks.toNav}
-        </a>
-
-        {urlParams.ref && (
-          <ReferrerMessages urlParams={urlParams} lang={lang} />
-        )}
-
-        <Header
-          homepage={homepage}
-          meta={metaMenu}
-          menu={mainMenu}
-          logo={SiteMeta.frontmatter.assets.logo.image}
-          bgImage={SiteMeta.frontmatter.assets.headerBg.image}
+        <title>{page.frontmatter.title}</title>
+        <meta
+          name="description"
+          itemProp="description"
+          content={page.frontmatter.summary || page.frontmatter.excerpt}
         />
+        <meta
+          name="apple-mobile-web-app-title"
+          content={site.siteMetadata.title}
+        />
+        <meta name="application-name" content={site.siteMetadata.title} />
 
-        <main
-          id="main"
-          tabIndex="-1"
-          css={css`
-            ${focusOutlineNone};
-            margin: 0 auto;
-            padding: 3rem 0 1.45rem;
-            width: ${!wrapperStyles.width && `98%`};
-            ${maxWidthContent};
-            ${media.greaterThan(`medium`)} {
-              width: ${!wrapperStyles.width && `90%`};
+        <meta property="og:site_name" content={site.siteMetadata.title} />
+        <meta
+          property="og:url"
+          content={`${site.siteMetadata.siteUrl}${page.fields.url}`}
+        />
+        <meta property="og:locale" content={getLang(lang).lc} />
+        {getLang(lang, true).map(x => (
+          <meta property="og:locale:alternate" content={x.lc} key={x.lc} />
+        ))}
+        <meta
+          property="og:title"
+          content={`${page.frontmatter.title} - ${site.siteMetadata.title}`}
+        />
+        <meta property="og:type" content="website" />
+        <meta property="fb:admins" content="100000166597534" />
+        <meta
+          property="og:description"
+          content={page.frontmatter.summary || page.frontmatter.excerpt}
+        />
+        {[`og:image`, `image`].map(x => (
+          <meta property={x} key={x} content={cover} />
+        ))}
+        {/* <meta property="og:image:width" content="1200"> */}
+        {/* <meta property="og:image:height" content="628"> */}
+        {/* <meta property="og:image:alt" content={`A shiny red apple with a bite taken out`} /> */}
+
+        {/* twitter */}
+        <meta property="twitter:site" content="hellogaiama" />
+        <meta name="twitter:card" content="summary_large_image" />
+
+        {[`/en`, `/de`].includes(location.pathname) && (
+          <link
+            rel="alternate"
+            href={site.siteMetadata.siteUrl}
+            hrefLang="x-default"
+          />
+        )}
+        {translations.map(({ frontmatter: t }) => (
+          <link
+            rel="alternate"
+            href={`${site.siteMetadata.siteUrl}${t.slug}`}
+            hrefLang={t.lang}
+            key={t.lang}
+          />
+        ))}
+        {[`atom.xml`, `rss.xml`, `feed.json`].map(feed => (
+          <link
+            rel="alternate"
+            href={`${site.siteMetadata.siteUrl}/${lang}/blog/${feed}`}
+            type={
+              feed.includes(`json`) ? `application/json` : `application/rss+xml`
             }
-            ${wrapperStyles};
+            key={feed}
+          />
+        ))}
+        {/* {!isDev && (<script src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(`,`)}`}/>)} */}
+        <html lang={lang} />
+      </Helmet>
+
+      <Global styles={globalStyles} />
+
+      <a href="#main" css={screenReaderAndFocusable}>
+        {SiteMeta.frontmatter.skipLinks.toContent}
+      </a>
+      <a href="#main-nav" css={screenReaderAndFocusable}>
+        {SiteMeta.frontmatter.skipLinks.toNav}
+      </a>
+
+      {urlParams.ref && <ReferrerMessages urlParams={urlParams} lang={lang} />}
+
+      <Header
+        homepage={homepage}
+        meta={metaMenu}
+        menu={mainMenu}
+        logo={SiteMeta.frontmatter.assets.logo.image}
+        bgImage={SiteMeta.frontmatter.assets.headerBg.image}
+      />
+
+      <main
+        id="main"
+        tabIndex="-1"
+        sx={{
+          ...focusOutlineNone,
+          margin: `0 auto`,
+          padding: `3rem 0 1.45rem`,
+          width: !wrapperStyles.width && `98%`,
+          ...maxWidthContent,
+          [media.greaterThan(`medium`)]: {
+            width: !wrapperStyles.width && `90%`,
+          },
+          ...wrapperStyles,
+        }}
+      >
+        {props.children}
+      </main>
+
+      <Footer
+        menu={mainMenu.concat(metaMenu.reverse())}
+        menuTitle={SiteMeta.frontmatter.footer.menuTitle}
+        socialTitle={SiteMeta.frontmatter.footer.socialTitle}
+        supportTitle={SiteMeta.frontmatter.footer.supportTitle}
+        legal={props.data.legal.edges}
+        bgImage={SiteMeta.frontmatter.assets.headerBg.image}
+        accounts={props.data.Accounts}
+        info={SiteMeta.body}
+        sponsors={SiteMeta.frontmatter.sponsors}
+      />
+
+      {isDev && (
+        <div
+          css={css`
+            position: fixed;
+            bottom: 1rem;
+            left: 1rem;
+            font-size: 0.5rem;
           `}
         >
-          {this.props.children}
-        </main>
+          <button
+            onClick={() =>
+              setColorMode(colorMode === `dark` ? `light` : `dark`)
+            }
+          >
+            Toggle Theme
+          </button>
+        </div>
+      )}
 
-        <Footer
-          menu={mainMenu.concat(metaMenu.reverse())}
-          menuTitle={SiteMeta.frontmatter.footer.menuTitle}
-          socialTitle={SiteMeta.frontmatter.footer.socialTitle}
-          supportTitle={SiteMeta.frontmatter.footer.supportTitle}
-          legal={this.props.data.legal.edges}
-          bgImage={SiteMeta.frontmatter.assets.headerBg.image}
-          accounts={this.props.data.Accounts}
-          info={SiteMeta.body}
-          sponsors={SiteMeta.frontmatter.sponsors}
-        />
-
-        {/* <CookieBanner onAccept={injectGTMCode}>
+      {/* <CookieBanner onAccept={injectGTMCode}>
           {({ setAccept, setReject }) => (
             <div
               css={css`
@@ -343,12 +329,27 @@ class MainLayout extends Component {
           )}
         </CookieBanner> */}
 
-        <InstagramGradient />
-        <ToastContainer position="bottom-right" />
-      </div>
-      // </I18nextProvider>
-    )
-  }
+      <InstagramGradient />
+      <ToastContainer position="bottom-right" />
+    </>
+    // </I18nextProvider>
+  )
+}
+
+MainLayout.propTypes = {
+  data: PropTypes.object,
+  wrapperStyles: PropTypes.object,
+  pageContext: PropTypes.object,
+  localPolyfills: PropTypes.array,
+  cover: PropTypes.string,
+  location: PropTypes.object,
+}
+
+MainLayout.defaultProps = {
+  wrapperStyles: {},
+  pageContext: {
+    lang: `en`,
+  },
 }
 
 // export default translate(`translations`, { i18n })(MainLayout)

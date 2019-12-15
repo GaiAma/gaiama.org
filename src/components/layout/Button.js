@@ -1,7 +1,6 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
-import { css } from '@emotion/core'
-import styled from '@emotion/styled'
 import { colors } from '@src/theme'
 
 /**
@@ -12,27 +11,26 @@ const PureButton = ({ children, onClick, styles, ...props }) => (
   <button
     tabIndex={0}
     onClick={onClick}
-    css={css`
-      ${styles};
-      &:focus,
-      & > span:focus {
-        outline: none;
-      }
-      &:not(:-moz-focusring):focus > span {
-        box-shadow: none;
-      }
-      &:focus > span {
-        boxshadow: 0 0 3px 2px ${colors.blueLight};
-      }
-    `}
+    sx={{
+      ...styles,
+      '&:focus, & > span:focus': {
+        outline: `none`,
+      },
+      '&:not(:-moz-focusring):focus > span': {
+        boxShadow: `none`,
+      },
+      '&:focus > span': {
+        boxShadow: `0 0 3px 2px ${colors.blueLight}`,
+      },
+    }}
     {...props}
   >
     <span
       tabIndex={-1}
-      css={css`
-        position: relative;
-        padding: 0 0.2rem;
-      `}
+      sx={{
+        position: `relative`,
+        padding: `0 0.2rem`,
+      }}
     >
       {children}
     </span>
@@ -47,7 +45,7 @@ PureButton.defaultProps = {
   styles: {},
 }
 
-const Button = styled(PureButton)()
+const Button = PureButton
 
 export default Button
 export { Button, PureButton }

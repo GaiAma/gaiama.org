@@ -1,74 +1,92 @@
-import React, { Component } from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
+import { useState } from 'react'
 import PropTypes from 'prop-types'
-import { css } from '@emotion/core'
 import Button from '@components/layout/Button'
+import { media } from '@src/theme'
 
-class Randomizer extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      currentIndex: this.getRandomInt(),
-    }
-  }
+const Randomizer = ({ nextQuoteLabel, quotes, ...props }) => {
+  const randomInt = Math.floor(Math.random() * Math.floor(quotes.length - 1))
+  const [currentIndex, setCurrentIndex] = useState(randomInt)
 
-  getCurrent = () => {
-    const current = this.props.quotes[this.state.currentIndex]
+  const getCurrent = () => {
+    console.log(currentIndex, quotes)
+    const current = quotes[currentIndex]
     return current ? current : {}
   }
 
-  getRandomInt = () =>
-    Math.floor(Math.random() * Math.floor(this.props.quotes.length - 1))
-
-  getNextIndex = () =>
-    this.state.currentIndex + 1 < this.props.quotes.length
-      ? this.state.currentIndex + 1
-      : 0
-
-  onNextClick = event => {
+  const onNextClick = event => {
     event.preventDefault()
-    this.setState({ currentIndex: this.getNextIndex() })
+    const nextIndex = currentIndex + 1 < quotes.length ? currentIndex + 1 : 0
+    setCurrentIndex(nextIndex)
   }
 
-  render() {
-    const { nextQuoteLabel, ...props } = this.props
-    const htmlProps = props
-    delete htmlProps.quotes
+  return (
+    <div sx={{ textAlign: `center` }} {...props}>
+      <blockquote sx={{ display: `inline-block` }}>
+        <p
+          sx={{
+            '&:before, &:after': {
+              fontSize: `1.4rem`,
+              letterSpacing: `-0.2rem`,
+            },
+            '&:before': {
+              content: `">>"`,
+              marginRight: `0.2rem`,
+            },
+            '&:after': {
+              content: `"<<"`,
+              marginLeft: `0.2rem`,
+            },
+            fontSize: `2rem`,
+            lineHeight: 1.3,
+            margin: 0,
+            maxWidth: `650px`,
+            [media.greaterThan(`medium`)]: {
+              fontSize: `2.5rem`,
+            },
+          }}
+          dangerouslySetInnerHTML={{
+            __html: getCurrent().quote,
+          }}
+        />
 
-    return (
-      <div {...props}>
-        <blockquote>
-          <p
-            css={css`
-              &:before,
-              &:after {
-                font-size: 1.4rem;
-                letter-spacing: -0.2rem;
-              }
-              &:before {
-                content: '>>';
-                margin-right: 0.2rem;
-              }
-              &:after {
-                content: '<<';
-                margin-left: 0.2rem;
-              }
-            `}
-            dangerouslySetInnerHTML={{
-              __html: this.getCurrent().quote,
+        <footer
+          sx={{
+            textAlign: `center`,
+            fontSize: `0.85rem`,
+          }}
+        >
+          <cite
+            sx={{
+              color: `gray`,
+              fontStyle: `normal`,
+              margin: `0 1rem`,
             }}
-          />
+          >
+            {getCurrent().author}
+          </cite>
 
-          <footer>
-            <cite>{this.getCurrent().author}</cite>
-
-            {nextQuoteLabel && (
-              <Button onClick={this.onNextClick}>{nextQuoteLabel}</Button>
-            )}
-          </footer>
-        </blockquote>
-      </div>
-    )
-  }
+          {nextQuoteLabel && (
+            <Button
+              onClick={onNextClick}
+              sx={{
+                background: `transparent`,
+                border: `transparent`,
+                color: `gray80`,
+                padding: 0,
+                '&:hover': {
+                  transform: `scale(1.05)`,
+                },
+              }}
+            >
+              {nextQuoteLabel}
+            </Button>
+          )}
+        </footer>
+      </blockquote>
+    </div>
+  )
 }
 
 Randomizer.propTypes = {

@@ -53,6 +53,7 @@ const plugins = [
       labelFormat: `[filename]--[local]`,
     },
   },
+  `gatsby-plugin-theme-ui`,
   `gatsby-plugin-layout`,
   {
     resolve: `gatsby-plugin-webpack-aliases`,
@@ -100,18 +101,20 @@ const plugins = [
       offline: !isOnline && !process.env.GAIAMA_FULL_CONTENT,
     },
   },
-  {
-    // TODO: add internet connection check!
-    resolve: `gatsby-source-instagram`,
-    options: {
-      username: `gaiama_org`,
-    },
-  },
+  // {
+  //   // TODO: add internet connection check!
+  //   resolve: `gatsby-source-instagram`,
+  //   options: {
+  //     username: `gaiama_org`,
+  //   },
+  // },
   {
     resolve: `gatsby-plugin-mdx`,
     options: {
       extensions: [`.mdx`, `.md`],
       rehypePlugins: [require(`rehype-slug`)],
+      remarkPlugins: [require(`remark-squeeze-paragraphs`)],
+      // plugins: [`gatsby-remark-images`], // TODO: until https://github.com/gatsbyjs/gatsby/issues/15486 is fixed
       gatsbyRemarkPlugins: [
         // { resolve: `gatsby-remark-embed-video` },
         { resolve: `gatsby-remark-external-links` },
@@ -121,7 +124,10 @@ const plugins = [
             maxWidth: 800,
             backgroundColor: `#eae9e9`,
             linkImagesToOriginal: false,
-            showCaptions: true,
+            showCaptions: [`title`],
+            markdownCaptions: true,
+            disableBgImageOnAlpha: true,
+            withWebp: isOnline,
             quality: 75,
             wrapperStyle: f => `flex:${round(f.aspectRatio, 2)};`,
             ignoreFileExtensions: [], // the quick fix? #6698
@@ -325,13 +331,13 @@ const plugins = [
       showSpinner: true,
     },
   },
-  {
-    resolve: `gatsby-plugin-google-tagmanager`,
-    options: {
-      id: `GTM-P2HCKV6`,
-      includeInDevelopment: true,
-    },
-  },
+  // {
+  //   resolve: `gatsby-plugin-google-tagmanager`,
+  //   options: {
+  //     id: `GTM-P2HCKV6`,
+  //     includeInDevelopment: true,
+  //   },
+  // },
   // {
   //   resolve: `@gaiama/gatsby-plugin-feed`,
   //   options: {

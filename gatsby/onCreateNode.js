@@ -1,8 +1,8 @@
 const moment = require(`moment`)
-const { getSlug, getUrl, isPageOrPost, isPost } = require(`./helpers`)
+const { getSlug, getUrl, isPage, isPost } = require(`./helpers`)
 
 module.exports = store => async ({ node, actions }) => {
-  if (!isPageOrPost(node)) return
+  if (!isPage(node)) return
 
   const { createNodeField } = actions
   const { date, lang } = node.frontmatter
