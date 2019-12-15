@@ -90,10 +90,8 @@ export const query = graphql`
     ...legal
     ...Accounts
 
-    page: javascriptFrontmatter(
-      frontmatter: { slug: { eq: $slug }, lang: { eq: $lang } }
-    ) {
-      ...PageTranslations
+    page: mdx(frontmatter: { slug: { eq: $slug }, lang: { eq: $lang } }) {
+      ...MdxTranslations
       frontmatter {
         title
         lang

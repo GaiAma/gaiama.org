@@ -105,8 +105,8 @@ export const query = graphql`
     ...Accounts
     ...SupportWidget
 
-    page: javascriptFrontmatter(fields: { url: { eq: $url } }) {
-      ...PageTranslations
+    page: mdx(fields: { url: { eq: $url } }) {
+      ...MdxTranslations
       fields {
         url
       }

@@ -67,8 +67,8 @@ export const query = graphql`
     # ...NewsTicker
     # ...newstickerLandscape
 
-    page: javascriptFrontmatter(frontmatter: { slug: { eq: $slug } }) {
-      ...PageTranslations
+    page: mdx(frontmatter: { slug: { eq: $slug } }) {
+      ...MdxTranslations
       fields {
         url
       }
