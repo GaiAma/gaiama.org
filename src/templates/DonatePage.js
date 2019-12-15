@@ -1,7 +1,8 @@
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { css } from '@emotion/core'
 import Img from 'gatsby-image/withIEPolyfill'
 import { media } from '@src/theme'
 import MainLayout from '@components/MainLayout'
@@ -15,27 +16,27 @@ const DonatePage = props => {
   return (
     <MainLayout {...props}>
       <div
-        css={css`
-          display: flex;
-          flex-direction: column-reverse;
-          justify-content: space-between;
-          max-width: 950px;
-          margin: 0 auto 2rem;
-          ${media.greaterThan(`medium`)} {
-            flex-direction: row;
-          }
-        `}
+        sx={{
+          display: `flex`,
+          flexDirection: `column-reverse`,
+          justifyContent: `space-between`,
+          maxWidth: `950px`,
+          margin: `0 auto 2rem`,
+          [media.greaterThan(`medium`)]: {
+            flexDirection: `row`,
+          },
+        }}
       >
         <Img
           fluid={page.frontmatter.image.file.image.fluid}
-          css={css`
-            width: 100%;
-            margin: 2rem auto 0;
-            ${media.greaterThan(`medium`)} {
-              margin-right: 1rem;
-              max-width: 56%;
-            }
-          `}
+          sx={{
+            width: `100%`,
+            margin: `2rem auto 0`,
+            [media.greaterThan(`medium`)]: {
+              marginRight: `1rem`,
+              maxWidth: `56%`,
+            },
+          }}
         />
 
         <div>
@@ -45,16 +46,12 @@ const DonatePage = props => {
               <div
                 key={x}
                 dangerouslySetInnerHTML={{ __html: x }}
-                css={css`
-                  line-height: 1.8rem;
-                `}
+                sx={{ lineHeight: `1.8rem` }}
               />
             ))}
           </div>
           <div
-            css={css`
-              margin-top: 1rem;
-            `}
+            sx={{ marginTop: `1rem` }}
             dangerouslySetInnerHTML={{
               __html: page.frontmatter.contributorInfo.replace(
                 `[[amount]]`,
@@ -76,9 +73,7 @@ const DonatePage = props => {
         bankInfo={props.data.SupportWidget.frontmatter.bankInfo}
         bankDetails={props.data.SupportWidget.frontmatter.bankDetails}
         lang={props.pageContext.lang}
-        css={css`
-          margin: 0 0 3rem;
-        `}
+        sx={{ margin: `0 0 3rem` }}
       />
     </MainLayout>
   )
