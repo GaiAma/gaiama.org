@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
 import { colors, fontFamilies } from '@src/theme'
 import { Button } from '@components/layout/Button'
+import { Link } from '@components/Link'
 import TextareaAutosize from 'react-textarea-autosize'
 import localStore from '@src/utils/local-store'
 
@@ -335,16 +336,9 @@ export default class ContactForm extends Component {
               }}
               dangerouslySetInnerHTML={{ __html: consentLabel }}
             />
-            <a
-              href={privacyLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                border: `none`,
-              }}
-            >
+            <Link to={privacyLink} variant="plain">
               {privacyLabel}
-            </a>
+            </Link>
             {errors.consent && (
               <div
                 sx={{

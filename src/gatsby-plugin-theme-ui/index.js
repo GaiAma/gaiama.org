@@ -104,4 +104,35 @@ export default {
   },
 
   shadows: {},
+
+  styles: {},
+
+  links: {
+    plain: {
+      transition: `all 0.3s ease`,
+      color: `gray80`,
+      ':hover': {
+        backgroundColor: `primaryLite`,
+        color: `white`,
+      },
+    },
+    default: theme => ({
+      ...theme.links.plain,
+      borderBottom: `2px solid`,
+      borderBottomColor: `primaryLite`,
+    }),
+    cta: theme => ({
+      ...theme.links.plain,
+      fontWeight: `400`,
+      borderRadius: `sm`,
+      fontSize: `1.2rem`,
+      backgroundColor: `cta`,
+      color: `#042f37`,
+      padding: `0.5rem 1rem`,
+      ':hover': {
+        color: `white`,
+        backgroundColor: `primary`,
+      },
+    }),
+  },
 }

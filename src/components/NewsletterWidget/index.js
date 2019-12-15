@@ -10,6 +10,7 @@ import { colors, fontFamilies } from '@src/theme'
 import { Button } from '@components/layout/Button'
 import localStore from '@src/utils/local-store'
 import axios from 'axios'
+import { Link } from '@components/Link'
 
 const StyledInput = () => (
   <input
@@ -272,16 +273,9 @@ export class Newsletter extends Component {
             >
               {consentLabel}
             </span>
-            <a
-              href={privacyLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              sx={{
-                border: `none`,
-              }}
-            >
+            <Link to={privacyLink} variant="plain">
               {privacyLabel}
-            </a>
+            </Link>
           </label>
         </div>
 

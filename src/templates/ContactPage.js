@@ -1,22 +1,16 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import styled from '@emotion/styled'
-import { css } from '@emotion/core'
+import Img from 'gatsby-image/withIEPolyfill'
+import { Box, Flex, Text, Grid } from '@theme-ui/components'
 import MainLayout from '@components/MainLayout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faRssSquare } from '@fortawesome/free-solid-svg-icons/faRssSquare'
-import { colors, media } from '@src/theme'
+import { media } from '@src/theme'
 import TitledCopy from '@components/TitledCopy'
 import { Newsletter } from '@components/NewsletterWidget'
 import ContactForm from '@components/ContactForm'
-
-const StyledA = styled.a`
-  border: none;
-  :hover {
-    background-color: transparent;
-  }
-`
+import { Link } from '@components/Link'
 
 const ContactPage = props => {
   const { page } = props.data
