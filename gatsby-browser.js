@@ -1,4 +1,4 @@
-/* global window dataLayer */
+/* global window */
 import preval from 'babel-plugin-preval/macro'
 const { version, bugs, branch } = preval`
   const { version, bugs } = require('./package.json')
