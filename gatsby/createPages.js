@@ -1,7 +1,7 @@
 const { resolve } = require(`path`)
 const {
   // isHomePage,
-  isPageOrPost,
+  isPage,
   notIsErrorPage,
   prepareSortedTuple,
   sortEnglishLast,
@@ -14,7 +14,7 @@ module.exports = store => ({ actions, getNodes, graphql }) => {
   // setup mappings
   const allNodes = getNodes()
   const Languages = allNodes.filter(x => x.internal.type === `LanguagesAml`)
-  const PagesAndPosts = allNodes.filter(isPageOrPost)
+  const PagesAndPosts = allNodes.filter(isPage)
 
   prepareSortedTuple(PagesAndPosts).forEach((group, index) =>
     sortEnglishLast(group).forEach((node, _, array) => {
