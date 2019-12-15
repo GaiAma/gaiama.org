@@ -1,4 +1,4 @@
-import { colors, fontFamilies, media } from '@src/theme'
+import { colors, fontFamilies, media, maxWidthLayout } from '@src/theme'
 
 export default {
   header: {
@@ -6,6 +6,10 @@ export default {
     color: `darkWhite`,
     whiteSpace: `nowrap`,
     fontWeight: 100,
+
+    width: `100vw`,
+    ...maxWidthLayout,
+    margin: `0 auto`,
 
     '& a': {
       color: `darkWhite`,
@@ -197,16 +201,18 @@ export default {
   },
 
   headerLink: {
-    display: `block`,
-    color: colors.darkWhite,
-    position: `relative`,
-    border: `none`,
-    // zIndex: 1,
-
-    ':hover, :active, :focus': {
-      backgroundColor: `transparent`,
+    a: {
+      display: `block`,
       color: colors.darkWhite,
-      textDecoration: `none`,
+      position: `relative`,
+      border: `none`,
+      // zIndex: 1,
+
+      ':hover, :active, :focus': {
+        backgroundColor: `transparent`,
+        color: colors.darkWhite,
+        textDecoration: `none`,
+      },
     },
   },
 
@@ -221,35 +227,39 @@ export default {
   },
 
   headerMeta_headerLink: {
-    // WebkitFontSmoothing: `antialiased`,
-    // WebkitBackfaceVisibility: `hidden`,
-    // transform: `perspective(1px) translateZ(0)`,
-    // transition: `transform .2s`,
-    // WebkitFilter: `blur(0)`,
-    '&:hover': {
-      backgroundColor: `transparent`,
-      transform: `scale(1.048, 1.048)`,
+    a: {
+      // WebkitFontSmoothing: `antialiased`,
+      // WebkitBackfaceVisibility: `hidden`,
+      // transform: `perspective(1px) translateZ(0)`,
+      // transition: `transform .2s`,
+      // WebkitFilter: `blur(0)`,
+      '&:hover': {
+        backgroundColor: `transparent`,
+        transform: `scale(1.048, 1.048)`,
+      },
     },
   },
 
   headerNav_headerLink: {
-    display: `flex`,
-    alignItems: `center`,
-    height: `100%`,
-    padding: `0 .4rem 0`,
+    a: {
+      display: `flex`,
+      alignItems: `center`,
+      height: `100%`,
+      padding: `0 .4rem 0`,
 
-    ':hover, &.active': {
-      background: colors.primary,
-    },
+      ':hover, &.active': {
+        background: colors.primary,
+      },
 
-    [media.greaterThan(`xsmall`)]: {
-      padding: `0 .65rem 0`,
-    },
-    [media.greaterThan(`small`)]: {
-      fontSize: `1.1rem`,
-    },
-    [media.greaterThan(`large`)]: {
-      fontSize: `1.8rem`,
+      [media.greaterThan(`xsmall`)]: {
+        padding: `0 .65rem 0`,
+      },
+      [media.greaterThan(`small`)]: {
+        fontSize: `1.1rem`,
+      },
+      [media.greaterThan(`large`)]: {
+        fontSize: `1.8rem`,
+      },
     },
   },
 }
