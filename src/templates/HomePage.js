@@ -14,7 +14,7 @@ import MainLayout from '@components/MainLayout'
 // import { VideoPlayer } from '@gaiama/react-video-player'
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
 import { MDXProvider } from '@mdx-js/react'
-import { Box, Heading, Text, Grid /*, Flex*/ } from '@theme-ui/components'
+import { Box, Heading, Text, Grid } from '@theme-ui/components'
 import space from '@styled-system/space'
 import { createShouldForwardProp } from '@styled-system/should-forward-prop'
 import { Link } from '@components/Link'
@@ -273,7 +273,7 @@ export const query = graphql`
     background
     ...MdxBlocksImage
     actions {
-      type
+      variant
       link
       text
     }
