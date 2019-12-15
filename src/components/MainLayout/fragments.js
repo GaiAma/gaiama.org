@@ -94,7 +94,10 @@ export const Fragments = graphql`
           description
           handle
           url
-          icon
+          icon {
+            name
+            prefix
+          }
           meta
         }
       }

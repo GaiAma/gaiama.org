@@ -116,15 +116,6 @@ export const globalStyles = theme => css`
 
   a {
     text-decoration: none;
-    transition: all 0.3s ease;
-    color: ${theme.colors.gray80};
-    border-bottom: 2px solid ${theme.colors.primaryLite};
-  }
-
-  a:active,
-  a:hover {
-    background-color: ${theme.colors.primaryLite};
-    color: #ffffff;
   }
 
   abbr[title] {
@@ -319,10 +310,10 @@ export const globalStyles = theme => css`
     list-style-image: none;
   }
 
-  ul:first-of-type,
+  /* ul:first-of-type,
   ol:first-of-type {
     margin-top: 0;
-  }
+  } */
 
   dl, dd, p, figure {
     padding: 0;
@@ -478,7 +469,7 @@ export const globalStyles = theme => css`
       img {
         width: auto;
         height: auto;
-        max-with: 60%;
+        max-width: 60%;
         margin: 0px auto;
         vertical-align: unset;
         position: static;
