@@ -28,13 +28,14 @@ const ShopPage = props => {
       locale,
       shopName,
       prefix,
+      // swipeMenu: true,
       baseId: `GaiAmaShop`,
     }
 
     return () => {
       delete window.spread_shop_config
     }
-  }, [locale])
+  }, [locale, prefix, shopName])
 
   useScript(shopScript)
 
@@ -43,12 +44,13 @@ const ShopPage = props => {
       <div
         id="GaiAmaShop"
         sx={{
-          '.sprd-header__title.sprd__headline, .sprd-startpage-teaser, .sprd-startpage-preview-tiles__caption, .sprd-info-banner__link': {
+          // '.sprd-header__title.sprd__headline, .sprd-startpage-teaser, .sprd-startpage-preview-tiles__caption, .sprd-info-banner__link': {
+          '.sprd-header__title.sprd__headline, .sprd-startpage-teaser, .sprd-startpage-preview-tiles__caption, #sprd-info-banner': {
             display: `none !important`,
           },
-          a: {
-            border: `none`,
-          },
+          // a: {
+          //   border: `none`,
+          // },
           'li + li': {
             marginTop: 0,
           },
