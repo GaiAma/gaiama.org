@@ -8,16 +8,21 @@ module.exports = ({ markdownAST }, pluginOptions) => {
   return markdownAST
 }
 
+const containsGatsbyImage = x => /(gatsby-resp-image-)[figure|wrapper]/.test(x)
+
+const containsOnlyWhitespace = x => /^(\\n)*\s+$/.test(x)
+
 function modifier(node, index, parent) {
   if (parent.type !== `paragraph`) return false
 
   const whitespaceStripped = parent.children.filter(
-    x => !/^(\\n)*\s+$/.test(x.value) && x.type !== `image` // `type!=image` quick fix for some images not being transformed
+    x => !containsOnlyWhitespace(x.value)
   )
 
   const onlyContainsImages = whitespaceStripped.every(
     x =>
-      x.type === `html` && /(gatsby-resp-image-)[figure|wrapper]/.test(x.value)
+      (x.type === `html` && containsGatsbyImage(x.value)) ||
+      (x.type === `link` && x.children.find(y => containsGatsbyImage(y.value)))
   )
 
   // Debugging help
