@@ -168,7 +168,8 @@ const AboutPage = props => {
           <Heading id={slug(Partners.mdx.frontmatter.title)}>
             {Partners.mdx.frontmatter.title}
           </Heading>
-          <Box mt="2rem">
+          {/* TODO: where's boxShadow coming from? */}
+          <Box mt="2rem" sx={{ img: { boxShadow: `none !important` } }}>
             <MDXRenderer>{Partners.mdx.body}</MDXRenderer>
           </Box>
         </Box>
