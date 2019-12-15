@@ -17,6 +17,7 @@ const StyledInput = () => (
     sx={{
       width: `100%`,
       border: `1px solid ${colors.gray3}`,
+      borderRadius: `sm`,
       background: colors.white,
       lineHeight: 1.5,
       padding: `0 .5rem`,
@@ -298,6 +299,7 @@ export class Newsletter extends Component {
           disabled={isSubmitting}
           sx={{
             ...styles.button,
+            borderRadius: `md`,
             background: colors.primaryLite,
             color: colors.white,
             '&:hover': {
