@@ -113,6 +113,7 @@ const plugins = [
     options: {
       extensions: [`.mdx`, `.md`],
       rehypePlugins: [require(`rehype-slug`)],
+      remarkPlugins: [require(`remark-squeeze-paragraphs`)],
       gatsbyRemarkPlugins: [
         // { resolve: `gatsby-remark-embed-video` },
         { resolve: `gatsby-remark-external-links` },
