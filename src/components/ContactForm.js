@@ -296,7 +296,7 @@ export default class ContactForm extends Component {
               readOnly={this.state.isSubmitting}
               required
               sx={{
-                minHeight: `8rem`,
+                minHeight: `2rem`,
                 width: `100%`,
               }}
             />
