@@ -1,9 +1,9 @@
 /** @jsx jsx */
 /* global window */
+// eslint-disable-next-line no-unused-vars
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 import { jsx, useColorMode } from 'theme-ui'
-// import { Link } from 'gatsby'
 import Helmet from 'react-helmet'
 import { Global, css } from '@emotion/core'
 import { ToastContainer } from 'react-toastify'
@@ -15,12 +15,10 @@ import Footer from '@components/Footer'
 import * as QS from '@gaiama/query-string'
 import '@src/utils/fontawesome'
 import {
-  // colors,
   media,
   screenReaderAndFocusable,
   focusOutlineNone,
   InstagramGradient,
-  maxWidthLayout,
   maxWidthContent,
 } from '@src/theme'
 import { globalStyles } from './global.js'
@@ -152,15 +150,7 @@ const MainLayout = props => {
 
   return (
     // <I18nextProvider //   i18n={i18n} //   initialLanguage={lang} //   initialI18nStore={i18nStore} // >
-    <div
-      css={css`
-        width: 100%;
-        width: 100vw;
-        ${maxWidthLayout};
-        margin: 0 auto;
-        word-break: keep-all;
-      `}
-    >
+    <>
       <Helmet
         titleTemplate={`%s ♡ ${site.siteMetadata.title}`}
         defaultTitle={page.frontmatter.title}
@@ -232,15 +222,8 @@ const MainLayout = props => {
             key={feed}
           />
         ))}
-        {/* {!isDev && (
-            <script
-              src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(
-                `,`
-              )}`}
-            />
-          )} */}
+        {/* {!isDev && (<script src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(`,`)}`}/>)} */}
         <html lang={lang} />
-        {/* <body className={slugify(page.fields.url)} /> */}
       </Helmet>
 
       <Global styles={globalStyles} />
@@ -265,17 +248,17 @@ const MainLayout = props => {
       <main
         id="main"
         tabIndex="-1"
-        css={css`
-          ${focusOutlineNone};
-          margin: 0 auto;
-          padding: 3rem 0 1.45rem;
-          width: ${!wrapperStyles.width && `98%`};
-          ${maxWidthContent};
-          ${media.greaterThan(`medium`)} {
-            width: ${!wrapperStyles.width && `90%`};
-          }
-          ${wrapperStyles};
-        `}
+        sx={{
+          ...focusOutlineNone,
+          margin: `0 auto`,
+          padding: `3rem 0 1.45rem`,
+          width: !wrapperStyles.width && `98%`,
+          ...maxWidthContent,
+          [media.greaterThan(`medium`)]: {
+            width: !wrapperStyles.width && `90%`,
+          },
+          ...wrapperStyles,
+        }}
       >
         {props.children}
       </main>
@@ -348,7 +331,7 @@ const MainLayout = props => {
 
       <InstagramGradient />
       <ToastContainer position="bottom-right" />
-    </div>
+    </>
     // </I18nextProvider>
   )
 }
