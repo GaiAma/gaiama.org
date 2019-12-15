@@ -20,7 +20,10 @@ const isFqdn = x => !/^\/(?!\/)/.test(x)
 const isAnchor = x => /^#/.test(x)
 
 export const Link = React.forwardRef(
-  ({ to, href, as, ext, variant = `default`, children, ...props }, ref) => {
+  (
+    { to, href, as, ext, variant = `default`, target, rel, children, ...props },
+    ref
+  ) => {
     const url = to || href
     const isExt = ext || isFqdn(url)
     const Tag = as ? as : isExt ? `a` : GatsbyLink
@@ -34,8 +37,8 @@ export const Link = React.forwardRef(
           }),
       ...(isExt &&
         !isAnchor(url) && {
-          target: `_blank`,
-          rel: `nofollow noopener noreferrer`,
+          target: target || `_blank`,
+          rel: rel || `nofollow noopener noreferrer`,
         }),
     }
     return (
@@ -51,6 +54,8 @@ Link.propTypes = {
   to: PropTypes.string,
   href: PropTypes.string,
   variant: PropTypes.string,
+  target: PropTypes.string,
+  rel: PropTypes.string,
   as: PropTypes.string,
   ext: PropTypes.bool,
 }
