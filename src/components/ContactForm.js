@@ -22,6 +22,7 @@ const inputStyle = {
   backgroundColor: `white`,
   lineHeight: 1.5,
   padding: `0 .5rem`,
+  borderRadius: `sm`,
 }
 
 const StyledInput = props => <input sx={inputStyle} {...props} />
@@ -375,6 +376,7 @@ export default class ContactForm extends Component {
             ...styles.button,
             backgroundColor: `purpleDark`,
             color: `darkWhite`,
+            borderRadius: `md`,
           }}
         >
           {isSubmitting ? (
