@@ -102,7 +102,7 @@ export const Fragments = graphql`
   }
 
   fragment menu on Query {
-    menu: allJavascriptFrontmatter(
+    menu: allMdx(
       filter: {
         frontmatter: { menu: { regex: "/(main|meta)/" }, lang: { eq: $lang } }
       }
@@ -157,26 +157,6 @@ export const Fragments = graphql`
             lang
             title
           }
-        }
-      }
-    }
-  }
-
-  fragment PageTranslations on JavascriptFrontmatter {
-    fields {
-      translations {
-        id
-        lc
-        title
-        titleShort
-        to
-        fields {
-          url
-        }
-        frontmatter {
-          title
-          lang
-          slug
         }
       }
     }
