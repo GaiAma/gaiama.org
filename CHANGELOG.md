@@ -1,3 +1,12 @@
+## [2.6.8](https://github.com/gaiama/gaiama.org/compare/v2.6.7...v2.6.8) (2019-12-16)
+
+
+### Features
+
+* **infra:** add /shop redirect ([bfd5fe1](https://github.com/gaiama/gaiama.org/commit/bfd5fe1e473b1f250dd688a031f736458e2e1473))
+
+
+
 ## [2.6.7](https://github.com/gaiama/gaiama.org/compare/v2.6.6...v2.6.7) (2019-12-16)
 
 
