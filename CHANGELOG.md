@@ -1,3 +1,13 @@
+## [2.6.5](https://github.com/gaiama/gaiama.org/compare/v2.6.4...v2.6.5) (2019-12-16)
+
+
+### Bug Fixes
+
+* **SEO:** rel="alternate" ([3de42b5](https://github.com/gaiama/gaiama.org/commit/3de42b5b3913764ee272423c3df8d9ab6ead1ee5))
+* **Shop:** add missing fields.url ([a5dc11d](https://github.com/gaiama/gaiama.org/commit/a5dc11d6a2ac2414441c2f6f4fb46419b6687a19))
+
+
+
 ## [2.6.4](https://github.com/gaiama/gaiama.org/compare/v2.6.3...v2.6.4) (2019-12-16)
 
 
