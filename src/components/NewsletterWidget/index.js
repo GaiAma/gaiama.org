@@ -12,7 +12,7 @@ import localStore from '@src/utils/local-store'
 import axios from 'axios'
 import { Link } from '@components/Link'
 
-const StyledInput = () => (
+const StyledInput = props => (
   <input
     sx={{
       width: `100%`,
@@ -22,6 +22,7 @@ const StyledInput = () => (
       lineHeight: 1.5,
       padding: `0 .5rem`,
     }}
+    {...props}
   />
 )
 
