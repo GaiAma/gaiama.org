@@ -1,3 +1,19 @@
+## [2.6.3](https://github.com/gaiama/gaiama.org/compare/v2.6.2...v2.6.3) (2019-12-16)
+
+
+### Bug Fixes
+
+* **SEO:** exclude thanks & 404 ([1edbd32](https://github.com/gaiama/gaiama.org/commit/1edbd32d85bae23c64ea4fbcb44ff30f083620b7))
+
+
+### Features
+
+* **Thanks:** update success page ([a8f616a](https://github.com/gaiama/gaiama.org/commit/a8f616a47107313f4fffa286136817ba27607ae7))
+* add <Text/> to MDX ([c3c34f5](https://github.com/gaiama/gaiama.org/commit/c3c34f5fd3797e8e67c92b556378ecf3c68ec9d8))
+* **Theme:** add text.center ([46dddd0](https://github.com/gaiama/gaiama.org/commit/46dddd03d71db01aa4f4be58b1f9f3073d3ba242))
+
+
+
 ## [2.6.2](https://github.com/gaiama/gaiama.org/compare/v2.6.1...v2.6.2) (2019-12-16)
 
 
