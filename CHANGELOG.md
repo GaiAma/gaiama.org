@@ -1,4 +1,25 @@
-## [2.6.1](https://github.com/gaiama/gaiama.org/compare/v2.5.3...v2.6.1) (2019-12-15)
+## [2.6.2](https://github.com/gaiama/gaiama.org/compare/v2.6.1...v2.6.2) (2019-12-16)
+
+
+### Bug Fixes
+
+* **SEO:** add sitemap ([33a87cf](https://github.com/gaiama/gaiama.org/commit/33a87cf1893a5da32d45b0f25d3862f3c404a072))
+* **SEO:** disable blog feeds ([738b0c3](https://github.com/gaiama/gaiama.org/commit/738b0c3a375668c558a2a77a1bf3d088e8ff5cbd))
+* **SEO:** disable cover queries ([441576b](https://github.com/gaiama/gaiama.org/commit/441576b0b63b13492b454bc49ee3be74d600c6d5))
+
+
+
+## [2.5.4](https://github.com/gaiama/gaiama.org/compare/v2.5.3...v2.5.4) (2019-09-25)
+
+
+### Bug Fixes
+
+* redirects [#63](https://github.com/gaiama/gaiama.org/issues/63)af9d1 ([ac45b3c](https://github.com/gaiama/gaiama.org/commit/ac45b3c0fe00622a2efa743b3b970948e4b075ef)), closes [#63af9d1](https://github.com/gaiama/gaiama.org/issues/63af9d1)
+* remove gloabl document ([e9bccc5](https://github.com/gaiama/gaiama.org/commit/e9bccc576990eca384b20384d69d7bac89439e0a))
+
+
+
+## [2.6.1](https://github.com/gaiama/gaiama.org/compare/v2.5.4...v2.6.1) (2019-12-15)
 
 
 ### Bug Fixes
@@ -24,6 +45,7 @@
 
 * inline-gallerie for linked imgs ([9648414](https://github.com/gaiama/gaiama.org/commit/9648414f2323a133c699450ce84408876643b755))
 * remove obsolete global var dataLayer ([1b51129](https://github.com/gaiama/gaiama.org/commit/1b5112915f479663965dc67bc3676200af78fe7c))
+* switch to mdx ([722be19](https://github.com/gaiama/gaiama.org/commit/722be194104425fd782c4035f3bc4aacbbcacf8c))
 * update FA icon library ([62c24fa](https://github.com/gaiama/gaiama.org/commit/62c24fa1157283043c2f3b0e2f37e5f7628b5b0d))
 * **ContactPage:** use grid + cleanup ([78339f0](https://github.com/gaiama/gaiama.org/commit/78339f0506e0a334c26788fe4932e5a411962ed7))
 * **GDPR:** disable Google Analytics ([6080bc2](https://github.com/gaiama/gaiama.org/commit/6080bc21807fdb91f669d2a42b816f9233edd697))
@@ -34,7 +56,7 @@
 * **Link:** simplify & optimize ([1d97c18](https://github.com/gaiama/gaiama.org/commit/1d97c180c892f381f7675a37f1ef0e4483b51e0d))
 * **MainLayout:** add MdxTranslations & mdx homepage ([f399518](https://github.com/gaiama/gaiama.org/commit/f399518599c30b07a16b225d0adfb295a3b328bb))
 * **MainLayout:** increase global heading weight ([659935f](https://github.com/gaiama/gaiama.org/commit/659935f73243a5d0ce4e74a13c74d3ee465be480))
-* **MainLayout:** move maxWidth to <main/> + cleanup ([a25f501](https://github.com/gaiama/gaiama.org/commit/a25f5016a672be55e50457a14224a7a93dbc17b9))
+* **SupportPage:** switch to mdx ([51a6bfe](https://github.com/gaiama/gaiama.org/commit/51a6bfe865087a46ae13808302d47ace7aa3ba42))
 * **SupportPage:** updates + cleanup ([5fc73e6](https://github.com/gaiama/gaiama.org/commit/5fc73e6002fd403ba2f784e630a71ddf688f16cd))
 * **Theme:** unpack colors.brands ([2e0657b](https://github.com/gaiama/gaiama.org/commit/2e0657b1f6fde1e431add443de778429304710d0))
 * add <DonateButton/> ([0d2b8f1](https://github.com/gaiama/gaiama.org/commit/0d2b8f1e5a03f4f0e75c902ff4959c5ecc46e4ec))
@@ -54,7 +76,7 @@
 * update <Link/> imports & use everywhere ([f1fa2b9](https://github.com/gaiama/gaiama.org/commit/f1fa2b999e7035ba58075598b5f3896fa1e4954e))
 * use borderRadius from theme-ui ([94cfd12](https://github.com/gaiama/gaiama.org/commit/94cfd1271cb44d042861f70700ae9c40f8e72162))
 * use image.file ([8405cda](https://github.com/gaiama/gaiama.org/commit/8405cda0bbdc27d72aa62d5fca224399e1b51253))
-* **SupportPage:** switch to mdx ([51a6bfe](https://github.com/gaiama/gaiama.org/commit/51a6bfe865087a46ae13808302d47ace7aa3ba42))
+* **MainLayout:** move maxWidth to <main/> + cleanup ([a25f501](https://github.com/gaiama/gaiama.org/commit/a25f5016a672be55e50457a14224a7a93dbc17b9))
 * wrap inline images in .inline-gallery too ([4f9ed65](https://github.com/gaiama/gaiama.org/commit/4f9ed65d5cdc1bca537df0bd6e945eb060e98040))
 * **theme:** add colors.cta, radii & text styles ([5fc7f63](https://github.com/gaiama/gaiama.org/commit/5fc7f63ad6148417a4c3dd1dc4e716b37340e119))
 * upgrade all dependencies ([ad19c62](https://github.com/gaiama/gaiama.org/commit/ad19c62d6dcee2c47a0a46eb7fe2a7b0f3ea3f5a))
@@ -62,6 +84,16 @@
 * **theme:** first dark mode ([1049da3](https://github.com/gaiama/gaiama.org/commit/1049da3d3986279de6d49b245092fd2e4b506856))
 * upgrade all dependencies ([b24878e](https://github.com/gaiama/gaiama.org/commit/b24878ed2e083aca34f5adc86a4c65f358898ac0))
 * upgrade all dependencies ([6251bd7](https://github.com/gaiama/gaiama.org/commit/6251bd73a434c75093dd024a77bfd7c51dc4737a))
+
+
+
+## [2.5.4](https://github.com/gaiama/gaiama.org/compare/v2.5.3...v2.5.4) (2019-09-25)
+
+
+### Bug Fixes
+
+* redirects [#63](https://github.com/gaiama/gaiama.org/issues/63)af9d1 ([ac45b3c](https://github.com/gaiama/gaiama.org/commit/ac45b3c0fe00622a2efa743b3b970948e4b075ef)), closes [#63af9d1](https://github.com/gaiama/gaiama.org/issues/63af9d1)
+* remove gloabl document ([e9bccc5](https://github.com/gaiama/gaiama.org/commit/e9bccc576990eca384b20384d69d7bac89439e0a))
 
 
 
@@ -89,17 +121,6 @@
 * **MDX:** imports & query ([3ce9d77](https://github.com/gaiama/gaiama.org/commit/3ce9d779563bae2e355cc73eaae52276d4818ce0))
 * date-fns imports (new version) ([8665d53](https://github.com/gaiama/gaiama.org/commit/8665d5328c76fd7c2dcdde63bbba4085a97bfec9))
 * whitespace above inline-gallery ([b97a844](https://github.com/gaiama/gaiama.org/commit/b97a84467c4c5c0e43ca0aff336c80cd7788a729))
-
-
-
-## [2.5.2](https://github.com/gaiama/gaiama.org/compare/v2.5.1...v2.5.2) (2019-09-15)
-
-
-### Bug Fixes
-
-* date-fns imports (new version) ([8665d53](https://github.com/gaiama/gaiama.org/commit/8665d53))
-* whitespace above inline-gallery ([b97a844](https://github.com/gaiama/gaiama.org/commit/b97a844))
-* **MDX:** imports & query ([3ce9d77](https://github.com/gaiama/gaiama.org/commit/3ce9d77))
 
 
 
