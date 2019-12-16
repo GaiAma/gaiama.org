@@ -27,7 +27,7 @@ const sharedManifestProperties = {
 
 const getSitemapForLanguage = lang => ({
   output: `/${lang}/sitemap.xml`,
-  exclude: [`/${lang}/paypal-success/*`, `/${lang}/404/*`],
+  exclude: [`/${lang}/thanks`, `/${lang}/danke`, `/${lang}/404`],
   createLinkInHead: false, // done manually in MainLayout
   query: `
     {
