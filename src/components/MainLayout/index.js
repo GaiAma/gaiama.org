@@ -213,7 +213,7 @@ const MainLayout = props => {
         {translations.map(({ frontmatter: t }) => (
           <link
             rel="alternate"
-            href={`${site.siteMetadata.siteUrl}${t.slug}`}
+            href={`${site.siteMetadata.siteUrl}/${t.lang}/${t.slug}`}
             hrefLang={t.lang}
             key={t.lang}
           />
