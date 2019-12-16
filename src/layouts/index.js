@@ -6,6 +6,7 @@ import React from 'react'
 import { MDXProvider } from '@mdx-js/react'
 import { Link } from '@components/Link'
 import { DonateButton } from '@components/DonateButton'
+import { Text } from '@theme-ui/components'
 // import { VideoPlayer } from '@gaiama/react-video-player'
 // import { TableOfContents } from "@gaiama/react-mdx-table-of-contents"
 
@@ -19,6 +20,7 @@ const components = {
   a: Link,
   Link,
   DonateButton,
+  Text,
 }
 
 const Layout = ({ children }) => (
