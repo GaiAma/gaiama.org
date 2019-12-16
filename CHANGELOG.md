@@ -1,3 +1,12 @@
+## [2.6.7](https://github.com/gaiama/gaiama.org/compare/v2.6.6...v2.6.7) (2019-12-16)
+
+
+### Bug Fixes
+
+* non-www shop.gaiama.org redirect ([40dd1e4](https://github.com/gaiama/gaiama.org/commit/40dd1e47c0737163c6b716250226ed807b0fd6dd))
+
+
+
 ## [2.6.6](https://github.com/gaiama/gaiama.org/compare/v2.6.5...v2.6.6) (2019-12-16)
 
 
