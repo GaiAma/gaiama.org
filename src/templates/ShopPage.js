@@ -30,6 +30,7 @@ const ShopPage = props => {
       prefix,
       // swipeMenu: true,
       baseId: `GaiAmaShop`,
+      updateMetadata: false,
     }
 
     return () => {
@@ -105,6 +106,9 @@ export const query = graphql`
         fallbackLinkInfo
         fallbackLinkUrl
         fallbackLinkLabel
+        cover {
+          publicURL
+        }
       }
     }
   }

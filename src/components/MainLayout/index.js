@@ -145,7 +145,7 @@ const MainLayout = props => {
   // const polyfills = [...globalPolyfills, ...localPolyfills]
 
   const cover = `${site.siteMetadata.siteUrl}${props.cover ||
-    (page.frontmatter.cover && page.frontmatter.cover.publicURL) ||
+    page.frontmatter?.cover?.publicURL ||
     SiteMeta.frontmatter.assets.globalCover.publicURL}`
 
   return (
