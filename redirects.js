@@ -16,8 +16,8 @@ module.exports = [
   `https://donate.gaiama.org/* https://www.gaiama.org/en/donate/?ref=donate.gaiama.org#main-nav 301!`,
   `https://www.donate.gaiama.org/* https://www.gaiama.org/en/donate/?ref=donate.gaiama.org#main-nav 301!`,
 
-  `https://www.shop.gaiama.org/* https://www.gaiama.org/de/shop/?ref=www.shop.gaiama.org#main-nav 301! Language=de`,
-  `https://www.shop.gaiama.org/* https://www.gaiama.org/en/shop/?ref=www.shop.gaiama.org#main-nav 301!`,
+  `https://www.shop.gaiama.org/* https://www.gaiama.org/de/shop/ 301! Language=de`,
+  `https://www.shop.gaiama.org/* https://www.gaiama.org/en/shop/ 301!`,
   `https://shop.gaiama.org/* https://www.gaiama.org/de/shop/?ref=shop.gaiama.org#main-nav 301! Language=de`,
   `https://shop.gaiama.org/* https://www.gaiama.org/en/shop/?ref=shop.gaiama.org#main-nav 301!`,
 
