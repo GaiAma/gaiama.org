@@ -222,9 +222,9 @@ export const query = graphql`
         lang
         slug
         summary
-        cover {
-          publicURL
-        }
+        # cover {
+        #   publicURL
+        # }
         goals {
           title
           goals {
