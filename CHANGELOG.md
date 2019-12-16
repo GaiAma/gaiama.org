@@ -1,3 +1,12 @@
+## [2.6.4](https://github.com/gaiama/gaiama.org/compare/v2.6.3...v2.6.4) (2019-12-16)
+
+
+### Features
+
+* **Shop:** add cover, disable sprd meta ([a663673](https://github.com/gaiama/gaiama.org/commit/a6636732e13cd76b50d96e325757c3b4aab04803))
+
+
+
 ## [2.6.3](https://github.com/gaiama/gaiama.org/compare/v2.6.2...v2.6.3) (2019-12-16)
 
 
