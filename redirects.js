@@ -21,6 +21,9 @@ module.exports = [
   `https://shop.gaiama.org/* https://www.gaiama.org/de/shop/ 301! Language=de`,
   `https://shop.gaiama.org/* https://www.gaiama.org/en/shop/ 301!`,
 
+  `/shop /de/shop/ 301 Language=de`,
+  `/shop /en/shop/ 301`,
+
   // donation shortcuts
   `/spenden /de/spenden/?ref=gaiama.org/spenden#main-nav 301`,
   `/spende /de/spenden/?ref=gaiama.org/spende#main-nav 301`,
