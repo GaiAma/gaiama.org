@@ -1,39 +1,137 @@
-import React from 'react'
+/** @jsx jsx */
+import { jsx, Box, Flex } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import { css } from '@emotion/core'
-import Img from 'gatsby-image/withIEPolyfill'
 import Helmet from 'react-helmet'
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer'
+import { MDXProvider } from '@mdx-js/react'
 import MainLayout from '@components/MainLayout'
-import TitledCopy from '@components/TitledCopy'
-// import Newsticker from '@components/Newsticker'
+import {
+  FacebookIcon,
+  FacebookShareButton,
+  TwitterIcon,
+  TwitterShareButton,
+  TelegramIcon,
+  TelegramShareButton,
+  WhatsappIcon,
+  WhatsappShareButton,
+  LinkedinShareButton,
+  LinkedinIcon,
+  PinterestShareButton,
+  PinterestIcon,
+  VKShareButton,
+  VKIcon,
+  RedditShareButton,
+  RedditIcon,
+  TumblrShareButton,
+  TumblrIcon,
+  MailruShareButton,
+  MailruIcon,
+  ViberShareButton,
+  ViberIcon,
+  PocketShareButton,
+  PocketIcon,
+  InstapaperIcon,
+  InstapaperShareButton,
+  EmailShareButton,
+  EmailIcon,
+} from 'react-share'
+
+const components = {}
 
 const PaypalSuccessPage = props => {
-  const { page } = props.data
+  const { page, Accounts, site, SiteMeta } = props.data
+  const url = site.siteMetadata.siteUrl
+  const { shareText } = page.frontmatter
+  const { accounts } = Accounts.frontmatter
+  const cover =
+    site.siteMetadata.siteUrl +
+    SiteMeta.frontmatter.assets.globalCover.publicURL
+  const tags = [`GoodCause`, `DoGood`, `Rainforest`]
+
+  const getAccount = name => {
+    const account = accounts.find(x => x.service === name)
+    return account?.handle || ``
+  }
+
   return (
     <MainLayout {...props}>
       <Helmet>
         <meta name="robots" content="noindex" />
       </Helmet>
 
-      <TitledCopy
-        centered
-        title={page.frontmatter.intro.title}
-        paragraphs={page.frontmatter.intro.text}
-        css={css`
-          margin-bottom: 2rem;
-        `}
-      />
-
-      <div
-        css={css`
-          display: flex;
-          justify-content: center;
-          margin-bottom: 2rem;
-        `}
+      <Box
+        sx={{
+          mx: `auto`,
+          maxWidth: `50rem`,
+          '.inline-gallery': {
+            maxWidth: `20rem`,
+            mx: `auto`,
+            '*': { borderRadius: `round` },
+          },
+        }}
       >
-        <Img fixed={page.frontmatter.assets.gratitude.image.fixed} />
-      </div>
+        <MDXProvider components={components}>
+          <MDXRenderer>{page.body}</MDXRenderer>
+        </MDXProvider>
+
+        <Flex
+          sx={{
+            my: `2rem`,
+            mx: `auto`,
+            maxWidth: `32.5rem`,
+            '> div': { mx: `0.2rem` },
+          }}
+        >
+          <FacebookShareButton url={url} quote={shareText} hashtag="#GoodCause">
+            <FacebookIcon round size={32} />
+          </FacebookShareButton>
+          <TwitterShareButton
+            url={url}
+            title={shareText}
+            via={getAccount(`twitter`)}
+            hashtags={tags}
+          >
+            <TwitterIcon round size={32} />
+          </TwitterShareButton>
+          <WhatsappShareButton url={url} title={shareText}>
+            <WhatsappIcon round size={32} />
+          </WhatsappShareButton>
+          <TelegramShareButton url={url} title={shareText}>
+            <TelegramIcon round size={32} />
+          </TelegramShareButton>
+          <PinterestShareButton url={url} media={cover}>
+            <PinterestIcon round size={32} />
+          </PinterestShareButton>
+          <LinkedinShareButton url={url}>
+            <LinkedinIcon round size={32} />
+          </LinkedinShareButton>
+          <RedditShareButton url={url} title={shareText}>
+            <RedditIcon round size={32} />
+          </RedditShareButton>
+          <TumblrShareButton url={url} title={shareText} tags={tags}>
+            <TumblrIcon round size={32} />
+          </TumblrShareButton>
+          <ViberShareButton url={url} title={shareText}>
+            <ViberIcon round size={32} />
+          </ViberShareButton>
+          <VKShareButton url={url} title={shareText} image={cover}>
+            <VKIcon round size={32} />
+          </VKShareButton>
+          <MailruShareButton url={url} title={shareText} image={cover}>
+            <MailruIcon round size={32} />
+          </MailruShareButton>
+          <PocketShareButton url={url} title={shareText}>
+            <PocketIcon round size={32} />
+          </PocketShareButton>
+          <InstapaperShareButton url={url} title={shareText}>
+            <InstapaperIcon round size={32} />
+          </InstapaperShareButton>
+          <EmailShareButton url={url} body={shareText}>
+            <EmailIcon round size={32} />
+          </EmailShareButton>
+        </Flex>
+      </Box>
 
       {/* <Newsticker
         items={props.data.news.edges.map(x => x.node)}
@@ -69,6 +167,7 @@ export const query = graphql`
 
     page: mdx(frontmatter: { slug: { eq: $slug } }) {
       ...MdxTranslations
+      body
       fields {
         url
       }
@@ -77,19 +176,7 @@ export const query = graphql`
         lang
         slug
         summary
-        intro {
-          title
-          text
-        }
-        assets {
-          gratitude {
-            image: childImageSharp {
-              fixed(quality: 75) {
-                ...GatsbyImageSharpFixed
-              }
-            }
-          }
-        }
+        shareText
       }
     }
   }
