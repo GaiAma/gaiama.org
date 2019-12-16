@@ -93,6 +93,10 @@ export default {
       fontWeight: `body`,
       lineHeight: `body`,
     },
+    center: {
+      textAlign: `center`,
+      mt: `1.55rem`,
+    },
   },
 
   radii: {
