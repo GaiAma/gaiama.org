@@ -95,6 +95,9 @@ export const query = graphql`
 
     page: mdx(frontmatter: { slug: { eq: $slug }, lang: { eq: $lang } }) {
       ...MdxTranslations
+      fields {
+        url
+      }
       frontmatter {
         title
         lang
