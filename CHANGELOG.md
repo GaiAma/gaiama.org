@@ -1,3 +1,12 @@
+## [2.6.9](https://github.com/gaiama/gaiama.org/compare/v2.6.8...v2.6.9) (2019-12-16)
+
+
+### Bug Fixes
+
+* **Newsletter:** StyledInput not passing props ([7f473a4](https://github.com/gaiama/gaiama.org/commit/7f473a4de3037e9ba1709c4d35c6a6126870f21d))
+
+
+
 ## [2.6.8](https://github.com/gaiama/gaiama.org/compare/v2.6.7...v2.6.8) (2019-12-16)
 
 
