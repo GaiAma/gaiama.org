@@ -1,4 +1,8 @@
-## [2.6.9](https://github.com/gaiama/gaiama.org/compare/v2.6.8...v2.6.9) (2019-12-16)
+## [2.6.10](https://github.com/gaiama/gaiama.org/compare/v2.6.9...v2.6.10) (2019-12-17)
+
+
+
+## [2.6.9](https://github.com/gaiama/gaiama.org/compare/v2.6.10...v2.6.9) (2019-12-16)
 
 
 ### Bug Fixes
