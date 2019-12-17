@@ -136,7 +136,7 @@ const ContactPage = props => {
               lang={props.pageContext.lang}
               emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
               generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
-              endpoint="https://gaiama-newsletter.now.sh"
+              endpoint="https://gaiama-newsletter.now.sh/api"
             />
           </div>
         </div>

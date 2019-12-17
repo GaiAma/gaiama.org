@@ -185,6 +185,7 @@ export class Newsletter extends Component {
     } = this.state
 
     if (hasSucceeded) {
+      // TODO: Add checkmark & improve color contrast
       return (
         <p
           id="success"
