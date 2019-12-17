@@ -1,3 +1,12 @@
+## [2.6.10](https://github.com/gaiama/gaiama.org/compare/v2.6.9...v2.6.10) (2019-12-17)
+
+
+### Features
+
+* **API:** update newsletter url ([4e6e4b1](https://github.com/gaiama/gaiama.org/commit/4e6e4b17872ccee601ab986afee9679c18c18496))
+
+
+
 ## [2.6.9](https://github.com/gaiama/gaiama.org/compare/v2.6.8...v2.6.9) (2019-12-16)
 
 
