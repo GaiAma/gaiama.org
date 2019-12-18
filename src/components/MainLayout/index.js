@@ -141,6 +141,7 @@ const MainLayout = props => {
     menuItems,
   })
   const urlParams = QS.parse()
+  const translationEn = translations.find(t => t.frontmatter.lang === `en`)
 
   // const polyfills = [...globalPolyfills, ...localPolyfills]
 
@@ -203,17 +204,15 @@ const MainLayout = props => {
           href={`/${lang}/sitemap.xml`}
         />
 
-        {[`/en`, `/de`].includes(location.pathname) && (
+        <link
+          rel="alternate"
+          href={site.siteMetadata.siteUrl + translationEn.fields.url}
+          hrefLang="x-default"
+        />
+        {translations.map(({ frontmatter: t, fields }) => (
           <link
             rel="alternate"
-            href={site.siteMetadata.siteUrl}
-            hrefLang="x-default"
-          />
-        )}
-        {translations.map(({ frontmatter: t }) => (
-          <link
-            rel="alternate"
-            href={`${site.siteMetadata.siteUrl}/${t.lang}/${t.slug}`}
+            href={`${site.siteMetadata.siteUrl}${fields.url}`}
             hrefLang={t.lang}
             key={t.lang}
           />
