@@ -5,6 +5,7 @@ import { jsx, useColorMode } from 'theme-ui'
 import { Link } from '@components/Link'
 import Img from 'gatsby-image/withIEPolyfill'
 import Headroom from 'react-headroom'
+import Cookies from 'js-cookie'
 import { visible } from '@src/theme'
 import style from './styles'
 
@@ -77,9 +78,13 @@ const Header = ({ homepage, meta, menu, logo, bgImage }) => {
 
           {/* TODO: remember lang in local FORAGE? to show correct in 404 */}
           <Meta>
-            {meta.map((link, index) => (
-              <MetaItem className={link.class} key={index}>
-                <MetaLink to={link.to} activeClassName="active">
+            {meta.map(link => (
+              <MetaItem className={link.class} key={link.id}>
+                <MetaLink
+                  to={link.to}
+                  activeClassName="active"
+                  onClick={() => Cookies.set(`nf_lang`, link.id)}
+                >
                   <OnlyDesktop visible={link.titleShort}>
                     {link.title}
                   </OnlyDesktop>
