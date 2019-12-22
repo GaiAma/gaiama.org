@@ -1,7 +1,7 @@
 /** @jsx jsx */
 /* global window, navigator */
 // eslint-disable-next-line no-unused-vars
-import React, { useEffect } from 'react'
+import { useEffect, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { jsx, useColorMode } from 'theme-ui'
 import Helmet from 'react-helmet'
@@ -198,7 +198,7 @@ const MainLayout = props => {
 
   return (
     // <I18nextProvider //   i18n={i18n} //   initialLanguage={lang} //   initialI18nStore={i18nStore} // >
-    <>
+    <Fragment>
       <Helmet
         titleTemplate={`%s ♡ ${site.siteMetadata.title}`}
         defaultTitle={page.frontmatter.title}
@@ -383,7 +383,7 @@ const MainLayout = props => {
 
       <InstagramGradient />
       <ToastContainer position="bottom-right" />
-    </>
+    </Fragment>
     // </I18nextProvider>
   )
 }
