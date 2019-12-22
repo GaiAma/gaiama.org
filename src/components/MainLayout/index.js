@@ -142,11 +142,15 @@ const MainLayout = props => {
     if (navigatorLang !== lang) {
       toast.warning(
         <Fragment>
-          <span sx={{ mr: 1 }}>{SiteMeta.frontmatter.langToast}</span>
-          <a href={alternate.to}>{alternate.title}</a>?
+          <div sx={{ color: `black`, fontWeight: 500 }}>
+            <span>{SiteMeta.frontmatter.langToast.prefix}</span>
+            <span sx={{ mx: 1 }}>{alternate.title}?</span>
+            <span sx={{ textDecoration: `underline` }}>
+              {SiteMeta.frontmatter.langToast.suffix}
+            </span>
+          </div>
         </Fragment>,
         {
-          position: toast.POSITION.TOP_CENTER,
           autoClose: 25000,
           closeOnClick: false,
           onClick: () => {
@@ -382,7 +386,7 @@ const MainLayout = props => {
         </CookieBanner> */}
 
       <InstagramGradient />
-      <ToastContainer position="bottom-right" />
+      <ToastContainer position="top-center" />
     </Fragment>
     // </I18nextProvider>
   )
