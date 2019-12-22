@@ -93,7 +93,12 @@ const Header = ({ homepage, meta, menu, logo, bgImage }) => {
         </TopInner>
       </HeaderTop>
 
-      <Banner sx={{ filter: colorMode === `dark` && `brightness(0.6)` }}>
+      <Banner
+        sx={{
+          filter: colorMode === `dark` && `brightness(0.6)`,
+          mb: isSticky && [`42px`, `67px`],
+        }}
+      >
         <Link to={homepage.fields.url}>
           <Logo fluid={logo.fluid} alt="GaiAma Logo" />
         </Link>
