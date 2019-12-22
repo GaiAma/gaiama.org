@@ -5,9 +5,9 @@ import { jsx, useColorMode } from 'theme-ui'
 import { Link } from '@components/Link'
 import Img from 'gatsby-image/withIEPolyfill'
 import Headroom from 'react-headroom'
-import Cookies from 'js-cookie'
 import { visible } from '@src/theme'
 import style from './styles'
+import { setCookie } from '@src/utils/cookie'
 
 const OnlyDesktop = props => (
   <span sx={props.visible && visible.minMd} {...props} />
@@ -83,7 +83,7 @@ const Header = ({ homepage, meta, menu, logo, bgImage }) => {
                 <MetaLink
                   to={link.to}
                   activeClassName="active"
-                  onClick={() => Cookies.set(`nf_lang`, link.id)}
+                  onClick={() => setCookie(`nf_lang`, link.id)}
                 >
                   <OnlyDesktop visible={link.titleShort}>
                     {link.title}

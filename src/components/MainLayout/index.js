@@ -13,8 +13,7 @@ import Header from '@components/Header'
 import ReferrerMessages from '@components/ReferrerMessages'
 import Footer from '@components/Footer'
 import * as QS from '@gaiama/query-string'
-import Cookies from 'js-cookie'
-import { toast } from '@root/src/utils/toast.js'
+import { toast } from '@src/utils/toast.js'
 import '@src/utils/fontawesome'
 import {
   media,
@@ -27,6 +26,7 @@ import { globalStyles } from './global.js'
 
 import './fragments'
 import 'react-toastify/dist/ReactToastify.css'
+import { getCookie, setCookie } from '@src/utils/cookie.js'
 // import { CookieBanner } from '@components/CookieBanner.js'
 
 // const isDev = process.env.NODE_ENV === `development`
@@ -134,7 +134,7 @@ const MainLayout = props => {
   const alternate = translations.find(x => x.id !== lang)
 
   useEffect(() => {
-    const storedLang = Cookies.get(`nf_lang`)
+    const storedLang = getCookie(`nf_lang`)
     if (storedLang === lang) return
 
     const navigatorLang = getNavigatorLanguage()
@@ -154,11 +154,11 @@ const MainLayout = props => {
           autoClose: 25000,
           closeOnClick: false,
           onClick: () => {
-            Cookies.set(`nf_lang`, alternate.id)
+            setCookie(`nf_lang`, alternate.id)
             window.location.replace(alternate.to)
           },
           onClose: () => {
-            Cookies.set(`nf_lang`, lang)
+            setCookie(`nf_lang`, lang)
           },
         }
       )
