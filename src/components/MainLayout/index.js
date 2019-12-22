@@ -1,5 +1,5 @@
 /** @jsx jsx */
-/* global window */
+/* global window, navigator */
 // eslint-disable-next-line no-unused-vars
 import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
@@ -13,6 +13,8 @@ import Header from '@components/Header'
 import ReferrerMessages from '@components/ReferrerMessages'
 import Footer from '@components/Footer'
 import * as QS from '@gaiama/query-string'
+import Cookies from 'js-cookie'
+import { toast } from '@root/src/utils/toast.js'
 import '@src/utils/fontawesome'
 import {
   media,
@@ -34,6 +36,21 @@ import 'react-toastify/dist/ReactToastify.css'
 //   `default`,
 //   `Symbol`,
 // ]
+
+// based on https://stackoverflow.com/a/52112155/3484824
+const getNavigatorLanguage = () => {
+  let lang = ``
+  if (navigator.languages && navigator.languages.length) {
+    lang = navigator.languages[0]
+  } else {
+    lang =
+      navigator.userLanguage ||
+      navigator.language ||
+      navigator.browserLanguage ||
+      `en`
+  }
+  return lang.includes(`-`) ? lang.split(`-`)[0] : lang
+}
 
 const getLangFactory = languages => (lang, alternate = false) => {
   if (alternate) {
@@ -105,6 +122,45 @@ const isDev = process.env.NODE_ENV !== `production`
 
 const MainLayout = props => {
   const [colorMode, setColorMode] = useColorMode()
+  const {
+    pageContext,
+    wrapperStyles,
+    data: { site, SiteMeta, languages, homepage, page, menu },
+    // localPolyfills,
+    // location,
+  } = props
+  const lang = pageContext.lang
+  const translations = page.fields.translations
+  const alternate = translations.find(x => x.id !== lang)
+
+  useEffect(() => {
+    const storedLang = Cookies.get(`nf_lang`)
+    if (storedLang === lang) return
+
+    const navigatorLang = getNavigatorLanguage()
+
+    if (navigatorLang !== lang) {
+      toast.warning(
+        <Fragment>
+          <span sx={{ mr: 1 }}>{SiteMeta.frontmatter.langToast}</span>
+          <a href={alternate.to}>{alternate.title}</a>?
+        </Fragment>,
+        {
+          position: toast.POSITION.TOP_CENTER,
+          autoClose: 25000,
+          closeOnClick: false,
+          onClick: () => {
+            Cookies.set(`nf_lang`, alternate.id)
+            window.location.replace(alternate.to)
+          },
+          onClose: () => {
+            Cookies.set(`nf_lang`, lang)
+          },
+        }
+      )
+    }
+  }, [lang, alternate, SiteMeta.frontmatter.langToast])
+
   useEffect(() => {
     function handleInstall(event) {
       console.log(`Thank you for installing our app!`, event)
@@ -121,17 +177,8 @@ const MainLayout = props => {
   }, [props.data.Accounts.frontmatter.accounts])
 
   isDev && console.log(`DEVMODE`, props)
-  const {
-    pageContext,
-    wrapperStyles,
-    data: { site, SiteMeta, languages, homepage, page, menu },
-    // localPolyfills,
-    location,
-  } = props
 
-  const lang = pageContext.lang
   // const i18nStore = getI18nStore(lang, pageContext.messages)
-  const translations = page.fields.translations
   const getLang = getLangFactory(languages.edges)
   const menuItems = menu.edges || []
   const mainMenu = generateMainMenu(menuItems)

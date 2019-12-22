@@ -17,6 +17,7 @@ export const Fragments = graphql`
     ) {
       body
       frontmatter {
+        langToast
         assets {
           logo {
             image: childImageSharp {
