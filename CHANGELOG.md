@@ -1,3 +1,21 @@
+## [2.6.12](https://github.com/gaiama/gaiama.org/compare/v2.6.11...v2.6.12) (2019-12-22)
+
+
+### Bug Fixes
+
+* **SEO:** rel=alternate ([0a827b5](https://github.com/gaiama/gaiama.org/commit/0a827b56781bb7a172f2e1920bdc8e89b12dc9fc))
+
+
+### Features
+
+* **Header:** add mt if menu sticky ([d80f5d8](https://github.com/gaiama/gaiama.org/commit/d80f5d8b4a221ebbbbfff5b441a8a4113bc6dc99))
+* **i18n:** add formatting and suffix ([e0176c0](https://github.com/gaiama/gaiama.org/commit/e0176c0421bf2b9c5c4115b1099e8b0cc05d3a6b))
+* **i18n:** save nf_lang on langswitch click ([2e556f2](https://github.com/gaiama/gaiama.org/commit/2e556f28af062473b9401595548218223aff818e))
+* add lang suggestion toast ([163b46a](https://github.com/gaiama/gaiama.org/commit/163b46a198932a737dea0585da731ac32f5a8fb4))
+* update redirects ([75ea3d8](https://github.com/gaiama/gaiama.org/commit/75ea3d8ccec6fb3fa89724d4232ad92993a41330))
+
+
+
 ## [2.6.11](https://github.com/gaiama/gaiama.org/compare/v2.6.9...v2.6.11) (2019-12-17)
 
 
