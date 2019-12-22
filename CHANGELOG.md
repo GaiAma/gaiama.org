@@ -1,4 +1,13 @@
-## [2.6.12](https://github.com/gaiama/gaiama.org/compare/v2.6.11...v2.6.12) (2019-12-22)
+# [Unreleased](https://github.com/gaiama/gaiama.org/compare/v2.6.13...318981815bc663aa680d150cee2c6f7cfdabb0bc) (2019-12-22)
+
+
+### Bug Fixes
+
+* add missing cookie.js file ([3189818](https://github.com/gaiama/gaiama.org/commit/318981815bc663aa680d150cee2c6f7cfdabb0bc))
+
+
+
+## [2.6.13](https://github.com/gaiama/gaiama.org/compare/v2.6.11...v2.6.13) (2019-12-22)
 
 
 ### Bug Fixes
