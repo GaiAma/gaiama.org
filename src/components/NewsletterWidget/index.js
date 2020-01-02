@@ -117,6 +117,7 @@ export class Newsletter extends Component {
     return this.submit()
   }
 
+  // TODO: maybe try https://github.com/wsmd/reattempt
   submit(autoRetry) {
     if (this.state.attempts > 2 && autoRetry) {
       return this.setState({
@@ -237,6 +238,7 @@ export class Newsletter extends Component {
               placeholder={emailPlaceholder}
               readOnly={this.isSubmitting}
               required
+              aria-required="true"
             />
             {errors.email && (
               <div

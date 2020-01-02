@@ -255,6 +255,7 @@ export default class ContactForm extends Component {
               placeholder={emailPlaceholder}
               readOnly={this.state.isSubmitting}
               required
+              aria-required="true"
             />
             {errors.email && (
               <div
@@ -295,6 +296,7 @@ export default class ContactForm extends Component {
               maxRows={10}
               readOnly={this.state.isSubmitting}
               required
+              aria-required="true"
               sx={{
                 minHeight: `2rem`,
                 width: `100%`,
