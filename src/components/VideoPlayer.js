@@ -6,6 +6,12 @@ import { Box } from '@theme-ui/components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlay } from '@fortawesome/free-solid-svg-icons/faPlay'
 
+/**
+ * https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/replace-animated-gifs-with-video
+ * https://developer.mozilla.org/en-US/docs/Web/Guide/Audio_and_video_delivery/cross_browser_video_player
+ * https://css-tricks.com/NetMag/FluidWidthVideo/Article-FluidWidthVideo.php
+ */
+
 export const VideoPlayer = ({ video, poster, wrapperStyles, ...props }) => {
   const videoEl = useRef()
   const [isPlaying, setIsPlaying] = useState(false)
