@@ -4,13 +4,13 @@ import PropTypes from 'prop-types'
 import { graphql, Link } from 'gatsby'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
-import { Spring, animated, config } from 'react-spring/renderprops'
+// import { Spring, animated, config } from 'react-spring/renderprops'
 import MainLayout from '@components/MainLayout'
 import { colors, media } from '@src/theme'
 
-const TotalDonated = styled.h4`
-  text-align: center;
-`
+// const TotalDonated = styled.h4`
+//   text-align: center;
+// `
 const ContributorList = styled.div`
   margin-top: 4rem;
   ${media.greaterThan(`small`)} {
@@ -56,36 +56,36 @@ const ContributorLink = styled.a`
     transform: scale(1.03);
   }
 `
-const TotalAmount = ({ amount }) => (
-  <Spring
-    native
-    from={{ total: 0 }}
-    to={{ total: amount }}
-    config={{
-      ...config.molasses,
-      tension: 600,
-      precision: 1,
-      delay: 50,
-    }}
-  >
-    {({ total }) => (
-      <animated.span
-        css={css`
-          width: ${(`${amount}`.length || 1) + 1}rem;
-          display: inline-block;
-          text-align: right;
-          font-weight: 700;
-        `}
-      >
-        {total}
-        {/* {total.interpolate(n => n.toFixed(0))} */}
-      </animated.span>
-    )}
-  </Spring>
-)
-TotalAmount.propTypes = {
-  amount: PropTypes.number,
-}
+// const TotalAmount = ({ amount }) => (
+//   <Spring
+//     native
+//     from={{ total: 0 }}
+//     to={{ total: amount }}
+//     config={{
+//       ...config.molasses,
+//       tension: 600,
+//       precision: 1,
+//       delay: 50,
+//     }}
+//   >
+//     {({ total }) => (
+//       <animated.span
+//         css={css`
+//           width: ${(`${amount}`.length || 1) + 1}rem;
+//           display: inline-block;
+//           text-align: right;
+//           font-weight: 700;
+//         `}
+//       >
+//         {total}
+//         {/* {total.interpolate(n => n.toFixed(0))} */}
+//       </animated.span>
+//     )}
+//   </Spring>
+// )
+// TotalAmount.propTypes = {
+//   amount: PropTypes.number,
+// }
 
 const TakeAction = ({ label, link }) => (
   <h1>
@@ -123,9 +123,9 @@ class ContributorsPage extends React.Component {
   state = {
     items: [],
     highlighted: null,
-    total: this.props.data.contributors.edges
-      .reduce((acc, val) => acc + val.node.item.amount, 0)
-      .toFixed(0),
+    // total: this.props.data.contributors.edges
+    //   .reduce((acc, val) => acc + val.node.item.amount, 0)
+    //   .toFixed(0),
   }
 
   componentDidMount = () => {
@@ -149,12 +149,12 @@ class ContributorsPage extends React.Component {
     return (
       <MainLayout {...this.props}>
         {/* <h3>animate the total amount? maybe animate the list?</h3> */}
-        <TotalDonated>
+        {/* <TotalDonated>
           <TotalAmount amount={this.state.total} />
           <span>
             {`${page.frontmatter.squareMeterLabel} ${page.frontmatter.donatedSoFarLabel}`}
           </span>
-        </TotalDonated>
+        </TotalDonated> */}
 
         <TakeAction
           label={page.frontmatter.takeActionLabel}
@@ -258,7 +258,7 @@ export const query = graphql`
         thanksLabel
         forLabel
         squareMeterLabel
-        donatedSoFarLabel
+        # donatedSoFarLabel
 
         takeActionLabel
         takeActionLink

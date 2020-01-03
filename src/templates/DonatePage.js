@@ -50,7 +50,7 @@ const DonatePage = props => {
               />
             ))}
           </div>
-          <div
+          {/* <div
             sx={{ marginTop: `1rem` }}
             dangerouslySetInnerHTML={{
               __html: page.frontmatter.contributorInfo.replace(
@@ -58,7 +58,7 @@ const DonatePage = props => {
                 calcTotalAmount(contributions)
               ),
             }}
-          />
+          /> */}
         </div>
       </div>
 
