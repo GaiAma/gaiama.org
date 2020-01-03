@@ -132,6 +132,7 @@ const SupportPage = props => {
       <div
         sx={{
           mx: `auto`,
+          width: `90%`,
           maxWidth: `50rem`,
           display: `flex`,
           justifyContent: `space-around`,
@@ -159,6 +160,7 @@ const SupportPage = props => {
       <div
         sx={{
           mx: `auto`,
+          width: `90%`,
           maxWidth: `50rem`,
           display: `flex`,
           [media.lessThan(`medium`)]: {
@@ -303,6 +305,7 @@ const SupportPage = props => {
         sx={{
           mt: `5rem`,
           mx: `auto`,
+          width: `90%`,
           maxWidth: `50rem`,
           '& > h2': {
             marginBottom: `0.7rem`,
@@ -411,11 +414,12 @@ const SupportPage = props => {
         sx={{
           mt: `5rem`,
           mx: `auto`,
+          width: `90%`,
           maxWidth: `50rem`,
           [media.lessThan(`medium`)]: {
             '& div': {
               fontSize: `0.9rem`,
-              textAlign: `center`,
+              textAlign: [`left`, `center`],
             },
           },
         }}
