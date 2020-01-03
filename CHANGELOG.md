@@ -1,4 +1,20 @@
-# [Unreleased](https://github.com/gaiama/gaiama.org/compare/v2.6.13...318981815bc663aa680d150cee2c6f7cfdabb0bc) (2019-12-22)
+## [2.6.15](https://github.com/gaiama/gaiama.org/compare/v2.6.14...v2.6.15) (2020-01-03)
+
+
+### Bug Fixes
+
+* **SupportPage:** add width:90% & textAlign:left ([9a01083](https://github.com/gaiama/gaiama.org/commit/9a01083baf807a6bd6c534204157769ddbf941db))
+* **SupportPage:** increase getIdea maxWidth ([056bf19](https://github.com/gaiama/gaiama.org/commit/056bf1929edfd984e00d67c1b1c72ef6ba944227))
+
+
+### Features
+
+* disable total amount ([d5e5434](https://github.com/gaiama/gaiama.org/commit/d5e5434907e70fd81bfbfa63a33ef3e1b980b86f))
+* **a11y:** add aria-required to forms ([bd777c4](https://github.com/gaiama/gaiama.org/commit/bd777c495e13f2df3b25709ba749ab7698213786))
+
+
+
+## [2.6.14](https://github.com/gaiama/gaiama.org/compare/v2.6.13...v2.6.14) (2019-12-22)
 
 
 ### Bug Fixes
