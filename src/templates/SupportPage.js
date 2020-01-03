@@ -325,7 +325,7 @@ const SupportPage = props => {
         sx={{
           mt: `2rem`,
           mx: `auto`,
-          maxWidth: `50rem`,
+          maxWidth: `65rem`,
           display: `flex`,
           [media.lessThan(`small`)]: {
             flexDirection: `column`,
