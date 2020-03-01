@@ -16,6 +16,11 @@ const isNetlifyProduction =
   NETLIFY_ENV === `production` || `${process.env.BRANCH}`.startsWith(`ab_`)
 const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : DEPLOY_PRIME_URL
 
+console.log(`NETLIFY_ENV:`, NETLIFY_ENV)
+console.log(`isNetlifyProduction:`, isNetlifyProduction)
+console.log(`isOnline:`, isOnline)
+console.log(`siteUrl:`, siteUrl)
+
 const sharedManifestProperties = {
   name: `GaiAma`,
   short_name: `GaiAma`,
