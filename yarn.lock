@@ -7876,12 +7876,10 @@ gatsby-plugin-emotion@^4.1.18:
     "@babel/runtime" "^7.7.6"
     "@emotion/babel-preset-css-prop" "^10.0.23"
 
-gatsby-plugin-google-tagmanager@^2.1.20:
-  version "2.1.20"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-google-tagmanager/-/gatsby-plugin-google-tagmanager-2.1.20.tgz#3d79de1c79005a2a5fa36fc6f6e5e92a6176a585"
-  integrity sha512-q0gOIIjsQYtuaNsRkwrD+ivXE6FA20Fgs6C77m97QMswet2xEZt+hUn3snHb84jjenRk9kac5Df8cpTlZ3kBCA==
-  dependencies:
-    "@babel/runtime" "^7.7.6"
+gatsby-plugin-goatcounter@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-goatcounter/-/gatsby-plugin-goatcounter-0.2.0.tgz#bc2f0c59c8bb606d65b0a51389b20f974557d9a0"
+  integrity sha512-5V56oKLIdFVCkSsxhY3GUVM0/C1fAELEZ1jjICcicJHm+pK8DspyUr+MkVGgIzSJH6/r8n4geluJBMebtMNwVQ==
 
 gatsby-plugin-layout@1.1.18:
   version "1.1.18"

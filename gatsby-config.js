@@ -361,13 +361,15 @@ const plugins = [
       showSpinner: true,
     },
   },
-  // {
-  //   resolve: `gatsby-plugin-google-tagmanager`,
-  //   options: {
-  //     id: `GTM-P2HCKV6`,
-  //     includeInDevelopment: true,
-  //   },
-  // },
+  {
+    resolve: `gatsby-plugin-goatcounter`,
+    options: {
+      code: `gaiama`,
+      head: true,
+      allowLocal: false,
+      pixel: true,
+    },
+  },
   // {
   //   resolve: `@gaiama/gatsby-plugin-feed`,
   //   options: {
