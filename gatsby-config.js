@@ -69,13 +69,11 @@ const plugins = [
         'deploy-preview': {
           policy: [{ userAgent: `*`, disallow: [`/`] }],
         },
-        ...(!isNetlifyProduction
-          ? {
-              'branch-deploy': {
-                policy: [{ userAgent: `*`, disallow: [`/`] }],
-              },
-            }
-          : {}),
+        ...(!isNetlifyProduction && {
+          'branch-deploy': {
+            policy: [{ userAgent: `*`, disallow: [`/`] }],
+          },
+        }),
       },
     },
   },

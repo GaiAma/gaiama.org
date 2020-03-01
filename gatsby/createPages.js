@@ -28,7 +28,7 @@ module.exports = store => ({ actions, getNodes, graphql }) => {
       }
 
       // https://github.com/gatsbyjs/gatsby/issues/5129#issuecomment-442397391
-      // https://github.com/davidbailey00/manuelbieh.de/blob/62714633fb13b6e04c9e24f587114419299af946/gatsby-node.js
+      // https://github.com/davidbailey00/manuelbieh.de/blob/62714633fb13b6e04c9e24f587114419299af946/gatsby-node.js#L66
       if (slug === `404`) {
         // create root 404
         if (lang === `en`) {
