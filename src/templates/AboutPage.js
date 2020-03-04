@@ -122,6 +122,7 @@ const AboutPage = props => {
                   fixed={bio.img.image.fixed}
                   alt={bio.name}
                   title={bio.name}
+                  sx={{ borderRadius: `round` }}
                 />
               </div>
               <div>
