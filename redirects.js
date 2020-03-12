@@ -28,16 +28,16 @@ module.exports = [
   `https://shop.gaiama.org/* https://www.gaiama.org/de/shop/ 301! ${ifGermanLanguage}`,
   `https://shop.gaiama.org/* https://www.gaiama.org/en/shop/ 301!`,
 
-  `/shop /de/shop/ 301 ${ifGermanLanguage}`,
-  `/shop /en/shop/ 301`,
+  `/shop /de/shop/ 301! ${ifGermanLanguage}`,
+  `/shop /en/shop/ 301!`,
 
   // donation shortcuts
-  `/spenden /de/spenden/ 301`,
-  `/spende /de/spenden/ 301`,
-  `/donate /en/donate/ 301`,
+  `/spenden /de/spenden/ 301!`,
+  `/spende /de/spenden/ 301!`,
+  `/donate /en/donate/ 301!`,
 
-  `/de/blog* /de 301 ${ifGermanLanguage}`,
-  `/en/blog* /en 301`,
+  `/de/blog* /de 301! ${ifGermanLanguage}`,
+  `/en/blog* /en 301!`,
 
   // `/Left-in-the_Dark_free-edition-c604d4d35b6aedd11d4470a8cee465fd.pdf /assets/Left-in-the_Dark_free-edition.pdf 301`,
 

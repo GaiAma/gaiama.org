@@ -78,35 +78,35 @@ module.exports = ({ feeds, isProduction, publicDir, redirects, serveJson }) =>
     // })
 
     const finalRedirects = redirects.concat([
-      `/en/blog/atom/* /en/blog/rss.xml 301`,
-      `/de/blog/atom/* /de/blog/rss.xml 301`,
+      `/en/blog/atom/* /en/blog/rss.xml 301!`,
+      `/de/blog/atom/* /de/blog/rss.xml 301!`,
 
-      `/en/blog/* https://www.happygaia.com/en/blog/?url=:splat 301`,
-      `/de/blog/* https://www.happygaia.com/de/blog/?url=:splat 301`,
+      `/en/blog/* https://www.happygaia.com/en/blog/?url=:splat 301!`,
+      `/de/blog/* https://www.happygaia.com/de/blog/?url=:splat 301!`,
 
       // manual redirection fixes
-      `/globetrawter/blog/oh-don-t-stop/ https://www.happygaia.com/en/blog/oh-dont-stop/ 301`,
-      `/en/globetrawter/* https://www.happygaia.com/en/blog/ 301`,
-      `/de/globetrawter/* https://www.happygaia.com/de/blog/ 301`,
+      `/globetrawter/blog/oh-don-t-stop/ https://www.happygaia.com/en/blog/oh-dont-stop/ 301!`,
+      `/en/globetrawter/* https://www.happygaia.com/en/blog/ 301!`,
+      `/de/globetrawter/* https://www.happygaia.com/de/blog/ 301!`,
 
-      `/en/de/* / 301`,
-      `/en/danke/* /de/spenden/ 301`,
+      `/en/de/* / 301!`,
+      `/en/danke/* /de/spenden/ 301!`,
 
       // non existent?
-      `/de/10484/* /de/blog/ 301`,
-      `/en/1213/* /en/blog/ 301`,
-      `/de/1047/* /de/blog/ 301`,
-      `/de/1213/* /de/blog/ 301`,
-      `/de/1210/* /de/blog/ 301`,
-      `/en/1210/* /en/blog/ 301`,
-      `/en/1193/* /en/blog/ 301`,
-      `/en/10592/* /en/blog/ 301`,
+      `/de/10484/* /de/blog/ 301!`,
+      `/en/1213/* /en/blog/ 301!`,
+      `/de/1047/* /de/blog/ 301!`,
+      `/de/1213/* /de/blog/ 301!`,
+      `/de/1210/* /de/blog/ 301!`,
+      `/en/1210/* /en/blog/ 301!`,
+      `/en/1193/* /en/blog/ 301!`,
+      `/en/10592/* /en/blog/ 301!`,
 
       `/en/* /en/404/?url=:splat 404`,
       `/de/* /de/404/?url=:splat 404`,
 
       // redirect everything still not catched to /en/:splat
-      `/* /en/:splat 301`,
+      `/* /en/:splat 301!`,
     ])
 
     if (finalRedirects.length) {
