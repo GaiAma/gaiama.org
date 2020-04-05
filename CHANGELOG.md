@@ -1,3 +1,26 @@
+# [2.8.0](https://github.com/gaiama/gaiama.org/compare/v2.7.0...v2.8.0) (2020-04-05)
+
+
+### Features
+
+* **ArticlePreview:** fix colors & sizes ([962fe4e](https://github.com/gaiama/gaiama.org/commit/962fe4ed672a99ff19edb2494b76f84d0ac1745d))
+* **BlogPage:** fix & cleanup ([2f18f85](https://github.com/gaiama/gaiama.org/commit/2f18f85442b1f54d3515093c5e8c9a376b6211fd))
+* **BlogPost:** fix & cleanup ([16b99f5](https://github.com/gaiama/gaiama.org/commit/16b99f5162363adf9ac33045ac7d92e2ec4cffd9))
+* **gatsby-remark-wrap-images:** add image count to ([acbcb92](https://github.com/gaiama/gaiama.org/commit/acbcb92ccea4b35a347ac259c784a93b44ac926f))
+* **Header:** hide metaMenu if lang < 2 ([830ce43](https://github.com/gaiama/gaiama.org/commit/830ce4346290d5188b2640f31e1240fdfac6d856))
+
+
+
+# [2.7.0](https://github.com/gaiama/gaiama.org/compare/v2.6.15...v2.7.0) (2020-03-04)
+
+
+### Features
+
+* **aboutpage:** enforce rounded avatars ([a28909a](https://github.com/gaiama/gaiama.org/commit/a28909aaed50473cfeb926efdb6e21d590056ba9))
+* 🐐 GoatCounter analytics ([bcf2789](https://github.com/gaiama/gaiama.org/commit/bcf2789e8744108d5e304933aedee6a46ca478de))
+
+
+
 ## [2.6.15](https://github.com/gaiama/gaiama.org/compare/v2.6.14...v2.6.15) (2020-01-03)
 
 
