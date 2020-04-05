@@ -77,24 +77,26 @@ const Header = ({ homepage, meta, menu, logo, bgImage }) => {
           </Brand>
 
           {/* TODO: remember lang in local FORAGE? to show correct in 404 */}
-          <Meta>
-            {meta.map(link => (
-              <MetaItem className={link.class} key={link.id}>
-                <MetaLink
-                  to={link.to}
-                  activeClassName="active"
-                  onClick={() => setCookie(`nf_lang`, link.id)}
-                >
-                  <OnlyDesktop visible={link.titleShort}>
-                    {link.title}
-                  </OnlyDesktop>
-                  {link.titleShort && (
-                    <OnlyMobile>{link.titleShort}</OnlyMobile>
-                  )}
-                </MetaLink>
-              </MetaItem>
-            ))}
-          </Meta>
+          {meta.length > 1 && (
+            <Meta>
+              {meta.map(link => (
+                <MetaItem className={link.class} key={link.id}>
+                  <MetaLink
+                    to={link.to}
+                    activeClassName="active"
+                    onClick={() => setCookie(`nf_lang`, link.id)}
+                  >
+                    <OnlyDesktop visible={link.titleShort}>
+                      {link.title}
+                    </OnlyDesktop>
+                    {link.titleShort && (
+                      <OnlyMobile>{link.titleShort}</OnlyMobile>
+                    )}
+                  </MetaLink>
+                </MetaItem>
+              ))}
+            </Meta>
+          )}
         </TopInner>
       </HeaderTop>
 
