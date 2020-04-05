@@ -263,7 +263,7 @@
 //     }
 
 //     images: allMarkdownRemark(
-//       filter: { frontmatter: { lang: { eq: $lang }, published: { eq: true } } }
+//       filter: { frontmatter: { lang: { eq: $lang }, isPublished: { eq: true } } }
 //       sort: { fields: [frontmatter___date], order: DESC }
 //     ) {
 //       edges {

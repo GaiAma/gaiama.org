@@ -132,15 +132,6 @@ const PaypalSuccessPage = props => {
           </EmailShareButton>
         </Flex>
       </Box>
-
-      {/* <Newsticker
-        items={props.data.news.edges.map(x => x.node)}
-        title={NewsTicker.frontmatter.title}
-        linkLabel={NewsTicker.frontmatter.linkLabel}
-        link={NewsTicker.frontmatter.link}
-        readmoreLabel={NewsTicker.frontmatter.readmoreLabel}
-        layout="row"
-      /> */}
     </MainLayout>
   )
 }
@@ -148,7 +139,6 @@ PaypalSuccessPage.propTypes = {
   data: PropTypes.shape({
     page: PropTypes.object,
     news: PropTypes.object,
-    // NewsTicker: PropTypes.object,
   }),
 }
 export default PaypalSuccessPage
@@ -162,8 +152,6 @@ export const query = graphql`
     ...menu
     ...legal
     ...Accounts
-    # ...NewsTicker
-    # ...newstickerLandscape
 
     page: mdx(frontmatter: { slug: { eq: $slug } }) {
       ...MdxTranslations

@@ -83,7 +83,7 @@ const SupportPage = props => {
   } = props.data
 
   const initialStyle = {
-    ...visible.maxMd,
+    ...visible.maxMd, // TODO: LINARIA use scss helper max-md
     fontFamily: `accent`,
     fontSize: `2.9rem`,
     lineHeight: 1,
