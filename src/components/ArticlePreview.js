@@ -9,6 +9,7 @@ const StyledLink = props => (
   <Link
     sx={{
       border: `none`,
+      color: `link`,
       ':hover': {
         backgroundColor: `transparent`,
         color: `gray80`,
@@ -65,20 +66,19 @@ const articleStyles = {
     },
   },
   title: {
-    // color: `text`,
+    color: `text`,
     margin: `.5rem 1rem 0`,
     letterSpacing: `.05rem`,
   },
   body: {
     margin: `1rem`,
-    fontSize: `.9rem`,
   },
   footer: {
     marginTop: `auto`,
     // borderTop: `1px solid #ccc`,
     // borderImageSource: `linear-gradient(to right, #cccccc21, #ccc, #cccccc21)`,
     // borderImageSlice: `1`,
-    color: colors.gray2,
+    color: `#5d5d5d`,
     fontSize: `.9rem`,
     position: `relative`,
     '&:before': {
