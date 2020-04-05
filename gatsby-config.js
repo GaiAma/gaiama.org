@@ -111,14 +111,29 @@ const plugins = [
         },
       }
     : null,
+  isOnline && {
+    resolve: `gatsby-source-git`,
+    options: {
+      name: `gaiama-content-feder`,
+      remote: `https://gitlab.com:${GAIAMA_CONTENT_TOKEN}@gitlab.com/gaiama/content-feder.git`,
+    },
+  },
   {
     resolve: `gatsby-source-filesystem`,
     options: {
       path: isOnline
-        ? // ? join(__dirname, `.cache`, `gatsby-source-git`, `gaiama-content`)
-          join(__dirname, `.vscode`)
+        ? join(__dirname, `.vscode`)
         : join(__dirname, `..`, `gaiama.org_content`),
       name: `content`,
+      ignore: [`**/.git`, `**/happygaia/*`],
+    },
+  },
+  // new Feder content
+  !isOnline && {
+    resolve: `gatsby-source-filesystem`,
+    options: {
+      path: join(__dirname, `..`, `gaiama.org_content-feder`),
+      name: `content-feder`,
       ignore: [`**/.git`, `**/happygaia/*`],
     },
   },
@@ -427,7 +442,7 @@ const plugins = [
 
   //             items: allMdx(
   //               filter: {
-  //                 frontmatter: { type: { eq: "article" }, published: { eq: true } }
+  //                 frontmatter: { type: { eq: "article" }, isPublished: { eq: true } }
   //               }
   //               sort: { order: DESC, fields: [frontmatter___date] }
   //             ) {
