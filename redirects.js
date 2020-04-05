@@ -4,8 +4,8 @@ module.exports = [
   // Redirect default Netlify subdomain to primary domain
   `https://gaiama.netlify.com/* https://www.gaiama.org/de/:splat 301! ${ifGermanLanguage}`,
   `https://gaiama.netlify.com/* https://www.gaiama.org/en/:splat 301!`,
-  `https://gaiama.netlify.com/en/* https://www.gaiama.org/en/:splat 301!`,
-  `https://gaiama.netlify.com/de/* https://www.gaiama.org/de/:splat 301!`,
+  `https://gaiama.netlify.app/* https://www.gaiama.org/de/:splat 301! ${ifGermanLanguage}`,
+  `https://gaiama.netlify.app/* https://www.gaiama.org/en/:splat 301!`,
   // Proxy /api to api.gaiama.org
   // `/api/pixel/* https://pixel.api.gaiama.org/:splat 200`,
   // `/api/* https://api.gaiama.org/:splat 200`,
