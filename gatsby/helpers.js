@@ -3,22 +3,23 @@ const R = require(`ramda`)
 const { shuffle } = require(`lodash`)
 const speakingUrl = require(`speakingurl`)
 
-const isPost = R.both(
-  R.pathEq([`frontmatter`, `published`], true),
-  R.pathEq([`frontmatter`, `layout`], `BlogPost`)
-)
+const isPublished = node => node.frontmatter.isPublished === true
 
-const isPageLayout = R.compose(
-  R.endsWith(`Page`),
-  R.pathOr(`N/A`, [`frontmatter`, `layout`])
-)
+const isPost = node =>
+  node.frontmatter &&
+  isPublished(node) &&
+  node.frontmatter.layout === `BlogPost` &&
+  typeof node.fileAbsolutePath === `string` &&
+  node.fileAbsolutePath.includes(`gaiama.org_content-feder`)
 
-const isPage = R.both(
-  R.pathEq([`frontmatter`, `published`], true),
-  isPageLayout
-)
+const isPageLayout = node =>
+  node.frontmatter &&
+  typeof node.frontmatter.layout === `string` &&
+  node.frontmatter.layout.endsWith(`Page`)
 
-const isPageOrPost = R.anyPass([isPage, isPost])
+const isPage = node => isPageLayout(node) && isPublished(node)
+
+const isPageOrPost = node => isPage(node) || isPost(node)
 
 const getNLast = n => R.compose(R.head, R.takeLast(n))
 

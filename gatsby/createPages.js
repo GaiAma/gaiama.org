@@ -2,22 +2,25 @@ const { resolve } = require(`path`)
 const {
   // isHomePage,
   isPage,
+  isPost,
   notIsErrorPage,
   prepareSortedTuple,
   sortEnglishLast,
 } = require(`./helpers`)
 
-module.exports = store => ({ actions, getNodes, graphql }) => {
+module.exports = store => ({ actions, getNodes }) => {
   const { redirects } = store
   const { createPage, createNodeField } = actions
 
   // setup mappings
   const allNodes = getNodes()
   const Languages = allNodes.filter(x => x.internal.type === `LanguagesAml`)
-  const PagesAndPosts = allNodes.filter(isPage)
+  // const PagesAndPosts = allNodes.filter(R.either(isPage, isPost))
+  const PagesAndPosts = allNodes.filter(node => isPage(node) || isPost(node))
 
-  prepareSortedTuple(PagesAndPosts).forEach((group, index) =>
+  prepareSortedTuple(PagesAndPosts).forEach(group =>
     sortEnglishLast(group).forEach((node, _, array) => {
+      // if (node.frontmatter.slug === `welcome-to-gaiamas-blog`) console.log(node)
       const { lang, url, slug } = node.fields
       const { layout, shortId, shortlink, oldId, oldSlug } = node.frontmatter
 
