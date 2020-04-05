@@ -208,6 +208,7 @@ const MainLayout = props => {
         defaultTitle={page.frontmatter.title}
       >
         <title>{page.frontmatter.title}</title>
+        {/* TODO: SVG favicons https://twitter.com/JoshWComeau/status/1241887478627303432 */}
         <meta
           name="description"
           itemProp="description"
