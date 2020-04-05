@@ -117,7 +117,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
-    "@gaiama/gatsby-remark-wrap-images": "0.2.0",
+    "@gaiama/gatsby-remark-wrap-images": "0.3.0",
     "@gaiama/gatsby-source-gaiama-donations": "^0.1.3",
     "@gaiama/helpers": "^0.1.0",
     "@welldone-software/why-did-you-render": "^3.3.9",
@@ -164,6 +164,7 @@
     "prettier": "1.19.1",
     "rehype-slug": "^2.0.3",
     "remark-iframes": "4.0.0",
+    "remark-breaks": "^1.0.5",
     "scope.macro": "^1.0.0",
     "serve": "11.2.0"
   }

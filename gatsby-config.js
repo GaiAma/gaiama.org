@@ -143,7 +143,7 @@ const plugins = [
     options: {
       extensions: [`.mdx`, `.md`],
       rehypePlugins: [require(`rehype-slug`)],
-      remarkPlugins: [require(`remark-squeeze-paragraphs`)],
+      remarkPlugins: [require(`remark-breaks`, `remark-squeeze-paragraphs`)],
       // plugins: [`gatsby-remark-images`], // TODO: until https://github.com/gatsbyjs/gatsby/issues/15486 is fixed
       gatsbyRemarkPlugins: [
         // { resolve: `gatsby-remark-embed-video` },
@@ -165,7 +165,7 @@ const plugins = [
         },
         { resolve: `@gaiama/gatsby-remark-wrap-images` },
         // {
-        //   // TODO: check why it's not working/wrapping anymore e.g. /en/blog/tie-your-hair-without-hair-tie/
+        //   // TODO: check why it's not working/wrapping anymore
         //   resolve: `gatsby-remark-responsive-iframe`,
         //   options: {
         //     wrapperStyle: `margin: 0 auto 1.0725rem; max-width: 80%;`,
