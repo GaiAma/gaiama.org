@@ -44,10 +44,11 @@ function modifier(node, index, parent) {
   // End Debugger
 
   if (onlyContainsImages) {
+    const imageCount = whitespaceStripped.length
     parent.type = `div`
     parent.data = {
       hProperties: {
-        class: `inline-gallery`,
+        class: `inline-gallery inline-gallery-${imageCount}`,
       },
     }
     parent.children = whitespaceStripped
