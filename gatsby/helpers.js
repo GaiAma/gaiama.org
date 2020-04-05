@@ -3,14 +3,13 @@ const R = require(`ramda`)
 const { shuffle } = require(`lodash`)
 const speakingUrl = require(`speakingurl`)
 
-const isPublished = node => node.frontmatter.isPublished === true
+const isPublished = node =>
+  node.frontmatter && node.frontmatter.isPublished === true
 
 const isPost = node =>
   node.frontmatter &&
   isPublished(node) &&
-  node.frontmatter.layout === `BlogPost` &&
-  typeof node.fileAbsolutePath === `string` &&
-  node.fileAbsolutePath.includes(`gaiama.org_content-feder`)
+  node.frontmatter.layout === `BlogPost`
 
 const isPageLayout = node =>
   node.frontmatter &&
