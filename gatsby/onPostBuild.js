@@ -81,14 +81,6 @@ module.exports = ({ feeds, isProduction, publicDir, redirects, serveJson }) =>
       `/en/blog/atom/* /en/blog/rss.xml 301!`,
       `/de/blog/atom/* /de/blog/rss.xml 301!`,
 
-      `/en/blog/* https://www.happygaia.com/en/blog/?url=:splat 301!`,
-      `/de/blog/* https://www.happygaia.com/de/blog/?url=:splat 301!`,
-
-      // manual redirection fixes
-      `/globetrawter/blog/oh-don-t-stop/ https://www.happygaia.com/en/blog/oh-dont-stop/ 301!`,
-      `/en/globetrawter/* https://www.happygaia.com/en/blog/ 301!`,
-      `/de/globetrawter/* https://www.happygaia.com/de/blog/ 301!`,
-
       `/en/de/* / 301!`,
       `/en/danke/* /de/spenden/ 301!`,
 

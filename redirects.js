@@ -36,9 +36,6 @@ module.exports = [
   `/spende /de/spenden/ 301!`,
   `/donate /en/donate/ 301!`,
 
-  `/de/blog* /de 301! ${ifGermanLanguage}`,
-  `/en/blog* /en 301!`,
-
   // `/Left-in-the_Dark_free-edition-c604d4d35b6aedd11d4470a8cee465fd.pdf /assets/Left-in-the_Dark_free-edition.pdf 301`,
 
   // happygaia articles soon to be moved to dedicated archive blog happygaia.com
