@@ -115,7 +115,7 @@ const ContentBlocks = ({ mdx, stacked = false }) => {
         p: !stacked && background && `3rem`,
       }}
     >
-      <Box
+      <div
         sx={{
           maxWidth: `50rem`,
           mx: `auto`,
@@ -181,7 +181,7 @@ const ContentBlocks = ({ mdx, stacked = false }) => {
             wrapperStyles={{ maxWidth: `35rem` }}
           />
         )}
-      </Box>
+      </div>
     </Box>
   )
 }
