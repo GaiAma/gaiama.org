@@ -119,9 +119,9 @@ export const query = graphql`
           frontmatter {
             id
             title
-            subtitle
+            # subtitle
             summary
-            tags
+            # tags
             cover {
               publicURL
               childImageSharp {

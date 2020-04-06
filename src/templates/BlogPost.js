@@ -233,20 +233,20 @@ export const query = graphql`
         cover {
           publicURL
         }
-        podcast {
-          audio
-          video
-        }
-        video {
-          url
-          thumbnail {
-            image: childImageSharp {
-              fluid(maxWidth: 760, quality: 75, cropFocus: ENTROPY) {
-                ...GatsbyImageSharpFluid
-              }
-            }
-          }
-        }
+        # podcast {
+        #   audio
+        #   video
+        # }
+        # video {
+        #   url
+        #   thumbnail {
+        #     image: childImageSharp {
+        #       fluid(maxWidth: 760, quality: 75, cropFocus: ENTROPY) {
+        #         ...GatsbyImageSharpFluid
+        #       }
+        #     }
+        #   }
+        # }
       }
       fields {
         dateTime
