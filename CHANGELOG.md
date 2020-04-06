@@ -1,3 +1,13 @@
+## [2.8.3](https://github.com/gaiama/gaiama.org/compare/v2.8.2...v2.8.3) (2020-04-06)
+
+
+### Bug Fixes
+
+* **homepage:** styling ([686e917](https://github.com/gaiama/gaiama.org/commit/686e9175041d569959817d2f7650f6c84abdad8d))
+* **react-video-player:** undefined ([6d8941f](https://github.com/gaiama/gaiama.org/commit/6d8941fb2f5d54f82072acd105b85843b1528159))
+
+
+
 ## [2.8.2](https://github.com/gaiama/gaiama.org/compare/v2.8.1...v2.8.2) (2020-04-06)
 
 
