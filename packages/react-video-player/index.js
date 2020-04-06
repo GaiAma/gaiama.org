@@ -97,24 +97,26 @@ const Iframe = styled.iframe`
   height: 100%;
   border: 0;
 `
-const IframeWrapper = styled.div`
-  /* position: relative;
+/* position: relative;
+padding-top: 56.25%;
+${media.greaterThan(`medium`)} {
+  width: 760px;
+  padding-top: 36.25%;
   padding-top: 56.25%;
-  ${media.greaterThan(`medium`)} {
-    width: 760px;
-    padding-top: 36.25%;
-    padding-top: 56.25%;
-    padding-top: 51.25%;
-  } */
+  padding-top: 51.25%;
+} */
+/* https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-responsive-iframe/src/index.js
+check out https://github.com/twbs/bootstrap/blob/master/dist/css/bootstrap.css
+.21by9::before { padding-top: 42.857143%; }
+.16by9::before { padding-top: 56.25%; }
+.4by3::before { padding-top: 75%; }
+.1by1::before { padding-top: 100%; } */
+/* :before { padding-top: 36.25%; } */
+const IframeWrapper = styled.div`
   ${ThumbnailWrapperStyles};
-  /* https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-remark-responsive-iframe/src/index.js
-  check out https://github.com/twbs/bootstrap/blob/master/dist/css/bootstrap.css
-  .21by9::before { padding-top: 42.857143%; }
-  .16by9::before { padding-top: 56.25%; }
-  .4by3::before { padding-top: 75%; }
-  .1by1::before { padding-top: 100%; } */
-  /* :before { padding-top: 36.25%; } */
-  :before { padding-top: 56.25%; }
+  :before {
+    padding-top: 56.25%;
+  }
 `
 // const Img = styled(GatsbyImage)`
 //   height: auto;
