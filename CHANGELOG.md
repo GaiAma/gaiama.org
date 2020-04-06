@@ -1,3 +1,7 @@
+## [2.8.4](https://github.com/gaiama/gaiama.org/compare/v2.8.3...v2.8.4) (2020-04-06)
+
+
+
 ## [2.8.3](https://github.com/gaiama/gaiama.org/compare/v2.8.2...v2.8.3) (2020-04-06)
 
 
