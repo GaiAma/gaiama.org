@@ -77,12 +77,12 @@ const plugins = [
       },
     },
   },
-  {
-    resolve: `gatsby-plugin-emotion`,
-    options: {
-      labelFormat: `[filename]--[local]`,
-    },
-  },
+  // {
+  //   resolve: `gatsby-plugin-emotion`,
+  //   options: {
+  //     labelFormat: `[filename]--[local]`,
+  //   },
+  // },
   `gatsby-plugin-theme-ui`,
   `gatsby-plugin-layout`,
   {
