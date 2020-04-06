@@ -98,7 +98,7 @@ module.exports = ({ feeds, isProduction, publicDir, redirects, serveJson }) =>
       `/de/* /de/404/?url=:splat 404`,
 
       // redirect everything still not catched to /en/:splat
-      `/* /en/:splat 301!`,
+      `/* /en/:splat 301`,
     ])
 
     if (finalRedirects.length) {
