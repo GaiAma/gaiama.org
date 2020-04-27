@@ -2,8 +2,8 @@
 import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
 import { graphql } from 'gatsby'
-import Img from 'gatsby-image/withIEPolyfill'
-import { Box, Flex, Text, Grid } from '@theme-ui/components'
+// import Img from 'gatsby-image/withIEPolyfill'
+import { Box, Flex } from '@theme-ui/components'
 import MainLayout from '@components/MainLayout'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import TitledCopy from '@components/TitledCopy'
@@ -29,16 +29,19 @@ const ContactPage = props => {
         Ihrer angegebenen Daten zum Zweck der Bearbeitung Ihrer Anfrage
         einverstanden ([LINK]Datenschutzerklärung und Widerrufshinweise[/LINK])
       </p> */}
-      <Grid
-        columns={[1, null, null, 3]}
-        gap={5}
+      <div
+        // columns={[1, null, null, 2]}
+        // gap={5}
         sx={{
-          mx: `auto`,
-          maxWidth: `100rem`,
+          // mx: `auto`,
+          // maxWidth: `100rem`,
+          display: 'flex',
+          justifyContent: 'space-around',
+          flexWrap: 'wrap',
           mb: `4rem`,
         }}
       >
-        <Box mb="3rem">
+        <Box mb="3rem" sx={{ width: '100%', maxWidth: '22rem' }}>
           <TitledCopy
             rank="1"
             full
@@ -108,6 +111,8 @@ const ContactPage = props => {
             form: {
               mt: `2rem`,
             },
+            width: '100%',
+            maxWidth: '22rem',
           }}
         >
           <div>
@@ -141,11 +146,11 @@ const ContactPage = props => {
           </div>
         </div>
 
-        <Box>
+        {/* <Box>
           <Img fluid={page.frontmatter.assets.team.image.fluid} />
           <Text mt="1rem">{page.frontmatter.greeting}</Text>
-        </Box>
-      </Grid>
+        </Box> */}
+      </div>
     </MainLayout>
   )
 }
