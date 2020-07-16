@@ -2,7 +2,7 @@
   "name": "@gaiama/helpers",
   "version": "0.1.0",
   "dependencies": {
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "ramda": "^0.26.1",
     "speakingurl": "^14.0.1"
   }
