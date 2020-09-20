@@ -23,7 +23,7 @@ const inputStyle = {
 }
 
 const StyledInput = props => <input sx={inputStyle} {...props} />
-const StyledTextarea = props => <TextareaAutosize sx={inputStyle} {...props} />
+const StyledTextarea = props => <textarea sx={inputStyle} {...props} />
 
 const initialState = {
   values: {
@@ -187,6 +187,14 @@ export default class ContactForm extends Component {
     })
   }
 
+  textareaHeight() {
+    const { message } = this.state.values
+    const tabCount = (message.match(/\n/g) || []).length
+    const messageLength = message.length / 120
+    if (messageLength < 0) return Math.ceil(tabCount + 4)
+    return Math.ceil(tabCount + messageLength + 8)
+  }
+
   render() {
     const {
       emailLabel,
@@ -293,14 +301,14 @@ export default class ContactForm extends Component {
             <StyledTextarea
               name="message"
               value={values.message}
-              onInput={this.handleChange}
-              maxRows={10}
+              onChange={this.handleChange}
               readOnly={this.state.isSubmitting}
               required
               aria-required="true"
               sx={{
-                minHeight: `2rem`,
-                width: `100%`,
+                height: `${this.textareaHeight()}rem`,
+                minHeight: `8rem`,
+                maxHeight: `25rem`,
               }}
             />
             {errors.message && (
@@ -373,7 +381,6 @@ export default class ContactForm extends Component {
         )}
 
         <Button
-          label="Submit"
           disabled={isSubmitting}
           sx={{
             ...styles.button,
