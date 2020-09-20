@@ -141,22 +141,11 @@ export default class ContactForm extends Component {
 
     this.increaseAttempts()
 
-    // const payload = {
-    //   email: email,
-    //   lang: this.props.lang,
-    //   message: message
-    //     // replace multiple line breaks (2 and more) by <br><br>
-    //     .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
-    //     // replace single line breaks by <br>
-    //     .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
-    //     .trim(),
-    // }
-
     const sanitizedMessage = message
-      // replace multiple line breaks (2 and more) by <br><br>
-      .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
-      // replace single line breaks by <br>
-      .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
+      // // replace multiple line breaks (2 and more) by <br><br>
+      // .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
+      // // replace single line breaks by <br>
+      // .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
       .trim()
 
     const payload = [
