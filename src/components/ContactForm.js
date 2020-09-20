@@ -3,17 +3,14 @@
 import { jsx } from 'theme-ui'
 import { Component } from 'react'
 import PropTypes from 'prop-types'
-import axios from 'axios'
 import isEmail from 'validator/lib/isEmail'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
 import { colors, fontFamilies } from '@src/theme'
 import { Button } from '@components/layout/Button'
 import { Link } from '@components/Link'
-import TextareaAutosize from 'react-textarea-autosize'
 import localStore from '@src/utils/local-store'
-
-axios.defaults.headers.post[`Content-Type`] = `application/json`
+import { request } from '@src/utils/request'
 
 const inputStyle = {
   width: `100%`,
@@ -144,30 +141,45 @@ export default class ContactForm extends Component {
 
     this.increaseAttempts()
 
-    return axios
-      .post(this.props.endpoint, {
-        email: email,
-        lang: this.props.lang,
-        message: message
-          // replace multiple line breaks (2 and more) by <br><br>
-          .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
-          // replace single line breaks by <br>
-          .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
-          .trim(),
-      })
-      .then(({ data }) => {
-        if (data && data.msg === `OK`) {
+    // const payload = {
+    //   email: email,
+    //   lang: this.props.lang,
+    //   message: message
+    //     // replace multiple line breaks (2 and more) by <br><br>
+    //     .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
+    //     // replace single line breaks by <br>
+    //     .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
+    //     .trim(),
+    // }
+
+    const sanitizedMessage = message
+      // replace multiple line breaks (2 and more) by <br><br>
+      .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
+      // replace single line breaks by <br>
+      .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
+      .trim()
+
+    const payload = [
+      `email=${encodeURIComponent(email)}`,
+      `lang=${encodeURIComponent(this.props.lang)}`,
+      `message=${encodeURIComponent(sanitizedMessage)}`,
+    ]
+
+    return request
+      .post(this.props.endpoint, payload.join('&'))
+      .then(result => {
+        console.log({ result })
+        if (result === 'Ok!') {
           this.reset()
           localStore.removeItem(`ContactForm`)
           return this.setState({ hasSucceeded: true }, () => {
-            // scroll to success message
             const el = document.getElementById(`success`)
             el && window.scrollTo(0, el.offsetTop - 90)
           })
         }
         throw new Error({ generalError: this.props.generalErrorLabel })
       })
-      .catch(err => {
+      .catch(() => {
         this.increaseAttempts()
         this.submit(true)
       })
