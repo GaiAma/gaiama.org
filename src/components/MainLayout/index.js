@@ -280,6 +280,11 @@ const MainLayout = props => {
           />
         ))} */}
         {/* {!isDev && (<script src={`https://cdn.polyfill.io/v2/polyfill.min.js?features=${polyfills.join(`,`)}`}/>)} */}
+        {!isDev && (
+          <script
+            src={`https://polyfill.io/v3/polyfill.min.js?features=Object.assign`}
+          />
+        )}
         <html lang={lang} />
       </Helmet>
 
