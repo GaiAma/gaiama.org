@@ -1,14 +1,14 @@
 const defaultHeaders = {
-  'content-type': 'application/x-www-form-urlencoded',
-  accept: 'application/json',
+  'content-type': `application/x-www-form-urlencoded`,
+  accept: `application/json`,
 }
 
 // from https://ccoenraets.github.io/es6-tutorial-data/promisify/
 // https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/Using_XMLHttpRequest
-export const request = obj => {
-  return new Promise((resolve, reject) => {
-    let xhr = new XMLHttpRequest()
-    xhr.open(obj.method || 'GET', obj.url)
+export const request = obj =>
+  new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest()
+    xhr.open(obj.method || `GET`, obj.url)
     const headers = Object.assign({}, defaultHeaders, obj.headers)
     if (headers) {
       Object.keys(headers).forEach(key => {
@@ -25,10 +25,9 @@ export const request = obj => {
     xhr.onerror = () => reject(xhr.statusText)
     xhr.send(obj.body)
   })
-}
 
 request.post = (url, body, headers) =>
-  request({ method: 'POST', url, body, headers })
+  request({ method: `POST`, url, body, headers })
 
 request.postJson = (url, body, headers) =>
-  request({ method: 'POST', url, headers, body: JSON.stringify(body) })
+  request({ method: `POST`, url, headers, body: JSON.stringify(body) })

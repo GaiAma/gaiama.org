@@ -35,13 +35,13 @@ const ContactPage = props => {
         sx={{
           // mx: `auto`,
           // maxWidth: `100rem`,
-          display: 'flex',
-          justifyContent: 'space-around',
-          flexWrap: 'wrap',
+          display: `flex`,
+          justifyContent: `space-around`,
+          flexWrap: `wrap`,
           mb: `4rem`,
         }}
       >
-        <Box mb="3rem" sx={{ width: '100%', maxWidth: '22rem' }}>
+        <Box mb="3rem" sx={{ width: `100%`, maxWidth: `22rem` }}>
           <TitledCopy
             rank="1"
             full
@@ -111,8 +111,8 @@ const ContactPage = props => {
             form: {
               mt: `2rem`,
             },
-            width: '100%',
-            maxWidth: '22rem',
+            width: `100%`,
+            maxWidth: `22rem`,
           }}
         >
           <div>

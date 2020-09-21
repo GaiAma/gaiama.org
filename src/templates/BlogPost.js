@@ -360,6 +360,7 @@ const PostHeader = ({
         [media.greaterThan(`medium`)]: {
           width: `30%`,
         },
+        // alternative text divider https://twitter.com/CodyWebHouse/status/1233058458297143296
         '&:before': {
           content: `""`,
           height: `1px`,
