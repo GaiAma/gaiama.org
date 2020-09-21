@@ -1,3 +1,12 @@
+## [2.9.2](https://github.com/gaiama/gaiama.org/compare/v2.9.1...v2.9.2) (2020-09-21)
+
+
+### Bug Fixes
+
+* **theme:** add missing 'text' color ([c2074c9](https://github.com/gaiama/gaiama.org/commit/c2074c9d424a3f5fd7925ce6618f8510f9a5d16e))
+
+
+
 ## [2.9.1](https://github.com/gaiama/gaiama.org/compare/v2.8.4...v2.9.1) (2020-09-21)
 
 
