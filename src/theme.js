@@ -45,6 +45,7 @@ export const colors = preval`
     black: '#222',
     gray52: 'rgba(0,0,0,0.52)',
     gray80: 'rgba(0,0,0,0.8)',
+    text: 'rgba(0,0,0,0.8)',
     wine: '#9e2146',
     oldWhite: '#e0e2c5',
     blueLight: '#85bfff',
