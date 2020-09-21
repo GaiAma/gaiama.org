@@ -11,6 +11,7 @@
     "url": "git+https://github.com/gaiama/gaiama.org.git"
   },
   "resolutions": {
+    "caniuse-lite": "^1.0.30001133",
     "chokidar": "^3.4.2",
     "sharp": "0.26.1"
   },
