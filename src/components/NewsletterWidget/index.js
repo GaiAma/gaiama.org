@@ -9,7 +9,7 @@ import isEmail from 'validator/lib/isEmail'
 import { colors, fontFamilies } from '@src/theme'
 import { Button } from '@components/layout/Button'
 import localStore from '@src/utils/local-store'
-import axios from 'axios'
+import { request } from '@src/utils/request'
 import { Link } from '@components/Link'
 
 const StyledInput = props => (
@@ -143,24 +143,25 @@ export class Newsletter extends Component {
 
     this.increaseAttempts()
 
-    return axios
-      .patch(this.props.endpoint, {
-        email,
-        lang: this.props.lang,
-      })
-      .then(({ data }) => {
-        if (data && data.msg === `OK`) {
+    const payload = [
+      `email=${encodeURIComponent(email)}`,
+      `lang=${encodeURIComponent(this.props.lang)}`,
+    ]
+
+    return request
+      .post(this.props.endpoint, payload.join('&'))
+      .then(result => {
+        if (result === 'Ok!') {
           this.reset()
           localStore.removeItem(`NewsletterForm`)
           return this.setState({ hasSucceeded: true }, () => {
-            // scroll to success message
             const el = document.getElementById(`success`)
             el && window.scrollTo(0, el.offsetTop - 90)
           })
         }
-        throw new Error()
+        throw new Error({ generalError: this.props.generalErrorLabel })
       })
-      .catch(err => {
+      .catch(() => {
         this.increaseAttempts()
         this.submit(true)
       })
