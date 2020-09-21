@@ -5,6 +5,8 @@ import { Component } from 'react'
 import PropTypes from 'prop-types'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSpinner } from '@fortawesome/free-solid-svg-icons/faSpinner'
+import { faCheckCircle } from '@fortawesome/free-solid-svg-icons/faCheckCircle'
+import { faHourglassHalf } from '@fortawesome/free-solid-svg-icons/faHourglassHalf'
 import isEmail from 'validator/lib/isEmail'
 import { colors, fontFamilies } from '@src/theme'
 import { Button } from '@components/layout/Button'
@@ -54,6 +56,7 @@ export class Newsletter extends Component {
     success: PropTypes.string,
     lang: PropTypes.string,
     endpoint: PropTypes.string,
+    maintenance: PropTypes.bool,
   }
   static defaultProps = {
     emailLabel: ``,
@@ -61,6 +64,7 @@ export class Newsletter extends Component {
     consentLabel: ``,
     submitLabel: ``,
     lang: `en`,
+    maintenance: false,
   }
   constructor(props) {
     super(props)
@@ -185,13 +189,40 @@ export class Newsletter extends Component {
       hasSucceeded,
       generalError,
     } = this.state
-
-    if (hasSucceeded) {
-      // TODO: Add checkmark & improve color contrast
+    if (this.props.maintenance)
       return (
-        <p
+        <div
           id="success"
           sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            background: colors.white,
+            border: `1px solid ${colors.black}`,
+            padding: `0.5rem 0.5rem 0.4rem`,
+            '& em': {
+              textDecoration: `underline`,
+              fontStyle: `normal`,
+            },
+          }}
+        >
+          <FontAwesomeIcon
+            icon={faHourglassHalf}
+            size="3x"
+            sx={{ mb: '1rem' }}
+          />
+          <p>This feature is temporarily unavailable</p>
+        </div>
+      )
+
+    if (hasSucceeded) {
+      return (
+        <div
+          id="success"
+          sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
             background: colors.white,
             border: `1px solid green`,
             color: colors.success,
@@ -201,8 +232,10 @@ export class Newsletter extends Component {
               fontStyle: `normal`,
             },
           }}
-          dangerouslySetInnerHTML={{ __html: this.props.success }}
-        />
+        >
+          <FontAwesomeIcon icon={faCheckCircle} size="3x" sx={{ mb: '1rem' }} />
+          <p dangerouslySetInnerHTML={{ __html: this.props.success }} />
+        </div>
       )
     }
 
@@ -300,7 +333,6 @@ export class Newsletter extends Component {
         )}
 
         <Button
-          label="Submit"
           disabled={isSubmitting}
           sx={{
             ...styles.button,
