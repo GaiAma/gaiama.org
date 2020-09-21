@@ -91,17 +91,17 @@ const ContactPage = props => {
           <ContactForm
             emailLabel={page.frontmatter.form.emailLabel}
             emailPlaceholder={page.frontmatter.form.emailPlaceholder}
-            messageLabel={page.frontmatter.form.messageLabel}
+            messageLabel={page.frontmatter.form.contact.messageLabel}
             privacyLink={page.frontmatter.privacyLink}
             privacyLabel={page.frontmatter.privacyLabel}
-            consentLabel={page.frontmatter.form.consentLabel}
-            success={page.frontmatter.form.success}
-            submitLabel={page.frontmatter.form.submitLabel}
+            consentLabel={page.frontmatter.form.contact.consentLabel}
+            success={page.frontmatter.form.contact.success}
+            submitLabel={page.frontmatter.form.contact.submitLabel}
             lang={props.pageContext.lang}
-            emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
-            requiredLabel={page.frontmatter.errors.requiredLabel}
-            generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
-            endpoint="https://gaiama-contact.now.sh"
+            emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
+            requiredLabel={page.frontmatter.form.errors.requiredLabel}
+            generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
+            endpoint="https://contact.api.gaiama.org/"
           />
         </Box>
 
@@ -118,8 +118,8 @@ const ContactPage = props => {
           <div>
             <TitledCopy
               full
-              title={page.frontmatter.newsletter.title}
-              paragraphs={page.frontmatter.newsletter.descr}
+              title={page.frontmatter.form.newsletter.title}
+              paragraphs={page.frontmatter.form.newsletter.descr}
               sx={{
                 marginBottom: `1.3rem`,
                 '& h2': {
@@ -135,13 +135,14 @@ const ContactPage = props => {
               emailPlaceholder={page.frontmatter.form.emailPlaceholder}
               privacyLink={page.frontmatter.privacyLink}
               privacyLabel={page.frontmatter.privacyLabel}
-              consentLabel={page.frontmatter.newsletter.consentLabel}
-              success={page.frontmatter.newsletter.success}
-              submitLabel={page.frontmatter.form.submitLabel}
+              consentLabel={page.frontmatter.form.newsletter.consentLabel}
+              success={page.frontmatter.form.newsletter.success}
+              submitLabel={page.frontmatter.form.newsletter.submitLabel}
               lang={props.pageContext.lang}
-              emailErrorLabel={page.frontmatter.errors.emailErrorLabel}
-              generalErrorLabel={page.frontmatter.errors.generalErrorLabel}
-              endpoint="https://gaiama-newsletter.now.sh/api"
+              emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
+              generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
+              endpoint="https://newsletter.api.gaiama.org/subscribe"
+              maintenance={true}
             />
           </div>
         </div>
@@ -184,25 +185,6 @@ export const query = graphql`
         cookieNote
         privacyLink
         privacyLabel
-        form {
-          descr
-          emailLabel
-          messageLabel
-          submitLabel
-          consentLabel
-          success
-        }
-        newsletter {
-          title
-          descr
-          consentLabel
-          success
-        }
-        errors {
-          emailErrorLabel
-          requiredLabel
-          generalErrorLabel
-        }
         greeting
         assets {
           team {
@@ -211,6 +193,28 @@ export const query = graphql`
                 ...GatsbyImageSharpFluid_withWebp
               }
             }
+          }
+        }
+        form {
+          emailLabel
+          emailPlaceholder
+          contact {
+            messageLabel
+            submitLabel
+            consentLabel
+            success
+          }
+          newsletter {
+            title
+            descr
+            consentLabel
+            submitLabel
+            success
+          }
+          errors {
+            emailErrorLabel
+            requiredLabel
+            generalErrorLabel
           }
         }
       }
