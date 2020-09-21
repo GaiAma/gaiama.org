@@ -52,7 +52,8 @@ export const colors = preval`
     purpleDark: '#2d2a34',
     grayBlue: '#aab7c4',
     rss: '#faa949',
-    success: '#74d27e',
+    // success: '#74d27e',
+    success: 'green',
     failure: '#d27474',
     yellow: '#ff0',
     brands: {
