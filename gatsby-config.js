@@ -475,12 +475,9 @@ const plugins = [
     resolve: `gatsby-plugin-sitemap`,
     options: getSitemapForLanguage(`de`),
   },
-  {
-    resolve: `gatsby-plugin-offline`,
-    options: {
-      // globPatterns: [`**/*.{js,css,html}`],
-    },
-  },
+  // If this should ever be removed, replace it with `gatsby-plugin-remove-serviceworker`
+  // as explained in https://www.gatsbyjs.org/packages/gatsby-plugin-offline/#remove
+  `gatsby-plugin-offline`,
   {
     resolve: `gatsby-plugin-netlify`,
     options: {
