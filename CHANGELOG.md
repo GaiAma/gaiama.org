@@ -1,3 +1,20 @@
+# [2.9.0](https://github.com/gaiama/gaiama.org/compare/v2.8.4...v2.9.0) (2020-09-21)
+
+
+### Features
+
+* **contact:** disable team img ([1296aa4](https://github.com/gaiama/gaiama.org/commit/1296aa4e5fab7fb601d440eb044f16b98bb8f01c))
+* **ContactForm:** disable over sanitization ([63ca567](https://github.com/gaiama/gaiama.org/commit/63ca567adf60a3483ab8e719b9e9380e10e7ce9a))
+* **ContactForm:** improve textarea ([29d0b8c](https://github.com/gaiama/gaiama.org/commit/29d0b8c4a4fdf23800ad141fe7d08453b6a62385))
+* **ContactForm:** replace axios by request util ([8e51455](https://github.com/gaiama/gaiama.org/commit/8e51455f3fdaf84d3c85e170da5f326502811dbd))
+* **NewsletterWidget:** improve success, add maintenance mode ([279fbad](https://github.com/gaiama/gaiama.org/commit/279fbaddd158bf9d24db726b608302704c22098f))
+* **NewsletterWidget:** replace axios by request util ([9afd7ef](https://github.com/gaiama/gaiama.org/commit/9afd7ef145aef5ed4f4906347f67680ca26a9f90))
+* **theme:** update success color ([1635340](https://github.com/gaiama/gaiama.org/commit/163534065c58c664939b0316fd59f98fa2d29f5f))
+* add Object.assign polyfill.io ([173a82a](https://github.com/gaiama/gaiama.org/commit/173a82a4f917dc43a16bffcb3946752e28161bf9))
+* add request util ([1a88ef5](https://github.com/gaiama/gaiama.org/commit/1a88ef5f83cf9b602d66008594342e7d2c644078))
+
+
+
 ## [2.8.4](https://github.com/gaiama/gaiama.org/compare/v2.8.3...v2.8.4) (2020-04-06)
 
 
