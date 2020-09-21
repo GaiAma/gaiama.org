@@ -22,14 +22,12 @@ module.exports = {
   extends: [
     'google',
     'eslint:recommended',
-    'plugin:flowtype/recommended',
     'plugin:react/recommended',
     'prettier',
-    'prettier/flowtype',
     'prettier/react',
     'plugin:jsx-a11y/recommended',
   ],
-  plugins: ['flowtype', 'react', 'jsx-a11y', `react-hooks`],
+  plugins: ['react', 'jsx-a11y', `react-hooks`],
   parserOptions: {
     ecmaVersion: 2016,
     sourceType: 'module',
