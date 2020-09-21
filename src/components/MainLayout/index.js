@@ -288,7 +288,7 @@ const MainLayout = props => {
         <html lang={lang} />
       </Helmet>
 
-      <Global styles={t=>globalStyles(t)} />
+      <Global styles={globalStyles} />
 
       <a href="#main" css={screenReaderAndFocusable}>
         {SiteMeta.frontmatter.skipLinks.toContent}

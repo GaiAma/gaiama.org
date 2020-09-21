@@ -63,8 +63,8 @@ export const globalStyles = theme => css`
   }
 
   body {
-    color: ${theme.colors.text};
-    background: ${theme.colors.background};
+    color: ${theme?.colors?.text};
+    background: ${theme?.colors?.background};
     font-family: 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI',
       'Roboto', 'Helvetica', 'sans-serif', 'Apple Color Emoji', 'Segoe UI Emoji',
       'Segoe UI Symbol';
@@ -134,7 +134,7 @@ export const globalStyles = theme => css`
   }
 
   mark {
-    background-color: ${theme.colors.yellow};
+    background-color: ${theme?.colors?.yellow};
   }
 
   small {
