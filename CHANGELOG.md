@@ -1,4 +1,4 @@
-# [2.9.0](https://github.com/gaiama/gaiama.org/compare/v2.8.4...v2.9.0) (2020-09-21)
+## [2.9.1](https://github.com/gaiama/gaiama.org/compare/v2.8.4...v2.9.1) (2020-09-21)
 
 
 ### Features
