@@ -158,7 +158,7 @@ const plugins = [
     options: {
       extensions: [`.mdx`, `.md`],
       rehypePlugins: [require(`rehype-slug`)],
-      remarkPlugins: [require(`remark-breaks`, `remark-squeeze-paragraphs`)],
+      remarkPlugins: [require(`remark-unwrap-images`), require(`remark-breaks`, `remark-squeeze-paragraphs`)],
       // plugins: [`gatsby-remark-images`], // TODO: until https://github.com/gatsbyjs/gatsby/issues/15486 is fixed
       gatsbyRemarkPlugins: [
         // { resolve: `gatsby-remark-embed-video` },
@@ -170,7 +170,7 @@ const plugins = [
             backgroundColor: `#eae9e9`,
             linkImagesToOriginal: false,
             showCaptions: [`title`],
-            markdownCaptions: true,
+            markdownCaptions: false, // TODO: until https://github.com/gatsbyjs/gatsby/issues/25066 is fixed
             disableBgImageOnAlpha: true,
             withWebp: isOnline,
             quality: 75,
