@@ -1,11 +1,12 @@
 /* global window */
 import React from 'react'
 import PropTypes from 'prop-types'
-import { graphql, Link } from 'gatsby'
+import { graphql } from 'gatsby'
 import styled from '@emotion/styled'
 import { css } from '@emotion/core'
 // import { Spring, animated, config } from 'react-spring/renderprops'
 import MainLayout from '@components/MainLayout'
+import { Link } from '@components/Link'
 import { colors, media } from '@src/theme'
 
 // const TotalDonated = styled.h4`

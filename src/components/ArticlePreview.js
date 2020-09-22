@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { jsx } from 'theme-ui'
 import PropTypes from 'prop-types'
-import { Link } from 'gatsby'
+import { Link } from '@components/Link'
 import Img from 'gatsby-image/withIEPolyfill'
 import { colors } from '@src/theme'
 
