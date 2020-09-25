@@ -1,5 +1,5 @@
-<a name="2.9.4"></a>
-## [2.9.4](https://github.com/gaiama/gaiama.org/compare/v2.9.3...v2.9.4) (2020-09-22)
+<a name="2.9.5"></a>
+## [2.9.5](https://github.com/gaiama/gaiama.org/compare/v2.9.3...v2.9.5) (2020-09-25)
 
 
 ### Bug Fixes
@@ -9,6 +9,7 @@
 
 ### Features
 
+* **redirects:** /f4f -> paypal ([cf84c19](https://github.com/gaiama/gaiama.org/commit/cf84c19))
 * use custom <Link/> ([f536a5e](https://github.com/gaiama/gaiama.org/commit/f536a5e))
 
 
