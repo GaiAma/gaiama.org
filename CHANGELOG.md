@@ -1,3 +1,14 @@
+<a name="2.9.6"></a>
+## [2.9.6](https://github.com/gaiama/gaiama.org/compare/v2.9.5...v2.9.6) (2020-09-27)
+
+
+### Features
+
+* **redirects:** /feelforforest -> paypal ([28c7953](https://github.com/gaiama/gaiama.org/commit/28c7953))
+* **redirects:** /feetforforest -> paypal ([265d40f](https://github.com/gaiama/gaiama.org/commit/265d40f))
+
+
+
 <a name="2.9.5"></a>
 ## [2.9.5](https://github.com/gaiama/gaiama.org/compare/v2.9.3...v2.9.5) (2020-09-25)
 
