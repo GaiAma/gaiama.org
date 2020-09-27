@@ -34,7 +34,7 @@ module.exports = [
   `/spende /de/spenden/ 301!`,
   `/donate /en/donate/ 301!`,
 
-  `/f4f https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=H7TBBWRQ3EQDE&source=url 302!`,
+  `/feelforforest https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=H7TBBWRQ3EQDE&source=url 302!`,
 
   // `/Left-in-the_Dark_free-edition-c604d4d35b6aedd11d4470a8cee465fd.pdf /assets/Left-in-the_Dark_free-edition.pdf 301`,
 
