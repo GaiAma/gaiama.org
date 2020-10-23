@@ -47,6 +47,7 @@ export default class ContactForm extends Component {
     emailLabel: PropTypes.string,
     emailPlaceholder: PropTypes.string,
     emailErrorLabel: PropTypes.string,
+    existingLabel: PropTypes.string,
     requiredLabel: PropTypes.string,
     generalErrorLabel: PropTypes.string,
     messageLabel: PropTypes.string,
@@ -62,6 +63,7 @@ export default class ContactForm extends Component {
     emailLabel: ``,
     emailPlaceholder: ``,
     emailErrorLabel: ``,
+    existingLabel: ``,
     messageLabel: ``,
     consentLabel: ``,
     submitLabel: ``,
@@ -161,12 +163,17 @@ export default class ContactForm extends Component {
     return request
       .post(this.props.endpoint, payload.join(`&`))
       .then((result) => {
-        console.log({ result })
+        // console.log({ result })
         if (result === `Ok`) {
           this.reset()
           return this.setState({ hasSucceeded: true }, () => {
             const el = document.getElementById(`success`)
             el && window.scrollTo(0, el.offsetTop - 90)
+          })
+        }
+        if (result === `EXISTING`) {
+          return this.setState({
+            errors: { ...this.state.errors, email: this.props.existingLabel },
           })
         }
         throw new Error({ generalError: this.props.generalErrorLabel })

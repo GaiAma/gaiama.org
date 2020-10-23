@@ -101,6 +101,7 @@ const ContactPage = (props) => {
             submitLabel={page.frontmatter.form.contact.submitLabel}
             lang={props.pageContext.lang}
             emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
+            existingLabel={page.frontmatter.form.errors.existingLabel}
             requiredLabel={page.frontmatter.form.errors.requiredLabel}
             generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
             endpoint={
@@ -223,6 +224,7 @@ export const query = graphql`
           }
           errors {
             emailErrorLabel
+            existingLabel
             requiredLabel
             generalErrorLabel
           }
