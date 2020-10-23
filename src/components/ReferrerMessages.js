@@ -7,13 +7,17 @@ import { toast } from '@src/utils/toast'
 const messages = {
   en: {
     'happygaia.com': `HappyGaia is now GaiAma`,
-    subscribed: `Thanks for having successfully subscribed to our newsletter :-)`,
-    unsubscribed: `You've been successfully unsubscribed from our newsletter :-)`,
+    subscribed: `Thanks for successfully subscribing to our newsletter. 😃`,
+    unsubscribed: `You've been successfully unsubscribed from our newsletter. 😌`,
+    alreadyunsubscribed: `You've already successfully unsubscribed. 😌`,
+    unsubscribeerror: `Sorry an error occurred, please try again or send us a message via contact form. 😳`,
   },
   de: {
     'happygaia.com': `HappyGaia ist jetzt GaiAma`,
-    subscribed: `Du hast dich erfolgreich für unseren Newsletter angemeldet, vielen Dank :-)`,
-    unsubscribed: `Du wurdest erfolgreich von unserem Newsletter abgemeldet :-)`,
+    subscribed: `Du hast dich erfolgreich für unseren Newsletter angemeldet, vielen Dank. 😃`,
+    unsubscribed: `Du wurdest erfolgreich von unserem Newsletter abgemeldet. 😌`,
+    alreadyunsubscribed: `Du wurdest bereits erfolgreich abgemeldet. 😌`,
+    unsubscribeerror: `Bitte entschuldige, es gab ein Problem. Bitte versuche es erneut oder sende uns eine Nachricht über das Kontaktformular. 😳`,
   },
 }
 
