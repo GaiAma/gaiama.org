@@ -1,3 +1,28 @@
+<a name="2.10.2"></a>
+## [2.10.2](https://github.com/gaiama/gaiama.org/compare/v2.10.1...v2.10.2) (2020-10-23)
+
+
+### Bug Fixes
+
+* existingLabel to NewsletterForm ([42e96ee](https://github.com/gaiama/gaiama.org/commit/42e96ee))
+
+
+### Features
+
+* **request:** resolve all HTTP status codes ([de17ab2](https://github.com/gaiama/gaiama.org/commit/de17ab2))
+
+
+
+<a name="2.10.1"></a>
+## [2.10.1](https://github.com/gaiama/gaiama.org/compare/v2.10.0...v2.10.1) (2020-10-23)
+
+
+### Features
+
+* add existingLabel message ([5c08202](https://github.com/gaiama/gaiama.org/commit/5c08202))
+
+
+
 <a name="2.10.0"></a>
 # [2.10.0](https://github.com/gaiama/gaiama.org/compare/v2.9.6...v2.10.0) (2020-10-23)
 
