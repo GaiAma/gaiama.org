@@ -14,7 +14,7 @@ import localStore from '@src/utils/local-store'
 import { request } from '@src/utils/request'
 import { Link } from '@components/Link'
 
-const StyledInput = props => (
+const StyledInput = (props) => (
   <input
     sx={{
       width: `100%`,
@@ -90,9 +90,9 @@ export class Newsletter extends Component {
     this.setState({ attempts: this.state.attempts + 1 })
   }
 
-  hasErrors = () => Object.values(this.state.errors).filter(x => x).length
+  hasErrors = () => Object.values(this.state.errors).filter((x) => x).length
 
-  handleChange = event => {
+  handleChange = (event) => {
     const target = event.target
     const value =
       target.type === `checkbox`
@@ -111,7 +111,7 @@ export class Newsletter extends Component {
     )
   }
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     if (typeof window === `undefined`) {
       return this.setState({ generalError: this.props.generalErrorLabel })
     }
@@ -153,9 +153,9 @@ export class Newsletter extends Component {
     ]
 
     return request
-      .post(this.props.endpoint, payload.join('&'))
-      .then(result => {
-        if (result === 'Ok!') {
+      .post(this.props.endpoint, payload.join(`&`))
+      .then((result) => {
+        if (result === `Ok`) {
           this.reset()
           localStore.removeItem(`NewsletterForm`)
           return this.setState({ hasSucceeded: true }, () => {
