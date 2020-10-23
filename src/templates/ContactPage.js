@@ -101,7 +101,6 @@ const ContactPage = (props) => {
             submitLabel={page.frontmatter.form.contact.submitLabel}
             lang={props.pageContext.lang}
             emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
-            existingLabel={page.frontmatter.form.errors.existingLabel}
             requiredLabel={page.frontmatter.form.errors.requiredLabel}
             generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
             endpoint={
@@ -147,6 +146,7 @@ const ContactPage = (props) => {
               submitLabel={page.frontmatter.form.newsletter.submitLabel}
               lang={props.pageContext.lang}
               emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
+              existingLabel={page.frontmatter.form.errors.existingLabel}
               generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
               endpoint={
                 isProduction

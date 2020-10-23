@@ -157,6 +157,7 @@ export class Newsletter extends Component {
     return request
       .post(this.props.endpoint, payload.join(`&`))
       .then((result) => {
+        // console.log({ result })
         if (result === `Ok`) {
           this.reset()
           localStore.removeItem(`NewsletterForm`)
