@@ -11,7 +11,9 @@ import { Newsletter } from '@components/NewsletterWidget'
 import ContactForm from '@components/ContactForm'
 import { Link } from '@components/Link'
 
-const ContactPage = props => {
+const isProduction = process.env.NODE_ENV === `production`
+
+const ContactPage = (props) => {
   const { page } = props.data
   return (
     <MainLayout
@@ -58,7 +60,7 @@ const ContactPage = props => {
           />
 
           <Flex mx="-1rem" mb="1rem">
-            {props.data.Accounts.frontmatter.accounts.map(x => (
+            {props.data.Accounts.frontmatter.accounts.map((x) => (
               <Box
                 key={x.service}
                 mx="1rem"
@@ -101,7 +103,11 @@ const ContactPage = props => {
             emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
             requiredLabel={page.frontmatter.form.errors.requiredLabel}
             generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
-            endpoint="https://contact.api.gaiama.org/"
+            endpoint={
+              isProduction
+                ? `https://contact.api.gaiama.org/`
+                : `https://contact.api.dev.gaiama.org/`
+            }
           />
         </Box>
 
@@ -141,8 +147,12 @@ const ContactPage = props => {
               lang={props.pageContext.lang}
               emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
               generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
-              endpoint="https://newsletter.api.gaiama.org/subscribe"
-              maintenance={true}
+              endpoint={
+                isProduction
+                  ? `https://newsletter.api.gaiama.org/subscribe`
+                  : `https://newsletter.api.dev.gaiama.org/subscribe`
+              }
+              maintenance={false}
             />
           </div>
         </div>
