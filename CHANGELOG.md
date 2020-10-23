@@ -1,3 +1,13 @@
+<a name="2.10.3"></a>
+## [2.10.3](https://github.com/gaiama/gaiama.org/compare/v2.10.2...v2.10.3) (2020-10-23)
+
+
+### Bug Fixes
+
+* existingLabel to NewsletterWidget ([673064c](https://github.com/gaiama/gaiama.org/commit/673064c))
+
+
+
 <a name="2.10.2"></a>
 ## [2.10.2](https://github.com/gaiama/gaiama.org/compare/v2.10.1...v2.10.2) (2020-10-23)
 
