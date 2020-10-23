@@ -154,13 +154,16 @@ export default class ContactForm extends Component {
       `message=${encodeURIComponent(sanitizedMessage)}`,
     ]
 
+    // if (process.env.NODE_ENV !== `production`) {
+    //   return this.reset()
+    // }
+
     return request
-      .post(this.props.endpoint, payload.join('&'))
-      .then(result => {
+      .post(this.props.endpoint, payload.join(`&`))
+      .then((result) => {
         console.log({ result })
-        if (result === 'Ok!') {
+        if (result === `Ok`) {
           this.reset()
-          localStore.removeItem(`ContactForm`)
           return this.setState({ hasSucceeded: true }, () => {
             const el = document.getElementById(`success`)
             el && window.scrollTo(0, el.offsetTop - 90)
@@ -185,6 +188,7 @@ export default class ContactForm extends Component {
       values: initialState.values,
       errors: initialState.errors,
     })
+    localStore.removeItem(`ContactForm`)
   }
 
   textareaHeight() {
