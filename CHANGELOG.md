@@ -1,3 +1,21 @@
+<a name="2.10.0"></a>
+# [2.10.0](https://github.com/gaiama/gaiama.org/compare/v2.9.6...v2.10.0) (2020-10-23)
+
+
+### Bug Fixes
+
+* /FeelForForest ([7d5012d](https://github.com/gaiama/gaiama.org/commit/7d5012d))
+
+
+### Features
+
+* **ContactForm:** update for new API ([12c8ab7](https://github.com/gaiama/gaiama.org/commit/12c8ab7))
+* **ContactPage:** update for new API ([13525db](https://github.com/gaiama/gaiama.org/commit/13525db))
+* **NewsletterWidget:** update for new API ([ced6ac7](https://github.com/gaiama/gaiama.org/commit/ced6ac7))
+* **ReferrerMessages:** update for new API ([d43c608](https://github.com/gaiama/gaiama.org/commit/d43c608))
+
+
+
 <a name="2.9.6"></a>
 ## [2.9.6](https://github.com/gaiama/gaiama.org/compare/v2.9.5...v2.9.6) (2020-09-27)
 
