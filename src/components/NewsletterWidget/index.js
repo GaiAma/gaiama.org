@@ -48,6 +48,7 @@ export class Newsletter extends Component {
     emailLabel: PropTypes.string,
     emailPlaceholder: PropTypes.string,
     emailErrorLabel: PropTypes.string,
+    existingLabel: PropTypes.string,
     generalErrorLabel: PropTypes.string,
     consentLabel: PropTypes.string,
     privacyLabel: PropTypes.string,
@@ -63,6 +64,7 @@ export class Newsletter extends Component {
     emailPlaceholder: ``,
     consentLabel: ``,
     submitLabel: ``,
+    existingLabel: ``,
     lang: `en`,
     maintenance: false,
   }
@@ -161,6 +163,10 @@ export class Newsletter extends Component {
           return this.setState({ hasSucceeded: true }, () => {
             const el = document.getElementById(`success`)
             el && window.scrollTo(0, el.offsetTop - 90)
+          })
+        } else if (result === `EXISTING`) {
+          return this.setState({
+            errors: { ...this.state.errors, email: this.props.existingLabel },
           })
         }
         throw new Error({ generalError: this.props.generalErrorLabel })
