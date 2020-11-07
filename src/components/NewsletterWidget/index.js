@@ -51,6 +51,7 @@ export class Newsletter extends Component {
     existingLabel: PropTypes.string,
     generalErrorLabel: PropTypes.string,
     consentLabel: PropTypes.string,
+    consentErrorLabel: PropTypes.string,
     privacyLabel: PropTypes.string,
     privacyLink: PropTypes.string,
     submitLabel: PropTypes.string,
@@ -140,7 +141,7 @@ export class Newsletter extends Component {
     }
 
     if (!consent) {
-      errors.consent = true
+      errors.consent = this.props.consentErrorLabel
     }
 
     if (errors.email || errors.consent) {
@@ -284,8 +285,11 @@ export class Newsletter extends Component {
             {errors.email && (
               <div
                 sx={{
-                  position: `absolute`,
+                  // position: `absolute`,
                   color: colors.failure,
+                  marginTop: `0.4rem`,
+                  border: `1px solid`,
+                  borderColor: `failure`,
                   fontSize: `0.9rem`,
                 }}
               >
@@ -322,6 +326,20 @@ export class Newsletter extends Component {
             <Link to={privacyLink} variant="plain">
               {privacyLabel}
             </Link>
+            {errors.consent && (
+              <div
+                sx={{
+                  // position: `absolute`,
+                  color: `failure`,
+                  marginTop: `0.4rem`,
+                  border: `1px solid`,
+                  borderColor: `failure`,
+                  fontSize: `0.9rem`,
+                }}
+              >
+                {errors.consent}
+              </div>
+            )}
           </label>
         </div>
 
