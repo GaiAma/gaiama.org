@@ -47,7 +47,12 @@ export default class ContactForm extends Component {
     emailLabel: PropTypes.string,
     emailPlaceholder: PropTypes.string,
     emailErrorLabel: PropTypes.string,
+    consentErrorLabel: PropTypes.string,
     requiredLabel: PropTypes.string,
+    minLengthErrorLabel: PropTypes.string,
+    minMessageLength: PropTypes.number,
+    bbcodeErrorLabel: PropTypes.string,
+    toQuickLabel: PropTypes.string,
     generalErrorLabel: PropTypes.string,
     messageLabel: PropTypes.string,
     privacyLabel: PropTypes.string,
@@ -111,6 +116,15 @@ export default class ContactForm extends Component {
     return this.submit()
   }
 
+  checkTime() {
+    // from https://stackoverflow.com/a/2024230/3484824
+    // & https://stackoverflow.com/a/59887628/3484824
+    // or just? https://stackoverflow.com/a/2024243/3484824
+    return (
+      Math.abs(Math.round((this.initTime - new Date().getTime()) / 1000)) < 10
+    )
+  }
+
   submit(autoRetry) {
     if (this.state.attempts > 2 && autoRetry) {
       return this.setState({
@@ -139,7 +153,14 @@ export default class ContactForm extends Component {
       return this.setState({ errors, isSubmitting: false })
     }
 
-    this.increaseAttempts()
+    // this.increaseAttempts()
+
+    if (this.checkTime()) {
+      return this.setState({
+        isSubmitting: false,
+        generalError: this.props.toQuickLabel,
+      })
+    }
 
     const sanitizedMessage = message
       // // replace multiple line breaks (2 and more) by <br><br>
