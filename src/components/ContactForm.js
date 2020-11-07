@@ -126,27 +126,50 @@ export default class ContactForm extends Component {
   }
 
   submit(autoRetry) {
-    if (this.state.attempts > 2 && autoRetry) {
-      return this.setState({
-        isSubmitting: false,
-        generalError: this.props.generalErrorLabel,
-      })
-    }
 
-    this.setState({ isSubmitting: true, generalError: ``, errors: {} })
+    // if (this.state.attempts > 2 && autoRetry) {
+    //   return this.setState({
+    //     isSubmitting: false,
+    //     generalError: this.props.generalErrorLabel,
+    //   })
+    // }
+
     const errors = {}
+    this.setState({ isSubmitting: true, generalError: ``, errors })
+
     const { email, message, consent } = this.state.values
+    const msg = message.trim()
 
     if (!isEmail(email)) {
       errors.email = this.props.emailErrorLabel
     }
 
-    if (!message.trim()) {
+    if (!msg) {
       errors.message = this.props.requiredLabel
     }
 
+    const whitespaceWithinRegexp = /.+\s.+/g
+    if (
+      msg.length < this.props.minMessageLength ||
+      !whitespaceWithinRegexp.test(msg)
+    ) {
+      errors.message = this.props.minLengthErrorLabel
+    }
+
+    const containsBBCode = /\[url[=\]].*\[\/url\]/is
+    if (containsBBCode.test(msg)) {
+      errors.message = this.props.bbcodeErrorLabel
+    }
+
+    // TODO: consider http://api.stopforumspam.org/api?emailhash=
+    // using https://www.npmjs.com/package/crypto-js in browser
+    // or https://www.npmjs.com/package/pure-md5 might be smaller 1.9KB
+    // in node require('crypto').createHash('md5').update('hello world').digest('hex')
+    // https://stackoverflow.com/questions/1655769/fastest-md5-implementation-in-javascript
+    // inspiration https://plugins.trac.wordpress.org/browser/antispam-bee/branches/2.6.5/antispam_bee.php
+
     if (!consent) {
-      errors.consent = true
+      errors.consent = this.props.consentErrorLabel
     }
 
     if (errors.email || errors.message || errors.consent) {
@@ -162,17 +185,17 @@ export default class ContactForm extends Component {
       })
     }
 
-    const sanitizedMessage = message
-      // // replace multiple line breaks (2 and more) by <br><br>
-      // .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
-      // // replace single line breaks by <br>
-      // .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
-      .trim()
+    // const sanitizedMessage = message
+    //   // // replace multiple line breaks (2 and more) by <br><br>
+    //   // .replace(/(\r\n|\n\r|\r|\n){2,}/g, `<br><br>`)
+    //   // // replace single line breaks by <br>
+    //   // .replace(/(\r\n|\n\r|\r|\n)/g, `<br>`)
+    //   .trim()
 
     const payload = [
       `email=${encodeURIComponent(email)}`,
       `lang=${encodeURIComponent(this.props.lang)}`,
-      `message=${encodeURIComponent(sanitizedMessage)}`,
+      `message=${encodeURIComponent(msg)}`,
     ]
 
     // if (process.env.NODE_ENV !== `production`) {
@@ -193,15 +216,16 @@ export default class ContactForm extends Component {
         throw new Error({ generalError: this.props.generalErrorLabel })
       })
       .catch(() => {
-        this.increaseAttempts()
-        this.submit(true)
+        // this.increaseAttempts()
+        // this.submit(true)
+        throw new Error({ generalError: this.props.generalErrorLabel })
       })
       .then(() => this.setState({ isSubmitting: false }))
   }
 
-  increaseAttempts() {
-    this.setState({ attempts: this.state.attempts + 1 })
-  }
+  // increaseAttempts() {
+  //   this.setState({ attempts: this.state.attempts + 1 })
+  // }
 
   reset() {
     this.setState({
@@ -294,8 +318,11 @@ export default class ContactForm extends Component {
             {errors.email && (
               <div
                 sx={{
-                  position: `absolute`,
+                  // position: `absolute`,
                   color: `failure`,
+                  marginTop: `0.4rem`,
+                  border: `1px solid`,
+                  borderColor: `failure`,
                   fontSize: `0.9rem`,
                 }}
               >
@@ -308,7 +335,7 @@ export default class ContactForm extends Component {
         <div
           sx={{
             position: `relative`,
-            paddingBottom: `1.4rem`,
+            // paddingBottom: `1.4rem`,
             '& textarea': {
               borderColor: `${errors.email && `failure`}`,
             },
@@ -339,8 +366,11 @@ export default class ContactForm extends Component {
             {errors.message && (
               <div
                 sx={{
-                  position: `absolute`,
+                  // position: `absolute`,
                   color: `failure`,
+                  marginTop: `0.4rem`,
+                  border: `1px solid`,
+                  borderColor: `failure`,
                   fontSize: `0.9rem`,
                 }}
               >
@@ -353,6 +383,7 @@ export default class ContactForm extends Component {
         <div
           sx={{
             position: `relative`,
+            marginTop: `1rem`,
             paddingBottom: `1.4rem`,
             color: `${errors.consent && `failure`}`,
           }}
@@ -379,8 +410,11 @@ export default class ContactForm extends Component {
             {errors.consent && (
               <div
                 sx={{
-                  position: `absolute`,
+                  // position: `absolute`,
                   color: `failure`,
+                  marginTop: `0.4rem`,
+                  border: `1px solid`,
+                  borderColor: `failure`,
                   fontSize: `0.9rem`,
                 }}
               >
