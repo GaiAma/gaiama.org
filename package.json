@@ -2,7 +2,7 @@
   "name": "gaiama.org",
   "private": true,
   "description": "GaiAma.org website",
-  "version": "2.10.3",
+  "version": "2.10.4",
   "author": "Can Rau <cansrau@gmail.com>",
   "license": "MIT",
   "homepage": "https://www.gaiama.org",
@@ -25,7 +25,8 @@
     "url": "https://github.com/gaiama/gaiama.org/issues"
   },
   "scripts": {
-    "dev": "export $(cat ../.env | grep -v ^# | xargs) && GATSBY_TELEMETRY_DISABLED=1 GATSBY_TELEMETRY_DEBUG=0 GATSBY_GRAPHQL_IDE=not-playground ENABLE_GATSBY_REFRESH_ENDPOINT=1 gatsby develop --https --host 0.0.0.0",
+    "//dev": "export $(cat ../.env | grep -v ^# | xargs) && GATSBY_TELEMETRY_DISABLED=1 GATSBY_TELEMETRY_DEBUG=0 GATSBY_GRAPHQL_IDE=not-playground ENABLE_GATSBY_REFRESH_ENDPOINT=1 gatsby develop --https --host 0.0.0.0",
+    "dev": "export $(cat ../.env | grep -v ^# | xargs) && NODE_EXTRA_CA_CERTS=$HOME/.certs/selfcert.pem GATSBY_TELEMETRY_DISABLED=1 GATSBY_TELEMETRY_DEBUG=0 GATSBY_GRAPHQL_IDE=not-playground ENABLE_GATSBY_REFRESH_ENDPOINT=1 gatsby develop --https --host 0.0.0.0 -c $HOME/.certs/selfcert.pem -k $HOME/.certs/selfkey.pem",
     "dev:full": "GATSBY_GRAPHQL_IDE=playground GAIAMA_FULL_CONTENT=1 yarn dev",
     "debug": "DEBUG=* yarn dev",
     "debug:gatsby": "DEBUG=gatsby* yarn dev",

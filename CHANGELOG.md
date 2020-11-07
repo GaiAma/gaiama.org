@@ -1,3 +1,16 @@
+<a name="2.10.4"></a>
+## [2.10.4](https://github.com/gaiama/gaiama.org/compare/v2.10.3...v2.10.4) (2020-11-07)
+
+
+### Features
+
+* **ContactForm:** handle checkTime in function ([11c9d00](https://github.com/gaiama/gaiama.org/commit/11c9d00))
+* **ContactForm:** improve error messages, disable autoretry ([287ad00](https://github.com/gaiama/gaiama.org/commit/287ad00))
+* **ContactPage:** improve error labels ([d53687f](https://github.com/gaiama/gaiama.org/commit/d53687f))
+* **NewsletterWidget:** improve errors ([0b69ace](https://github.com/gaiama/gaiama.org/commit/0b69ace))
+
+
+
 <a name="2.10.3"></a>
 ## [2.10.3](https://github.com/gaiama/gaiama.org/compare/v2.10.2...v2.10.3) (2020-10-23)
 
