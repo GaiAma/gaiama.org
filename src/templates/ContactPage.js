@@ -101,7 +101,13 @@ const ContactPage = (props) => {
             submitLabel={page.frontmatter.form.contact.submitLabel}
             lang={props.pageContext.lang}
             emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
-            requiredLabel={page.frontmatter.form.errors.requiredLabel}
+            consentErrorLabel={page.frontmatter.form.errors.consentErrorLabel}
+            bbcodeErrorLabel={page.frontmatter.form.errors.bbcodeErrorLabel}
+            minMessageLength={20}
+            minLengthErrorLabel={
+              page.frontmatter.form.errors.minLengthErrorLabel
+            }
+            toQuickLabel={page.frontmatter.form.errors.toQuickLabel}
             generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
             endpoint={
               isProduction
@@ -146,6 +152,7 @@ const ContactPage = (props) => {
               submitLabel={page.frontmatter.form.newsletter.submitLabel}
               lang={props.pageContext.lang}
               emailErrorLabel={page.frontmatter.form.errors.emailErrorLabel}
+              consentErrorLabel={page.frontmatter.form.errors.consentErrorLabel}
               existingLabel={page.frontmatter.form.errors.existingLabel}
               generalErrorLabel={page.frontmatter.form.errors.generalErrorLabel}
               endpoint={
@@ -225,7 +232,10 @@ export const query = graphql`
           errors {
             emailErrorLabel
             existingLabel
-            requiredLabel
+            minLengthErrorLabel
+            consentErrorLabel
+            bbcodeErrorLabel
+            toQuickLabel
             generalErrorLabel
           }
         }
