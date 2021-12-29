@@ -8,6 +8,11 @@ module.exports = [
   // `/api/pixel/* https://pixel.api.gaiama.org/:splat 200`,
   // `/api/* https://api.gaiama.org/:splat 200`,
 
+  // coding4gaiama
+  `https://coding4.gaiama.org/* https://www.canrau.com/:splat 301!`,
+  `https://www.coding4.gaiama.org/* https://www.canrau.com/:splat 301!`,
+
+
   // subdomain redirects
   `https://spende.gaiama.org/* https://www.gaiama.org/de/spenden/ 301! ${ifGermanLanguage}`,
   `https://www.spende.gaiama.org/* https://www.gaiama.org/de/spenden/ 301! ${ifGermanLanguage}`,
