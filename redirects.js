@@ -9,6 +9,8 @@ module.exports = [
   // `/api/* https://api.gaiama.org/:splat 200`,
 
   // coding4gaiama
+  `https://www.coding4.gaiama.org/en/fluid-typography https://www.canrau.com/en/css-only-fluid-typography 301!`,
+  `https://www.coding4.gaiama.org/en/graphql-parent-file https://www.canrau.com/en/query-parent-file-node-in-gatsby-js 301!`,
   `https://coding4.gaiama.org/* https://www.canrau.com/:splat 301!`,
   `https://www.coding4.gaiama.org/* https://www.canrau.com/:splat 301!`,
 
