@@ -114,7 +114,7 @@
     "speakingurl": "14.0.1",
     "theme-ui": "^0.2.49",
     "unist-util-modify-children": "2.0.0",
-    "validator": "13.1.17"
+    "validator": "13.7.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-optional-chaining": "^7.11.0",
